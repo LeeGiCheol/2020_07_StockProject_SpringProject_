@@ -10,6 +10,7 @@ public class UserVO {
 	private String address;
 	private int charge; // 재지급 횟수
 	
+	private String friend;
 	
 	public String getId() {
 		return id;
@@ -62,6 +63,12 @@ public class UserVO {
 	
 	
 	
+	public String getFriend() {
+		return friend;
+	}
+	public void setFriend(String friend) {
+		this.friend = friend;
+	}
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", pw=" + pw + ", nickname=" + nickname + ", tel=" + tel + ", point="

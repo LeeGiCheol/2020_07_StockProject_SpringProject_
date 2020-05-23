@@ -20,7 +20,13 @@ public class SignUpDAOImpl implements SignUpDAO {
 	@Override
 	public void signUp(UserVO vo) {
 		mybatis.insert("user.signUp", vo);
-		//mybatis.insert("SignUp.nickname", vo);
+		
+		// 추천인 입력 시 포인트 증가
+		if(vo.getFriend() != null && vo.getFriend() !="") {
+			System.out.println("id==="+vo.getId());
+			System.out.println("friend==="+vo.getFriend());
+			mybatis.update("user.pointUp", vo);
+		}
 		
 	}
 

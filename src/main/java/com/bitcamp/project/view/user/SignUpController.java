@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.project.service.SignUpService;
@@ -15,6 +16,8 @@ import com.bitcamp.project.vo.UserVO;
 
 @Controller
 public class SignUpController {
+	
+
 	@Autowired
 	private SignUpService signUpService;
 	
@@ -26,8 +29,14 @@ public class SignUpController {
 
 	// 회원가입완료화면
 	@PostMapping(value="/signUp")
-	public String signUp(UserVO vo) {
+	public String signUp(UserVO vo, @RequestParam("friend") String friend) {
+		if(friend != null) {
+			vo.setFriend(friend);
+		}
+		
 		signUpService.signUp(vo);
+		
+		
 		return "signup03";
 	}
 	
@@ -40,7 +49,7 @@ public class SignUpController {
 		
 		// 아이디 중복확인
 		if(request.getServletPath().equals("/idCheck")) {
-			System.out.println(id);
+			System.out.println("nickname =?"+nickname);
 			System.out.println("dasd");
 			int result=signUpService.duplicateCheck(id);
 			System.out.println("id"+result);
@@ -50,6 +59,7 @@ public class SignUpController {
 		// 닉네임 중복확인
 		else if(request.getServletPath().equals("/nickCheck")) {
 			System.out.println(nickname);
+			System.out.println("id =?"+id);
 	
 			int result=signUpService.duplicateCheck(nickname);
 			System.out.println("nick"+result);
@@ -58,10 +68,10 @@ public class SignUpController {
 		
 		// 추천인 중복확인 (미완성)
 		else if(request.getServletPath().equals("/friendCheck")) {
-			System.out.println(id);
+			System.out.println("firend"+id);
 			
 			int result=signUpService.duplicateCheck(id);
-			System.out.println("nick"+result);
+			System.out.println("friend2 "+result);
 			return Integer.toString(result);
 		}
 		

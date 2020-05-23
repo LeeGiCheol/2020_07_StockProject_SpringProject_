@@ -31,23 +31,28 @@
 		values(#{id}, #{nickname});
 	</insert>
 	
-	<select id="idCheck" resultType="int" parameterType="String">
+	<select id="idCheck" resultType="int" parameterType="user">
 		select count(*) 
 		from user
 		
-		where 1=1
 		<choose>
-			<when test="0 != null and 0 != ''">
-				and ID = #{id} 
-			
+			<when test='"${id}" != null'>
+				where ID=#{id}
 			</when>
-			<when test="1 != null and 1 != ''">
-				and NICKNAME = #{nickname} 
+			<when test='"${nickname}" != null'>
+				where NICKNAME=#{nickname}
 			</when>
 		</choose>
 		
 		
 	</select>
+	
+	<update id="pointUp" parameterType="user">
+		update user 
+		set POINT = POINT+1000
+		where ID in (#{friend}, #{id})
+	</update>
+	
 	
 	
 	

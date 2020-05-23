@@ -81,12 +81,14 @@
 			<div class="password">
 				<label for="inputPassword">비밀번호</label>
 				<div class="form-group col-md-6" >
-					 <input type="password" class="form-control" id="inputPassword" placeholder="8~13자 입력하세요" name="pw">
+					 <input type="password" class="form-control" id="inputPassword" placeholder="8~13자 입력하세요" name="pw" oninput="checkPwd()">
 				</div>
 				<label for="inputPasswordAgain">비밀번호확인</label>
 				<div class="form-group col-md-6">
 					 <input	type="password" class="form-control" id="inputPasswordAgain"
-						placeholder="비밀번호를 입력하세요 ">
+						placeholder="비밀번호를 입력하세요 " oninput="checkPw()">
+					<ul><li style="list-style:none;" id="pwResult"></li></ul>
+						
 				</div>
 				
             </div>
@@ -100,7 +102,7 @@
 				<label for="inputAddress col-md-6">추천인</label>
 				<div class="form-group" style="display: -webkit-box;">
 					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="추천인 닉네임을 입력하세요">
-				<button type="button" class="btn btn-secondary" id="firendCheck">　추천하기　</button>	
+				<button type="button" class="btn btn-secondary" id="friendCheck">　추천하기　</button>	
 				<ul><li style="list-style:none;" id="friendResult"></li></ul>
 					
 				</div>
@@ -123,7 +125,7 @@
                 </div>
             </div>
             <div>
-                <div><button type="submit" class="nextButton" data-text-content="true" id="submit">회원가입</button></div>
+                <div><button type="submit" class="nextButton" data-text-content="true" id="submit" disabled="disabled">회원가입</button></div>
             </div>
         
 	</form>
@@ -221,15 +223,23 @@
 						
 						$('#idResult').empty();
 						$('#idResult').append(html);
+						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
+						$("#submit").removeAttr("disabled");
+
 					}else{
 						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
 						
 						$('#idResult').empty();
 						$('#idResult').append(html);
+						// 중복체크 실패 시 회원가입 버튼 비활성화
+						$("#submit").attr("disabled", "disabled");
+						// 지우기
+						document.getElementById("inputEmail").value="";
+
 					}
 				},
 				error: function(){
-					alert("서버에러");
+					alert("에러");
 				}
 				
 			});  
@@ -252,11 +262,16 @@
 						
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
+						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
+						$("#submit").removeAttr("disabled");
 					}else{
 						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
 						
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
+						document.getElementById("inputNickname").value="";
+						// 중복체크 실패 시 회원가입 버튼 비활성화
+						$("#submit").attr("disabled", "disabled");
 					}
 				},
 				error: function(){
@@ -274,9 +289,16 @@
 			$.ajax({ 
 				type: 'GET', 
 				url: '${pageContext.request.contextPath}/friendCheck', 
-				data: { "friend" : $('#inputFriend').val() }, 
+				data: { "id" : $('#inputFriend').val() }, 
 				success: function(data){ 
 					if(data == 0 && $.trim($('#inputFriend').val()) != ''){
+						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
+						
+						$('#friendResult').empty();
+						$('#friendResult').append(html);
+						document.getElementById("inputFriend").value="";
+					}else{
+						
 						idx= true;
 						$('#inputFriend').attr("readonly", true);
 						
@@ -284,11 +306,7 @@
 						
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
-					}else{
-						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
 						
-						$('#friendResult').empty();
-						$('#friendResult').append(html);
 					}
 				},
 				error: function(){
@@ -297,11 +315,42 @@
 				
 			});  
 		});   
-		
-		
-		
 	});
 	
+	
+	
+	
+	 function checkPw() {
+	        var password = $('#inputPassword').val();
+	        var passwordAgain = $('#inputPasswordAgain').val();
+	        if(passwordAgain=="" && (password != passwordAgain || password == passwordAgain)){
+	            $("#inputPasswordAgain").css("background-color", "#FFCECE");
+				$("#submit").attr("disabled", "disabled");
+				
+	            var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
+				
+				$('#pwResult').empty();
+				$('#pwResult').append(html);
+	        }
+	        else if (password == passwordAgain) {
+	            $("#inputPasswordAgain").css("background-color", "#B0F6AC");
+	            
+	            var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
+				
+				$('#pwResult').empty();
+				$('#pwResult').append(html);
+				
+	        } else if (password != passwordAgain) {
+	            $("#inputPasswordAgain").css("background-color", "#FFCECE");
+				$("#submit").attr("disabled", "disabled");
+
+	            var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
+				
+				$('#pwResult').empty();
+				$('#pwResult').append(html);
+	            
+	        }
+	    }
   
 </script>
 
