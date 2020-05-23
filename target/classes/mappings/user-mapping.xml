@@ -31,11 +31,25 @@
 		values(#{id}, #{nickname});
 	</insert>
 	
-	<select id="idCheck" resultType="int">
+	<select id="idCheck" resultType="int" parameterType="String">
 		select count(*) 
 		from user
-		where ID = #{id} 
+		
+		where 1=1
+		<choose>
+			<when test="0 != null and 0 != ''">
+				and ID = #{id} 
+			
+			</when>
+			<when test="1 != null and 1 != ''">
+				and NICKNAME = #{nickname} 
+			</when>
+		</choose>
+		
+		
 	</select>
+	
+	
 	
 	
 	<!-- <insert id="nickname">

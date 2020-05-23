@@ -1,10 +1,12 @@
 package com.bitcamp.project.view.user;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.project.board.SignUpService;
@@ -31,15 +33,33 @@ public class SignUpController {
 	
 	// 아이디 중복확인
 	@ResponseBody 
-	@RequestMapping(value="/idCheck", method=RequestMethod.GET, produces = "application/text; charset=utf8")
-	public String idCheck(@RequestParam("id") String id) {
-		System.out.println("로그인 첵크");
+	@RequestMapping(value= {"/idCheck", "/nickCheck", "/friendCheck"}, method=RequestMethod.GET, produces = "application/text; charset=utf8")
+	public String idCheck(@ModelAttribute("id") String id, @ModelAttribute("nickname") String nickname, HttpServletRequest request) {
+		if(request.getServletPath().equals("/idCheck")) {
+			System.out.println(id);
 	
-		System.out.println(id);
-		int result=signUpService.duplicateCheck(id);
+			int result=signUpService.duplicateCheck(id);
+			System.out.println("id"+result);
+			return Integer.toString(result);
+		}
 		
-		 
-		return Integer.toString(result);
+		else if(request.getServletPath().equals("/nickCheck")) {
+			System.out.println(nickname);
+	
+			int result=signUpService.duplicateCheck(nickname);
+			System.out.println("nick"+result);
+			return Integer.toString(result);
+		}
+		
+		else if(request.getServletPath().equals("/friendCheck")) {
+			System.out.println(id);
+			
+			int result=signUpService.duplicateCheck(id);
+			System.out.println("nick"+result);
+			return Integer.toString(result);
+		}
+		
+		return null;
 	}
 	
 }

@@ -72,7 +72,7 @@
 				<div class="form-group col-md-6" style="display: -webkit-box;">
 					<input type="email"	class="form-control" id="inputEmail" name="id">
 				<button type="button" class="btn btn-secondary" id="idCheck">　중복확인　</button>
-				<ul><li style="list-style:none;" id="check"></li></ul>
+				<ul><li style="list-style:none;" id="idResult"></li></ul>
 				</div>
 			<div class="password">
 				<label for="inputPassword">비밀번호</label>
@@ -89,12 +89,16 @@
 				<label for="inputnickname col-md-6">닉네임</label>
 				<div class="form-group" style="display: -webkit-box;">
 					 <input type="text"	class="form-control" id="inputNickname" name="nickname">
-				<button type="button" class="btn btn-secondary">　중복확인　</button>		
+				<button type="button" class="btn btn-secondary" id="nickCheck">　중복확인　</button>	
+				<ul><li style="list-style:none;" id="nickNameResult"></li></ul>
+					
 				</div>
 				<label for="inputAddress col-md-6">추천인</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputFriend" placeholder="추천인 닉네임을 입력하세요">
-				<button type="button" class="btn btn-secondary">　추천하기　</button>		
+					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="추천인 닉네임을 입력하세요">
+				<button type="button" class="btn btn-secondary" id="firendCheck">　추천하기　</button>	
+				<ul><li style="list-style:none;" id="friendResult"></li></ul>
+					
 				</div>
 				<label for="inputAddress col-md-6">주소</label>
 				<div class="form-group" style="display: -webkit-box;">
@@ -115,7 +119,7 @@
                 </div>
             </div>
             <div>
-                <div><button type="submit" class="nextButton" data-text-content="true">회원가입</button></div>
+                <div><button type="submit" class="nextButton" data-text-content="true" id="submit">회원가입</button></div>
             </div>
         
 	</form>
@@ -140,6 +144,34 @@
 	$(document).ready(function(e){ 
 		
 		
+		/* $(".cancle").on("click", function(){
+			
+			location.href = "/login";
+					    
+		}) */
+	
+		$("#submit").on("click", function(){
+			if($("#inputEmail").val()==""){
+				alert("아이디를 입력해주세요.");
+				$("#inputEmail").focus();
+				return false;
+			}
+			if($("#inputPassword").val()==""){
+				alert("비밀번호를 입력해주세요.");
+				$("#inputPassword").focus();
+				return false;
+			}
+			if($("#inputNickname").val()==""){
+				alert("닉네임을 입력해주세요.");
+				$("#inputNickname").focus();
+				return false;
+			}
+		});
+		
+		
+		
+		
+		
 		
 		$('#idCheck').on('click', function(){ 
 			$.ajax({ 
@@ -153,13 +185,13 @@
 						
  						var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
 						
-						$('#check').empty();
-						$('#check').append(html);
+						$('#idResult').empty();
+						$('#idResult').append(html);
 					}else{
 						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
 						
-						$('#check').empty();
-						$('#check').append(html);
+						$('#idResult').empty();
+						$('#idResult').append(html);
 					}
 				},
 				error: function(){
@@ -168,6 +200,72 @@
 				
 			});  
 		});  
+		
+		
+		
+		
+		$('#nickCheck').on('click', function(){ 
+			$.ajax({ 
+				type: 'GET', 
+				url: '${pageContext.request.contextPath}/nickCheck', 
+				data: { "nickname" : $('#inputNickname').val() }, 
+				success: function(data){ 
+					if(data == 0 && $.trim($('#inputNickname').val()) != ''){
+						idx= true;
+						$('#inputNickname').attr("readonly", true);
+						
+ 						var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
+						
+						$('#nickNameResult').empty();
+						$('#nickNameResult').append(html);
+					}else{
+						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
+						
+						$('#nickNameResult').empty();
+						$('#nickNameResult').append(html);
+					}
+				},
+				error: function(){
+					alert("서버에러");
+				}
+				
+			});  
+		});  
+		
+		
+		
+		
+	
+		$('#friendCheck').on('click', function(){ 
+			$.ajax({ 
+				type: 'GET', 
+				url: '${pageContext.request.contextPath}/friendCheck', 
+				data: { "friend" : $('#inputFriend').val() }, 
+				success: function(data){ 
+					if(data == 0 && $.trim($('#inputFriend').val()) != ''){
+						idx= true;
+						$('#inputFriend').attr("readonly", true);
+						
+ 						var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
+						
+						$('#friendResult').empty();
+						$('#friendResult').append(html);
+					}else{
+						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
+						
+						$('#friendResult').empty();
+						$('#friendResult').append(html);
+					}
+				},
+				error: function(){
+					alert("서버에러");
+				}
+				
+			});  
+		});   
+		
+		
+		
 	});
 	
   
