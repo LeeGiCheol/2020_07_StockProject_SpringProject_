@@ -16,6 +16,10 @@
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
 
 
+
+
+
+
 </head>
 <body>
 <!-- 상단  nav -->
@@ -65,7 +69,7 @@
 	</nav>
 <!-- header end -->
 <!-- body start -->
-	<form action="signUp" method="POST">
+	<form action="signUp" name="form" method="POST">
 		<div class="container">
 			<div class="allBody">
 				<label for="inputEmail">이메일</</label> 
@@ -102,8 +106,8 @@
 				</div>
 				<label for="inputAddress col-md-6">주소</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputAddress" name="address">
-				<button type="button" class="btn btn-secondary">우편번호찾기</button>		
+					 <input type="text"	class="form-control" id="inputAddress" name="address" required="true" >
+				<button type="button" class="btn btn-secondary" onclick="goPopup();">우편번호찾기</button>		
 				</div>
 				<label for="inputPhone col-md-6" >휴대폰</label>
 				<div class="form-group" style="display: -webkit-box;">
@@ -140,9 +144,39 @@
 
 <script>
 
+	
+	function goPopup(){
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		
+		// 가운데 띄우기
+		var width = "570"; 
+		var height = "420"; 
+		var top = (window.screen.height-height)/2; 
+		var left = (window.screen.width-width)/2; 
+		var url = "/signUpPage/jusoPopup"; 
+		var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width="+width+",height="+height+",top="+top+",left="+left; 
+		var pop = window.open(url , "pop", status);
+		
+		// 왼쪽 상단에 띄우기		
+		//var pop = window.open("/signUpPage/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	    
+		// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+	    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+	}
+	//}
+	/** API 서비스 제공항목 확대 (2017.02) **/
+	function jusoCallBack(roadFullAddr){
+		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+		console.log(roadFullAddr);
+		document.form.inputAddress.value = roadFullAddr;
+	}
+
+
 
 	$(document).ready(function(e){ 
 		
+
+	
 		
 		/* $(".cancle").on("click", function(){
 			

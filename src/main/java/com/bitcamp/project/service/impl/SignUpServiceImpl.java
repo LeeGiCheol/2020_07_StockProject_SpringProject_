@@ -1,4 +1,4 @@
-package com.bitcamp.project.dao.impl;
+package com.bitcamp.project.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
