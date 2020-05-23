@@ -1,5 +1,7 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,8 @@ public class SignUpServiceImpl implements SignUpService{
 	}
 
 	@Override
-	public int duplicateCheck(String userInfo) {
-		return signUpDAO.duplicateCheck(userInfo);
+	public int duplicateCheck(Map<String, String> map) {
+		return signUpDAO.duplicateCheck(map);
 	}
 
 

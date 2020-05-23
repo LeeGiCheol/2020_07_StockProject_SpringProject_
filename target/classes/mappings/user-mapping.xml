@@ -31,15 +31,15 @@
 		values(#{id}, #{nickname});
 	</insert>
 	
-	<select id="idCheck" resultType="int" parameterType="user">
+	<select id="idCheck" resultType="int" parameterType="map">
 		select count(*) 
 		from user
 		
 		<choose>
-			<when test='"${id}" != null'>
+			<when test='id != null and id !="" '>
 				where ID=#{id}
 			</when>
-			<when test='"${nickname}" != null'>
+			<when test='nickname != null and nickname !="" '>
 				where NICKNAME=#{nickname}
 			</when>
 		</choose>

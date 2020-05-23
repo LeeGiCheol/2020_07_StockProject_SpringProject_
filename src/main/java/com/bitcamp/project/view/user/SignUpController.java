@@ -1,5 +1,9 @@
 package com.bitcamp.project.view.user;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,21 +51,24 @@ public class SignUpController {
 	public String duplicateCheck(@ModelAttribute("id") String id, 
 								@ModelAttribute("nickname") String nickname, HttpServletRequest request) {
 		
+		Map<String, String> map = new HashMap<String, String>();
+		
 		// 아이디 중복확인
 		if(request.getServletPath().equals("/idCheck")) {
-			System.out.println("nickname =?"+nickname);
-			System.out.println("dasd");
-			int result=signUpService.duplicateCheck(id);
+			map.put("id", id);
+			
+			
+			int result=signUpService.duplicateCheck(map);
 			System.out.println("id"+result);
 			return Integer.toString(result);
 		}
 		
 		// 닉네임 중복확인
 		else if(request.getServletPath().equals("/nickCheck")) {
-			System.out.println(nickname);
-			System.out.println("id =?"+id);
-	
-			int result=signUpService.duplicateCheck(nickname);
+			map.put("nickname", nickname);
+			
+			
+			int result=signUpService.duplicateCheck(map);
 			System.out.println("nick"+result);
 			return Integer.toString(result);
 		}
@@ -70,11 +77,10 @@ public class SignUpController {
 		else if(request.getServletPath().equals("/friendCheck")) {
 			System.out.println("firend"+id);
 			
-			int result=signUpService.duplicateCheck(id);
+			int result=signUpService.duplicateCheck(map);
 			System.out.println("friend2 "+result);
 			return Integer.toString(result);
 		}
-		
 		return null;
 	}
 	
