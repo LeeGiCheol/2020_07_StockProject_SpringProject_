@@ -3,8 +3,8 @@ package com.bitcamp.project.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bitcamp.project.board.SignUpService;
 import com.bitcamp.project.dao.SignUpDAO;
+import com.bitcamp.project.service.SignUpService;
 import com.bitcamp.project.vo.UserVO;
 
 
@@ -22,8 +22,8 @@ public class SignUpServiceImpl implements SignUpService{
 	}
 
 	@Override
-	public int duplicateCheck(String id) {
-		return signUpDAO.duplicateCheck(id);
+	public int duplicateCheck(String userInfo) {
+		return signUpDAO.duplicateCheck(userInfo);
 	}
 
 

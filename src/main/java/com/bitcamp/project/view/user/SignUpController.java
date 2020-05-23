@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bitcamp.project.board.SignUpService;
+import com.bitcamp.project.service.SignUpService;
 import com.bitcamp.project.vo.UserVO;
 
 @Controller
@@ -34,7 +34,7 @@ public class SignUpController {
 	// 아이디 중복확인
 	@ResponseBody 
 	@RequestMapping(value= {"/idCheck", "/nickCheck", "/friendCheck"}, method=RequestMethod.GET, produces = "application/text; charset=utf8")
-	public String idCheck(@ModelAttribute("id") String id, @ModelAttribute("nickname") String nickname, HttpServletRequest request) {
+	public String duplicateCheck(@ModelAttribute("id") String id, @ModelAttribute("nickname") String nickname, HttpServletRequest request) {
 		if(request.getServletPath().equals("/idCheck")) {
 			System.out.println(id);
 	

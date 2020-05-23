@@ -25,9 +25,9 @@ public class SignUpDAOImpl implements SignUpDAO {
 	}
 
 	@Override
-	public int duplicateCheck(String id) {
-		System.out.println("DAO"+id);
-		int result = mybatis.selectOne("user.idCheck", id);
+	public int duplicateCheck(String userInfo) {
+		System.out.println("DAO"+userInfo);
+		int result = mybatis.selectOne("user.idCheck", userInfo);
 		System.out.println(result);
 		return result;
 	}
