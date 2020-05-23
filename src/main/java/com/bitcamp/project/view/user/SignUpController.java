@@ -37,7 +37,7 @@ public class SignUpController {
 	public String duplicateCheck(@ModelAttribute("id") String id, @ModelAttribute("nickname") String nickname, HttpServletRequest request) {
 		if(request.getServletPath().equals("/idCheck")) {
 			System.out.println(id);
-	
+			System.out.println("dasd");
 			int result=signUpService.duplicateCheck(id);
 			System.out.println("id"+result);
 			return Integer.toString(result);
