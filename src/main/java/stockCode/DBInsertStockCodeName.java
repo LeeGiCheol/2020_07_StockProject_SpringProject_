@@ -32,6 +32,12 @@ public class DBInsertStockCodeName {
             bin = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
             bin2 = new BufferedReader(new InputStreamReader(new FileInputStream(path2), "UTF-8"));
             
+
+            
+            
+            
+            
+            
             String b = null;
             String[] list = null;
             String[] codeList = null;
