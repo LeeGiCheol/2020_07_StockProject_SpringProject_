@@ -16,7 +16,6 @@ public class DBInsertStockCodeName {
 
 	public static void main(String[] args) {
 		
-	
         // File
         BufferedReader bin = null;
         BufferedReader bin2 = null;
