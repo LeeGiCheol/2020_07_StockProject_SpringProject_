@@ -14,6 +14,7 @@ import com.bitcamp.project.vo.BoardVO;
 @XmlRootElement(name="boardList")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class BoardListVO {
+	//커밋테스트 해보겠읍니다
 	
 	@XmlElement(name="board")
 	private List<BoardVO> boardList;

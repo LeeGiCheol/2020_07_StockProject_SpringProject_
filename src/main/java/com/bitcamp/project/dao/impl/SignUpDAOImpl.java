@@ -12,12 +12,8 @@ import com.bitcamp.project.vo.UserVO;
 @Repository("SignUpDAO")
 public class SignUpDAOImpl implements SignUpDAO {
 
-	
-	
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
-	
 	
 	@Override
 	public void signUp(UserVO vo) {

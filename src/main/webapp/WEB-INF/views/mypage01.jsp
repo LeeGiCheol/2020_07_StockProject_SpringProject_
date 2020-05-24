@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 	crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
 <link href="/resources/css/mypage01.css" rel="stylesheet">
@@ -101,7 +101,7 @@
               <div>
                 <div class="input-group-prepend">
                   <span class="input-group-text">@</span>
-                <div type="text" class="form-control" id="userEmail" required>${user.email}</div>
+                <div class="form-control" id="userEmail" >${user.email}</div>
                 </div>
               </div>
             </div>
@@ -109,7 +109,7 @@
             <div class="mb-3">
               <label for="userNickname">닉네임</label>
               <div>
-                <div type="text" class="form-control" id="userNickName" required>${user.nickName}</div>
+                <div class="form-control" id="userNickName" >${user.nickName}</div>
               </div>
             </div>
     
@@ -127,16 +127,16 @@
     
             <div class="mb-3">
               <label for="address">주소</label>
-              <div type="text" class="form-control" id="userAddress" placeholder="1234 Main St" required>${user.address}</div>
+              <div class="form-control" id="userAddress">${user.address}</div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="cc-name">연락처</label>
-                <div type="text" class="form-control" id="userPhone">${user.phone}</div>
+                <div class="form-control" id="userPhone">${user.phone}</div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="cc-number">포인트</label>
-                <div type="text" class="form-control" id="userPoint">${user.point} 점</div>
+                <div class="form-control" id="userPoint">${user.point} 점</div>
               </div>
             </div>
             <hr class="mb-4">
@@ -162,9 +162,10 @@
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-          <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
-            <script src="form-validation.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script src="/docs/4.4/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="form-validation.js"></script>
     </article>
     <!-- article end -->
     <!-- footer start -->
@@ -176,7 +177,7 @@
     </div>
     <!-- footer end --> 
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </html>
