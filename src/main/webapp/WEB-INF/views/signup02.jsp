@@ -177,32 +177,6 @@
 
 	$(document).ready(function(e){ 
 		var checkflag = 0;
-		
-		
-<<<<<<< HEAD
-		
-		$("#joinbtn").click(function() {
-			if(checkflag == 0) {
-				alert('아이디 중복 체크를 해 주세요.');
-			}
-			if(checkflag == 1) {
-				if($.trim(checkID) == null || $.trim(checkID) != $('#id').val()) {
-					alert('아이디 중복 체크를 다시 진행 해 주세요.');
-					checkflag = 0;
-				}
-				else {
-					//회원 확인 메소드 호출
-					alert("회원가입이 완료되었습니다.");
-				}
-
-			}
-		});
-		
-		
-=======
->>>>>>> 4f843da6f213dc31db55f0852b6b063f6bc1666f
-	
-		
 		/* $(".cancle").on("click", function(){
 			
 			location.href = "/login";
@@ -263,25 +237,17 @@
 						$('#idResult').empty();
 						$('#idResult').append(html);
 						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
-<<<<<<< HEAD
-						$("#submit").removeAttr("disabled");
-=======
 						//$("#submit").removeAttr("disabled");
 						
 						checkflag +=1;
 						
->>>>>>> 4f843da6f213dc31db55f0852b6b063f6bc1666f
 					}else if(atSign == -1 || com == -1){
 						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요</td></tr>";
 						
 						$('#idResult').empty();
 						$('#idResult').append(html);
 						// 중복체크 실패 시 회원가입 버튼 비활성화
-<<<<<<< HEAD
-						$("#submit").attr("disabled", "disabled");
-=======
 						//$("#submit").attr("disabled", "disabled");
->>>>>>> 4f843da6f213dc31db55f0852b6b063f6bc1666f
 						// 지우기
 						document.getElementById("inputEmail").value="";
 						
@@ -390,41 +356,6 @@
 	/* 	if(passwordAgain=="" && (password != passwordAgain)){
 			$("#inputPasswordAgain").css("background-color", "#FFCECE");
 	
-<<<<<<< HEAD
-	 function checkPw() {
-	        var password = $('#inputPassword').val();
-	        var passwordAgain = $('#inputPasswordAgain').val();
-	        if(passwordAgain=="" && (password != passwordAgain || password == passwordAgain)){
-	            $("#inputPasswordAgain").css("background-color", "#FFCECE");
-				$("#submit").attr("disabled", "disabled");
-				
-	            var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
-				
-				$('#pwResult').empty();
-				$('#pwResult').append(html);
-	        }
-	        else if (password == passwordAgain) {
-	            $("#inputPasswordAgain").css("background-color", "#B0F6AC");
-	            
-	            var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
-				$("#submit").removeAttr("disabled");
-
-				$('#pwResult').empty();
-				$('#pwResult').append(html);
-				
-	        } else if (password != passwordAgain) {
-	            $("#inputPasswordAgain").css("background-color", "#FFCECE");
-				$("#submit").attr("disabled", "disabled");
-
-	            var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
-				
-				$('#pwResult').empty();
-				$('#pwResult').append(html);
-	            
-	        }
-	    }
-	 
-=======
 			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
 			
 			$('#pwResult').empty();
@@ -464,8 +395,6 @@
 			$('#pwResult').append(html);
 		}
 	}
-
->>>>>>> 4f843da6f213dc31db55f0852b6b063f6bc1666f
   
 </script>
 
