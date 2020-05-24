@@ -28,7 +28,8 @@ public class SignUpController {
 	
 	// 회원가입화면
 	@GetMapping(value="/signUpPage")
-	public String signUpView(UserVO vo) {
+	public String signUpView(UserVO vo, HttpSession httpSession) {
+		httpSession.setAttribute("stock", "Session TEST");
 		return "signup02";
 	}
 
