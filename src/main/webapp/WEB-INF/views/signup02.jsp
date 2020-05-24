@@ -81,7 +81,7 @@
 			<div class="password">
 				<label for="inputPassword">비밀번호</label>
 				<div class="form-group col-md-6" >
-					 <input type="password" class="form-control" id="inputPassword" placeholder="8~13자 입력하세요" name="pw" oninput="checkPwd()">
+					 <input type="password" class="form-control" id="inputPassword" placeholder="8~13자 입력하세요" name="pw" oninput="checkPw()">
 				</div>
 				<label for="inputPasswordAgain">비밀번호확인</label>
 				<div class="form-group col-md-6">
@@ -177,7 +177,25 @@
 
 	$(document).ready(function(e){ 
 		
+		
+		$("#joinbtn").click(function() {
+			if(checkflag == 0) {
+				alert('아이디 중복 체크를 해 주세요.');
+			}
+			if(checkflag == 1) {
+				if($.trim(checkID) == null || $.trim(checkID) != $('#id').val()) {
+					alert('아이디 중복 체크를 다시 진행 해 주세요.');
+					checkflag = 0;
+				}
+				else {
+					//회원 확인 메소드 호출
+					alert("회원가입이 완료되었습니다.");
+				}
 
+			}
+		});
+		
+		
 	
 		
 		/* $(".cancle").on("click", function(){
@@ -215,7 +233,10 @@
 				url: '${pageContext.request.contextPath}/idCheck', 
 				data: { "id" : $('#inputEmail').val() }, 
 				success: function(data){ 
-					if(data == 0 && $.trim($('#inputEmail').val()) != ''){
+					var atSign = $.trim($('#inputEmail').val().indexOf("@"));
+					var com = $.trim($('#inputEmail').val().indexOf("."));
+					// @ 와 .이 없으면 이메일 형식이 안맞는다고 띄우기 
+					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
 						idx= true;
 						$('#inputEmail').attr("readonly", true);
 						
@@ -225,8 +246,19 @@
 						$('#idResult').append(html);
 						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
 						$("#submit").removeAttr("disabled");
-
-					}else{
+					}else if(atSign == -1 || com == -1){
+						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요</td></tr>";
+						
+						$('#idResult').empty();
+						$('#idResult').append(html);
+						// 중복체크 실패 시 회원가입 버튼 비활성화
+						$("#submit").attr("disabled", "disabled");
+						// 지우기
+						document.getElementById("inputEmail").value="";
+						
+					
+					}
+					else{
 						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
 						
 						$('#idResult').empty();
@@ -314,10 +346,10 @@
 				}
 				
 			});  
-		});   
+		});  
+		
+	
 	});
-	
-	
 	
 	
 	 function checkPw() {
@@ -352,6 +384,7 @@
 	            
 	        }
 	    }
+	 
   
 </script>
 
