@@ -40,6 +40,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="jsoup-1.13.1.jar"/>
+	<classpathentry kind="lib" path="/Users/ekkkk1/tools/Project/_6_Main_Project/Final_Project/Stock_Project/jsoup-1.13.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
