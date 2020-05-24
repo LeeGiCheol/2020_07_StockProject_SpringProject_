@@ -44,7 +44,7 @@ public class StockParsing {
 					if(n%12 == 2) {
 						inf = new Info();
 						inf.setA(list[i]);
-						list2[i] = inf.getA(); 
+						list[i] = inf.getA(); 
 						
 					}
 					else if(n%12 == 3) {

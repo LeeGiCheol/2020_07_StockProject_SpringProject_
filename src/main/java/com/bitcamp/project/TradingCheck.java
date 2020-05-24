@@ -14,7 +14,6 @@ public class TradingCheck {
 
 	@Scheduled(fixedDelay = 3000)
 	public void TestScheduler() {
-		System.out.println("commit test");
 //		StockName sn = new StockName();
 //		try {
 //			sn.start();

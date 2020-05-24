@@ -204,7 +204,7 @@
 				return false;
 			}
 			
-			var checked =  $('#wpqkf').val();
+			var checked =  $('#passwordCheck').val();
 			
 			// 중복확인 성공 시 checkflag가 1씩 증가 id, nickname용 (두개 다 성공할 시 checkflag는 2가 된다)
 			if(checkflag != 2){
@@ -367,7 +367,7 @@
 	        else if (password == passwordAgain) {
 	            $("#inputPasswordAgain").css("background-color", "#B0F6AC");
 	            
-	            var html="<tr><td colspan='3' style='color: green' id='wpqkf'>사용가능</td></tr>"; 
+	            var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>사용가능</td></tr>"; 
 				//$("#submit").removeAttr("disabled");
 
 				$('#pwResult').empty();
