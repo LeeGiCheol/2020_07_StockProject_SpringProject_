@@ -351,40 +351,55 @@
 	
 	});
 	
+		
+	function checkPw() {
+		var password = $('#inputPassword').val();
+		var passwordLength = $('#inputPassword');
+		var passwordAgain = $('#inputPasswordAgain').val();
+	    	   
+	/* 	if(passwordAgain=="" && (password != passwordAgain)){
+			$("#inputPasswordAgain").css("background-color", "#FFCECE");
 	
-	 function checkPw() {
-	        var password = $('#inputPassword').val();
-	        var passwordAgain = $('#inputPasswordAgain').val();
-	        if(passwordAgain=="" && (password != passwordAgain || password == passwordAgain)){
-	            $("#inputPasswordAgain").css("background-color", "#FFCECE");
-			//	$("#submit").attr("disabled", "disabled");
-				
-	            var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
-				
-				$('#pwResult').empty();
-				$('#pwResult').append(html);
-	        }
-	        else if (password == passwordAgain) {
-	            $("#inputPasswordAgain").css("background-color", "#B0F6AC");
-	            
-	            var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>사용가능</td></tr>"; 
-				//$("#submit").removeAttr("disabled");
+			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
+			
+			$('#pwResult').empty();
+			$('#pwResult').append(html);
+		}
+	      */
+		
+	    // 비밀번호, 비밀번호 확인이 다른 경우
+		if (password != passwordAgain) {
+			$("#inputPasswordAgain").css("background-color", "#FFCECE");
+			
+			$('#pwResult').empty();
+			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
+			
+			$('#pwResult').append(html);
+		}
+	      
+	      
+		// 비밀번호 길이 제한
+		else if($('#inputPassword').val().length < 8 || $('#inputPassword').val().length > 13){
+		
+			var html="<tr><td colspan='3' style='color: red'>비밀번호는 8자리 이상 13자리 이하만 가능합니다.</td></tr>"; 
+			$('#pwResult').empty();
+			
+			$('#pwResult').append(html);
+			
+		} 
+		       
+	    // 맞는 경우
+		else if(password == passwordAgain){
+			$("#inputPasswordAgain").css("background-color", "#B0F6AC");
+			
+			var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>사용가능</td></tr>"; 
+			
+			$('#pwResult').empty();
+			
+			$('#pwResult').append(html);
+		}
+	}
 
-				$('#pwResult').empty();
-				$('#pwResult').append(html);
-				
-	        } else if (password != passwordAgain) {
-	            $("#inputPasswordAgain").css("background-color", "#FFCECE");
-			//	$("#submit").attr("disabled", "disabled");
-
-	            var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
-				
-				$('#pwResult').empty();
-				$('#pwResult').append(html);
-	            
-	        }
-	    }
-	 
   
 </script>
 
