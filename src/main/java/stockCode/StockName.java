@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 
 public class StockName {
 
-	public static void main(String[] args) throws InterruptedException {
+	public void start() throws InterruptedException {
 
 		try {
 
