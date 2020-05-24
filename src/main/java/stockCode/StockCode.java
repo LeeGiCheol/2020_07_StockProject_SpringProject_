@@ -13,7 +13,7 @@ public class StockCode {
 
 	public static void main(String[] args) throws InterruptedException {
 		try {
-			OutputStream output = new FileOutputStream("/Users/ekkkk1/Desktop/MainProject/stockCode.txt");
+			OutputStream output = new FileOutputStream("./stockCode.txt");
 		
 				for (int i = 1; i <= 32; i++) {
 					String url = "https://finance.naver.com/sise/sise_market_sum.nhn?&page=" + i; // 크롤링할 url지정
