@@ -16,7 +16,7 @@ public class DBInsertStockCodeName {
 
 	public static void main(String[] args) {
 		
-		//커밋했음문창훈
+	
         // File
         BufferedReader bin = null;
         BufferedReader bin2 = null;
@@ -28,15 +28,15 @@ public class DBInsertStockCodeName {
         try {
             // File 
             //bin = new BufferedReader(new FileReader("E://db2.txt"));
-            String path="/Users/ekkkk1/Desktop/MainProject/stock.txt";
-            String path2="/Users/ekkkk1/Desktop/MainProject/stockCode.txt";
+            String path="C:\\Users\\Wonhee\\spring-workspace\\FinalProject/stock.txt";
+            String path2="C:\\Users\\Wonhee\\spring-workspace\\FinalProject/stockCode.txt";
             bin = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
             bin2 = new BufferedReader(new InputStreamReader(new FileInputStream(path2), "UTF-8"));
             
             String b = null;
             String[] list = null;
-            String[] codeList = new String[1558];
-            String[] nameList = new String[1558];
+            String[] codeList = null;
+            String[] nameList = null;
 			int n = 0;
 			
         	DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
@@ -50,6 +50,9 @@ public class DBInsertStockCodeName {
                     + " values (?, ?)";
  
             pstmt = conn.prepareStatement(squery);
+            b = bin2.readLine();
+            codeList = b.split(",");
+            nameList = new String[codeList.length];
         	while((b = bin.readLine()) != null){
 				list = b.split("ㅇ");
 //				System.out.println(Arrays.toString(list));
@@ -71,17 +74,14 @@ public class DBInsertStockCodeName {
 				}
         	}
         	
-        	while((b = bin2.readLine()) != null){
-        		codeList = b.split(",");
-        		for (int j = 0; j < codeList.length; j++) {
-        			System.out.println(codeList[j]);
-        			System.out.println(nameList[j]);
-        			pstmt.setString(1, codeList[j]);
-        			pstmt.setString(2, nameList[j]);
-        			pstmt.addBatch();
-        			pstmt.clearParameters();
-				}
-        	}            
+        	for (int j = 0; j < codeList.length; j++) {
+        		System.out.println(codeList[j]);
+        		System.out.println(nameList[j]);
+        		pstmt.setString(1, codeList[j]);
+        		pstmt.setString(2, nameList[j]);
+        		pstmt.addBatch();
+        		pstmt.clearParameters();
+			}        
         	
         	pstmt.executeBatch();
         	System.out.println("DB insert success");
@@ -109,5 +109,4 @@ public class DBInsertStockCodeName {
             }
         }
     }
- 
 }
