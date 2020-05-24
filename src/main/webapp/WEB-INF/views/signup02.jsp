@@ -336,7 +336,8 @@
 	            $("#inputPasswordAgain").css("background-color", "#B0F6AC");
 	            
 	            var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
-				
+				$("#submit").removeAttr("disabled");
+
 				$('#pwResult').empty();
 				$('#pwResult').append(html);
 				
