@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StockParsing {
-	public Map parsing() {
+	public static void main(String[] args) {
 		BufferedReader bin;
 		
 		Map<String, Info> info = new HashMap<String, Info>();
@@ -44,7 +44,7 @@ public class StockParsing {
 					if(n%12 == 2) {
 						inf = new Info();
 						inf.setA(list[i]);
-						list[i] = inf.getA(); 
+						list2[i] = inf.getA(); 
 						
 					}
 					else if(n%12 == 3) {
@@ -66,6 +66,5 @@ public class StockParsing {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return info;
 	}
 }
