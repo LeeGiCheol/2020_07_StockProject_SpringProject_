@@ -10,7 +10,7 @@
 
 	<!-- 컬럼이름과 자바객체의 프로퍼티명이 다를 때는
 	     아래처럼 매핑 규칙을 정해줘야 한다 -->
-	<resultMap id="userResult" type="user">
+<!-- 	<resultMap id="userResult" type="user">
 		<id property="id" column="ID"/>
 		<result property="pw" column="PW"/>
 		<result property="nickname" column="NICKNAME"/>
@@ -19,16 +19,20 @@
 		<result property="showEsetSetting" column="SHOWESETSETTING"/>
 		<result property="address" column="ADDRESS"/>
 		<result property="charge" column="CHARGE"/>
-	</resultMap>
+	</resultMap> -->
 
 	<insert id="signUp">
 		insert into user(ID, PW, NICKNAME, TEL, POINT, ADDRESS, CHARGE)
 		values(#{id}, #{pw}, #{nickname}, #{tel}, 1000, #{address}, 1);
 		
 		
-		
+		<!-- sql 두개 쓰려면 ; 붙여줘야한다 -->
 		insert into userNickname(ID, NICKNAME)
 		values(#{id}, #{nickname});
+		
+		
+		insert into userMoney(ID, money)
+		values(#{id}, 1000);
 	</insert>
 	
 	<select id="idCheck" resultType="int" parameterType="map">

@@ -11,12 +11,17 @@ import org.jsoup.select.Elements;
 
 public class StockName {
 
-	public void start() throws InterruptedException {
+		public void start() throws InterruptedException {
 
 		
 		try {
 			long beforeTime = System.currentTimeMillis();
-				
+//			CodeSource codeSource = TradingCheck.class.getProtectionDomain().getCodeSource();
+//	          File jarFile = new File(codeSource.getLocation().toURI().getPath());
+//	          String jarDir = jarFile.getParentFile().getPath();
+//	          FileOutputStream output = new FileOutputStream(jarDir+"/StockTest.txt", true);
+
+			
 			OutputStream output = new FileOutputStream("./stock.txt");
 
 				for (int i = 1; i <= 32; i++) {
@@ -32,11 +37,10 @@ public class StockName {
 						byte[] by=(ie1.next().text()+"ㅇ").getBytes();
 						output.write(by);
 					}
-				
 				long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기
 				long secDiffTime = (afterTime - beforeTime)/1000; //두 시간에 차 계산
 				System.out.println("시간차이(m) : "+secDiffTime);
-				
+				//System.out.println(jarDir);
 			}
 		} catch (Exception e) {
 			
