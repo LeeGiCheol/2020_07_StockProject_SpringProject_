@@ -53,8 +53,12 @@
 		where ID in (#{friend}, #{id})
 	</update>
 	
-	
-	
+	<!-- 로그인시 id and pw틀렸는지 체크 -->
+	<select id="signInCheck" resultType="user">
+		select id, pw
+		from user
+		where id=${id}
+	</select>
 	
 	
 	<!-- <insert id="nickname">

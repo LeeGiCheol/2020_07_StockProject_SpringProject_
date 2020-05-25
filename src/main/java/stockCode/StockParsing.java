@@ -14,9 +14,9 @@ public class StockParsing {
 		
 		Map<String, Info> info = new HashMap<String, Info>();
 		try {
-			OutputStream output = new FileOutputStream("/Users/ekkkk1/Desktop/MainProject/a.txt");
+			OutputStream output = new FileOutputStream("C:\\Users\\Wonhee\\spring-workspace\\StockProject/a.txt");
 
-			String path = "/Users/ekkkk1/Desktop/MainProject/stock.txt";
+			String path = "C:\\Users\\Wonhee\\spring-workspace\\StockProject/stock.txt";
 			bin = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
 			//OutputStream output = new FileOutputStream("/Users/ekkkk1/Desktop/MainProject/test.txt");
 

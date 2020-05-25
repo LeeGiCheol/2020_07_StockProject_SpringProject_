@@ -28,6 +28,7 @@ public class SignUpController {
 	// 회원가입화면
 	@GetMapping(value="/signUpPage")
 	public String signUpView(UserVO vo) {
+		System.out.println("vo suv : " + vo.toString());
 		return "signup02";
 	}
 
@@ -37,6 +38,8 @@ public class SignUpController {
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
+		
+		System.out.println("vo su : " + vo.toString());
 		
 		signUpService.signUp(vo);
 		

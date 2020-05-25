@@ -1,8 +1,8 @@
-package com.bitcamp.project.dao;
+package com.bitcamp.project.service;
 
 import com.bitcamp.project.vo.UserVO;
 
-public interface SignInDAO {
+public interface SignInService {
 	public UserVO logIn();
 	public void logOut();
 	public void findId();

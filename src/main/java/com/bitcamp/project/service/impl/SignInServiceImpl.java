@@ -1,40 +1,39 @@
-package com.bitcamp.project.dao.impl;
+package com.bitcamp.project.service.impl;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.bitcamp.project.dao.SignInDAO;
+import com.bitcamp.project.service.SignInService;
 import com.bitcamp.project.vo.UserVO;
 
-@Repository("SignInDAO")
-public class SignInDAOImpl implements SignInDAO{
-	
-	@Autowired
-	private SqlSessionTemplate mybatis;
+@Service
+public class SignInServiceImpl implements SignInService {
 
+	@Autowired
+	private SignInDAO signInDAO;
+	
 	@Override
 	public UserVO logIn() {
-		System.out.println("logInMethod");
-		return mybatis.selectOne("signInCheck");
+		return signInDAO.logIn();
 	}
 
 	@Override
 	public void logOut() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void findId() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void findPw() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

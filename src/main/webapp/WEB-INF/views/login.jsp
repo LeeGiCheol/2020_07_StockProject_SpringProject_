@@ -66,22 +66,22 @@
 <!-- header end -->
 </header>
 <article>
-    <form class="form-signin">
+    <form action="/signIn" class="form-signin" method="post">
         <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <label for="inputEmail" class="sr-only">아이디</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="아이디" required autofocus>
+        <label for="inputEmail" class="sr-only" name="id">아이디</label>
+        <input type="email" id="inputEmail" class="form-control" name="id" placeholder="아이디" required autofocus>
         <label for="inputPassword" class="sr-only">비밀번호</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
+        <input type="password" id="inputPassword" class="form-control" name="pw" placeholder="비밀번호" required>
           <label>
             <input type="checkbox" value="remember-me"> 이메일 저장
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="button">로그인</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
         <div class="otherbutton"><button class="idbox btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">아이디찾기</button><button class="passwordbox btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">비밀번호 찾기</button></div>
         <button class="signup btn btn-lg btn-primary btn-block" onclick="location.href='#'" type="button">회원가입</button>
         <div class="otherbutton"><button class="naverlogin btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">네이버로그인</button><button class="kakaologin btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">카카오톡로그인</button></div>
         <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
-      </form>
+     </form>
 </article>
 <!-- footer start -->   
       <footer class="my-5 pt-5 text-muted text-center text-small">
@@ -102,4 +102,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script>
+
+</script>
 </html>
