@@ -220,7 +220,7 @@
 							aria-labelledby="pills-profile-tab">
 							<div class="headline">
 								<a href="#"> <span class="news-img"> <img
-										src="img/20200522_16726299.jpg">
+										src="/resources/img/20200522_16726299.jpg">
 								</span>
 									<p>
 										<strong>코스닥 외국인 순매수,도 상위20종목</strong> <span> 코스닥 외국인
@@ -312,7 +312,7 @@
 					<div class="div-login-box-after" style class="login-out">
 						<p class="proimg_div-after">
 							<a href="#"><img class="" cust_id="" id="_myhomeId"
-								src="img/pi_08.png"></a> <span id="_gnbBadge"><img
+								src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
 								class="current_badge_s"
 								src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
 						</p>
@@ -444,7 +444,7 @@
 						} ]
 					});
 
-			$.get("testmin.csv", getDataPointsFromCSV);
+			$.get("/resources/testmin.csv", getDataPointsFromCSV);
 
 			function getDataPointsFromCSV(csv) {
 

@@ -319,7 +319,7 @@ a.btnSum:before {
 	overflow: hidden;
 	padding: 0 25px;
 	width: 510px;
-	background: url(/DW/images/stock/bg_dashline.png) no-repeat 25px 0;
+	/* background: url(/DW/images/stock/bg_dashline.png) no-repeat 25px 0; */
 }
 
 .sumArea .text {

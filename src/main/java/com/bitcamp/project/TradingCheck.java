@@ -14,7 +14,7 @@ public class TradingCheck {
 	@Autowired
 	HttpSession httpSession;
 
-	@Scheduled(fixedDelay = 3000)
+//	@Scheduled(fixedDelay = 3000)
 	public void TestScheduler() {
 		StockName sn = new StockName();
 		try {
