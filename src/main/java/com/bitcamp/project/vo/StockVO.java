@@ -6,16 +6,16 @@ public class StockVO {
 	private int tno;
 	private int quantity;
 	private int tprice;
-	private int stockCode;
+	private String stockCode;
 	private String stockName;
 	private String id;
 	private String tcategory;
 	private Date tdatetime;
 	
-	public int getStockCode() {
+	public String getStockCode() {
 		return stockCode;
 	}
-	public void setStockCode(int stockCode) {
+	public void setStockCode(String stockCode) {
 		this.stockCode = stockCode;
 	}
 	public int getTno() {
