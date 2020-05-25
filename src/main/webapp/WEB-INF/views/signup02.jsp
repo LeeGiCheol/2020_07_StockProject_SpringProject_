@@ -123,10 +123,31 @@
               
 				</div>
                 </div>
+                
+                <!-- 노출 수정 -->
+            <div style="margin-left:294px; margin-top: 30px; margin-bottom: 10px; display: -webkit-box;">
+               <small class="text-muted">다른 사용자에게 보유 자산 및 수익률과 거래내역을 노출 하시겠습니까?</small>
+               <br>
+               <br>
+               <div class="ask-form">
+                  <div class="custom-control custom-radio">
+                  <input type="radio" name="ask-radio" id="ask-radio-1" class="custom-control-input" >
+                  <label class="custom-control-label" id="ask-radio-1-answer" for="ask-radio-1">예</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                  <input type="radio" name="ask-radio" id="ask-radio-2" class="custom-control-input">
+                  <label class="custom-control-label" for="ask-radio-2">아니오</label>
+                  </div>
+               </div>
+               <br>
             </div>
-            <div>
+            <!-- 노출 수정 -->
+                
+            </div>
+            <div style="text-align:center">
                 <div><button type="submit" class="nextButton" data-text-content="true" id="submit" >회원가입</button></div> <!--disabled="disabled"  -->
             </div>
+            
         
 	</form>
 <!-- body end -->

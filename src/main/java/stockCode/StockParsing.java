@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StockParsing {
-	public static void main(String[] args) {
+	public Info parse(String name) {
 		BufferedReader bin;
 		
 		Map<String, Info> info = new HashMap<String, Info>();
@@ -34,6 +34,8 @@ public class StockParsing {
 				Info inf = null;
 				
 				for (int i = 0; i < list.length; i++) {
+					if(inf.getA()==name)
+						break;
 					if(!list[i].equals("")) {
 						++n;
 					}
@@ -46,6 +48,7 @@ public class StockParsing {
 						inf.setA(list[i]);
 						list[i] = inf.getA(); 
 						
+						
 					}
 					else if(n%12 == 3) {
 						inf.setB(list[i]);
@@ -56,15 +59,17 @@ public class StockParsing {
 					}
 					else if(n%12 == 5) {
 						inf.setD(list[i]);
-						info.put(inf.getA(), inf);
+						
+						//info.put(inf.getA(), inf);
 					}
 				}
+				return inf;
 			}
 			System.out.println(info.get("삼성전자").toString());
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }
