@@ -26,8 +26,7 @@ public class TradingCheck {
 		}
 //		StockParsing sp = new StockParsing();
 //		Map<String, Info> info = sp.parsing();
-//		System.out.println(info.get("삼성전자").toString());
-//		if (httpSession.getAttribute("stock") != null)
+//		System. Session.getAttribute("stock") != null)
 //			System.out.println(httpSession.getAttribute("stock"));
 //		System.out.println("test");
 
