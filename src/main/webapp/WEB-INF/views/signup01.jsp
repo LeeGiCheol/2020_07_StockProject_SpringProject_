@@ -8,15 +8,14 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<!-- 자바에서 -->
-<link href="assets/css/custom.css" rel="stylesheet">	
-<!-- vsc에서 -->
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
+
 <style>
 body {margin: 0px;}
 </style>
 </head>
 <body>
+	
 	<!-- header 시작 -->
 	<ul class="nav justify-content-end top-nav">
 		<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>

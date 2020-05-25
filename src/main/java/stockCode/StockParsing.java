@@ -14,9 +14,9 @@ public class StockParsing {
 		
 		Map<String, Info> info = new HashMap<String, Info>();
 		try {
-			OutputStream output = new FileOutputStream("C:\\Users\\Wonhee\\spring-workspace\\StockProject/a.txt");
+			OutputStream output = new FileOutputStream("./test.txt");
 
-			String path = "C:\\Users\\Wonhee\\spring-workspace\\StockProject/stock.txt";
+			String path = "./stock.txt";
 			bin = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
 			//OutputStream output = new FileOutputStream("/Users/ekkkk1/Desktop/MainProject/test.txt");
 
@@ -44,7 +44,7 @@ public class StockParsing {
 					if(n%12 == 2) {
 						inf = new Info();
 						inf.setA(list[i]);
-						list2[i] = inf.getA(); 
+						list[i] = inf.getA(); 
 						
 					}
 					else if(n%12 == 3) {

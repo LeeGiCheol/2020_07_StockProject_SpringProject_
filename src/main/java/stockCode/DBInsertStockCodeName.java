@@ -16,7 +16,6 @@ public class DBInsertStockCodeName {
 
 	public static void main(String[] args) {
 		
-	
         // File
         BufferedReader bin = null;
         BufferedReader bin2 = null;
@@ -28,10 +27,11 @@ public class DBInsertStockCodeName {
         try {
             // File 
             //bin = new BufferedReader(new FileReader("E://db2.txt"));
-            String path="C:\\Users\\Wonhee\\spring-workspace\\StockProject/stock.txt";
-            String path2="C:\\Users\\Wonhee\\spring-workspace\\StockProject/stockCode.txt";
+            String path="./stock.txt";
+            String path2="./stockCode.txt";
             bin = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
             bin2 = new BufferedReader(new InputStreamReader(new FileInputStream(path2), "UTF-8"));
+            
             
             String b = null;
             String[] list = null;
