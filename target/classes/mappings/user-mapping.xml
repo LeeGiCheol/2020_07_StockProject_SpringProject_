@@ -54,10 +54,10 @@
 	</update>
 	
 	<!-- 로그인시 id and pw틀렸는지 체크 -->
-	<select id="signInCheck" resultType="user">
-		select id, pw
+	<select id="signInCheck" parameterType="user" resultType="user">
+		select *
 		from user
-		where id=${id}
+		where ID=#{id}
 	</select>
 	
 	

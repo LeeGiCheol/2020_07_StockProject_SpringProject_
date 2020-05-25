@@ -1,5 +1,8 @@
 package com.bitcamp.project.view.user;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +27,25 @@ public class SignInController {
 	
 	@PostMapping(value="/signIn")
 	public String signIn(@ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpSession session) {
+		UserVO vo = new UserVO();
+		vo.setId(id);
+		vo = signInService.logIn(vo);
+		if(vo != null)
+			System.out.println(vo.toString());
+		else
+			System.out.println(vo);
 		
-		System.out.println("signInMethod");
-		UserVO vo = signInService.logIn();
-		
-		if(vo != null && vo.getId().equals(id)) {
-			System.out.println("id1 : " + vo.getId());
-			System.out.println("id2 : " + id);
+		if(vo != null) {
+			System.out.println("pw1 " + vo.getPw());
+			System.out.println("pw2 " + pw);
 			if(vo.getPw().equals(pw)) {
-				System.out.println("pw1 : " + vo.getPw());
-				System.out.println("pw2 : " + pw);				
-				return "/mainPage";
+				session.setAttribute("loginUser", vo);
+				return "MainPage";
 			}
-			else return "/signInPage";
+			else return "login";
 		}
-		else return "/signInPage";
+		else 
+			return "login";
 	}
 }
 

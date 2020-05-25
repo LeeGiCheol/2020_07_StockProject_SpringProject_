@@ -14,8 +14,8 @@ public class SignInServiceImpl implements SignInService {
 	private SignInDAO signInDAO;
 	
 	@Override
-	public UserVO logIn() {
-		return signInDAO.logIn();
+	public UserVO logIn(UserVO vo) {
+		return signInDAO.logIn(vo);
 	}
 
 	@Override

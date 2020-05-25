@@ -14,9 +14,8 @@ public class SignInDAOImpl implements SignInDAO{
 	private SqlSessionTemplate mybatis;
 
 	@Override
-	public UserVO logIn() {
-		System.out.println("logInMethod");
-		return mybatis.selectOne("signInCheck");
+	public UserVO logIn(UserVO vo) {
+		return mybatis.selectOne("signInCheck", vo);
 	}
 
 	@Override
