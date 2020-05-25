@@ -116,16 +116,7 @@ public class TradingCheck {
 				}
 			}
 		}
-//		UserVO vo = new UserVO();
-//		vo.setId("test"+count);
-//		vo.setPw("test"+count);
-//		vo.setNickname("test"+count);
-//		vo.setAddress("test"+count);
-//		vo.setTel("test"+count);
-//		
-//		mybatis.insert("user.signUp", vo);
-//		count++;
-		System.out.println(info.get("삼성전자").getB());
+		
 		Date now = new Date();
 		System.out.println(now);
 	}
