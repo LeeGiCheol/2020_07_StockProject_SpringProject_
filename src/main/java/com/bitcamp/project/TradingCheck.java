@@ -1,16 +1,10 @@
 package com.bitcamp.project;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
-import stockCode.Info;
-import stockCode.StockName;
-import stockCode.StockParsing;
 
 @Service
 public class TradingCheck {
