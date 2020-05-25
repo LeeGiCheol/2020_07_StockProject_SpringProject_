@@ -40,7 +40,7 @@ public class SignInController {
 			System.out.println("pw2 " + pw);
 			if(vo.getPw().equals(pw)) {
 				session.setAttribute("loginUser", vo);
-				return "MainPage";
+				return "mainpage";
 			}
 			else return "login";
 		}
