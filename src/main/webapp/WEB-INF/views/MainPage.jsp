@@ -6,23 +6,25 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<link rel="sftylesheet"
+<title>mainpage</title>
+<link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/main.css"> 
-
+<link rel="stylesheet" href="/resources/css/mainpage.css">
 </head>
 <body>
-
 	<div class="header">
 		<!-- 상단  nav -->
 		<ul class="nav justify-content-end top-nav">
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
+		</ul>
+		<ul class="nav justify-content-end top-nav">
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
 		</ul>
 		<!-- 상단  nav end -->
 		<!-- 메인  nav -->
@@ -192,64 +194,150 @@
 							<div class="headline">
 								<a href="#">
 									<p>
-										<strong>[fn오전시황] 코스피, 미중 갈등 우려에 2000선 내줘</strong> 
-										<span>
+										<strong>[fn오전시황] 코스피, 미중 갈등 우려에 2000선 내줘</strong> <span>
 											[파이낸셜뉴스] 코스피가 상승출발했으나 미중 갈등 악화에 약세로 전환했다. 22일 오전 10시 22분 현재
 											코스피는 전 거래일보다 13.82포인트(0.69%) 내린 1984.49를 가리키고 있다. 지수는 전 거래일보다
 											0.16%(3.29포인트) 오른 2001.60으로 개장했지만 외국인 매도세가 짙어지며 2000선 아래로
 											떨어졌다. 유가증권시장에서 외국인과 기관은 각각 1557억원, 413억원 순매도하며 지수를 끌어내리고 있다.
 											개인은 2092억원 순매수하고 있다. 간밤 뉴욕 증시에서 다우존스30 산업평균지수(-0.41%)와
 											스탠더드앤드푸어스(S&P) 500 지수(-0.78%), 나스닥 지수(-0.97%) 등 주요 지수는 홍콩시위와
-											코로나19 확산 책임을 둘러싼 미중 갈등에 일제히 하락했다. 
-										</span>
-											<mark>파이낸셜뉴스</mark>
-											<em>10:31</em>
+											코로나19 확산 책임을 둘러싼 미중 갈등에 일제히 하락했다. </span>
+										<mark>파이낸셜뉴스</mark>
+										<em>10:31</em>
 									</p>
 								</a>
 							</div>
-							<ul class="step1">
-								<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a></li>
-								<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a></li>
-								<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a></li>
-								<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a></li>
-								<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a></li>
+							<ul>
+								<li id="test_1"><a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에
+										대체제 부각 '강세'</a> <mark>이데일리</mark> <em>14:53</em></li>
+								<li id="test_1"><a href="#">코스피·코스닥, 외국인·기관 동반 매도세에 1%대
+										급락</a> <mark>아시아경제</mark> <em>13:53</em></li>
+								<li id="test_1"><a href="#">코스피, 외국인·기관 동반 매도에 1% 이상
+										'하락'</a> <mark>이데일리</mark> <em>13:35</em></li>
 							</ul>
 						</div>
 						<div class="tab-pane fade" id="pills-profile" role="tabpanel"
-							aria-labelledby="pills-profile-tab">문창훈</div>
+							aria-labelledby="pills-profile-tab">
+							<div class="headline">
+								<a href="#"> <span class="news-img"> <img
+										src="img/20200522_16726299.jpg">
+								</span>
+									<p>
+										<strong>코스닥 외국인 순매수,도 상위20종목</strong> <span> 코스닥 외국인
+											순매수 상위종목(금액기준) 순위 종목명 금액(억원) 1 에코프로비엠(247540) 135.97 2
+											네오위즈(095660) 78.48 3 셀트리온헬스케어(091990) 57.05 4
+											NHN한국사이버결제(060250) 34.54 5 KG이니시스(035600) 34.44 6
+											에스앤에스텍(101490) 33.93 7 메드팩토(235980) 33.28 8 다우데이타(032190)
+											24.68 9 에이디테크놀로지(200710) 21.43 10 컴투스(078340) 19.75 11
+											리노공업(058470) 18.59 </span>
+										<mark>인포스탁</mark>
+										<em>15:51</em>
+									</p>
+								</a>
+							</div>
+							<ul>
+								<li id="test_1"><a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에
+										대체제 부각 '강세'</a> <mark>이데일리</mark> <em>14:53</em></li>
+								<li id="test_1"><a href="#">코스피·코스닥, 외국인·기관 동반 매도세에 1%대
+										급락</a> <mark>아시아경제</mark> <em>13:53</em></li>
+								<li id="test_1"><a href="#">코스피, 외국인·기관 동반 매도에 1% 이상
+										'하락'</a> <mark>이데일리</mark> <em>13:35</em></li>
+							</ul>
+						</div>
 						<div class="tab-pane fade" id="pills-contact" role="tabpanel"
-							aria-labelledby="pills-contact-tab">박원희</div>
+							aria-labelledby="pills-contact-tab">
+							<div class="headline">
+								<a href="#">
+									<p>
+										<strong>[fn오전시황] 코스피, 미중 갈등 우려에 2000선 내줘</strong> <span>
+											[파이낸셜뉴스] 코스피가 상승출발했으나 미중 갈등 악화에 약세로 전환했다. 22일 오전 10시 22분 현재
+											코스피는 전 거래일보다 13.82포인트(0.69%) 내린 1984.49를 가리키고 있다. 지수는 전 거래일보다
+											0.16%(3.29포인트) 오른 2001.60으로 개장했지만 외국인 매도세가 짙어지며 2000선 아래로
+											떨어졌다. 유가증권시장에서 외국인과 기관은 각각 1557억원, 413억원 순매도하며 지수를 끌어내리고 있다.
+											개인은 2092억원 순매수하고 있다. 간밤 뉴욕 증시에서 다우존스30 산업평균지수(-0.41%)와
+											스탠더드앤드푸어스(S&P) 500 지수(-0.78%), 나스닥 지수(-0.97%) 등 주요 지수는 홍콩시위와
+											코로나19 확산 책임을 둘러싼 미중 갈등에 일제히 하락했다. </span>
+										<mark>파이낸셜뉴스</mark>
+										<em>10:31</em>
+									</p>
+								</a>
+							</div>
+							<ul>
+								<li id="test_1"><a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에
+										대체제 부각 '강세'</a> <mark>이데일리</mark> <em>14:53</em></li>
+								<li id="test_1"><a href="#">코스피·코스닥, 외국인·기관 동반 매도세에 1%대
+										급락</a> <mark>아시아경제</mark> <em>13:53</em></li>
+								<li id="test_1"><a href="#">코스피, 외국인·기관 동반 매도에 1% 이상
+										'하락'</a> <mark>이데일리</mark> <em>13:35</em></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 
 			</div>
 
-
-
 			<div class="col-md-3">
 				<div class="login-box">
-					<div class="titB">
-						<strong>로그인</strong> <a href="#" target="_blank">회원가입</a>
+					<div class="div-login-box">
+						<form method='post' action="#">
+							<fieldset>
+								<div class="chk">
+									<input type="checkbox" name="sID" id="check-id"><label
+										for="check-id">아이디 저장</label> <input type="checkbox"
+										name="autoLogin" onClick="" id="check-log"><label
+										for="check-log">자동로그인</label>
+								</div>
+								<p>
+									<input type="text" name="custId" value="" id="user_id"
+										title="아이디 입력" placeholder="아이디"> <input
+										type="password" name="passwd" value="" id="user_pw"
+										title="비밀번호 입력" placeholder="비밀번호"> <input
+										type="button" value="로그인" onclick="">
+								</p>
+							</fieldset>
+						</form>
+						<p>
+							<a href="#">회원가입</a><span><a href="#">아이디</a>/<a href="#">비밀번호
+									찾기</a></span> <span class="social-login"> <a href="#"
+								class="social-type naver">네이버 로그인</a> <a href="#"
+								class="social-type kakaotalk">카카오톡 로그인</a> <a href="#"
+								class="social-type facebook">페이스북 로그인</a> <a href="#"
+								class="social-type google">구글 로그인</a>
+							</span>
+						</p>
 					</div>
-					<div class="inpB">
-						<span> <input data-val="true"
-							data-val-required="사용자 아이디 필드가 필요합니다." id="UserName"
-							maxlength="30" name="UserName" placeholder="아이디" type="text"
-							value="" /> <input data-val="true"
-							data-val-required="암호 필드가 필요합니다." id="Password" maxlength="30"
-							name="Password"
-							onkeypress="if(event.keyCode == 13){ $.app.front.auth.login.submit(); }"
-							placeholder="패스워드" type="password" />
-						</span>
-						<button class="btnLogin" title="로그인" style="cursor: pointer;"
-							onclick="$.app.front.auth.login.submit(); return false;">로그인</button>
-					</div>
-					<div class="botLink">
-						<span> <input type="checkbox"><label for="">로그인
-								상태 유지</label>
-						</span> <a href="#" target="_blank">아이디/비밀번호 찾기</a>
-						<p id="errorBox" style="display: none;">아이디 또는 패스워드가 일치하지
-							않습니다.</p>
+				</div>
+
+				<div class="login-box">
+					<div class="div-login-box-after" style class="login-out">
+						<p class="proimg_div-after">
+							<a href="#"><img class="" cust_id="" id="_myhomeId"
+								src="img/pi_08.png"></a> <span id="_gnbBadge"><img
+								class="current_badge_s"
+								src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+						</p>
+						<dl>
+							<dt>
+								<strong>개미굴</strong>님
+								<button type="button" class="logout"
+									onclick="location.href='https://member.paxnet.co.kr/rpan/member/logout';">로그아웃</button>
+							</dt>
+							<dd>
+								<a href="https://member.paxnet.co.kr/rpan/member/info/userInfo">내정보</a>
+								<a
+									href="https://member.paxnet.co.kr/rpan/member/searchPwd/changePswd">비밀번호
+									변경</a>
+							</dd>
+						</dl>
+						<ul class="dot-list02 color-rightgray">
+							<li id="_liBall">자산 <a href="#">0</a> 원
+							</li>
+							<li id="_liCyber">포인트 <a href="#">0</a></li>
+						</ul>
+						<div>
+							<a href="http://www.paxnet.co.kr/my/home">MyPage</a> <a
+								href="http://www.paxnet.co.kr/pro/cafeHome/main/myCafe">알림</a>
+						</div>
 					</div>
 				</div>
 
@@ -305,6 +393,19 @@
 	</div>
 
 
+	<!-- footer start -->
+	<div class=footer_div>
+		<footer class="footer_info">
+			<p>
+				<a href="https://www.naver.com">회사소개</a> | <a
+					href="https://www.google.co.kr">광고안내</a> | <a
+					href="https://www.naver.com">이용약관</a> | <a
+					href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a>
+			</p>
+			<p>Copyright ⓒ 2020 - 2020 stock gallery. All rights reserved.</p>
+		</footer>
+	</div>
+	<!-- footer end -->
 
 	<script>
 		window.onload = function() {
@@ -343,7 +444,7 @@
 						} ]
 					});
 
-			$.get("/resources/testmin.csv", getDataPointsFromCSV);
+			$.get("testmin.csv", getDataPointsFromCSV);
 
 			function getDataPointsFromCSV(csv) {
 
@@ -376,6 +477,7 @@
 
 		}
 	</script>
+
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script
