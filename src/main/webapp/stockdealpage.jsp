@@ -13,7 +13,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/stockdealpage.css">
+<link rel="stylesheet" href="resources/css/stockdealpage.css">
 </head>
 <body>
 
@@ -22,6 +22,17 @@
 		<ul class="nav justify-content-end top-nav">
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
+		</ul>
+		<ul class="nav justify-content-end top-nav">
+			<a href="#"><img class="" cust_id="" id="_myhomeId"
+				src="resources/img/pi_08.png"></a>
+			<dl>
+				<dt>
+					<strong>개미굴</strong> 님
+				</dt>
+			</dl>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
 		</ul>
 		<!-- 상단  nav end -->
 		<!-- 메인  nav -->
@@ -63,7 +74,6 @@
 							class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
-
 		</nav>
 		<!-- 메인 nav end -->
 		<div id="carouselExampleControls" class="carousel slide"
@@ -116,7 +126,7 @@
 
 						</div>
 						<div class="chartdata-body">
-							<div id="chartContainer"></div>
+							<%@include file="Chart_minSC.jsp" %>
 						</div>
 					</div>
 				</div>
@@ -366,78 +376,7 @@
 		</footer>
 	</div>
 	<!-- footer end -->
-
-	<script>
-		window.onload = function() {
-
-			var dataPoints = [];
-			var test = [];
-
-			var chart = new CanvasJS.Chart(
-					"chartContainer",
-					{
-						animationEnabled : true,
-						theme : "light2", // "light1", "light2", "dark1", "dark2"
-						exportEnabled : true,
-						title : {
-							text : "Netflix Stock Price in 2016"
-						},
-						subtitles : [ {
-							text : "Weekly Averages"
-						} ],
-						axisX : {
-							interval : 1,
-							valueFormatString : "mm"
-						},
-						axisY : {
-							includeZero : false,
-							prefix : "",
-							title : "Price"
-						},
-						toolTip : {
-							content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
-						},
-						data : [ {
-							type : "candlestick",
-							yValueFormatString : "##0원",
-							dataPoints : dataPoints
-						} ]
-					});
-
-			$.get("/resources/testmin.csv", getDataPointsFromCSV);
-
-			function getDataPointsFromCSV(csv) {
-
-				var csvLines = points = [];
-				csvLines = csv.split(/[\r?\n|\r|\n]+/);
-				for (var i = 1; i < csvLines.length; i++) {
-					if (csvLines[i].length > 0) {
-						points = csvLines[i].split(",");
-						dataPoints.push({
-							x : new Date(parseInt(points[0].substring(0, 4)),
-									parseInt(points[0].substring(4, 6)),
-									parseInt(points[0].substring(6, 8)),
-									parseInt(points[1].substring(0, 2)),
-									parseInt(points[1].substring(2, 4))
-
-							),
-							y : [ parseFloat(points[2]), parseFloat(points[3]),
-									parseFloat(points[4]),
-									parseFloat(points[5]) ],
-							z : points[0].substring(0, 4) + '-'
-									+ points[0].substring(4, 6) + '-'
-									+ points[0].substring(6, 8) + " "
-									+ points[1].substring(0, 2) + ":"
-									+ points[1].substring(2, 4)
-						});
-					}
-				}
-				chart.render();
-			}
-
-		}
-	</script>
-
+	
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script

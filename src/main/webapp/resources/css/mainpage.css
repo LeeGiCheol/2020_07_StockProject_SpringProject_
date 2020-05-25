@@ -885,4 +885,26 @@ input[type="text"], input[type="password"], input[type="tel"] {
 #top-nav-font {
 	color: gray;
 }
+.top-nav > a {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+    z-index: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #eaeaea;
+}
+
+.top-nav dl {
+    margin-left: 8px;
+    margin-right: 5px;
+}
+
+
+.top-nav > a img {
+    width: 100%;
+    background-color: #eaeaea;
+}
 /* header style end */
