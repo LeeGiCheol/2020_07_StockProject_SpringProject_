@@ -5,10 +5,10 @@ public class Info {
 	
 	
 	
-	private String a;
-	private String b;
-	private String c;
-	private String d;
+	private String a; //종목명
+	private String b; //현재가
+	private String c; //전일비
+	private String d; //등락률
 	
 	
 	public String getA() {

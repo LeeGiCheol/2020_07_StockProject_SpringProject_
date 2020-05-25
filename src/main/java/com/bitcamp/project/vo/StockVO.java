@@ -4,18 +4,33 @@ import java.util.Date;
 
 public class StockVO {
 	private int tno;
+	private int uno;
+	private int rPrice;
 	private int quantity;
 	private int tprice;
-	private int stockCode;
+	private String stockCode;
 	private String stockName;
 	private String id;
 	private String tcategory;
 	private Date tdatetime;
 	
-	public int getStockCode() {
+	
+	public int getUno() {
+		return uno;
+	}
+	public void setUno(int uno) {
+		this.uno = uno;
+	}
+	public int getrPrice() {
+		return rPrice;
+	}
+	public void setrPrice(int rPrice) {
+		this.rPrice = rPrice;
+	}
+	public String getStockCode() {
 		return stockCode;
 	}
-	public void setStockCode(int stockCode) {
+	public void setStockCode(String stockCode) {
 		this.stockCode = stockCode;
 	}
 	public int getTno() {
