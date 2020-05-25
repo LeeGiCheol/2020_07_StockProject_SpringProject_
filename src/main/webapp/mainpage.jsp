@@ -13,7 +13,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainpage.css">
+<link rel="stylesheet" href="resources/css/mainpage.css">
 </head>
 <body>
 	<div class="header">
@@ -23,6 +23,13 @@
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
 		</ul>
 		<ul class="nav justify-content-end top-nav">
+			<a href="#"><img class="" cust_id="" id="_myhomeId"
+				src="resources/img/pi_08.png"></a>
+			<dl>
+				<dt>
+					<strong>개미굴</strong> 님
+				</dt>
+			</dl>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
 		</ul>
@@ -220,7 +227,7 @@
 							aria-labelledby="pills-profile-tab">
 							<div class="headline">
 								<a href="#"> <span class="news-img"> <img
-										src="/resources/img/20200522_16726299.jpg">
+										src="resources/img/20200522_16726299.jpg">
 								</span>
 									<p>
 										<strong>코스닥 외국인 순매수,도 상위20종목</strong> <span> 코스닥 외국인
@@ -312,21 +319,17 @@
 					<div class="div-login-box-after" style class="login-out">
 						<p class="proimg_div-after">
 							<a href="#"><img class="" cust_id="" id="_myhomeId"
-								src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+								src="resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
 								class="current_badge_s"
 								src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
 						</p>
 						<dl>
 							<dt>
-								<strong>개미굴</strong>님
-								<button type="button" class="logout"
-									onclick="#">로그아웃</button>
+								<strong>개미굴</strong> 님
+								<button type="button" class="logout" onclick="#">로그아웃</button>
 							</dt>
 							<dd>
-								<a href="#">내정보</a>
-								<a
-									href="#">비밀번호
-									변경</a>
+								<a href="#">내정보</a> <a href="#">비밀번호 변경</a>
 							</dd>
 						</dl>
 						<ul class="dot-list02 color-rightgray">
@@ -335,8 +338,7 @@
 							<li id="_liCyber">포인트 <a href="#">0</a></li>
 						</ul>
 						<div>
-							<a href="#">MyPage</a> <a
-								href="#">알림</a>
+							<a href="#">MyPage</a> <a href="#">알림</a>
 						</div>
 					</div>
 				</div>
@@ -444,7 +446,7 @@
 						} ]
 					});
 
-			$.get("/resources/testmin.csv", getDataPointsFromCSV);
+			$.get("resources/testmin.csv", getDataPointsFromCSV);
 
 			function getDataPointsFromCSV(csv) {
 

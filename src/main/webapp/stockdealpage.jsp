@@ -13,7 +13,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/stockdealpage.css">
+<link rel="stylesheet" href="resources/css/stockdealpage.css">
 </head>
 <body>
 
@@ -22,6 +22,17 @@
 		<ul class="nav justify-content-end top-nav">
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
+		</ul>
+		<ul class="nav justify-content-end top-nav">
+			<a href="#"><img class="" cust_id="" id="_myhomeId"
+				src="resources/img/pi_08.png"></a>
+			<dl>
+				<dt>
+					<strong>개미굴</strong> 님
+				</dt>
+			</dl>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
 		</ul>
 		<!-- 상단  nav end -->
 		<!-- 메인  nav -->
@@ -63,7 +74,6 @@
 							class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
-
 		</nav>
 		<!-- 메인 nav end -->
 		<div id="carouselExampleControls" class="carousel slide"
