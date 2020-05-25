@@ -320,12 +320,12 @@
 							<dt>
 								<strong>개미굴</strong>님
 								<button type="button" class="logout"
-									onclick="location.href='https://member.paxnet.co.kr/rpan/member/logout';">로그아웃</button>
+									onclick="#">로그아웃</button>
 							</dt>
 							<dd>
-								<a href="https://member.paxnet.co.kr/rpan/member/info/userInfo">내정보</a>
+								<a href="#">내정보</a>
 								<a
-									href="https://member.paxnet.co.kr/rpan/member/searchPwd/changePswd">비밀번호
+									href="#">비밀번호
 									변경</a>
 							</dd>
 						</dl>
@@ -335,8 +335,8 @@
 							<li id="_liCyber">포인트 <a href="#">0</a></li>
 						</ul>
 						<div>
-							<a href="http://www.paxnet.co.kr/my/home">MyPage</a> <a
-								href="http://www.paxnet.co.kr/pro/cafeHome/main/myCafe">알림</a>
+							<a href="#">MyPage</a> <a
+								href="#">알림</a>
 						</div>
 					</div>
 				</div>
