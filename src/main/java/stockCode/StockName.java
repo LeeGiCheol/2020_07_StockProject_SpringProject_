@@ -1,6 +1,5 @@
 package stockCode;
 
-import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
@@ -14,8 +13,8 @@ public class StockName {
 
 	public void start() throws InterruptedException {
 
+		
 		try {
-
 			long beforeTime = System.currentTimeMillis();
 				
 			OutputStream output = new FileOutputStream("./stock.txt");
@@ -40,6 +39,7 @@ public class StockName {
 				
 			}
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 	}
