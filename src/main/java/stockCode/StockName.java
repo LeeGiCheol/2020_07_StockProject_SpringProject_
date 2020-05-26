@@ -12,7 +12,6 @@ import org.jsoup.select.Elements;
 public class StockName {
 
 		public void start() throws InterruptedException {
-
 		
 		try {
 			long beforeTime = System.currentTimeMillis();

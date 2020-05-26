@@ -78,10 +78,10 @@ public class StockParsing {
 			
 			
 			Info inf = new Info();
-			inf.setA(stockName);
-			inf.setB(currentPrice);
-			inf.setC(before);
-			inf.setD(upDown);
+			inf.setStockName(stockName);
+			inf.setCurrentPrice(currentPrice);
+			inf.setBefore(before);
+			inf.setUpDown(upDown);
 
 //			System.out.println(inf);
 //			long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기

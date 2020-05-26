@@ -1,8 +1,5 @@
 package com.bitcamp.project.view.user;
 
-import java.util.Iterator;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -125,10 +125,10 @@
 				<div class="col-md-8">
 					<div class="chartdata">
 						<div class="chartdata-nav">
-							<form action="/trade" class="form-inline my-2 my-lg-0 chartdata-form" method="GET" >
-								<input class="form-control mr-sm-2 stock-search-input"
+							<form action="/trade" class="form-inline my-2 my-lg-0 chartdata-form" id="searchForm" method="GET" >
+								<input class="form-control mr-sm-2 stock-search-input" id="stockSearch"
 									type="search" placeholder="통합검색" aria-label="Search" name="stockName">
-								<button
+								<button  id="stockResult"
 									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
 									type="submit">
 								</button>
@@ -398,17 +398,18 @@
 	</script>
 	<script type="text/javascript">		
 	
-	
 	 $(function() {
-		 var obj = new Object();
+		var obj = new Object();
 	    var jsonData = JSON.stringify(obj);
 	    
-	    var stockName = $('input[name=stockName]').val();
+//	    var stockName = $('input[name=stockName]').val();
+		var stockName = document.all.searchForm.stockSearch.value;
+		console.log(stockName);
 	    
 	    timer = setInterval( function () {
 		$.ajax({
-			type : "POST",
-			url : '${pageContext.request.contextPath}/trade',
+			type : "GET",
+			url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
 			/* data : JSON.stringify(jsonData),  */
 			datatype : "JSON",
 			success : function(data) {

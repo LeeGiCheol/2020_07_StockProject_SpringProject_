@@ -155,6 +155,7 @@ function getCookie(cookieName) {
         cookieValue = cookieData.substring(start, end);
     }
     return unescape(cookieValue);
+    
 }
 </script>
 </html>
