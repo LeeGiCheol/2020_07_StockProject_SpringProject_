@@ -14,6 +14,29 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
+
+
+
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
+<script src="https://www.jsviews.com/download/jsrender.js"></script>
+<script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+
+
+
+
+
 </head>
 <body>
 
@@ -37,16 +60,16 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<form class="form-inline my-2 my-lg-0">
+				<form class="form-inline my-2 my-lg-0">
+					<ul class="navbar-nav ml-auto">
 						<input class="form-control mr-sm-2" type="search"
 							placeholder="통합검색" aria-label="Search">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
+						<input class="btn btn-outline-secondary my-2 my-sm-0"
 							type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-				</ul>
+						<i class="fas fa-search"></i>
+						</input>
+					</ul>
+				</form>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -102,15 +125,17 @@
 				<div class="col-md-8">
 					<div class="chartdata">
 						<div class="chartdata-nav">
-							<form class="form-inline my-2 my-lg-0 chartdata-form">
+							<form action="/trade" id="searchForm"
+								class="form-inline my-2 my-lg-0 chartdata-form" method="GET">
 								<input class="form-control mr-sm-2 stock-search-input"
-									type="search" placeholder="통합검색" aria-label="Search">
+									type="search" placeholder="통합검색" id="stockSearch"
+									aria-label="Search" name="stockName">
 								<button
 									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
-									type="submit">
-									<i class="fas fa-search"></i>
-									<button type="button"
-										class="btn btn-secondary btn-sm companydata-btn ">기업정보</button>
+									id="stockBtn" type="button"></button>
+								<i class="fas fa-search"></i>
+								<button type="button"
+									class="btn btn-secondary btn-sm companydata-btn ">기업정보
 								</button>
 							</form>
 
@@ -162,8 +187,8 @@
 								</tr>
 								<tr>
 									<td>현재가</td>
-									<td>9,760</td>
-									<td>▲ 70 (0.72%)</td>
+									<td id="price"></td>
+									<td id="beforeAndUpdown"></td>
 								</tr>
 								<tr>
 									<td rowspan="5"></td>
@@ -353,22 +378,49 @@
 	</div>
 
 
-	<!-- footer start -->
-	<div class=footer_div>
-		<footer class="footer_info">
-			<p>
-				<a href="https://www.naver.com">회사소개</a> | <a
-					href="https://www.google.co.kr">광고안내</a> | <a
-					href="https://www.naver.com">이용약관</a> | <a
-					href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a>
-			</p>
-			<p>Copyright ⓒ 2020 - 2020 stock gallery. All rights reserved.</p>
-		</footer>
-	</div>
-	<!-- footer end -->
+	<script type="text/javascript">		
+	
+    var stockName = '';
+	$("#stockBtn").click(function(){
+		stockName = document.all.searchForm.stockSearch.value;
+		console.log("check" + stockName);
+	});
+	
+	$(function() {
+		var obj = new Object();
+		var jsonData = JSON.stringify(obj);
+		
+	   
+		timer = setInterval( function () {
+			$.ajax({
+				type : "POST",
+				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
+				/* data : JSON.stringify(jsonData),  */
+				datatype : "JSON",
+				success : function(data) {
+					console.log("현재가 = "+JSON.stringify(data.currentPrice));
+					console.log("전일비 + 등락률 = "+JSON.stringify(data.before + data.updown));
+					
+					console.log(stockName);
+					$('#price').text(data.currentPrice);
+					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+				},
+				error : function(error) {
+					console.log("error");
+				}
+			}); 
+		
+		}, 1000); // SET INTERVAL
+	});
 
-	<script>
+	
+	
+	
 		window.onload = function() {
+			
+			
+		    
+			
 
 			var dataPoints = [];
 			var test = [];
@@ -438,15 +490,5 @@
 		}
 	</script>
 
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
 </body>
 </html>

@@ -5,40 +5,40 @@ public class Info {
 	
 	
 	
-	private String a; //종목명
-	private String b; //현재가
-	private String c; //전일비
-	private String d; //등락률
-	
-	
-	public String getA() {
-		return a;
+	private String stockName; //종목명
+	private String currentPrice; //현재가
+	private String before; //전일비
+	private String upDown; //등락률
+	public String getStockName() {
+		return stockName;
 	}
-	public void setA(String a) {
-		this.a = a;
+	public void setStockName(String stockName) {
+		this.stockName = stockName;
 	}
-	public String getB() {
-		return b;
+	public String getCurrentPrice() {
+		return currentPrice;
 	}
-	public void setB(String b) {
-		this.b = b;
+	public void setCurrentPrice(String currentPrice) {
+		this.currentPrice = currentPrice;
 	}
-	public String getC() {
-		return c;
+	public String getBefore() {
+		return before;
 	}
-	public void setC(String c) {
-		this.c = c;
+	public void setBefore(String before) {
+		this.before = before;
 	}
-	public String getD() {
-		return d;
+	public String getUpDown() {
+		return upDown;
 	}
-	public void setD(String d) {
-		this.d = d;
+	public void setUpDown(String upDown) {
+		this.upDown = upDown;
 	}
 	@Override
 	public String toString() {
-		return "Info [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + "]";
+		return "Info [stockName=" + stockName + ", currentPrice=" + currentPrice + ", before=" + before + ", upDown="
+				+ upDown + "]";
 	}
+	
 	
 	
 	
