@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +83,7 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">뉴스</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">"${stockName}"거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
 							class="sr-only">(current)</span></a></li>
 				</ul>
@@ -380,10 +382,13 @@
 
 	<script type="text/javascript">		
 	
-    var stockName = '';
+	var stockName = "${stockName}";
+		
+		
+    //console.log("지발"+stockName);
 	$("#stockBtn").click(function(){
 		stockName = document.all.searchForm.stockSearch.value;
-		console.log("check" + stockName);
+		//console.log("check" + stockName);
 	});
 	
 	$(function() {
@@ -398,10 +403,10 @@
 				/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
-					console.log("현재가 = "+JSON.stringify(data.currentPrice));
-					console.log("전일비 + 등락률 = "+JSON.stringify(data.before + data.updown));
+					//console.log("현재가 = "+JSON.stringify(data.currentPrice));
+					//console.log("전일비 + 등락률 = "+JSON.stringify(data.before + data.updown));
 					
-					console.log(stockName);
+					//console.log(stockName);
 					$('#price').text(data.currentPrice);
 					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 				},

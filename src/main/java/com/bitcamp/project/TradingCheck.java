@@ -54,12 +54,12 @@ public class TradingCheck {
 
 				if (n % 12 == 2) {
 					inf = new Info();
-					inf.setA(list[i]);
-					list[i] = inf.getA();
-					info.put(inf.getA(), inf);
+					inf.setStockName(list[i]);
+					list[i] = inf.getStockName();
+					info.put(inf.getStockName(), inf);
 
 				} else if (n % 12 == 3) {
-					inf.setB(list[i]);
+					inf.setCurrentPrice(list[i]);
 				}
 
 			}
@@ -78,7 +78,7 @@ public class TradingCheck {
 		Map<String, Object> unsettled = mybatis.selectMap("stock.getUnsettled", "uno");
 		for (Object key : unsettled.keySet()) {
 			HashMap map = (HashMap) unsettled.get(key);
-			String price = info.get(map.get("stockName")).getB().replaceAll(",", "");
+			String price = info.get(map.get("stockName")).getCurrentPrice().replaceAll(",", "");
 
 			System.out.println(key+": ["+map.get("stockName")+"] & [요청 가격: "+map.get("rPrice")+"]");
 			System.out.print("   [현재가 : "+price+"]");
