@@ -5,18 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.TradeService;
-import com.bitcamp.project.vo.StockVO;
 
 import stockCode.Info;
 import stockCode.StockParsing;
@@ -45,8 +43,13 @@ public class TradeController {
 //	}
 
 	@GetMapping(value = "/trade")
-	public String tradeView() {
-
+	public String tradeView(Info vo) {
+		String stockName = vo.getStockName();
+		System.out.println("제발"+stockName);
+		
+		
+		
+		
 		return "stockdealpage";
 
 	}
@@ -146,15 +149,18 @@ public class TradeController {
 //		
 //		}catch(Exception e) {
 //			vo.setStockName("삼성전자");
-//		}	
+//		}
 		
-			while(true) {
+		String stockName = vo.getStockName();
+		
+		
+//			while(true) {
 			StockParsing st = new StockParsing();
 	//		String stockName = request.getParameter("stockName");
-			String stockName = vo.getStockName();
+	
 			System.out.println(vo.getStockName());
 			String stockCode = tradeService.stockSearch(stockName);
-			System.out.println(stockCode);
+			// System.out.println(stockCode);
 	
 	//		if(stockName.equals(null) || stockName.equals("")) {
 	//			stockCode = "005930";
@@ -194,7 +200,7 @@ public class TradeController {
 	//				if(request.getServletPath() != "/trade")
 	//					break;
 			return map;
-			}
+//			}
 	}
 //	
 	

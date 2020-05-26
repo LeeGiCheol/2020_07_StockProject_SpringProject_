@@ -11,7 +11,7 @@ public class StockVO {
 	private String stockCode;
 	private String stockName;
 	private String id;
-	private String tcategory;
+	private String category;
 	private Date tdatetime;
 	
 	
@@ -64,16 +64,22 @@ public class StockVO {
 		this.id = id;
 	}
 	public String getTcategory() {
-		return tcategory;
+		return category;
 	}
 	public void setTcategory(String tcategory) {
-		this.tcategory = tcategory;
+		this.category = tcategory;
 	}
 	public Date getTdatetime() {
 		return tdatetime;
 	}
 	public void setTdatetime(Date tdatetime) {
 		this.tdatetime = tdatetime;
+	}
+	@Override
+	public String toString() {
+		return "StockVO [tno=" + tno + ", uno=" + uno + ", rPrice=" + rPrice + ", quantity=" + quantity + ", tprice="
+				+ tprice + ", stockCode=" + stockCode + ", stockName=" + stockName + ", id=" + id + ", tcategory="
+				+ category + ", tdatetime=" + tdatetime + "]";
 	}
 	
 }
