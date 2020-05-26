@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.TradeService;
-import com.bitcamp.project.vo.StockVO;
 
 import stockCode.Info;
 import stockCode.StockParsing;
@@ -43,8 +43,13 @@ public class TradeController {
 //	}
 
 	@GetMapping(value = "/trade")
-	public String tradeView() {
-
+	public String tradeView(Info vo) {
+		String stockName = vo.getStockName();
+		System.out.println("제발"+stockName);
+		
+		
+		
+		
 		return "stockdealpage";
 
 	}
@@ -134,24 +139,27 @@ public class TradeController {
 
 	
 	
-	@RequestMapping(value = "/trade")
-	public @ResponseBody Map tradeSearch(StockVO vo) throws InterruptedException {
+	@RequestMapping(value = "/trade/search")
+	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
 		
-		try {
-			if(vo.getStockName().equals("") && vo.getStockName().equals(null)) 
-				vo.setStockName("삼성전자");
+//		try {
+//			if(vo.getStockName().equals("") && vo.getStockName().equals(null)) 
+//				vo.setStockName("삼성전자");
+//		
+//		
+//		}catch(Exception e) {
+//			vo.setStockName("삼성전자");
+//		}
+		
+		String stockName = vo.getStockName();
 		
 		
-		}catch(Exception e) {
-			vo.setStockName("삼성전자");
-		}
-		
-			while(true) {
+//			while(true) {
 			StockParsing st = new StockParsing();
 	//		String stockName = request.getParameter("stockName");
 	
 			System.out.println(vo.getStockName());
-			String stockCode = tradeService.stockSearch(vo.getStockName());
+			String stockCode = tradeService.stockSearch(stockName);
 			// System.out.println(stockCode);
 	
 	//		if(stockName.equals(null) || stockName.equals("")) {
@@ -159,14 +167,14 @@ public class TradeController {
 	//		}
 			System.out.println(1);
 			Info trade = st.parse(stockCode);
-			System.out.println(trade.getB());
+			System.out.println(trade.getCurrentPrice());
 			
 			List<Map<String, Object>> list = new ArrayList();
 			Map<String, Object> map = new HashMap<String, Object>();
 	
-					map.put("currentPrice", trade.getB()); // 현재가
-					map.put("before", trade.getC());		  // 전일비
-					map.put("updown", trade.getD());		  // 등락률
+					map.put("currentPrice", trade.getCurrentPrice()); // 현재가
+					map.put("before", trade.getBefore());		  // 전일비
+					map.put("updown", trade.getUpDown());		  // 등락률
 	//				
 	//				list.add(map);
 	//				System.out.println(list.toString());
@@ -192,7 +200,7 @@ public class TradeController {
 	//				if(request.getServletPath() != "/trade")
 	//					break;
 			return map;
-			}
+//			}
 	}
 //	
 	
