@@ -382,7 +382,12 @@
 
 	<script type="text/javascript">		
 	
+	
+		
 	var stockName = "${stockName}";
+	if(stockName === ''){
+		stockName = '삼성전자';
+	}
 		
 		
     //console.log("지발"+stockName);
