@@ -9,6 +9,7 @@
 	<!-- Alias 설정 (이름이 기니까 별명을 줘서 짧게 쓰자) -->
 	<typeAliases>
 		<typeAlias type="com.bitcamp.project.vo.UserVO" alias="user"></typeAlias>
+		<typeAlias type="com.bitcamp.project.vo.StockVO" alias="stock"></typeAlias>
 	</typeAliases>
 	
 	
@@ -25,5 +26,6 @@
 	</environments> -->
 	<mappers>
 		<mapper resource="mappings/user-mapping.xml" />
+		<mapper resource="mappings/stock-mapping.xml" />
 	</mappers>
 </configuration>
