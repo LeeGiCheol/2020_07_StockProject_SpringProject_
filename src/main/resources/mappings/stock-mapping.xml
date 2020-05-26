@@ -1,3 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- parameterType의 생략이 가능하다 #{title}은 parameter로 전달된 getTitle()메서드를 호출한다. -->
+<mapper namespace="stock">
+<resultMap type="stock" id="st"></resultMap>
+
+	<select id="getUnsettled" resultType="map">
+		SELECT * from unsettledcheck
+	</select>
+	
+	<select id="completeUnsettled" resultMap="st">
+		SELECT * from unsettled
+		where uno=#{uno}
+	</select>
+	
+	<insert id="buying">
+		insert into tradinghistory(id, stockName, category, tdatetime, price, quantity)
+		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
+		
+		insert into holdingstock(id , stockName, quantity)
+		values (#{id}, #{stockName},#{quantity});
+		
+		INSERT INTO stocknotice(id, tno)
+		SELECT id, tno
+		FROM tradinghistory as td
+		WHERE td.tno = (select max(tno) from tradinghistory);
+	</insert>
+	
+	<update id="updateBuying">
+		update usermoney 
+		set money = money - #{rPrice}*#{quantity}
+		where id = #{id};
+	</update>
+	
+	
+	
+	
+	<insert id="selling">
+		insert into tradinghistory(id, stockName, category, tdatetime, price, quantity)
+		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
+		
+		insert into holdingstock(id , stockName, quantity)
+		values (#{id}, #{stockName},#{quantity}*(-1));
+		
+		INSERT INTO stocknotice(id, tno)
+		SELECT id, tno
+		FROM tradinghistory as td
+		WHERE td.tno = (select max(tno) from tradinghistory);
+	</insert>
+	
+	<update id="updateSelling">
+		update usermoney 
+		set money = money + #{rPrice}*#{quantity}
+		where id = #{id};
+	</update>
+	
+	<delete id="delUnsettled">
+		DELETE FROM unsettled WHERE uno=#{uno};
+		DELETE FROM unsettledcheck WHERE uno=#{uno};
+	</delete>
+	
+
+
+</mapper>

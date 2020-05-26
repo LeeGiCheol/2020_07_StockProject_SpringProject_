@@ -20,7 +20,6 @@ import stockCode.Info;
 
 @Component
 public class TradingCheck {
-	private int count;
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
@@ -76,45 +75,31 @@ public class TradingCheck {
 		Map<String, Info> info = stockToMap();
 
 		// unsettledcheck테이블에서 모두 가져와서 map에 주입
-		Map<String, StockVO> unsettled = new HashMap<String, StockVO>();
+		Map<String, Object> unsettled = mybatis.selectMap("stock.getUnsettled", "uno");
+		for (Object key : unsettled.keySet()) {
+			HashMap map = (HashMap) unsettled.get(key);
+			String price = info.get(map.get("stockName")).getB().replaceAll(",", "");
 
-		// 테스트용 코드 시작
-		StockVO testVO = new StockVO();
-		testVO.setStockName("삼성전자");
-		testVO.setrPrice(48850);
-		unsettled.put("삼성전자", testVO);
-		// 테스트용 코드 끝
-
-		for (String key : unsettled.keySet()) {
-			System.out.println(key+" 확인");
-			StockVO sv = unsettled.get(key);
-
-			String price = info.get(key).getB().replaceAll(",", "");
-
-			if (Integer.parseInt(price) == sv.getrPrice()) { // 가격 동일시
-				System.out.println("동일가격 확인 & 거래 실행");
-				int uno = sv.getUno();
-
-				// uno 통해서 미채결 전체정보 받아와서 vo객체에 저장&미채결 테이블 데이터 제거 부분 --
-				sv.setId("test"); // test용 코드
-				sv.setQuantity(3);// test용 코드
-				sv.setTcategory("buy");// test용 코드
-				// uno 통해서 미채결 전체정보 받아와서 vo객체에 저장&미채결 테이블 데이터 제거 부분 --
-
+			System.out.println(key+": ["+map.get("stockName")+"] & [요청 가격: "+map.get("rPrice")+"]");
+			System.out.print("   [현재가 : "+price+"]");
+			
+			if (Integer.parseInt(price) == (Integer)map.get("rPrice")) { // 가격 동일시
+				System.out.println(" --> 동일가격 확인 & 거래 실행");
+				StockVO sv = mybatis.selectOne("stock.completeUnsettled", map.get("uno"));
+				sv.setrPrice((Integer)map.get("rPrice"));
+				sv.setStockName((String)map.get("stockName"));
+				mybatis.delete("stock.delUnsettled", sv);
+				
 				if (sv.getTcategory().equals("buy")) { // 구매 거래시
 					System.out.println("case: buy");
-					// 거래기록 테이블에 거래 정보 주입
-					// 보유주식 테이블에 보유주식 추가
-					// 유저 보유 금액 테이블에서 money 차감
-					// 거래 알람 테이블에 알람 추가
+					mybatis.insert("stock.buying",sv);
+					mybatis.update("stock.updateBuying",sv);
 				} else if (sv.getTcategory().equals("sell")) { // 판매 거래시
 					System.out.println("case: sell");
-					// 거래기록 테이블에 거래 정보 주입
-					// 보유주식 테이블에 보유주식 추가
-					// 유저 보유 금액 테이블에서 money 증가
-					// 거래 알람 테이블에 알람 추가
+					mybatis.insert("stock.selling",sv);
+					mybatis.update("stock.updateSelling",sv);
 				}
-			}
+			} else System.out.println(" --> 거래 실패");
 		}
 		
 		Date now = new Date();
