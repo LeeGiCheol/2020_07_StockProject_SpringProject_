@@ -13,8 +13,8 @@ public class TradeDAOImpl implements TradeDAO {
 	private SqlSessionTemplate mybatis;
 	
 	@Override
-	public void stockSearch() {
-		
+	public String stockSearch(String stockName) {
+		return mybatis.selectOne("stock.stockCode", stockName);
 	}
 
 	@Override

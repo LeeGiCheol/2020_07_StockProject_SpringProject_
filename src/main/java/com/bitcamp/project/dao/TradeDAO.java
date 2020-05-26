@@ -1,7 +1,7 @@
 package com.bitcamp.project.dao;
 
 public interface TradeDAO {
-	public void stockSearch();
+	public String stockSearch(String stockName);
 	public void callPrice();
 	
 	public void stockBuying();

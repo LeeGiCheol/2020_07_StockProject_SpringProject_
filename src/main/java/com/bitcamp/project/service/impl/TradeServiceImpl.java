@@ -13,8 +13,8 @@ public class TradeServiceImpl implements TradeService {
 	TradeDAO tradeDAO;
 	
 	@Override
-	public void stockSearch() {
-		tradeDAO.stockSearch();
+	public String stockSearch(String stockName) {
+		return tradeDAO.stockSearch(stockName);
 		
 	}
 

@@ -1,7 +1,7 @@
 package com.bitcamp.project.service;
 
 public interface TradeService {
-	public void stockSearch();
+	public String stockSearch(String stockName);
 	public void callPrice();
 	
 	public void stockBuying();
