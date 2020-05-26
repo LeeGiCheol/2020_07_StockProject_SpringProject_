@@ -134,8 +134,7 @@
 									aria-label="Search" name="stockName">
 								<button
 									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
-									id="stockBtn" type="button"></button>
-								<i class="fas fa-search"></i>
+									id="stockBtn" type="button"><i class="fas fa-search"></i></button>
 								<button type="button"
 									class="btn btn-secondary btn-sm companydata-btn ">기업정보
 								</button>
