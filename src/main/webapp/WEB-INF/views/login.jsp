@@ -78,7 +78,7 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
         <div class="otherbutton"><button class="idbox btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">아이디찾기</button><button class="passwordbox btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">비밀번호 찾기</button></div>
-        <button class="signup btn btn-lg btn-primary btn-block" onclick="location.href='#'" type="button">회원가입</button>
+        <button class="signup btn btn-lg btn-primary btn-block" onclick="location.href='/signUpPage'" type="button">회원가입</button>
         <div class="otherbutton"><button class="naverlogin btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">네이버로그인</button><button class="kakaologin btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">카카오톡로그인</button></div>
         <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
      </form>
