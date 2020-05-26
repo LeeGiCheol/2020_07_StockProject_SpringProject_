@@ -1,6 +1,6 @@
-package com.bitcamp.project.dao;
+package com.bitcamp.project.service;
 
-public interface TradeDAO {
+public interface TradeService {
 	public String stockSearch(String stockName);
 	public void callPrice();
 	
