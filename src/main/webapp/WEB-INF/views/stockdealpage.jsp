@@ -403,7 +403,7 @@
 		timer = setInterval( function () {
 			$.ajax({
 				type : "POST",
-				url : '${pageContext.request.contextPath}/Final_Project/trade/search?stockName='+stockName,
+				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
 				/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
