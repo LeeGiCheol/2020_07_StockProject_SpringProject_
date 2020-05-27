@@ -465,7 +465,7 @@
 						} ]
 					});
 
-			$.get("/resources/testmin.csv", getDataPointsFromCSV);
+			$.get("/resources/chart/testmin.csv", getDataPointsFromCSV);
 
 			function getDataPointsFromCSV(csv) {
 
