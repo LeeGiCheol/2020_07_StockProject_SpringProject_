@@ -25,57 +25,37 @@ public class StockParsing {
 			doc = Jsoup.connect(url).get();
 			Elements viewLists = doc.select("#middle");
 
-			String stockName = null;
-			String currentPrice = null;
-			String before = null;
-			String upDown = null;
+			String stockName = null;		// 종목명
+			String currentPrice = null;		// 현재가
+			String before = null;			// 전일비
+			String upDown = null;			// 상승률
 
 			for (Element viewList : viewLists) {
 				stockName = viewList.selectFirst("strong").text();
 
-				String currentPriceUp = viewList.select(".no_today .no_up").text();
-				String beforeUp = viewList.select(".no_exday .no_up").text();
-				String currentPriceDown = viewList.select(".no_today .no_down").text();
-				String beforeDown = viewList.select(".no_exday .no_down").text();
+				String currentPrice_ = viewList.select(".no_today").text();
+				String before_ = viewList.select(".no_exday").text();
 
-//				System.out.println(currentPriceUp);
-//				System.out.println(currentPriceDown);
-//				System.out.println(beforeUp);
-//				System.out.println(beforeDown);
+				// 
+				String[] bFUD = before_.split(" ");
+				String[] cPrice = currentPrice_.split(" ");
 				
-				// 상승인 경우
-				if (currentPriceDown.equals("")) {
-					String[] cPrice = currentPriceUp.split(" ");
-					currentPrice = cPrice[0].replace(",", "");
+				currentPrice = cPrice[0].replace(",", "");
+				upDown = bFUD[6] + "%";
+				
+				if(bFUD[1].equals("상승")) {
 
-					String[] bFUD = beforeUp.split(" ");
-					//System.out.println(Arrays.deepToString(bFUD));
-
-					before = "+" + bFUD[1];
-					upDown = bFUD[5].replace(".", "") + "%";
-					
-				// 하락인 경우
-				} else {
-					String[] cPrice = currentPriceDown.split(" ");
-					currentPrice = cPrice[0].replace(",", "");
-
-					String[] bFUD = beforeDown.split(" ");
-					//System.out.println(Arrays.deepToString(bFUD));
-
-					before = "-" + bFUD[1];
-					upDown = bFUD[5].replace(".", "") + "%";
-			
-					if (before.contains(",")) {
-						before = before.replace(",", "");
-					}
+					before = "+" + bFUD[2];
 				}
+				else if(bFUD[1].equals("하락")) {
+					before = "-" + bFUD[2];
+				}
+				else if(bFUD[1].equals("보합")) {
+					before = bFUD[2];
+					upDown = bFUD[5] + "%";
+				}
+				
 			}
-//
-//			System.out.println(stockName);
-//			System.out.println(currentPrice);
-//			System.out.println(before);
-//			System.out.println(upDown);
-			
 			
 			Info inf = new Info();
 			inf.setStockName(stockName);
@@ -87,7 +67,6 @@ public class StockParsing {
 //			long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기
 //			long secDiffTime = (afterTime - beforeTime)/1000; //두 시간에 차 계산
 //			System.out.println("시간차이(m) : "+secDiffTime);
-			
 			
 			return inf;
 		} catch (Exception e) {
