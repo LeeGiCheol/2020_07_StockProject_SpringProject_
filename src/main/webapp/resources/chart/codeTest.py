@@ -157,16 +157,16 @@ class FastApi():
 
         # FastApi.codeSet = '004980'
 
-    def makeChart(self, stockName, fileName):
+    def makeChart(self, codeSet, fileName):
         self.objChart = CpStockChart()
-        stockCode = g_name.NameToCode(stockName)
-        print(stockCode)
+        stockCode = g_name.NameToCode(codeSet)
         self.setCode(stockCode)
         try:
             print("setcode: " + self.code)
         except:
             self.code = "Q" + FastApi.codeSet
-        self.objChart.RequestMT(self.code, ord('m'), 70, self)
+        print(g_objCodeMgr.CodeToName(self.code))
+        self.objChart.RequestMT(self.code, ord('m'), 60, self)
         if (len(self.times) == 0):
             chartData = {'일자': self.dates,
                          '시가': self.opens,
@@ -175,6 +175,7 @@ class FastApi():
                          '종가': self.closes,
                          '거래량': self.vols,
                          }
+
             df = pd.DataFrame(chartData, columns=['일자', '시가', '고가', '저가', '종가', '거래량'])
         else:
             chartData = {'일자': self.dates,
@@ -185,17 +186,19 @@ class FastApi():
                          '종가': self.closes,
                          '거래량': self.vols,
                          }
+
             df = pd.DataFrame(chartData, columns=['일자', '시간', '시가', '고가', '저가', '종가', '거래량'])
+
         df = df.set_index('일자')
-        #
-        # # create a Pandas Excel writer using XlsxWriter as the engine.
-        # # writer = pd.ExcelWriter(charfile, engine='xlsxwriter')
-        # # Convert the dataframe to an XlsxWriter Excel object.
-        # # df.to_excel(writer, sheet_name='Sheet1')
-        #
-        df.to_csv('../'+fileName+'.csv', encoding='utf-8')
-        # # print("파일화")
-        # # exit()
+
+        # create a Pandas Excel writer using XlsxWriter as the engine.
+        # writer = pd.ExcelWriter(charfile, engine='xlsxwriter')
+        # Convert the dataframe to an XlsxWriter Excel object.
+        # df.to_excel(writer, sheet_name='Sheet1')
+
+        df.to_csv(codeSet+'.csv', encoding='utf-8')
+        # print("파일화")
+        # exit()
 
     def codeEditChanged(self):
         code = self.codeEdit.text()

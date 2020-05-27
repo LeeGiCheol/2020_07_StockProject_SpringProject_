@@ -5,7 +5,6 @@ import pandas as pd
 
 g_objCodeMgr = win32com.client.Dispatch('CpUtil.CpCodeMgr')
 g_objCpStatus = win32com.client.Dispatch('CpUtil.CpCybos')
-g_name = win32com.client.Dispatch('CpUtil.CpStockCode')
 
 
 class CpStockChart:
@@ -144,9 +143,15 @@ class CpStockChart:
 
         return
 
-class FastApi():
+
+class MyWindow(QMainWindow):
+    codeSet = ""
+    fileName = "new.sv"
 
     def __init__(self):
+        super().__init__()
+
+        # 기본 변수들
         self.dates = []
         self.opens = []
         self.highs = []
@@ -155,18 +160,39 @@ class FastApi():
         self.vols = []
         self.times = []
 
-        # FastApi.codeSet = '004980'
-
-    def makeChart(self, stockName, fileName):
         self.objChart = CpStockChart()
-        stockCode = g_name.NameToCode(stockName)
-        print(stockCode)
-        self.setCode(stockCode)
+
+        # 윈도우 버튼 배치
+        self.setWindowTitle("PLUS API TEST")
+        nH = 20
+
+        self.codeEdit = QLineEdit("", self)
+        self.codeEdit.move(20, nH)
+        self.codeEdit.textChanged.connect(self.codeEditChanged)
+        self.codeEdit.setText('00660')
+        self.label = QLabel('종목코드', self)
+        self.label.move(140, nH)
+        nH += 50
+
+        self.setGeometry(300, 300, 300, nH)
+        # MyWindow.codeSet = '004980'
+        # 'A004980' 'Q500031'
+
+        self.setCode(MyWindow.codeSet)
         try:
-            print("setcode: " + self.code)
+            print("setcode: "+self.code)
         except:
-            self.code = "Q" + FastApi.codeSet
-        self.objChart.RequestMT(self.code, ord('m'), 70, self)
+            self.code = "Q"+MyWindow.codeSet
+
+        print(g_objCodeMgr.CodeToName(self.code))
+        # 분봉 차트
+        self.objChart.RequestMT(self.code, ord('m'), 60, self)
+
+        # 일봉 차트
+        # self.objChart.RequestFromTo(self.code, 20200301, 20200418, self)
+
+
+        # charfile = 'min.xlsx'
         if (len(self.times) == 0):
             chartData = {'일자': self.dates,
                          '시가': self.opens,
@@ -186,16 +212,18 @@ class FastApi():
                          '거래량': self.vols,
                          }
             df = pd.DataFrame(chartData, columns=['일자', '시간', '시가', '고가', '저가', '종가', '거래량'])
+
         df = df.set_index('일자')
-        #
-        # # create a Pandas Excel writer using XlsxWriter as the engine.
-        # # writer = pd.ExcelWriter(charfile, engine='xlsxwriter')
-        # # Convert the dataframe to an XlsxWriter Excel object.
-        # # df.to_excel(writer, sheet_name='Sheet1')
-        #
-        df.to_csv('../'+fileName+'.csv', encoding='utf-8')
-        # # print("파일화")
-        # # exit()
+
+        # create a Pandas Excel writer using XlsxWriter as the engine.
+        # writer = pd.ExcelWriter(charfile, engine='xlsxwriter')
+        # Convert the dataframe to an XlsxWriter Excel object.
+        # df.to_excel(writer, sheet_name='Sheet1')
+        df.to_csv(MyWindow.fileName, encoding='utf-8')
+        # Close the Pandas Excel writer and output the Excel file.
+        # writer.save()
+        # exit()
+
 
     def codeEditChanged(self):
         code = self.codeEdit.text()
@@ -216,15 +244,13 @@ class FastApi():
             print("종목코드 확인")
             return
 
+        self.label.setText(name)
         self.code = code
 
 
 
-
 if __name__ == "__main__":
-    # app = QApplication(sys.argv)
-    myWindow = FastApi()
-    myWindow.makeChart()
-
+    app = QApplication(sys.argv)
+    myWindow = MyWindow()
     # myWindow.show()
-    # app.exec_()
+    app.exec_()

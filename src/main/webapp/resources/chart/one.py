@@ -1,26 +1,26 @@
 import socket
 import multiprocessing
 from socketserver import ThreadingTCPServer, StreamRequestHandler
-from python.chart import *
+from codeTest import *
 import pythoncom
 
-PORT = 9000
-chartData = None
+PORT = 8000
 
-def worker(stockName):
-    FastApi().makeChart(stockName, stockName)
+
+def worker(code):
+    FastApi().makeChart(code, code)
     return
 
-
 class RequestHandler(StreamRequestHandler):
-    # 클라이언트와 연결되었을 때 호출되는 함수
+        # 클라이언트와 연결되었을 때 호출되는 함수
     def handle(self):
         print("Connection From", self.client_address)
         conn = self.request  # 클라이언트와 연결된 소켓
         while True:
+            print('while 시작')
+            
             try:
                 msg = conn.recv(1024).decode('utf-8')
-                print('자바에서 전송: '+msg)
                 if msg == "":  # 클라이언트가 소켓을 close
                     conn.close()
                     print(self.client_address, "Disconnected")
@@ -32,7 +32,7 @@ class RequestHandler(StreamRequestHandler):
                 p.join()
                 print('추출완료')
                 conn.send('complete\n'.encode())
-                print(msg + ' 전송완료')
+                print(msg+' 전송완료')
 
 
             except:  # 클라이언트가 프로그램을 강제 종료

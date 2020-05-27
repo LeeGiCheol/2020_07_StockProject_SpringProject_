@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.project.service.TradeService;
 
 import stockCode.Info;
+import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
@@ -42,7 +43,9 @@ public class TradeController {
 		// get 방식으로 맨 뒤에 종목명을 받아서
 		// 모델에 저장하면 jsp에서 "${stockName}"으로 불러낼 수 있다
 		model.addAttribute("stockName",stockName);
-		
+		RequestChart rc = new RequestChart();
+		rc.connection(stockName);
+		System.out.println(stockName);
 		
 		return "stockdealpage";
 
@@ -58,6 +61,9 @@ public class TradeController {
 
 		String stockCode = tradeService.stockSearch(stockName);
 		Info trade = st.parse(stockCode);
+		
+//		RequestChart rc = new RequestChart();
+//		rc.connection(stockName);
 		
 		List<Map<String, Object>> list = new ArrayList();
 		Map<String, Object> map = new HashMap<String, Object>();
