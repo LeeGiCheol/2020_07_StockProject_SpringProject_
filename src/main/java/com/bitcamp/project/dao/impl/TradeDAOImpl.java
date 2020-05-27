@@ -1,5 +1,7 @@
 package com.bitcamp.project.dao.impl;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,14 @@ public class TradeDAOImpl implements TradeDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	
+	
+	@Override
+	public Map dayChart() {
+		// TODO Auto-generated method stub
+		return mybatis.selectMap("stock.dayChart", "cno");
+	}
+
 	@Override
 	public String stockSearch(String stockName) {
 		return mybatis.selectOne("stock.stockCode", stockName);

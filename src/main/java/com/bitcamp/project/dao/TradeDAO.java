@@ -1,5 +1,7 @@
 package com.bitcamp.project.dao;
 
+import java.util.Map;
+
 public interface TradeDAO {
 	public String stockSearch(String stockName);
 	public void callPrice();
@@ -10,4 +12,5 @@ public interface TradeDAO {
 	
 	public void stockCorrection();
 	public void stockCancel();
+	public Map dayChart();
 }

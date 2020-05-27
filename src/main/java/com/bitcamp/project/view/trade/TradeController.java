@@ -43,6 +43,7 @@ public class TradeController {
 		// get 방식으로 맨 뒤에 종목명을 받아서
 		// 모델에 저장하면 jsp에서 "${stockName}"으로 불러낼 수 있다
 		model.addAttribute("stockName",stockName);
+		
 		RequestChart rc = new RequestChart();
 		rc.connection(stockName);
 		
@@ -70,9 +71,15 @@ public class TradeController {
 //		}
 //		
 		
-		List<Map<String, Object>> list = new ArrayList();
+//		List<Map<String, Object>> list = new ArrayList();
+		Map<String, Object> chart = tradeService.dayChart();
+//		for (int i = 0; i < 60; i++) {
+//			((HashMap)chart.get(i)).get("d");
+//		}
+//		
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		
+				map.put("chart", chart);
 				map.put("currentPrice", trade.getCurrentPrice()); // 현재가
 				map.put("before", trade.getBefore());		  // 전일비
 				map.put("updown", trade.getUpDown());		  // 등락률

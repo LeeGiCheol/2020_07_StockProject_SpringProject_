@@ -11,6 +11,11 @@
 		SELECT * from unsettledcheck
 	</select>
 	
+	<select id="dayChart" resultType="map">
+		SELECT * from daychart
+	</select>
+	
+	
 	<select id="completeUnsettled" resultMap="st">
 		SELECT * from unsettled
 		where uno=#{uno}
