@@ -24,7 +24,7 @@ public class RequestChart {
 			// Socket sock = new Socket("192.168.0.13", 9000);
 			// Socket생성자에서 내부적으로 connect를 진행
 			// 객체가 만들어지면 서버와 이미 연결 상태
-			Socket sock = new Socket("192.168.0.33", 8000);
+			Socket sock = new Socket("192.168.0.24", 8080);
 			// 키보드 데이터 입력 객체 생성
 			InputStreamReader inK = new InputStreamReader(System.in);
 			BufferedReader keyboard = new BufferedReader(inK);
