@@ -75,7 +75,6 @@ public class TradeController {
 		Integer[] lowprice = new Integer[60];
 		Integer[] lastprice = new Integer[60];
 		Integer[] volume = new Integer[60];
-		System.out.println(chart);
 		
 //
 		for (int i = 0; i < 60; i++) {
