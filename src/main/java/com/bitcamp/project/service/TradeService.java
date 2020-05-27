@@ -13,4 +13,5 @@ public interface TradeService {
 	public void stockCorrection();
 	public void stockCancel();
 	public Map dayChart();
+	public Map minuteChart();
 }

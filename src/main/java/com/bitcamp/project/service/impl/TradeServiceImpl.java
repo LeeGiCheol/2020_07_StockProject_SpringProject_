@@ -14,6 +14,13 @@ public class TradeServiceImpl implements TradeService {
 	@Autowired
 	TradeDAO tradeDAO;
 	
+	
+	
+	@Override
+	public Map minuteChart() {
+		return tradeDAO.minuteChart();
+	}
+
 	@Override
 	public String stockSearch(String stockName) {
 		return tradeDAO.stockSearch(stockName);

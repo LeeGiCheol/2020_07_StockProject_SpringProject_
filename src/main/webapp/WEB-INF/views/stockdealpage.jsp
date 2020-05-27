@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 	
 
 <!DOCTYPE html>
@@ -367,6 +368,8 @@
 										<li>시간외종가 주문시간 안내 : 장 개시 전 종가 – 08:30~08:40 / 장 마감 후 종가 –
 											15:40~16:00</li>
 										<li>ELW 종목은 시간외 거래 불가</li>
+										console.log(${d });
+										console.log(${hr});
 									</ul>
 								</div>
 							</div>
@@ -413,6 +416,65 @@
 					//console.log(stockName);
 					$('#price').text(data.currentPrice);
 					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+					
+					var dataPoints = [];
+					var chart = new CanvasJS.Chart(
+							"chartContainer",
+							{
+								animationEnabled : true,
+								theme : "light2", // "light1", "light2", "dark1", "dark2"
+								exportEnabled : true,
+								title : {
+									text : stockName
+								},
+								subtitles : [ {
+									text : "minute"
+								} ],
+								axisX : {
+									interval : 1,
+									valueFormatString : "mm"
+								},
+								axisY : {
+									includeZero : false,
+									prefix : "",
+									title : "Price"
+								},
+								toolTip : {
+									content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
+								},
+								data : [ {
+									type : "candlestick",
+									yValueFormatString : "##0원",
+									dataPoints : dataPoints
+								} ]
+							});	
+					
+					function getDataPointsFromCSV(data) {
+						
+						for (var i = 1; i < 60; i++) {
+							dataPoints.push({
+									x : new Date(parseInt(data.d[i]/10000),
+											parseInt(data.d[i]%10000/100),
+											data.d[i]%100,
+											parseInt(data.hr[i]/100),
+											data.hr[i]%100
+
+									),
+									y : [ parseFloat(data.startprice[i]), parseFloat(data.highprice[i]),
+											parseFloat(data.lowprice[i]),
+											parseFloat(data.lastprice[i]) ],
+									z : parseInt(data.d[i]/10000) + '-'
+											+ parseInt(data.d[i]%10000/100) + '-'
+											+ data.d[i]%100 + " "
+											+ parseInt(data.hr[i]/100) + ":"
+											+ data.hr[i]%100
+								});
+							
+						}
+						chart.render();
+					}
+					getDataPointsFromCSV(data);
+					
 				},
 				error : function(error) {
 					console.log("error");
@@ -427,14 +489,10 @@
 	
 		window.onload = function() {
 			
-			
-		    
-			
-
 			var dataPoints = [];
 			var test = [];
 
-			var chart = new CanvasJS.Chart(
+			 var chart = new CanvasJS.Chart(
 					"chartContainer",
 					{
 						animationEnabled : true,
@@ -465,40 +523,30 @@
 						} ]
 					});
 			
-			$.get("/resources/chart/"+stockName+".csv", getDataPointsFromCSV);
-			
-			function getDataPointsFromCSV(csv) {
-
-				var csvLines = points = [];
-				csvLines = csv.split(/[\r?\n|\r|\n]+/);
-				for (var i = 1; i < csvLines.length; i++) {
-					
-					if (csvLines[i].length > 0) {
-						points = csvLines[i].split(",");
-						if(points[1].substring(0, 1) == '9'){
-							points[1] = "09";
-						}
-						dataPoints.push({
-							x : new Date(parseInt(points[0].substring(0, 4)),
-									parseInt(points[0].substring(4, 6)),
-									parseInt(points[0].substring(6, 8)),
-									parseInt(points[1].substring(0, 2)),
-									parseInt(points[1].substring(2, 4))
+			function getDataPointsFromCSV(data) {
+				console.log(data.hr);
+				for (var i = 1; i < 60; i++) {
+					dataPoints.push({
+							x : new Date(data.d[i].substring(0, 4),
+									parseInt(d[i].substring(4, 6)),
+									parseInt(d[i].substring(6, 8)),
+									parseInt(hr[i].substring(0, 2)),
+									parseInt(hr[i].substring(2, 4))
 
 							),
-							y : [ parseFloat(points[2]), parseFloat(points[3]),
-									parseFloat(points[4]),
-									parseFloat(points[5]) ],
-							z : points[0].substring(0, 4) + '-'
-									+ points[0].substring(4, 6) + '-'
-									+ points[0].substring(6, 8) + " "
-									+ points[1].substring(0, 2) + ":"
-									+ points[1].substring(2, 4)
+							y : [ parseFloat(startprice[i]), parseFloat(highprice[i]),
+									parseFloat(lowprice[i]),
+									parseFloat(lastprice[i]) ],
+							z : d[i].substring(0, 4) + '-'
+									+ d[i].substring(4, 6) + '-'
+									+ d[i].substring(6, 8) + " "
+									+ hr[i].substring(0, 2) + ":"
+									+ hr[i].substring(2, 4)
 						});
-					}
+					
 				}
 				chart.render();
-			}
+			} 
 
 		}
 	</script>

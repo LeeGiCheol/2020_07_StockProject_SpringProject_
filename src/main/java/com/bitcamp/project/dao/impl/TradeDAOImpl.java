@@ -17,8 +17,12 @@ public class TradeDAOImpl implements TradeDAO {
 	
 	
 	@Override
+	public Map minuteChart() {
+		return mybatis.selectMap("stock.minuteChart", "cno");
+	}
+
+	@Override
 	public Map dayChart() {
-		// TODO Auto-generated method stub
 		return mybatis.selectMap("stock.dayChart", "cno");
 	}
 

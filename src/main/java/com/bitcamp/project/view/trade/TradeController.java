@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.trade;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.TradeService;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import stockCode.Info;
 import stockCode.RequestChart;
@@ -39,52 +41,66 @@ public class TradeController {
 	@GetMapping(value = "/trade")
 	public String tradeView(Info vo, Model model) {
 		String stockName = vo.getStockName();
-		
+
 		// get 방식으로 맨 뒤에 종목명을 받아서
 		// 모델에 저장하면 jsp에서 "${stockName}"으로 불러낼 수 있다
-		model.addAttribute("stockName",stockName);
-		
-		RequestChart rc = new RequestChart();
-		rc.connection(stockName);
-		
+		model.addAttribute("stockName", stockName);
+
+//		RequestChart rc = new RequestChart();
+//		rc.connection(stockName);
+
 		return "stockdealpage";
 
 	}
-	
+
 	@RequestMapping(value = "/trade/search")
 	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
-		
+
 		String stockName = vo.getStockName();
-		
-		
+
 		StockParsing st = new StockParsing();
 
 		String stockCode = tradeService.stockSearch(stockName);
 		Info trade = st.parse(stockCode);
-		
-//		int currentPrice = Integer.parseInt(trade.getCurrentPrice());
-//		
-//		int[] prices = null;
-//		
-//		if(currentPrice >= 1000 && currentPrice < 5000) {
-//			prices[0] = currentPrice;
-//		}
-//		
-		
-//		List<Map<String, Object>> list = new ArrayList();
-		Map<String, Object> chart = tradeService.dayChart();
-//		for (int i = 0; i < 60; i++) {
-//			((HashMap)chart.get(i)).get("d");
-//		}
+
 //		
 		Map<String, Object> map = new HashMap<String, Object>();
+
+		Map<String, Object> chart = tradeService.minuteChart();
+
+		Integer[] d = new Integer[60];
+		Integer[] hr = new Integer[60];
+		Integer[] startprice = new Integer[60];
+		Integer[] highprice = new Integer[60];
+		Integer[] lowprice = new Integer[60];
+		Integer[] lastprice = new Integer[60];
+		Integer[] volume = new Integer[60];
+		System.out.println(chart);
 		
-				map.put("chart", chart);
-				map.put("currentPrice", trade.getCurrentPrice()); // 현재가
-				map.put("before", trade.getBefore());		  // 전일비
-				map.put("updown", trade.getUpDown());		  // 등락률
+//
+		for (int i = 0; i < 60; i++) {
+			d[i] = (Integer) ((HashMap) chart.get(i)).get("d");
+			hr[i] = (Integer) ((HashMap) chart.get(i)).get("hr");
+			startprice[i] = (Integer) ((HashMap) chart.get(i)).get("startprice");
+			highprice[i] = (Integer) ((HashMap) chart.get(i)).get("highprice");
+			lowprice[i] = (Integer) ((HashMap) chart.get(i)).get("lowprice");
+			lastprice[i] = (Integer) ((HashMap) chart.get(i)).get("lastprice");
+			volume[i] = (Integer) ((HashMap) chart.get(i)).get("volume");
+		}
 		
-		ModelAndView mv = new ModelAndView();
+		map.put("d", d);
+		map.put("hr", hr);
+		map.put("startprice", startprice);
+		map.put("highprice", highprice);
+		map.put("lowprice", lowprice);
+		map.put("lastprice", lastprice);
+		map.put("volume", volume);
+		
+		
+		map.put("currentPrice", trade.getCurrentPrice()); // 현재가
+		map.put("before", trade.getBefore()); // 전일비
+		map.put("updown", trade.getUpDown()); // 등락률
+
 		return map;
 	}
 
