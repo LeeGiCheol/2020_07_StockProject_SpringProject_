@@ -57,12 +57,19 @@
 		where ID in (#{friend}, #{id})
 	</update>
 	
-	<!-- 로그인시 id and pw틀렸는지 체크 -->
+	<!-- 로그인시 id and pw틀렸는지 체크 SignInDAO.login -->
 	<select id="signInCheck" parameterType="user" resultType="user">
 		select *
 		from user
 		where ID=#{id}
 	</select>
+	
+	<!-- 개인정보 수정하는 SQL UserInfoDAO.userInfoUpdate -->
+	<update id="updateUser" parameterType="user">
+		update user
+		set PW=#{pw}, ADDRESS=#{address}, TEL=#{tel}, showEsetSetting=#{showEset}
+		where ID=#{id}
+	</update>
 	
 	
 	<!-- <insert id="nickname">
