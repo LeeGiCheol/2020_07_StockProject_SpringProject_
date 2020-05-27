@@ -134,8 +134,7 @@
 									aria-label="Search" name="stockName">
 								<button
 									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
-									id="stockBtn" type="button"></button>
-								<i class="fas fa-search"></i>
+									id="stockBtn" type="submit"><i class="fas fa-search"></i></button>
 								<button type="button"
 									class="btn btn-secondary btn-sm companydata-btn ">기업정보
 								</button>
@@ -382,7 +381,12 @@
 
 	<script type="text/javascript">		
 	
+	
+		
 	var stockName = "${stockName}";
+	if(stockName === ''){
+		stockName = '삼성전자';
+	}
 		
 		
     //console.log("지발"+stockName);
@@ -399,7 +403,7 @@
 		timer = setInterval( function () {
 			$.ajax({
 				type : "POST",
-				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
+				url : '${pageContext.request.contextPath}/Final_Project/trade/search?stockName='+stockName,
 				/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
@@ -461,7 +465,7 @@
 						} ]
 					});
 
-			$.get("/resources/testmin.csv", getDataPointsFromCSV);
+			$.get("/resources/chart/testmin.csv", getDataPointsFromCSV);
 
 			function getDataPointsFromCSV(csv) {
 

@@ -59,6 +59,15 @@ public class TradeController {
 		String stockCode = tradeService.stockSearch(stockName);
 		Info trade = st.parse(stockCode);
 		
+//		int currentPrice = Integer.parseInt(trade.getCurrentPrice());
+//		
+//		int[] prices = null;
+//		
+//		if(currentPrice >= 1000 && currentPrice < 5000) {
+//			prices[0] = currentPrice;
+//		}
+//		
+		
 		List<Map<String, Object>> list = new ArrayList();
 		Map<String, Object> map = new HashMap<String, Object>();
 
