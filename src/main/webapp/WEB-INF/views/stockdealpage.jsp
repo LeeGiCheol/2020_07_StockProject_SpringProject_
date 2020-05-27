@@ -403,7 +403,7 @@
 		timer = setInterval( function () {
 			$.ajax({
 				type : "POST",
-				url : '${pageContext.request.contextPath}/Final_Project/trade/search?stockName='+stockName,
+				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
 				/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
@@ -419,7 +419,7 @@
 				}
 			}); 
 		
-		}, 1000); // SET INTERVAL
+		}, 5000); // SET INTERVAL5
 	});
 
 	
@@ -441,10 +441,10 @@
 						theme : "light2", // "light1", "light2", "dark1", "dark2"
 						exportEnabled : true,
 						title : {
-							text : "Netflix Stock Price in 2016"
+							text : stockName
 						},
 						subtitles : [ {
-							text : "Weekly Averages"
+							text : "minute"
 						} ],
 						axisX : {
 							interval : 1,
@@ -464,16 +464,20 @@
 							dataPoints : dataPoints
 						} ]
 					});
-
-			$.get("/resources/chart/testmin.csv", getDataPointsFromCSV);
-
+			
+			$.get("/resources/chart/"+stockName+".csv", getDataPointsFromCSV);
+			
 			function getDataPointsFromCSV(csv) {
 
 				var csvLines = points = [];
 				csvLines = csv.split(/[\r?\n|\r|\n]+/);
 				for (var i = 1; i < csvLines.length; i++) {
+					
 					if (csvLines[i].length > 0) {
 						points = csvLines[i].split(",");
+						if(points[1].substring(0, 1) == '9'){
+							points[1] = "09";
+						}
 						dataPoints.push({
 							x : new Date(parseInt(points[0].substring(0, 4)),
 									parseInt(points[0].substring(4, 6)),
