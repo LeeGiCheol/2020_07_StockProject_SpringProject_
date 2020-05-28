@@ -131,11 +131,11 @@
                <br>
                <div class="ask-form">
                   <div class="custom-control custom-radio">
-                  <input type="radio" name="ask-radio" id="ask-radio-1" class="custom-control-input" >
+                  <input type="radio" name="showEsetSetting" id="ask-radio-1" class="custom-control-input" value="1">
                   <label class="custom-control-label" id="ask-radio-1-answer" for="ask-radio-1">예</label>
                   </div>
                   <div class="custom-control custom-radio">
-                  <input type="radio" name="ask-radio" id="ask-radio-2" class="custom-control-input">
+                  <input type="radio" name="showEsetSetting" id="ask-radio-2" class="custom-control-input" value="0">
                   <label class="custom-control-label" for="ask-radio-2">아니오</label>
                   </div>
                </div>

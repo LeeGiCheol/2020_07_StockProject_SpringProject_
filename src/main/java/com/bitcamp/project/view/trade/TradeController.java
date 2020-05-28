@@ -98,8 +98,10 @@ public class TradeController {
 		int[] up_ = trade.getUp();
 		int[] down_ = trade.getDown();
 		System.out.println("호가 down"+Arrays.toString(down_));
-		String[] up = new String[10];
-		String[] down = new String[10];
+		
+		// 호가 개수
+		String[] up = new String[6];
+		String[] down = new String[6];
 		String currentPrice = null;
 		
 		for (int i = 0; i < up_.length; i++) {

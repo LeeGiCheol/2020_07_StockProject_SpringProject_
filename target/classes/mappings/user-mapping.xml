@@ -22,8 +22,8 @@
 	</resultMap> -->
 
 	<insert id="signUp">
-		INSERT INTO user(id, pw, nickname, tel, point, address, charge)
-		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 1000, #{address}, 1);
+		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
+		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 1000, #{showEsetSetting}, #{address}, 1);
 		
 		
 		<!-- sql 두개 쓰려면 ; 붙여줘야한다 -->

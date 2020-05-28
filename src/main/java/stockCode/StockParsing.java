@@ -29,8 +29,10 @@ public class StockParsing {
 		String maximum = null;			// 상한가
 		String minimum = null; 			// 하한가
 		int[] priceList = new int[20];  // 호가 +-
-		int[] up = new int[10];   // 호가 +
-		int[] down = new int[10]; // 호가 -
+		
+		// 호가 개수
+		int[] up = new int[6];   // 호가 +
+		int[] down = new int[6]; // 호가 -
 		
 		try {
 			String url = "https://finance.naver.com/item/main.nhn?code=" + code;
@@ -142,9 +144,9 @@ public class StockParsing {
 					}
 				}
 				
-				
-				int front = k + 10;
-				int back  = k - 10;
+				// 호가 앞뒤로 6개씩 
+				int front = k + 6;
+				int back  = k - 6;
 				j = 0;
 				
 				for (int i = 0; i < 20; i++) {
