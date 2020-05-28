@@ -68,32 +68,26 @@ public class TradeController {
 
 		Map<String, Object> chart = tradeService.minuteChart();
 
-		Integer[] d = new Integer[60];
-		Integer[] hr = new Integer[60];
-		Integer[] startprice = new Integer[60];
-		Integer[] highprice = new Integer[60];
-		Integer[] lowprice = new Integer[60];
-		Integer[] lastprice = new Integer[60];
-		Integer[] volume = new Integer[60];
 		
-//
+		Integer[][] chartData = new Integer[7][60];
+		
 		for (int i = 0; i < 60; i++) {
-			d[i] = (Integer) ((HashMap) chart.get(i)).get("d");
-			hr[i] = (Integer) ((HashMap) chart.get(i)).get("hr");
-			startprice[i] = (Integer) ((HashMap) chart.get(i)).get("startprice");
-			highprice[i] = (Integer) ((HashMap) chart.get(i)).get("highprice");
-			lowprice[i] = (Integer) ((HashMap) chart.get(i)).get("lowprice");
-			lastprice[i] = (Integer) ((HashMap) chart.get(i)).get("lastprice");
-			volume[i] = (Integer) ((HashMap) chart.get(i)).get("volume");
+			chartData[0][i] = (Integer) ((HashMap) chart.get(i)).get("d");
+			chartData[1][i] = (Integer) ((HashMap) chart.get(i)).get("hr");
+			chartData[2][i] = (Integer) ((HashMap) chart.get(i)).get("startprice");
+			chartData[3][i] = (Integer) ((HashMap) chart.get(i)).get("highprice");
+			chartData[4][i] = (Integer) ((HashMap) chart.get(i)).get("lowprice");
+			chartData[5][i] = (Integer) ((HashMap) chart.get(i)).get("lastprice");
+			chartData[6][i] = (Integer) ((HashMap) chart.get(i)).get("volume");
 		}
 		
-		map.put("d", d);
-		map.put("hr", hr);
-		map.put("startprice", startprice);
-		map.put("highprice", highprice);
-		map.put("lowprice", lowprice);
-		map.put("lastprice", lastprice);
-		map.put("volume", volume);
+		map.put("d", chartData[0]);
+		map.put("hr", chartData[1]);
+		map.put("startprice", chartData[2]);
+		map.put("highprice", chartData[3]);
+		map.put("lowprice", chartData[4]);
+		map.put("lastprice", chartData[5]);
+		map.put("volume", chartData[6]);
 		
 		
 		map.put("currentPrice", trade.getCurrentPrice()); // 현재가
