@@ -86,6 +86,7 @@ public class TradeController {
 				
 				
 				
+				
 				// 배열을 json화 시켜서 보낸다 (호가)
 				JSONObject obj = new JSONObject();
 				JSONArray jArray = new JSONArray();
