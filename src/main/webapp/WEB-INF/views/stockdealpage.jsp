@@ -85,7 +85,7 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">뉴스</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">"${stockName}"거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">${stockName}거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
 							class="sr-only">(current)</span></a></li>
 				</ul>
@@ -153,7 +153,7 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th scope="col" colspan="3">현재가</th>
+									<th scope="col" colspan="3" id="stockName"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -412,7 +412,7 @@
 					//console.log("전일비 + 등락률 = "+JSON.stringify(data.before + data.updown));
 					
 					//console.log(stockName);
-<
+
 				//	console.log(data.up);
 					/* if(data.before != null) { */
 						$('#price').text(data.currentPrice);
@@ -425,6 +425,7 @@
 						var templ2 = $.templates("#downPrice");
 						var str2 = templ2.render(data.down);
 						$("#down").html(str2);
+						$("#stockName").html(stockName);
 					/* }
 					else{
 						alert("존재하지 않는 종목입니다 다시 검색해주세요><");

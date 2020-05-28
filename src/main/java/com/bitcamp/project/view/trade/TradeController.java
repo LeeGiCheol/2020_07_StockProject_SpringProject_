@@ -69,20 +69,45 @@ public class TradeController {
 //		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+	     
+		Map<String, Object> chart = tradeService.minuteChart();
+
+		Integer[] d = new Integer[60];
+		Integer[] hr = new Integer[60];
+		Integer[] startprice = new Integer[60];
+		Integer[] highprice = new Integer[60];
+		Integer[] lowprice = new Integer[60];
+		Integer[] lastprice = new Integer[60];
+		Integer[] volume = new Integer[60];
+  
+//
+		for (int i = 0; i < 60; i++) {
+			d[i] = (Integer) ((HashMap) chart.get(i)).get("d");
+			hr[i] = (Integer) ((HashMap) chart.get(i)).get("hr");
+			startprice[i] = (Integer) ((HashMap) chart.get(i)).get("startprice");
+			highprice[i] = (Integer) ((HashMap) chart.get(i)).get("highprice");
+			lowprice[i] = (Integer) ((HashMap) chart.get(i)).get("lowprice");
+			lastprice[i] = (Integer) ((HashMap) chart.get(i)).get("lastprice");
+			volume[i] = (Integer) ((HashMap) chart.get(i)).get("volume");
+		}
+
+
+		
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 //				
-				int[] up_ = trade.getUp();
-				int[] down_ = trade.getDown();
-				System.out.println("호가 down"+Arrays.toString(down_));
-				String[] up = new String[10];
-				String[] down = new String[10];
-				String currentPrice = null;
-				for (int i = 0; i < up_.length; i++) {
-					
-					up[i]=formatter.format(up_[i]);
-					down[i]=formatter.format(down_[i]);
-					currentPrice = formatter.format(trade.getCurrentPrice());
-				}
+		int[] up_ = trade.getUp();
+		int[] down_ = trade.getDown();
+		System.out.println("호가 down"+Arrays.toString(down_));
+		String[] up = new String[10];
+		String[] down = new String[10];
+		String currentPrice = null;
+		
+		for (int i = 0; i < up_.length; i++) {
+			
+			up[i]=formatter.format(up_[i]);
+			down[i]=formatter.format(down_[i]);
+			currentPrice = formatter.format(trade.getCurrentPrice());
+		}
 				
 				
 				
@@ -98,6 +123,7 @@ public class TradeController {
 					jArray.add(sObject);
 				}
 
+				// 호가
 				System.out.println(jArray.toString());
 				map.put("currentPrice", currentPrice); // 현재가
 				map.put("before", trade.getBefore());		  // 전일비
@@ -106,6 +132,15 @@ public class TradeController {
 				map.put("minimum", trade.getMinimum());		  // 하한가
 				map.put("up", jArray);
 				map.put("down", jArray);
+				
+				// 차트
+			    map.put("d", d);
+			    map.put("hr", hr);
+			    map.put("startprice", startprice);
+			    map.put("highprice", highprice);
+			    map.put("lowprice", lowprice);
+			    map.put("lastprice", lastprice);
+			    map.put("volume", volume);
 		
 		return map;
 	}
