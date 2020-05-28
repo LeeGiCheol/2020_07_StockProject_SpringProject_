@@ -22,29 +22,29 @@
 	</resultMap> -->
 
 	<insert id="signUp">
-		insert into user(ID, PW, NICKNAME, TEL, POINT, ADDRESS, CHARGE)
-		values(#{id}, #{pw}, #{nickname}, #{tel}, 1000, #{address}, 1);
+		INSERT INTO user(id, pw, nickname, tel, point, address, charge)
+		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 1000, #{address}, 1);
 		
 		
 		<!-- sql 두개 쓰려면 ; 붙여줘야한다 -->
-		insert into userNickname(ID, NICKNAME)
-		values(#{id}, #{nickname});
+		INSERT INTO usernickname(id, nickname)
+		VALUES(#{id}, #{nickname});
 		
 		
-		insert into userMoney(ID, money)
-		values(#{id}, 1000);
+		INSERT INTO usermoney(id, money)
+		VALUES(#{id}, 1000);
 	</insert>
 	
 	<select id="idCheck" resultType="int" parameterType="map">
-		select count(*) 
-		from user
+		SELECT COUNT(*) 
+		FROM user
 		
 		<choose>
 			<when test='id != null and id !="" '>
-				where ID=#{id}
+				WHERE id = #{id}
 			</when>
 			<when test='nickname != null and nickname !="" '>
-				where NICKNAME=#{nickname}
+				WHERE nickname = #{nickname}
 			</when>
 		</choose>
 		
@@ -52,62 +52,18 @@
 	</select>
 	
 	<update id="pointUp" parameterType="user">
-		update user 
-		set POINT = POINT+1000
-		where ID in (#{friend}, #{id})
+		UPDATE user 
+		SET point = point+1000
+		WHERE id IN (#{friend}, #{id})
 	</update>
 	
 	<!-- 로그인시 id and pw틀렸는지 체크 -->
 	<select id="signInCheck" parameterType="user" resultType="user">
-		select *
-		from user
-		where ID=#{id}
+		SELECT *
+		FROM user
+		WHERE id = #{id}
 	</select>
 	
-	
-	<!-- <insert id="nickname">
-	</insert> -->
-	
-	<!-- <update id="updateBoard">
-		update board set TITLE=#{title},
-		CONTENT=#{content} where SEQ=#{seq}
-	</update>
-	
-	<delete id="deleteBoard">
-		delete board where SEQ=#{seq}
-	</delete> -->
-	
-	<!-- CDATA영역에 작성된 데이터는 단순 문자 데이터이다
-	     그러므로 XML 파서는 처리하지 말아라. -->
-	<!-- <select id="getBoardLt" resultType="board">
-		<![CDATA[
-		select * from board where SEQ <= #{seq}
-		]]>
-	</select> -->
-		
-	<!-- <select id="getBoardList_T" resultType="board">
-		select * from board
-		where TITLE like '%'||#{searchKeyword}||'%'
-		order by SEQ desc
-	</select>
-
-	<select id="getBoardList_C" resultType="board">
-		select * from board
-		where CONTENT like '%'||#{searchKeyword}||'%'
-		order by SEQ desc
-	</select> -->
-
-	<!-- <select id="getBoardList" resultType="board">
-		select * from board
-		where 1=1
-		<if test="searchCondition == 'title'">
-			and TITLE like '%'||#{searchKeyword}||'%'
-		</if>
-		<if test="searchCondition == 'content'">
-			and CONTENT like '%'||#{searchKeyword}||'%'
-		</if> 
-		order by SEQ desc
-	</select> -->
 </mapper>
 
 

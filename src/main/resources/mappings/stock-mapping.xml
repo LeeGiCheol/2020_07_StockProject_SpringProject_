@@ -59,14 +59,13 @@
 	
 	<delete id="delUnsettled">
 		DELETE FROM unsettled WHERE uno=#{uno};
-		DELETE FROM unsettledcheck WHERE uno=#{uno};
+		DELETE FROM unsettledcheck WHERE uno = #{uno};
 	</delete>
 	
 	<select id="stockCode" resultType="String">
-  	select stockCode 
-  	from stockList
-  	where stockName = #{stockname}
-  	 
+	  	SELECT stockCode 
+	  	FROM stockList
+	  	WHERE stockname = #{stockname}
   </select>
 
 

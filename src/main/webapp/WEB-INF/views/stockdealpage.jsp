@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 
 <!DOCTYPE html>
 <html>
@@ -155,6 +155,7 @@
 								</tr>
 							</thead>
 							<tbody>
+							
 								<tr>
 									<td></td>
 									<td>호가</td>
@@ -162,36 +163,29 @@
 								</tr>
 								<tr>
 									<td>상한가</td>
-									<td>12,550</td>
+									<td id="maximum"></td>
 									<td></td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td rowspan="5"></td>
-									<td>9,830</td>
 									<td></td>
-								</tr>
-								<tr>
-									<td>9,820</td>
 									<td></td>
-								</tr>
-								<tr>
-									<td>9,810</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>9,800</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>9,790</td>
-									<td></td>
-								</tr>
+								</tr> -->
+							</tbody>
+							
+							<tbody id="up"> <!-- ajax 로 호가 + 주입 --> </tbody>
+							
+							<tbody>
 								<tr>
 									<td>현재가</td>
 									<td id="price"></td>
 									<td id="beforeAndUpdown"></td>
 								</tr>
-								<tr>
+							</tbody>
+							
+							<tbody id="down"> <!-- ajax 로 호가 - 주입 --> </tbody>
+							
+								<!-- <tr>
 									<td rowspan="5"></td>
 									<td>9,770</td>
 									<td></td>
@@ -211,10 +205,12 @@
 								<tr>
 									<td>9,730</td>
 									<td></td>
-								</tr>
+								</tr>  -->
+							<tbody>
 								<tr>
+							
 									<td>하한가</td>
-									<td>6,790</td>
+									<td id="minimum"></td>
 									<td></td>
 								</tr>
 							</tbody>
@@ -378,7 +374,7 @@
 		</div>
 	</div>
 
-
+	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
 	<script type="text/javascript">		
 	
 	
@@ -398,12 +394,13 @@
 	$(function() {
 		var obj = new Object();
 		var jsonData = JSON.stringify(obj);
-		
+		var pageUrl = "삼성전자";
+		var pageTitle = "http://localhost:8080/trade";
 	   
 		timer = setInterval( function () {
 			$.ajax({
 				type : "POST",
-				url : '${pageContext.request.contextPath}/Final_Project/trade/search?stockName='+stockName,
+				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
 				/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
@@ -411,20 +408,54 @@
 					//console.log("전일비 + 등락률 = "+JSON.stringify(data.before + data.updown));
 					
 					//console.log(stockName);
-					$('#price').text(data.currentPrice);
-					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+				//	console.log(data.up);
+					/* if(data.before != null) { */
+						$('#price').text(data.currentPrice);
+						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+						$('#maximum').html(data.maximum);
+						$('#minimum').html(data.minimum);
+						var templ = $.templates("#upPrice");
+						var str = templ.render(data.up);
+						$("#up").html(str);
+						var templ2 = $.templates("#downPrice");
+						var str2 = templ2.render(data.down);
+						$("#down").html(str2);
+					/* }
+					else{
+						alert("존재하지 않는 종목입니다 다시 검색해주세요><");
+						
+						history.pushState({"html":data},pageTitle, pageUrl);
+					} */
+
 				},
 				error : function(error) {
 					console.log("error");
 				}
 			}); 
 		
-		}, 1000); // SET INTERVAL
+		}, 3000); // SET INTERVAL
 	});
 
+	</script>
+
+	<script id="upPrice" type="text/x-jsrender">
+			<tr>
+				<td></td>
+				<td>{{:up}}</td>
+				<td></td>
+			</tr>
+	</script>
+	<script id="downPrice" type="text/x-jsrender">
+			<tr>
+				<td></td>
+				<td>{{:down}}</td>
+				<td></td>
+			</tr>
+	</script>
 	
 	
 	
+	<script>
 		window.onload = function() {
 			
 			
