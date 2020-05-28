@@ -12,6 +12,7 @@ public interface TradeDAO {
 	
 	public void stockCorrection();
 	public void stockCancel();
-	public Map dayChart();
-	public Map minuteChart();
+	public Map dayChart(String stockName);
+	public Map minuteChart(String stockName);
+	public void clearChart();
 }

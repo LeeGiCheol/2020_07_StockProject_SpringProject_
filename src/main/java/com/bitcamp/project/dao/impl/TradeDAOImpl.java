@@ -17,13 +17,19 @@ public class TradeDAOImpl implements TradeDAO {
 	
 	
 	@Override
-	public Map minuteChart() {
-		return mybatis.selectMap("stock.minuteChart", "cno");
+	public void clearChart() {
+		mybatis.delete("stock.clearChart");
+		
 	}
 
 	@Override
-	public Map dayChart() {
-		return mybatis.selectMap("stock.dayChart", "cno");
+	public Map minuteChart(String stockName) {
+		return mybatis.selectMap("stock.minuteChart", stockName, "cno");
+	}
+
+	@Override
+	public Map dayChart(String stockName) {
+		return mybatis.selectMap("stock.dayChart", stockName, "cno");
 	}
 
 	@Override
