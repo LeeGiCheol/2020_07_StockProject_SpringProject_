@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.vo.Info;
@@ -37,14 +38,52 @@ public class TradeController {
 //	}
 
 	@GetMapping(value = "/trade")
-	public String tradeView(Info vo, Model model) {
+	public ModelAndView tradeView(Info vo) {
 		String stockName = vo.getStockName();
+		if(stockName == null)
+			stockName = "삼성전자";
+		ModelAndView mav = new ModelAndView();
 
-		// get 방식으로 맨 뒤에 종목명을 받아서
-		// 모델에 저장하면 jsp에서 "${stockName}"으로 불러낼 수 있다
-		model.addAttribute("stockName", stockName);
+		RequestChart rc = new RequestChart();
+		rc.connection(stockName);
+		
+		Map<String, Object> minChart = tradeService.minuteChart(stockName);
+		Map<String, Object> dayChart = tradeService.dayChart(stockName);
 
-		return "stockdealpage";
+		Integer[][] minChartData = new Integer[6][60];
+		Integer[][] dayChartData = new Integer[6][60];
+//
+		for (int i = 0; i < 60; i++) {
+			minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
+			minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
+			minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
+			minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
+			minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
+			minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
+
+			dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
+			dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
+			dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
+			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
+			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+		}
+
+		mav.addObject("min_d", minChartData[0]);
+		mav.addObject("min_hr", minChartData[1]);
+		mav.addObject("min_startprice", minChartData[2]);
+		mav.addObject("min_highprice", minChartData[3]);
+		mav.addObject("min_lowprice", minChartData[4]);
+		mav.addObject("min_lastprice", minChartData[5]);
+
+		mav.addObject("day_d", dayChartData[0]);
+		mav.addObject("day_startprice", dayChartData[2]);
+		mav.addObject("day_highprice", dayChartData[3]);
+		mav.addObject("day_lowprice", dayChartData[4]);
+		mav.addObject("day_lastprice", dayChartData[5]);
+
+		mav.addObject("stockName", stockName);
+		mav.setViewName("stockdealpage");
+		return mav;
 
 	}
 
@@ -68,28 +107,8 @@ public class TradeController {
 //		if(currentPrice >= 1000 && currentPrice < 5000) {
 //			prices[0] = currentPrice;
 //		}
-//		
 
 		Map<String, Object> map = new HashMap<String, Object>();
-
-		Map<String, Object> chart = tradeService.minuteChart(stockName);
-		System.out.println("여기를 확인하세요 :" +stockName+chart);
-		Integer[] d = new Integer[60];
-		Integer[] hr = new Integer[60];
-		Integer[] startprice = new Integer[60];
-		Integer[] highprice = new Integer[60];
-		Integer[] lowprice = new Integer[60];
-		Integer[] lastprice = new Integer[60];
-
-//
-		for (int i = 0; i < 60; i++) {
-			d[i] = (Integer) ((HashMap) chart.get(i)).get("d");
-			hr[i] = (Integer) ((HashMap) chart.get(i)).get("hr");
-			startprice[i] = (Integer) ((HashMap) chart.get(i)).get("startprice");
-			highprice[i] = (Integer) ((HashMap) chart.get(i)).get("highprice");
-			lowprice[i] = (Integer) ((HashMap) chart.get(i)).get("lowprice");
-			lastprice[i] = (Integer) ((HashMap) chart.get(i)).get("lastprice");
-		}
 
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 //				
@@ -131,14 +150,6 @@ public class TradeController {
 		map.put("down", jArray);
 
 		// 차트
-		map.put("d", d);
-		map.put("hr", hr);
-		map.put("startprice", startprice);
-		map.put("highprice", highprice);
-		map.put("lowprice", lowprice);
-		map.put("lastprice", lastprice);
-		
-		
 
 		return map;
 	}
