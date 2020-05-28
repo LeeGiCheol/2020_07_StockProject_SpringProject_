@@ -44,8 +44,8 @@ public class TradeController {
 			stockName = "삼성전자";
 		ModelAndView mav = new ModelAndView();
 
-		RequestChart rc = new RequestChart();
-		rc.connection(stockName);
+//		RequestChart rc = new RequestChart();
+//		rc.connection(stockName);
 		
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);

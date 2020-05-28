@@ -25,11 +25,11 @@ public class SignUpController {
 	@Autowired
 	private SignUpService signUpService;
 	
-//	// 회원가입화면
-//		@GetMapping(value="/signUp2")
-//		public String signUpVieww() {
-//				return "signup01";
-//		}
+	// 회원가입화면
+		@GetMapping(value="/signUp2")
+		public String signUpVieww() {
+				return "signup01";
+		}
 ////		// 회원가입화면
 //		@PostMapping(value="/signUp2")
 //		public String signUpViewww(@RequestParam("agree") String agree) {

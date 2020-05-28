@@ -62,7 +62,7 @@ body {margin: 0px;}
 	</nav>
 	<!-- header end -->
 	<!-- body start -->
-	<!-- <form action="signUp2" method="POST"> -->
+	<form action="signUpPage" method="POST">
 		<div class="signup01_allBody">
 		<div class="signup01_terms1"><strong>약관동의</strong></div>
 		<div class="signup01_middleLine1"></div>
@@ -84,10 +84,10 @@ body {margin: 0px;}
 			있습니다. 이에 회사는 정보통신서비스제공자가 준수하여야 하는 대한민국의 관계 법령 및 개인정보보호, 정보보호에 관한 규정을
 			준수하고 있습니다. 회사는 개인정보처리방침을 통하여 이용자들이 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며
 			개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다</div>
-		<label><input class="signup01_check2" type="checkbox" name="agree" value="Y"/> 내용을 확인하였으며, 동의합니다.</label>
+		<label><input class="signup01_check2" type="checkbox" name="agree2" value="Y"/> 내용을 확인하였으며, 동의합니다.</label>
 		<div><button class="signup01_nextButton" data-text-content="true" type="submit">다음</button></div>
 		</div>
-	<!-- </form> -->
+	</form> 
 <!-- body end -->
 <!-- footer start -->
 <div class=footer_div>
