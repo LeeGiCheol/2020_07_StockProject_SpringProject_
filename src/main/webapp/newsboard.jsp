@@ -404,7 +404,6 @@ input[type="text"]{
 								});
 							</script>
 							
-							<button type="button"></button>
 							<span class="input-style short">
 								<input type="text" placeholder="뉴스검색" title="뉴스검색" value onkeyup="enter();">
 							</span>
