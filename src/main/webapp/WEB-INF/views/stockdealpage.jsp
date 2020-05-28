@@ -426,6 +426,7 @@
 						var str2 = templ2.render(data.down);
 						$("#down").html(str2);
 						$("#stockName").html(stockName);
+						
 					/* }
 					else{
 						alert("존재하지 않는 종목입니다 다시 검색해주세요><");
