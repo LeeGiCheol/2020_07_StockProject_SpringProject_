@@ -17,8 +17,14 @@ public class TradeServiceImpl implements TradeService {
 	
 	
 	@Override
-	public Map minuteChart() {
-		return tradeDAO.minuteChart();
+	public void clearChart() {
+		tradeDAO.clearChart();
+		
+	}
+
+	@Override
+	public Map minuteChart(String stockName) {
+		return tradeDAO.minuteChart(stockName);
 	}
 
 	@Override
@@ -53,8 +59,8 @@ public class TradeServiceImpl implements TradeService {
 	}
 
 	@Override
-	public Map dayChart() {
-		return tradeDAO.dayChart();
+	public Map dayChart(String stockName) {
+		return tradeDAO.dayChart(stockName);
 	}
 	
 }

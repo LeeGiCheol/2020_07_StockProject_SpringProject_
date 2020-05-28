@@ -12,11 +12,11 @@
 	</select>
 	
 	<select id="dayChart" resultType="map">
-		SELECT * from daychart
+		SELECT * from daychart where stockname = #{stockname};
 	</select>
 	
 	<select id="minuteChart" resultType="map">
-		SELECT * from minutechart
+		SELECT * from minutechart where stockname = #{stockname};
 	</select>
 	
 	
@@ -69,6 +69,11 @@
 	<delete id="delUnsettled">
 		DELETE FROM unsettled WHERE uno=#{uno};
 		DELETE FROM unsettledcheck WHERE uno = #{uno};
+	</delete>
+	
+	<delete id="clearChart">
+		DELETE FROM daychart;
+		DELETE FROM minutechart;
 	</delete>
 	
 	<select id="stockCode" resultType="String">
