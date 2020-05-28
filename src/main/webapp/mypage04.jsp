@@ -6,10 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마이페이지</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
 <link href="/resources/css/mypage04.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -101,7 +99,7 @@
               </div>
             </li>
             <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed mypage04" onclick="location.href='mypage04.jsp'">
-              <div >
+              <div>
                 <h6 class="my-0">알림</h6>
               </div>
             </li>
@@ -111,15 +109,15 @@
 <!-- section start -->
 <!-- section end -->
 <!-- article start -->
-        <article class="bg-light container">
-          <div class="allBody">
-        <div class="row">
-          <div class="sideBar col-md-4 order-md-2 mb-4">
-            <div class="col-md-8 order-md-1"></div>
-            <h4 class="mb-3">알림</h4>
-          </div>
-        </div>
-        </div>
+      <article class="bg-light container">
+         <div class="allBody">
+        	<div class="row">
+          		 <div class="sideBar col-md-4 order-md-2 mb-4">
+            		<div class="col-md-8 order-md-1"></div>
+          			  <h4 class="mb-3">알림</h4>
+         		 </div>
+      		</div>
+     	 </div>
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -163,7 +161,7 @@
               <th scope="row">3</th>
               <td><a onclick="window.location.href='alarm-detail.jsp'"></a></td>
             </tr>
-       </table>
+       	</table>
           </tbody>
           <form class="form-inline my-2 my-lg-0 underSearchForm">
               <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
@@ -179,7 +177,7 @@
                 </ul>
               </nav>
             </form>
-            </article>
+       </article>
 <!-- article end -->
 <!-- footer start -->
     <div class=footer_div>

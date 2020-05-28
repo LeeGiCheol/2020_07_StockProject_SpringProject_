@@ -9,8 +9,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
+<style>
+.ck-blurred, .ck-focused{height: 500px;}
+
+</style>
 <link href="/resources/css/writeForm.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 <script>
 $(document).on('click', '#btnSave', function(e) {
 		e.preventDefault();
@@ -45,7 +50,6 @@ $(document).on('click', '#btnSave', function(e) {
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <form class="form-inline my-2 my-lg-0">
@@ -82,18 +86,19 @@ $(document).on('click', '#btnSave', function(e) {
 			<br>
 			<br>
 			<br>
-			<form name="form" id="form" role="form" method="post"
-                action="">
-                    <div class="mb-3 title">
-                        <label for="title">제목</label> <input type="text"
-                            class="form-control" name="title" id="title"
-                            placeholder="제목을 입력해 주세요">
-                    </div>
-				<div class="mb-3">
-					<label for="content">내용</label>
-					<textarea class="form-control" rows="5" name="content" id="content"
-						placeholder="내용을 입력해 주세요"></textarea>
-				</div>
+			<form name="form" id="form" role="form" method="post" action="">
+               <div class="mb-3 title">
+                    <label for="title"><b>제목</b></label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" required>
+               </div>
+               <div class="mb-3 title">
+                    <label for="writer"><b>작성자</b></label>
+                    <input type="text" class="form-control" name="writer" id="writer" value="${loginUser.nickname}" readonly>
+               </div>
+			   <div class="mb-3">
+					<label for="content"><b>내용</b></label>
+					<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요"></textarea>
+			   </div>
 			</form>
 			<div>
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave" >저장</button>
@@ -110,6 +115,7 @@ $(document).on('click', '#btnSave', function(e) {
     </div>
   <!-- footer end --> 
 </body>
+<script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script> <!-- 글쓰기 메뉴들 -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

@@ -13,6 +13,7 @@
 </head>
 <body>
     <!-- header start -->
+    
     <header>
         <!-- 상단  nav -->
         <ul class="nav justify-content-end top-nav">
@@ -70,22 +71,22 @@
         <div class="sideBar col-md-4 order-md-2 mb-4">
           <ul class="list-group mb-3">
             <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
-            <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='mypage01.jsp'">
+            <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed"onclick="location.href='/myPage01'">
               <div> 
                 <h6 class="my-0">내정보</h6>
               </div>
             </li>
-            <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='mypage02.jsp'">
+            <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='/myPage02'">
               <div>
                 <h6 class="my-0">계좌정보</h6>
               </div>
             </li>
-            <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='mypage03.jsp'" >
+            <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='/myPage03'" >
               <div>
                 <h6 class="my-0">작성 글, 댓글</h6>
               </div>
             </li>
-            <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='mypage04.jsp'">
+            <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='/myPage04'">
               <div >
                 <h6 class="my-0">알림</h6>
               </div>
@@ -95,13 +96,13 @@
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">내정보</h4>
-          <form class="needs-validation" novalidate>
+          <form action="/updateUser" class="needs-validation" method="POST" novalidate>
             <div class="mb-3">
               <label for="userEmail">이메일</label>
               <div>
                 <div class="input-group-prepend">
                   <span class="input-group-text">@</span>
-                <div class="form-control" id="userEmail" >${user.email}</div>
+                <div class="form-control" id="userEmail" >${loginUser.id}</div>
                 </div>
               </div>
             </div>
@@ -109,14 +110,14 @@
             <div class="mb-3">
               <label for="userNickname">닉네임</label>
               <div>
-                <div class="form-control" id="userNickName" >${user.nickName}</div>
+                <input type="text" class="form-control" id="usern=Nickname" name="nickname" value="${loginUser.nickname}"></input>
               </div>
             </div>
     
             <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="password">비밀번호</label>
-                  <input type="text" class="form-control" id="userPassword">
+                  <input type="text" class="form-control" name="pw" id="userPassword">
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -127,16 +128,17 @@
     
             <div class="mb-3">
               <label for="address">주소</label>
-              <div class="form-control" id="userAddress">${user.address}</div>
+             <div style="display: -webkit-box;"><input style="width: 575px;" type="text" class="form-control" id="userAddress" name="address" value="${loginUser.address}">
+             <button style="margin-left: 30px;" type="button" class="btn btn-secondary">우편번호찾기</button></input></div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="cc-name">연락처</label>
-                <div class="form-control" id="userPhone">${user.phone}</div>
+                <input type="text" class="form-control" id="userTel" name="tel" value="${loginUser.tel}"></input>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="cc-number">포인트</label>
-                <div class="form-control" id="userPoint">${user.point} 점</div>
+                <div class="form-control" id="userPoint">${loginUser.point} 점</div>
               </div>
             </div>
             <hr class="mb-4">
@@ -145,11 +147,11 @@
             <br>
             <div class="ask-form">
                 <div class="custom-control custom-radio">
-                  <input type="radio" name="ask-radio" id="ask-radio-1" class="custom-control-input" >
+                  <input type="radio" name="showEsetSetting" id="ask-radio-1" class="custom-control-input" value="1">
                   <label class="custom-control-label" id="ask-radio-1-answer" for="ask-radio-1">예</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" name="ask-radio" id="ask-radio-2" class="custom-control-input">
+                  <input type="radio" name="showEsetSetting" id="ask-radio-2" class="custom-control-input" value="0">
                   <label class="custom-control-label" for="ask-radio-2">아니오</label>
                 </div>
             </div>
@@ -180,4 +182,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+if(${loginUser.showEsetSetting} === 0)
+	$("#ask-radio-2").prop("checked", true);
+else
+	$("#ask-radio-1").prop("checked", true);
+</script>
 </html>

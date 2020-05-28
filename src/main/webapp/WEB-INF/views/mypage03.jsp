@@ -35,9 +35,6 @@ $(document).ready(function(){
         }
       })
 });
-
-
-
 </script>
 </head>
 <body>
@@ -242,40 +239,32 @@ $(document).ready(function(){
 				</table>
 				<br>
 				<form class="form-inline my-2 my-lg-0 underSearchForm">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown01"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a>
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="#">제목</a> <a class="dropdown-item"
-							href="#">내용</a> <a class="dropdown-item" href="#">글쓴이</a>
+						<a class="dropdown-item" href="#">제목</a>
+						<a class="dropdown-item"href="#">내용</a>
+						<a class="dropdown-item" href="#">글쓴이</a>
 					</div>
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="search" aria-label="Search">
-					<button class="btn btn-outline-secondary my-2 my-sm-0"
-						type="submit">
-						<i class="fas fa-search"></i>
-					</button>
+					<input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
+					<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button> 
+					
 					<div>
-						<button class="btn btn-primary btn-lg btn-block remove"
-							type="submit">삭제</button>
+						<button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button>
 					</div>
 					<nav aria-label="..." class="pagination">
 						<ul class="pagination">
-							<li class="page-item disabled"><a class="page-link" href="#"
-								tabindex="-1" aria-disabled="true">◀</a></li>
+							<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
 							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item active" aria-current="page"><a
-								class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
+							<li class="page-item active" aria-current="page"><a	class="page-link" href="#">2<span class="sr-only">(current)</span></a></li>
 							<li class="page-item"><a class="page-link" href="#">3</a></li>
 							<li class="page-item"><a class="page-link" href="#">4</a></li>
 							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item disabled"><a class="page-link" href="#"
-								tabindex="+1" aria-disabled="true">▶</a></li>
+							<li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
 						</ul>
 					</nav>
 				</form>
 			</div>
-			<div class="tab-pane fade" id="pills-commnet" role="tabpanel"
-				aria-labelledby="pills-commnet-tab" style="margin-bottom: 300px;">
+			<div class="tab-pane fade" id="pills-commnet" role="tabpanel" aria-labelledby="pills-commnet-tab" style="margin-bottom: 300px;">
 				<!-- 내가 작성한 댓글 -->
 				<table class="table table-bordered">
 					<thead>
