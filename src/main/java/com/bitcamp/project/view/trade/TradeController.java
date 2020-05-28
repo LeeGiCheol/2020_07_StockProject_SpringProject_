@@ -52,8 +52,8 @@ public class TradeController {
 	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
 		String stockName = vo.getStockName();
 
-		RequestChart rc = new RequestChart();
-		rc.connection(stockName);
+//		RequestChart rc = new RequestChart();
+//		rc.connection(stockName);
 
 		StockParsing st = new StockParsing();
 

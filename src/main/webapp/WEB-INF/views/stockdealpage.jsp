@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>	
 
 
 <!DOCTYPE html>
@@ -178,10 +179,10 @@
 							<tbody id="up"> <!-- ajax 로 호가 + 주입 --> </tbody>
 							
 							<tbody>
-								<tr>
-									<td>현재가</td>
-									<td id="price"></td>
-									<td id="beforeAndUpdown"></td>
+								<tr id="beforeAndUpdown">
+									
+ 										
+								 	
 								</tr>
 							</tbody>
 							
@@ -381,13 +382,11 @@
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
 	<script type="text/javascript">		
 	
-	
 		
 	var stockName = "${stockName}";
 	if(stockName === ''){
 		stockName = '삼성전자';
 	}
-		
 		
     //console.log("지발"+stockName);
 	$("#stockBtn").click(function(){
@@ -400,12 +399,11 @@
 		var jsonData = JSON.stringify(obj);
 		var pageUrl = "삼성전자";
 		var pageTitle = "http://localhost:8080/trade";
-	   
 		timer = setInterval( function () {
 			$.ajax({
 				type : "POST",
 				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
-				/* data : JSON.stringify(jsonData),  */
+			 	/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
 					//console.log("현재가 = "+JSON.stringify(data.currentPrice));
@@ -415,6 +413,8 @@
 
 				//	console.log(data.up);
 					/* if(data.before != null) { */
+						console.log(data.currentPrice)
+						console.log(data.currentPrice)
 						$('#price').text(data.currentPrice);
 						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 						$('#maximum').html(data.maximum);
@@ -425,7 +425,8 @@
 						var templ2 = $.templates("#downPrice");
 						var str2 = templ2.render(data.down);
 						$("#down").html(str2);
-						$("#stockName").html(stockName);
+						$("#stockName").html(data.stockName);
+						
 						
 					/* }
 					else{
@@ -438,99 +439,100 @@
 					$('#price').text(data.currentPrice);
 					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 					
-					var dataPoints = [];
-					var chart = new CanvasJS.Chart(
-							"chartContainer",
-							{
-								animationEnabled : true,
-								theme : "light2", // "light1", "light2", "dark1", "dark2"
-								exportEnabled : true,
-								title : {
-									text : stockName
-								},
-								subtitles : [ {
-									text : "minute"
-								} ],
-								axisX : {
-									interval : 1,
-									valueFormatString : "mm"
-								},
-								axisY : {
-									includeZero : false,
-									prefix : "",
-									title : "Price"
-								},
-								toolTip : {
-									content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
-								},
-								data : [ {
-									type : "candlestick",
-									yValueFormatString : "##0원",
-									dataPoints : dataPoints
-								} ]
-							});	
-					
-					function getDataPointsFromCSV(data) {
-						
-						for (var i = 1; i < 60; i++) {
-							dataPoints.push({
-									x : new Date(parseInt(data.d[i]/10000),
-											parseInt(data.d[i]%10000/100),
-											data.d[i]%100,
-											parseInt(data.hr[i]/100),
-											data.hr[i]%100
-
-									),
-									y : [ parseFloat(data.startprice[i]), parseFloat(data.highprice[i]),
-											parseFloat(data.lowprice[i]),
-											parseFloat(data.lastprice[i]) ],
-									z : parseInt(data.d[i]/10000) + '-'
-											+ parseInt(data.d[i]%10000/100) + '-'
-											+ data.d[i]%100 + " "
-											+ parseInt(data.hr[i]/100) + ":"
-											+ data.hr[i]%100
-								});
-							
-						}
-						chart.render();
-					}
-					getDataPointsFromCSV(data);
 					
 				},
 				error : function(error) {
 					console.log("error");
 				}
 			}); 
-		
-		}, 5000); // SET INTERVAL5
+		}, 1000); // SET INTERVAL5
 	});
-
-	</script>
-
-	<script id="upPrice" type="text/x-jsrender">
-			<tr>
-				<td></td>
-				<td>{{:up}}</td>
-				<td></td>
-			</tr>
-	</script>
-	<script id="downPrice" type="text/x-jsrender">
-			<tr>
-				<td></td>
-				<td>{{:down}}</td>
-				<td></td>
-			</tr>
-	</script>
 	
 	
 	
-	<script>
-		window.onload = function() {
-			
-			var dataPoints = [];
-			var test = [];
+	
+	
 
-			 var chart = new CanvasJS.Chart(
+	window.onload = function () {
+
+		var dataPoints = [];
+		var test = [];
+		var min_d = "${min_d}";
+		console.log(min_d);
+
+		var minChart = new CanvasJS.Chart(
+		      "chartContainer",
+		      {
+		         animationEnabled : true,
+		         theme : "light2", // "light1", "light2", "dark1", "dark2"
+		         exportEnabled : true,
+		         title : {
+		            text : stockName
+		         },
+		         subtitles : [ {
+		            text : "minute"
+		         } ],
+		         axisX : {
+		            interval : 1,
+		            valueFormatString : "mm"
+		         },
+		         axisY : {
+		            includeZero : false,
+		            prefix : "",
+		            title : "Price"
+		         },
+		         toolTip : {
+		            content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
+		         },
+		         data : [ {
+		            type : "candlestick",
+		            yValueFormatString : "##0원",
+		            dataPoints : dataPoints
+		         } ]
+		      });   
+		
+		function getDataPointsFromCSV() {
+		
+		   for (var i = 1; i < 60; i++) {
+			   console.log(i);
+			   min_d = "${min_d}"[i];
+			   console.log(min_d[i]);
+		      dataPoints.push({
+		            x : new Date(parseInt(${min_d}[i]/10000),
+		                  parseInt(${min_d}[i]%10000/100),
+		                  ${min_d}[i]%100,
+		                  parseInt(${min_hr}[i]/100),
+		                  ${min_hr}[i]%100
+
+		            ),
+		            y : [ parseFloat(${min_startprice}[i]), parseFloat(${min_highprice}[i]),
+		                  parseFloat(${min_lowprice}[i]),
+		                  parseFloat(${min_lastprice}[i]) ],
+		            z : parseInt(${min_d}[i]/10000) + '-'
+		                  + parseInt(${min_d}[i]%10000/100) + '-'
+		                  + ${min_d}[i]%100 + " "
+		                  + parseInt(${min_hr}[i]/100) + ":"
+		                  + ${min_hr}[i]%100
+		         });
+		      
+		   }
+		   minChart.render();
+		}
+		getDataPointsFromCSV();
+
+
+		}
+	
+	
+	
+/* 
+	$.ajax({
+		type : "POST",
+		url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
+		data : JSON.stringify(jsonData), 
+		datatype : "JSON",
+		success : function(data) {
+			var chart = new CanvasJS.Chart(
 					"chartContainer",
 					{
 						animationEnabled : true,
@@ -559,35 +561,76 @@
 							yValueFormatString : "##0원",
 							dataPoints : dataPoints
 						} ]
-					});
+					});	
 			
 			function getDataPointsFromCSV(data) {
-				console.log(data.hr);
+				
 				for (var i = 1; i < 60; i++) {
 					dataPoints.push({
-							x : new Date(data.d[i].substring(0, 4),
-									parseInt(d[i].substring(4, 6)),
-									parseInt(d[i].substring(6, 8)),
-									parseInt(hr[i].substring(0, 2)),
-									parseInt(hr[i].substring(2, 4))
+							x : new Date(parseInt(data.d[i]/10000),
+									parseInt(data.d[i]%10000/100),
+									data.d[i]%100,
+									parseInt(data.hr[i]/100),
+									data.hr[i]%100
 
 							),
-							y : [ parseFloat(startprice[i]), parseFloat(highprice[i]),
-									parseFloat(lowprice[i]),
-									parseFloat(lastprice[i]) ],
-							z : d[i].substring(0, 4) + '-'
-									+ d[i].substring(4, 6) + '-'
-									+ d[i].substring(6, 8) + " "
-									+ hr[i].substring(0, 2) + ":"
-									+ hr[i].substring(2, 4)
+							y : [ parseFloat(data.startprice[i]), parseFloat(data.highprice[i]),
+									parseFloat(data.lowprice[i]),
+									parseFloat(data.lastprice[i]) ],
+							z : parseInt(data.d[i]/10000) + '-'
+									+ parseInt(data.d[i]%10000/100) + '-'
+									+ data.d[i]%100 + " "
+									+ parseInt(data.hr[i]/100) + ":"
+									+ data.hr[i]%100
 						});
 					
 				}
 				chart.render();
-			} 
-
+			}
+			getDataPointsFromCSV(data);
+			
+			
+		},
+		error : function(error) {
+			console.log("error");
 		}
+	}); */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	</script>
+
+	<script id="upPrice" type="text/x-jsrender">
+			<tr>
+				<td></td>
+				<td>{{:up}}</td>
+				<td></td>
+			</tr>
+	</script>
+	<script id="downPrice" type="text/x-jsrender">
+			<tr>
+				<td></td>
+				<td>{{:down}}</td>
+				<td></td>
+			</tr>
+	</script>
+	<script id="upDown" type="text/x-jsrender">
+	
+			<td>현재가</td>
+			<td id="price"></td>
+			<td style="green">{{:currentPrice}}}</td>
+			<td style="green">{{:before}}</td>
+			<td style="green">{{:upDown}</td>
+	</script>
+	
+	
 
 </body>
 </html>
