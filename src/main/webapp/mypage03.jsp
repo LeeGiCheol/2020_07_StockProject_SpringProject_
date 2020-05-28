@@ -18,7 +18,7 @@ $(document).ready(function(){
        		$(".check-commnet").prop("checked",true);
         }else{
        	    $(".check-commnet").prop("checked",false);
-        }
+        } 
     })
     $("#jb-checkboxAll").click(function(){
         if($("#jb-checkboxAll").prop("checked")){
@@ -55,7 +55,6 @@ $(document).ready(function(){
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto">
 					<form class="form-inline my-2 my-lg-0">

@@ -29,7 +29,6 @@ public class BoardVO {
 	private int bno; // 게시판번호(종류)
 	private MultipartFile uploadFile;
 	
-	
 	public int getPno() {
 		return pno;
 	}
@@ -91,12 +90,4 @@ public class BoardVO {
 				+ ", views=" + views + ", likes=" + likes + ", bdateTime=" + bdateTime + ", bno=" + bno
 				+ ", uploadFile=" + uploadFile + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
