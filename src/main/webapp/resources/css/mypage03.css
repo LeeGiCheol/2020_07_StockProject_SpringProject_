@@ -53,6 +53,7 @@
  .dropdown-item{font-size: 15px;}
 .bottom-bar{margin-bottom: 300px;} 
 .pagination{margin-left: 20px; margin-top: 39px;}
+td > a{cursor:pointer}
  			/* table end*/
 /* article end */
 
