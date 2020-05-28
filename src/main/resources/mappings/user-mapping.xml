@@ -57,13 +57,65 @@
 		WHERE id IN (#{friend}, #{id})
 	</update>
 	
-	<!-- 로그인시 id and pw틀렸는지 체크 -->
+	<!-- 로그인시 id and pw틀렸는지 체크 SignInDAO.login -->
 	<select id="signInCheck" parameterType="user" resultType="user">
 		SELECT *
 		FROM user
 		WHERE id = #{id}
 	</select>
 	
+
+	<!-- 개인정보 수정하는 SQL UserInfoDAO.userInfoUpdate -->
+	<update id="updateUser" parameterType="user">
+		update user
+		set PW=#{pw}, ADDRESS=#{address}, TEL=#{tel}, showEsetSetting=#{showEset}
+		where ID=#{id}
+	</update>
+	
+	
+	<!-- <insert id="nickname">
+	</insert> -->
+	
+	<!-- <update id="updateBoard">
+		update board set TITLE=#{title},
+		CONTENT=#{content} where SEQ=#{seq}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete board where SEQ=#{seq}
+	</delete> -->
+	
+	<!-- CDATA영역에 작성된 데이터는 단순 문자 데이터이다
+	     그러므로 XML 파서는 처리하지 말아라. -->
+	<!-- <select id="getBoardLt" resultType="board">
+		<![CDATA[
+		select * from board where SEQ <= #{seq}
+		]]>
+	</select> -->
+		
+	<!-- <select id="getBoardList_T" resultType="board">
+		select * from board
+		where TITLE like '%'||#{searchKeyword}||'%'
+		order by SEQ desc
+	</select>
+
+	<select id="getBoardList_C" resultType="board">
+		select * from board
+		where CONTENT like '%'||#{searchKeyword}||'%'
+		order by SEQ desc
+	</select> -->
+
+	<!-- <select id="getBoardList" resultType="board">
+		select * from board
+		where 1=1
+		<if test="searchCondition == 'title'">
+			and TITLE like '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="searchCondition == 'content'">
+			and CONTENT like '%'||#{searchKeyword}||'%'
+		</if> 
+		order by SEQ desc
+	</select> -->
 </mapper>
 
 

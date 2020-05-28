@@ -27,14 +27,13 @@ public class SignInController {
 		UserVO vo = new UserVO();
 		vo.setId(id);
 		vo = signInService.logIn(vo);
-		if(vo != null)
-			System.out.println(vo.toString());
-		else
-			System.out.println(vo);
-		
+//		if(vo != null)
+//			System.out.println(vo.toString());
+//		else
+//			System.out.println(vo);
 		if(vo != null) {
-			System.out.println("pw1 " + vo.getPw());
-			System.out.println("pw2 " + pw);
+//			System.out.println("pw1 " + vo.getPw());
+//			System.out.println("pw2 " + pw);
 			if(vo.getPw().equals(pw)) {
 				session.setAttribute("loginUser", vo);
 				return "mainpage";
@@ -43,6 +42,11 @@ public class SignInController {
 		}
 		else 
 			return "login";
+	}
+	
+	@GetMapping(value="/logout")
+	public String logout() {
+		return "mainpage";
 	}
 }
 

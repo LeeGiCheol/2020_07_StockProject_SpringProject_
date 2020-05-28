@@ -103,22 +103,22 @@ $(document).ready(function(){
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
         <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage01" onclick="location.href='mypage01.html'">
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage01" onclick="location.href='myPage01'">
           <div> 
             <h6 class="my-0">내정보</h6>
           </div>
         </li>
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage02" onclick="location.href='mypage02.html'">
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage02" onclick="location.href='myPage02'">
           <div>
             <h6 class="my-0">계좌정보</h6>
           </div>
         </li>
-        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed mypage03" onclick="location.href='mypage03.html'" >
+        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed mypage03" onclick="location.href='myPage03'" >
           <div>
             <h6 class="my-0">작성 글, 댓글</h6>
           </div>
         </li>
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage04" onclick="location.href='mypage04.html'">
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage04" onclick="location.href='myPage04'">
           <div >
             <h6 class="my-0">알림</h6>
           </div>

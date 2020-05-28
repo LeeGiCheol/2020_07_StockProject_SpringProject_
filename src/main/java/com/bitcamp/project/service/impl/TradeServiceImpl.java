@@ -1,5 +1,7 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,13 @@ public class TradeServiceImpl implements TradeService {
 	@Autowired
 	TradeDAO tradeDAO;
 	
+	
+	
+	@Override
+	public Map minuteChart() {
+		return tradeDAO.minuteChart();
+	}
+
 	@Override
 	public String stockSearch(String stockName) {
 		return tradeDAO.stockSearch(stockName);
@@ -43,6 +52,9 @@ public class TradeServiceImpl implements TradeService {
 		tradeDAO.stockCancel();
 	}
 
-	
+	@Override
+	public Map dayChart() {
+		return tradeDAO.dayChart();
+	}
 	
 }

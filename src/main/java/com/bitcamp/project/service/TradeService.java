@@ -1,5 +1,7 @@
 package com.bitcamp.project.service;
 
+import java.util.Map;
+
 public interface TradeService {
 	public String stockSearch(String stockName);
 	public void callPrice();
@@ -10,4 +12,6 @@ public interface TradeService {
 	
 	public void stockCorrection();
 	public void stockCancel();
+	public Map dayChart();
+	public Map minuteChart();
 }
