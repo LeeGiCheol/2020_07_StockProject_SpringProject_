@@ -32,6 +32,7 @@ public class SignUpDAOImpl implements SignUpDAO {
 	public int duplicateCheck(Map<String, String> map) {
 		System.out.println("DAO"+map.get("id"));
 		System.out.println("DAO2 "+map.get("nickname"));
+		System.out.println("DAO3 "+map.get("id"));
 		int result = mybatis.selectOne("user.idCheck", map);
 		System.out.println(result);
 		return result;
