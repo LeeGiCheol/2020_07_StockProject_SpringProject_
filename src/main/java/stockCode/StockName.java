@@ -10,8 +10,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class StockName {
+public static void main(String[] args) {
+	
 
-		public void start() throws InterruptedException {
 
 		
 		try {

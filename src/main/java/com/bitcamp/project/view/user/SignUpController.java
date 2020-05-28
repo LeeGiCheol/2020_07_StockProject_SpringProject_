@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,8 +27,8 @@ public class SignUpController {
 	
 	// 회원가입화면
 	@GetMapping(value="/signUpPage")
-	public String signUpView(UserVO vo, HttpSession httpSession) {
-		httpSession.setAttribute("stock", "Session TEST");
+	public String signUpView(UserVO vo) {
+		System.out.println("vo suv : " + vo.toString());
 		return "signup02";
 	}
 
@@ -39,6 +38,8 @@ public class SignUpController {
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
+		
+		System.out.println("vo su : " + vo.toString());
 		
 		signUpService.signUp(vo);
 		
@@ -92,9 +93,7 @@ public class SignUpController {
     public String jusoPopup() {
 		return "address/jusoPopup";
     }
-	
-	
-	
+
 
 	
 	

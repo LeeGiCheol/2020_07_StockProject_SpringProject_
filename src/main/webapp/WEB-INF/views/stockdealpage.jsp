@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +18,29 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
+
+
+
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
+<script src="https://www.jsviews.com/download/jsrender.js"></script>
+<script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+
+
+
+
+
 </head>
 <body>
 
@@ -37,16 +64,16 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<form class="form-inline my-2 my-lg-0">
+				<form class="form-inline my-2 my-lg-0">
+					<ul class="navbar-nav ml-auto">
 						<input class="form-control mr-sm-2" type="search"
 							placeholder="통합검색" aria-label="Search">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
+						<input class="btn btn-outline-secondary my-2 my-sm-0"
 							type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-				</ul>
+						<i class="fas fa-search"></i>
+						</input>
+					</ul>
+				</form>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -58,7 +85,7 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">뉴스</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">${stockName}거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
 							class="sr-only">(current)</span></a></li>
 				</ul>
@@ -102,15 +129,16 @@
 				<div class="col-md-8">
 					<div class="chartdata">
 						<div class="chartdata-nav">
-							<form class="form-inline my-2 my-lg-0 chartdata-form">
+							<form action="/trade" id="searchForm"
+								class="form-inline my-2 my-lg-0 chartdata-form" method="GET">
 								<input class="form-control mr-sm-2 stock-search-input"
-									type="search" placeholder="통합검색" aria-label="Search">
+									type="search" placeholder="통합검색" id="stockSearch"
+									aria-label="Search" name="stockName">
 								<button
 									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
-									type="submit">
-									<i class="fas fa-search"></i>
-									<button type="button"
-										class="btn btn-secondary btn-sm companydata-btn ">기업정보</button>
+									id="stockBtn" type="submit"><i class="fas fa-search"></i></button>
+								<button type="button"
+									class="btn btn-secondary btn-sm companydata-btn ">기업정보
 								</button>
 							</form>
 
@@ -125,10 +153,11 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th scope="col" colspan="3">현재가</th>
+									<th scope="col" colspan="3" id="stockName"></th>
 								</tr>
 							</thead>
 							<tbody>
+							
 								<tr>
 									<td></td>
 									<td>호가</td>
@@ -136,36 +165,29 @@
 								</tr>
 								<tr>
 									<td>상한가</td>
-									<td>12,550</td>
+									<td id="maximum"></td>
 									<td></td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td rowspan="5"></td>
-									<td>9,830</td>
 									<td></td>
-								</tr>
-								<tr>
-									<td>9,820</td>
 									<td></td>
-								</tr>
-								<tr>
-									<td>9,810</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>9,800</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>9,790</td>
-									<td></td>
-								</tr>
+								</tr> -->
+							</tbody>
+							
+							<tbody id="up"> <!-- ajax 로 호가 + 주입 --> </tbody>
+							
+							<tbody>
 								<tr>
 									<td>현재가</td>
-									<td>9,760</td>
-									<td>▲ 70 (0.72%)</td>
+									<td id="price"></td>
+									<td id="beforeAndUpdown"></td>
 								</tr>
-								<tr>
+							</tbody>
+							
+							<tbody id="down"> <!-- ajax 로 호가 - 주입 --> </tbody>
+							
+								<!-- <tr>
 									<td rowspan="5"></td>
 									<td>9,770</td>
 									<td></td>
@@ -185,10 +207,12 @@
 								<tr>
 									<td>9,730</td>
 									<td></td>
-								</tr>
+								</tr>  -->
+							<tbody>
 								<tr>
+							
 									<td>하한가</td>
-									<td>6,790</td>
+									<td id="minimum"></td>
 									<td></td>
 								</tr>
 							</tbody>
@@ -341,6 +365,8 @@
 										<li>시간외종가 주문시간 안내 : 장 개시 전 종가 – 08:30~08:40 / 장 마감 후 종가 –
 											15:40~16:00</li>
 										<li>ELW 종목은 시간외 거래 불가</li>
+										console.log(${d });
+										console.log(${hr});
 									</ul>
 								</div>
 							</div>
@@ -352,38 +378,169 @@
 		</div>
 	</div>
 
+	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
+	<script type="text/javascript">		
+	
+	
+		
+	var stockName = "${stockName}";
+	if(stockName === ''){
+		stockName = '삼성전자';
+	}
+		
+		
+    //console.log("지발"+stockName);
+	$("#stockBtn").click(function(){
+		stockName = document.all.searchForm.stockSearch.value;
+		//console.log("check" + stockName);
+	});
+	
+	$(function() {
+		var obj = new Object();
+		var jsonData = JSON.stringify(obj);
+		var pageUrl = "삼성전자";
+		var pageTitle = "http://localhost:8080/trade";
+	   
+		timer = setInterval( function () {
+			$.ajax({
+				type : "POST",
+				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
+				/* data : JSON.stringify(jsonData),  */
+				datatype : "JSON",
+				success : function(data) {
+					//console.log("현재가 = "+JSON.stringify(data.currentPrice));
+					//console.log("전일비 + 등락률 = "+JSON.stringify(data.before + data.updown));
+					
+					//console.log(stockName);
 
-	<!-- footer start -->
-	<div class=footer_div>
-		<footer class="footer_info">
-			<p>
-				<a href="https://www.naver.com">회사소개</a> | <a
-					href="https://www.google.co.kr">광고안내</a> | <a
-					href="https://www.naver.com">이용약관</a> | <a
-					href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a>
-			</p>
-			<p>Copyright ⓒ 2020 - 2020 stock gallery. All rights reserved.</p>
-		</footer>
-	</div>
-	<!-- footer end -->
+				//	console.log(data.up);
+					/* if(data.before != null) { */
+						$('#price').text(data.currentPrice);
+						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+						$('#maximum').html(data.maximum);
+						$('#minimum').html(data.minimum);
+						var templ = $.templates("#upPrice");
+						var str = templ.render(data.up);
+						$("#up").html(str);
+						var templ2 = $.templates("#downPrice");
+						var str2 = templ2.render(data.down);
+						$("#down").html(str2);
+						$("#stockName").html(stockName);
+						
+					/* }
+					else{
+						alert("존재하지 않는 종목입니다 다시 검색해주세요><");
+						
+						history.pushState({"html":data},pageTitle, pageUrl);
+					} */
 
+
+					$('#price').text(data.currentPrice);
+					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+					
+					var dataPoints = [];
+					var chart = new CanvasJS.Chart(
+							"chartContainer",
+							{
+								animationEnabled : true,
+								theme : "light2", // "light1", "light2", "dark1", "dark2"
+								exportEnabled : true,
+								title : {
+									text : stockName
+								},
+								subtitles : [ {
+									text : "minute"
+								} ],
+								axisX : {
+									interval : 1,
+									valueFormatString : "mm"
+								},
+								axisY : {
+									includeZero : false,
+									prefix : "",
+									title : "Price"
+								},
+								toolTip : {
+									content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
+								},
+								data : [ {
+									type : "candlestick",
+									yValueFormatString : "##0원",
+									dataPoints : dataPoints
+								} ]
+							});	
+					
+					function getDataPointsFromCSV(data) {
+						
+						for (var i = 1; i < 60; i++) {
+							dataPoints.push({
+									x : new Date(parseInt(data.d[i]/10000),
+											parseInt(data.d[i]%10000/100),
+											data.d[i]%100,
+											parseInt(data.hr[i]/100),
+											data.hr[i]%100
+
+									),
+									y : [ parseFloat(data.startprice[i]), parseFloat(data.highprice[i]),
+											parseFloat(data.lowprice[i]),
+											parseFloat(data.lastprice[i]) ],
+									z : parseInt(data.d[i]/10000) + '-'
+											+ parseInt(data.d[i]%10000/100) + '-'
+											+ data.d[i]%100 + " "
+											+ parseInt(data.hr[i]/100) + ":"
+											+ data.hr[i]%100
+								});
+							
+						}
+						chart.render();
+					}
+					getDataPointsFromCSV(data);
+					
+				},
+				error : function(error) {
+					console.log("error");
+				}
+			}); 
+		
+		}, 5000); // SET INTERVAL5
+	});
+
+	</script>
+
+	<script id="upPrice" type="text/x-jsrender">
+			<tr>
+				<td></td>
+				<td>{{:up}}</td>
+				<td></td>
+			</tr>
+	</script>
+	<script id="downPrice" type="text/x-jsrender">
+			<tr>
+				<td></td>
+				<td>{{:down}}</td>
+				<td></td>
+			</tr>
+	</script>
+	
+	
+	
 	<script>
 		window.onload = function() {
-
+			
 			var dataPoints = [];
 			var test = [];
 
-			var chart = new CanvasJS.Chart(
+			 var chart = new CanvasJS.Chart(
 					"chartContainer",
 					{
 						animationEnabled : true,
 						theme : "light2", // "light1", "light2", "dark1", "dark2"
 						exportEnabled : true,
 						title : {
-							text : "Netflix Stock Price in 2016"
+							text : stockName
 						},
 						subtitles : [ {
-							text : "Weekly Averages"
+							text : "minute"
 						} ],
 						axisX : {
 							interval : 1,
@@ -403,50 +560,34 @@
 							dataPoints : dataPoints
 						} ]
 					});
-
-			$.get("/resources/testmin.csv", getDataPointsFromCSV);
-
-			function getDataPointsFromCSV(csv) {
-
-				var csvLines = points = [];
-				csvLines = csv.split(/[\r?\n|\r|\n]+/);
-				for (var i = 1; i < csvLines.length; i++) {
-					if (csvLines[i].length > 0) {
-						points = csvLines[i].split(",");
-						dataPoints.push({
-							x : new Date(parseInt(points[0].substring(0, 4)),
-									parseInt(points[0].substring(4, 6)),
-									parseInt(points[0].substring(6, 8)),
-									parseInt(points[1].substring(0, 2)),
-									parseInt(points[1].substring(2, 4))
+			
+			function getDataPointsFromCSV(data) {
+				console.log(data.hr);
+				for (var i = 1; i < 60; i++) {
+					dataPoints.push({
+							x : new Date(data.d[i].substring(0, 4),
+									parseInt(d[i].substring(4, 6)),
+									parseInt(d[i].substring(6, 8)),
+									parseInt(hr[i].substring(0, 2)),
+									parseInt(hr[i].substring(2, 4))
 
 							),
-							y : [ parseFloat(points[2]), parseFloat(points[3]),
-									parseFloat(points[4]),
-									parseFloat(points[5]) ],
-							z : points[0].substring(0, 4) + '-'
-									+ points[0].substring(4, 6) + '-'
-									+ points[0].substring(6, 8) + " "
-									+ points[1].substring(0, 2) + ":"
-									+ points[1].substring(2, 4)
+							y : [ parseFloat(startprice[i]), parseFloat(highprice[i]),
+									parseFloat(lowprice[i]),
+									parseFloat(lastprice[i]) ],
+							z : d[i].substring(0, 4) + '-'
+									+ d[i].substring(4, 6) + '-'
+									+ d[i].substring(6, 8) + " "
+									+ hr[i].substring(0, 2) + ":"
+									+ hr[i].substring(2, 4)
 						});
-					}
+					
 				}
 				chart.render();
-			}
+			} 
 
 		}
 	</script>
 
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
 </body>
 </html>

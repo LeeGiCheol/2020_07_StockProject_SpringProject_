@@ -22,29 +22,29 @@
 	</resultMap> -->
 
 	<insert id="signUp">
-		insert into user(ID, PW, NICKNAME, TEL, POINT, ADDRESS, CHARGE)
-		values(#{id}, #{pw}, #{nickname}, #{tel}, 1000, #{address}, 1);
+		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
+		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 1000, #{showEsetSetting}, #{address}, 1);
 		
 		
 		<!-- sql 두개 쓰려면 ; 붙여줘야한다 -->
-		insert into userNickname(ID, NICKNAME)
-		values(#{id}, #{nickname});
+		INSERT INTO usernickname(id, nickname)
+		VALUES(#{id}, #{nickname});
 		
 		
-		insert into userMoney(ID, money)
-		values(#{id}, 1000);
+		INSERT INTO usermoney(id, money)
+		VALUES(#{id}, 1000);
 	</insert>
 	
 	<select id="idCheck" resultType="int" parameterType="map">
-		select count(*) 
-		from user
+		SELECT COUNT(*) 
+		FROM user
 		
 		<choose>
 			<when test='id != null and id !="" '>
-				where ID=#{id}
+				WHERE id = #{id}
 			</when>
 			<when test='nickname != null and nickname !="" '>
-				where NICKNAME=#{nickname}
+				WHERE nickname = #{nickname}
 			</when>
 		</choose>
 		
@@ -52,10 +52,26 @@
 	</select>
 	
 	<update id="pointUp" parameterType="user">
-		update user 
-		set POINT = POINT+1000
-		where ID in (#{friend}, #{id})
+		UPDATE user 
+		SET point = point+1000
+		WHERE id IN (#{friend}, #{id})
 	</update>
+	
+	<!-- 로그인시 id and pw틀렸는지 체크 SignInDAO.login -->
+	<select id="signInCheck" parameterType="user" resultType="user">
+		SELECT *
+		FROM user
+		WHERE id = #{id}
+	</select>
+	
+
+	<!-- 개인정보 수정하는 SQL UserInfoDAO.userInfoUpdate -->
+	<update id="updateUser" parameterType="user">
+		update user
+		set PW=#{pw}, ADDRESS=#{address}, TEL=#{tel}, showEsetSetting=#{showEset}
+		where ID=#{id}
+	</update>
+	
 	
 	<!-- <insert id="nickname">
 	</insert> -->
@@ -101,3 +117,25 @@
 		order by SEQ desc
 	</select> -->
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

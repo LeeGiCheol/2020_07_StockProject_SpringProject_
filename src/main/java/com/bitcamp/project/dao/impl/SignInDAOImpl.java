@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.SignInDAO;
+import com.bitcamp.project.vo.UserVO;
 
 @Repository("SignInDAO")
 public class SignInDAOImpl implements SignInDAO{
@@ -13,9 +14,8 @@ public class SignInDAOImpl implements SignInDAO{
 	private SqlSessionTemplate mybatis;
 
 	@Override
-	public void logIn() {
-		// TODO Auto-generated method stub
-		
+	public UserVO logIn(UserVO vo) {
+		return mybatis.selectOne("signInCheck", vo);
 	}
 
 	@Override
