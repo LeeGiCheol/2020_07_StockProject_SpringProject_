@@ -14,9 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
-
-import stockCode.Info;
 
 @Component
 public class TradingCheck {
@@ -39,6 +38,7 @@ public class TradingCheck {
 				}
 			}
 			String[] list = null;
+			int currentPrice = 0;
 			int n = 0;
 			list = crwaling.split("ㅇ");
 			// byte[] by=(Arrays.deepToString(list).getBytes());
@@ -59,7 +59,9 @@ public class TradingCheck {
 					info.put(inf.getStockName(), inf);
 
 				} else if (n % 12 == 3) {
-					inf.setCurrentPrice(list[i]);
+					String currentPrice_ = list[i].replace(",", "");
+					currentPrice = Integer.parseInt(currentPrice_);
+					inf.setCurrentPrice(currentPrice);
 				}
 
 			}
@@ -78,12 +80,12 @@ public class TradingCheck {
 		Map<String, Object> unsettled = mybatis.selectMap("stock.getUnsettled", "uno");
 		for (Object key : unsettled.keySet()) {
 			HashMap map = (HashMap) unsettled.get(key);
-			String price = info.get(map.get("stockName")).getCurrentPrice().replaceAll(",", "");
-
+			int price = info.get(map.get("stockName")).getCurrentPrice();
+			System.out.println("check"+price);
 			System.out.println(key+": ["+map.get("stockName")+"] & [요청 가격: "+map.get("rPrice")+"]");
 			System.out.print("   [현재가 : "+price+"]");
 			
-			if (Integer.parseInt(price) == (Integer)map.get("rPrice")) { // 가격 동일시
+			if (price == (Integer)map.get("rPrice")) { // 가격 동일시
 				System.out.println(" --> 동일가격 확인 & 거래 실행");
 				StockVO sv = mybatis.selectOne("stock.completeUnsettled", map.get("uno"));
 				sv.setrPrice((Integer)map.get("rPrice"));
