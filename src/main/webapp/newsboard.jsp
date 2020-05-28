@@ -408,8 +408,8 @@ input[type="text"]{
 								<input type="text" placeholder="뉴스검색" title="뉴스검색" value onkeyup="enter();">
 							</span>
 								<button type="button" onclick="#" class="btn-t gray">검색</button>
-								<button type="button" onclick="#" class="btn-t gray">새로고침</button>
-						</p>
+							<button type="button" onclick="#" class="btn-t gray">새로고침</button>
+					</p>
 					</div>
 					<!-- //week -->
 				</div>
