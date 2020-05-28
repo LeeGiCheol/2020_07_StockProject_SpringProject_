@@ -161,11 +161,11 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th scope="col" colspan="3" id="stockName"></th>
+									<th scope="col" colspan="3" id="stockName">${stockName}</th>
 								</tr>
 							</thead>
 							<tbody>
-
+				
 								<tr>
 									<td></td>
 									<td>호가</td>

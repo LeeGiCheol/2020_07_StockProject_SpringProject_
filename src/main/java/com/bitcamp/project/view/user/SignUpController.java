@@ -26,7 +26,7 @@ public class SignUpController {
 	private SignUpService signUpService;
 	
 	// 회원가입화면
-		@GetMapping(value="/signUp2")
+		@GetMapping(value="/signUpPage/1")
 		public String signUpVieww() {
 				return "signup01";
 		}
@@ -41,7 +41,7 @@ public class SignUpController {
 	
 	
 //	// 회원가입화면
-	@GetMapping(value="/signUpPage")
+	@GetMapping(value="/signUpPage/2")
 	public String signUpView(UserVO vo) {
 		System.out.println("vo suv : " + vo.toString());
 		return "signup02";

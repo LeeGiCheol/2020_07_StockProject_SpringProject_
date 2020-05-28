@@ -62,7 +62,7 @@ body {margin: 0px;}
 	</nav>
 	<!-- header end -->
 	<!-- body start -->
-	<form action="signUpPage" method="POST">
+	<form action="/signUpPage/2" method="GET">
 		<div class="signup01_allBody">
 		<div class="signup01_terms1"><strong>약관동의</strong></div>
 		<div class="signup01_middleLine1"></div>
