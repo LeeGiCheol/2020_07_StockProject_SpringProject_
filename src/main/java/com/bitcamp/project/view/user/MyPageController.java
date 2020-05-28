@@ -34,7 +34,7 @@ public class MyPageController {
 	
 	@PostMapping(value="/updateUser")
 	public String updateUser(@ModelAttribute("pw") String pw, @ModelAttribute("address") String address,
-							@ModelAttribute("tel") String tel, @ModelAttribute("showEset") String showEset, HttpSession session) {
+							@ModelAttribute("tel") String tel, @ModelAttribute("showEsetSetting") String showEset, HttpSession session) {
 		System.out.println(pw);
 		System.out.println(address);
 		System.out.println(tel);
@@ -43,7 +43,7 @@ public class MyPageController {
 		loginUser.setPw(pw);
 		loginUser.setAddress(address);
 		loginUser.setTel(tel);
-		loginUser.setShowEset(Integer.parseInt(showEset));
+		loginUser.setShowEsetSetting(Integer.parseInt(showEset));
 		UserInfoService.memberInfoUpdate(loginUser);
 		session.setAttribute("loginUser", loginUser);
 		return "mypage01";

@@ -147,11 +147,11 @@
             <br>
             <div class="ask-form">
                 <div class="custom-control custom-radio">
-                  <input type="radio" name="showEset" id="ask-radio-1" class="custom-control-input" value="1">
+                  <input type="radio" name="showEsetSetting" id="ask-radio-1" class="custom-control-input" value="1">
                   <label class="custom-control-label" id="ask-radio-1-answer" for="ask-radio-1">예</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" name="showEset" id="ask-radio-2" class="custom-control-input" value="0">
+                  <input type="radio" name="showEsetSetting" id="ask-radio-2" class="custom-control-input" value="0">
                   <label class="custom-control-label" for="ask-radio-2">아니오</label>
                 </div>
             </div>
@@ -183,7 +183,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-if(${loginUser.showEset} === 0)
+if(${loginUser.showEsetSetting} === 0)
 	$("#ask-radio-2").prop("checked", true);
 else
 	$("#ask-radio-1").prop("checked", true);
