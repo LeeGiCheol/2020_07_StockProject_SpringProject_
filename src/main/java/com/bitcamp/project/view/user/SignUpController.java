@@ -26,7 +26,22 @@ public class SignUpController {
 	private SignUpService signUpService;
 	
 	// 회원가입화면
-	@GetMapping(value="/signUpPage")
+		@GetMapping(value="/signUpPage/1")
+		public String signUpVieww() {
+				return "signup01";
+		}
+////		// 회원가입화면
+//		@PostMapping(value="/signUp2")
+//		public String signUpViewww(@RequestParam("agree") String agree) {
+//			if(agree.equals("Y"))
+//				return "signup02";
+//			else
+//				return "signup01";
+//		}
+	
+	
+//	// 회원가입화면
+	@GetMapping(value="/signUpPage/2")
 	public String signUpView(UserVO vo) {
 		System.out.println("vo suv : " + vo.toString());
 		return "signup02";
@@ -76,9 +91,10 @@ public class SignUpController {
 			return Integer.toString(result);
 		}
 		
-		// 추천인 중복확인 (미완성)
+		// 추천인 중복확인
 		else if(request.getServletPath().equals("/friendCheck")) {
 			System.out.println("firend "+id);
+			map.put("id", id);
 			
 			int result=signUpService.duplicateCheck(map);
 			System.out.println("friend2 "+result);

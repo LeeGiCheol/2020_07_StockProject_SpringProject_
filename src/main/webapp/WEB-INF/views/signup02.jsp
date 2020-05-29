@@ -24,13 +24,13 @@
 <body>
 <!-- 상단  nav -->
 	<ul class="nav justify-content-end top-nav">
-		<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
-		<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
+		<li class="breadcrumb-item"><a id="top-nav-font" href="/signInPage">로그인</a></li>
+		<li class="breadcrumb-item"><a id="top-nav-font" href="/signUpPage">회원가입</a></li>
 	</ul>
 <!-- 상단  nav end -->
 <!-- header start -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-		<a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stock
+		<a class="navbar-brand" href="/mainPage"><i class="fas fa-users"></i>Stock
 			gallery</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -69,7 +69,7 @@
 	</nav>
 <!-- header end -->
 <!-- body start -->
-	<form action="signUp" name="form" method="POST">
+	<form action="/signUp" name="form" method="POST">
 		<div class="container">
 			<div class="allBody">
 				<label for="inputEmail">이메일</</label> 
