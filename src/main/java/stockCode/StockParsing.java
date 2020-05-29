@@ -1,9 +1,6 @@
 package stockCode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
@@ -72,7 +69,7 @@ public class StockParsing {
 				
 				
 				currentPrice = Integer.parseInt(cPrice[0].replace(",", ""));
-				System.out.println("1 "+currentPrice);
+//				System.out.println("1 "+currentPrice);
 //				currentPrice = cPrice[0].replace(",", "");
 				
 				
@@ -90,7 +87,7 @@ public class StockParsing {
 					upDown = bFUD[5] + "%";
 				}
 				
-				System.out.println(Arrays.toString(up_));
+//				System.out.println(Arrays.toString(up_));
 				
 				
 				int kospiTable[] = new int[10000];
@@ -171,8 +168,8 @@ public class StockParsing {
 					}
 				}
 				
-				System.out.println(Arrays.toString(up));
-				System.out.println("호가"+Arrays.toString(down));
+//				System.out.println(Arrays.toString(up));
+//				System.out.println("호가"+Arrays.toString(down));
 			}
 			
 			Info inf = new Info();

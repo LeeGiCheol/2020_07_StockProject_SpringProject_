@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,19 +172,19 @@
             </tr>
           </thead>
           <tbody>
-	          <c:forEach var="board" items="${board}">
+          	  <c:forEach items="${boardList}" var="board" >
 	            <tr> 
 	              <td><div class="custom-control custom-checkbox">
 	                <input type="checkbox" id="jb-checkbox1" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
 	              <th scope="row">${board.pno}</th> <!-- 글번호 -->
 	              <td><a onclick="window.location.href='free-board-detail.jsp'">${board.title}</a></td> <!-- 글 제목 -->
 	              <td>${board.nickname}</td> 	  <!-- 글쓴이 -->
-	              <td>${board.bdatetime}</td> 	  <!-- 날짜 --> 
+	              <td>${board.bdateTime}</td> 	  <!-- 날짜 --> 
 	              <td>${board.views}</td>		  <!-- 조회수 -->
 	              <td>${board.likes}</td>		  <!-- 추천수 -->
 	            </tr>
 	           </c:forEach>
-            <tr>
+            <!-- <tr>
               <td><div class="custom-control custom-checkbox">
                 <input type="checkbox" id="jb-checkbox2" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox2"></label></div></td>
               <th scope="row">4</th>
@@ -223,7 +223,7 @@
               <td></td>
               <td></td>
               <td></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
         <br>

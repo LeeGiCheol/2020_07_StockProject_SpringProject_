@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.BoardDAO;
 import com.bitcamp.project.vo.BoardVO;
 
+@Repository("BoardDAODAO")
 public class BoardDAOImpl implements BoardDAO {
 
 	@Autowired
@@ -37,7 +39,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardVO> getBoardList(BoardVO vo) {
-		return mybatis.selectList("BoardDAO.getBoardList", vo);
+		return mybatis.selectList("board.getBoardList", vo);
 	}
 
 }
