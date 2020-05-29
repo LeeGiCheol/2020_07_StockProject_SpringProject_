@@ -69,7 +69,7 @@
 	</nav>
 <!-- header end -->
 <!-- body start -->
-	<form action="signUp" name="form" method="POST">
+	<form action="/signUp" name="form" method="POST">
 		<div class="container">
 			<div class="allBody">
 				<label for="inputEmail">이메일</</label> 
