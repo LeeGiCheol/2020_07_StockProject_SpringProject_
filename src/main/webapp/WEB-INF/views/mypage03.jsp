@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
-<link href="/resources/css/mypage03.css" rel="stylesheet">
+<link href="resources/css/mypage03.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -103,22 +103,22 @@ $(document).ready(function(){
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
         <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage01" onclick="location.href='myPage01'">
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage01" onclick="location.href='mypage01.jsp'">
           <div> 
             <h6 class="my-0">내정보</h6>
           </div>
         </li>
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage02" onclick="location.href='myPage02'">
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage02" onclick="location.href='mypage02.jsp'">
           <div>
             <h6 class="my-0">계좌정보</h6>
           </div>
         </li>
-        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed mypage03" onclick="location.href='myPage03'" >
+        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed mypage03" onclick="location.href='mypage03.jsp'" >
           <div>
             <h6 class="my-0">작성 글, 댓글</h6>
           </div>
         </li>
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage04" onclick="location.href='myPage04'">
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage04" onclick="location.href='mypage04.jsp'">
           <div >
             <h6 class="my-0">알림</h6>
           </div>
@@ -162,15 +162,44 @@ $(document).ready(function(){
             </tr>
           </thead>
           <tbody>
+          	<<c:forEach items="${myPost}" var="post">
+            <!-- 
+            <tr>
+               <td>${board.seq }</td>
+               <td align="left">
+                  <a href="getBoard.do?seq=${board.seq }">
+                  ${board.title }
+                  </a>
+               </td>
+               <td>${board.writer }</td>
+               <td>${board.regDate }</td>
+               <td>
+                  <fmt:formatDate value="${board.regDate}"pattern="yyyy-MM-dd"/>
+               </td>
+               <td>${board.cnt }</td>
+            </tr>
+              -->
+               <tr> 
+                 <td><div class="custom-control custom-checkbox">
+                   <input type="checkbox" id="jb-checkbox${post.pno}" class="custom-control-input" name="${post.pno}"><label class="custom-control-label" for="jb-checkbox${post.pno}"></label></div></td>
+                 <th scope="row">${post.pno}</th>
+                 <td>${post.title}</td>
+                 <td>${post.nickname}</td>
+                 <td>${post.bdateTime}</td>
+                 <td>${post.views}</td>
+                 <td>${post.likes}</td>
+               </tr>
+         	</c:forEach>
+         	<!-- 
             <tr> 
               <td><div class="custom-control custom-checkbox">
                 <input type="checkbox" id="jb-checkbox1" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
-              <th scope="row">5</th><!-- ${board.no} -->
-              <td>이 글은 테스트용 글쓰기입니다.</td><!-- ${board.title} -->
-              <td>글쓴이</td><!-- ${board.writer} -->
-              <td>2020.05.21</td><!-- ${board.date} -->
-              <td>270</td><!-- ${board.views} -->
-              <td>30</td><!-- ${board.likes} -->
+              <th scope="row">5</th>
+              <td>이 글은 테스트용 글쓰기입니다.</td>
+              <td>글쓴이</td>
+              <td>2020.05.21</td>>
+              <td>270</td>
+              <td>30</td>
             </tr>
             <tr>
               <td><div class="custom-control custom-checkbox">
@@ -212,6 +241,7 @@ $(document).ready(function(){
               <td></td>
               <td></td>
             </tr>
+             -->
           </tbody>
         </table>
         <br>

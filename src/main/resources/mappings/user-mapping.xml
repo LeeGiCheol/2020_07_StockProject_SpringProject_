@@ -68,7 +68,7 @@
 	<!-- 개인정보 수정하는 SQL UserInfoDAO.userInfoUpdate -->
 	<update id="updateUser" parameterType="user">
 		update user
-		set PW=#{pw}, ADDRESS=#{address}, TEL=#{tel}, showEsetSetting=#{showEset}
+		set PW=#{pw}, ADDRESS=#{address}, TEL=#{tel}, showEsetSetting=#{showEsetSetting}
 		where ID=#{id}
 	</update>
 	
