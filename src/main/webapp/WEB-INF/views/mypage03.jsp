@@ -12,43 +12,57 @@
 <link href="resources/css/mypage03.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-$(document).ready(function(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+$(document).ready(function(){
     $("#jb-checkboxAll-commnet").click(function(){
         if($("#jb-checkboxAll-commnet").prop("checked")){
-            $("input[id=jb-checkbox1-commnet").prop("checked",true);
-            $("input[id=jb-checkbox2-commnet").prop("checked",true);
-            $("input[id=jb-checkbox3-commnet").prop("checked",true);
-            $("input[id=jb-checkbox4-commnet").prop("checked",true);
-            $("input[id=jb-checkbox5-commnet").prop("checked",true);
+       		$(".check-commnet").prop("checked",true);
         }else{
-            $("input[id=jb-checkbox1-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox2-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox3-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox4-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox5-commnet]").prop("checked",false);
-        }
+       	    $(".check-commnet").prop("checked",false);
+        } 
     })
     $("#jb-checkboxAll").click(function(){
         if($("#jb-checkboxAll").prop("checked")){
-            $("input[id=jb-checkbox1").prop("checked",true);
-            $("input[id=jb-checkbox2").prop("checked",true);
-            $("input[id=jb-checkbox3").prop("checked",true);
-            $("input[id=jb-checkbox4").prop("checked",true);
-            $("input[id=jb-checkbox5").prop("checked",true);
+        	$(".check").prop("checked",true);
         }else{
-            $("input[id=jb-checkbox1]").prop("checked",false);
-            $("input[id=jb-checkbox2]").prop("checked",false);
-            $("input[id=jb-checkbox3]").prop("checked",false);
-            $("input[id=jb-checkbox4]").prop("checked",false);
-            $("input[id=jb-checkbox5]").prop("checked",false);
+        	 $(".check").prop("checked",false);
         }
     })
-
-})
-
-
-
+    $(".remove").click(function(){
+        if(confirm("정말로 삭제하시겠습니까?")){
+          $(this).remove;
+        }else{
+          alert("취소하셨습니다.");
+        }
+      })
+    // pagination 추가  
+	$(function() {
+		window.pagObj = $('#pagination').twbsPagination({
+			totalPages : 35,
+			visiblePages : 5,
+			onPageClick : function(event, page) {
+				console.info(page + ' (from options)');
+			}
+		}).on('page', function(event, page) {
+			console.info(page + ' (from event listening)');
+		});
+		});
+    
+	$(function() {
+		window.pagObj = $('#pagination-comment').twbsPagination({
+			totalPages : 35,
+			visiblePages : 5,
+			onPageClick : function(event, page) {
+				console.info(page + ' (from options)');
+			}
+		}).on('page', function(event, page) {
+			console.info(page + ' (from event listening)');
+		});
+		});  
+});
 </script>
+<style>
+.paging-body{margin-top:50px;margin-bottom: 300px;}
+</style>
 </head>
 <body>
     <!-- header start -->
@@ -146,7 +160,7 @@ $(document).ready(function(){
       </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-write" role="tabpanel" aria-labelledby="pills-write-tab" style="margin-bottom: 300px;">
+      <div class="tab-pane fade show active" id="pills-write" role="tabpanel" aria-labelledby="pills-write-tab">
         <!-- 내가 작성한 글 -->
         <table class="table table-bordered">
           <thead>
@@ -162,48 +176,19 @@ $(document).ready(function(){
             </tr>
           </thead>
           <tbody>
-          	<c:forEach items="${myPost}" var="post">
-            <!-- 
-            <tr>
-               <td>${board.seq }</td>
-               <td align="left">
-                  <a href="getBoard.do?seq=${board.seq }">
-                  ${board.title }
-                  </a>
-               </td>
-               <td>${board.writer }</td>
-               <td>${board.regDate }</td>
-               <td>
-                  <fmt:formatDate value="${board.regDate}"pattern="yyyy-MM-dd"/>
-               </td>
-               <td>${board.cnt }</td>
-            </tr>
-              -->
-               <tr> 
-                 <td><div class="custom-control custom-checkbox">
-                   <input type="checkbox" id="jb-checkbox${post.pno}" class="custom-control-input" name="${post.pno}"><label class="custom-control-label" for="jb-checkbox${post.pno}"></label></div></td>
-                 <th scope="row">${post.pno}</th>
-                 <td>${post.title}</td>
-                 <td>${post.nickname}</td>
-                 <td>${post.bdateTime}</td>
-                 <td>${post.views}</td>
-                 <td>${post.likes}</td>
-               </tr>
-         	</c:forEach>
-         	<!-- 
             <tr> 
               <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox1" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
+                <input type="checkbox" id="jb-checkbox1" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
               <th scope="row">5</th>
-              <td>이 글은 테스트용 글쓰기입니다.</td>
+              <td><a onclick="window.location.href='free-board-detail.html#board-title'">이 글은 테스트용 글쓰기입니다.</a></td>
               <td>글쓴이</td>
-              <td>2020.05.21</td>>
+              <td>2020.05.21</td>
               <td>270</td>
               <td>30</td>
             </tr>
             <tr>
               <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox2" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox2"></label></div></td>
+                <input type="checkbox" id="jb-checkbox2" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox2"></label></div></td>
               <th scope="row">4</th>
               <td></td>
               <td></td>
@@ -213,7 +198,7 @@ $(document).ready(function(){
             </tr>
             <tr>
               <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox3" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox3"></label></div></td>
+                <input type="checkbox" id="jb-checkbox3" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox3"></label></div></td>
               <th scope="row">3</th>
               <td></td>
               <td></td>
@@ -223,7 +208,7 @@ $(document).ready(function(){
             </tr>
             <tr>
               <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox4" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox4"></label></div></td>
+                <input type="checkbox" id="jb-checkbox4" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox4"></label></div></td>
               <th scope="row">2</th>
               <td></td>
               <td></td>
@@ -233,7 +218,7 @@ $(document).ready(function(){
             </tr>
             <tr>
               <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox5" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox5"></label></div></td>
+                <input type="checkbox" id="jb-checkbox5" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox5"></label></div></td>
               <th scope="row">1</th>
               <td></td>
               <td></td>
@@ -241,35 +226,29 @@ $(document).ready(function(){
               <td></td>
               <td></td>
             </tr>
-             -->
           </tbody>
         </table>
         <br>
-       <form class="form-inline my-2 my-lg-0 underSearchForm">
+
+      	<form class="form-inline my-2 my-lg-0 underSearchForm">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">제목</a>
-          <a class="dropdown-item" href="#">내용</a>
-          <a class="dropdown-item" href="#">글쓴이</a>
-        </div>
-          <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
-          <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
+	        <div class="dropdown-menu" aria-labelledby="dropdown01">
+	          <a class="dropdown-item" href="#">제목</a>
+	          <a class="dropdown-item" href="#">내용</a>
+	          <a class="dropdown-item" href="#">글쓴이</a>
+	        </div>
+         <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
+         <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
               <i class="fas fa-search"></i></button>
           <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
-          <nav aria-label="..." class="pagination">
-            <ul class="pagination">
-              <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
-            </ul>
-          </nav>
         </form>
+        <div class="paging">
+			<div class="paging-body">
+				<ul class="pagination" id="pagination"></ul>
+			</div>
+    	</div>	 
       </div>
-      <div class="tab-pane fade" id="pills-commnet" role="tabpanel" aria-labelledby="pills-commnet-tab" style="margin-bottom: 300px;">
+      <div class="tab-pane fade" id="pills-commnet" role="tabpanel" aria-labelledby="pills-commnet-tab">
         <!-- 내가 작성한 댓글 -->
         <table class="table table-bordered">
           <thead>
@@ -349,18 +328,12 @@ $(document).ready(function(){
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
                 <i class="fas fa-search"></i></button>
             <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
-            <nav aria-label="..." class="pagination">
-              <ul class="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
-              </ul>
-            </nav>
-          </form>
+         </form>
+        <div class="paging">
+			<div class="paging-body">
+				<ul class="pagination" id="pagination-comment"></ul>
+			</div>
+    	</div>
       </div>
     </div>
     </article>
@@ -377,4 +350,6 @@ $(document).ready(function(){
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- paginate -->
+<script src="/resources/jpaginate/jquery.twbsPagination.js" type="text/javascript"></script>
 </html>

@@ -3,25 +3,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>글 상세조회</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-  <!-- CSS파일 -->
-  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script>
-     $(document).ready(function(){
-    $("#btnDelete").click(function(){
-          if(confirm("정말로 삭제하시겠습니까?")){
-            alert("jS구성하기");
-          }else{
-            alert("취소하셨습니다.");
-          }
-        })
-  });
-  </script>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>글 상세조회</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+ <!-- CSS파일 -->
+ <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+ <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+ <script>
+ $(document).ready(function(){
+   $("#btnDelete").click(function(){
+         if(confirm("정말로 삭제하시겠습니까?")){
+           alert("jS구성하기");
+         }else{
+           alert("취소하셨습니다.");
+       };
+	 });
+ });
+ </script>
+<style>
+div > ul > li {width:380px;}
+</style>
 </head>
 
 <body>
@@ -68,35 +71,26 @@
   <!-- header end -->
   <!-- article start -->
   <!-- 상단메뉴 -->
-  <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
-    <ul class="list-group mb-3">
-      <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
-      <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage01"
-        onclick="location.href='mypage01.jsp'">
-        <div>
-          <h6 class="my-0">내정보</h6>
-        </div>
-      </li>
-      <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage02"
-        onclick="location.href='mypage02.jsp'">
-        <div>
-          <h6 class="my-0">계좌정보</h6>
-        </div>
-      </li>
-      <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage03"
-        onclick="location.href='mypage03.jsp'">
-        <div>
-          <h6 class="my-0">작성 글, 댓글</h6>
-        </div>
-      </li>
-      <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed mypage04"
-        onclick="location.href='mypage04.jsp'">
-        <div>
-          <h6 class="my-0">알림</h6>
-        </div>
-      </li>
-    </ul>
-  </div>
+    <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
+      <ul class="list-group mb-3">
+        <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
+        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed free-board" onclick="location.href='free-board.jsp'">
+          <div> 
+            <h6 class="my-0">자유 게시판</h6>
+          </div>
+        </li>
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed news-borad" onclick="location.href='newsboard.jsp'">
+          <div>
+            <h6 class="my-0">뉴스 게시판</h6>
+          </div>
+        </li>
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board" onclick="location.href='#'" >
+          <div>
+            <h6 class="my-0">포트폴리오 게시판</h6>
+          </div>
+        </li>
+      </ul>
+    </div>
   <!-- 상단메뉴 끝 -->
   <article class="bg-light container">
     <div class="allBody">
@@ -131,7 +125,7 @@
   <div>
       <!-- 댓글 -->
       <h2 id="commentBody" class="comment-title">댓글</h2>
-    <div class="commentBody">
+      <div class="commentBody">
       <i class="fa fa-user-circle"></i> <b> # 댓글 작성자 1</b><br>
       <i class="far fa-clock"></i> # 2020.05.27 17:05<br>
       <br>

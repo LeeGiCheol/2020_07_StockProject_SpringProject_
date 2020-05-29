@@ -67,8 +67,6 @@ a, a:link, a:visited, a:active, a:hover {text-decoration: none;}
  .dropdown-toggle{border: 1px solid #ced4da; border-radius: .25rem;background-clip: padding-box; height: 38px; font-size: 15px; color: #495057;}
  .dropdown-toggle:hover{color:#28283c;}
  .dropdown-item{font-size: 15px;}
-.best-pagination, .pagination{margin-left: 20px; margin-top: 39px;}
-.best-pagination{width: 500px; margin-left: 21px; margin-top: 40px;}
 td > a{cursor:pointer}
 /* 하단 메뉴 끝 */
  
