@@ -2,8 +2,6 @@ package com.bitcamp.project.dao;
 
 import java.util.List;
 
-import org.springframework.web.servlet.DispatcherServlet;
-
 import com.bitcamp.project.vo.BoardVO;
 
 public interface BoardDAO {
