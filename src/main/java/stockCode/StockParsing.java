@@ -130,12 +130,12 @@ public class StockParsing {
 				
 				for (int i = 0; i < kospiTable.length; i++) {
 					if(currentPrice == kospiTable[i]) {
-						System.out.println("kospi " + kospiTable[i]);
+//						System.out.println("kospi " + kospiTable[i]);
 						k = i;
 						break;
 					}
 					else if(currentPrice == kosdaqTable[i]) {
-						System.out.println("kosdaq " + kosdaqTable[i]);
+//						System.out.println("kosdaq " + kosdaqTable[i]);
 						k = i;
 						break;
 					}
@@ -152,7 +152,7 @@ public class StockParsing {
 						break;
 					}
 					if(currentPrice == kospiTable[back]) {
-						System.out.println(currentPrice);
+//						System.out.println(currentPrice);
 						back++;
 						i--;
 						continue;

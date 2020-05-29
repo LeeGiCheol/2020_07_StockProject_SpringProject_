@@ -7,19 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.TradeDAO;
+import com.bitcamp.project.vo.StockVO;
 
 @Repository("TradeDAO")
 public class TradeDAOImpl implements TradeDAO {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
-	
-	
+
+	@Override
+	public int getMoney(String id) {
+		return mybatis.selectOne("stock.getMoney", id);
+	}
+
 	@Override
 	public void clearChart() {
 		mybatis.delete("stock.clearChart");
-		
+
 	}
 
 	@Override
@@ -40,33 +44,30 @@ public class TradeDAOImpl implements TradeDAO {
 	@Override
 	public void callPrice() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void stockBuying() {
-		// TODO Auto-generated method stub
-		
+	public void stockBuying(StockVO vo) {
+		mybatis.insert("stock.preBuying", vo);
 	}
 
 	@Override
 	public void stockSelling() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void stockCorrection() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void stockCancel() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-	
 }
