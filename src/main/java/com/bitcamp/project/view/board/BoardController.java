@@ -23,9 +23,19 @@ public class BoardController {
 	public String boardList(BoardVO vo, Model model) {
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		model.addAttribute("boardList", boardList);
+		System.out.println(boardList);
 	
 		return "free-board";
 	}
+	
+//	@GetMapping("/board/free/detail")
+//	public String getBoard(BoardVO vo, Model model) {
+//		List<BoardVO> boardList = boardService.getBoardList(vo);
+//		model.addAttribute("boardList", boardList);
+//		System.out.println(boardList);
+//		
+//		return "free-board-detail";
+//	}
 	
 	@GetMapping("/board/free/write")
 	public String boardWriteView(BoardVO vo, Model model) {
@@ -38,6 +48,15 @@ public class BoardController {
 		vo.setId(id);
 		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
+//		return "free-board";
 	}
 	
+	@GetMapping("/board/free/detail")
+	public String getBoard(BoardVO vo, Model model) {
+		System.out.println("test1 "+vo);
+		BoardVO boardDetail = boardService.getBoard(vo);
+		System.out.println("test2 "+boardDetail);
+		model.addAttribute("boardDetail", boardDetail);
+		return "free-board-detail";
+	}
 }

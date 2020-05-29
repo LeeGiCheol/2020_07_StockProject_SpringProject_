@@ -101,7 +101,7 @@ $(document).on('click', '#btnSave', function(e) {
 			   </div>
 			<div>
 				<button type="submit" class="btn btn-sm btn-primary" id="btnSave" >저장</button>
-                <button type="button" class="btn btn-sm btn-primary" id="btnCancle" onclick="window.location.href='free-board.jsp'">취소</button>
+                <button type="button" class="btn btn-sm btn-primary" id="btnCancle" onclick="window.location.href='/board/free'">취소</button>
 			</div>
 			</form>
 		</div>

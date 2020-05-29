@@ -76,10 +76,15 @@
 		</insert>
 	
 	<update id="updateBoard">
-	
+		
 	
 	</update>
 	
+	<select id="getBoard" parameterType = "board" resultType="board">
+		SELECT * 
+		FROM board
+		WHERE pno = #{pno} 
+	</select>
 	
 	<select id="getBoardList" resultType="board">
 		SELECT * FROM board

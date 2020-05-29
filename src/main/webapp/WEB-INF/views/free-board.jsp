@@ -182,7 +182,7 @@
 			              </div>
 		              </td>
 		              <td >${board.pno}</td> <!-- 글번호 -->
-		              <td><a onclick="window.location.href='free-board-detail.jsp'">${board.title}</a></td> <!-- 글 제목 -->
+		              <td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td> <!-- 글 제목 -->
 		              <td>${board.nickname}</td> 	  <!-- 글쓴이 -->
 		              <td>${board.bdateTime}</td> 	  <!-- 날짜 --> 
 		              <td>${board.views}</td>		  <!-- 조회수 -->

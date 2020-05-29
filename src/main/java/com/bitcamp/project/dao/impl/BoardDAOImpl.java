@@ -34,7 +34,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public BoardVO getBoard(BoardVO vo) {
-		return null;
+		return (BoardVO)mybatis.selectOne("board.getBoard", vo);
 	}
 
 	@Override
