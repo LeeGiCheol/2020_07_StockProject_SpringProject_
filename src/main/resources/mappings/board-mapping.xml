@@ -69,6 +69,11 @@
 		order by SEQ desc
 	</select>
 	-->
+	
+	<select id="getBoardList" resultType="board">
+		select * from board
+	</select>
+	
 	<select id="getMyPost" parameterType = "user" resultType="board">
 		select * from board
 		where id=#{id}
