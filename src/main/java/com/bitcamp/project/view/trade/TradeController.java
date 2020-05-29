@@ -46,7 +46,9 @@ public class TradeController {
 	@PostMapping(value = "/buying")
 	public String buying( @RequestParam(value = "buyingQu") String qu,
 			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+ 
+		String id = "test";		//test 용 아이디
 		if (id == null)
 			return "/loginWARN";
 
