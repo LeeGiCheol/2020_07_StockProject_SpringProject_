@@ -162,7 +162,7 @@ $(document).ready(function(){
             </tr>
           </thead>
           <tbody>
-          	<<c:forEach items="${myPost}" var="post">
+          	<c:forEach items="${myPost}" var="post">
             <!-- 
             <tr>
                <td>${board.seq }</td>

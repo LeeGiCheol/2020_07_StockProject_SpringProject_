@@ -11,15 +11,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- CSS파일 -->
-<link href="/resources/css/test01.css" rel="stylesheet">
+<link href="/resources/css/free-board.css" rel="stylesheet">
 <style>
-/* 
 .buttons{display: -webkit-box;margin-left: -30px; font-size: 1px;}
 .add{width: 75px; height: 40px; font-size: 16px; margin-left: 233px;}
 .remove{margin-top: 0rem; margin-left:10px;}
 .btn-block+.btn-block{margin-top:0rem;}
-.best-pagination, .pagination{margin-left: 20px; margin-top: 39px;}
-.best-pagination{width: 500px; margin-left: 21px; margin-top: 40px;} */
 </style>
 <script>
   $(document).ready(function(){
