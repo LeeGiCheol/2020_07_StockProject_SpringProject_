@@ -9,14 +9,8 @@ package com.bitcamp.project.vo;
 //import java.sql.Date;
 import java.sql.Date;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BoardVO {
 	private int pno; // 글번호
