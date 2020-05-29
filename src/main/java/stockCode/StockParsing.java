@@ -72,7 +72,7 @@ public class StockParsing {
 				
 				
 				currentPrice = Integer.parseInt(cPrice[0].replace(",", ""));
-				System.out.println("1 "+currentPrice);
+//				System.out.println("1 "+currentPrice);
 //				currentPrice = cPrice[0].replace(",", "");
 				
 				
@@ -90,7 +90,7 @@ public class StockParsing {
 					upDown = bFUD[5] + "%";
 				}
 				
-				System.out.println(Arrays.toString(up_));
+//				System.out.println(Arrays.toString(up_));
 				
 				
 				int kospiTable[] = new int[10000];
@@ -133,12 +133,12 @@ public class StockParsing {
 				
 				for (int i = 0; i < kospiTable.length; i++) {
 					if(currentPrice == kospiTable[i]) {
-						System.out.println("kospi " + kospiTable[i]);
+//						System.out.println("kospi " + kospiTable[i]);
 						k = i;
 						break;
 					}
 					else if(currentPrice == kosdaqTable[i]) {
-						System.out.println("kosdaq " + kosdaqTable[i]);
+//						System.out.println("kosdaq " + kosdaqTable[i]);
 						k = i;
 						break;
 					}
@@ -155,7 +155,7 @@ public class StockParsing {
 						break;
 					}
 					if(currentPrice == kospiTable[back]) {
-						System.out.println(currentPrice);
+//						System.out.println(currentPrice);
 						back++;
 						i--;
 						continue;
@@ -171,8 +171,8 @@ public class StockParsing {
 					}
 				}
 				
-				System.out.println(Arrays.toString(up));
-				System.out.println("호가"+Arrays.toString(down));
+//				System.out.println(Arrays.toString(up));
+//				System.out.println("호가"+Arrays.toString(down));
 			}
 			
 			Info inf = new Info();

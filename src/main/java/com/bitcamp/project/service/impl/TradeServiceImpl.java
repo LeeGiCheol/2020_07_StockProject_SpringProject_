@@ -7,19 +7,23 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.project.dao.TradeDAO;
 import com.bitcamp.project.service.TradeService;
+import com.bitcamp.project.vo.StockVO;
 
 @Service
 public class TradeServiceImpl implements TradeService {
 
 	@Autowired
 	TradeDAO tradeDAO;
-	
-	
-	
+
+	@Override
+	public int getMoney(String id) {
+		return tradeDAO.getMoney(id);
+	}
+
 	@Override
 	public void clearChart() {
 		tradeDAO.clearChart();
-		
+
 	}
 
 	@Override
@@ -30,7 +34,7 @@ public class TradeServiceImpl implements TradeService {
 	@Override
 	public String stockSearch(String stockName) {
 		return tradeDAO.stockSearch(stockName);
-		
+
 	}
 
 	@Override
@@ -39,8 +43,8 @@ public class TradeServiceImpl implements TradeService {
 	}
 
 	@Override
-	public void stockBuying() {
-		tradeDAO.stockBuying();
+	public void stockBuying(StockVO vo) {
+		tradeDAO.stockBuying(vo);
 	}
 
 	@Override
@@ -62,5 +66,5 @@ public class TradeServiceImpl implements TradeService {
 	public Map dayChart(String stockName) {
 		return tradeDAO.dayChart(stockName);
 	}
-	
+
 }

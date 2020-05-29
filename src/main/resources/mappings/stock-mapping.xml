@@ -44,6 +44,10 @@
 		where id = #{id};
 	</update>
 	
+	<insert id="preBuying">
+		insert into unsettledcheck(stockName, rPrice) values(#{stockName}, #{rPrice});
+		insert into unsettled(id, quantity, category) values(#{id}, #{quantity}, "buy");
+	</insert>
 	
 	
 	
@@ -80,6 +84,10 @@
 	  	SELECT stockCode 
 	  	FROM stockList
 	  	WHERE stockname = #{stockname}
+  </select>
+  
+  <select id="getMoney" resultType="int">
+  	select money from usermoney where id = #{id}
   </select>
 
 
