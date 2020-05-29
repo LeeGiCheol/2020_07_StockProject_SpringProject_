@@ -1,6 +1,6 @@
 package com.bitcamp.project.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class StockVO {
 	private int tno;
