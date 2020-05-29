@@ -1,22 +1,21 @@
-<!-- <?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-parameterType의 생략이 가능하다
-	#{title}은 parameter로 전달된 getTitle()메서드를 
-	호출한다.
 
-<mapper namespace="BoardDAO">
-
-	컬럼이름과 자바객체의 프로퍼티명이 다를 때는
-	     아래처럼 매핑 규칙을 정해줘야 한다
+<mapper namespace="board">
+<!-- 
 	<resultMap id="boardResult" type="board">
-		<id property="seq" column="SEQ"/>
+		<id property="pno" column="PNO"/>
+		<result property="id" column="ID"/>
+		<result property="nickname" column="NICKNAME"/>
 		<result property="title" column="TITLE"/>
-		<result property="writer" column="WRITER"/>
-		<result property="content" column="CONTENT"/>
-		<result property="regDate" column="REGDATE"/>
-		<result property="cnt" column="CNT"/>
+		<result property="bcontent" column="BCONTENT"/>
+		<result property="views" column="VIEWS"/>
+		<result property="views" column="VIEWS"/>
+		<result property="views" column="VIEWS"/>
+		<result property="views" column="VIEWS"/>
+		<result property="views" column="VIEWS"/>
 	</resultMap>
 
 	<insert id="insertBoard" parameterType="board">
@@ -69,27 +68,10 @@ parameterType의 생략이 가능하다
 		</if> 
 		order by SEQ desc
 	</select>
+	-->
+	<select id="getMyPost" parameterType = "user" resultType="board">
+		select * from board
+		where id=#{id}
+		order by pno desc
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- -->

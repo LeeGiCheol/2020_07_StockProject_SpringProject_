@@ -9,10 +9,12 @@ package com.bitcamp.project.vo;
 //import java.sql.Date;
 import java.sql.Date;
 
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
 	private int pno; // 글번호
+	private String id;
 	private String nickname; // 별명
 	private String title; // 제목
 	private String content; // 내용
@@ -27,6 +29,12 @@ public class BoardVO {
 	}
 	public void setPno(int pno) {
 		this.pno = pno;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getNickname() {
 		return nickname;
