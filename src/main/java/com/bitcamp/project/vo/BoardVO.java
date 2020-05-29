@@ -7,7 +7,7 @@ package com.bitcamp.project.vo;
  */
 
 //import java.sql.Date;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BoardVO {
 	private int pno; // 글번호
+	private String id;
 	private String nickname; // 별명
 	private String title; // 제목
 	private String content; // 내용
@@ -34,6 +35,12 @@ public class BoardVO {
 	}
 	public void setPno(int pno) {
 		this.pno = pno;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getNickname() {
 		return nickname;

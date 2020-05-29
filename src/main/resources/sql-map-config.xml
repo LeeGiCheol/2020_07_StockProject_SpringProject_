@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias type="com.bitcamp.project.vo.UserVO" alias="user"></typeAlias>
 		<typeAlias type="com.bitcamp.project.vo.StockVO" alias="stock"></typeAlias>
+		<typeAlias type="com.bitcamp.project.vo.BoardVO" alias="board"></typeAlias>
 	</typeAliases>
 	
 	
@@ -26,6 +27,7 @@
 	</environments> -->
 	<mappers>
 		<mapper resource="mappings/user-mapping.xml" />
-		<mapper resource="mappings/stock-mapping.xml" />
+		<mapper resource="mappings/stock-mapping.xml"/>
+		<mapper resource="mappings/board-mapping.xml"/>
 	</mappers>
 </configuration>

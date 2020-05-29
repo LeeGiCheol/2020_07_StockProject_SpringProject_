@@ -12,7 +12,4 @@ public interface BoardDAO {
 	public void deleteBoard(BoardVO vo);
 	public BoardVO getBoard(BoardVO vo);
 	public List<BoardVO> getBoardList(BoardVO vo);
-	
-	
-
 }
