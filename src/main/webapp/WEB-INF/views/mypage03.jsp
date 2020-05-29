@@ -12,7 +12,7 @@
 <link href="/resources/css/mypage03.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-$(document).ready(function(){
+$(document).ready(function(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
     $("#jb-checkboxAll-commnet").click(function(){
         if($("#jb-checkboxAll-commnet").prop("checked")){
        		$(".check-commnet").prop("checked",true);
