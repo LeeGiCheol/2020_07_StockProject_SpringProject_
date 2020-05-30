@@ -25,6 +25,10 @@
 		where uno=#{uno}
 	</select>
 	
+	<select id="getStockQuantity" resultType="int">
+		select sum(quantity) from holdingstock where id = #{id} and stockName = #{stockName}
+	</select>
+	
 	<insert id="buying">
 		insert into tradinghistory(id, stockName, category, tdatetime, price, quantity)
 		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
@@ -44,19 +48,25 @@
 		where id = #{id};
 	</update>
 	
+	<insert id="preSellingUpdate">
+		insert into holdingstock(id , stockName, quantity)
+		values (#{id}, #{stockName},#{quantity}*(-1));
+	</insert>
+	
 	<insert id="preBuying">
 		insert into unsettledcheck(stockName, rPrice) values(#{stockName}, #{rPrice});
 		insert into unsettled(id, quantity, category) values(#{id}, #{quantity}, "buy");
 	</insert>
 	
+	<insert id="preSelling">
+		insert into unsettledcheck(stockName, rPrice) values(#{stockName}, #{rPrice});
+		insert into unsettled(id, quantity, category) values(#{id}, #{quantity}, "sell");
+	</insert>
 	
 	
 	<insert id="selling">
 		insert into tradinghistory(id, stockName, category, tdatetime, price, quantity)
 		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
-		
-		insert into holdingstock(id , stockName, quantity)
-		values (#{id}, #{stockName},#{quantity}*(-1));
 		
 		INSERT INTO stocknotice(id, tno)
 		SELECT id, tno

@@ -50,12 +50,13 @@ public class TradeDAOImpl implements TradeDAO {
 	@Override
 	public void stockBuying(StockVO vo) {
 		mybatis.insert("stock.preBuying", vo);
+		mybatis.update("stock.updateBuying",vo);
 	}
 
 	@Override
-	public void stockSelling() {
-		// TODO Auto-generated method stub
-
+	public void stockSelling(StockVO vo) {
+		mybatis.insert("stock.preSelling", vo);
+		mybatis.insert("stock.preSellingUpdate", vo);
 	}
 
 	@Override
@@ -70,4 +71,10 @@ public class TradeDAOImpl implements TradeDAO {
 
 	}
 
+	@Override
+	public int getStockQuantity(StockVO vo) {
+		return mybatis.selectOne("stock.getStockQuantity", vo);
+	}
+
+	
 }

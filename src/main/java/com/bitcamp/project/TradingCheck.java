@@ -95,7 +95,6 @@ public class TradingCheck {
 				if (sv.getTcategory().equals("buy")) { // 구매 거래시
 					System.out.println("case: buy");
 					mybatis.insert("stock.buying",sv);
-					mybatis.update("stock.updateBuying",sv);
 				} else if (sv.getTcategory().equals("sell")) { // 판매 거래시
 					System.out.println("case: sell");
 					mybatis.insert("stock.selling",sv);
