@@ -50,13 +50,15 @@ public class TradeDAOImpl implements TradeDAO {
 	@Override
 	public void stockBuying(StockVO vo) {
 		mybatis.insert("stock.preBuying", vo);
-		mybatis.update("stock.updateBuying",vo);
+		vo.setBuysell(-1);
+		mybatis.update("stock.updateMoney",vo);
 	}
 
 	@Override
 	public void stockSelling(StockVO vo) {
+		vo.setBuysell(-1);
 		mybatis.insert("stock.preSelling", vo);
-		mybatis.insert("stock.preSellingUpdate", vo);
+		mybatis.update("stock.updateHoldingstock", vo);
 	}
 
 	@Override
@@ -73,6 +75,8 @@ public class TradeDAOImpl implements TradeDAO {
 
 	@Override
 	public int getStockQuantity(StockVO vo) {
+		if(mybatis.selectOne("stock.getStockQuantity", vo) == null)
+			return 0;
 		return mybatis.selectOne("stock.getStockQuantity", vo);
 	}
 
