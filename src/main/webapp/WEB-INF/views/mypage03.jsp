@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,32 +15,16 @@
 $(document).ready(function(){
     $("#jb-checkboxAll-commnet").click(function(){
         if($("#jb-checkboxAll-commnet").prop("checked")){
-            $("input[id=jb-checkbox1-commnet").prop("checked",true);
-            $("input[id=jb-checkbox2-commnet").prop("checked",true);
-            $("input[id=jb-checkbox3-commnet").prop("checked",true);
-            $("input[id=jb-checkbox4-commnet").prop("checked",true);
-            $("input[id=jb-checkbox5-commnet").prop("checked",true);
+            $(".custom-control-input").prop("checked",true);
         }else{
-            $("input[id=jb-checkbox1-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox2-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox3-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox4-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox5-commnet]").prop("checked",false);
+            $("").prop("checked",false);
         }
     })
     $("#jb-checkboxAll").click(function(){
         if($("#jb-checkboxAll").prop("checked")){
-            $("input[id=jb-checkbox1").prop("checked",true);
-            $("input[id=jb-checkbox2").prop("checked",true);
-            $("input[id=jb-checkbox3").prop("checked",true);
-            $("input[id=jb-checkbox4").prop("checked",true);
-            $("input[id=jb-checkbox5").prop("checked",true);
+            $(".custom-control-input").prop("checked",true);
         }else{
-            $("input[id=jb-checkbox1]").prop("checked",false);
-            $("input[id=jb-checkbox2]").prop("checked",false);
-            $("input[id=jb-checkbox3]").prop("checked",false);
-            $("input[id=jb-checkbox4]").prop("checked",false);
-            $("input[id=jb-checkbox5]").prop("checked",false);
+            $(".custom-control-input").prop("checked",false);
         }
     })
 
@@ -162,32 +146,16 @@ $(document).ready(function(){
             </tr>
           </thead>
           <tbody>
-          	<<c:forEach items="${myPost}" var="post">
-            <!-- 
-            <tr>
-               <td>${board.seq }</td>
-               <td align="left">
-                  <a href="getBoard.do?seq=${board.seq }">
-                  ${board.title }
-                  </a>
-               </td>
-               <td>${board.writer }</td>
-               <td>${board.regDate }</td>
-               <td>
-                  <fmt:formatDate value="${board.regDate}"pattern="yyyy-MM-dd"/>
-               </td>
-               <td>${board.cnt }</td>
-            </tr>
-              -->
+          	<c:forEach items="${myBoard}" var="board">
                <tr> 
                  <td><div class="custom-control custom-checkbox">
-                   <input type="checkbox" id="jb-checkbox${post.pno}" class="custom-control-input" name="${post.pno}"><label class="custom-control-label" for="jb-checkbox${post.pno}"></label></div></td>
-                 <th scope="row">${post.pno}</th>
-                 <td>${post.title}</td>
-                 <td>${post.nickname}</td>
-                 <td>${post.bdateTime}</td>
-                 <td>${post.views}</td>
-                 <td>${post.likes}</td>
+                   <input type="checkbox" id="jb-checkbox" class="custom-control-input" name="${board.pno}"><label class="custom-control-label" for="jb-checkbox${board.pno}"></label></div></td>
+                 <th scope="row">${board.pno}</th>
+                 <td>${board.title}</td>
+                 <td>${board.nickname}</td>
+                 <td>${board.bdateTime}</td>
+                 <td>${board.views}</td>
+                 <td>${board.likes}</td>
                </tr>
          	</c:forEach>
          	<!-- 
@@ -285,6 +253,18 @@ $(document).ready(function(){
             </tr>
           </thead>
           <tbody>
+            <c:forEach items="${myPost}" var="post">
+               <tr> 
+                 <td><div class="custom-control custom-checkbox">
+                   <input type="checkbox" id="jb-checkbox${post.pno}" class="custom-control-input" name="${post.pno}"><label class="custom-control-label" for="jb-checkbox${post.pno}"></label></div></td>
+                 <th scope="row">${post.pno}</th>
+                 <td>${post.title}</td>
+                 <td>${post.nickname}</td>
+                 <td>${post.bdateTime}</td>
+                 <td>${post.views}</td>
+                 <td>${post.likes}</td>
+               </tr>
+         	</c:forEach>
             <tr>
               <td><div class="custom-control custom-checkbox">
                 <input type="checkbox" id="jb-checkbox1-commnet" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox1-commnet"></label></div></td>

@@ -69,9 +69,16 @@
 		order by SEQ desc
 	</select>
 	-->
-	<select id="getMyPost" parameterType = "user" resultType="board">
+	<select id="getMyPost" parameterType="user" resultType="board">
 		select * from board
 		where id=#{id}
 		order by pno desc
+	</select>
+	
+
+	<select id="getMyComment" parameterType="user" resultType="comment">
+		select * from commentlist
+		where id=#{id}
+		order by cno desc
 	</select>
 </mapper>
