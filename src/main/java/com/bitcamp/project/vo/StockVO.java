@@ -14,8 +14,15 @@ public class StockVO {
 	private String category;
 	private Date tdatetime;
 	private int buysell;
+	private boolean modifyALL;
 	
 	
+	public boolean isModifyALL() {
+		return modifyALL;
+	}
+	public void setModifyALL(boolean modifyALL) {
+		this.modifyALL = modifyALL;
+	}
 	public String getCategory() {
 		return category;
 	}

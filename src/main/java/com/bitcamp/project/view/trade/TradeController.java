@@ -44,6 +44,50 @@ public class TradeController {
 //		return jsonObject;
 //	}
 
+	@PostMapping(value = "/modify")
+	public String modify(@RequestParam(value = "modifyQu") String qu, @RequestParam(value = "modifyPrice") String price,
+			@RequestParam(value = "uno") String uno, @RequestParam(value = "modify") String modify) {
+//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		String id = "test"; // test 용 아이디
+
+		if (id == null)
+			return "loginWARN";
+
+		StockVO vo = new StockVO();
+
+		vo.setId(id);
+		vo.setUno(Integer.parseInt(uno));
+		vo.setQuantity(Integer.parseInt(qu));
+
+		Map unsettledDetail = tradeService.getUnsettledDetail(vo);
+		if (unsettledDetail == null)
+			return "tradeNOTfound";
+
+		vo.setCategory((String) unsettledDetail.get("category"));
+		vo.setrPrice((Integer) unsettledDetail.get("rPrice"));
+		vo.setStockName((String) unsettledDetail.get("stockName")); 
+
+		if (Integer.parseInt(qu) > (Integer) unsettledDetail.get("quantity"))
+			return "lackOfStock";
+
+		switch (modify) {
+		case "modify":
+
+			break;
+
+		case "cancle":
+			if (Integer.parseInt(qu) == (Integer) unsettledDetail.get("quantity"))
+				vo.setModifyALL(true);
+			else
+				vo.setModifyALL(false);
+
+			tradeService.stockCancel(vo);
+			break;
+		}
+
+		return "stockdealpage";
+	}
+
 	@PostMapping(value = "/selling")
 	public String selling(@RequestParam(value = "sellingQu") String qu,
 			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {

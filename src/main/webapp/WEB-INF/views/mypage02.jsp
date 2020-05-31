@@ -30,8 +30,25 @@ $(document).ready(function(){
       $("#datetimepicker1").on("change.datetimepicker", function (e) {$('#datetimepicker2').datetimepicker('minDate', e.date);});
       $("#datetimepicker2").on("change.datetimepicker", function (e) {$('#datetimepicker1').datetimepicker('maxDate', e.date);});
     });
+
+    // pagination 추가  
+	$(function() {
+		window.pagObj = $('#pagination').twbsPagination({
+			totalPages : 35,
+			visiblePages : 5,
+			onPageClick : function(event, page) {
+				console.info(page + ' (from options)');
+			}
+		}).on('page', function(event, page) {
+			console.info(page + ' (from event listening)');
+		});
+		});     
+    
 });
 </script>
+<style>
+.paging-body{margin-left:355px; margin-bottom: 300px;}
+</style>
 </head>
 <body>
     <!-- header start -->
@@ -229,19 +246,13 @@ $(document).ready(function(){
                 <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i></button>
               </div>   
-              <nav aria-label="..." class="pagination">
-                <ul class="pagination">
-                  <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-                  <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
-                </ul>
-              </nav>
             </div>      
           </form>
+   			<div class="paging">
+				<div class="paging-body">
+					<ul class="pagination" id="pagination"></ul>
+				</div>
+			</div>
       </div>
       <!-- 계좌 끝 -->
       <!-- 거래내역 시작 -->
@@ -393,4 +404,5 @@ $(document).ready(function(){
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="/resources/jpaginate/jquery.twbsPagination.js" type="text/javascript"></script>
 </html>

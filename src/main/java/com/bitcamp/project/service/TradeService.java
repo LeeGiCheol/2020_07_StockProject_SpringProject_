@@ -6,6 +6,8 @@ import com.bitcamp.project.vo.StockVO;
 
 public interface TradeService {
 	public String stockSearch(String stockName);
+	
+	public Map getUnsettledDetail(StockVO vo);
 
 	public void callPrice();
 
@@ -15,7 +17,7 @@ public interface TradeService {
 
 	public void stockCorrection();
 
-	public void stockCancel();
+	public void stockCancel(StockVO vo);
 
 	public Map dayChart(String stockName);
 
