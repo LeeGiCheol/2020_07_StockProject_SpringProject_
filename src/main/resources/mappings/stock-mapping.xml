@@ -86,7 +86,7 @@
 	  	WHERE stockname = #{stockname}
   </select>
   
-  <select id="getMoney" resultType="int">
+  <select id="getMoney" resultType="long">
   	select money from usermoney where id = #{id}
   </select>
 

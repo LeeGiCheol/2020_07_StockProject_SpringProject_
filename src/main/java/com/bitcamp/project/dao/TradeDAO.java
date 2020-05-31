@@ -23,7 +23,7 @@ public interface TradeDAO {
 
 	public void clearChart();
 
-	public int getMoney(String id);
+	public long getMoney(String id);
 	
 	public int getStockQuantity(StockVO vo);
 }
