@@ -6,14 +6,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>글 상세조회</title>
+  <title>포트폴리오 상세조회</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
   <!-- CSS파일 -->
-  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+  <link href="/resources/css/portfolio-board-detail.css" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script>
-    $(document).ready(function(){
+  $(document).ready(function(){
     $("#btnDelete").click(function(){
           if(confirm("정말로 삭제하시겠습니까?")){
             alert("jS구성하기");
@@ -27,68 +27,65 @@
 div > ul > li {width:380px;}
 </style>
 </head>
-
 <body>
   <!-- header start -->
-  <header>
-    <!-- 상단  nav -->
-    <ul class="nav justify-content-end top-nav">
-      <li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
-      <li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
-    </ul>
-    <!-- 상단  nav end -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-      <a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stock
-        gallery</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="통합검색" aria-label="Search">
-            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
-              <i class="fas fa-search"></i>
+      <header>
+        <!-- 상단  nav -->
+        <ul class="nav justify-content-end top-nav">
+            <li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
+            <li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
+        </ul>
+        <!-- 상단  nav end -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
+            <a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stockgallery</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-          </form>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">자유게시판</a> <a class="dropdown-item" href="#">포트폴리오</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">뉴스</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search"
+                            placeholder="통합검색" aria-label="Search">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0"
+                            type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" 
+                    aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">자유게시판</a> <a
+                                class="dropdown-item" href="#">포트폴리오</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">뉴스</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">거래</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">고객센터<span class="sr-only">(current)</span></a></li>
+                            
+                </ul>
             </div>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="#">거래</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">고객센터<span class="sr-only">(current)</span></a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+        </nav>
+    </header>
   <!-- header end -->
   <!-- article start -->
   <!-- 상단메뉴 -->
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
-        <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
         <li style="color:white;" class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed free-board" onclick="location.href='free-board.jsp'">
-          <div> 
-            <h6 class="my-0">자유 게시판</h6>
-          </div>
+          <div><h6 class="my-0">자유 게시판</h6></div> 
         </li>
         <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed news-borad" onclick="location.href='newsboard.jsp'">
-          <div>
-            <h6 class="my-0">뉴스 게시판</h6>
-          </div>
+          <div><h6 class="my-0">뉴스 게시판</h6></div>
         </li>
         <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board" onclick="location.href='portfolio-board.jsp'" >
-          <div>
-            <h6 class="my-0">포트폴리오 게시판</h6>
-          </div>
+          <div><h6 class="my-0">포트폴리오 게시판</h6></div>
         </li>
       </ul>
     </div>
@@ -110,6 +107,8 @@ div > ul > li {width:380px;}
                   <ul class="notice-info">
                     <li class="author"><i class="fa fa-user-circle"></i>${boardDetail.nickname}</li>
                     <li class="date"><i class="far fa-clock"></i>${boardDetail.bdateTime}</li>
+                    <li class="likes"><i class="fas fa-thumbs-up"></i> #3</li>
+           		    <li class="views"><i class="fas fa-eye"></i> #27</li>
                   </ul>
                 </div>
                 <div class="article">
@@ -129,19 +128,17 @@ div > ul > li {width:380px;}
       <i class="fa fa-user-circle"></i> <b> # 댓글 작성자 1</b><br>
       <i class="far fa-clock"></i> # 2020.05.27 17:05<br>
       <br>
-       안맛있는게 뭘까싶네 ㄱ공감 ㅠㅠ
+      		포트폴리오 댓글 1
       <br>
       <hr class="comment-hr"> 
       <!-- 1set -->
       <i class="fa fa-user-circle"></i> <b># 댓글 작성자 2</b><br><i class="far fa-clock"></i> # 2020.05.28 20:05<br>
       <br>
-       다이어트란 글씨 보자마자 아 이 글 당장 안보면 휴게소에서 알감자 안먹는거랑 같다고 생각해서 알감자 먹으러 왔는데 이 시간에 본 내가 미쳤지.....아 와플 미추어버리겠다 아 화
-        려한 크림이 날 감싸는 깡 어쩌지요.....
+      		포트폴리오 댓글 2 
       <br>
       <hr class="comment-hr"> 
       <!-- 1set 끝 -->
     </div> 
-    
     <hr>
     <div class="comment-wrap">
         <div>
