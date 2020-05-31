@@ -130,7 +130,7 @@
             <h6 class="my-0">뉴스 게시판</h6>
           </div>
         </li>
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board" onclick="location.href='#'" >
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board" onclick="location.href='portfolio-board.jsp'" >
           <div>
             <h6 class="my-0">포트폴리오 게시판</h6>
           </div>

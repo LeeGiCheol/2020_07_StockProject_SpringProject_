@@ -9,10 +9,10 @@ package com.bitcamp.project.vo;
 //import java.sql.Date;
 import java.sql.Date;
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 =======
 
->>>>>>> 1fe3c3b02248e5dd0f3dd0f611f10fe24c723358
+>>>>>>> 1fe3c3b02248e5dd0f3dd0f611f10fe24c723358*/
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
