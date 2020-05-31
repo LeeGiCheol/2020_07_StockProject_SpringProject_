@@ -33,8 +33,8 @@ public class StockParsing {
 		int[] down = new int[6]; // 호가 -
 		
 		try {
-//			String url = "https://finance.naver.com/item/main.nhn?code=" + code;
-			String url = "https://finance.naver.com/item/main.nhn?code=" + "005930";
+			String url = "https://finance.naver.com/item/main.nhn?code=" + code;
+//			String url = "https://finance.naver.com/item/main.nhn?code=" + "005930";
 			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
 			doc = Jsoup.connect(url).get();
 			Elements viewLists = doc.select("#middle");
