@@ -5,9 +5,9 @@
 .m-contents {position: relative;margin: 0 auto;z-index: 7;padding-bottom: 10px;max-width: 1260px;}
 @media only screen and (max-width:1599px) {.m-container {padding-right: 0}}
 @media only screen and (max-width: 1324px) {
-	.m-container {padding: 10px 20px 40px 20px;}
-	.m-cont01 {width: auto;height: 1623px;min-width: auto;margin-right: 310px;position: static;}.m-contents .side-area {right: 0;}
-	.m-contents .side-area .ranking {height: 370px}
+   .m-container {padding: 10px 20px 40px 20px;}
+   .m-cont01 {width: auto;height: 1623px;min-width: auto;margin-right: 310px;position: static;}.m-contents .side-area {right: 0;}
+   .m-contents .side-area .ranking {height: 370px}
 }
 .m-cont01 {height: 1605px;margin-right: 310px;position: relative;left: 0;}
 .m-contents .side-area {position: absolute;top: 0;right: 0;width: 300px;}

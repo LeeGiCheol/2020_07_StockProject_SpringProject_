@@ -20,15 +20,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
-import com.bitcamp.project.vo.UserVO;
 
+import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
 public class TradeController {
 	@Autowired
 	TradeService tradeService;
-	
+
 	@Autowired
 	HttpSession session;
 
@@ -43,30 +43,56 @@ public class TradeController {
 //		return jsonObject;
 //	}
 
-	@PostMapping(value = "/buying")
-	public String buying( @RequestParam(value = "buyingQu") String qu,
-			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
+	@PostMapping(value = "/selling")
+	public String selling(@RequestParam(value = "sellingQu") String qu,
+			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {
 //		String id = ((UserVO) session.getAttribute("loginUser")).getId();
- 
-		String id = "test";		//test 용 아이디
+		String id = "test"; // test 용 아이디
+
 		if (id == null)
-			return "/loginWARN";
+			return "loginWARN";
+		StockVO vo = new StockVO();
 
-		int money = tradeService.getMoney(id);
+		vo.setId(id);
+		vo.setQuantity(Integer.parseInt(qu));
+		vo.setStockName(stockName);
+		int myStockQu;
 
-		if (money < Integer.parseInt(price) * Integer.parseInt(qu))
-			return "/lackOfMoney";
+		myStockQu = tradeService.getStockQuantity(vo);
+
+		if (myStockQu < Integer.parseInt(qu))
+			return "lackOfStock";
+
+		vo.setrPrice(Integer.parseInt(price));
+
+		tradeService.stockSelling(vo);
+
+		return "successTrade";
+	}
+
+	@PostMapping(value = "/buying")
+	public String buying(@RequestParam(value = "buyingQu") String qu, @RequestParam(value = "buyingPrice") String price,
+			@RequestParam(value = "sName") String stockName) {
+//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+
+		String id = "test"; // test 용 아이디
+		if (id == null)
+			return "loginWARN";
+
+		long money = tradeService.getMoney(id);
+		if (money < Long.parseLong(price) * Long.parseLong(qu))
+			return "lackOfMoney";
 
 		StockVO vo = new StockVO();
-		
+
 		vo.setId(id);
 		vo.setQuantity(Integer.parseInt(qu));
 		vo.setStockName(stockName);
 		vo.setrPrice(Integer.parseInt(price));
-		
+
 		tradeService.stockBuying(vo);
 
-		return "stockdealpage";
+		return "successTrade";
 	}
 
 	@GetMapping(value = "/trade")
@@ -77,7 +103,7 @@ public class TradeController {
 		ModelAndView mav = new ModelAndView();
 
 		stockName = stockName.toUpperCase();
-//
+
 //		RequestChart rc = new RequestChart();
 //		rc.connection(stockName);
 

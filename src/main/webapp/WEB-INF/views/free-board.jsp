@@ -120,7 +120,7 @@
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
         <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
-        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed free-board" onclick="location.href='free_board.jsp'">
+        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed free-board" onclick="location.href='/board/free'">
           <div> 
             <h6 class="my-0">자유 게시판</h6>
           </div>
@@ -172,18 +172,24 @@
             </tr>
           </thead>
           <tbody>
-          	  <c:forEach items="${boardList}" var="board" >
-	            <tr> 
-	              <td><div class="custom-control custom-checkbox">
-	                <input type="checkbox" id="jb-checkbox1" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
-	              <th scope="row">${board.pno}</th> <!-- 글번호 -->
-	              <td><a onclick="window.location.href='free-board-detail.jsp'">${board.title}</a></td> <!-- 글 제목 -->
-	              <td>${board.nickname}</td> 	  <!-- 글쓴이 -->
-	              <td>${board.bdateTime}</td> 	  <!-- 날짜 --> 
-	              <td>${board.views}</td>		  <!-- 조회수 -->
-	              <td>${board.likes}</td>		  <!-- 추천수 -->
-	            </tr>
-	           </c:forEach>
+			<c:forEach items="${boardList}" var="board" >
+				<c:if test="${board.bno eq 1}">
+		            <tr> 
+		              <td>
+			              <div class="custom-control custom-checkbox">
+				              <input type="checkbox" id="jb-checkbox1" class="custom-control-input check">
+				              <label class="custom-control-label" for="jb-checkbox1"></label>
+			              </div>
+		              </td>
+		              <td >${board.pno}</td> <!-- 글번호 -->
+		              <td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td> <!-- 글 제목 -->
+		              <td>${board.nickname}</td> 	  <!-- 글쓴이 -->
+		              <td>${board.bdateTime}</td> 	  <!-- 날짜 --> 
+		              <td>${board.views}</td>		  <!-- 조회수 -->
+		              <td>${board.likes}</td>		  <!-- 추천수 -->
+		            </tr>
+				</c:if>
+			</c:forEach>
             <!-- <tr>
               <td><div class="custom-control custom-checkbox">
                 <input type="checkbox" id="jb-checkbox2" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox2"></label></div></td>
@@ -238,7 +244,7 @@
           <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
           <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
           <div class="buttons">
-            <button class="btn btn-primary btn-lg btn-block add" type="button" onclick="location.href='writeForm.jsp'">작성</button>
+            <button class="btn btn-primary btn-lg btn-block add" type="button" onclick="location.href='/board/free/write'">작성</button>
             <button class="btn btn-primary btn-lg btn-block remove" type="button">삭제</button>
           </div>
           <nav aria-label="..." class="pagination">

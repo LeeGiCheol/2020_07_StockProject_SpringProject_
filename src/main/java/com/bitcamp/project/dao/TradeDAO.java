@@ -11,7 +11,7 @@ public interface TradeDAO {
 
 	public void stockBuying(StockVO vo);
 
-	public void stockSelling();
+	public void stockSelling(StockVO vo);
 
 	public void stockCorrection();
 
@@ -23,5 +23,7 @@ public interface TradeDAO {
 
 	public void clearChart();
 
-	public int getMoney(String id);
+	public long getMoney(String id);
+	
+	public int getStockQuantity(StockVO vo);
 }

@@ -16,11 +16,13 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	
 	@Override
-	public void insertBoard(BoardVO vo) {
+	public int writeFreeBoard(BoardVO vo) {
+		return boardDAO.writeFreeBoard(vo);
 	}
 
 	@Override
-	public void updateBoard(BoardVO vo) {
+	public int updateBoard(BoardVO vo) {
+		return boardDAO.updateBoard(vo);
 	}
 
 	@Override
@@ -31,8 +33,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public BoardVO getBoard(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return boardDAO.getBoard(vo);
 	}
 
 	@Override

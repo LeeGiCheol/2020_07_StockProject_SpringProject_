@@ -1,27 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>글 상세조회</title>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
- <!-- CSS파일 -->
- <link href="/resources/css/free-board-detail.css" rel="stylesheet">
- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
- <script>
- $(document).ready(function(){
-   $("#btnDelete").click(function(){
-         if(confirm("정말로 삭제하시겠습니까?")){
-           alert("jS구성하기");
-         }else{
-           alert("취소하셨습니다.");
-       };
-	 });
- });
- </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 상세조회</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+  <!-- CSS파일 -->
+  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+     $(document).ready(function(){
+    $("#btnDelete").click(function(){
+          if(confirm("정말로 삭제하시겠습니까?")){
+            alert("jS구성하기");
+          }else{
+            alert("취소하셨습니다.");
+          }
+        })
+  });
+  </script>
 <style>
 div > ul > li {width:380px;}
 </style>
@@ -107,13 +108,12 @@ div > ul > li {width:380px;}
                 </div>
                 <div class="info-wrap">
                   <ul class="notice-info">
-                    <li class="author"><i class="fa fa-user-circle"></i>#작성자 이름</li>
-                    <li class="date"><i class="far fa-clock"></i>#2020.05.27</li>
+                    <li class="author"><i class="fa fa-user-circle"></i>${boardDetail.nickname}</li>
+                    <li class="date"><i class="far fa-clock"></i>${boardDetail.bdateTime}</li>
                   </ul>
                 </div>
                 <div class="article">
-                  예정된 기록 관련 변경사항
-                  곧 번역 기록을 로그인된 상태에서만 확인할 수 있으며 내 활동에서 함께 관리하도록 변경됩니다. 이번 업그레이드 과정에서 이전 기록이 모두 삭제되므로, 필요한 번역을 저장하여 나중에 편리하게 액세스하세요.
+                ${boardDetail.bcontent}
                 </div>
               </div>
               <hr>
@@ -125,7 +125,7 @@ div > ul > li {width:380px;}
   <div>
       <!-- 댓글 -->
       <h2 id="commentBody" class="comment-title">댓글</h2>
-      <div class="commentBody">
+    <div class="commentBody">
       <i class="fa fa-user-circle"></i> <b> # 댓글 작성자 1</b><br>
       <i class="far fa-clock"></i> # 2020.05.27 17:05<br>
       <br>
@@ -168,6 +168,10 @@ div > ul > li {width:380px;}
         <div class="buttons" >
           <button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="window.location.href='free-board.jsp'">목록</button>
           <button type="button" class="btn btn-sm btn-primary" id="btnMyList" onclick="window.location.href='mypage03.jsp'">내가 쓴글</button>
+          
+          <c:if test="${nickname} eq ${loginUser.nickname}">
+          <button type="button" class="btn btn-sm btn-primary" onclick="/board/free/update">수정</button>
+          </c:if>
           <button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="">삭제</button>
         </div>
       </div>

@@ -18,13 +18,13 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	
 	@Override
-	public void insertBoard(BoardVO vo) {
-		
+	public int writeFreeBoard(BoardVO vo) {
+		return mybatis.insert("board.writeFreeBoard", vo);
 	}
 
 	@Override
-	public void updateBoard(BoardVO vo) {
-		
+	public int updateBoard(BoardVO vo) {
+		return mybatis.update("board.updateBoard", vo);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public BoardVO getBoard(BoardVO vo) {
-		return null;
+		return (BoardVO)mybatis.selectOne("board.getBoard", vo);
 	}
 
 	@Override

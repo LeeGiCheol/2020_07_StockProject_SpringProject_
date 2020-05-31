@@ -3,25 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>글 상세조회</title>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
- <!-- CSS파일 -->
- <link href="/resources/css/free-board-detail.css" rel="stylesheet">
- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
- <script>
- $(document).ready(function(){
-   $("#btnDelete").click(function(){
-         if(confirm("정말로 삭제하시겠습니까?")){
-           alert("jS구성하기");
-         }else{
-           alert("취소하셨습니다.");
-       };
-	 });
- });
- </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 상세조회</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+  <!-- CSS파일 -->
+  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+     $(document).ready(function(){
+    $("#btnDelete").click(function(){
+          if(confirm("정말로 삭제하시겠습니까?")){
+            alert("jS구성하기");
+          }else{
+            alert("취소하셨습니다.");
+          }
+        })
+  });
+  </script>
 <style>
 div > ul > li {width:380px;}
 </style>
@@ -108,7 +108,7 @@ div > ul > li {width:380px;}
                 <div class="info-wrap">
                   <ul class="notice-info">
                     <li class="author"><i class="fa fa-user-circle"></i>#작성자 이름</li>
-                    <li class="date"><i class="fas fa-stopwatch"></i>#2020.05.27</li>
+                    <li class="date"><i class="far fa-clock"></i>#2020.05.27</li>
                   </ul>
                 </div>
                 <div class="article">
@@ -125,7 +125,7 @@ div > ul > li {width:380px;}
   <div>
       <!-- 댓글 -->
       <h2 id="commentBody" class="comment-title">댓글</h2>
-      <div class="commentBody">
+    <div class="commentBody">
       <i class="fa fa-user-circle"></i> <b> # 댓글 작성자 1</b><br>
       <i class="far fa-clock"></i> # 2020.05.27 17:05<br>
       <br>

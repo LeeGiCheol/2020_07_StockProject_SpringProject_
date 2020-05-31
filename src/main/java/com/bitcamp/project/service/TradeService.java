@@ -11,7 +11,7 @@ public interface TradeService {
 
 	public void stockBuying(StockVO vo);
 
-	public void stockSelling();
+	public void stockSelling(StockVO vo);
 
 	public void stockCorrection();
 
@@ -20,8 +20,10 @@ public interface TradeService {
 	public Map dayChart(String stockName);
 
 	public Map minuteChart(String stockName);
+	
+	public int getStockQuantity(StockVO vo);
 
 	public void clearChart();
 
-	public int getMoney(String id);
+	public long getMoney(String id);
 }

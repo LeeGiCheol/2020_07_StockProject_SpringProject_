@@ -6,10 +6,10 @@ import com.bitcamp.project.vo.BoardVO;
 
 
 public interface BoardService {
-	void insertBoard(BoardVO vo);
-	void updateBoard(BoardVO vo);
-	void deleteBoard(BoardVO vo);
-	BoardVO getBoard(BoardVO vo);
+	public int writeFreeBoard(BoardVO vo);
+	public int updateBoard(BoardVO vo);
+	public void deleteBoard(BoardVO vo);
+	public BoardVO getBoard(BoardVO vo);
 //	void uploadBoard(BoardVO vo) throws IllegalStateException, IOException;
 	
 	List<BoardVO> getBoardList(BoardVO vo);

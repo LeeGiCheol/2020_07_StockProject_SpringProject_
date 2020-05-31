@@ -14,9 +14,16 @@ public class TradeServiceImpl implements TradeService {
 
 	@Autowired
 	TradeDAO tradeDAO;
+	
+	
 
 	@Override
-	public int getMoney(String id) {
+	public int getStockQuantity(StockVO vo) {
+		return tradeDAO.getStockQuantity(vo);
+	}
+
+	@Override
+	public long getMoney(String id) {
 		return tradeDAO.getMoney(id);
 	}
 
@@ -48,8 +55,8 @@ public class TradeServiceImpl implements TradeService {
 	}
 
 	@Override
-	public void stockSelling() {
-		tradeDAO.stockSelling();
+	public void stockSelling(StockVO vo) {
+		tradeDAO.stockSelling(vo);
 	}
 
 	@Override
