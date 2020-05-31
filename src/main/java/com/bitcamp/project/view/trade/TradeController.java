@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -187,6 +188,9 @@ public class TradeController {
 			down[i] = formatter.format(down_[i]);
 			currentPrice = formatter.format(trade.getCurrentPrice());
 		}
+		
+//		System.out.println("up "+Arrays.toString(up));
+//		System.out.println("down "+Arrays.toString(down));
 
 		// 배열을 json화 시켜서 보낸다 (호가)
 		JSONObject obj = new JSONObject();

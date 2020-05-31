@@ -76,6 +76,9 @@
 		</insert>
 	
 	<update id="updateBoard">
+		UPDATE board 
+		SET title = #{title}, bcontent = #{bcontent}
+		WHERE pno = #{pno}
 		
 	
 	</update>

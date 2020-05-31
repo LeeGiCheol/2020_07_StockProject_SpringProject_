@@ -104,7 +104,7 @@ div > ul > li {width:380px;}
               <div class="notice-header">
                 <div class="title-wrap">
                   <p class="category-info"><a href="/notice">자유게시판</a></p>
-                  <h2 id="" class="notice-title">#게시물제목</h2>
+                  <h2 id="" class="notice-title">${boardDetail.title}</h2>
                 </div>
                 <div class="info-wrap">
                   <ul class="notice-info">
@@ -168,11 +168,11 @@ div > ul > li {width:380px;}
         <div class="buttons" >
           <button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="window.location.href='free-board.jsp'">목록</button>
           <button type="button" class="btn btn-sm btn-primary" id="btnMyList" onclick="window.location.href='mypage03.jsp'">내가 쓴글</button>
-          
-          <c:if test="${nickname} eq ${loginUser.nickname}">
-          <button type="button" class="btn btn-sm btn-primary" onclick="/board/free/update">수정</button>
-          </c:if>
+
+		<c:if test="${loginUser.nickname eq boardDetail.nickname}">	
+          <button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정2</button>
           <button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="">삭제</button>
+		</c:if>
         </div>
       </div>
   </div>
