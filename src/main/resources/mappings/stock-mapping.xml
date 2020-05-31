@@ -7,6 +7,19 @@
 <mapper namespace="stock">
 <resultMap type="stock" id="st"></resultMap>
 
+	<delete id="cancleUnsettled_ALL">
+		delete from unsettled where uno = #{uno};
+		delete from unsettledcheck where uno = #{uno};
+	</delete>
+	
+	<update id="cancleUnsettled">
+		update unsettled set quantity = quantity - #{quantity} where uno = #{uno};
+	</update>
+
+	<select id="getUnsettledDetail" resultType="map">
+		select c.uno , quantity, category , rPrice , stockName from unsettled u join unsettledcheck c on c.uno = u.uno where id = #{id} and c.uno = #{uno};
+	</select>
+
 	<select id="getUnsettled" resultType="map">
 		SELECT * from unsettledcheck
 	</select>

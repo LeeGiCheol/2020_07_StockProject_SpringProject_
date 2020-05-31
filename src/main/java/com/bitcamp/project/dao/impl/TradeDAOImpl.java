@@ -16,6 +16,11 @@ public class TradeDAOImpl implements TradeDAO {
 	private SqlSessionTemplate mybatis;
 
 	@Override
+	public Map getUnsettledDetail(StockVO vo) {
+		return mybatis.selectOne("stock.getUnsettledDetail", vo);
+	}
+
+	@Override
 	public long getMoney(String id) {
 		return mybatis.selectOne("stock.getMoney", id);
 	}
@@ -51,7 +56,7 @@ public class TradeDAOImpl implements TradeDAO {
 	public void stockBuying(StockVO vo) {
 		mybatis.insert("stock.preBuying", vo);
 		vo.setBuysell(-1);
-		mybatis.update("stock.updateMoney",vo);
+		mybatis.update("stock.updateMoney", vo);
 	}
 
 	@Override
@@ -68,17 +73,26 @@ public class TradeDAOImpl implements TradeDAO {
 	}
 
 	@Override
-	public void stockCancel() {
-		// TODO Auto-generated method stub
-
+	public void stockCancel(StockVO vo) {
+		if(vo.isModifyALL())
+			mybatis.delete("stock.cancleUnsettled_ALL", vo);
+		else
+			mybatis.update("stock.cancleUnsettled", vo);
+		
+		vo.setBuysell(1);
+		if(vo.getCategory().equals("sell")) {
+			mybatis.update("stock.updateHoldingstock", vo);
+		} else {
+			mybatis.update("stock.updateMoney", vo);
+		}
+		
 	}
 
 	@Override
 	public int getStockQuantity(StockVO vo) {
-		if(mybatis.selectOne("stock.getStockQuantity", vo) == null)
+		if (mybatis.selectOne("stock.getStockQuantity", vo) == null)
 			return 0;
 		return mybatis.selectOne("stock.getStockQuantity", vo);
 	}
 
-	
 }
