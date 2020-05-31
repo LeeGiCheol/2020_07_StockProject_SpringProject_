@@ -318,14 +318,15 @@
 							</div>
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 								aria-labelledby="pills-contact-tab">
-								<form id="trad_frm" method="post">
+								<form id="trad_frm" method="get">
 									<div class="stock-buying">
 										<div class="choice">
-											<strong>주문구분</strong> <input type="radio" id="radio_modify"
-												checked="checked"> <label for="radio_modify">정정</label>
-											<input type="radio" id="radio_cancle" checked="checked">
-											<label for="radio_cancle">취소</label>
-										</div>
+											<strong>주문구분</strong> 
+											<input type="radio" name="cancleModify" value="cancle">취소
+											<input type="radio" name="cancleModify" value="modify">정정
+<!--  											<label for="radio_cancle">취소</label>
+											<label for="radio_modify">정정</label>
+ -->										</div>
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
@@ -654,7 +655,7 @@
 
 			<tr>
 				<td></td>
-				<td a href="/trade/{{:down}}>{{:down}}</td>
+				<td>{{:down}}</td>
 				<td></td>
 			</tr>
 	</script>

@@ -1,6 +1,5 @@
 package com.bitcamp.project.view.board;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class BoardController {
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		model.addAttribute("boardList", boardList);
 		System.out.println(boardList);
-	
+		
 		return "free-board";
 	}
 	
