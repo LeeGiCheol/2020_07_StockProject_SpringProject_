@@ -1,22 +1,25 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.vo.Info;
+import com.bitcamp.project.vo.StockVO;
 
 import stockCode.RequestChart;
 import stockCode.StockParsing;
@@ -25,6 +28,9 @@ import stockCode.StockParsing;
 public class TradeController {
 	@Autowired
 	TradeService tradeService;
+
+	@Autowired
+	HttpSession session;
 
 //	public static JSONObject getJsonStringFromMap(Map<String, Object> map) {
 //		JSONObject jsonObject = new JSONObject();
@@ -37,16 +43,70 @@ public class TradeController {
 //		return jsonObject;
 //	}
 
+	@PostMapping(value = "/selling")
+	public String selling(@RequestParam(value = "sellingQu") String qu,
+			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {
+//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		String id = "test"; // test 용 아이디
+
+		if (id == null)
+			return "loginWARN";
+		StockVO vo = new StockVO();
+
+		vo.setId(id);
+		vo.setQuantity(Integer.parseInt(qu));
+		vo.setStockName(stockName);
+		int myStockQu;
+
+		myStockQu = tradeService.getStockQuantity(vo);
+
+		if (myStockQu < Integer.parseInt(qu))
+			return "lackOfStock";
+
+		vo.setrPrice(Integer.parseInt(price));
+
+		tradeService.stockSelling(vo);
+
+		return "successTrade";
+	}
+
+	@PostMapping(value = "/buying")
+	public String buying(@RequestParam(value = "buyingQu") String qu, @RequestParam(value = "buyingPrice") String price,
+			@RequestParam(value = "sName") String stockName) {
+//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+
+		String id = "test"; // test 용 아이디
+		if (id == null)
+			return "loginWARN";
+
+		long money = tradeService.getMoney(id);
+		if (money < Long.parseLong(price) * Long.parseLong(qu))
+			return "lackOfMoney";
+
+		StockVO vo = new StockVO();
+
+		vo.setId(id);
+		vo.setQuantity(Integer.parseInt(qu));
+		vo.setStockName(stockName);
+		vo.setrPrice(Integer.parseInt(price));
+
+		tradeService.stockBuying(vo);
+
+		return "successTrade";
+	}
+
 	@GetMapping(value = "/trade")
 	public ModelAndView tradeView(Info vo) {
 		String stockName = vo.getStockName();
-		if(stockName == null)
+		if (stockName == null)
 			stockName = "삼성전자";
 		ModelAndView mav = new ModelAndView();
 
+		stockName = stockName.toUpperCase();
+
 //		RequestChart rc = new RequestChart();
 //		rc.connection(stockName);
-		
+
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);
 
@@ -98,7 +158,7 @@ public class TradeController {
 
 		String stockCode = tradeService.stockSearch(stockName);
 		Info trade = st.parse(stockCode);
-		System.out.println(trade.toString());
+//		System.out.println(trade.toString());
 
 //		int currentPrice = Integer.parseInt(trade.getCurrentPrice());
 //		
@@ -114,8 +174,8 @@ public class TradeController {
 //				
 		int[] up_ = trade.getUp();
 		int[] down_ = trade.getDown();
-		System.out.println("호가 down"+Arrays.toString(down_));
-		
+//		System.out.println("호가 down" + Arrays.toString(down_));
+
 		// 호가 개수
 		String[] up = new String[6];
 		String[] down = new String[6];
@@ -140,7 +200,7 @@ public class TradeController {
 		}
 
 		// 호가
-		System.out.println(jArray.toString());
+//		System.out.println(jArray.toString());
 		map.put("currentPrice", currentPrice); // 현재가
 		map.put("before", trade.getBefore()); // 전일비
 		map.put("updown", trade.getUpDown()); // 등락률

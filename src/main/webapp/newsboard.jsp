@@ -384,32 +384,56 @@ input[type="text"]{
 				<div class="board-calendar">
 
 					<div class="week ">
+					<p id="test-date">
+					</p>
 					<p class="date">
 							<strong style="margin-right: 5px">기준일</strong>
 							<span class="input-group-addon"> 
 								<input type="text" class="dateview">
 								<i class="far fa-calendar-alt"></i>
 							</span>
-						
 							<script type="text/javascript">
 								$(document).ready(function() {
 									$('.input-group-addon').datepicker({
+										dateFormat:'yy-mm-dd',
 										format : 'yyyy.mm.dd',
 										clearBtn : true,
 										language : "ko",
 										orientation : "bottom auto",
 										autoclose : true,
 										todayBtn : "linked"
-									});
+									}).on('changeDate', function(ev){
+										//alert(ev)
+										//console.log(ev)
+										_year = ev.date.getFullYear()
+										_month = ev.date.getMonth()
+										_day = ev.date.getDate()
+										console.log(_year + "/" + _month + "/" + _day)
+										$('#test-date').html(_year + "/" + _month + "/" + _day)
+									})
+
 								});
+								
+								function setToday(){
+									$('.input-group-addon').datepicker('setDate', 'today');
+								}
 							</script>
 							
+<<<<<<< HEAD
+							
+=======
+>>>>>>> 7ba2ee64e00bef2471fdbdc78880a307cb49b443
 							<span class="input-style short">
 								<input type="text" placeholder="뉴스검색" title="뉴스검색" value onkeyup="enter();">
 							</span>
 								<button type="button" onclick="#" class="btn-t gray">검색</button>
+<<<<<<< HEAD
+								<button type="button" onclick="setToday();" class="btn-t gray">새로고침</button>
+						</p>
+=======
 							<button type="button" onclick="#" class="btn-t gray">새로고침</button>
 					</p>
+>>>>>>> 7ba2ee64e00bef2471fdbdc78880a307cb49b443
 					</div>
 					<!-- //week -->
 				</div>

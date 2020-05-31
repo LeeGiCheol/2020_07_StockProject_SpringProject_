@@ -230,19 +230,21 @@
 							id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-home"
 								role="tabpanel" aria-labelledby="pills-home-tab">
-								<form id="trad_frm" method="post">
+								<form id="trad_frm" action="/buying" method="post">
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR"> 원 <span class="buying-check">
+													class="alignR" name="buyingPrice"> 원 <span class="buying-check">
 													<a href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS">매수가능</a>
+												<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
+												
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR"> 주 <span class="buying-check">
+													class="alignR" name="buyingQu"> 주 <span class="buying-check">
 													<a href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													href="#" onclick="#"
@@ -259,7 +261,7 @@
 											</span>
 										</div>
 									</div>
-									<button style="width: 100%; height: auto;">매수주문</button>
+									<button style="width: 100%; height: auto;" type="submit">매수주문</button>
 								</form>
 								<div class="tableDesc">
 									<ul class="dotList">
@@ -273,19 +275,20 @@
 
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel"
 								aria-labelledby="pills-profile-tab">
-								<form id="trad_frm" method="post">
+								<form id="trad_frm" action="/selling" method="post">
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR"> 원 <span class="buying-check">
+													class="alignR" name="sellingPrice"> 원 <span class="buying-check">
 													<a href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS">매도가능</a>
+													<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR"> 주 <span class="buying-check">
+													class="alignR" name="sellingQu"> 주 <span class="buying-check">
 													<a href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													href="#" onclick="#"
@@ -302,7 +305,7 @@
 											</span>
 										</div>
 									</div>
-									<button style="width: 100%; height: auto;">매도주문</button>
+									<button style="width: 100%; height: auto;" type="submit">매도주문</button>
 								</form>
 								<div class="tableDesc">
 									<ul class="dotList">
@@ -315,14 +318,15 @@
 							</div>
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 								aria-labelledby="pills-contact-tab">
-								<form id="trad_frm" method="post">
+								<form id="trad_frm" method="get">
 									<div class="stock-buying">
 										<div class="choice">
-											<strong>주문구분</strong> <input type="radio" id="radio_modify"
-												checked="checked"> <label for="radio_modify">정정</label>
-											<input type="radio" id="radio_cancle" checked="checked">
-											<label for="radio_cancle">취소</label>
-										</div>
+											<strong>주문구분</strong> 
+											<input type="radio" name="cancleModify" value="cancle">취소
+											<input type="radio" name="cancleModify" value="modify">정정
+<!--  											<label for="radio_cancle">취소</label>
+											<label for="radio_modify">정정</label>
+ -->										</div>
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
@@ -482,6 +486,8 @@
 		   var min_lastprice = [${min_lastprice[0]}, ${min_lastprice[1]}, ${min_lastprice[2]}, ${min_lastprice[3]}, ${min_lastprice[4]}, ${min_lastprice[5]}, ${min_lastprice[6]}, ${min_lastprice[7]}, ${min_lastprice[8]}, ${min_lastprice[9]}, ${min_lastprice[10]}, ${min_lastprice[11]}, ${min_lastprice[12]}, ${min_lastprice[13]}, ${min_lastprice[14]}, ${min_lastprice[15]}, ${min_lastprice[16]}, ${min_lastprice[17]}, ${min_lastprice[18]}, ${min_lastprice[19]}, ${min_lastprice[20]}, ${min_lastprice[21]}, ${min_lastprice[22]}, ${min_lastprice[23]}, ${min_lastprice[24]}, ${min_lastprice[25]}, ${min_lastprice[26]}, ${min_lastprice[27]}, ${min_lastprice[28]}, ${min_lastprice[29]}, ${min_lastprice[30]}, ${min_lastprice[31]}, ${min_lastprice[32]}, ${min_lastprice[33]}, ${min_lastprice[34]}, ${min_lastprice[35]}, ${min_lastprice[36]}, ${min_lastprice[37]}, ${min_lastprice[38]}, ${min_lastprice[39]}, ${min_lastprice[40]}, ${min_lastprice[41]}, ${min_lastprice[42]}, ${min_lastprice[43]}, ${min_lastprice[44]}, ${min_lastprice[45]}, ${min_lastprice[46]}, ${min_lastprice[47]}, ${min_lastprice[48]}, ${min_lastprice[49]}, ${min_lastprice[50]}, ${min_lastprice[51]}, ${min_lastprice[52]}, ${min_lastprice[53]}, ${min_lastprice[54]}, ${min_lastprice[55]}, ${min_lastprice[56]}, ${min_lastprice[57]}, ${min_lastprice[58]}, ${min_lastprice[59]}]
 		   
 		   for (var i = 1; i < 60; i++) {
+			   if(min_hr[i]-min_hr[0]>200)
+		   			break; 
 		      minDataPoints.push({
 		            x : new Date(parseInt(min_d[i]/10000),
 		                  parseInt(min_d[i]%10000/100),
@@ -646,6 +652,7 @@
 			</tr>
 	</script>
 	<script id="downPrice" type="text/x-jsrender">
+
 			<tr>
 				<td></td>
 				<td>{{:down}}</td>

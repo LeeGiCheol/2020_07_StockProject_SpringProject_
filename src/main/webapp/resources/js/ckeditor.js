@@ -5,7 +5,7 @@ ClassicEditor
 
         .then(editor => {
 
-            console.log(editor);
+            //console.log(editor);
 
         })
 

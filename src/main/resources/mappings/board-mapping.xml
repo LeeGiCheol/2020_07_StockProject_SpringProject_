@@ -7,7 +7,6 @@
 <!-- 
 	<resultMap id="boardResult" type="board">
 		<id property="pno" column="PNO"/>
-		<result property="id" column="ID"/>
 		<result property="nickname" column="NICKNAME"/>
 		<result property="title" column="TITLE"/>
 		<result property="bcontent" column="BCONTENT"/>
@@ -17,7 +16,8 @@
 		<result property="views" column="VIEWS"/>
 		<result property="views" column="VIEWS"/>
 	</resultMap>
-
+-->
+<!-- 
 	<insert id="insertBoard" parameterType="board">
 		insert into board(SEQ, TITLE, WRITER, CONTENT)
 		values((select nvl(max(SEQ), 0)+1 from board),
@@ -69,16 +69,31 @@
 		order by SEQ desc
 	</select>
 	-->
-	<select id="getMyPost" parameterType="user" resultType="board">
-		select * from board
-		where id=#{id}
-		order by pno desc
+	
+	<insert id="writeFreeBoard">
+		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno)
+		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, 1)	
+		</insert>
+	
+	<update id="updateBoard">
+		
+	
+	</update>
+	
+	<select id="getBoard" parameterType = "board" resultType="board">
+		SELECT * 
+		FROM board
+		WHERE pno = #{pno} 
 	</select>
 	
-
-	<select id="getMyComment" parameterType="user" resultType="comment">
-		select * from commentlist
-		where id=#{id}
-		order by cno desc
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM board
+		ORDER BY pno DESC
+	</select>
+	
+	<select id="getMyPost" parameterType = "user" resultType="board">
+		SELECT * FROM board
+		WHERE id=#{id}
+		ORDER BY pno DESC
 	</select>
 </mapper>

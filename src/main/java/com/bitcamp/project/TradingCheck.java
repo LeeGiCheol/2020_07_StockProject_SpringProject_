@@ -72,7 +72,7 @@ public class TradingCheck {
 		return info;
 	}
 
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 2000)
 	public void TestScheduler() {
 		Map<String, Info> info = stockToMap();
 
@@ -81,29 +81,35 @@ public class TradingCheck {
 		for (Object key : unsettled.keySet()) {
 			HashMap map = (HashMap) unsettled.get(key);
 			int price = info.get(map.get("stockName")).getCurrentPrice();
-			System.out.println("check"+price);
-			System.out.println(key+": ["+map.get("stockName")+"] & [요청 가격: "+map.get("rPrice")+"]");
-			System.out.print("   [현재가 : "+price+"]");
-			
-			if (price == (Integer)map.get("rPrice")) { // 가격 동일시
+			System.out.println("check" + price);
+			System.out.println(key + ": [" + map.get("stockName") + "] & [요청 가격: " + map.get("rPrice") + "]");
+			System.out.print("   [현재가 : " + price + "]");
+
+			if (price == (Integer) map.get("rPrice")) { // 가격 동일시
 				System.out.println(" --> 동일가격 확인 & 거래 실행");
 				StockVO sv = mybatis.selectOne("stock.completeUnsettled", map.get("uno"));
-				sv.setrPrice((Integer)map.get("rPrice"));
-				sv.setStockName((String)map.get("stockName"));
+				sv.setrPrice((Integer) map.get("rPrice"));
+				sv.setStockName((String) map.get("stockName"));
 				mybatis.delete("stock.delUnsettled", sv);
-				
-				if (sv.getTcategory().equals("buy")) { // 구매 거래시
+
+				if (sv.getCategory().equals("buy")) { // 구매 거래시
+					sv.setBuysell(1);
 					System.out.println("case: buy");
-					mybatis.insert("stock.buying",sv);
-					mybatis.update("stock.updateBuying",sv);
-				} else if (sv.getTcategory().equals("sell")) { // 판매 거래시
+					mybatis.insert("stock.buying", sv);
+					if (mybatis.selectOne("stock.getStockQuantity", sv) == null)
+						mybatis.insert("stock.insertHoldingstock", sv);
+					else
+						mybatis.update("stock.updateHoldingstock", sv);
+				} else if (sv.getCategory().equals("sell")) { // 판매 거래시
 					System.out.println("case: sell");
-					mybatis.insert("stock.selling",sv);
-					mybatis.update("stock.updateSelling",sv);
+					sv.setBuysell(1);
+					mybatis.insert("stock.selling", sv);
+					mybatis.update("stock.updateMoney", sv);
 				}
-			} else System.out.println(" --> 거래 실패");
+			} else
+				System.out.println(" --> 거래 실패");
 		}
-		
+
 		Date now = new Date();
 		System.out.println(now);
 	}
