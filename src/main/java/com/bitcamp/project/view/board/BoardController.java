@@ -72,9 +72,15 @@ public class BoardController {
 
 	@PostMapping("/board/free/update")
 	public String updateBoard(BoardVO vo, Model model) {
-		System.out.println("test");
-		System.out.println(vo);
+//		System.out.println("test");
+//		System.out.println(vo);
 		boardService.updateBoard(vo);
+		return "redirect:/board/free";
+	}
+	
+	@GetMapping("/board/free/delete")
+	public String deleteBoard(BoardVO vo) {
+		boardService.deleteBoard(vo);
 		return "redirect:/board/free";
 	}
 	

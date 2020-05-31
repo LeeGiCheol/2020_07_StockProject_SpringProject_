@@ -28,8 +28,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void deleteBoard(BoardVO vo) {
-		
+	public int deleteBoard(BoardVO vo) {
+		return mybatis.delete("board.deleteBoard", vo);
 	}
 
 	@Override
