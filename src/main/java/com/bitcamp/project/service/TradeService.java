@@ -25,5 +25,5 @@ public interface TradeService {
 
 	public void clearChart();
 
-	public int getMoney(String id);
+	public long getMoney(String id);
 }

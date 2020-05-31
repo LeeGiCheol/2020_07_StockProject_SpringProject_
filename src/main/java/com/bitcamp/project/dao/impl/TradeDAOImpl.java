@@ -16,7 +16,7 @@ public class TradeDAOImpl implements TradeDAO {
 	private SqlSessionTemplate mybatis;
 
 	@Override
-	public int getMoney(String id) {
+	public long getMoney(String id) {
 		return mybatis.selectOne("stock.getMoney", id);
 	}
 

@@ -79,9 +79,8 @@ public class TradeController {
 		if (id == null)
 			return "loginWARN";
 
-		int money = tradeService.getMoney(id);
-
-		if (money < Integer.parseInt(price) * Integer.parseInt(qu))
+		long money = tradeService.getMoney(id);
+		if (money < Long.parseLong(price) * Long.parseLong(qu))
 			return "lackOfMoney";
 
 		StockVO vo = new StockVO();

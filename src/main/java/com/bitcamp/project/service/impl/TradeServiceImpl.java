@@ -23,7 +23,7 @@ public class TradeServiceImpl implements TradeService {
 	}
 
 	@Override
-	public int getMoney(String id) {
+	public long getMoney(String id) {
 		return tradeDAO.getMoney(id);
 	}
 
