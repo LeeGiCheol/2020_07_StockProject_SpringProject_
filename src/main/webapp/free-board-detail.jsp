@@ -108,7 +108,7 @@ div > ul > li {width:380px;}
                 <div class="info-wrap">
                   <ul class="notice-info">
                     <li class="author"><i class="fa fa-user-circle"></i>#작성자 이름</li>
-                    <li class="date"><i class="far fa-clock"></i>#2020.05.27</li>
+                    <li class="date"><i class="fas fa-stopwatch"></i>#2020.05.27</li>
                   </ul>
                 </div>
                 <div class="article">

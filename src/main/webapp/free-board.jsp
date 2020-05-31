@@ -17,7 +17,7 @@
 .add{width: 75px; height: 40px; font-size: 16px; margin-left: 233px;}
 .remove{margin-top: 0rem; margin-left:10px;}
 .btn-block+.btn-block{margin-top:0rem;}
-.paging-body{margin-left:300px;}
+.paging-body{margin-left:320px; margin-top: 50px;}
 </style>
 <script>
   $(document).ready(function(){
@@ -141,7 +141,7 @@
 				class="carousel-control-next-icon" aria-hidden="true"></span> <span
 				class="sr-only">Next</span>
 			</a>
-		</div>
+	</div>
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
         <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
