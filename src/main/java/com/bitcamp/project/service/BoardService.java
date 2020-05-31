@@ -1,13 +1,17 @@
-package com.bitcamp.project.dao;
+package com.bitcamp.project.service;
 
 import java.util.List;
 
 import com.bitcamp.project.vo.BoardVO;
 
-public interface BoardDAO {
+
+public interface BoardService {
 	public int writeFreeBoard(BoardVO vo);
 	public int updateBoard(BoardVO vo);
 	public void deleteBoard(BoardVO vo);
 	public BoardVO getBoard(BoardVO vo);
-	public List<BoardVO> getBoardList(BoardVO vo);
+//	void uploadBoard(BoardVO vo) throws IllegalStateException, IOException;
+	
+	List<BoardVO> getBoardList(BoardVO vo);
+	
 }

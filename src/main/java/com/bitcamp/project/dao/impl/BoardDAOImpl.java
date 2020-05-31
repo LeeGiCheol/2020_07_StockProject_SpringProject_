@@ -1,44 +1,45 @@
-package com.bitcamp.project.service.impl;
+package com.bitcamp.project.dao.impl;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.BoardDAO;
-import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.vo.BoardVO;
 
-@Service
-public class BoardServiceImpl implements BoardService{
+@Repository("BoardDAODAO")
+public class BoardDAOImpl implements BoardDAO {
 
 	@Autowired
-	private BoardDAO boardDAO;
+	private SqlSessionTemplate mybatis;
+
+	
 	
 	@Override
 	public int writeFreeBoard(BoardVO vo) {
-		return boardDAO.writeFreeBoard(vo);
+		return mybatis.insert("board.writeFreeBoard", vo);
 	}
 
 	@Override
 	public int updateBoard(BoardVO vo) {
-		return boardDAO.updateBoard(vo);
+		return mybatis.update("board.updateBoard", vo);
 	}
 
 	@Override
 	public void deleteBoard(BoardVO vo) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public BoardVO getBoard(BoardVO vo) {
-		return boardDAO.getBoard(vo);
+		return (BoardVO)mybatis.selectOne("board.getBoard", vo);
 	}
 
 	@Override
 	public List<BoardVO> getBoardList(BoardVO vo) {
-		return boardDAO.getBoardList(vo);
+		return mybatis.selectList("board.getBoardList", vo);
 	}
 
 }

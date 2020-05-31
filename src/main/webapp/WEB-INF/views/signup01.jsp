@@ -62,7 +62,7 @@ body {margin: 0px;}
 	</nav>
 	<!-- header end -->
 	<!-- body start -->
-	<form action="signUpPage" method="POST">
+	<form action="/signUpPage/2" method="GET"  onSubmit="return CheckForm(this)">
 		<div class="signup01_allBody">
 		<div class="signup01_terms1"><strong>약관동의</strong></div>
 		<div class="signup01_middleLine1"></div>
@@ -75,7 +75,7 @@ body {margin: 0px;}
 			자는 회사가 정한 가입 양식에 따라 회원정보를 기입하고 "동의", "확인" 등의 버튼을 누르는 방법으로 회원 가입을
 			신청합니다. ② 회사는 제1항과 같이 회원으로 가입할 것을 신청한 자가 다음 각 호에 해당하지 않는 한 신청한 자를 회원으로
 			등록합니다.</div>
-		<label><input class="signup01_check1" type="checkbox" name="agree" value="Y"> 내용을 확인하였으며, 동의합니다.</label>
+		<label><input class="signup01_check1" type="checkbox" name="terms"> 내용을 확인하였으며, 동의합니다.</label>
 		<div class="signup01_middleLine2"></div>
 		<div class="signup01_policy"><strong>개인정보처리방침</strong></div>
 		<div class="signup01_box2">Stock
@@ -84,10 +84,10 @@ body {margin: 0px;}
 			있습니다. 이에 회사는 정보통신서비스제공자가 준수하여야 하는 대한민국의 관계 법령 및 개인정보보호, 정보보호에 관한 규정을
 			준수하고 있습니다. 회사는 개인정보처리방침을 통하여 이용자들이 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며
 			개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다</div>
-		<label><input class="signup01_check2" type="checkbox" name="agree2" value="Y"/> 내용을 확인하였으며, 동의합니다.</label>
-		<div><button class="signup01_nextButton" data-text-content="true" type="submit">다음</button></div>
+		<label><input class="signup01_check2" type="checkbox" name="terms2"/> 내용을 확인하였으며, 동의합니다.</label>
+		<div><button class="signup01_nextButton" data-text-content="true" type="submit" id="agree">다음</button></div>
 		</div>
-	</form> 
+	</form>
 <!-- body end -->
 <!-- footer start -->
 <div class=footer_div>
@@ -100,5 +100,21 @@ body {margin: 0px;}
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+	
+	<script type="text/javascript">
+		function CheckForm(Join){
+			
+			var termsChk = $("input:checkbox[name='terms']").is(":checked");
+			var termsChk2 = $("input:checkbox[name='terms2']").is(":checked");
+			
+			if(!termsChk || !termsChk2){
+				alert("약관을 확인해주세요.");
+				return false;
+			}
+		}
+
+
+	</script>
+	
 </body>
 </html>

@@ -1,6 +1,6 @@
 package com.bitcamp.project.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class StockVO {
 	private int tno;
@@ -13,8 +13,21 @@ public class StockVO {
 	private String id;
 	private String category;
 	private Date tdatetime;
+	private int buysell;
 	
 	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public int getBuysell() {
+		return buysell;
+	}
+	public void setBuysell(int buysell) {
+		this.buysell = buysell;
+	}
 	public int getUno() {
 		return uno;
 	}
@@ -63,12 +76,7 @@ public class StockVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getTcategory() {
-		return category;
-	}
-	public void setTcategory(String tcategory) {
-		this.category = tcategory;
-	}
+
 	public Date getTdatetime() {
 		return tdatetime;
 	}
