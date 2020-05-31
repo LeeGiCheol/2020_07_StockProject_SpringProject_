@@ -16,7 +16,7 @@
      $(document).ready(function(){
     $("#btnDelete").click(function(){
           if(confirm("정말로 삭제하시겠습니까?")){
-        	location.href='/board/free/delete?pno=${boardDetail.pno}';
+            alert("jS구성하기");
           }else{
             alert("취소하셨습니다.");
           }
@@ -170,8 +170,8 @@ div > ul > li {width:380px;}
           <button type="button" class="btn btn-sm btn-primary" id="btnMyList" onclick="window.location.href='mypage03.jsp'">내가 쓴글</button>
 
 		<c:if test="${loginUser.nickname eq boardDetail.nickname}">	
-          <button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정</button>
-          <button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정2</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="">삭제</button>
 		</c:if>
         </div>
       </div>
@@ -193,10 +193,5 @@ div > ul > li {width:380px;}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-
-<script>
-	
-</script>
 
 </html>

@@ -26,8 +26,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int deleteBoard(BoardVO vo) {
-		return boardDAO.deleteBoard(vo);
+	public void deleteBoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
