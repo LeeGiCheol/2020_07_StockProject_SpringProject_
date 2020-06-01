@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.bitcamp.project.dao.BoardDAO;
 import com.bitcamp.project.vo.BoardVO;
 
-@Repository("BoardDAODAO")
+@Repository("BoardDAO")
 public class BoardDAOImpl implements BoardDAO {
 
 	@Autowired
@@ -28,8 +28,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void deleteBoard(BoardVO vo) {
-		
+	public int deleteBoard(BoardVO vo) {
+		return mybatis.delete("board.deleteBoard", vo);
 	}
 
 	@Override

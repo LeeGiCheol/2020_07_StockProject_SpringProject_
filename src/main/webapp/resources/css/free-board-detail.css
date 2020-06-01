@@ -51,8 +51,8 @@ hr{width: 1070px;}
 .notice-header .info-wrap .notice-info li i {margin-right:4px; color:#fff}
 .article{border: 1px gary solid; height: 500px; padding: 20px;}
 .buttons{width: 1200px; display: -webkit-box;}
-#btnList, #btnDelete, #btnMyList{ width: 66px; height: 40px; font-size: 17px; margin-top: 10px;}
-#btnMyList, #btnDelete{margin-left: 10px; }
+#btnList, #btnDelete, #btnUpdate, #btnMyList{ width: 66px; height: 40px; font-size: 17px; margin-top: 10px;}
+#btnMyList, #btnUpdate, #btnDelete{margin-left: 10px; }
 #btnMyList{width: 115px;}
 /* 댓글 */
 .comment-title {padding:10px 20px; font-weight:normal; font-size:1.5em; background:#5a6268; color:#fff}

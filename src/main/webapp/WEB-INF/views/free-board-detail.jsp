@@ -16,7 +16,7 @@
      $(document).ready(function(){
     $("#btnDelete").click(function(){
           if(confirm("정말로 삭제하시겠습니까?")){
-            alert("jS구성하기");
+              location.href='/board/free/delete?pno=${boardDetail.pno}';
           }else{
             alert("취소하셨습니다.");
           }
@@ -146,23 +146,15 @@ div > ul > li {width:380px;}
     <div class="comment-wrap">
         <div>
             <div class="comment-form">
-                <fieldset>
-                    <div>
-                        <div>
-                            <dl class="comment-guest">
-                                <dt><label for="[##_comment_input_name_##]">이름</label></dt>
-                                <dd><input type="text" name="[##_comment_input_name_##]" id="[##_comment_input_name_##]" placeholder="이름" title="이름 입력"> </dd>
-                                <dt><label for="[##_comment_input_password_##]">비밀번호</label></dt>
-                                <dd><input type="password" name="[##_comment_input_password_##]" id="[##_comment_input_password_##]" placeholder="비밀번호" title="비밀번호 입력"> </dd>
-                            </dl>
-                          </div>
-                      </div>
-                    <dl class="comment-write">
-                        <dt><label for="[##_comment_input_comment_##]">내용</label></dt>
-                        <dd><textarea name="[##_comment_input_comment_##]" id="[##_comment_input_comment_##]" placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea></dd>
-                    </dl>
-                    <button type="submit" class="reply-btn" onclick="">댓글 남기기</button>
-                </fieldset>
+           		<form action="/board/comment" method="POST">
+	                <fieldset>
+	                    <dl class="comment-write">
+	                        <dt><label for="[##_comment_input_comment_##]">내용</label></dt>
+	                        <dd><textarea name="ccomment" id="[##_comment_input_comment_##]" placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea></dd>
+	                    </dl>
+	                    <button type="submit" class="reply-btn" onclick="">댓글 남기기</button>
+	                </fieldset>
+                </form>
             </div>
           </div>
         <div class="buttons" >
@@ -170,8 +162,8 @@ div > ul > li {width:380px;}
           <button type="button" class="btn btn-sm btn-primary" id="btnMyList" onclick="window.location.href='mypage03.jsp'">내가 쓴글</button>
 
 		<c:if test="${loginUser.nickname eq boardDetail.nickname}">	
-          <button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정2</button>
-          <button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="">삭제</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 		</c:if>
         </div>
       </div>
