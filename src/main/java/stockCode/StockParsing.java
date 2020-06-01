@@ -33,8 +33,8 @@ public class StockParsing {
 		int[] down = new int[6]; // 호가 -
 		
 		try {
-			String url = "https://finance.naver.com/item/main.nhn?code=" + code;
-//			String url = "https://finance.naver.com/item/main.nhn?code=" + "005930";
+//			String url = "https://finance.naver.com/item/main.nhn?code=" + code;
+			String url = "https://finance.naver.com/item/main.nhn?code=" + "005930";
 			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
 			doc = Jsoup.connect(url).get();
 			Elements viewLists = doc.select("#middle");
@@ -143,37 +143,45 @@ public class StockParsing {
 					}
 				}
 				
+				
 				// 호가 앞뒤로 6개씩 
 				int right = k + 6;
 				int left  = k - 6;
-				j = 0;
+
+				// index
+				j = 5;
+				int l = 5;
 				
-				for (int i = 0; i < 20; i++) {
-					
+				
+				for (int i = 20; i > 0; i--) {
 					if(left > right) {
 						break;
 					}
 					if(currentPrice == kospiTable[left]) {
-//						System.out.println(currentPrice);
+						System.out.println(currentPrice);
 						left++;
-						i--;
+						i++;
 						continue;
 					}
 					if(left < k) {
-						up[i] = kospiTable[left];
+						down[l] = kospiTable[left];
 						left++;
+						i++;
+						l--;
 					}
 					else {
-						down[j] = kospiTable[left];
+						up[j] = kospiTable[left];
 						left++;
-						j++;
+						j--;
 					}
 				}
 			}
 			
-//			System.out.println("up "+Arrays.toString(up));
-//			System.out.println("down "+Arrays.toString(down));
+			System.out.println("up "+Arrays.toString(up));
+			System.out.println("down "+Arrays.toString(down));
 			
+				
+				
 			
 			Info inf = new Info();
 			inf.setStockName(stockName);
