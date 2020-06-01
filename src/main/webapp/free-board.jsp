@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -197,56 +197,25 @@
             </tr>
           </thead>
           <tbody>
-            <tr> 
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox1" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
-              <th scope="row">5</th>
-              <td><a onclick="window.location.href='free-board-detail.jsp'">이 글은 테스트용 전체글입니다.</a></td>
-              <td>글쓴이</td>
-              <td>2020.05.21</td> 
-              <td>270</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox2" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox2"></label></div></td>
-              <th scope="row">4</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox3" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox3"></label></div></td>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox4" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox4"></label></div></td>
-              <th scope="row">2</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox5" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox5"></label></div></td>
-              <th scope="row">1</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+			<c:forEach items="${boardList}" var="board" >
+				<c:if test="${board.bno eq 1}">
+		            <tr> 
+		              <td>
+			              <div class="custom-control custom-checkbox">
+				              <input type="checkbox" id="jb-checkbox1" class="custom-control-input check">
+				              <label class="custom-control-label" for="jb-checkbox1"></label>
+			              </div>
+		              </td>
+		              <td >${board.pno}</td> <!-- 글번호 -->
+		              <td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td> <!-- 글 제목 -->
+		              <td>${board.nickname}</td> 	  <!-- 글쓴이 -->
+		              <td>${board.bdateTime}</td> 	  <!-- 날짜 --> 
+		              <td>${board.views}</td>		  <!-- 조회수 -->
+		              <td>${board.likes}</td>		  <!-- 추천수 -->
+		            </tr>
+				</c:if>
+			</c:forEach>
+           
           </tbody>
         </table>
         <br>
@@ -364,7 +333,7 @@
    </div>
     </article>
 <!-- article end -->
-<!-- footer start -->
+<!-- footer start --> 
     <div class=footer_div>
         <footer class="footer_info">
               <p><a href="https://www.naver.com">회사소개</a>  |  <a href="https://www.google.co.kr">광고안내</a>  |  <a href="https://www.naver.com">이용약관</a>  |  <a href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a></p>
