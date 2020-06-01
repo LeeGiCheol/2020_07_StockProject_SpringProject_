@@ -13,7 +13,7 @@
   <link href="/resources/css/free-board-detail.css" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script>
-     $(document).ready(function(){
+    $(document).ready(function(){
     $("#btnDelete").click(function(){
           if(confirm("정말로 삭제하시겠습니까?")){
             alert("jS구성하기");
@@ -85,7 +85,7 @@ div > ul > li {width:380px;}
             <h6 class="my-0">뉴스 게시판</h6>
           </div>
         </li>
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board" onclick="location.href='#'" >
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board" onclick="location.href='portfolio-board.jsp'" >
           <div>
             <h6 class="my-0">포트폴리오 게시판</h6>
           </div>

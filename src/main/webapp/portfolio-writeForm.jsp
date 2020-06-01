@@ -11,7 +11,6 @@
 <!-- CSS파일 -->
 <style>
 .ck-blurred, .ck-focused{height: 500px;}
-
 </style>
 <link href="/resources/css/portfolio-writeForm.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

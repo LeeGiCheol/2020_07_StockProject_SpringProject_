@@ -3,23 +3,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>포르폴리오 글쓰기</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
-<link href="/resources/css/signup03.css" rel="stylesheet">
-<!-- 폰트어썸 cdn -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 <style>
+.ck-blurred, .ck-focused{height: 500px;}
 
 </style>
-
+<link href="/resources/css/portfolio-writeForm.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+<script>
+$(document).on('click', '#btnSave', function(e) {
+		e.preventDefault();
+		$("#form").submit();
+	});
+	
+	$(document).on(
+		'click',
+		'#btnList',
+		function(e) {
+		e.preventDefault();
+		location.href = "${pageContext.request.contextPath}/board/getBoardList";
+});
+      
+</script>
+</head>
 <body>
+    <!-- header start -->
     <header>
-        <!-- header start -->
         <!-- 상단  nav -->
         <ul class="nav justify-content-end top-nav">
             <li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
@@ -35,7 +50,6 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <form class="form-inline my-2 my-lg-0">
@@ -64,30 +78,45 @@
                 </ul>
             </div>
         </nav>
-        <!-- header end -->
-        </header>
-
-<!-- article start -->
-    <article>
-        <div class="allbody2">
-            <div class="allbody">
-                <i class="fas fa-user-alt"></i>　회원가입을 축하드립니다
-            </div>
-            <div><button type="button" onclick="location.href='/signInPage'" class="loginbutton" data-text-content="true">로그인</button></div>
-        </div>
-    </article>
-<!-- article end -->
-<!-- footer start -->
-<div class=footer_div>
-	<footer class="footer_info">
-  		<p><a href="https://www.naver.com">회사소개</a>  |  <a href="https://www.google.co.kr">광고안내</a>  |  <a href="https://www.naver.com">이용약관</a>  |  <a href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a></p>
-  		<p>Copyright ⓒ 2020 - 2020 stock gallery. All rights reserved.</p>
-	</footer>
-</div>
-<!-- footer end -->
+    </header>
+  <!-- header end -->
+  <article>
+		<div class="container" role="main">
+			<h2 class="main">포트폴리오 글작성</h2>
+			<br>
+			<br>
+			<br>
+			<form name="form" id="form" role="form" method="post" action="">
+               <div class="mb-3 title">
+                    <label for="title"><b>제목</b></label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" required>
+               </div>
+               <div class="mb-3 title">
+                    <label for="writer"><b>작성자</b></label>
+                    <input type="text" class="form-control" name="writer" id="writer" value="${loginUser.nickname}" readonly>
+               </div>
+			   <div class="mb-3">
+					<label for="content"><b>내용</b></label>
+					<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요"></textarea>
+			   </div>
+			</form>
+			<div>
+				<button type="button" class="btn btn-sm btn-primary" id="btnSave" >저장</button>
+                <button type="button" class="btn btn-sm btn-primary" id="btnCancle" onclick="window.location.href='portfolio-board.jsp'">취소</button>
+			</div>
+		</div>
+	</article>  
+  <!-- footer start -->
+    <div class=footer_div>
+        <footer class="footer_info">
+              <p><a href="https://www.naver.com">회사소개</a>  |  <a href="https://www.google.co.kr">광고안내</a>  |  <a href="https://www.naver.com">이용약관</a>  |  <a href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a></p>
+              <p>Copyright ⓒ 2020 - 2020 stock gallery. All rights reserved.</p>
+        </footer>
+    </div>
+  <!-- footer end --> 
 </body>
+<script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script> <!-- 글쓰기 메뉴들 -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
 </html>
