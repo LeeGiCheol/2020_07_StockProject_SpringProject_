@@ -208,6 +208,10 @@ a.btnStyle {
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
 		</ul>
+		<ul class="nav justify-content-end top-nav">
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
+		</ul>
 		<!-- 상단  nav end -->
 		<!-- 메인  nav -->
 		<nav
@@ -222,16 +226,16 @@ a.btnStyle {
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<form class="form-inline my-2 my-lg-0">
-					<ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav ml-auto">
+					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search"
 							placeholder="통합검색" aria-label="Search">
-						<input class="btn btn-outline-secondary my-2 my-sm-0"
+						<button class="btn btn-outline-secondary my-2 my-sm-0"
 							type="submit">
-						<i class="fas fa-search"></i>
-						</input>
-					</ul>
-				</form>
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+				</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -243,37 +247,13 @@ a.btnStyle {
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">뉴스</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">${stockName}거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
 							class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
-
 		</nav>
 		<!-- 메인 nav end -->
-		<div id="carouselExampleControls" class="carousel slide"
-			data-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에 대체제 부각 '강세'</a>
-				</div>
-				<div class="carousel-item">
-					<a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에 대체제 부각 '강세'</a>
-				</div>
-				<div class="carousel-item">
-					<a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에 대체제 부각 '강세'</a>
-				</div>
-			</div>
-			<a class="carousel-control-prev" href="#carouselExampleControls"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleControls"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
-		</div>
 	</div>
 
 	<!-- 전체메뉴 백그라운드-->
