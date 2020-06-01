@@ -15,6 +15,7 @@ import com.bitcamp.project.service.MyPostService;
 import com.bitcamp.project.service.UserInfoService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
+import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
 
 @Controller
@@ -36,13 +37,16 @@ public class MyPageController {
 	}
 
 	@GetMapping(value="/myPage03")
-	public String myPage03(HttpSession session) {
+	public String myPage03(HttpSession session, @ModelAttribute("nowPage") String nowPage) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-		Map<String, Object> myPost = myPostService.myPostList(loginUser);
-		if(myPost.get("myBoard")!=null)
-			session.setAttribute("myBoard", (List<BoardVO>)myPost.get("myBoard"));
-		if(myPost.get("myComment")!=null)
-			session.setAttribute("myComment",(List<CommentVO>)myPost.get("myComment"));
+		if(nowPage == null || nowPage.equals("")){
+			nowPage = "1";
+		}
+		Map<String, Object> myPost = myPostService.myPostList(loginUser, Integer.parseInt(nowPage));
+		session.setAttribute("myBoard", (List<BoardVO>)myPost.get("myBoard"));
+		session.setAttribute("myComment",(List<CommentVO>)myPost.get("myComment"));
+		session.setAttribute("boardPage",(PagingVO)myPost.get("boardPage"));
+		session.setAttribute("commentPage",(PagingVO)myPost.get("commentPage"));
 		return "mypage03";
 	}
 	
