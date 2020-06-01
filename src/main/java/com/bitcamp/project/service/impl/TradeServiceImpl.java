@@ -17,6 +17,12 @@ public class TradeServiceImpl implements TradeService {
 	
 	
 
+
+	@Override
+	public void modify(StockVO vo) {
+		tradeDAO.modify(vo);
+	}
+
 	@Override
 	public Map getUnsettledDetail(StockVO vo) {
 		return tradeDAO.getUnsettledDetail(vo);

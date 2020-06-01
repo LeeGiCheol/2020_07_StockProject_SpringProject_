@@ -8,6 +8,8 @@ public class StockVO {
 	private int rPrice;
 	private int quantity;
 	private int tprice;
+	private int newPrice;
+	private int newQuantity;
 	private String stockCode;
 	private String stockName;
 	private String id;
@@ -17,6 +19,20 @@ public class StockVO {
 	private boolean modifyALL;
 	
 	
+	
+	
+	public int getNewPrice() {
+		return newPrice;
+	}
+	public void setNewPrice(int newPrice) {
+		this.newPrice = newPrice;
+	}
+	public int getNewQuantity() {
+		return newQuantity;
+	}
+	public void setNewQuantity(int newQuantity) {
+		this.newQuantity = newQuantity;
+	}
 	public boolean isModifyALL() {
 		return modifyALL;
 	}

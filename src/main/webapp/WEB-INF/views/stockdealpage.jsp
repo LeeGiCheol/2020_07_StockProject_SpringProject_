@@ -337,7 +337,7 @@
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 35px;" >단가</label>
-												<input type="text" class="alignR" name="modifyPrice"> 원
+												<input type="text" class="alignR" name="modifyPrice" value=0> 원
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 35px;">수량</label>

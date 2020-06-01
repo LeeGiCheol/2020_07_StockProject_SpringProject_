@@ -69,7 +69,6 @@ public class TradeDAOImpl implements TradeDAO {
 	@Override
 	public void stockCorrection() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -94,5 +93,16 @@ public class TradeDAOImpl implements TradeDAO {
 			return 0;
 		return mybatis.selectOne("stock.getStockQuantity", vo);
 	}
+
+	@Override
+	public void modify(StockVO vo) {
+		mybatis.update("stock.modify", vo);
+		if(vo.getCategory().equals("sell")) {
+			mybatis.update("stock.modifyHoldingStock",vo);
+		} else {  //이거 완성
+			mybatis.update("stock.modifyMoney",vo);
+		}
+	}
+
 
 }

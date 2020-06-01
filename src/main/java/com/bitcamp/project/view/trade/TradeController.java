@@ -64,17 +64,35 @@ public class TradeController {
 
 		vo.setCategory((String) unsettledDetail.get("category"));
 		vo.setrPrice((Integer) unsettledDetail.get("rPrice"));
-		vo.setStockName((String) unsettledDetail.get("stockName")); 
-
-		if (Integer.parseInt(qu) > (Integer) unsettledDetail.get("quantity"))
-			return "lackOfStock";
+		vo.setStockName((String) unsettledDetail.get("stockName"));
 
 		switch (modify) {
 		case "modify":
+			if (Integer.parseInt(qu) == 0)
+				return "modifyNOTzero";
 
+			vo.setNewPrice(Integer.parseInt(price));
+			vo.setNewQuantity(Integer.parseInt(qu));
+			vo.setQuantity((Integer) unsettledDetail.get("quantity"));
+			int myStockQu = tradeService.getStockQuantity(vo);
+
+			if (((String) unsettledDetail.get("category")).equals("sell")
+					&& (myStockQu < Integer.parseInt(qu) - (Integer) unsettledDetail.get("quantity")))
+				return "lackOfStock";
+
+			long money = tradeService.getMoney(id);
+			if (((String) unsettledDetail.get("category")).equals("buy")
+					&& (money < (Long.parseLong(qu) * Long.parseLong(price)
+							- Long.valueOf((int) unsettledDetail.get("rPrice")) * Long.valueOf((int) unsettledDetail.get("quantity")))))
+				return "lackOfMoney";
+
+			tradeService.modify(vo);
 			break;
 
 		case "cancle":
+			if (Integer.parseInt(qu) > (Integer) unsettledDetail.get("quantity"))
+				return "lackOfStock";
+
 			if (Integer.parseInt(qu) == (Integer) unsettledDetail.get("quantity"))
 				vo.setModifyALL(true);
 			else
@@ -84,7 +102,7 @@ public class TradeController {
 			break;
 		}
 
-		return "stockdealpage";
+		return "successTrade";
 	}
 
 	@PostMapping(value = "/selling")

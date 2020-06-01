@@ -7,6 +7,19 @@
 <mapper namespace="stock">
 <resultMap type="stock" id="st"></resultMap>
 
+	<update id="modify">
+		update unsettled set quantity = #{newQuantity} where uno = #{uno};
+		update unsettledcheck set rPrice = #{newPrice} where uno = #{uno};
+	</update>
+	
+	<update id="modifyHoldingStock">
+		update holdingstock set quantity = quantity - #{newQuantity} + #{quantity} where id =  #{id} and stockName = #{stockName}
+	</update>
+	
+	<update id="modifyMoney">
+		update usermoney set money = money + #{quantity}* #{rPrice} - #{newQuantity} * #{newPrice} where id = #{id}
+	</update>
+
 	<delete id="cancleUnsettled_ALL">
 		delete from unsettled where uno = #{uno};
 		delete from unsettledcheck where uno = #{uno};

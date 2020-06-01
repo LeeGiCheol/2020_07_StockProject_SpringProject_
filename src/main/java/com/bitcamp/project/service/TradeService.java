@@ -7,6 +7,9 @@ import com.bitcamp.project.vo.StockVO;
 public interface TradeService {
 	public String stockSearch(String stockName);
 	
+	
+	public void modify(StockVO vo);
+	
 	public Map getUnsettledDetail(StockVO vo);
 
 	public void callPrice();
