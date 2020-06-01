@@ -147,15 +147,16 @@ div > ul > li {width:380px;}
     <div class="comment-wrap">
         <div>
             <div class="comment-form">
-           		<form action="/board/writeComment" method="POST">
+           	 	<form action="/board/writeComment" method="POST"> 
 	                <fieldset>
+	                	<%-- <input type="hidden" name="${boardDetail.pno}"> --%>
 	                    <dl class="comment-write">
 	                        <dt><label for="[##_comment_input_comment_##]">내용</label></dt>
-	                        <dd><textarea name="ccomment" id="[##_comment_input_comment_##]" placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea></dd>
+	                        <dd><textarea name="ccontent" id="[##_comment_input_comment_##]" placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea></dd>
 	                    </dl>
-	                    <button type="submit" class="reply-btn" onclick="">댓글 남기기</button>
+	                    <button type="submit" class="reply-btn">댓글 남기기</button>
 	                </fieldset>
-                </form>
+                </form> 
             </div>
           </div>
         <div class="buttons" >
@@ -182,6 +183,14 @@ div > ul > li {width:380px;}
     </footer>
   </div>
   <!-- footer end -->
+  
+  
+  
+  
+  <script>
+  </script>
+  
+  
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

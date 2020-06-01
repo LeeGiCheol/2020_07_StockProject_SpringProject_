@@ -1,6 +1,10 @@
 package com.bitcamp.project.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +36,15 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public List<CommentVO> getCommentList(CommentVO vo) {
-		return mybatis.selectList("comment.commentList", vo);
+    public List<CommentVO> getCommentList(CommentVO vo){
+		return mybatis.selectList("board.getBoardList", vo);
 	}
 
+	
+
+	@Override
+	public int count(int cno) {
+		return mybatis.selectOne("reply.countReply",cno);
+	}
+	
 }

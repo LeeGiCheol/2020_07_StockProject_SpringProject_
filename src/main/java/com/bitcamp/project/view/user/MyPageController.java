@@ -37,7 +37,7 @@ public class MyPageController {
 	}
 
 	@GetMapping(value="/myPage03")
-	public String myPage03(HttpSession session, @ModelAttribute("nowPage") String nowPage) {
+	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String nowPage) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";

@@ -7,15 +7,29 @@
 
 	
 	<insert id="writeComment">
-		INSERT INTO commentList (pno, id, ccomment, cdatetime)
-		VALUES(#{pno}, #{id}, #{ccomment}, sysdate())	
+		INSERT INTO commentList (pno, id, ccontent, cdatetime)
+		VALUES(#{pno}, #{id}, #{ccontent}, sysdate())	
 	</insert>
 	
-	<select id="commentList" resultType="comment">
+	<!-- <select id="commentList" resultType="comment">
 		SELECT * FROM commentList
 		WHERE pno = #{pno} 
 	</select>
-	
+	 -->
+	 
+	<select id="commentList" resultType="comment">
+		<![CDATA[
+		SELECT A.*
+		FROM(
+					SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, commentlist.* 
+					FROM commentlist, (SELECT @ROWNUM := 0) R
+					) A
+		WHERE pno = #{pno}
+		AND A.ROWNUM <= 5;
+	    ]]>
+	 </select>
+	 
+	 
 	<!-- <update id="updateBoard">
 		UPDATE board 
 		SET title = #{title}, bcontent = #{bcontent}
