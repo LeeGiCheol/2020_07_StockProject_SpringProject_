@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-=======
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 
 
 <!DOCTYPE html>
@@ -15,7 +11,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<<<<<<< HEAD
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -24,18 +19,10 @@
 
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
-=======
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/stockdealpage.css">
-
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<<<<<<< HEAD
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
@@ -212,10 +199,6 @@ a.btnStyle {
   background: #ccc;
 }
 </style>
-=======
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 </head>
 <body>
 
@@ -311,18 +294,6 @@ a.btnStyle {
 									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
 									id="stockBtn" type="submit">
 									<i class="fas fa-search"></i>
-<<<<<<< HEAD
-=======
-								</button>
-								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn">기업정보
-								</button>
-								<button type="button" class="btn btn-secondary btn-sm companydata-btn" id="minute" >
-									분차트보기
-								</button>
-								<button type="button" class="btn btn-secondary btn-sm companydata-btn" id="day">
-									일차트보기
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 								</button>
 								<button type="button"
 									class="btn btn-secondary btn-sm companydata-btn">기업정보
@@ -350,11 +321,6 @@ a.btnStyle {
 								</tr>
 							</thead>
 							<tbody>
-<<<<<<< HEAD
-
-=======
-				
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 								<tr>
 									<td></td>
 									<td>호가</td>
@@ -380,11 +346,7 @@ a.btnStyle {
 								<tr>
 									<td>현재가</td>
 									<td id="price"></td>
-<<<<<<< HEAD
-									<td id="beforeAndUpdown"></td>
-=======
 									<td id="beforeAndUpdown"></td> 										
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 								</tr>
 							</tbody>
 
@@ -449,7 +411,6 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-<<<<<<< HEAD
 													class="alignR" name="buyingPrice"> 원 <span
 													class="buying-check"> 
 												<a href="#" class="buying-check-btn btnStyle btnS">매수가능</a>
@@ -528,24 +489,12 @@ a.btnStyle {
 												</div>
 												
 												<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
-=======
-													class="alignR" name="buyingPrice"> 원 <span class="buying-check">
-													<a href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS">매수가능</a>
-												<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
-												
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-<<<<<<< HEAD
 													class="alignR" name="buyingQu"> 주 <span
 													class="buying-check"> <a href="#" onclick="#"
-=======
-													class="alignR" name="buyingQu"> 주 <span class="buying-check">
-													<a href="#" onclick="#"
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
@@ -580,7 +529,6 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-<<<<<<< HEAD
 													class="alignR" name="sellingPrice"> 원 <span
 													class="buying-check"> 
 													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">매도가능</a> 
@@ -618,23 +566,13 @@ a.btnStyle {
 															<a href="#none" class="popClose">매도가능 닫기</a>
 														</div> 
 													</div>													
-=======
-													class="alignR" name="sellingPrice"> 원 <span class="buying-check">
-													<a href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS">매도가능</a>
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 													<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-<<<<<<< HEAD
 													class="alignR" name="sellingQu"> 주 <span
 													class="buying-check"> <a href="#" onclick="#"
-=======
-													class="alignR" name="sellingQu"> 주 <span class="buying-check">
-													<a href="#" onclick="#"
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
@@ -667,7 +605,6 @@ a.btnStyle {
 									<div class="stock-buying">
 										<div class="choice">
 											<strong>주문구분</strong> 
-<<<<<<< HEAD
 											<input type="radio" id="input-modify" name="cancleModify" value="modify"  onchange="setDisplay();">정정
 											<input type="radio" id="input-cancel" name="cancleModify" value="cancle"  onchange="setDisplay();">취소 
 											<script>
@@ -690,13 +627,6 @@ a.btnStyle {
 											
 											</script>
 										</div>
-=======
-											<input type="radio" name="cancleModify" value="cancle">취소
-											<input type="radio" name="cancleModify" value="modify">정정
-<!--  											<label for="radio_cancle">취소</label>
-											<label for="radio_modify">정정</label>
- -->										</div>
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
@@ -790,7 +720,6 @@ a.btnStyle {
 		</div>
 	</div>
 	
-	
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
  		
 	<script>
@@ -845,10 +774,8 @@ a.btnStyle {
 						history.pushState({"html":data},pageTitle, pageUrl);
 					} */
 
-<<<<<<< HEAD
-	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
+	
 
-	<script>
 	var stockName = "${stockName}";
 	if(stockName === ''){
 		stockName = '삼성전자';
@@ -913,21 +840,6 @@ a.btnStyle {
 		}, 1000); // SET INTERVAL5
 	});
 	
-=======
-
-					//$('#price').text(data.currentPrice);
-					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
-					
-					
-				},
-				error : function(error) {
-					console.log("error");
-				}
-			}); 
-		}, 1000); // SET INTERVAL5
-	});
-	
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 	//window.onload = function () {
 	var a = 0;
 	
@@ -1147,12 +1059,6 @@ a.btnStyle {
 				<td></td>
 			</tr>
 	</script>
-
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 
 </body>
 </html>

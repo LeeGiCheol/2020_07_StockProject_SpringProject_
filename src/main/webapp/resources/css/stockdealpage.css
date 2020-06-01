@@ -1,37 +1,37 @@
 @charset "UTF-8";
 html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
-	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
-	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
-	figure, footer, header, hgroup, menu, nav, section, summary, time,
-	audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	font-size: 14px;
-	background: transparent;
-	list-style: none;
-	box-sizing: border-box;
-	word-break: break-all;
+   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+   figure, footer, header, hgroup, menu, nav, section, summary, time,
+   audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   font-size: 14px;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+   word-break: break-all;
 }
 
 span, em, mark, strong, b, label {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	background: transparent;
-	list-style: none;
-	box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
 }
 
 em, i {
-	font-style: normal;
+   font-style: normal;
 }
 
 a, a:link, a:visited, a:active, a:hover {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 p {
@@ -39,174 +39,152 @@ p {
 }
 
 .container {
-	padding: 20px 0 30px 0;
+   padding: 20px 0 30px 0;
 }
 
 .container>.row .col-md-9 .chartdata {
-	border: 1px solid gray;
-	padding: 10px;
-	margin-bottom: 10px;
+   border: 1px solid gray;
+   padding: 10px;
+   margin-bottom: 10px;
 }
 
 /* footer start */
 .footer_div {
-	border-top: 1px solid gray;
-	padding-top: 20px;
-	padding-bottom: 20px;
+   border-top: 1px solid gray;
+   padding-top: 20px;
+   padding-bottom: 20px;
 }
 
 .footer_info {
-	text-align: center;
+   text-align: center;
 }
 
 .footer_info A:link {
-	text-decoration: none;
-	color: #000000;
+   text-decoration: none;
+   color: #000000;
 }
 
 .footer_info A:visited {
-	text-decoration: none;
-	color: #000000;
+   text-decoration: none;
+   color: #000000;
 }
 
 .footer_info A:active {
-	text-decoration: none;
-	color: #000000;
+   text-decoration: none;
+   color: #000000;
 }
 
 .footer_info A:hover {
-	text-decoration: none;
-	color: #000000;
+   text-decoration: none;
+   color: #000000;
 }
 /* footer end */
 
 /* header style start */
 .header {
-	position: relative;
-	z-index: 7;
-	background: #fff;
-	box-sizing: border-box;
+   position: relative;
+   z-index: 7;
+   background: #fff;
+   box-sizing: border-box;
 }
 
 .m-container {
-	position: relative;
-	max-width: 1260px;
-	margin: 0 auto;
-	padding: 20px 0 30px 0;
-	height: 100%;
+   position: relative;
+   max-width: 1260px;
+   margin: 0 auto;
+   padding: 20px 0 30px 0;
+   height: 100%;
 }
 
 .m-contents {
-	position: relative;
-	margin: 0 auto;
-	z-index: 7;
-	padding-bottom: 10px;
-	max-width: 1260px;
+   position: relative;
+   margin: 0 auto;
+   z-index: 7;
+   padding-bottom: 10px;
+   max-width: 1260px;
 }
 
 @media only screen and (max-width:1599px) {
-	.m-container {
-		padding-right: 0
-	}
+   .m-container {
+      padding-right: 0
+   }
 }
 
 @media only screen and (max-width: 1324px) {
-	.m-container {
-		padding: 10px 20px 40px 20px;
-	}
-	.m-cont01 {
-		width: auto;
-		height: 1623px;
-		min-width: auto;
-		margin-right: 310px;
-		position: static;
-	}
-	.m-contents .side-area {
-		right: 0;
-	}
-	.m-contents .side-area .ranking {
-		height: 370px
-	}
+   .m-container {
+      padding: 10px 20px 40px 20px;
+   }
+   .m-cont01 {
+      width: auto;
+      height: 1623px;
+      min-width: auto;
+      margin-right: 310px;
+      position: static;
+   }
+   .m-contents .side-area {
+      right: 0;
+   }
+   .m-contents .side-area .ranking {
+      height: 370px
+   }
 }
 
 .m-cont01 {
-	height: 1605px;
-	margin-right: 310px;
-	position: relative;
-	left: 0;
+   height: 1605px;
+   margin-right: 310px;
+   position: relative;
+   left: 0;
 }
 
 .m-contents .side-area {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 300px;
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 300px;
 }
 
 .fa-users {
-	padding-right: 5px;
-	color: gray;
+   padding-right: 5px;
+   color: gray;
 }
 
 .bg-light {
-	background-color: white !important;
-	border-bottom: 1px solid gray;
+   background-color: white !important;
+   border-bottom: 1px solid gray;
 }
 
 .btn-outline-success {
-	color: gray;
-	border-color: gray;
+   color: gray;
+   border-color: gray;
 }
 
 .btn-outline-success:hover {
-	color: #fff;
-	background-color: gray;
-	border-color: gray;
+   color: #fff;
+   background-color: gray;
+   border-color: gray;
 }
 
 .navbar {
-	padding: 0.5rem 1rem;
+   padding: 0.5rem 1rem;
 }
 
 .justify-content-end {
-	border-bottom: 1px solid gray;
+   border-bottom: 1px solid gray;
 }
 
 .header .top-nav {
-	font-size: 0.8rem;
-	padding: 0.5rem 1rem;
-	background-color: white;
+   font-size: 0.8rem;
+   padding: 0.5rem 1rem;
+   background-color: white;
 }
 
 #top-nav-font {
-	color: gray;
-}
-.top-nav > a {
-    position: relative;
-    display: block;
-    width: 24px;
-    height: 24px;
-    font-size: 0;
-    z-index: 1;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #eaeaea;
-}
-
-.top-nav dl {
-    margin-left: 8px;
-    margin-right: 5px;
-}
-
-
-.top-nav > a img {
-    width: 100%;
-    background-color: #eaeaea;
+   color: gray;
 }
 /* header style end */
 
 em, address {
-	font-style: normal;
+   font-style: normal;
 }
 
 input, label, button {
@@ -214,179 +192,178 @@ input, label, button {
 }
 
 .row {
-	margin: 0;
-	padding: 20px;
+   margin: 0;
+   padding: 20px;
 }
 
 .carousel-control-prev, .carousel-item {
-	background: gray;
-	text-align: center;
-	font-size: 16px;
-	padding: 10px;
+   background: gray;
+   text-align: center;
+   font-size: 16px;
+   padding: 10px;
 }
 
 .carousel-inner .carousel-item a {
-	color: white;
+   color: white;
 }
 
 .stock-deal-nav {
-	border-bottom: 1px solid gray;
-	font-size: 24px;
-	line-height: 30px;
-	padding: 10px;
+   border-bottom: 1px solid gray;
+   font-size: 24px;
+   line-height: 30px;
+   padding: 10px;
 }
 
 .chartdata, .stock-price-chart, .stock-deal {
-	padding: 0;
-	border: 1px solid gray;
+   padding: 0;
+   border: 1px solid gray;
 }
 
 #chartContainer {
-	height: 300px;
+   height: 300px;
 }
 
 .stock-search-btn {
-	float: right;
+   float: right;
 }
 
 .chartdata-form {
-	position: relative;
-	overflow: hidden;
-	line-height: 23px;
+   position: relative;
+   overflow: hidden;
+   line-height: 23px;
 }
 
 .chartdata-nav, .chartdata-body, .stock-price-chart {
-	padding: 10px;
+   padding: 10px;
 }
 
 .stock-buying {
-	position: relative;
-	height: auto;
-	padding: 10px;
-	color: #666;
-	font-size: 13px;
-	background: #fff;
-	border: 1px solid #dcdcdc;
-	border-top: 0;
+   position: relative;
+   height: auto;
+   padding: 10px;
+   color: #666;
+   font-size: 13px;
+   background: #fff;
+   border: 1px solid #dcdcdc;
+   border-top: 0;
 }
 
 .input-area {
-	margin-top: 15px;
+   margin-top: 15px;
 }
 
 .input-area>div {
-	margin-top: 8px;
+   margin-top: 8px;
 }
 
 .detail label {
-	display: inline-block;
-	margin: -2px 9px 0 0;
-	font-weight: bold;
+   display: inline-block;
+   margin: -2px 9px 0 0;
+   font-weight: bold;
 }
 
 .detail input {
-	width: 69px;
-	background-color: rgb(255, 255, 255);
-	text-align: right !important;
+   width: 69px;
+   background-color: rgb(255, 255, 255);
+   text-align: right !important;
 }
 
 .detail input[type=text] {
-	height: 25px;
-	padding: 0 9px;
-	border: 1px solid #bdbdbd;
-	background: #fff;
-	color: #666;
-	vertical-align: middle;
-	line-height: 23px;
+   height: 25px;
+   padding: 0 9px;
+   border: 1px solid #bdbdbd;
+   background: #fff;
+   color: #666;
+   vertical-align: middle;
+   line-height: 23px;
 }
 
 .buying-check {
-	float: none;
-	margin-left: 6px;
+   float: none;
+   margin-left: 6px;
 }
 
 .buying-check .buying-check-btn {
-	border: 1px solid #bec6c9;
-	background: #e7ecf2;
-	color: #474c52;
+   border: 1px solid #bec6c9;
+   background: #e7ecf2;
+   color: #474c52;
 }
 
 a.btnS {
-	min-width: 32px;
-	padding: 1px 7px 2px;
-	color: #fff;
-	font-size: 12px;
+   min-width: 32px;
+   padding: 1px 7px 2px;
+   color: #fff;
+   font-size: 12px;
 }
 
 a.btnStyle {
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
+   display: inline-block;
+   text-align: center;
+   vertical-align: middle;
 }
 
 a.btnSum {
-	border: 1px solid #7f7f7f;
-	background: #fff;
-	color: #666;
-	text-align: right;
+   border: 1px solid #7f7f7f;
+   background: #fff;
+   color: #666;
+   text-align: right;
 }
 
 a.btnSum:before {
-	content: "+";
+   content: "+";
 }
 
 .sumArea {
-	position: relative;
-	left: 0;
-	overflow: hidden;
-	padding: 0 25px;
-	width: 510px;
-	/* background: url(/DW/images/stock/bg_dashline.png) no-repeat 25px 0; */
+   position: relative;
+   left: 0;
+   overflow: hidden;
+   padding: 0 25px;
+   width: 510px;
 }
 
 .sumArea .text {
-	float: left;
-	display: inline-block;
-	margin-top: 21px;
-	line-height: 22px;
-	font-size: 12px;
+   float: left;
+   display: inline-block;
+   margin-top: 21px;
+   line-height: 22px;
+   font-size: 12px;
 }
 
 .sumArea .text em {
-	font-size: 18px;
+   font-size: 18px;
 }
 
 .sumArea .text strong {
-	color: #ca2623;
-	font-size: 18px;
-	font-weight: bold;
+   color: #ca2623;
+   font-size: 18px;
+   font-weight: bold;
 }
 
 .sumArea .text strong span {
-	font-weight: normal;
+   font-weight: normal;
 }
 
 .tableDesc {
-	margin-top: 5px;
+   margin-top: 5px;
 }
 
 .dotList {
-	margin-top: 6px;
-	color: #666;
+   margin-top: 6px;
+   color: #666;
 }
 
 .dotList li {
-	color: #666;
-	line-height: 16px;
+   color: #666;
+   line-height: 16px;
 }
 
 .dotList li {
-	margin-top: 2px;
-	margin-left: 15px;
-	color: #888;
-	font-size: 12px;
-	line-height: 19px;
-	list-style: disc;
+   margin-top: 2px;
+   margin-left: 15px;
+   color: #888;
+   font-size: 12px;
+   line-height: 19px;
+   list-style: disc;
 }
 .stock-buying .choice{
     margin-top: 5px;

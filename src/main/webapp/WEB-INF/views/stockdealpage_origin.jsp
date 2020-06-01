@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 
 
 <!DOCTYPE html>
@@ -11,194 +11,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
 
-<link rel="stylesheet"
-	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script>
-
-</script>
-<style>
-/*
-.layerStock {
-	z-index: 1;
-	position: relative;
-	padding: 20px 15px;
-	margin-top: 20px;
-	width: auto;
-	background: #fff;
-	border: 2px solid #474747;
-	display: block;
-}
-
-.layerBox h1 {
-	color: #0078af;
-	font-size: 14px;
-}
-
-.layerStock .conSection {
-	margin-top: 15px;
-}
-
-.stockBox {
-	position: relative;
-	z-index: 9;
-	padding: 4px 75px 4px 0;
-	border-top: 1px solid #c3c3c3;
-}
-*/
-.layerPopup{
-font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", sans-serif;
-line-height: 20px;
-letter-spacing: -1px;
-font-size: 13px;
-margin: 0;
-padding: 0;
-position: relative;
-font-weight: normal;
-color: #767676;
-display: none;
-}
-.layerPopup .layerStock {
-    z-index: 1;
-    position: absolute;
-    left: 0;
-    top: 3px;
-    padding: 20px 15px;
-    width: 531px;
-    background: #fff;
-    border: 2px solid #474747;
-}
-.layerPopup .layerBox h1 {
-    color: #0078af;
-    font-size: 14px;
-}	
-.layerPopup .layerStock .conSection {
-    margin-top: 15px;
-}
-.layerPopup .layerStock .conSection .stockBox {
-    width: auto;
-}
-.stockBox {
-    position: relative;
-    z-index: 9;
-    width: 885px;
-    padding: 4px 75px 4px 0;
-    border-top: 1px solid #c3c3c3;
-}
-.stockBox td.title {
-    height: 37px;
-    color: #393939;
-    font-size: 13px;
-    font-weight: bold;
-}
-.stockBox td {
-    vertical-align: middle;
-}
-input[type=text], input[type=password], select, textarea {
-    height: 25px;
-    padding: 0 9px;
-    border: 1px solid #bdbdbd;
-    background: #fff;
-    color: #666;
-    font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", "sans-serif";
-    vertical-align: middle;
-    line-height: 23px;
-}
-.alignR {
-    text-align: right!important;
-}
-.stockBox .btnSearch {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    margin-top: -13px;
-}
-a.btnWGray {
-    border: 1px solid #bec6c9;
-    background: #e7ecf2;
-    color: #474c52;
-}
-a.btnS {
-    min-width: 32px;
-    padding: 1px 7px 2px;
-    color: #fff;
-    font-size: 12px;
-}
-a.btnStyle {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-}
-.layerPopup .layerBox table {
-    margin-top: 0;
-}
-.tableDefault {
-    width: 100%;
-    margin-top: 13px;
-    border-top: 2px solid #7d7d7d;
-    border-bottom: 1px solid #e6e6e6;
-}
-.tableSmall tbody td.title {
-    padding: 5px 0;
-    color: #666;
-    font-weight: bold;
-    text-align: left;
-    background: #f5fafd;
-}
-.layerPopup .layerBox a.popClose {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    display: block;
-    width: 15px;
-    height: 15px;
-    text-indent: -9999px;
-    background: url(resources/img/btn_layerclose.png) no-repeat left top;
-}
-.tableDefault thead th {
-    padding: 7px 0 8px;
-    border-left: 1px solid #e6e6e6;
-    background: #f5fafd;
-    text-align: center;
-}
-.tableSmall thead th {
-    padding: 5px 0;
-    text-align: center;
-    font-size: 12px;
-}
-.tableCol tbody td, .tableCol tfoot td {
-    text-align: center;
-}
-.tableDefault td {
-    height: 30px;
-    padding: 2px 0;
-    border-top: 1px solid #e6e6e6;
-    background: #fff;
-}
-.tableCol thead th.first {
-    border-left: none;
-}
-.tableCol tbody td .tdArea, .tableCol tfoot td {
-    padding: 3px 8px !important;
-    overflow: hidden;
-}
-#mySelect:disabled {
-  background: #ccc;
-}
-</style>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -298,12 +121,12 @@ a.btnStyle {
 								<button type="button"
 									class="btn btn-secondary btn-sm companydata-btn">기업정보
 								</button>
-								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn" id="minute">
-									분차트보기</button>
-								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn" id="day">
-									일차트보기</button>
+								<button type="button" class="btn btn-secondary btn-sm companydata-btn" id="minute" >
+									분차트보기
+								</button>
+								<button type="button" class="btn btn-secondary btn-sm companydata-btn" id="day">
+									일차트보기
+								</button>
 							</form>
 
 						</div>
@@ -321,6 +144,7 @@ a.btnStyle {
 								</tr>
 							</thead>
 							<tbody>
+				
 								<tr>
 									<td></td>
 									<td>호가</td>
@@ -411,90 +235,17 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" name="buyingPrice"> 원 <span
-													class="buying-check"> 
-												<a href="#" class="buying-check-btn btnStyle btnS">매수가능</a>
-												<script>
-												$(document).ready(function() {
-													  $(".popClose, .nav-item").click(function(){
-													    $(".layerPopup").hide();
-													  });
-													  $(".buying-check-btn").click(function(){
-													    $(".layerPopup").show();
-													  });
-													  $("input:text[numberOnly]").on("keyup", function() {
-														    $(this).val($(this).val().replace(/[^0-9]/g,""));
-														});
-
-
-													});
-												</script>
-												<div class="layerPopup">
-													<div class="layerBox layerStock" id="poplayer_possible"
-														style="display: block;">
-														<h1>매수가능</h1>
-														<!-- conSection -->
-														<div class="conSection">
-															<!-- 조회 -->
-															<div class="stockBox">
-																<fieldset>
-																	
-																	<table>
-																		<colgroup>
-																			<col width="12%">
-																			<col width="40%">
-																			<col width="10%">
-																			<col>
-																		</colgroup>
-																		<tbody>
-																			<tr>
-																				<td class="title"><span>종목명</span></td>
-																				<td><div class="tdArea">A003540 대신증권</div></td>
-																				<td class="title"><span>단가</span></td>
-																				<td>
-																					<div class="tdArea">
-																						<input type="text" class="alignR" id="possible_nOrdUnpr"
-																							name="possible_nOrdUnpr" value="9,900" title="단가 입력">
-																					</div>
-																				</td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<div class="btnSearch">
-																		<a href="#none" onclick="self_sch(2);"
-																			class="btnStyle btnS btnWGray">조회</a>
-																	</div>
-																</fieldset>
-															</div>
-															<!-- //조회 -->
-							
-															<table class="tableDefault tableRow tableSmall">
-																<colgroup>
-																	<col width="20%">
-																	<col>
-																	<col width="20%">
-																	<col width="30%">
-																</colgroup>
-																<tbody>
-																	<tr>
-																		<td class="title"><span>총예수금</span></td>
-																		<td><div class="tdArea">10,000,000원</div></td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-														<!--// conSection-->
-														<a href="#none" class="popClose">매수가능 닫기</a>
-													</div>
-												</div>
-												
+													class="alignR" name="buyingPrice"> 원 <span class="buying-check">
+													<a href="#" onclick="#"
+													class="buying-check-btn btnStyle btnS">매수가능</a>
 												<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
+												
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR" name="buyingQu"> 주 <span
-													class="buying-check"> <a href="#" onclick="#"
+													class="alignR" name="buyingQu"> 주 <span class="buying-check">
+													<a href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
@@ -529,50 +280,16 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" name="sellingPrice"> 원 <span
-													class="buying-check"> 
-													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">매도가능</a> 
-														<div class="layerPopup">
-															<div class="layerBox layerStock" id="poplayer_possible" style="display: block;">
-															<h1>매도가능</h1>
-															<!-- conSection -->
-															<div class="conSection">
-																<!-- tableWrap -->
-																<div class="tableWrap tableDataWrap">
-																	<table class="tableDefault tableCol tableSmall" summary="종목명, 잔고수량, 매도가능수량에 관한 정보입니다.">
-																		<colgroup>
-																			<col width="33%">
-																			<col>
-																			<col width="33%">
-																		</colgroup>
-																		<thead>
-																			<tr>
-																				<th scope="col" class="first">종목명</th>
-																				<th scope="col">잔고수량</th>
-																				<th scope="col">매도가능수량</th>
-																			</tr>
-																		</thead>
-																		<tbody>
-																				<tr>
-																					<td colspan="3" class="first">  
-																						<div class="tdArea">데이터가 존재하지 않습니다.</div>
-																					</td>
-																				</tr>
-																		</tbody>
-																	</table>
-																</div>
-															</div>
-															<!--// conSection-->
-															<a href="#none" class="popClose">매도가능 닫기</a>
-														</div> 
-													</div>													
+													class="alignR" name="sellingPrice"> 원 <span class="buying-check">
+													<a href="#" onclick="#"
+													class="buying-check-btn btnStyle btnS">매도가능</a>
 													<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR" name="sellingQu"> 주 <span
-													class="buying-check"> <a href="#" onclick="#"
+													class="alignR" name="sellingQu"> 주 <span class="buying-check">
+													<a href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
@@ -601,94 +318,30 @@ a.btnStyle {
 							</div>
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 								aria-labelledby="pills-contact-tab">
-								<form id="trad_frm" method="get">
+								<form id="trad_frm" action="/modify" method="post">
 									<div class="stock-buying">
 										<div class="choice">
 											<strong>주문구분</strong> 
-											<input type="radio" id="input-modify" name="cancleModify" value="modify"  onchange="setDisplay();">정정
-											<input type="radio" id="input-cancel" name="cancleModify" value="cancle"  onchange="setDisplay();">취소 
-											<script>
-											function setDisplay(){
-											    if($('input:radio[id=input-modify]').is(':checked')){
-											        $('.btn-modify').show();
-											        $('.btn-cancel').hide();
-											        $('.alignA').show();
-											        $('.alignB').hide();
-											        //document.getElementById("mySelect").disabled = false;
-											    }else{
-											        $('.btn-cancel').show();
-											        $('.btn-modify').hide();
-											        $('.alignB').show();
-											        $('.alignA').hide();
-											        //document.getElementById("mySelect").disabled = true;
-											    }
-											}
-											document.getElementById('input-modify').checked = true;
-											
-											</script>
-										</div>
+											<input type="radio" name="modify" value="cancle">취소
+											<input type="radio" name="modify" value="modify">정정
+<!--  											<label for="radio_cancle">취소</label>
+											<label for="radio_modify">정정</label>
+ -->										</div>
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
-												<input type="text" class="alignR" > 
-												<span class="buying-check"> 
-													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">미체결잔량</a>
-														<div class="layerPopup">
-															<div class="layerBox layerStock" id="poplayer_un_conclusion" style="display: block;">
-																<h1>미체결잔량</h1>
-																<!-- conSection -->
-																<div class="conSection">
-																	<!-- tableWrap -->
-																	<div class="tableWrap tableDataWrap">
-																		<table class="tableDefault tableCol tableSmall" summary="미체결잔량에 관한 주문번호, 종목명, 주문구분, 주문단가, 미체결잔량에 관한 정보입니다.">
-																			<colgroup>
-																				<col width="10%">
-																				<col>
-																				<col width="8%">
-																				
-																					<col width="8%">
-																				
-																				<col width="20%">
-																				<col width="15%">
-																				<col width="15%">
-																			</colgroup>
-																			<thead>
-																				<tr>
-																					<th scope="col" class="first">주문번호</th>
-																					<th scope="col">종목명</th>
-																					<th scope="col">구분</th>
-																					
-																						<th scope="col">신용</th>
-																					
-																					<th scope="col">주문단가</th>
-																					<th scope="col">미체결잔량</th>
-																					<th scope="col">시간외구분</th>
-																				</tr>
-																			</thead>
-																			<tbody>
-																						<tr>
-																							<td colspan="7" class="first">  
-																								<div class="tdArea"></div>
-																							</td>
-																						</tr>
-																			</tbody>
-																		</table>
-																	</div>
-																</div>
-																<!--// conSection-->
-																<a href="#none" class="popClose">미체결잔량 닫기</a>
-																</div>
-															</div>													
-														</span>
-													</div>
+												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;" >주문번호</label>
+												<input type="text" class="alignR" name="uno"> <span
+													class="buying-check"> <a href="#" onclick="#"
+													class="buying-check-btn btnStyle btnS">미체결잔량</a>
+												</span>
+											</div>
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 35px;" class="btn-cc" >단가</label>
-												<input type="text" class="alignA" id="mySelect" numberOnly> 
-												<input type="text" class="alignB" id="mySelect" value="0" style="display: none;" disabled> 원
+												<label for="nOrdUnpr" style="margin-right: 35px;" >단가</label>
+												<input type="text" class="alignR" name="modifyPrice" value=0> 원
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 35px;">수량</label>
-												<input type="text" class="alignR" numberOnly> 주
+												<input type="text" class="alignR" name="modifyQu"> 주
 
 											</div>
 										</div>
@@ -699,8 +352,7 @@ a.btnStyle {
 											</span>
 										</div>
 									</div>
-									<button style="width: 100%; height: auto;" class="btn-modify">정정주문</button>
-									<button style="width: 100%; height: auto; display: none;" class="btn-cancel">취소주문</button>
+									<button style="width: 100%; height: auto;" type="submit">정정주문</button>
 								</form>
 								<div class="tableDesc">
 									<ul class="dotList">
@@ -719,6 +371,7 @@ a.btnStyle {
 			</div>
 		</div>
 	</div>
+	
 	
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
  		
@@ -766,6 +419,13 @@ a.btnStyle {
 						$("#down").html(str2);
 						$("#stockName").html(data.stockName);
 						
+						
+					/* }
+					else{
+						alert("존재하지 않는 종목입니다 다시 검색해주세요><");
+						
+						history.pushState({"html":data},pageTitle, pageUrl);
+					} */
 
 
 					//$('#price').text(data.currentPrice);
@@ -999,6 +659,8 @@ a.btnStyle {
 				<td></td>
 			</tr>
 	</script>
+
+	
 
 </body>
 </html>
