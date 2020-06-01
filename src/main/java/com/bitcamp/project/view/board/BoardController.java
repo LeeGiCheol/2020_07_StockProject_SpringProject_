@@ -78,4 +78,10 @@ public class BoardController {
 		return "redirect:/board/free";
 	}
 	
+	@GetMapping("/board/free/delete")
+	public String deleteBoard(BoardVO vo) {
+		boardService.deleteBoard(vo);
+		return "redirect:/board/free";
+	}
+	
 }

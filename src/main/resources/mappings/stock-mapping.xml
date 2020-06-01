@@ -56,7 +56,7 @@
 	</select>
 	
 	<insert id="buying">
-		insert into tradinghistory(id, stockName, category, tdatetime, price, quantity)
+		insert into tradinghistory(id, stockName, category, tdatetime, tprice, quantity)
 		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
 		INSERT INTO stocknotice(id, tno)
 		SELECT id, tno
@@ -91,7 +91,7 @@
 	
 	
 	<insert id="selling">
-		insert into tradinghistory(id, stockName, category, tdatetime, price, quantity)
+		insert into tradinghistory(id, stockName, category, tdatetime, tprice, quantity)
 		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
 		
 		INSERT INTO stocknotice(id, tno)

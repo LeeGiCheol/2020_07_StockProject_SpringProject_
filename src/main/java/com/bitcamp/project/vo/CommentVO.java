@@ -6,7 +6,6 @@ public class CommentVO {
 	private int cno;
 	private int pno;
 	private String id;
-	private String nickname;
 	private String ccontent;
 	private Date cdataTime;
 	public int getCno() {
@@ -27,12 +26,6 @@ public class CommentVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
 	public String getCcontent() {
 		return ccontent;
 	}
@@ -47,7 +40,7 @@ public class CommentVO {
 	}
 	@Override
 	public String toString() {
-		return "CommentVO [cno=" + cno + ", pno=" + pno + ", id=" + id + ", nickname=" + nickname + ", ccontent="
+		return "CommentVO [cno=" + cno + ", pno=" + pno + ", id=" + id + ", ccontent="
 				+ ccontent + ", cdataTime=" + cdataTime + "]";
 	}
 	
