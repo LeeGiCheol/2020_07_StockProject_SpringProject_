@@ -31,5 +31,6 @@
 		<mapper resource="mappings/user-mapping.xml" />
 		<mapper resource="mappings/stock-mapping.xml"/>
 		<mapper resource="mappings/board-mapping.xml"/>
+		<mapper resource="mappings/comment-mapping.xml"/>
 	</mappers>
 </configuration>

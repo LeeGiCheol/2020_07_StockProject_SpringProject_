@@ -76,9 +76,16 @@
 		</insert>
 	
 	<update id="updateBoard">
-		
-	
+		UPDATE board 
+		SET title = #{title}, bcontent = #{bcontent}
+		WHERE pno = #{pno}
 	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM board
+		WHERE pno = #{pno}
+	</delete>
+	
 	
 	<select id="getBoard" parameterType = "board" resultType="board">
 		SELECT * 

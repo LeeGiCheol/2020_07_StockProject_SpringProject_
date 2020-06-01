@@ -6,6 +6,10 @@ import com.bitcamp.project.vo.StockVO;
 
 public interface TradeDAO {
 	public String stockSearch(String stockName);
+	
+	public void modify(StockVO vo);
+	
+	public Map getUnsettledDetail(StockVO vo);
 
 	public void callPrice();
 
@@ -15,7 +19,7 @@ public interface TradeDAO {
 
 	public void stockCorrection();
 
-	public void stockCancel();
+	public void stockCancel(StockVO vo);
 
 	public Map dayChart(String stockName);
 

@@ -73,7 +73,7 @@
             <div class="allbody">
                 <i class="fas fa-user-alt"></i>　회원가입을 축하드립니다
             </div>
-            <div><button type="button" onclick="/signInPage" class="loginbutton" data-text-content="true">로그인</button></div>
+            <div><button type="button" onclick="location.href='/signInPage'" class="loginbutton" data-text-content="true">로그인</button></div>
         </div>
     </article>
 <!-- article end -->

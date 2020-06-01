@@ -10,13 +10,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
   <!-- CSS파일 -->
-  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+  <link href="/resources/css/free-board-detail1.css" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script>
      $(document).ready(function(){
     $("#btnDelete").click(function(){
           if(confirm("정말로 삭제하시겠습니까?")){
-            alert("jS구성하기");
+              location.href='/board/free/delete?pno=${boardDetail.pno}';
           }else{
             alert("취소하셨습니다.");
           }
@@ -104,7 +104,7 @@ div > ul > li {width:380px;}
               <div class="notice-header">
                 <div class="title-wrap">
                   <p class="category-info"><a href="/notice">자유게시판</a></p>
-                  <h2 id="" class="notice-title">#게시물제목</h2>
+                  <h2 id="" class="notice-title">${boardDetail.title}</h2>
                 </div>
                 <div class="info-wrap">
                   <ul class="notice-info">
@@ -123,56 +123,49 @@ div > ul > li {width:380px;}
       </div>
     </div>
   <div>
+  
+  <c:forEach var="commentList" items="${commentList}">
       <!-- 댓글 -->
       <h2 id="commentBody" class="comment-title">댓글</h2>
     <div class="commentBody">
-      <i class="fa fa-user-circle"></i> <b> # 댓글 작성자 1</b><br>
-      <i class="far fa-clock"></i> # 2020.05.27 17:05<br>
+      <i class="fa fa-user-circle"></i> <b>${commentList.nickname}</b><br>
+      <i class="far fa-clock"></i>${commentList.cdataTime}<br>
       <br>
-       안맛있는게 뭘까싶네 ㄱ공감 ㅠㅠ
-      <br>
-      <hr class="comment-hr"> 
-      <!-- 1set -->
-      <i class="fa fa-user-circle"></i> <b># 댓글 작성자 2</b><br><i class="far fa-clock"></i> # 2020.05.28 20:05<br>
-      <br>
-       다이어트란 글씨 보자마자 아 이 글 당장 안보면 휴게소에서 알감자 안먹는거랑 같다고 생각해서 알감자 먹으러 왔는데 이 시간에 본 내가 미쳤지.....아 와플 미추어버리겠다 아 화
-        려한 크림이 날 감싸는 깡 어쩌지요.....
+		${commentList.ccontent}
+		
+		<c:if test="${loginUser.nickname eq commentList.nickname}">	
+          <button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+		</c:if>
       <br>
       <hr class="comment-hr"> 
-      <!-- 1set 끝 -->
+      
     </div> 
     
+   </c:forEach>
     <hr>
     <div class="comment-wrap">
         <div>
             <div class="comment-form">
-                <fieldset>
-                    <div>
-                        <div>
-                            <dl class="comment-guest">
-                                <dt><label for="[##_comment_input_name_##]">이름</label></dt>
-                                <dd><input type="text" name="[##_comment_input_name_##]" id="[##_comment_input_name_##]" placeholder="이름" title="이름 입력"> </dd>
-                                <dt><label for="[##_comment_input_password_##]">비밀번호</label></dt>
-                                <dd><input type="password" name="[##_comment_input_password_##]" id="[##_comment_input_password_##]" placeholder="비밀번호" title="비밀번호 입력"> </dd>
-                            </dl>
-                          </div>
-                      </div>
-                    <dl class="comment-write">
-                        <dt><label for="[##_comment_input_comment_##]">내용</label></dt>
-                        <dd><textarea name="[##_comment_input_comment_##]" id="[##_comment_input_comment_##]" placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea></dd>
-                    </dl>
-                    <button type="submit" class="reply-btn" onclick="">댓글 남기기</button>
-                </fieldset>
+           		<form action="/board/writeComment" method="POST">
+	                <fieldset>
+	                    <dl class="comment-write">
+	                        <dt><label for="[##_comment_input_comment_##]">내용</label></dt>
+	                        <dd><textarea name="ccomment" id="[##_comment_input_comment_##]" placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea></dd>
+	                    </dl>
+	                    <button type="submit" class="reply-btn" onclick="">댓글 남기기</button>
+	                </fieldset>
+                </form>
             </div>
           </div>
         <div class="buttons" >
           <button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="window.location.href='free-board.jsp'">목록</button>
           <button type="button" class="btn btn-sm btn-primary" id="btnMyList" onclick="window.location.href='mypage03.jsp'">내가 쓴글</button>
-          
-          <c:if test="${nickname} eq ${loginUser.nickname}">
-          <button type="button" class="btn btn-sm btn-primary" onclick="/board/free/update">수정</button>
-          </c:if>
-          <button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="">삭제</button>
+
+		<c:if test="${loginUser.nickname eq boardDetail.nickname}">	
+          <button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+		</c:if>
         </div>
       </div>
   </div>

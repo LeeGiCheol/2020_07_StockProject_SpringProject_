@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,14 +44,116 @@ public class TradeController {
 //		return jsonObject;
 //	}
 
+	@PostMapping(value = "/modify")
+	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
+			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
+			@RequestParam(value = "cancleModify") String modify) {
+//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		String id = "test"; // test 용 아이디
+		ModelAndView mav = new ModelAndView();
+
+		if (id == null) {
+			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.addObject("location", "/signInPage");
+			mav.setViewName("notice");
+			return mav;
+		}
+
+		StockVO vo = new StockVO();
+
+		vo.setId(id);
+		vo.setUno(Integer.parseInt(uno));
+		vo.setQuantity(Integer.parseInt(qu));
+
+		Map unsettledDetail = tradeService.getUnsettledDetail(vo);
+		if (unsettledDetail == null) {
+			mav.addObject("msg", "주문 번호가 조회되지 않습니다");
+			mav.addObject("location", "/trade");
+			mav.setViewName("notice");
+			return mav;
+		}
+
+		vo.setCategory((String) unsettledDetail.get("category"));
+		vo.setrPrice((Integer) unsettledDetail.get("rPrice"));
+		vo.setStockName((String) unsettledDetail.get("stockName"));
+
+		switch (modify) {
+		case "modify":
+			if (Integer.parseInt(qu) == 0) {
+				mav.addObject("msg", "수정 가능한 최소 수량은 1개 입니다");
+				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
+				mav.setViewName("notice");
+				return mav;
+			}
+
+			vo.setNewPrice(Integer.parseInt(price));
+			vo.setNewQuantity(Integer.parseInt(qu));
+			vo.setQuantity((Integer) unsettledDetail.get("quantity"));
+			int myStockQu = tradeService.getStockQuantity(vo);
+
+			if (((String) unsettledDetail.get("category")).equals("sell")
+					&& (myStockQu < Integer.parseInt(qu) - (Integer) unsettledDetail.get("quantity"))) {
+				mav.addObject("msg", "보유 수량이 부족합니다");
+				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
+				mav.setViewName("notice");
+				return mav;
+			}
+
+			long money = tradeService.getMoney(id);
+			if (((String) unsettledDetail.get("category")).equals("buy")
+					&& (money < (Long.parseLong(qu) * Long.parseLong(price)
+							- Long.valueOf((int) unsettledDetail.get("rPrice"))
+									* Long.valueOf((int) unsettledDetail.get("quantity"))))) {
+				mav.addObject("msg", "잔액이 부족합니다");
+				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
+				mav.setViewName("notice");
+				return mav;
+			}
+
+			tradeService.modify(vo);
+			break;
+
+		case "cancle":
+			if (Integer.parseInt(qu) > (Integer) unsettledDetail.get("quantity")) {
+				mav.addObject("msg", "보유 수량이 부족합니다");
+				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
+				mav.setViewName("notice");
+				return mav;
+			}
+
+			if (Integer.parseInt(qu) == (Integer) unsettledDetail.get("quantity"))
+				vo.setModifyALL(true);
+			else
+				vo.setModifyALL(false);
+
+			tradeService.stockCancel(vo);
+			break;
+		}
+		
+		if (modify.equals("cancle"))
+			modify = "취소";
+		else
+			modify = "정정";
+		mav.addObject("msg", "주문 " + modify + " 성공");
+		mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
+		mav.setViewName("notice");
+		return mav;
+	}
+
 	@PostMapping(value = "/selling")
-	public String selling(@RequestParam(value = "sellingQu") String qu,
+	public ModelAndView selling(@RequestParam(value = "sellingQu") String qu,
 			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {
 //		String id = ((UserVO) session.getAttribute("loginUser")).getId();
 		String id = "test"; // test 용 아이디
+		ModelAndView mav = new ModelAndView();
 
-		if (id == null)
-			return "loginWARN";
+		if (id == null) {
+			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.addObject("location", "/trade?stockName=" + stockName);
+			mav.setViewName("notice");
+			return mav;
+		}
+
 		StockVO vo = new StockVO();
 
 		vo.setId(id);
@@ -60,28 +163,43 @@ public class TradeController {
 
 		myStockQu = tradeService.getStockQuantity(vo);
 
-		if (myStockQu < Integer.parseInt(qu))
-			return "lackOfStock";
+		if (myStockQu < Integer.parseInt(qu)) {
+			mav.addObject("msg", "보유 수량이 부족합니다");
+			mav.addObject("location", "/trade?stockName=" + stockName);
+			mav.setViewName("notice");
+			return mav;
+		}
 
 		vo.setrPrice(Integer.parseInt(price));
 
 		tradeService.stockSelling(vo);
-
-		return "successTrade";
+		mav.addObject("msg", "매도 등록: " + stockName + ", " + price);
+		mav.addObject("location", "/trade?stockName=" + stockName);
+		mav.setViewName("notice");
+		return mav;
 	}
 
 	@PostMapping(value = "/buying")
-	public String buying(@RequestParam(value = "buyingQu") String qu, @RequestParam(value = "buyingPrice") String price,
-			@RequestParam(value = "sName") String stockName) {
+	public ModelAndView buying(@RequestParam(value = "buyingQu") String qu,
+			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
 //		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		ModelAndView mav = new ModelAndView();
 
 		String id = "test"; // test 용 아이디
-		if (id == null)
-			return "loginWARN";
+		if (id == null) {
+			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.addObject("location", "/trade?stockName=" + stockName);
+			mav.setViewName("notice");
+			return mav;
+		}
 
 		long money = tradeService.getMoney(id);
-		if (money < Long.parseLong(price) * Long.parseLong(qu))
-			return "lackOfMoney";
+		if (money < Long.parseLong(price) * Long.parseLong(qu)) {
+			mav.addObject("msg", "잔액이 부족합니다");
+			mav.addObject("location", "/trade?stockName=" + stockName);
+			mav.setViewName("notice");
+			return mav;
+		}
 
 		StockVO vo = new StockVO();
 
@@ -92,7 +210,10 @@ public class TradeController {
 
 		tradeService.stockBuying(vo);
 
-		return "successTrade";
+		mav.addObject("msg", "매수 등록: " + stockName + ", " + price);
+		mav.addObject("location", "/trade?stockName=" + stockName);
+		mav.setViewName("notice");
+		return mav;
 	}
 
 	@GetMapping(value = "/trade")
@@ -187,6 +308,9 @@ public class TradeController {
 			down[i] = formatter.format(down_[i]);
 			currentPrice = formatter.format(trade.getCurrentPrice());
 		}
+
+//		System.out.println("up "+Arrays.toString(up));
+//		System.out.println("down "+Arrays.toString(down));
 
 		// 배열을 json화 시켜서 보낸다 (호가)
 		JSONObject obj = new JSONObject();

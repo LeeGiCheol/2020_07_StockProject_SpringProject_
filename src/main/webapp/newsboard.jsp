@@ -419,21 +419,10 @@ input[type="text"]{
 								}
 							</script>
 							
-<<<<<<< HEAD
-							
-=======
->>>>>>> 7ba2ee64e00bef2471fdbdc78880a307cb49b443
 							<span class="input-style short">
 								<input type="text" placeholder="뉴스검색" title="뉴스검색" value onkeyup="enter();">
 							</span>
 								<button type="button" onclick="#" class="btn-t gray">검색</button>
-<<<<<<< HEAD
-								<button type="button" onclick="setToday();" class="btn-t gray">새로고침</button>
-						</p>
-=======
-							<button type="button" onclick="#" class="btn-t gray">새로고침</button>
-					</p>
->>>>>>> 7ba2ee64e00bef2471fdbdc78880a307cb49b443
 					</div>
 					<!-- //week -->
 				</div>

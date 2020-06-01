@@ -44,7 +44,6 @@ a, a:link, a:visited, a:active, a:hover {text-decoration: none;}
 #menu-bar ul{display: -webkit-box;}
 .container{margin-top: 30px; margin-bottom: 30px;border: 1px #5a6268 solid; padding-left: 30px; padding-right: 30px; margin-left: 384px;}
 .section-container{border: 1px gray solid;}
-.mypage01, .mypage02, .mypage03, .mypage04{width: 285px;}
 .row{margin-top: -50px;}
 .allBody{margin-top: 40px; margin-bottom: 40px;}
 @media only screen and (max-width: 1324px) {
@@ -67,8 +66,6 @@ a, a:link, a:visited, a:active, a:hover {text-decoration: none;}
  .dropdown-toggle{border: 1px solid #ced4da; border-radius: .25rem;background-clip: padding-box; height: 38px; font-size: 15px; color: #495057;}
  .dropdown-toggle:hover{color:#28283c;}
  .dropdown-item{font-size: 15px;}
-.best-pagination, .pagination{margin-left: 20px; margin-top: 39px;}
-.best-pagination{width: 500px; margin-left: 21px; margin-top: 40px;}
 td > a{cursor:pointer}
 /* 하단 메뉴 끝 */
  

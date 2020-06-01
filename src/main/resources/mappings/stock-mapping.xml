@@ -7,6 +7,32 @@
 <mapper namespace="stock">
 <resultMap type="stock" id="st"></resultMap>
 
+	<update id="modify">
+		update unsettled set quantity = #{newQuantity} where uno = #{uno};
+		update unsettledcheck set rPrice = #{newPrice} where uno = #{uno};
+	</update>
+	
+	<update id="modifyHoldingStock">
+		update holdingstock set quantity = quantity - #{newQuantity} + #{quantity} where id =  #{id} and stockName = #{stockName}
+	</update>
+	
+	<update id="modifyMoney">
+		update usermoney set money = money + #{quantity}* #{rPrice} - #{newQuantity} * #{newPrice} where id = #{id}
+	</update>
+
+	<delete id="cancleUnsettled_ALL">
+		delete from unsettled where uno = #{uno};
+		delete from unsettledcheck where uno = #{uno};
+	</delete>
+	
+	<update id="cancleUnsettled">
+		update unsettled set quantity = quantity - #{quantity} where uno = #{uno};
+	</update>
+
+	<select id="getUnsettledDetail" resultType="map">
+		select c.uno , quantity, category , rPrice , stockName from unsettled u join unsettledcheck c on c.uno = u.uno where id = #{id} and c.uno = #{uno};
+	</select>
+
 	<select id="getUnsettled" resultType="map">
 		SELECT * from unsettledcheck
 	</select>
@@ -30,7 +56,7 @@
 	</select>
 	
 	<insert id="buying">
-		insert into tradinghistory(id, stockName, category, tdatetime, price, quantity)
+		insert into tradinghistory(id, stockName, category, tdatetime, tprice, quantity)
 		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
 		INSERT INTO stocknotice(id, tno)
 		SELECT id, tno
@@ -65,7 +91,7 @@
 	
 	
 	<insert id="selling">
-		insert into tradinghistory(id, stockName, category, tdatetime, price, quantity)
+		insert into tradinghistory(id, stockName, category, tdatetime, tprice, quantity)
 		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
 		
 		INSERT INTO stocknotice(id, tno)
