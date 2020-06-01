@@ -26,13 +26,13 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public void deleteComment(CommentVO vo) {
-		commentDAO.deleteComment(vo);
+	public int deleteComment(CommentVO vo) {
+		return commentDAO.deleteComment(vo);
 	}
 
 	@Override
 	public List<CommentVO> getCommentList(CommentVO vo) {
-		return null;
+		return commentDAO.getCommentList(vo);
 	}
 
 	

@@ -11,8 +11,9 @@
 		VALUES(#{pno}, #{id}, #{ccomment}, sysdate())	
 	</insert>
 	
-	<select id="commentList">
-		SELECT * FROM commentList;
+	<select id="commentList" resultType="comment">
+		SELECT * FROM commentList
+		WHERE pno = #{pno} 
 	</select>
 	
 	<!-- <update id="updateBoard">

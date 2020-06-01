@@ -2,6 +2,8 @@ package com.bitcamp.project.dao.impl;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.CommentDAO;
@@ -10,10 +12,12 @@ import com.bitcamp.project.vo.CommentVO;
 @Repository("CommentDAO")
 public class CommentDAOImpl implements CommentDAO {
 
+	@Autowired
+	private SqlSessionTemplate mybatis;
+	
 	@Override
 	public int writeComment(CommentVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mybatis.insert("comment.writeComment", vo);
 	}
 
 	@Override
@@ -23,15 +27,13 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public void deleteComment(CommentVO vo) {
-		// TODO Auto-generated method stub
-		
+	public int deleteComment(CommentVO vo) {
+		return mybatis.delete("comment.deleteComment", vo);
 	}
 
 	@Override
 	public List<CommentVO> getCommentList(CommentVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return mybatis.selectList("comment.commentList", vo);
 	}
 
 }

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
   <!-- CSS파일 -->
-  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+  <link href="/resources/css/free-board-detail1.css" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script>
      $(document).ready(function(){
@@ -123,25 +123,26 @@ div > ul > li {width:380px;}
       </div>
     </div>
   <div>
+  
+  <c:forEach var="commentList" items="${commentList}">
       <!-- 댓글 -->
       <h2 id="commentBody" class="comment-title">댓글</h2>
     <div class="commentBody">
-      <i class="fa fa-user-circle"></i> <b> # 댓글 작성자 1</b><br>
-      <i class="far fa-clock"></i> # 2020.05.27 17:05<br>
+      <i class="fa fa-user-circle"></i> <b>${commentList.nickname}</b><br>
+      <i class="far fa-clock"></i>${commentList.cdataTime}<br>
       <br>
-       안맛있는게 뭘까싶네 ㄱ공감 ㅠㅠ
-      <br>
-      <hr class="comment-hr"> 
-      <!-- 1set -->
-      <i class="fa fa-user-circle"></i> <b># 댓글 작성자 2</b><br><i class="far fa-clock"></i> # 2020.05.28 20:05<br>
-      <br>
-       다이어트란 글씨 보자마자 아 이 글 당장 안보면 휴게소에서 알감자 안먹는거랑 같다고 생각해서 알감자 먹으러 왔는데 이 시간에 본 내가 미쳤지.....아 와플 미추어버리겠다 아 화
-        려한 크림이 날 감싸는 깡 어쩌지요.....
+		${commentList.ccontent}
+		
+		<c:if test="${loginUser.nickname eq commentList.nickname}">	
+          <button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+		</c:if>
       <br>
       <hr class="comment-hr"> 
-      <!-- 1set 끝 -->
+      
     </div> 
     
+   </c:forEach>
     <hr>
     <div class="comment-wrap">
         <div>
