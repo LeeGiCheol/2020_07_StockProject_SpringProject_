@@ -72,7 +72,7 @@ public class TradingCheck {
 		return info;
 	}
 
-	@Scheduled(fixedDelay = 2000)
+	@Scheduled(fixedDelay = 1000)
 	public void TestScheduler() {
 		Map<String, Info> info = stockToMap();
 

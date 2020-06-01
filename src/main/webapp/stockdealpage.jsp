@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 
 
 <!DOCTYPE html>
@@ -11,6 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<<<<<<< HEAD
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -19,10 +24,18 @@
 
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
+=======
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="/resources/css/stockdealpage.css">
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<<<<<<< HEAD
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
@@ -199,6 +212,10 @@ a.btnStyle {
   background: #ccc;
 }
 </style>
+=======
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 </head>
 <body>
 
@@ -207,17 +224,6 @@ a.btnStyle {
 		<ul class="nav justify-content-end top-nav">
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
-		</ul>
-		<ul class="nav justify-content-end top-nav">
-			<a href="#"><img class="" cust_id="" id="_myhomeId"
-				src="resources/img/pi_08.png"></a>
-			<dl>
-				<dt>
-					<strong>개미굴</strong> 님
-				</dt>
-			</dl>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
 		</ul>
 		<!-- 상단  nav end -->
 		<!-- 메인  nav -->
@@ -233,16 +239,16 @@ a.btnStyle {
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<form class="form-inline my-2 my-lg-0">
+				<form class="form-inline my-2 my-lg-0">
+					<ul class="navbar-nav ml-auto">
 						<input class="form-control mr-sm-2" type="search"
 							placeholder="통합검색" aria-label="Search">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
+						<input class="btn btn-outline-secondary my-2 my-sm-0"
 							type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-				</ul>
+						<i class="fas fa-search"></i>
+						</input>
+					</ul>
+				</form>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -254,11 +260,12 @@ a.btnStyle {
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">뉴스</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">${stockName}거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
 							class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
+
 		</nav>
 		<!-- 메인 nav end -->
 		<div id="carouselExampleControls" class="carousel slide"
@@ -304,6 +311,18 @@ a.btnStyle {
 									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
 									id="stockBtn" type="submit">
 									<i class="fas fa-search"></i>
+<<<<<<< HEAD
+=======
+								</button>
+								<button type="button"
+									class="btn btn-secondary btn-sm companydata-btn">기업정보
+								</button>
+								<button type="button" class="btn btn-secondary btn-sm companydata-btn" id="minute" >
+									분차트보기
+								</button>
+								<button type="button" class="btn btn-secondary btn-sm companydata-btn" id="day">
+									일차트보기
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 								</button>
 								<button type="button"
 									class="btn btn-secondary btn-sm companydata-btn">기업정보
@@ -331,7 +350,11 @@ a.btnStyle {
 								</tr>
 							</thead>
 							<tbody>
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 								<tr>
 									<td></td>
 									<td>호가</td>
@@ -357,7 +380,11 @@ a.btnStyle {
 								<tr>
 									<td>현재가</td>
 									<td id="price"></td>
+<<<<<<< HEAD
 									<td id="beforeAndUpdown"></td>
+=======
+									<td id="beforeAndUpdown"></td> 										
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 								</tr>
 							</tbody>
 
@@ -422,6 +449,7 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
+<<<<<<< HEAD
 													class="alignR" name="buyingPrice"> 원 <span
 													class="buying-check"> 
 												<a href="#" class="buying-check-btn btnStyle btnS">매수가능</a>
@@ -500,12 +528,24 @@ a.btnStyle {
 												</div>
 												
 												<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
+=======
+													class="alignR" name="buyingPrice"> 원 <span class="buying-check">
+													<a href="#" onclick="#"
+													class="buying-check-btn btnStyle btnS">매수가능</a>
+												<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
+												
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
+<<<<<<< HEAD
 													class="alignR" name="buyingQu"> 주 <span
 													class="buying-check"> <a href="#" onclick="#"
+=======
+													class="alignR" name="buyingQu"> 주 <span class="buying-check">
+													<a href="#" onclick="#"
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
@@ -540,6 +580,7 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
+<<<<<<< HEAD
 													class="alignR" name="sellingPrice"> 원 <span
 													class="buying-check"> 
 													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">매도가능</a> 
@@ -577,13 +618,23 @@ a.btnStyle {
 															<a href="#none" class="popClose">매도가능 닫기</a>
 														</div> 
 													</div>													
+=======
+													class="alignR" name="sellingPrice"> 원 <span class="buying-check">
+													<a href="#" onclick="#"
+													class="buying-check-btn btnStyle btnS">매도가능</a>
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 													<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
+<<<<<<< HEAD
 													class="alignR" name="sellingQu"> 주 <span
 													class="buying-check"> <a href="#" onclick="#"
+=======
+													class="alignR" name="sellingQu"> 주 <span class="buying-check">
+													<a href="#" onclick="#"
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
@@ -616,6 +667,7 @@ a.btnStyle {
 									<div class="stock-buying">
 										<div class="choice">
 											<strong>주문구분</strong> 
+<<<<<<< HEAD
 											<input type="radio" id="input-modify" name="cancleModify" value="modify"  onchange="setDisplay();">정정
 											<input type="radio" id="input-cancel" name="cancleModify" value="cancle"  onchange="setDisplay();">취소 
 											<script>
@@ -638,6 +690,13 @@ a.btnStyle {
 											
 											</script>
 										</div>
+=======
+											<input type="radio" name="cancleModify" value="cancle">취소
+											<input type="radio" name="cancleModify" value="modify">정정
+<!--  											<label for="radio_cancle">취소</label>
+											<label for="radio_modify">정정</label>
+ -->										</div>
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
@@ -723,14 +782,70 @@ a.btnStyle {
 									</ul>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	
+	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
+ 		
+	<script>
+	var stockName = "${stockName}";
+	if(stockName === ''){
+		stockName = '삼성전자';
+	}
+		
+    //console.log("지발"+stockName);
+	$("#stockBtn").click(function(){
+		stockName = document.all.searchForm.stockSearch.value;
+		//console.log("check" + stockName);
+	});
+	
+	$(function() {
+		var obj = new Object();
+		var jsonData = JSON.stringify(obj);
+		var pageUrl = "삼성전자";
+		var pageTitle = "http://localhost:8080/trade";
+		timer = setInterval( function () {
+			$.ajax({
+				type : "POST",
+				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
+			 	/* data : JSON.stringify(jsonData),  */
+				datatype : "JSON",
+				success : function(data) {
+					//console.log("현재가 = "+JSON.stringify(data.currentPrice));
+					//console.log("전일비 + 등락률 = "+JSON.stringify(data.before + data.updown));
+					
+					//console.log(stockName);
 
+				//	console.log(data.up);
+					/* if(data.before != null) { */
+						console.log(data.currentPrice);
+						$('#price').text(data.currentPrice);
+						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+						$('#maximum').html(data.maximum);
+						$('#minimum').html(data.minimum);
+						var templ = $.templates("#upPrice");
+						var str = templ.render(data.up);
+						$("#up").html(str);
+						var templ2 = $.templates("#downPrice");
+						var str2 = templ2.render(data.down);
+						$("#down").html(str2);
+						$("#stockName").html(data.stockName);
+						
+						
+					/* }
+					else{
+						alert("존재하지 않는 종목입니다 다시 검색해주세요><");
+						
+						history.pushState({"html":data},pageTitle, pageUrl);
+					} */
 
+<<<<<<< HEAD
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
 
 	<script>
@@ -798,6 +913,21 @@ a.btnStyle {
 		}, 1000); // SET INTERVAL5
 	});
 	
+=======
+
+					//$('#price').text(data.currentPrice);
+					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+					
+					
+				},
+				error : function(error) {
+					console.log("error");
+				}
+			}); 
+		}, 1000); // SET INTERVAL5
+	});
+	
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 	//window.onload = function () {
 	var a = 0;
 	
@@ -1018,7 +1148,11 @@ a.btnStyle {
 			</tr>
 	</script>
 
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> e011e9176728864a8d9b4246b90655287a64803f
 
 </body>
 </html>

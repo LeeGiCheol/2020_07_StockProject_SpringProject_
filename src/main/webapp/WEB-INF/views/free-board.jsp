@@ -17,12 +17,13 @@
 .add{width: 75px; height: 40px; font-size: 16px; margin-left: 233px;}
 .remove{margin-top: 0rem; margin-left:10px;}
 .btn-block+.btn-block{margin-top:0rem;}
+.paging-body{margin-left:320px; margin-top: 50px;}
 </style>
 <script>
   $(document).ready(function(){
       $("#jb-checkboxAll-best").click(function(){
           if($("#jb-checkboxAll-best").prop("checked")){
-              $(".check-best").prop("checked",true);
+              $(".check-best").prop("checked",true);	
           }else{
               $(".check-best").prop("checked",false);
           }
@@ -41,6 +42,30 @@
             alert("취소하셨습니다.");
           }
         })
+     // pagination 추가  
+    	$(function() {
+    		window.pagObj = $('#pagination-all').twbsPagination({
+    			totalPages : 35,
+    			visiblePages : 5,
+    			onPageClick : function(event, page) {
+    				console.info(page + ' (from options)');
+    			}
+    		}).on('page', function(event, page) {
+    			console.info(page + ' (from event listening)');
+    		});
+    		}); 
+   // pagination 추가  
+  	$(function() {
+  		window.pagObj = $('#pagination-best').twbsPagination({
+  			totalPages : 35,
+  			visiblePages : 5,
+  			onPageClick : function(event, page) {
+  				console.info(page + ' (from options)');
+  			}
+  		}).on('page', function(event, page) {
+  			console.info(page + ' (from event listening)');
+  		});
+  		}); 
   });
  
   </script>
@@ -116,11 +141,11 @@
 				class="carousel-control-next-icon" aria-hidden="true"></span> <span
 				class="sr-only">Next</span>
 			</a>
-		</div>
+	</div>
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
         <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
-        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed free-board" onclick="location.href='/board/free'">
+        <li class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed free-board" onclick="location.href='free-board.jsp'">
           <div> 
             <h6 class="my-0">자유 게시판</h6>
           </div>
@@ -130,7 +155,7 @@
             <h6 class="my-0">뉴스 게시판</h6>
           </div>
         </li>
-        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board" onclick="location.href='#'" >
+        <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board" onclick="location.href='portfolio-board.jsp'">
           <div>
             <h6 class="my-0">포트폴리오 게시판</h6>
           </div>
@@ -190,46 +215,7 @@
 		            </tr>
 				</c:if>
 			</c:forEach>
-            <!-- <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox2" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox2"></label></div></td>
-              <th scope="row">4</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox3" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox3"></label></div></td>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox4" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox4"></label></div></td>
-              <th scope="row">2</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox5" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox5"></label></div></td>
-              <th scope="row">1</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr> -->
+           
           </tbody>
         </table>
         <br>
@@ -244,22 +230,15 @@
           <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
           <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
           <div class="buttons">
-            <button class="btn btn-primary btn-lg btn-block add" type="button" onclick="location.href='/board/free/write'">작성</button>
+            <button class="btn btn-primary btn-lg btn-block add" type="button" onclick="location.href='writeForm.jsp'">작성</button>
             <button class="btn btn-primary btn-lg btn-block remove" type="button">삭제</button>
           </div>
-          <nav aria-label="..." class="pagination">
-            
-            <ul class="pagination">
-              <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
-            </ul>
-          </nav>
         </form>
+          <div class="paging">
+			<div class="paging-body">
+				<ul class="pagination" id="pagination-all"></ul>
+			</div>
+		  </div>
       </div>
       <!-- 인기글 -->
       <div class="tab-pane fade" id="pills-board-best" role="tabpanel" aria-labelledby="pills-board-best-tab" style="margin-bottom: 300px;">
@@ -343,18 +322,12 @@
                 <i class="fas fa-search"></i></button>
                 <div class="buttons">
                 </div>
-            <nav aria-label="..." class="best-pagination">
-              <ul class="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
-              </ul>
-            </nav>
           </form>
+            <div class="paging">
+				<div class="paging-body">
+					<ul class="pagination" id="pagination-best"></ul>
+				</div>
+			</div>
       </div>
     </div>
    </div>
@@ -372,4 +345,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/resources/jpaginate/jquery.twbsPagination.js" type="text/javascript"></script>
 </html>

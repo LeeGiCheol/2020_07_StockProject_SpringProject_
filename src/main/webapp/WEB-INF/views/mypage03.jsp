@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,40 +15,47 @@
 $(document).ready(function(){
     $("#jb-checkboxAll-commnet").click(function(){
         if($("#jb-checkboxAll-commnet").prop("checked")){
-            $("input[id=jb-checkbox1-commnet").prop("checked",true);
-            $("input[id=jb-checkbox2-commnet").prop("checked",true);
-            $("input[id=jb-checkbox3-commnet").prop("checked",true);
-            $("input[id=jb-checkbox4-commnet").prop("checked",true);
-            $("input[id=jb-checkbox5-commnet").prop("checked",true);
+            $(".custom-control-input").prop("checked",true);
         }else{
-            $("input[id=jb-checkbox1-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox2-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox3-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox4-commnet]").prop("checked",false);
-            $("input[id=jb-checkbox5-commnet]").prop("checked",false);
+            $("").prop("checked",false);
         }
     })
     $("#jb-checkboxAll").click(function(){
         if($("#jb-checkboxAll").prop("checked")){
-            $("input[id=jb-checkbox1").prop("checked",true);
-            $("input[id=jb-checkbox2").prop("checked",true);
-            $("input[id=jb-checkbox3").prop("checked",true);
-            $("input[id=jb-checkbox4").prop("checked",true);
-            $("input[id=jb-checkbox5").prop("checked",true);
+            $(".custom-control-input").prop("checked",true);
         }else{
-            $("input[id=jb-checkbox1]").prop("checked",false);
-            $("input[id=jb-checkbox2]").prop("checked",false);
-            $("input[id=jb-checkbox3]").prop("checked",false);
-            $("input[id=jb-checkbox4]").prop("checked",false);
-            $("input[id=jb-checkbox5]").prop("checked",false);
+            $(".custom-control-input").prop("checked",false);
         }
     })
+  	$(function() {
+  		window.pagObj = $('#pagination').twbsPagination({
+  			totalPages : 35,
+  			visiblePages : 5,
+  			onPageClick : function(event, page) {
+  				console.info(page + ' (from options)');
+  			}
+  		}).on('page', function(event, page) {
+  			console.info(page + ' (from event listening)');
+  		});
+  		});  
 
-})
-
-
+$(function() {
+		window.pagObj = $('#pagination-comment').twbsPagination({
+			totalPages : 35,
+			visiblePages : 5,
+			onPageClick : function(event, page) {
+				console.info(page + ' (from options)');
+			}
+		}).on('page', function(event, page) {
+			console.info(page + ' (from event listening)');
+		});
+		});  
+}); 
 
 </script>
+<style>
+.paging-body{margin-top:50px; margin-bottom: 300px;}
+</style>
 </head>
 <body>
     <!-- header start -->
@@ -162,86 +169,19 @@ $(document).ready(function(){
             </tr>
           </thead>
           <tbody>
-          	<<c:forEach items="${myPost}" var="post">
-            <!-- 
-            <tr>
-               <td>${board.seq }</td>
-               <td align="left">
-                  <a href="getBoard.do?seq=${board.seq }">
-                  ${board.title }
-                  </a>
-               </td>
-               <td>${board.writer }</td>
-               <td>${board.regDate }</td>
-               <td>
-                  <fmt:formatDate value="${board.regDate}"pattern="yyyy-MM-dd"/>
-               </td>
-               <td>${board.cnt }</td>
-            </tr>
-              -->
+          	<c:forEach items="${myBoard}" var="board">
                <tr> 
                  <td><div class="custom-control custom-checkbox">
-                   <input type="checkbox" id="jb-checkbox${post.pno}" class="custom-control-input" name="${post.pno}"><label class="custom-control-label" for="jb-checkbox${post.pno}"></label></div></td>
-                 <th scope="row">${post.pno}</th>
-                 <td>${post.title}</td>
-                 <td>${post.nickname}</td>
-                 <td>${post.bdateTime}</td>
-                 <td>${post.views}</td>
-                 <td>${post.likes}</td>
+                   <input type="checkbox" id="jb-checkbox" class="custom-control-input" name="${board.pno}"><label class="custom-control-label" for="jb-checkbox${board.pno}"></label></div></td>
+                 <th scope="row">${board.pno}</th>
+                 <td>${board.title}</td>
+                 <td>${board.nickname}</td>
+                 <td>${board.bdateTime}</td>
+                 <td>${board.views}</td>
+                 <td>${board.likes}</td>
                </tr>
          	</c:forEach>
-         	<!-- 
-            <tr> 
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox1" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
-              <th scope="row">5</th>
-              <td>이 글은 테스트용 글쓰기입니다.</td>
-              <td>글쓴이</td>
-              <td>2020.05.21</td>>
-              <td>270</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox2" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox2"></label></div></td>
-              <th scope="row">4</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox3" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox3"></label></div></td>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox4" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox4"></label></div></td>
-              <th scope="row">2</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox5" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox5"></label></div></td>
-              <th scope="row">1</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-             -->
+         	
           </tbody>
         </table>
         <br>
@@ -256,18 +196,12 @@ $(document).ready(function(){
           <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
               <i class="fas fa-search"></i></button>
           <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
-          <nav aria-label="..." class="pagination">
-            <ul class="pagination">
-              <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
-            </ul>
-          </nav>
         </form>
+	        <div class="paging">
+				<div class="paging-body">
+					<ul class="pagination" id="pagination"></ul>
+				</div>
+	    	</div>
       </div>
       <div class="tab-pane fade" id="pills-commnet" role="tabpanel" aria-labelledby="pills-commnet-tab" style="margin-bottom: 300px;">
         <!-- 내가 작성한 댓글 -->
@@ -285,6 +219,18 @@ $(document).ready(function(){
             </tr>
           </thead>
           <tbody>
+            <c:forEach items="${myPost}" var="post">
+               <tr> 
+                 <td><div class="custom-control custom-checkbox">
+                   <input type="checkbox" id="jb-checkbox${post.pno}" class="custom-control-input" name="${post.pno}"><label class="custom-control-label" for="jb-checkbox${post.pno}"></label></div></td>
+                 <th scope="row">${post.pno}</th>
+                 <td>${post.title}</td>
+                 <td>${post.nickname}</td>
+                 <td>${post.bdateTime}</td>
+                 <td>${post.views}</td>
+                 <td>${post.likes}</td>
+               </tr>
+         	</c:forEach>
             <tr>
               <td><div class="custom-control custom-checkbox">
                 <input type="checkbox" id="jb-checkbox1-commnet" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox1-commnet"></label></div></td>
@@ -349,18 +295,12 @@ $(document).ready(function(){
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
                 <i class="fas fa-search"></i></button>
             <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
-            <nav aria-label="..." class="pagination">
-              <ul class="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
-              </ul>
-            </nav>
           </form>
+	        <div class="paging">
+				<div class="paging-body">
+					<ul class="pagination" id="pagination-comment"></ul>
+				</div>
+	    	</div>
       </div>
     </div>
     </article>
@@ -377,4 +317,6 @@ $(document).ready(function(){
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- paginate -->
+<script src="/resources/jpaginate/jquery.twbsPagination.js" type="text/javascript"></script>
 </html>

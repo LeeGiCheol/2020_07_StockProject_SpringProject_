@@ -1,12 +1,12 @@
 package com.bitcamp.project.view.user;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.bitcamp.project.service.MyPostService;
 import com.bitcamp.project.service.UserInfoService;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.UserVO;
 
 @Controller
@@ -35,20 +36,19 @@ public class MyPageController {
 	}
 
 	@GetMapping(value="/myPage03")
-	public String myPage03(HttpSession session, Model model) {
+	public String myPage03(HttpSession session) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-		List<BoardVO> myPost = myPostService.myPostList(loginUser);
-		model.addAttribute("myPost", myPost);
+		Map<String, Object> myPost = myPostService.myPostList(loginUser);
+		if(myPost.get("myBoard")!=null)
+			session.setAttribute("myBoard", (List<BoardVO>)myPost.get("myBoard"));
+		if(myPost.get("myComment")!=null)
+			session.setAttribute("myComment",(List<CommentVO>)myPost.get("myComment"));
 		return "mypage03";
 	}
 	
 	@PostMapping(value="/updateUser")
 	public String updateUser(@ModelAttribute("pw") String pw, @ModelAttribute("address") String address,
 							@ModelAttribute("tel") String tel, @ModelAttribute("showEsetSetting") String showEset, HttpSession session) {
-		System.out.println(pw);
-		System.out.println(address);
-		System.out.println(tel);
-		System.out.println(showEset);
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		loginUser.setPw(pw);
 		loginUser.setAddress(address);

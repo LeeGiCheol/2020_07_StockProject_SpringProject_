@@ -10,8 +10,6 @@ package com.bitcamp.project.vo;
 import java.sql.Date;
 
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class BoardVO {
 	private int pno; // 글번호
 	private String id;

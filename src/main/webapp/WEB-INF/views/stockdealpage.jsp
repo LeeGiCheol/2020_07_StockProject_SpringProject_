@@ -318,30 +318,30 @@
 							</div>
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 								aria-labelledby="pills-contact-tab">
-								<form id="trad_frm" method="get">
+								<form id="trad_frm" action="/modify" method="post">
 									<div class="stock-buying">
 										<div class="choice">
 											<strong>주문구분</strong> 
-											<input type="radio" name="cancleModify" value="cancle">취소
-											<input type="radio" name="cancleModify" value="modify">정정
+											<input type="radio" name="modify" value="cancle">취소
+											<input type="radio" name="modify" value="modify">정정
 <!--  											<label for="radio_cancle">취소</label>
 											<label for="radio_modify">정정</label>
  -->										</div>
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
-												<input type="text" class="alignR"> <span
+												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;" >주문번호</label>
+												<input type="text" class="alignR" name="uno"> <span
 													class="buying-check"> <a href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS">미체결잔량</a>
 												</span>
 											</div>
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 35px;">단가</label>
-												<input type="text" class="alignR"> 원
+												<label for="nOrdUnpr" style="margin-right: 35px;" >단가</label>
+												<input type="text" class="alignR" name="modifyPrice" value=0> 원
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 35px;">수량</label>
-												<input type="text" class="alignR"> 주
+												<input type="text" class="alignR" name="modifyQu"> 주
 
 											</div>
 										</div>
@@ -352,7 +352,7 @@
 											</span>
 										</div>
 									</div>
-									<button style="width: 100%; height: auto;">정정주문</button>
+									<button style="width: 100%; height: auto;" type="submit">정정주문</button>
 								</form>
 								<div class="tableDesc">
 									<ul class="dotList">
