@@ -147,7 +147,7 @@ div > ul > li {width:380px;}
     <div class="comment-wrap">
         <div>
             <div class="comment-form">
-           		<form action="/board/comment" method="POST">
+           		<form action="/board/writeComment" method="POST">
 	                <fieldset>
 	                    <dl class="comment-write">
 	                        <dt><label for="[##_comment_input_comment_##]">내용</label></dt>

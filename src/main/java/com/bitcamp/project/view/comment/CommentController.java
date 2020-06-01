@@ -16,9 +16,11 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 	
-	@GetMapping("/board/comment")
-	public List<CommentVO> commentList(CommentVO vo, Model model) {
-		return commentService.getCommentList(vo);
+	@GetMapping("/board/writeComment")
+	public String writeComment(CommentVO vo, Model model) {
+		commentService.writeComment(vo); 
+		
+		return "redirect:/";
 	}
 	
 }

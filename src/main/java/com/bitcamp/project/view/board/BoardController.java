@@ -64,6 +64,8 @@ public class BoardController {
 		System.out.println("model "+boardDetail.getNickname());
 		model.addAttribute("boardDetail", boardDetail);
 
+		
+		// 댓글리스트
 		List<CommentVO> commentList = commentService.getCommentList(cVo);
 		model.addAttribute("commentList", commentList);
 		System.out.println(commentList);

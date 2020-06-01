@@ -323,10 +323,10 @@ a.btnStyle {
 							</tbody>
 
 							<tbody>
-								<tr>
+								<tr id="upDownColor">
 									<td>현재가</td>
 									<td id="price"></td>
-									<td id="beforeAndUpdown"></td> 										
+									<td id="beforeAndUpdown"></td> 		
 								</tr>
 							</tbody>
 
@@ -734,7 +734,18 @@ a.btnStyle {
 				//	console.log(data.up);
 					/* if(data.before != null) { */
 						console.log(data.currentPrice);
+						$('#element').css('margin', '5px');
 						$('#price').text(data.currentPrice);
+						
+						// 어제 대비 현재가가 오른경우
+						if(data.before.indexOf("+") != -1){					
+							$('#upDownColor').css("background-color", "red");
+						} 
+						// 내린경우
+						else {
+							$('#upDownColor').css("background-color", "Aqua");
+						}
+						
 						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 						$('#maximum').html(data.maximum);
 						$('#minimum').html(data.minimum);
@@ -763,7 +774,7 @@ a.btnStyle {
 	//window.onload = function () {
 	var a = 0;
 	
-	$("#minute").click(function(){
+ 	$("#minute").click(function(){
 		console.log(a);
 		var minDataPoints = [];
 		var minChart = new CanvasJS.Chart(
@@ -960,7 +971,7 @@ a.btnStyle {
 		}
 		getDayDataPointsFromCSV();
 	}	
-	
+	 
 	
 	</script>
 
