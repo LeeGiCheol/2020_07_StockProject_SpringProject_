@@ -37,6 +37,10 @@
 		SELECT * from unsettledcheck
 	</select>
 	
+	<select id="getUnsettled_ID" resultType="map">
+		SELECT stockName , u.uno , category , rPrice, quantity  FROM unsettled u join unsettledcheck c on c.uno = u.uno where id = #{id}
+	</select>
+	
 	<select id="dayChart" resultType="map">
 		SELECT * from daychart where stockname = #{stockname};
 	</select>

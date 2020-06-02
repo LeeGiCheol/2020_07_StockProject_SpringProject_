@@ -1,5 +1,6 @@
 package com.bitcamp.project.dao.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -14,6 +15,13 @@ public class TradeDAOImpl implements TradeDAO {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+	
+
+	@Override
+	public List getUnsettled_ID(String id) {
+		return mybatis.selectList("stock.getUnsettled_ID", id);
+	}
 
 	@Override
 	public Map getUnsettledDetail(StockVO vo) {

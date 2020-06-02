@@ -1,12 +1,14 @@
 package com.bitcamp.project.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.bitcamp.project.vo.StockVO;
 
 public interface TradeService {
 	public String stockSearch(String stockName);
-	
+		
+	public List getUnsettled_ID(String id);
 	
 	public void modify(StockVO vo);
 	
