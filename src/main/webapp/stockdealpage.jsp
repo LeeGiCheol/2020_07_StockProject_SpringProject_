@@ -322,12 +322,6 @@
 													text_val += num;
 													text.value = text_val;
 												}
-												/*
-												$("#sum").on("click", function(){
-													var text = document.getElementById("sum");
-													text.value = ""
-												});
-												*/
 											</script>
 										</div>
 										<div class="sumArea">

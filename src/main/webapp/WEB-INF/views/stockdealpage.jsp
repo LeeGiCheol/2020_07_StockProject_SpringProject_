@@ -27,178 +27,6 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script>
-
-</script>
-<style>
-/*
-.layerStock {
-	z-index: 1;
-	position: relative;
-	padding: 20px 15px;
-	margin-top: 20px;
-	width: auto;
-	background: #fff;
-	border: 2px solid #474747;
-	display: block;
-}
-
-.layerBox h1 {
-	color: #0078af;
-	font-size: 14px;
-}
-
-.layerStock .conSection {
-	margin-top: 15px;
-}
-
-.stockBox {
-	position: relative;
-	z-index: 9;
-	padding: 4px 75px 4px 0;
-	border-top: 1px solid #c3c3c3;
-}
-*/
-.layerPopup{
-font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", sans-serif;
-line-height: 20px;
-letter-spacing: -1px;
-font-size: 13px;
-margin: 0;
-padding: 0;
-position: relative;
-font-weight: normal;
-color: #767676;
-display: none;
-}
-.layerPopup .layerStock {
-    z-index: 1;
-    position: absolute;
-    left: 0;
-    top: 3px;
-    padding: 20px 15px;
-    width: 531px;
-    background: #fff;
-    border: 2px solid #474747;
-}
-.layerPopup .layerBox h1 {
-    color: #0078af;
-    font-size: 14px;
-}	
-.layerPopup .layerStock .conSection {
-    margin-top: 15px;
-}
-.layerPopup .layerStock .conSection .stockBox {
-    width: auto;
-}
-.stockBox {
-    position: relative;
-    z-index: 9;
-    width: 885px;
-    padding: 4px 75px 4px 0;
-    border-top: 1px solid #c3c3c3;
-}
-.stockBox td.title {
-    height: 37px;
-    color: #393939;
-    font-size: 13px;
-    font-weight: bold;
-}
-.stockBox td {
-    vertical-align: middle;
-}
-input[type=text], input[type=password], select, textarea {
-    height: 25px;
-    padding: 0 9px;
-    border: 1px solid #bdbdbd;
-    background: #fff;
-    color: #666;
-    font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", "sans-serif";
-    vertical-align: middle;
-    line-height: 23px;
-}
-.alignR {
-    text-align: right!important;
-}
-.stockBox .btnSearch {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    margin-top: -13px;
-}
-a.btnWGray {
-    border: 1px solid #bec6c9;
-    background: #e7ecf2;
-    color: #474c52;
-}
-a.btnS {
-    min-width: 32px;
-    padding: 1px 7px 2px;
-    color: #fff;
-    font-size: 12px;
-}
-a.btnStyle {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-}
-.layerPopup .layerBox table {
-    margin-top: 0;
-}
-.tableDefault {
-    width: 100%;
-    margin-top: 13px;
-    border-top: 2px solid #7d7d7d;
-    border-bottom: 1px solid #e6e6e6;
-}
-.tableSmall tbody td.title {
-    padding: 5px 0;
-    color: #666;
-    font-weight: bold;
-    text-align: left;
-    background: #f5fafd;
-}
-.layerPopup .layerBox a.popClose {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    display: block;
-    width: 15px;
-    height: 15px;
-    text-indent: -9999px;
-    background: url(resources/img/btn_layerclose.png) no-repeat left top;
-}
-.tableDefault thead th {
-    padding: 7px 0 8px;
-    border-left: 1px solid #e6e6e6;
-    background: #f5fafd;
-    text-align: center;
-}
-.tableSmall thead th {
-    padding: 5px 0;
-    text-align: center;
-    font-size: 12px;
-}
-.tableCol tbody td, .tableCol tfoot td {
-    text-align: center;
-}
-.tableDefault td {
-    height: 30px;
-    padding: 2px 0;
-    border-top: 1px solid #e6e6e6;
-    background: #fff;
-}
-.tableCol thead th.first {
-    border-left: none;
-}
-.tableCol tbody td .tdArea, .tableCol tfoot td {
-    padding: 3px 8px !important;
-    overflow: hidden;
-}
-#mySelect:disabled {
-  background: #ccc;
-}
-</style>
 </head>
 <body>
 
@@ -393,20 +221,24 @@ a.btnStyle {
 												<label for="nOrdUnpr">단가</label> <input type="text"
 													class="alignR" name="buyingPrice"> 원 <span
 													class="buying-check"> 
-												<a href="#" class="buying-check-btn btnStyle btnS">매수가능</a>
+												<a class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 												<script>
 												$(document).ready(function() {
 													  $(".popClose, .nav-item").click(function(){
 													    $(".layerPopup").hide();
 													  });
-													  $(".buying-check-btn").click(function(){
+													  $(".buying-checking").click(function(){
 													    $(".layerPopup").show();
 													  });
+													  $(".popClose, .nav-item").click(function(){
+														    $(".layerPopup-buying-cancel").hide();
+														  });
+														  $(".buying-cancel").click(function(){
+														    $(".layerPopup-buying-cancel").show();
+														  });
 													  $("input:text[numberOnly]").on("keyup", function() {
 														    $(this).val($(this).val().replace(/[^0-9]/g,""));
 														});
-
-
 													});
 												</script>
 												<div class="layerPopup">
@@ -473,15 +305,22 @@ a.btnStyle {
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR" name="buyingQu"> 주 <span
-													class="buying-check"> <a href="#" onclick="#"
+													class="alignR" name="buyingQu" id="sum" value="0" onclick="" numberonly> 주 <span
+													class="buying-check"> <a onclick="sumplus(10);"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
-													href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
-													href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS btnSum">최대</a>
+													  onclick="sumplus(100);"
+													class="buying-check-btn btnStyle btnS btnSum">100주</a> 
+													<a onclick="#"class="buying-check-btn btnStyle btnS btnSum">최대</a>
 												</span>
 											</div>
+											<script type="text/javascript">
+												function sumplus(num) {
+													var text = document.getElementById("sum");
+													text_val = parseInt(sum.value);
+													text_val += num;
+													text.value = text_val;
+												}
+											</script>
 										</div>
 										<div class="sumArea">
 											<span class="text"> <em>총주문금액 :</em> <strong
@@ -511,7 +350,7 @@ a.btnStyle {
 												<label for="nOrdUnpr">단가</label> <input type="text"
 													class="alignR" name="sellingPrice"> 원 <span
 													class="buying-check"> 
-													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">매도가능</a> 
+													<a onclick="#" class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
 														<div class="layerPopup">
 															<div class="layerBox layerStock" id="poplayer_possible" style="display: block;">
 															<h1>매도가능</h1>
@@ -521,22 +360,19 @@ a.btnStyle {
 																<div class="tableWrap tableDataWrap">
 																	<table class="tableDefault tableCol tableSmall" summary="종목명, 잔고수량, 매도가능수량에 관한 정보입니다.">
 																		<colgroup>
-																			<col width="33%">
-																			<col>
-																			<col width="33%">
+																			<col width="50%">
+																			<col width="50%">
 																		</colgroup>
 																		<thead>
 																			<tr>
 																				<th scope="col" class="first">종목명</th>
 																				<th scope="col">잔고수량</th>
-																				<th scope="col">매도가능수량</th>
 																			</tr>
 																		</thead>
 																		<tbody>
 																				<tr>
-																					<td colspan="3" class="first">  
-																						<div class="tdArea">데이터가 존재하지 않습니다.</div>
-																					</td>
+																					<td title="종목명" class="first"></td>
+																					<td title="잔고수량"></td>
 																				</tr>
 																		</tbody>
 																	</table>
@@ -545,20 +381,13 @@ a.btnStyle {
 															<!--// conSection-->
 															<a href="#none" class="popClose">매도가능 닫기</a>
 														</div> 
-													</div>													
+													</div>												
 													<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
 												</span>
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR" name="sellingQu"> 주 <span
-													class="buying-check"> <a href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
-													href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
-													href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS btnSum">최대</a>
-												</span>
+													class="alignR" name="sellingQu"> 주
 											</div>
 										</div>
 										<div class="sumArea">
@@ -612,8 +441,8 @@ a.btnStyle {
 												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
 												<input type="text" class="alignR" name="uno"> 
 												<span class="buying-check"> 
-													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">미체결잔량</a>
-														<div class="layerPopup">
+													<a onclick="#" class="buying-check-btn btnStyle btnS buying-cancel">미체결잔량</a>
+														<div class="layerPopup-buying-cancel">
 															<div class="layerBox layerStock" id="poplayer_un_conclusion" style="display: block;">
 																<h1>미체결잔량</h1>
 																<!-- conSection -->
@@ -621,37 +450,38 @@ a.btnStyle {
 																	<!-- tableWrap -->
 																	<div class="tableWrap tableDataWrap">
 																		<table class="tableDefault tableCol tableSmall" summary="미체결잔량에 관한 주문번호, 종목명, 주문구분, 주문단가, 미체결잔량에 관한 정보입니다.">
-																			<colgroup>
-																				<col width="10%">
-																				<col>
-																				<col width="8%">
-																				
-																					<col width="8%">
-																				
-																				<col width="20%">
-																				<col width="15%">
-																				<col width="15%">
-																			</colgroup>
-																			<thead>
+																		<colgroup>
+																			
+																			
+																			<col width="20%">
+																			<col width="20%">
+																			<col width="20%">
+
+
+																			<col width="20%">
+																			<col width="20%">
+																		</colgroup>
+																		<thead>
 																				<tr>
 																					<th scope="col" class="first">주문번호</th>
 																					<th scope="col">종목명</th>
 																					<th scope="col">구분</th>
 																					
-																						<th scope="col">신용</th>
 																					
 																					<th scope="col">주문단가</th>
 																					<th scope="col">미체결잔량</th>
-																					<th scope="col">시간외구분</th>
 																				</tr>
 																			</thead>
 																			<tbody>
-																						<tr>
-																							<td colspan="7" class="first">  
-																								<div class="tdArea"></div>
-																							</td>
-																						</tr>
-																			</tbody>
+																			<tr>
+																				<td class="first" title="주문번호"></td>
+																				<td title="종목명"></td>
+																				<td title="구분"></td>
+																				<td title="주문단가"></td>
+																				<td title="미체결잔량"></td>
+																				
+																			</tr>
+																		</tbody>
 																		</table>
 																	</div>
 																</div>
