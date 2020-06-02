@@ -11,6 +11,20 @@
 		VALUES(#{pno}, #{id}, #{ccontent}, sysdate())	
 	</insert>
 	
+	<select id="commentCount" parameterType="comment" resultType="int">
+		select count(*)
+		from commentList
+		where pno=#{pno}
+	</select>
+		 
+	<select id="commentList" parameterType="page" resultType="comment">
+		select *
+		from commentList
+		where pno=#{pno}
+		order by cno desc
+		limit #{start}, #{cntPerPage}
+	</select>
+	
 	<!-- <select id="commentList" resultType="comment">
 		SELECT * FROM commentList
 		WHERE pno = #{pno} 

@@ -123,7 +123,6 @@ div > ul > li {width:380px;}
       </div>
     </div>
   <div>
-  
   <c:forEach var="commentList" items="${commentList}">
       <!-- 댓글 -->
       <h2 id="commentBody" class="comment-title">댓글</h2>
@@ -143,6 +142,44 @@ div > ul > li {width:380px;}
     </div> 
     
    </c:forEach>
+    
+                
+                <div class="paging">
+						<div class="paging-body">
+							<ul class="pagination" id="pagination-all">
+
+								<c:if test="${commentPage.startPage != 1 }">
+									<li><a class="page-link"
+										href="/board/free?bnowPage=${commentPage.startPage - 1 }"
+										tabindex="-1" aria-disabled="true">◀</a></li>
+								</c:if>
+								<c:forEach begin="${commentPage.startPage }"
+									end="${commentPage.endPage }" var="p">
+									<c:choose>
+										<c:when test="${p == commentPage.nowPage}">
+											<li class="page-item active" aria-current="page"><a
+												class="page-link" href="#">${p}<span class="sr-only">(current)</span></a>
+											</li>
+										</c:when>
+										<c:when test="${p != commentPage.nowPage}">
+											<li class="page-item"><a class="page-link"
+												href="/board/free?bnowPage=${p}">${p}</a></li>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${commentPage.endPage != commentPage.lastPage}">
+									<li><a class="page-link"
+										href="/board/free?bnowPage=${commentPage.endPage+1}"
+										tabindex="+1" aria-disabled="true">▶</a></li>
+								</c:if>
+							</ul>
+
+
+
+						</div>
+					</div>
+                
+   
     <hr>
     <div class="comment-wrap">
         <div>
@@ -157,6 +194,10 @@ div > ul > li {width:380px;}
 	                    <button type="submit" class="reply-btn">댓글 남기기</button>
 	                </fieldset>
                 </form> 
+               
+                
+                
+                
             </div>
           </div>
         <div class="buttons" >

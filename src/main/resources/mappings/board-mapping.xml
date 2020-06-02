@@ -140,6 +140,7 @@
 		select *
 		from board
 		where bno=1
+		order by pno desc
 		limit #{start}, #{cntPerPage}
 	</select>
 </mapper>

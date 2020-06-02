@@ -7,6 +7,8 @@ public class PagingVO {
 	private int cntPage = 5;
 	private String id;
 	private int bno;
+	private int pno;
+	
 	
 	public PagingVO() {
 	}
@@ -33,6 +35,9 @@ public class PagingVO {
 		}
 		else {
 			setStartPage(getEndPage() - getEndPage() % cntPage + 1);
+		}
+		if (startPage <= 0) {
+			startPage = 1;
 		}
 	}
 	// DB 쿼리에서 사용할 start, end값 계산
@@ -111,6 +116,14 @@ public class PagingVO {
 	}
 	
 	
+	
+	
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
