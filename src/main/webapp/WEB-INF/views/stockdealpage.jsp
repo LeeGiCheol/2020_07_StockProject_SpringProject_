@@ -569,11 +569,11 @@
 						
 						// 어제 대비 현재가가 오른경우
 						if(data.before.indexOf("+") != -1){					
-							$('#upDownColor').css("background-color", "red");
+							$('#upDownColor').css("color", "red");
 						} 
 						// 내린경우
 						else {
-							$('#upDownColor').css("background-color", "Aqua");
+							$('#upDownColor').css("color", "Aqua");
 						}
 						
 						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
