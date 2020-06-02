@@ -27,7 +27,7 @@
 }
 
 .newsboard-area {
-	padding: /*20px 30px 60px 30px*/ 20px 30px 20px 30px;
+	padding: /*20px 30px 60px 30px*/ 20px 30px 0 30px;
 	background: #fff;
 	position: relative;
 }
@@ -196,7 +196,6 @@
 
 .paging {
 	clear: both;
-	padding: 0 0 30px 0;
 	text-align: center;
 	position: relative;
 	margin-left: 4px;
@@ -205,10 +204,9 @@
 .paging-body {
 	display: inline-block;
 	padding-left: 0;
-	margin: 20px 0;
-	border-radius: 4px;
+		border-radius: 4px;
 }
-.week .input-group-addon .calendar{
+.week .date .calendar{
 	width: 28px;
     height: 28px;
 	display: inline-block;
@@ -220,49 +218,91 @@
 .datepicker-dropdown{
     top: 335px !important;
 }
-.input-style.short {
-    width: 320px;
-    
+.week .date {
+    text-align: center;
 }
-[class*="input-style"] {
-    position: relative;
-    margin-left: 30px;
+button{
+border: none;
+
 }
-input[type="text"]{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    line-height: 1;
-    padding: 5px 35px 6px 10px;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #000;
+.week .date button.prev-week {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999em;
+    overflow: hidden;
     vertical-align: middle;
-    box-sizing: border-box;
-    border-radius: 0;
+    background: url(resources/img/btn_left_right.png) no-repeat 0 -30px;
 }
-[class*="btn-"].gray {
-    background: #444;
-    border: 1px solid #444;
-    color: #fff;
+.week .date button.next-week {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999em;
+    overflow: hidden;
+    vertical-align: middle;
+    background: url(resources/img/btn_left_right.png) no-repeat -30px -30px;
 }
-[class*="btn-t"] {
+.week .date strong {
+    color: #000;
+    font-size: 24px;
+    font-weight: normal;
+    vertical-align: middle;
+    padding-right: 8px;
+}
+.week .date strong span {
+    color: #888;
+    font-size: 24px;
+}
+[class*="btn-s"] {
     padding: 6px 10px;
     min-width: 60px;
     font-size: 14px;
+    border: 1px solid #ccc;
+    color: #888;
 }
 [class*="btn-"] {
     position: relative;
     background: #fff;
-    border: 1px solid #444;
     line-height: 100%;
     display: inline-block;
     color: #000;
     vertical-align: middle;
     box-sizing: border-box;
     text-align: center;
+}	
+.paging, .board-search {
+    padding-bottom: 30px;
 }
-
+.board-search {
+    text-align: center;
+    box-sizing: border-box;
+}
+[class*="select-style"] button.btn {
+    color: #888;
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    min-width: 60px;
+    height: 26px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 0;
+    padding-left: 10px;
+}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -293,6 +333,90 @@ input[type="text"]{
 		});
 	});
 </script>
+
+<script type="text/javascript">
+	var date = new Date();
+	date.setDate(date.getDate());
+	//var todayCnt = 0;
+	var $datepick;
+	$(document).ready(function() {
+		$('.calendar').datepicker({
+			format : 'yyyy.mm.dd',
+			clearBtn : true,
+			language : "ko",
+			orientation : "bottom auto",
+			autoclose : true,
+			todayBtn : "linked",
+			endDate : date,
+		}).on('changeDate', function(ev) {
+			//alert(ev)
+			//console.log(ev.format())
+			_year = ev.date.getFullYear()
+			_month = ev.date.getMonth()
+			_day = ev.date.getDate()
+			_date = ev.format()
+			console.log("changeDate() _date : " + _date)
+			//console.log("test _date : " + endDate)
+			//console.log(ev.format())
+			$('#test-date').html(_date)
+
+			showHideTomorrowBtn(ev.date, new Date());
+		});
+
+		setToday();
+	}
+
+	);
+
+	function showHideTomorrowBtn(checkDate, nowDate) {
+		if (nowDate.getFullYear() > checkDate.getFullYear()) {
+			$("#btn-tomorrow").show();
+		} else {
+			if (nowDate.getMonth() > checkDate.getMonth()) {
+				$("#btn-tomorrow").show();
+			} else {
+				if (nowDate.getDate() > checkDate.getDate()) {
+					$("#btn-tomorrow").show();
+				} else {
+					$("#btn-tomorrow").hide();
+				}
+			}
+		}
+
+	}
+
+	function setToday() {
+		console.log("setToday()")
+		$('.calendar').datepicker('setDate', 'today');
+		//$("#btn-tomorrow").hide();
+		//todayCnt = 0;
+		//showHideTomorrow();
+		var nowDate = $(".calendar").datepicker('getDate');
+		showHideTomorrowBtn(nowDate, nowDate);
+	}
+	function setTomorrow() {
+		var nowDate = $(".calendar").datepicker('getDate');
+		console.log("nowDate: " + nowDate)
+		var tomorrowDate = new Date(nowDate.getFullYear(), nowDate.getMonth(),
+				nowDate.getDate() + 1);
+		$(".calendar").datepicker('setDate', tomorrowDate)
+		//todayCnt++;
+		//showHideTomorrow();
+		showHideTomorrowBtn(tomorrowDate, new Date());
+	}
+	function setYesterday() {
+		var nowDate = $(".calendar").datepicker('getDate');
+		console.log("nowDate: " + nowDate)
+		var yesterdayDate = new Date(nowDate.getFullYear(), nowDate.getMonth(),
+				nowDate.getDate() - 1);
+		$(".calendar").datepicker('setDate', yesterdayDate)
+		//todayCnt--;
+
+		//showHideTomorrow();
+		showHideTomorrowBtn(yesterdayDate, new Date());
+	}
+</script>
+
 </head>
 <body>
 	<div class="header">
@@ -382,47 +506,15 @@ input[type="text"]{
 				</div>
 
 				<div class="board-calendar">
-
+					
 					<div class="week ">
-					<p id="test-date">
-					</p>
-					<p class="date">
-							<strong style="margin-right: 5px">기준일</strong>
-							<span class="input-group-addon"> 
-								<input type="text" class="dateview">
-								<i class="far fa-calendar-alt"></i>
-							</span>
-							<script type="text/javascript">
-								$(document).ready(function() {
-									$('.input-group-addon').datepicker({
-										dateFormat:'yy-mm-dd',
-										format : 'yyyy.mm.dd',
-										clearBtn : true,
-										language : "ko",
-										orientation : "bottom auto",
-										autoclose : true,
-										todayBtn : "linked"
-									}).on('changeDate', function(ev){
-										//alert(ev)
-										//console.log(ev)
-										_year = ev.date.getFullYear()
-										_month = ev.date.getMonth()
-										_day = ev.date.getDate()
-										console.log(_year + "/" + _month + "/" + _day)
-										$('#test-date').html(_year + "/" + _month + "/" + _day)
-									})
-
-								});
-								
-								function setToday(){
-									$('.input-group-addon').datepicker('setDate', 'today');
-								}
-							</script>
-							
-							<span class="input-style short">
-								<input type="text" placeholder="뉴스검색" title="뉴스검색" value onkeyup="enter();">
-							</span>
-								<button type="button" onclick="#" class="btn-t gray">검색</button>
+						<p class="date">
+							<button onclick="setYesterday();" class="prev-week">어제</button>
+							<strong id="test-date" value="setToday();"></strong>
+							<span class="input-group-addon"> <button type="button" class="calendar add-on">달력보기</button></span>
+							<button type="button" onclick="setToday();" class="btn-s">오늘</button>
+							<button onclick="setTomorrow();" class="next-week" id="btn-tomorrow">내일</button>
+						</p>
 					</div>
 					<!-- //week -->
 				</div>
@@ -1017,6 +1109,22 @@ input[type="text"]{
 					<div class="paging-body">
 						<ul class="pagination" id="pagination"></ul>
 					</div>
+				</div>
+
+				<div class="board-search">
+					<span class="select-style">
+						<div class="btn-group bootstrap-select">
+							<select name="searchType" id="searchType" class="" tabindex="-98">
+								<option value="cnt" cnt="">제목+내용</option>
+								<option value="regmnNicknm" regmnnicknm="">제목</option>
+								<option value="regmnId" regmnid="">내용</option>
+							</select>
+						</div>
+					</span>
+					<span class="input-style">
+							<input type="text" placeholder="검색어 입력" id="searchText" name="searchText" value="">
+							<button type="button" class="search" onclick="javascript:goSearch();">검색</button>
+					</span>
 				</div>
 			</div>
 		</div>

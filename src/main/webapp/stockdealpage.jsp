@@ -59,7 +59,7 @@
 	border-top: 1px solid #c3c3c3;
 }
 */
-.layerPopup{
+.layerPopup, .layerPopup-buying-cancel{
 font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", sans-serif;
 line-height: 20px;
 letter-spacing: -1px;
@@ -70,8 +70,22 @@ position: relative;
 font-weight: normal;
 color: #767676;
 display: none;
+right: 330px;
 }
-.layerPopup .layerStock {
+.layerPopup-buying-cancel{
+font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", sans-serif;
+line-height: 20px;
+letter-spacing: -1px;
+font-size: 13px;
+margin: 0;
+padding: 0;
+position: relative;
+font-weight: normal;
+color: #767676;
+display: none;
+right: 310px;
+}
+.layerStock {
     z-index: 1;
     position: absolute;
     left: 0;
@@ -81,14 +95,14 @@ display: none;
     background: #fff;
     border: 2px solid #474747;
 }
-.layerPopup .layerBox h1 {
+ .layerBox h1 {
     color: #0078af;
     font-size: 14px;
 }	
-.layerPopup .layerStock .conSection {
+ .layerStock .conSection {
     margin-top: 15px;
 }
-.layerPopup .layerStock .conSection .stockBox {
+ .layerStock .conSection .stockBox {
     width: auto;
 }
 .stockBox {
@@ -158,7 +172,7 @@ a.btnStyle {
     text-align: left;
     background: #f5fafd;
 }
-.layerPopup .layerBox a.popClose {
+.layerBox a.popClose {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -172,6 +186,11 @@ a.btnStyle {
     padding: 7px 0 8px;
     border-left: 1px solid #e6e6e6;
     background: #f5fafd;
+    text-align: center;
+}
+.tableDefault tbody td {
+    padding: 7px 0 8px;
+    border-left: 1px solid #e6e6e6;
     text-align: center;
 }
 .tableSmall thead th {
@@ -189,6 +208,9 @@ a.btnStyle {
     background: #fff;
 }
 .tableCol thead th.first {
+    border-left: none;
+}
+.tableCol tbody td.first {
     border-left: none;
 }
 .tableCol tbody td .tdArea, .tableCol tfoot td {
@@ -392,22 +414,26 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" name="buyingPrice"> 원 <span
+													class="alignR" name="buyingPrice" numberonly> 원 <span
 													class="buying-check"> 
-												<a href="#" class="buying-check-btn btnStyle btnS">매수가능</a>
+												<a class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 												<script>
 												$(document).ready(function() {
 													  $(".popClose, .nav-item").click(function(){
 													    $(".layerPopup").hide();
 													  });
-													  $(".buying-check-btn").click(function(){
+													  $(".buying-checking").click(function(){
 													    $(".layerPopup").show();
 													  });
+													  $(".popClose, .nav-item").click(function(){
+														    $(".layerPopup-buying-cancel").hide();
+														  });
+														  $(".buying-cancel").click(function(){
+														    $(".layerPopup-buying-cancel").show();
+														  });
 													  $("input:text[numberOnly]").on("keyup", function() {
 														    $(this).val($(this).val().replace(/[^0-9]/g,""));
 														});
-
-
 													});
 												</script>
 												<div class="layerPopup">
@@ -474,15 +500,29 @@ a.btnStyle {
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR" name="buyingQu"> 주 <span
-													class="buying-check"> <a href="#" onclick="#"
+													class="alignR" name="buyingQu" id="sum" value="0" onclick="" numberonly> 주 <span
+													class="buying-check"> <a href="#" onclick="sumplus(10);"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
-													href="#" onclick="#"
+													  onclick="sumplus(100);"
 													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
 													href="#" onclick="#"
 													class="buying-check-btn btnStyle btnS btnSum">최대</a>
 												</span>
 											</div>
+											<script type="text/javascript">
+												function sumplus(num) {
+													var text = document.getElementById("sum");
+													text_val = parseInt(sum.value);
+													text_val += num;
+													text.value = text_val;
+												}
+												/*
+												$("#sum").on("click", function(){
+													var text = document.getElementById("sum");
+													text.value = ""
+												});
+												*/
+											</script>
 										</div>
 										<div class="sumArea">
 											<span class="text"> <em>총주문금액 :</em> <strong
@@ -510,9 +550,9 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" name="sellingPrice"> 원 <span
+													class="alignR" name="sellingPrice" numberonly> 원 <span
 													class="buying-check"> 
-													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">매도가능</a> 
+													<a onclick="#" class="buying-check-btn btnStyle btnS buying-checking">매도가능</a> 
 														<div class="layerPopup">
 															<div class="layerBox layerStock" id="poplayer_possible" style="display: block;">
 															<h1>매도가능</h1>
@@ -522,22 +562,19 @@ a.btnStyle {
 																<div class="tableWrap tableDataWrap">
 																	<table class="tableDefault tableCol tableSmall" summary="종목명, 잔고수량, 매도가능수량에 관한 정보입니다.">
 																		<colgroup>
-																			<col width="33%">
-																			<col>
-																			<col width="33%">
+																			<col width="50%">
+																			<col width="50%">
 																		</colgroup>
 																		<thead>
 																			<tr>
 																				<th scope="col" class="first">종목명</th>
 																				<th scope="col">잔고수량</th>
-																				<th scope="col">매도가능수량</th>
 																			</tr>
 																		</thead>
 																		<tbody>
 																				<tr>
-																					<td colspan="3" class="first">  
-																						<div class="tdArea">데이터가 존재하지 않습니다.</div>
-																					</td>
+																					<td title="종목명" class="first"></td>
+																					<td title="잔고수량"></td>
 																				</tr>
 																		</tbody>
 																	</table>
@@ -552,14 +589,7 @@ a.btnStyle {
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR" name="sellingQu"> 주 <span
-													class="buying-check"> <a href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
-													href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
-													href="#" onclick="#"
-													class="buying-check-btn btnStyle btnS btnSum">최대</a>
-												</span>
+													class="alignR" name="sellingQu" numberonly> 주 
 											</div>
 										</div>
 										<div class="sumArea">
@@ -613,8 +643,8 @@ a.btnStyle {
 												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
 												<input type="text" class="alignR" > 
 												<span class="buying-check"> 
-													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">미체결잔량</a>
-														<div class="layerPopup">
+													<a onclick="#" class="buying-check-btn btnStyle btnS buying-cancel">미체결잔량</a>
+														<div class="layerPopup-buying-cancel">
 															<div class="layerBox layerStock" id="poplayer_un_conclusion" style="display: block;">
 																<h1>미체결잔량</h1>
 																<!-- conSection -->
@@ -622,37 +652,38 @@ a.btnStyle {
 																	<!-- tableWrap -->
 																	<div class="tableWrap tableDataWrap">
 																		<table class="tableDefault tableCol tableSmall" summary="미체결잔량에 관한 주문번호, 종목명, 주문구분, 주문단가, 미체결잔량에 관한 정보입니다.">
-																			<colgroup>
-																				<col width="10%">
-																				<col>
-																				<col width="8%">
-																				
-																					<col width="8%">
-																				
-																				<col width="20%">
-																				<col width="15%">
-																				<col width="15%">
-																			</colgroup>
-																			<thead>
+																		<colgroup>
+																			
+																			
+																			<col width="20%">
+																			<col width="20%">
+																			<col width="20%">
+
+
+																			<col width="20%">
+																			<col width="20%">
+																		</colgroup>
+																		<thead>
 																				<tr>
 																					<th scope="col" class="first">주문번호</th>
 																					<th scope="col">종목명</th>
 																					<th scope="col">구분</th>
 																					
-																						<th scope="col">신용</th>
 																					
 																					<th scope="col">주문단가</th>
 																					<th scope="col">미체결잔량</th>
-																					<th scope="col">시간외구분</th>
 																				</tr>
 																			</thead>
 																			<tbody>
-																						<tr>
-																							<td colspan="7" class="first">  
-																								<div class="tdArea"></div>
-																							</td>
-																						</tr>
-																			</tbody>
+																			<tr>
+																				<td class="first" title="주문번호"></td>
+																				<td title="종목명"></td>
+																				<td title="구분"></td>
+																				<td title="주문단가"></td>
+																				<td title="미체결잔량"></td>
+																				
+																			</tr>
+																		</tbody>
 																		</table>
 																	</div>
 																</div>
@@ -688,12 +719,10 @@ a.btnStyle {
 										<li>정규시장 주문시간 안내 : 08:20~15:30</li>
 										<li>시간외종가 주문시간 안내 : 장 개시 전 종가 – 08:30~08:40 / 장 마감 후 종가 –
 											15:40~16:00</li>
-										<li>ELW 종목은 시간외 거래 불가</li> console.log(${d });
-										console.log(${hr});
+										<li>ELW 종목은 시간외 거래 불가</li>
 									</ul>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
