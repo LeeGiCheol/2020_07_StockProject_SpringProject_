@@ -1,15 +1,18 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.project.dao.CommentDAO;
 import com.bitcamp.project.service.CommentService;
+import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
+import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.UserVO;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -33,14 +36,15 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-    public List<CommentVO> getCommentList(CommentVO vo){
+    public List<CommentVO> getCommentList(PagingVO vo){
 		return commentDAO.getCommentList(vo);
 	}
 
-	@Override
-	public int count(int cno) {
-		return commentDAO.count(cno);
+	public int count(CommentVO vo) {
+		return commentDAO.count(vo);
 	}
+	
+
 
 	
 

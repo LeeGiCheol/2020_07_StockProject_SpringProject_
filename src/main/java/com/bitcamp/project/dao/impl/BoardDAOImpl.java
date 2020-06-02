@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.BoardDAO;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.PagingVO;
 
 @Repository("BoardDAO")
 public class BoardDAOImpl implements BoardDAO {
@@ -38,8 +39,14 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getBoardList(BoardVO vo) {
-		return mybatis.selectList("board.getBoardList", vo);
+	public List<BoardVO> getBoardList(PagingVO vo) {
+		return mybatis.selectList("board.boardList", vo);
 	}
 
+	public int count(BoardVO vo) {
+		return mybatis.selectOne("board.boardCount", vo);
+	}
+	
+
+	
 }
