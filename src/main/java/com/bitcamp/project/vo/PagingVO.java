@@ -4,7 +4,9 @@ public class PagingVO {
 	
 	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
-	private int cntPage = 10;
+	private int cntPage = 5;
+	private String id;
+	private int bno;
 	
 	public PagingVO() {
 	}
@@ -26,15 +28,17 @@ public class PagingVO {
 		if (getLastPage() < getEndPage()) {
 			setEndPage(getLastPage());
 		}
-		setStartPage(getEndPage() - cntPage + 1);
-		if (getStartPage() < 1) {
-			setStartPage(1);
+		if(getEndPage() % cntPage == 0) {
+			setStartPage(getEndPage() - cntPage + 1);
+		}
+		else {
+			setStartPage(getEndPage() - getEndPage() % cntPage + 1);
 		}
 	}
 	// DB 쿼리에서 사용할 start, end값 계산
 	public void calcStartEnd(int nowPage, int cntPerPage) {
 		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage + 1);
+		setStart((nowPage - 1) * cntPerPage);
 	}
 	
 	public int getNowPage() {
@@ -91,6 +95,22 @@ public class PagingVO {
 	public void getCntPage(int cntPage) {
 		this.cntPage = cntPage;
 	}
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getBno() {
+		return bno;
+	}
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total

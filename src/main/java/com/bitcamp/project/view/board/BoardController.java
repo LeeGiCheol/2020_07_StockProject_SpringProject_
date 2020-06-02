@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitcamp.project.service.BoardService;
+import com.bitcamp.project.service.CommentService;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.CommentVO;
 
 @Controller
 public class BoardController {
@@ -23,12 +25,16 @@ public class BoardController {
 	@Autowired
 	HttpSession session;
 	
+	@Autowired
+	CommentService commentService;
+	
 	
 	@GetMapping("/board/free")
 	public String boardList(BoardVO vo, Model model) {
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		model.addAttribute("boardList", boardList);
 		System.out.println(boardList);
+		
 		
 		return "free-board";
 	}
@@ -49,15 +55,20 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/free/detail")
-	public String getBoard(BoardVO vo, Model model) {
+	public String getBoard(BoardVO vo, CommentVO cVo, Model model) {
 		System.out.println("test1 "+vo);
 		BoardVO boardDetail = boardService.getBoard(vo);
 		System.out.println("test2 "+boardDetail);
 		
 		System.out.println("session "+session.getAttribute("loginUser"));
 		System.out.println("model "+boardDetail.getNickname());
-		
 		model.addAttribute("boardDetail", boardDetail);
+
+		
+		// 댓글리스트
+		List<CommentVO> commentList = commentService.getCommentList(cVo);
+		model.addAttribute("commentList", commentList);
+		System.out.println(commentList);
 		return "free-board-detail";
 	}
 	

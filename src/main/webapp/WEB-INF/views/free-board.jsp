@@ -230,7 +230,7 @@
           <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
           <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
           <div class="buttons">
-            <button class="btn btn-primary btn-lg btn-block add" type="button" onclick="location.href='writeForm.jsp'">작성</button>
+            <button class="btn btn-primary btn-lg btn-block add" type="button" onclick="location.href='/board/free/write'">작성</button>
             <button class="btn btn-primary btn-lg btn-block remove" type="button">삭제</button>
           </div>
         </form>

@@ -98,9 +98,31 @@
 		ORDER BY pno DESC
 	</select>
 	
-	<select id="getMyPost" parameterType = "user" resultType="board">
+	<!-- 기존것 -->
+	<select id="getMyBoard2" parameterType="user" resultType="board">
 		SELECT * FROM board
 		WHERE id=#{id}
 		ORDER BY pno DESC
+	</select>
+	
+	<!-- pagination용 -->
+	<select id="myPostCount" parameterType="user" resultType="int">
+		select count(*)
+		from board
+		where id=#{id}
+	</select>
+	
+	<select id="getMyBoard" parameterType="page" resultType="board">
+		select *
+		from board
+		where id=#{id}
+		limit #{start}, #{cntPerPage}
+	</select>
+	
+	<select id="getMyComment" parameterType="page" resultType="comment">
+		select *
+		from commentList
+		where id=#{id}
+		limit #{start}, #{cntPerPage}
 	</select>
 </mapper>

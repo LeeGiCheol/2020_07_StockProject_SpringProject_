@@ -2,6 +2,8 @@ package com.bitcamp.project.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,14 +28,21 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public void deleteComment(CommentVO vo) {
-		commentDAO.deleteComment(vo);
+	public int deleteComment(CommentVO vo) {
+		return commentDAO.deleteComment(vo);
 	}
 
 	@Override
-	public List<CommentVO> getCommentList(CommentVO vo) {
-		return null;
+    public List<CommentVO> getCommentList(CommentVO vo){
+		return commentDAO.getCommentList(vo);
 	}
+
+	@Override
+	public int count(int cno) {
+		return commentDAO.count(cno);
+	}
+
+	
 
 	
 	

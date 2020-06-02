@@ -323,10 +323,10 @@ a.btnStyle {
 							</tbody>
 
 							<tbody>
-								<tr>
+								<tr id="upDownColor">
 									<td>현재가</td>
 									<td id="price"></td>
-									<td id="beforeAndUpdown"></td> 										
+									<td id="beforeAndUpdown"></td> 		
 								</tr>
 							</tbody>
 
@@ -581,7 +581,7 @@ a.btnStyle {
 							</div>
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 								aria-labelledby="pills-contact-tab">
-								<form id="trad_frm" method="get">
+								<form id="trad_frm" action="/modify" method="post">
 									<div class="stock-buying">
 										<div class="choice">
 											<strong>주문구분</strong> 
@@ -610,7 +610,7 @@ a.btnStyle {
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
-												<input type="text" class="alignR" > 
+												<input type="text" class="alignR" name="uno"> 
 												<span class="buying-check"> 
 													<a href="#" onclick="#" class="buying-check-btn btnStyle btnS">미체결잔량</a>
 														<div class="layerPopup">
@@ -663,12 +663,12 @@ a.btnStyle {
 													</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 35px;" class="btn-cc" >단가</label>
-												<input type="text" class="alignA" id="mySelect" numberOnly> 
+												<input type="text" class="alignA" id="mySelect" name="modifyPrice" numberOnly> 
 												<input type="text" class="alignB" id="mySelect" value="0" style="display: none;" disabled> 원
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 35px;">수량</label>
-												<input type="text" class="alignR" numberOnly> 주
+												<input type="text" class="alignR" name="modifyQu" numberOnly> 주
 
 											</div>
 										</div>
@@ -679,8 +679,8 @@ a.btnStyle {
 											</span>
 										</div>
 									</div>
-									<button style="width: 100%; height: auto;" class="btn-modify">정정주문</button>
-									<button style="width: 100%; height: auto; display: none;" class="btn-cancel">취소주문</button>
+									<button style="width: 100%; height: auto;" class="btn-modify" type="submit">정정주문</button>
+									<button style="width: 100%; height: auto; display: none;" class="btn-cancel" type="submit">취소주문</button>
 								</form>
 								<div class="tableDesc">
 									<ul class="dotList">
@@ -734,7 +734,18 @@ a.btnStyle {
 				//	console.log(data.up);
 					/* if(data.before != null) { */
 						console.log(data.currentPrice);
+						$('#element').css('margin', '5px');
 						$('#price').text(data.currentPrice);
+						
+						// 어제 대비 현재가가 오른경우
+						if(data.before.indexOf("+") != -1){					
+							$('#upDownColor').css("background-color", "red");
+						} 
+						// 내린경우
+						else {
+							$('#upDownColor').css("background-color", "Aqua");
+						}
+						
 						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 						$('#maximum').html(data.maximum);
 						$('#minimum').html(data.minimum);
@@ -763,7 +774,7 @@ a.btnStyle {
 	//window.onload = function () {
 	var a = 0;
 	
-	$("#minute").click(function(){
+ 	$("#minute").click(function(){
 		console.log(a);
 		var minDataPoints = [];
 		var minChart = new CanvasJS.Chart(
@@ -960,7 +971,7 @@ a.btnStyle {
 		}
 		getDayDataPointsFromCSV();
 	}	
-	
+	 
 	
 	</script>
 

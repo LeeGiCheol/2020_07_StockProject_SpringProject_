@@ -7,6 +7,6 @@ import com.bitcamp.project.vo.UserVO;
 public interface MyPostService {
 	public void myListSearch();
 	public void myCommentList();
-	public Map<String, Object> myPostList(UserVO loginUser);
+	public Map<String, Object> myPostList(UserVO loginUser, int nowPage);
 	public void myListDelete();
 }

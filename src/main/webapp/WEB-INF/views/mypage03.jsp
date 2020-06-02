@@ -27,35 +27,12 @@ $(document).ready(function(){
             $(".custom-control-input").prop("checked",false);
         }
     })
-  	$(function() {
-  		window.pagObj = $('#pagination').twbsPagination({
-  			totalPages : 35,
-  			visiblePages : 5,
-  			onPageClick : function(event, page) {
-  				console.info(page + ' (from options)');
-  			}
-  		}).on('page', function(event, page) {
-  			console.info(page + ' (from event listening)');
-  		});
-  		});  
 
-$(function() {
-		window.pagObj = $('#pagination-comment').twbsPagination({
-			totalPages : 35,
-			visiblePages : 5,
-			onPageClick : function(event, page) {
-				console.info(page + ' (from options)');
-			}
-		}).on('page', function(event, page) {
-			console.info(page + ' (from event listening)');
-		});
-		});  
-}); 
+})
+
+
 
 </script>
-<style>
-.paging-body{margin-top:50px; margin-bottom: 300px;}
-</style>
 </head>
 <body>
     <!-- header start -->
@@ -172,7 +149,7 @@ $(function() {
           	<c:forEach items="${myBoard}" var="board">
                <tr> 
                  <td><div class="custom-control custom-checkbox">
-                   <input type="checkbox" id="jb-checkbox" class="custom-control-input" name="${board.pno}"><label class="custom-control-label" for="jb-checkbox${board.pno}"></label></div></td>
+                   <input type="checkbox" id="jb-checkbox${board.pno}" class="custom-control-input" name="b${board.pno}"><label class="custom-control-label" for="jb-checkbox${board.pno}"></label></div></td>
                  <th scope="row">${board.pno}</th>
                  <td>${board.title}</td>
                  <td>${board.nickname}</td>
@@ -181,7 +158,58 @@ $(function() {
                  <td>${board.likes}</td>
                </tr>
          	</c:forEach>
-         	
+         	<!-- 
+            <tr> 
+              <td><div class="custom-control custom-checkbox">
+                <input type="checkbox" id="jb-checkbox1" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
+              <th scope="row">5</th>
+              <td>이 글은 테스트용 글쓰기입니다.</td>
+              <td>글쓴이</td>
+              <td>2020.05.21</td>>
+              <td>270</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td><div class="custom-control custom-checkbox">
+                <input type="checkbox" id="jb-checkbox2" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox2"></label></div></td>
+              <th scope="row">4</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><div class="custom-control custom-checkbox">
+                <input type="checkbox" id="jb-checkbox3" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox3"></label></div></td>
+              <th scope="row">3</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><div class="custom-control custom-checkbox">
+                <input type="checkbox" id="jb-checkbox4" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox4"></label></div></td>
+              <th scope="row">2</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><div class="custom-control custom-checkbox">
+                <input type="checkbox" id="jb-checkbox5" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox5"></label></div></td>
+              <th scope="row">1</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+             -->
           </tbody>
         </table>
         <br>
@@ -196,12 +224,50 @@ $(function() {
           <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
               <i class="fas fa-search"></i></button>
           <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
+          <nav aria-label="..." class="pagination">
+          
+          	<ul class="pagination">
+			<c:if test="${boardPage.startPage != 1 }">
+				<!-- <a href="/myPage03?nowPage=${boardPage.startPage - 1 }">◀</a> -->
+				<li>
+					<a class="page-link" href="/myPage03?bnowPage=${boardPage.startPage - 1 }"tabindex="-1" aria-disabled="true">◀</a>
+				</li>
+			</c:if>
+			<c:forEach begin="${boardPage.startPage }" end="${boardPage.endPage }" var="p">
+				<c:choose>
+					<c:when test="${p == boardPage.nowPage}">
+						<!-- <b>${p }</b> -->
+						<li class="page-item active" aria-current="page">
+							<a class="page-link" href="#">${p}<span class="sr-only">(current)</span></a>
+						</li>
+					</c:when>
+					<c:when test="${p != boardPage.nowPage}">
+						<!-- <a href="/myPage03?nowPage=${p }">${p}</a> -->
+						<li class="page-item">
+							<a class="page-link" href="/myPage03?bnowPage=${p}">${p}</a>
+						</li>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${boardPage.endPage != boardPage.lastPage}">
+				<!-- <a href="/myPage03?nowPage=${boardPage.endPage+1 }">▶</a> -->
+				<li>
+					<a class="page-link" href="/myPage03?bnowPage=${boardPage.endPage+1}" tabindex="+1" aria-disabled="true">▶</a>
+				</li>
+			</c:if>
+			</ul>
+			<!-- 
+            <ul class="pagination">
+              <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
+            </ul> -->
+          </nav>
         </form>
-	        <div class="paging">
-				<div class="paging-body">
-					<ul class="pagination" id="pagination"></ul>
-				</div>
-	    	</div>
       </div>
       <div class="tab-pane fade" id="pills-commnet" role="tabpanel" aria-labelledby="pills-commnet-tab" style="margin-bottom: 300px;">
         <!-- 내가 작성한 댓글 -->
@@ -214,32 +280,29 @@ $(function() {
               <th class="title" scope="col">글제목</th>
               <th class="writer" scope="col">글쓴이</th>
               <th class="date" scope="col">작성일</th>
-              <th class="views" scope="col">조회</th>
-              <th class="likes" scope="col">추천</th>
             </tr>
           </thead>
           <tbody>
-            <c:forEach items="${myPost}" var="post">
+            <c:forEach items="${myComment}" var="comment">
                <tr> 
                  <td><div class="custom-control custom-checkbox">
-                   <input type="checkbox" id="jb-checkbox${post.pno}" class="custom-control-input" name="${post.pno}"><label class="custom-control-label" for="jb-checkbox${post.pno}"></label></div></td>
-                 <th scope="row">${post.pno}</th>
-                 <td>${post.title}</td>
-                 <td>${post.nickname}</td>
-                 <td>${post.bdateTime}</td>
-                 <td>${post.views}</td>
-                 <td>${post.likes}</td>
+                   <input type="checkbox" id="jb-checkbox${comment.cno}-comment" class="custom-control-input" name="c${comment.cno}"><label class="custom-control-label" for="jb-checkbox${comment.cno}-comment"></label></div></td>
+                 <th scope="row">${comment.cno}</th>
+                 <td>${comment.ccontent}</td>
+                 <td>${comment.nickname}</td>
+                 <%-- <td>${comment.cdateTime}</td> --%>
                </tr>
          	</c:forEach>
+         	<!-- 
             <tr>
               <td><div class="custom-control custom-checkbox">
                 <input type="checkbox" id="jb-checkbox1-commnet" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox1-commnet"></label></div></td>
-              <th scope="row">5</th><!-- ${board.no} -->
-              <td>이 글은 테스트용 댓글쓰기입니다.</td><!-- ${board.title} -->
-              <td>글쓴이</td><!-- ${board.writer} -->
-              <td>2020.05.21</td><!-- ${board.date} -->
-              <td>270</td><!-- ${board.views} -->
-              <td>30</td><!-- ${board.likes} -->
+              <th scope="row">5</th>
+              <td>이 글은 테스트용 댓글쓰기입니다.</td>
+              <td>글쓴이</td>
+              <td>2020.05.21</td>
+              <td>270</td>
+              <td>30</td>
             </tr>
             <tr>
               <td><div class="custom-control custom-checkbox">
@@ -281,6 +344,7 @@ $(function() {
               <td></td>
               <td></td>
             </tr>
+             -->
           </tbody>
         </table>
         <br>
@@ -295,12 +359,39 @@ $(function() {
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
                 <i class="fas fa-search"></i></button>
             <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
+            <nav aria-label="..." class="pagination">
+                        	<ul class="pagination">
+			<c:if test="${comment.startPage != 1 }">
+				<!-- <a href="/myPage03?nowPage=${boardPage.startPage - 1 }">◀</a> -->
+				<li>
+					<a class="page-link" href="/myPage03?cnowPage=${comment.startPage - 1 }"tabindex="-1" aria-disabled="true">◀</a>
+				</li>
+			</c:if>
+			<c:forEach begin="${comment.startPage }" end="${comment.endPage }" var="p">
+				<c:choose>
+					<c:when test="${p == comment.nowPage}">
+						<!-- <b>${p }</b> -->
+						<li class="page-item active" aria-current="page">
+							<a class="page-link" href="#">${p}<span class="sr-only">(current)</span></a>
+						</li>
+					</c:when>
+					<c:when test="${p != comment.nowPage}">
+						<!-- <a href="/myPage03?nowPage=${p }">${p}</a> -->
+						<li class="page-item">
+							<a class="page-link" href="/myPage03?cnowPage=${p}">${p}</a>
+						</li>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${comment.endPage != comment.lastPage}">
+				<!-- <a href="/myPage03?nowPage=${boardPage.endPage+1 }">▶</a> -->
+				<li>
+					<a class="page-link" href="/myPage03?cnowPage=${comment.endPage+1}" tabindex="+1" aria-disabled="true">▶</a>
+				</li>
+			</c:if>
+			</ul>
+            </nav>
           </form>
-	        <div class="paging">
-				<div class="paging-body">
-					<ul class="pagination" id="pagination-comment"></ul>
-				</div>
-	    	</div>
       </div>
     </div>
     </article>
@@ -317,6 +408,4 @@ $(function() {
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- paginate -->
-<script src="/resources/jpaginate/jquery.twbsPagination.js" type="text/javascript"></script>
 </html>
