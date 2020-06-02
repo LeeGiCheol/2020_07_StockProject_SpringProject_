@@ -1,6 +1,8 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.project.dao.BoardDAO;
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.CommentVO;
+import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.UserVO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -35,9 +40,29 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.getBoard(vo);
 	}
 
-	@Override
-	public List<BoardVO> getBoardList(BoardVO vo) {
-		return boardDAO.getBoardList(vo);
+	
+	public int count(BoardVO vo) {
+		return boardDAO.count(vo);
 	}
+
+	@Override
+	public Map<String, Object> boardList(BoardVO vo, int nowPage) {
+		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, 10);
+		PagingVO commentPage = new PagingVO(boardDAO.count(vo), nowPage, 10);
+		
+		boardPage.setId(vo.getId());
+		commentPage.setId(vo.getId());
+		List<BoardVO> boardList = boardDAO.getBoardList(boardPage);
+//		List<CommentVO> myComment = boardDAO.myCommentList(commentPage);
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("boardList", boardList);
+//		postMap.put("myComment", myComment);
+		postMap.put("boardPage", boardPage);
+//		postMap.put("commentPage", commentPage);
+		
+		return postMap;
+	}
+
+	
 
 }

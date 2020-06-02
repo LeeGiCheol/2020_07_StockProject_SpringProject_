@@ -1,8 +1,8 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -22,7 +22,6 @@ import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
 
-import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
@@ -80,7 +79,7 @@ public class TradeController {
 		switch (modify) {
 		case "modify":
 			if (Integer.parseInt(qu) == 0) {
-				mav.addObject("msg", "수정 가능한 최소 수량은 1개 입니다");
+				mav.addObject("msg", "정정 가능한 최소 수량은 1주 입니다");
 				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
 				mav.setViewName("notice");
 				return mav;
@@ -183,9 +182,10 @@ public class TradeController {
 	public ModelAndView buying(@RequestParam(value = "buyingQu") String qu,
 			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
 //		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		String id = "test"; // test 용 아이디
+		
 		ModelAndView mav = new ModelAndView();
 
-		String id = "test"; // test 용 아이디
 		if (id == null) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
@@ -218,7 +218,11 @@ public class TradeController {
 
 	@GetMapping(value = "/trade")
 	public ModelAndView tradeView(Info vo) {
+//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		String id = "test"; // test 용 아이디
+		
 		String stockName = vo.getStockName();
+		
 		if (stockName == null)
 			stockName = "삼성전자";
 		ModelAndView mav = new ModelAndView();
@@ -227,10 +231,15 @@ public class TradeController {
 
 //		RequestChart rc = new RequestChart();
 //		rc.connection(stockName);
-
+		
+		
+		List unsettled = tradeService.getUnsettled_ID(id);
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);
 
+		System.out.println(unsettled);
+		mav.addObject("unsettled", unsettled);
+		
 		Integer[][] minChartData = new Integer[6][60];
 		Integer[][] dayChartData = new Integer[6][60];
 //
@@ -272,8 +281,6 @@ public class TradeController {
 	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
 		String stockName = vo.getStockName();
 
-//		RequestChart rc = new RequestChart();
-//		rc.connection(stockName);
 
 		StockParsing st = new StockParsing();
 

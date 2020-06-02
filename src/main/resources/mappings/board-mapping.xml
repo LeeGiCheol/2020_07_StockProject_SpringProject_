@@ -112,6 +112,8 @@
 		where id=#{id}
 	</select>
 	
+
+	
 	<select id="getMyBoard" parameterType="page" resultType="board">
 		select *
 		from board
@@ -123,6 +125,21 @@
 		select *
 		from commentList
 		where id=#{id}
+		limit #{start}, #{cntPerPage}
+	</select>
+	
+	
+	<!-- 자유게시판 페이징처리 -->
+	<select id="boardCount" parameterType="board" resultType="int">
+		select count(*)
+		from board
+		where bno = 1
+	</select>
+		 
+	<select id="boardList" parameterType="page" resultType="board">
+		select *
+		from board
+		where bno=1
 		limit #{start}, #{cntPerPage}
 	</select>
 </mapper>

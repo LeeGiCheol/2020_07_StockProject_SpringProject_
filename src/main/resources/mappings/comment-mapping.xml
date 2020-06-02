@@ -16,18 +16,13 @@
 		WHERE pno = #{pno} 
 	</select>
 	 -->
-	 
-	<select id="commentList" resultType="comment">
-		<![CDATA[
-		SELECT A.*
-		FROM(
-					SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, commentlist.* 
-					FROM commentlist, (SELECT @ROWNUM := 0) R
-					) A
-		WHERE pno = #{pno}
-		AND A.ROWNUM <= 5;
-	    ]]>
-	 </select>
+<!-- 	 
+	<select id="commentList" parameterType="page" resultType="comment">
+		select *
+		from commentList
+		where pno=#{pno}
+		limit #{start}, #{cntPerPage}
+	</select> -->
 	 
 	 
 	<!-- <update id="updateBoard">

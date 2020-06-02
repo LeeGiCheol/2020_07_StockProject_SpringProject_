@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.board;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,6 +17,7 @@ import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
+import com.bitcamp.project.vo.PagingVO;
 
 @Controller
 public class BoardController {
@@ -30,9 +33,16 @@ public class BoardController {
 	
 	
 	@GetMapping("/board/free")
-	public String boardList(BoardVO vo, Model model) {
-		List<BoardVO> boardList = boardService.getBoardList(vo);
-		model.addAttribute("boardList", boardList);
+	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage) {
+		if(nowPage == null || nowPage.equals("")){
+			nowPage = "1";
+		}
+		System.out.println("vo "+vo.toString());
+		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage));
+		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
+		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
+		PagingVO a = (PagingVO)boardList.get("boardPage");
+		System.out.println(a.toString());
 		System.out.println(boardList);
 		
 		
@@ -55,7 +65,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/free/detail")
-	public String getBoard(BoardVO vo, CommentVO cVo, Model model) {
+	public String getBoard(BoardVO vo, CommentVO cVo, Model model, PagingVO pVo) {
 		System.out.println("test1 "+vo);
 		BoardVO boardDetail = boardService.getBoard(vo);
 		System.out.println("test2 "+boardDetail);
@@ -66,7 +76,7 @@ public class BoardController {
 
 		
 		// 댓글리스트
-		List<CommentVO> commentList = commentService.getCommentList(cVo);
+		List<CommentVO> commentList = commentService.getCommentList(pVo);
 		model.addAttribute("commentList", commentList);
 		System.out.println(commentList);
 		return "free-board-detail";
