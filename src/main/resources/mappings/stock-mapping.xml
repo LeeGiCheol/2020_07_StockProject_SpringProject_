@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="getUnsettled_ID" resultType="map">
-		SELECT stockName , u.uno , category , rPrice, quantity  FROM unsettled u join unsettledcheck c on c.uno = u.uno where id = #{id}
+		SELECT stockName , u.uno , category , rPrice, quantity  FROM unsettled u join unsettledcheck c on c.uno = u.uno where id = #{id} order by u.uno desc;
 	</select>
 	
 	<select id="dayChart" resultType="map">

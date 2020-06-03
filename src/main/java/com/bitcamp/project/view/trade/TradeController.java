@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
+import com.bitcamp.project.vo.UserVO;
 
 import stockCode.StockParsing;
 
@@ -47,8 +48,8 @@ public class TradeController {
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
 			@RequestParam(value = "cancleModify") String modify) {
-//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-		String id = "test"; // test 용 아이디
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = "test"; // test 용 아이디
 		ModelAndView mav = new ModelAndView();
 
 		if (id == null) {
@@ -142,8 +143,8 @@ public class TradeController {
 	@PostMapping(value = "/selling")
 	public ModelAndView selling(@RequestParam(value = "sellingQu") String qu,
 			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {
-//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-		String id = "test"; // test 용 아이디
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = "test"; // test 용 아이디
 		ModelAndView mav = new ModelAndView();
 
 		if (id == null) {
@@ -181,8 +182,8 @@ public class TradeController {
 	@PostMapping(value = "/buying")
 	public ModelAndView buying(@RequestParam(value = "buyingQu") String qu,
 			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
-//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-		String id = "test"; // test 용 아이디
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = "test"; // test 용 아이디
 		
 		ModelAndView mav = new ModelAndView();
 
@@ -218,14 +219,29 @@ public class TradeController {
 
 	@GetMapping(value = "/trade")
 	public ModelAndView tradeView(Info vo) {
-//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-		String id = "test"; // test 용 아이디
-		
+		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		String stockName = vo.getStockName();
+		ModelAndView mav = new ModelAndView();
+		
+		try {
+			String id = ((UserVO) session.getAttribute("loginUser")).getId();
+			StockVO sv = new StockVO();
+			sv.setId(id);
+			sv.setStockName(stockName);
+			int myStockQu = tradeService.getStockQuantity(sv);
+			long money = tradeService.getMoney(id);
+			List unsettled = tradeService.getUnsettled_ID(id);
+			mav.addObject("unsettled", unsettled);
+			mav.addObject("myStockQu", myStockQu);
+			mav.addObject("money",formatter.format(money)+"원");
+		} catch (Exception e) {
+			mav.addObject("myStockQu", "로그인이 필요합니다");
+			mav.addObject("money", "로그인이 필요합니다");
+		}
+//		String id = "test"; // test 용 아이디
 		
 		if (stockName == null)
 			stockName = "삼성전자";
-		ModelAndView mav = new ModelAndView();
 
 		stockName = stockName.toUpperCase();
 
@@ -233,13 +249,9 @@ public class TradeController {
 //		rc.connection(stockName);
 		
 		
-		List unsettled = tradeService.getUnsettled_ID(id);
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);
 
-		System.out.println(unsettled);
-		mav.addObject("unsettled", unsettled);
-		
 		Integer[][] minChartData = new Integer[6][60];
 		Integer[][] dayChartData = new Integer[6][60];
 //
