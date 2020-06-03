@@ -7,69 +7,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>mainpage</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainpage.css">
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/mainheader.css">
 </head>
 <body>
-	<div class="header">
-		<!-- 상단  nav -->
-		<ul class="nav justify-content-end top-nav">
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
-		</ul>
-		<ul class="nav justify-content-end top-nav">
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
-		</ul>
-		<!-- 상단  nav end -->
-		<!-- 메인  nav -->
-		<nav
-			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-			<a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stock
-				gallery</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search"
-							placeholder="통합검색" aria-label="Search">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
-							type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-				</ul>
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> 커뮤니티 </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">자유게시판</a> <a
-								class="dropdown-item" href="#">포트폴리오</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">뉴스</a>
-						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
-							class="sr-only">(current)</span></a></li>
-				</ul>
-			</div>
-		</nav>
-		<!-- 메인 nav end -->
-	</div>
-
+	
+	<%@include file="mainheader.jsp" %> 
+	
 	<!-- 전체메뉴 백그라운드-->
 	<div class="all-dim"></div>
 
@@ -78,7 +25,7 @@
 		<div class="row">
 			<div class="col-md-9">
 				<div class="chartdata">
-					<div id="chartContainer"></div>
+					<%@include file="Chart_minSC.jsp" %> 
 				</div>
 
 				<div class="stock-ranking">
@@ -220,7 +167,7 @@
 							aria-labelledby="pills-profile-tab">
 							<div class="headline">
 								<a href="#"> <span class="news-img"> <img
-										src="/resources/img/20200522_16726299.jpg">
+										src="img/20200522_16726299.jpg">
 								</span>
 									<p>
 										<strong>코스닥 외국인 순매수,도 상위20종목</strong> <span> 코스닥 외국인
@@ -297,7 +244,7 @@
 							</fieldset>
 						</form>
 						<p>
-							<a href="#">회원가입</a><span><a href="#">아이디</a>/<a href="#">비밀번호
+							<a href="#">회원가입</a><span><a href="#" class="idforgot">아이디</a><a href="#">비밀번호
 									찾기</a></span> <span class="social-login"> <a href="#"
 								class="social-type naver">네이버 로그인</a> <a href="#"
 								class="social-type kakaotalk">카카오톡 로그인</a> <a href="#"
@@ -334,10 +281,10 @@
 							</li>
 							<li id="_liCyber">포인트 <a href="#">0</a></li>
 						</ul>
-						<div>
-							<a href="http://www.paxnet.co.kr/my/home">MyPage</a> <a
-								href="http://www.paxnet.co.kr/pro/cafeHome/main/myCafe">알림</a>
-						</div>
+					</div>
+					<div class="login-after-btn">
+						<a href="#">MyPage</a> 
+						<a href="#">알림<span> N</span></a>
 					</div>
 				</div>
 
@@ -391,157 +338,12 @@
 			</div>
 		</div>
 	</div>
-
-
-	<!-- footer start -->
-	<div class=footer_div>
-		<footer class="footer_info">
-			<p>
-				<a href="https://www.naver.com">회사소개</a> | <a
-					href="https://www.google.co.kr">광고안내</a> | <a
-					href="https://www.naver.com">이용약관</a> | <a
-					href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a>
-			</p>
-			<p>Copyright ⓒ 2020 - 2020 stock gallery. All rights reserved.</p>
-		</footer>
-	</div>
-	<!-- footer end -->
-
-	<script>
 	
-	$(document).ready(function(){
-		 
-	    // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
-	    var key = getCookie("key");
-	    $("#inputEmail").val(key); 
-	     
-	    if($("#inputEmail").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
-	        $("#idSaveCheck").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
-	    }
-	     
-	    $("#idSaveCheck").change(function(){ // 체크박스에 변화가 있다면,
-	        if($("#idSaveCheck").is(":checked")){ // ID 저장하기 체크했을 때,
-	            setCookie("key", $("#inputEmail").val(), 7); // 7일 동안 쿠키 보관
-	        }else{ // ID 저장하기 체크 해제 시,
-	            deleteCookie("key");
-	        }
-	    });
-	     
-	    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
-	    $("#inputEmail").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
-	        if($("#idSaveCheck").is(":checked")){ // ID 저장하기를 체크한 상태라면,
-	            setCookie("key", $("#inputEmail").val(), 7); // 7일 동안 쿠키 보관
-	        }
-	    });
-	});
-	 
-	function setCookie(cookieName, value, exdays){
-	    var exdate = new Date();
-	    exdate.setDate(exdate.getDate() + exdays);
-	    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
-	    document.cookie = cookieName + "=" + cookieValue;
-	}
-	 
-	function deleteCookie(cookieName){
-	    var expireDate = new Date();
-	    expireDate.setDate(expireDate.getDate() - 1);
-	    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-	}
-	 
-	function getCookie(cookieName) {
-	    cookieName = cookieName + '=';
-	    var cookieData = document.cookie;
-	    var start = cookieData.indexOf(cookieName);
-	    var cookieValue = '';
-	    if(start != -1){
-	        start += cookieName.length;
-	        var end = cookieData.indexOf(';', start);
-	        if(end == -1)end = cookieData.length;
-	        cookieValue = cookieData.substring(start, end);
-	    }
-	    return unescape(cookieValue);
-	    
-	}
+	<%@include file="mainfooter.jsp" %> 
 	
-		window.onload = function() {
-
-			var dataPoints = [];
-			var test = [];
-
-			var chart = new CanvasJS.Chart(
-					"chartContainer",
-					{
-						animationEnabled : true,
-						theme : "light2", // "light1", "light2", "dark1", "dark2"
-						exportEnabled : true,
-						title : {
-							text : "Netflix Stock Price in 2016"
-						},
-						subtitles : [ {
-							text : "Weekly Averages"
-						} ],
-						axisX : {
-							interval : 1,
-							valueFormatString : "mm"
-						},
-						axisY : {
-							includeZero : false,
-							prefix : "",
-							title : "Price"
-						},
-						toolTip : {
-							content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
-						},
-						data : [ {
-							type : "candlestick",
-							yValueFormatString : "##0원",
-							dataPoints : dataPoints
-						} ]
-					});
-
-			$.get("/resources/testmin.csv", getDataPointsFromCSV);
-
-			function getDataPointsFromCSV(csv) {
-
-				var csvLines = points = [];
-				csvLines = csv.split(/[\r?\n|\r|\n]+/);
-				for (var i = 1; i < csvLines.length; i++) {
-					if (csvLines[i].length > 0) {
-						points = csvLines[i].split(",");
-						dataPoints.push({
-							x : new Date(parseInt(points[0].substring(0, 4)),
-									parseInt(points[0].substring(4, 6)),
-									parseInt(points[0].substring(6, 8)),
-									parseInt(points[1].substring(0, 2)),
-									parseInt(points[1].substring(2, 4))
-
-							),
-							y : [ parseFloat(points[2]), parseFloat(points[3]),
-									parseFloat(points[4]),
-									parseFloat(points[5]) ],
-							z : points[0].substring(0, 4) + '-'
-									+ points[0].substring(4, 6) + '-'
-									+ points[0].substring(6, 8) + " "
-									+ points[1].substring(0, 2) + ":"
-									+ points[1].substring(2, 4)
-						});
-					}
-				}
-				chart.render();
-			}
-
-		}
-	</script>
-
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

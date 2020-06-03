@@ -34,13 +34,15 @@ public class MyPostServiceImpl implements MyPostService {
 	}
 
 	@Override
-	public Map<String, Object> myPostList(UserVO loginUser, int nowPage) {
-		PagingVO boardPage = new PagingVO(myPostDAO.countBoard(loginUser), nowPage, 3);
-		PagingVO commentPage = new PagingVO(myPostDAO.countBoard(loginUser), nowPage, 3);
-		boardPage.setId(loginUser.getId());
+	public Map<String, Object> myPostList(UserVO loginUser, int bnowPage, int cnowPage) {
+		PagingVO boardPage = new PagingVO(myPostDAO.countBoard(loginUser), bnowPage, 3);
+		PagingVO commentPage = new PagingVO(myPostDAO.countComment(loginUser), cnowPage, 3);
+		boardPage.getA().put("id", loginUser.getId());
 		commentPage.setId(loginUser.getId());
 		List<BoardVO> myBoard = myPostDAO.myBoardList(boardPage);
 		List<CommentVO> myComment = myPostDAO.myCommentList(commentPage);
+		System.out.println(boardPage.toString());
+		
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("myBoard", myBoard);
 		postMap.put("myComment", myComment);

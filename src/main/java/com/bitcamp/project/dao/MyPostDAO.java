@@ -11,6 +11,7 @@ public interface MyPostDAO {
 	public void myListSearch();
 	public void myCommentList();
 	public int countBoard(UserVO loginUser);
+	public int countComment(UserVO loginUser);
 	public List<BoardVO> myBoardList(PagingVO page);
 	public List<CommentVO> myCommentList(PagingVO page);
 	public void myListDelete();

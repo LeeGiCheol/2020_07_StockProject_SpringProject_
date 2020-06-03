@@ -1,5 +1,8 @@
 package com.bitcamp.project.vo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PagingVO {
 	
 	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
@@ -7,8 +10,7 @@ public class PagingVO {
 	private int cntPage = 5;
 	private String id;
 	private int bno;
-	private int pno;
-	
+	private Map<String, Object> a;
 	
 	public PagingVO() {
 	}
@@ -19,6 +21,8 @@ public class PagingVO {
 		calcLastPage(getTotal(), getCntPerPage());
 		calcStartEndPage(getNowPage(), cntPage);
 		calcStartEnd(getNowPage(), getCntPerPage());
+		
+		a = new HashMap<String, Object>();
 	}
 	// 제일 마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {
@@ -36,9 +40,8 @@ public class PagingVO {
 		else {
 			setStartPage(getEndPage() - getEndPage() % cntPage + 1);
 		}
-		if (startPage <= 0) {
-			startPage = 1;
-		}
+		if(startPage <= 0)
+			setStartPage(1);
 	}
 	// DB 쿼리에서 사용할 start, end값 계산
 	public void calcStartEnd(int nowPage, int cntPerPage) {
@@ -100,13 +103,17 @@ public class PagingVO {
 	public void getCntPage(int cntPage) {
 		this.cntPage = cntPage;
 	}
-	
+
+	public Map<String, Object> getA() {
+		return a;
+	}
 	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+		a.put("id", id);
 	}
 	public int getBno() {
 		return bno;
@@ -115,15 +122,6 @@ public class PagingVO {
 		this.bno = bno;
 	}
 	
-	
-	
-	
-	public int getPno() {
-		return pno;
-	}
-	public void setPno(int pno) {
-		this.pno = pno;
-	}
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total

@@ -50,7 +50,7 @@ public class BoardServiceImpl implements BoardService{
 		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, 10);
 		
 		boardPage.setId(vo.getId());
-		List<BoardVO> boardList = boardDAO.getBoardList(boardPage);
+		List<BoardVO> boardList = boardDAO.getBoardList(vo, boardPage);
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("boardList", boardList);
 		postMap.put("boardPage", boardPage);

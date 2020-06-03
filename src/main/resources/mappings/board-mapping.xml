@@ -106,18 +106,22 @@
 	</select>
 	
 	<!-- pagination용 -->
-	<select id="myPostCount" parameterType="user" resultType="int">
+	<select id="myBoardCount" parameterType="user" resultType="int">
 		select count(*)
 		from board
 		where id=#{id}
 	</select>
 	
-
+	<select id="myCommentCount" parameterType="user" resultType="int">
+		select count(*)
+		from commentlist
+		where id=#{id}
+	</select>
 	
 	<select id="getMyBoard" parameterType="page" resultType="board">
 		select *
 		from board
-		where id=#{id}
+		where id=#{a.id}
 		limit #{start}, #{cntPerPage}
 	</select>
 	
@@ -125,22 +129,6 @@
 		select *
 		from commentList
 		where id=#{id}
-		limit #{start}, #{cntPerPage}
-	</select>
-	
-	
-	<!-- 자유게시판 페이징처리 -->
-	<select id="boardCount" parameterType="board" resultType="int">
-		select count(*)
-		from board
-		where bno = 1
-	</select>
-		 
-	<select id="boardList" parameterType="page" resultType="board">
-		select *
-		from board
-		where bno=1
-		order by pno desc
 		limit #{start}, #{cntPerPage}
 	</select>
 </mapper>
