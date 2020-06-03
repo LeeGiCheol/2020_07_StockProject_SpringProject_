@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+	figure, footer, header, hgroup, menu, nav, section, summary, time,
+	audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font-size: 14px;
+	background: transparent;
+	list-style: none;
+	box-sizing: border-box;
+	word-break: break-all;
+}
+/* header style start */
+.header {
+	position: relative;
+	z-index: 7;
+	background: #fff;
+	box-sizing: border-box;
+}
+.breadcrumb-item+.breadcrumb-item::before {
+	content: "|";
+}
+
+.m-container {
+	position: relative;
+	max-width: 1260px;
+	margin: 0 auto;
+	padding: 20px 0 30px 0;
+	height: 100%;
+}
+
+.m-contents {
+	position: relative;
+	margin: 0 auto;
+	z-index: 7;
+	padding-bottom: 10px;
+	max-width: 1260px;
+}
+
+@media only screen and (max-width:1599px) {
+	.m-container {
+		padding-right: 0
+	}
+}
+
+@media only screen and (max-width: 1324px) {
+	.m-container {
+		padding: 10px 20px 40px 20px;
+	}
+	.m-cont01 {
+		width: auto;
+		height: 1623px;
+		min-width: auto;
+		margin-right: 310px;
+		position: static;
+	}
+	.m-contents .side-area {
+		right: 0;
+	}
+	.m-contents .side-area .ranking {
+		height: 370px
+	}
+}
+
+.m-cont01 {
+	height: 1605px;
+	margin-right: 310px;
+	position: relative;
+	left: 0;
+}
+
+.m-contents .side-area {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 300px;
+}
+
+.fa-users {
+	padding-right: 5px;
+	color: gray;
+}
+
+.navbar-custom {
+	background-color: white !important;
+	border-bottom: 1px solid gray;
+}
+
+.btn-outline-success {
+	color: gray;
+	border-color: gray;
+}
+
+.btn-outline-success:hover {
+	color: #fff;
+	background-color: gray;
+	border-color: gray;
+}
+
+.navbar {
+	padding: 0.5rem 1rem;
+}
+
+.justify-content-end {
+	border-bottom: 1px solid gray;
+}
+
+.header .top-nav {
+	font-size: 0.8rem;
+	padding: 0.5rem 1rem;
+	background-color: white;
+}
+
+#top-nav-font {
+	color: gray;
+}
+.top-nav > a {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+    z-index: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #eaeaea;
+}
+
+.top-nav dl {
+    margin-left: 8px;
+    margin-right: 5px;
+}
+
+
+.top-nav > a img {
+    width: 100%;
+    background-color: #eaeaea;
+}
+#top-nav-font span,div>a>span {
+    color: #ff545b;
+    font-size: 12px;
+    margin-left: 5px;
+    font-weight: 600;
+    
+}
+/* header style end */
