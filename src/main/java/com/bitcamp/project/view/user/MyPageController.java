@@ -37,14 +37,18 @@ public class MyPageController {
 	}
 
 	@GetMapping(value="/myPage03")
-	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String nowPage) {
+	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage, @ModelAttribute("cnowPage") String cnowPage) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-		if(nowPage == null || nowPage.equals("")){
-			nowPage = "1";
+		if(bnowPage == null || bnowPage.equals("")){
+			bnowPage = "1";
 		}
-		Map<String, Object> myPost = myPostService.myPostList(loginUser, Integer.parseInt(nowPage));
+		if(cnowPage == null || cnowPage.equals("")) {
+			cnowPage = "1";
+		}
+		Map<String, Object> myPost = myPostService.myPostList(loginUser, Integer.parseInt(bnowPage), Integer.parseInt(cnowPage));
 		session.setAttribute("myBoard", (List<BoardVO>)myPost.get("myBoard"));
 		session.setAttribute("myComment",(List<CommentVO>)myPost.get("myComment"));
+		System.out.println((List<BoardVO>)myPost.get("myBoard"));
 		session.setAttribute("boardPage",(PagingVO)myPost.get("boardPage"));
 		session.setAttribute("commentPage",(PagingVO)myPost.get("commentPage"));
 		return "mypage03";

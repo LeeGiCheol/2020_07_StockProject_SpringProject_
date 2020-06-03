@@ -108,7 +108,7 @@ $(document).ready(function(){
           	<c:forEach items="${myBoard}" var="board">
                <tr> 
                  <td><div class="custom-control custom-checkbox">
-                   <input type="checkbox" id="jb-checkbox${board.pno}" class="custom-control-input" name="b${board.pno}"><label class="custom-control-label" for="jb-checkbox${board.pno}"></label></div></td>
+                   <input type="checkbox" id="jb-checkbox${board.pno}" class="custom-control-input" name="${board.pno}"><label class="custom-control-label" for="jb-checkbox${board.pno}"></label></div></td>
                  <th scope="row">${board.pno}</th>
                  <td>${board.title}</td>
                  <td>${board.nickname}</td>
@@ -245,7 +245,7 @@ $(document).ready(function(){
             <c:forEach items="${myComment}" var="comment">
                <tr> 
                  <td><div class="custom-control custom-checkbox">
-                   <input type="checkbox" id="jb-checkbox${comment.cno}-comment" class="custom-control-input" name="c${comment.cno}"><label class="custom-control-label" for="jb-checkbox${comment.cno}-comment"></label></div></td>
+                   <input type="checkbox" id="jb-checkbox${comment.cno}-comment" class="custom-control-input" name="${comment.cno}"><label class="custom-control-label" for="jb-checkbox${comment.cno}-comment"></label></div></td>
                  <th scope="row">${comment.cno}</th>
                  <td>${comment.ccontent}</td>
                  <td>${comment.nickname}</td>
@@ -320,21 +320,21 @@ $(document).ready(function(){
             <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
             <nav aria-label="..." class="pagination">
                         	<ul class="pagination">
-			<c:if test="${comment.startPage != 1 }">
+			<c:if test="${commentPage.startPage != 1 }">
 				<!-- <a href="/myPage03?nowPage=${boardPage.startPage - 1 }">◀</a> -->
 				<li>
-					<a class="page-link" href="/myPage03?cnowPage=${comment.startPage - 1 }"tabindex="-1" aria-disabled="true">◀</a>
+					<a class="page-link" href="/myPage03?cnowPage=${commentPage.startPage - 1 }"tabindex="-1" aria-disabled="true">◀</a>
 				</li>
 			</c:if>
-			<c:forEach begin="${comment.startPage }" end="${comment.endPage }" var="p">
+			<c:forEach begin="${commentPage.startPage }" end="${commentPage.endPage }" var="p">
 				<c:choose>
-					<c:when test="${p == comment.nowPage}">
+					<c:when test="${p == commentPage.nowPage}">
 						<!-- <b>${p }</b> -->
 						<li class="page-item active" aria-current="page">
 							<a class="page-link" href="#">${p}<span class="sr-only">(current)</span></a>
 						</li>
 					</c:when>
-					<c:when test="${p != comment.nowPage}">
+					<c:when test="${p != commentPage.nowPage}">
 						<!-- <a href="/myPage03?nowPage=${p }">${p}</a> -->
 						<li class="page-item">
 							<a class="page-link" href="/myPage03?cnowPage=${p}">${p}</a>
@@ -342,7 +342,7 @@ $(document).ready(function(){
 					</c:when>
 				</c:choose>
 			</c:forEach>
-			<c:if test="${comment.endPage != comment.lastPage}">
+			<c:if test="${commentPage.endPage != commentPage.lastPage}">
 				<!-- <a href="/myPage03?nowPage=${boardPage.endPage+1 }">▶</a> -->
 				<li>
 					<a class="page-link" href="/myPage03?cnowPage=${comment.endPage+1}" tabindex="+1" aria-disabled="true">▶</a>
