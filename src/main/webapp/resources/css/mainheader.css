@@ -1,21 +1,4 @@
 @charset "UTF-8";
-
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
-	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
-	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
-	figure, footer, header, hgroup, menu, nav, section, summary, time,
-	audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	font-size: 14px;
-	background: transparent;
-	list-style: none;
-	box-sizing: border-box;
-	word-break: break-all;
-}
 /* header style start */
 .header {
 	position: relative;
@@ -149,4 +132,8 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
     font-weight: 600;
     
 }
+.toggle-btn {
+border: none;
+}
+
 /* header style end */
