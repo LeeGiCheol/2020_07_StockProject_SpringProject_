@@ -157,9 +157,5 @@ public class CommentPaging{
     public void setBlockEnd(int blockEnd) {
         this.blockEnd = blockEnd;
     }
-    
-    
- 
-
 }
 	    
