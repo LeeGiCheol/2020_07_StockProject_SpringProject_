@@ -874,7 +874,7 @@
     var options = {
    		
         series: [{
-            data: mainData
+        	data: mainData
         }],
         chart: {
             type: 'candlestick',
@@ -945,7 +945,14 @@
 		              backgroundBarRadius: 0,
 		          }
 		      }
-		  }
+		  },
+		  tooltip: {
+			  custom: function({series, seriesIndex, dataPointIndex, w}) {
+               
+			    return '<DIV style="border: 1px solid #48BAE4; height: auto; width: auto;">시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '<br>종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '<br>저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '<br>고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</DIV>'
+			  }
+			}
+		 
     };
 
     var chart = new ApexCharts(document.querySelector("#chartcontainer"), options);
