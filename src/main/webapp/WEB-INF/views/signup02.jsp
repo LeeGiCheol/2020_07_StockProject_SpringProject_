@@ -338,7 +338,7 @@
 			$.ajax({ 
 				type: 'GET', 
 				url: '${pageContext.request.contextPath}/friendCheck', 
-				data: { "id" : $('#inputFriend').val() }, 
+				data: { "nickname" : $('#inputFriend').val() }, 
 				success: function(data){ 
 					if(data == 0 && $.trim($('#inputFriend').val()) != ''){
 						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";

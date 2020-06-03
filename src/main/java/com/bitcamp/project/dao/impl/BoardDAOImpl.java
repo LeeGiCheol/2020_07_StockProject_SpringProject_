@@ -41,11 +41,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getBoardList(BoardVO bVo, PagingVO vo) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("boardVO", bVo);
-		map.put("PagingVO", vo);
-		return mybatis.selectList("board.boardList", map);
+	public List<BoardVO> getBoardList(PagingVO vo) {
+		return mybatis.selectList("board.boardList", vo);
 	}
 
 	public int count(BoardVO vo) {

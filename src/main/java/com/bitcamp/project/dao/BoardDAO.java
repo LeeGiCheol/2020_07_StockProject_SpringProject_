@@ -10,6 +10,6 @@ public interface BoardDAO {
 	public int updateBoard(BoardVO vo);
 	public int deleteBoard(BoardVO vo);
 	public BoardVO getBoard(BoardVO vo);
-	public List<BoardVO> getBoardList(BoardVO bVo, PagingVO vo);
+	public List<BoardVO> getBoardList(PagingVO vo);
 	public int count(BoardVO vo);
 }

@@ -11,13 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.UserVO;
 
 @Controller
 public class BoardController {
@@ -42,8 +42,8 @@ public class BoardController {
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		PagingVO a = (PagingVO)boardList.get("boardPage");
-		System.out.println(a.toString());
-		System.out.println(boardList);
+//		System.out.println(a.toString());
+//		System.out.println(boardList);
 		
 		
 		return "free-board";
@@ -57,8 +57,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board/free/write")
-	public String boardWrite(BoardVO vo, @RequestParam(value="id") String id) {
-		vo.setId(id);
+	public String boardWrite(BoardVO vo, UserVO loginUser) {
+		vo.setId(loginUser.getId());
 		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
 //		return "free-board";

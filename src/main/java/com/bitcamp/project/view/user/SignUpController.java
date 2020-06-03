@@ -92,8 +92,8 @@ public class SignUpController {
 		
 		// 추천인 중복확인
 		else if(request.getServletPath().equals("/friendCheck")) {
-			System.out.println("firend "+id);
-			map.put("id", id);
+			System.out.println("firend "+nickname);
+			map.put("nickname", nickname);
 			
 			int result=signUpService.duplicateCheck(map);
 			System.out.println("friend2 "+result);

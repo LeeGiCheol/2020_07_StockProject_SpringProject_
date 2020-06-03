@@ -35,11 +35,8 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-    public List<CommentVO> getCommentList(CommentVO cVo, PagingVO vo){
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("commentVO", cVo);
-		map.put("pagingVO", vo);
-		return mybatis.selectList("comment.commentList", map);
+    public List<CommentVO> getCommentList(PagingVO vo){
+		return mybatis.selectList("comment.commentList", vo);
 	}
 
 	 public int count(CommentVO vo) {
