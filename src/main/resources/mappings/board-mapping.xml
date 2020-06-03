@@ -106,16 +106,22 @@
 	</select>
 	
 	<!-- pagination용 -->
-	<select id="myPostCount" parameterType="user" resultType="int">
+	<select id="myBoardCount" parameterType="user" resultType="int">
 		select count(*)
 		from board
+		where id=#{id}
+	</select>
+	
+	<select id="myCommentCount" parameterType="user" resultType="int">
+		select count(*)
+		from commentlist
 		where id=#{id}
 	</select>
 	
 	<select id="getMyBoard" parameterType="page" resultType="board">
 		select *
 		from board
-		where id=#{id}
+		where id=#{a.id}
 		limit #{start}, #{cntPerPage}
 	</select>
 	

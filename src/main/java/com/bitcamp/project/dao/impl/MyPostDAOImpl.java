@@ -31,7 +31,11 @@ public class MyPostDAOImpl implements MyPostDAO {
 	}
 	
 	public int countBoard(UserVO loginUser) {	
-		return mybatis.selectOne("board.myPostCount",loginUser);
+		return mybatis.selectOne("board.myBoardCount",loginUser);
+	}
+	
+	public int countComment(UserVO loginUser) {
+		return mybatis.selectOne("board.myCommentCount",loginUser);
 	}
 	
 	@Override
