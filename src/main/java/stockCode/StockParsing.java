@@ -58,7 +58,7 @@ public class StockParsing {
 //				System.out.println(minimum);
 			////////////////////////////////////////
 				
-				
+				System.out.println(up_c);
 				
 
 				// 
@@ -181,7 +181,7 @@ public class StockParsing {
 			System.out.println("down "+Arrays.toString(down));
 			
 				
-				
+			System.out.println("현재가 " + currentPrice);
 			
 			Info inf = new Info();
 			inf.setStockName(stockName);

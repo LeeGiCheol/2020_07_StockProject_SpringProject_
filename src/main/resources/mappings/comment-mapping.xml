@@ -7,15 +7,38 @@
 
 	
 	<insert id="writeComment">
-		INSERT INTO commentList (pno, id, ccomment, cdatetime)
-		VALUES(#{pno}, #{id}, #{ccomment}, sysdate())	
+		INSERT INTO commentList (pno, id, ccontent, cdatetime)
+		VALUES(#{pno}, #{id}, #{ccontent}, sysdate())	
 	</insert>
 	
-	<select id="commentList" resultType="comment">
+	<select id="commentCount" parameterType="comment" resultType="int">
+		select count(*)
+		from commentList
+		where pno=#{pno}
+	</select>
+		 
+	<select id="commentList" parameterType="map" resultType="comment">
+		select *
+		from commentList
+		where pno=#{commentVO.pno}
+		order by cno desc
+		limit #{pagingVO.start}, #{pagingVO.cntPerPage}
+	</select>
+	
+	<!-- <select id="commentList" resultType="comment">
 		SELECT * FROM commentList
 		WHERE pno = #{pno} 
 	</select>
-	
+	 -->
+<!-- 	 
+	<select id="commentList" parameterType="page" resultType="comment">
+		select *
+		from commentList
+		where pno=#{pno}
+		limit #{start}, #{cntPerPage}
+	</select> -->
+	 
+	 
 	<!-- <update id="updateBoard">
 		UPDATE board 
 		SET title = #{title}, bcontent = #{bcontent}

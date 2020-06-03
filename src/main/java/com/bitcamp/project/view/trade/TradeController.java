@@ -1,8 +1,8 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -21,8 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
+import com.bitcamp.project.vo.UserVO;
 
-import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
@@ -48,8 +48,8 @@ public class TradeController {
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
 			@RequestParam(value = "cancleModify") String modify) {
-//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-		String id = "test"; // test 용 아이디
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = "test"; // test 용 아이디
 		ModelAndView mav = new ModelAndView();
 
 		if (id == null) {
@@ -80,7 +80,7 @@ public class TradeController {
 		switch (modify) {
 		case "modify":
 			if (Integer.parseInt(qu) == 0) {
-				mav.addObject("msg", "수정 가능한 최소 수량은 1개 입니다");
+				mav.addObject("msg", "정정 가능한 최소 수량은 1주 입니다");
 				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
 				mav.setViewName("notice");
 				return mav;
@@ -143,8 +143,8 @@ public class TradeController {
 	@PostMapping(value = "/selling")
 	public ModelAndView selling(@RequestParam(value = "sellingQu") String qu,
 			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {
-//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-		String id = "test"; // test 용 아이디
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = "test"; // test 용 아이디
 		ModelAndView mav = new ModelAndView();
 
 		if (id == null) {
@@ -182,10 +182,11 @@ public class TradeController {
 	@PostMapping(value = "/buying")
 	public ModelAndView buying(@RequestParam(value = "buyingQu") String qu,
 			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
-//		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = "test"; // test 용 아이디
+		
 		ModelAndView mav = new ModelAndView();
 
-		String id = "test"; // test 용 아이디
 		if (id == null) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
@@ -218,16 +219,36 @@ public class TradeController {
 
 	@GetMapping(value = "/trade")
 	public ModelAndView tradeView(Info vo) {
+		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		String stockName = vo.getStockName();
+		ModelAndView mav = new ModelAndView();
+		
+		try {
+			String id = ((UserVO) session.getAttribute("loginUser")).getId();
+			StockVO sv = new StockVO();
+			sv.setId(id);
+			sv.setStockName(stockName);
+			int myStockQu = tradeService.getStockQuantity(sv);
+			long money = tradeService.getMoney(id);
+			List unsettled = tradeService.getUnsettled_ID(id);
+			mav.addObject("unsettled", unsettled);
+			mav.addObject("myStockQu", myStockQu);
+			mav.addObject("money",formatter.format(money)+"원");
+		} catch (Exception e) {
+			mav.addObject("myStockQu", "로그인이 필요합니다");
+			mav.addObject("money", "로그인이 필요합니다");
+		}
+//		String id = "test"; // test 용 아이디
+		
 		if (stockName == null)
 			stockName = "삼성전자";
-		ModelAndView mav = new ModelAndView();
 
 		stockName = stockName.toUpperCase();
 
 //		RequestChart rc = new RequestChart();
 //		rc.connection(stockName);
-
+		
+		
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);
 
@@ -272,8 +293,6 @@ public class TradeController {
 	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
 		String stockName = vo.getStockName();
 
-//		RequestChart rc = new RequestChart();
-//		rc.connection(stockName);
 
 		StockParsing st = new StockParsing();
 

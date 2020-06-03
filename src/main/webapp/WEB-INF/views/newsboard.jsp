@@ -6,264 +6,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>mainpage</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<title>newsboard</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/mainheader.css">
 <link rel="stylesheet" href="resources/css/newboard.css">
-
-<style>
-.all-dim {
-	content: "";
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	z-index: -1;
-	background: #eff3f6;
-	text-indent: -9999px;
-}
-
-.newsboard-area {
-	padding: /*20px 30px 60px 30px*/ 20px 30px 20px 30px;
-	background: #fff;
-	position: relative;
-}
-
-.contents {
-	position: relative;
-	z-index: 1;
-}
-
-.title-h1 {
-	font-size: 20px;
-	margin-bottom: 20px;
-	font-weight: bold;
-	line-height: 100%;
-}
-
-.newsboard-nav {
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	overflow: hidden;
-	z-index: 1;
-}
-
-[class*="newsboard-nav-tab"] {
-	margin-bottom: 30px;
-	border: 1px solid #eaeaea;
-	background: #f9f9f9;
-	box-sizing: border-box !important;
-}
-
-.newsboard-nav-tab li {
-	width: 33.333%;
-}
-
-[class*="newsboard-nav-tab"] li {
-	position: relative;
-	float: left;
-}
-
-[class*="newsboard-nav-tab"] li a {
-	position: relative;
-	z-index: 1;
-	display: block;
-	line-height: 50px;
-	text-align: center;
-	color: #000;
-	border-right: 1px solid #eaeaea;
-	background: #f9f9f9;
-	box-sizing: border-box;
-}
-
-.newsboard-nav-tab li.selected a, .newsboard-nav-tab li:active>a,
-	.newsboard-nav-tab li.active>a {
-	z-index: 3;
-	background: #fff;
-	line-height: 50px;
-	color: #5a6268 !important;
-}
-
-[class*="newsboard-nav-tab"] li.selected a:after, li:active>a, li.active>a
-	{
-	border-bottom: 2px solid #5a6268;
-}
-
-[class*="newsboard-nav-tab"] li:after {
-	content: "";
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	top: 0;
-	z-index: 2;
-}
-
-.day-nav {
-	clear: both;
-	position: relative;
-}
-
-.week {
-	min-height: 30px;
-	margin: 0 -30px;
-	padding: 0 30px 20px;
-	border-bottom: #444444 1px solid;
-	position: relative;
-	
-}
-
-.tab-content {
-	margin-bottom: 26px;
-}
-
-.newslist li {
-	position: relative;
-	padding: 15px 20px 15px 20px;
-	border-bottom: #eaeaea 1px solid;
-	min-height: 120px;
-	width: 100%;
-	display: table;
-}
-
-.newslist li>.img {
-	display: table-cell;
-	position: relative;
-	width: 150px;
-	vertical-align: middle;
-	height: 90px;
-}
-
-.newslist li>.img span {
-	position: absolute;
-	left: 0;
-	width: 130px;
-	height: 90px;
-	margin-right: 20px;
-	transform: translateY(-50%);
-	border: 1px solid #eaeaea;
-	overflow: hidden;
-	text-align: center;
-}
-
-.newslist li>.img img {
-	height: 90px;
-}
-
-.newslist li>.text {
-	display: table-cell;
-	vertical-align: middle;
-}
-
-.newslist li>.text dt {
-	padding-bottom: 5px;
-	line-height: 1.4;
-}
-
-.newslist li>.text dt a {
-	font-size: 16px;
-	color: #000;
-	font-weight: bold;
-}
-
-.newslist li>.text dd.cont {
-	line-height: 1.4;
-	padding-bottom: 8px;
-	color: #000;
-}
-
-.newslist li>.text dd.cont a {
-	font-size: 14px;
-	color: #000;
-}
-
-.newslist li>.text dd.date {
-	padding-bottom: 0;
-	line-height: 1.4;
-}
-
-.newslist li>.text dd.date span {
-	display: inline-block;
-	font-size: 13px;
-	color: #888;
-	padding-right: 10px;
-	margin-right: 5px;
-	vertical-align: middle;
-}
-
-.paging {
-	clear: both;
-	padding: 0 0 30px 0;
-	text-align: center;
-	position: relative;
-	margin-left: 4px;
-}
-
-.paging-body {
-	display: inline-block;
-	padding-left: 0;
-	margin: 20px 0;
-	border-radius: 4px;
-}
-.week .input-group-addon .calendar{
-	width: 28px;
-    height: 28px;
-	display: inline-block;
-	overflow: hidden;
-	text-indent: -9999em;
-	background: url(resources/img/btn_board.png) no-repeat -82px 0px;
-	vertical-align: middle;
-}
-.datepicker-dropdown{
-    top: 335px !important;
-}
-.input-style.short {
-    width: 320px;
-    
-}
-[class*="input-style"] {
-    position: relative;
-    margin-left: 30px;
-}
-input[type="text"]{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    line-height: 1;
-    padding: 5px 35px 6px 10px;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #000;
-    vertical-align: middle;
-    box-sizing: border-box;
-    border-radius: 0;
-}
-[class*="btn-"].gray {
-    background: #444;
-    border: 1px solid #444;
-    color: #fff;
-}
-[class*="btn-t"] {
-    padding: 6px 10px;
-    min-width: 60px;
-    font-size: 14px;
-}
-[class*="btn-"] {
-    position: relative;
-    background: #fff;
-    border: 1px solid #444;
-    line-height: 100%;
-    display: inline-block;
-    color: #000;
-    vertical-align: middle;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-</style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -293,68 +42,94 @@ input[type="text"]{
 		});
 	});
 </script>
+
+<script type="text/javascript">
+	var date = new Date();
+	date.setDate(date.getDate());
+	//var todayCnt = 0;
+	var $datepick;
+	$(document).ready(function() {
+		$('.calendar').datepicker({
+			format : 'yyyy.mm.dd',
+			clearBtn : true,
+			language : "ko",
+			orientation : "bottom auto",
+			autoclose : true,
+			todayBtn : "linked",
+			endDate : date,
+		}).on('changeDate', function(ev) {
+			//alert(ev)
+			//console.log(ev.format())
+			_year = ev.date.getFullYear()
+			_month = ev.date.getMonth()
+			_day = ev.date.getDate()
+			_date = ev.format()
+			console.log("changeDate() _date : " + _date)
+			//console.log("test _date : " + endDate)
+			//console.log(ev.format())
+			$('#test-date').html(_date)
+
+			showHideTomorrowBtn(ev.date, new Date());
+		});
+
+		setToday();
+	}
+
+	);
+
+	function showHideTomorrowBtn(checkDate, nowDate) {
+		if (nowDate.getFullYear() > checkDate.getFullYear()) {
+			$("#btn-tomorrow").show();
+		} else {
+			if (nowDate.getMonth() > checkDate.getMonth()) {
+				$("#btn-tomorrow").show();
+			} else {
+				if (nowDate.getDate() > checkDate.getDate()) {
+					$("#btn-tomorrow").show();
+				} else {
+					$("#btn-tomorrow").hide();
+				}
+			}
+		}
+
+	}
+
+	function setToday() {
+		console.log("setToday()")
+		$('.calendar').datepicker('setDate', 'today');
+		//$("#btn-tomorrow").hide();
+		//todayCnt = 0;
+		//showHideTomorrow();
+		var nowDate = $(".calendar").datepicker('getDate');
+		showHideTomorrowBtn(nowDate, nowDate);
+	}
+	function setTomorrow() {
+		var nowDate = $(".calendar").datepicker('getDate');
+		console.log("nowDate: " + nowDate)
+		var tomorrowDate = new Date(nowDate.getFullYear(), nowDate.getMonth(),
+				nowDate.getDate() + 1);
+		$(".calendar").datepicker('setDate', tomorrowDate)
+		//todayCnt++;
+		//showHideTomorrow();
+		showHideTomorrowBtn(tomorrowDate, new Date());
+	}
+	function setYesterday() {
+		var nowDate = $(".calendar").datepicker('getDate');
+		console.log("nowDate: " + nowDate)
+		var yesterdayDate = new Date(nowDate.getFullYear(), nowDate.getMonth(),
+				nowDate.getDate() - 1);
+		$(".calendar").datepicker('setDate', yesterdayDate)
+		//todayCnt--;
+
+		//showHideTomorrow();
+		showHideTomorrowBtn(yesterdayDate, new Date());
+	}
+</script>
+
 </head>
 <body>
-	<div class="header">
-		<!-- 상단  nav -->
-		<ul class="nav justify-content-end top-nav">
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
-		</ul>
-		<ul class="nav justify-content-end top-nav">
-			<a href="#"><img class="" cust_id="" id="_myhomeId"
-				src="resources/img/pi_08.png"></a>
-			<dl>
-				<dt>
-					<strong>개미굴</strong> 님
-				</dt>
-			</dl>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
-		</ul>
-		<!-- 상단  nav end -->
-		<!-- 메인  nav -->
-		<nav
-			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-			<a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stock
-				gallery</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search"
-							placeholder="통합검색" aria-label="Search">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
-							type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-				</ul>
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> 커뮤니티 </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">자유게시판</a> <a
-								class="dropdown-item" href="#">포트폴리오</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">뉴스</a>
-						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
-							class="sr-only">(current)</span></a></li>
-				</ul>
-			</div>
-		</nav>
-		<!-- 메인 nav end -->
-	</div>
+	
+	<%@include file="mainheader.jsp" %> 
 
 	<!-- 전체메뉴 백그라운드-->
 	<div class="all-dim"></div>
@@ -382,47 +157,15 @@ input[type="text"]{
 				</div>
 
 				<div class="board-calendar">
-
+					
 					<div class="week ">
-					<p id="test-date">
-					</p>
-					<p class="date">
-							<strong style="margin-right: 5px">기준일</strong>
-							<span class="input-group-addon"> 
-								<input type="text" class="dateview">
-								<i class="far fa-calendar-alt"></i>
-							</span>
-							<script type="text/javascript">
-								$(document).ready(function() {
-									$('.input-group-addon').datepicker({
-										dateFormat:'yy-mm-dd',
-										format : 'yyyy.mm.dd',
-										clearBtn : true,
-										language : "ko",
-										orientation : "bottom auto",
-										autoclose : true,
-										todayBtn : "linked"
-									}).on('changeDate', function(ev){
-										//alert(ev)
-										//console.log(ev)
-										_year = ev.date.getFullYear()
-										_month = ev.date.getMonth()
-										_day = ev.date.getDate()
-										console.log(_year + "/" + _month + "/" + _day)
-										$('#test-date').html(_year + "/" + _month + "/" + _day)
-									})
-
-								});
-								
-								function setToday(){
-									$('.input-group-addon').datepicker('setDate', 'today');
-								}
-							</script>
-							
-							<span class="input-style short">
-								<input type="text" placeholder="뉴스검색" title="뉴스검색" value onkeyup="enter();">
-							</span>
-								<button type="button" onclick="#" class="btn-t gray">검색</button>
+						<p class="date">
+							<button onclick="setYesterday();" class="prev-week">어제</button>
+							<strong id="test-date" value="setToday();"></strong>
+							<span class="input-group-addon"> <button type="button" class="calendar add-on">달력보기</button></span>
+							<button type="button" onclick="setToday();" class="btn-s">오늘</button>
+							<button onclick="setTomorrow();" class="next-week" id="btn-tomorrow">내일</button>
+						</p>
 					</div>
 					<!-- //week -->
 				</div>
@@ -1018,37 +761,35 @@ input[type="text"]{
 						<ul class="pagination" id="pagination"></ul>
 					</div>
 				</div>
+
+				<div class="board-search">
+					<span class="select-style">
+						<div class="btn-group bootstrap-select">
+							<select name="searchType" id="searchType" class="" tabindex="-98">
+								<option value="cnt" cnt="">제목+내용</option>
+								<option value="regmnNicknm" regmnnicknm="">제목</option>
+								<option value="regmnId" regmnid="">내용</option>
+							</select>
+						</div>
+					</span>
+					<span class="input-style">
+							<input type="text" placeholder="검색어 입력" id="searchText" name="searchText" value="">
+							<button type="button" class="search" onclick="javascript:goSearch();">검색</button>
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
 
+	<%@include file="mainfooter.jsp" %> 
 
-
-	<!-- footer start -->
-	<div class=footer_div>
-		<footer class="footer_info">
-			<p>
-				<a href="https://www.naver.com">회사소개</a> | <a
-					href="https://www.google.co.kr">광고안내</a> | <a
-					href="https://www.naver.com">이용약관</a> | <a
-					href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a>
-			</p>
-			<p>Copyright ⓒ 2020 - 2020 stock gallery. All rights reserved.</p>
-		</footer>
-	</div>
-	<!-- footer end -->
 	<script src="resources/jpaginate/jquery.twbsPagination.js"></script>
 	<script src="http://code.jquery.com/jquery-3.1.0.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
 	<script src="resources/js/bootstrap-datepicker.ko.min.js"></script>
 	<!-- paginate -->
-	<script src="resources/jpaginate/jquery.twbsPagination.js"
-		type="text/javascript"></script>
+	<script src="resources/jpaginate/jquery.twbsPagination.js" type="text/javascript"></script>
 	<!-- paginate -->
 </body>
 </html>

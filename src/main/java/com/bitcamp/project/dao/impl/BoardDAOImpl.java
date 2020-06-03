@@ -1,6 +1,8 @@
 package com.bitcamp.project.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.BoardDAO;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.PagingVO;
 
 @Repository("BoardDAO")
 public class BoardDAOImpl implements BoardDAO {
@@ -38,8 +41,17 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getBoardList(BoardVO vo) {
-		return mybatis.selectList("board.getBoardList", vo);
+	public List<BoardVO> getBoardList(BoardVO bVo, PagingVO vo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardVO", bVo);
+		map.put("PagingVO", vo);
+		return mybatis.selectList("board.boardList", map);
 	}
 
+	public int count(BoardVO vo) {
+		return mybatis.selectOne("board.boardCount", vo);
+	}
+	
+
+	
 }

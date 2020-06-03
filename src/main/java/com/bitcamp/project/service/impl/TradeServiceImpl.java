@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class TradeServiceImpl implements TradeService {
 	
 	
 
+
+	@Override
+	public List getUnsettled_ID(String id) {
+		return tradeDAO.getUnsettled_ID(id);
+	}
 
 	@Override
 	public void modify(StockVO vo) {

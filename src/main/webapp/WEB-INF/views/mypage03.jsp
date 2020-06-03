@@ -290,7 +290,7 @@ $(document).ready(function(){
                  <th scope="row">${comment.cno}</th>
                  <td>${comment.ccontent}</td>
                  <td>${comment.nickname}</td>
-                 <td>${comment.cdateTime}</td>
+                 <%-- <td>${comment.cdateTime}</td> --%>
                </tr>
          	</c:forEach>
          	<!-- 
