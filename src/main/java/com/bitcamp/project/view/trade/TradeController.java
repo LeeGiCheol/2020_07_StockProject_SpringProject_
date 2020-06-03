@@ -222,7 +222,12 @@ public class TradeController {
 	public ModelAndView tradeView(Info vo) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		String stockName = vo.getStockName();
+		
+		if (stockName == null)
+			stockName = "삼성전자";
+		
 		ModelAndView mav = new ModelAndView();
+		String stockCode = tradeService.stockSearch(stockName);
 
 		try {
 			String id = ((UserVO) session.getAttribute("loginUser")).getId();
@@ -230,6 +235,11 @@ public class TradeController {
 			sv.setId(id);
 			sv.setStockName(stockName);
 			int myStockQu = tradeService.getStockQuantity(sv);
+			System.out.println("--------------------------------");
+			System.out.println("--------------------------------");
+			System.out.println(stockName+"내 수량은ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"+myStockQu);
+			System.out.println("--------------------------------");
+			System.out.println("--------------------------------");
 			long money = tradeService.getMoney(id);
 			List unsettled = tradeService.getUnsettled_ID(id);
 			mav.addObject("unsettled", unsettled);
@@ -239,10 +249,6 @@ public class TradeController {
 			mav.addObject("myStockQu", "로그인이 필요합니다");
 			mav.addObject("money", "로그인이 필요합니다");
 		}
-//		String id = "test"; // test 용 아이디
-
-		if (stockName == null)
-			stockName = "삼성전자";
 
 		stockName = stockName.toUpperCase();
 
@@ -291,6 +297,7 @@ public class TradeController {
 		mav.addObject("day_lastprice", dayChartData[5]);
 
 		mav.addObject("stockName", stockName);
+		mav.addObject("stockCode", stockCode);
 		mav.setViewName("stockdealpage");
 		return mav;
 

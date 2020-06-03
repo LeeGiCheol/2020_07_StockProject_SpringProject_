@@ -107,7 +107,8 @@
 									<i class="fas fa-search"></i>
 								</button>
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn">기업정보
+									class="btn btn-secondary btn-sm companydata-btn"
+									onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
 								</button>
 								<button type="button"
 									class="btn btn-secondary btn-sm companydata-btn" id="minute">
