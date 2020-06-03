@@ -65,7 +65,10 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/free/detail")
-	public String getBoard(BoardVO vo, CommentVO cVo, Model model, PagingVO pVo) {
+	public String getBoard(BoardVO vo, CommentVO cVo, Model model, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
+		if(nowPage == null || nowPage.equals("")){
+			nowPage = "1";
+		}
 		System.out.println("test1 "+vo);
 		BoardVO boardDetail = boardService.getBoard(vo);
 		System.out.println("test2 "+boardDetail);
@@ -76,8 +79,13 @@ public class BoardController {
 
 		
 		// 댓글리스트
-		List<CommentVO> commentList = commentService.getCommentList(pVo);
-		model.addAttribute("commentList", commentList);
+		//cVo.setPno(pno);
+		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
+		
+		
+		model.addAttribute("commentList", (List<CommentVO>)commentList.get("commentList"));
+		model.addAttribute("commentPage", (PagingVO)commentList.get("commentPage"));
+		
 		System.out.println(commentList);
 		return "free-board-detail";
 	}

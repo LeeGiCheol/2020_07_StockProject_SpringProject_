@@ -82,7 +82,6 @@ $(document).on('click', '#btnSave', function(e) {
   <article>
 		<div class="container" role="main">
 			<h2 class="main">글수정</h2>
-			<h2>${boardUpdate.title}</h2>
 			<br>
 			<br>
 			<br>
