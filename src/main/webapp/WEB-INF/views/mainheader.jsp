@@ -17,7 +17,7 @@
 		</ul>
 		<ul class="nav justify-content-end top-nav">
 			<a href="#"><img class="" cust_id="" id="_myhomeId"
-				src="resources/img/pi_08.png"></a>
+				src="/resources/img/pi_08.png"></a>
 			<dl>
 				<dt>
 					<strong>개미굴</strong> 님
