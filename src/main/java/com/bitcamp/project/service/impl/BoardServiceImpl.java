@@ -48,9 +48,9 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public Map<String, Object> boardList(BoardVO vo, int nowPage) {
 		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, 10);
-		
-		boardPage.setId(vo.getId());
-		List<BoardVO> boardList = boardDAO.getBoardList(vo, boardPage);
+//		boardPage.getUtil().put("",vo.get)
+//		boardPage.setId(vo.getId());
+		List<BoardVO> boardList = boardDAO.getBoardList(boardPage);
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("boardList", boardList);
 		postMap.put("boardPage", boardPage);

@@ -163,94 +163,97 @@ div>ul>li {
 
 			</c:forEach>
 
-			<nav aria-label="..." class="pagination">
-				<ul class="pagination">
-
-					<!-- << 버튼 -->
-					<li>
-						<a class="page-link"
-							href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=1"
+			<!-- 댓글이 없으면 버튼이 안뜨게 하려고 -->
+			<c:if test="${commentList[0] ne null}">
+				<nav aria-label="..." class="pagination">
+					<ul class="pagination">
+	
+	
+						<!-- << 버튼 -->
+						<li>
+							<a class="page-link"
+								href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=1"
+								tabindex="-1" aria-disabled="true">
+								<i class="fas fa-angle-double-left"></i>
+							</a>
+						</li>
+	
+						<!-- 1페이지에서 < 버튼 눌렀을 때 -->
+						<c:if test="${commentPage.nowPage == 1}">
+							<li>
+								<a class="page-link"
+									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage}"
+									tabindex="-1" aria-disabled="true">
+									<i class="fas fa-angle-left"></i>
+								</a>
+							</li>
+						</c:if>
+						
+						<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+						<c:if test="${commentPage.nowPage != 1}">
+							<li>
+								<a class="page-link"
+									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"
+									tabindex="-1" aria-disabled="true">
+									<i class="fas fa-angle-left"></i>
+								</a>
+							</li>
+						</c:if>
+						
+						
+						<!-- 한번에 5개 페이지 보여줌 -->
+						<c:forEach begin="${commentPage.startPage }"
+							end="${commentPage.endPage }" var="p">
+							<c:choose>
+								<c:when test="${p == commentPage.nowPage}">
+									<li class="page-item active" aria-current="page">
+										<a class="page-link" href="#">${p}
+											<span class="sr-only">(current)</span>
+										</a>
+									</li>
+								</c:when>
+								<c:when test="${p != commentPage.nowPage}">
+									<li class="page-item">
+										<a class="page-link" href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${p}">${p}</a>
+									</li>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						
+						<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+						<c:if test="${commentPage.nowPage == commentPage.lastPage}">
+							<li>
+								<a class="page-link"
+									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage}"
+									tabindex="+1" aria-disabled="true">
+									<i class="fas fa-angle-right"></i>
+								</a>
+							</li>
+						</c:if>
+						
+						<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+						<c:if test="${commentPage.nowPage != commentPage.lastPage}">
+							<li>
+								<a class="page-link"
+									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}"
+									tabindex="+1" aria-disabled="true">
+									<i class="fas fa-angle-right"></i>
+								</a>
+							</li>
+						</c:if> 
+	
+						<!-- >> 버튼 -->
+						<li>
+							<a class="page-link"
+							href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}"
 							tabindex="-1" aria-disabled="true">
-							<i class="fas fa-angle-double-left"></i>
-						</a>
-					</li>
-
-					<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-					<c:if test="${commentPage.nowPage == 1}">
-						<li>
-							<a class="page-link"
-								href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage}"
-								tabindex="-1" aria-disabled="true">
-								<i class="fas fa-angle-left"></i>
+								<i class="fas fa-angle-double-right"></i>
 							</a>
 						</li>
-					</c:if>
-					
-					<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-					<c:if test="${commentPage.nowPage != 1}">
-						<li>
-							<a class="page-link"
-								href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"
-								tabindex="-1" aria-disabled="true">
-								<i class="fas fa-angle-left"></i>
-							</a>
-						</li>
-					</c:if>
-					
-					
-					<!-- 한번에 5개 페이지 보여줌 -->
-					<c:forEach begin="${commentPage.startPage }"
-						end="${commentPage.endPage }" var="p">
-						<c:choose>
-							<c:when test="${p == commentPage.nowPage}">
-								<li class="page-item active" aria-current="page">
-									<a class="page-link" href="#">${p}
-										<span class="sr-only">(current)</span>
-									</a>
-								</li>
-							</c:when>
-							<c:when test="${p != commentPage.nowPage}">
-								<li class="page-item">
-									<a class="page-link" href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${p}">${p}</a>
-								</li>
-							</c:when>
-						</c:choose>
-					</c:forEach>
-					
-					<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-					<c:if test="${commentPage.nowPage == commentPage.lastPage}">
-						<li>
-							<a class="page-link"
-								href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage}"
-								tabindex="+1" aria-disabled="true">
-								<i class="fas fa-angle-right"></i>
-							</a>
-						</li>
-					</c:if>
-					
-					<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
-					<c:if test="${commentPage.nowPage != commentPage.lastPage}">
-						<li>
-							<a class="page-link"
-								href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}"
-								tabindex="+1" aria-disabled="true">
-								<i class="fas fa-angle-right"></i>
-							</a>
-						</li>
-					</c:if> 
-
-					<!-- >> 버튼 -->
-					<li>
-						<a class="page-link"
-						href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}"
-						tabindex="-1" aria-disabled="true">
-							<i class="fas fa-angle-double-right"></i>
-						</a>
-					</li>
-				</ul>
-			</nav>
-
-
+					</ul>
+				</nav>
+	
+			</c:if>
 
 			<hr>
 			<div class="comment-wrap">

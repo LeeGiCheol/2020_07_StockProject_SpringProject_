@@ -93,7 +93,7 @@ $(document).on('click', '#btnSave', function(e) {
                <div class="mb-3 title">
                     <label for="writer"><b>작성자</b></label>
                     <input type="text" class="form-control" name="nickname" id="writer" value="${loginUser.nickname}" readonly>
-                    <input type="hidden" name="id" value="${loginUser.id}">
+                   <%--  <input type="hidden" name="id" value="${loginUser.id}"> --%>
                </div>
 			   <div class="mb-3">
 					<label for="content"><b>내용</b></label>

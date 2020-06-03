@@ -8,9 +8,7 @@ public class PagingVO {
 	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
-	private String id;
-	private int bno;
-	private Map<String, Object> a;
+	private Map<String, Object> util;
 	
 	public PagingVO() {
 	}
@@ -22,7 +20,7 @@ public class PagingVO {
 		calcStartEndPage(getNowPage(), cntPage);
 		calcStartEnd(getNowPage(), getCntPerPage());
 		
-		a = new HashMap<String, Object>();
+		util = new HashMap<String, Object>();
 	}
 	// 제일 마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {
@@ -104,22 +102,8 @@ public class PagingVO {
 		this.cntPage = cntPage;
 	}
 
-	public Map<String, Object> getA() {
-		return a;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-		a.put("id", id);
-	}
-	public int getBno() {
-		return bno;
-	}
-	public void setBno(int bno) {
-		this.bno = bno;
+	public Map<String, Object> getUtil() {
+		return util;
 	}
 	
 	@Override

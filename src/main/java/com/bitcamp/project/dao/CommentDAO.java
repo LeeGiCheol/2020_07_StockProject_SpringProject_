@@ -11,6 +11,6 @@ public interface CommentDAO {
 	public int writeComment(CommentVO vo);
 	public int updateComment(CommentVO vo);
 	public int deleteComment(CommentVO vo);
-    public List<CommentVO> getCommentList(CommentVO cVo, PagingVO vo);
+    public List<CommentVO> getCommentList(PagingVO vo);
     public int count(CommentVO vo);
 }

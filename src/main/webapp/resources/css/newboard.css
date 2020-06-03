@@ -291,7 +291,7 @@ border: none;
     text-indent: -9999em;
     overflow: hidden;
     vertical-align: middle;
-    background: url(resources/img/btn_left_right.png) no-repeat 0 -30px;
+    background: url(../img/btn_left_right.png) no-repeat 0 -30px;
 }
 .week .date button.next-week {
     display: inline-block;
@@ -300,7 +300,7 @@ border: none;
     text-indent: -9999em;
     overflow: hidden;
     vertical-align: middle;
-    background: url(resources/img/btn_left_right.png) no-repeat -30px -30px;
+    background: url(../img/btn_left_right.png) no-repeat -30px -30px;
 }
 .week .date strong {
     color: #000;

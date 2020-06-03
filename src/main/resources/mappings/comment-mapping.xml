@@ -17,12 +17,12 @@
 		where pno=#{pno}
 	</select>
 		 
-	<select id="commentList" parameterType="map" resultType="comment">
+	<select id="commentList" parameterType="page" resultType="comment">
 		select *
 		from commentList
-		where pno=#{commentVO.pno}
+		where pno=#{util.pno}
 		order by cno desc
-		limit #{pagingVO.start}, #{pagingVO.cntPerPage}
+		limit #{start}, #{cntPerPage}
 	</select>
 	
 	<!-- <select id="commentList" resultType="comment">
