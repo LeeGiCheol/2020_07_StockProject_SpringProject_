@@ -6,9 +6,9 @@ public class PagingVO {
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
 	private String id;
-	private int bno;
-	private int pno;
-	
+//	private int bno;
+//	private int pno;
+//	
 	
 	public PagingVO() {
 	}
@@ -108,22 +108,22 @@ public class PagingVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getBno() {
-		return bno;
-	}
-	public void setBno(int bno) {
-		this.bno = bno;
-	}
-	
-	
-	
-	
-	public int getPno() {
-		return pno;
-	}
-	public void setPno(int pno) {
-		this.pno = pno;
-	}
+//	public int getBno() {
+//		return bno;
+//	}
+//	public void setBno(int bno) {
+//		this.bno = bno;
+//	}
+//	
+//	
+//	
+//	
+//	public int getPno() {
+//		return pno;
+//	}
+//	public void setPno(int pno) {
+//		this.pno = pno;
+//	}
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
