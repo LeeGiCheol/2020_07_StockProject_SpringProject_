@@ -694,23 +694,22 @@
 	         xaxis: {
 	             type: 'datetime',
 	             labels: {
-	                 datetimeFormatter: {
-	                     year: 'yyyy',
-	                     month: 'MM/dd',
-	                     day: 'dd',
-	                     hour: 'HH:mm'
-	                 }
+	            	 formatter: function(val, opts) {
+		                   var st = new Date(val);
+		                   var hour = st.getHours();
+		                   var min = st.getMinutes();
+		                   if(min<10) min = "0"+min;
+		                   var text = hour + ":" +min;
+		                   return text
+		                 }
 	             },
 	             tooltip: {
 	                 formatter: function(val, opts) {
 	                   var st = new Date(val);
-	                   var mon = st.getMonth()+1;
-	                   var day = st.getDate()-1;
-	                   if(day == 0 ){
-	                	   day = 31;
-	                	   mon = mon-1;
-	                   }
-	                   var text = mon + "/" +day;
+	                   var hour = st.getHours();
+	                   var min = st.getMinutes();
+	                   if(min<10) min = "0"+min;
+	                   var text = hour + ":" +min;
 	                   return text
 	                 }
 	               }
