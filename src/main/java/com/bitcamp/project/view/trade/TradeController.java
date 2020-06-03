@@ -23,6 +23,7 @@ import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
@@ -129,7 +130,7 @@ public class TradeController {
 			tradeService.stockCancel(vo);
 			break;
 		}
-		
+
 		if (modify.equals("cancle"))
 			modify = "취소";
 		else
@@ -184,7 +185,7 @@ public class TradeController {
 			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
 		String id = ((UserVO) session.getAttribute("loginUser")).getId();
 //		String id = "test"; // test 용 아이디
-		
+
 		ModelAndView mav = new ModelAndView();
 
 		if (id == null) {
@@ -221,55 +222,67 @@ public class TradeController {
 	public ModelAndView tradeView(Info vo) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		String stockName = vo.getStockName();
-		ModelAndView mav = new ModelAndView();
 		
+		if (stockName == null)
+			stockName = "삼성전자";
+		
+		ModelAndView mav = new ModelAndView();
+		String stockCode = tradeService.stockSearch(stockName);
+
 		try {
 			String id = ((UserVO) session.getAttribute("loginUser")).getId();
 			StockVO sv = new StockVO();
 			sv.setId(id);
 			sv.setStockName(stockName);
 			int myStockQu = tradeService.getStockQuantity(sv);
+			System.out.println("--------------------------------");
+			System.out.println("--------------------------------");
+			System.out.println(stockName+"내 수량은ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"+myStockQu);
+			System.out.println("--------------------------------");
+			System.out.println("--------------------------------");
 			long money = tradeService.getMoney(id);
 			List unsettled = tradeService.getUnsettled_ID(id);
 			mav.addObject("unsettled", unsettled);
 			mav.addObject("myStockQu", myStockQu);
-			mav.addObject("money",formatter.format(money)+"원");
+			mav.addObject("money", formatter.format(money) + "원");
 		} catch (Exception e) {
 			mav.addObject("myStockQu", "로그인이 필요합니다");
 			mav.addObject("money", "로그인이 필요합니다");
 		}
-//		String id = "test"; // test 용 아이디
-		
-		if (stockName == null)
-			stockName = "삼성전자";
 
 		stockName = stockName.toUpperCase();
 
 //		RequestChart rc = new RequestChart();
 //		rc.connection(stockName);
-		
-		
+
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);
 
 		Integer[][] minChartData = new Integer[6][60];
 		Integer[][] dayChartData = new Integer[6][60];
 //
-		for (int i = 0; i < 60; i++) {
-			minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
-			minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
-			minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
-			minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
-			minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
-			minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
+		try {
+			for (int i = 0; i < 60; i++) {
+				minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
+				minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
+				minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
+				minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
+				minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
+				minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
 
-			dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
-			dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
-			dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
-			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
-			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+				dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
+				dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
+				dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
+				dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
+				dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+			}
+		} catch (Exception e) {
+			mav.addObject("msg", "정확한 종목명을 입력해주세요");
+			mav.addObject("location", "/trade");
+			mav.setViewName("notice");
+			return mav;
 		}
-
+		
 		mav.addObject("min_d", minChartData[0]);
 		mav.addObject("min_hr", minChartData[1]);
 		mav.addObject("min_startprice", minChartData[2]);
@@ -284,6 +297,7 @@ public class TradeController {
 		mav.addObject("day_lastprice", dayChartData[5]);
 
 		mav.addObject("stockName", stockName);
+		mav.addObject("stockCode", stockCode);
 		mav.setViewName("stockdealpage");
 		return mav;
 
@@ -292,7 +306,6 @@ public class TradeController {
 	@RequestMapping(value = "/trade/search")
 	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
 		String stockName = vo.getStockName();
-
 
 		StockParsing st = new StockParsing();
 

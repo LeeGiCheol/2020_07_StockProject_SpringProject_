@@ -19,6 +19,7 @@
 
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -33,8 +34,10 @@
 	<div class="header">
 		<!-- 상단  nav -->
 		<ul class="nav justify-content-end top-nav">
-			<li class="breadcrumb-item"><a id="top-nav-font" href="/signInPage">로그인</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="/signUpPage/1">회원가입</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font"
+				href="/signInPage">로그인</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font"
+				href="/signUpPage/1">회원가입</a></li>
 		</ul>
 		<ul class="nav justify-content-end top-nav">
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
@@ -104,7 +107,8 @@
 									<i class="fas fa-search"></i>
 								</button>
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn">기업정보
+									class="btn btn-secondary btn-sm companydata-btn"
+									onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
 								</button>
 								<button type="button"
 									class="btn btn-secondary btn-sm companydata-btn" id="minute">
@@ -116,7 +120,7 @@
 
 						</div>
 						<div class="chartdata-body">
-							<div id="chartContainer"></div>
+							<div id="chartcontainer"></div>
 						</div>
 					</div>
 				</div>
@@ -219,8 +223,8 @@
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" id="buying_price" name="buyingPrice" numberOnly> 원 <span
-													class="buying-check"> <a
+													class="alignR" id="buying_price" name="buyingPrice"
+													numberOnly> 원 <span class="buying-check"> <a
 													class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 													<script>
 												$(document).ready(function() {
@@ -365,8 +369,9 @@
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" id="selling_price" name="sellingPrice" numberOnly> 원 <span
-													class="buying-check"> <a onclick="#"
+													class="alignR" id="selling_price" name="sellingPrice"
+													numberOnly> 원 <span class="buying-check"> <a
+													onclick="#"
 													class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
 													<div class="layerPopup">
 														<div class="layerBox layerStock" id="poplayer_possible"
@@ -406,12 +411,14 @@
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR" id="selling_qu" name="sellingQu" numberOnly> 주
+													class="alignR" id="selling_qu" name="sellingQu" numberOnly>
+												주
 											</div>
 										</div>
 										<div class="sumArea">
 											<span class="text"> <em>총주문금액 :</em> <strong
-												id="selling_result" class="sum">0</strong> <strong> <span>원</span>
+												id="selling_result" class="sum">0</strong> <strong>
+													<span>원</span>
 											</strong> (수수료 미포함)
 											</span>
 										</div>
@@ -520,9 +527,9 @@
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 35px;"
-													class="btn-cc">단가</label> <input type="text"
-													class="alignA" id="mySelect" name="modifyPrice" numberOnly>
-												<input type="text" class="alignB" id="mySelect" value="0"
+													class="btn-cc">단가</label> <input type="text" class="alignA"
+													id="mySelect" name="modifyPrice" numberOnly> <input
+													type="text" class="alignB" id="mySelect" value="0"
 													style="display: none;" disabled> 원
 											</div>
 											<div class="detail unit-price">
@@ -560,6 +567,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
@@ -633,206 +641,319 @@
 		}, 1000); // SET INTERVAL5
 	});
 	
+	var day_d = [${day_d[0]}, ${day_d[1]}, ${day_d[2]}, ${day_d[3]}, ${day_d[4]}, ${day_d[5]}, ${day_d[6]}, ${day_d[7]}, ${day_d[8]}, ${day_d[9]}, ${day_d[10]}, ${day_d[11]}, ${day_d[12]}, ${day_d[13]}, ${day_d[14]}, ${day_d[15]}, ${day_d[16]}, ${day_d[17]}, ${day_d[18]}, ${day_d[19]}, ${day_d[20]}, ${day_d[21]}, ${day_d[22]}, ${day_d[23]}, ${day_d[24]}, ${day_d[25]}, ${day_d[26]}, ${day_d[27]}, ${day_d[28]}, ${day_d[29]}, ${day_d[30]}, ${day_d[31]}, ${day_d[32]}, ${day_d[33]}, ${day_d[34]}, ${day_d[35]}, ${day_d[36]}, ${day_d[37]}, ${day_d[38]}, ${day_d[39]}, ${day_d[40]}, ${day_d[41]}, ${day_d[42]}, ${day_d[43]}, ${day_d[44]}, ${day_d[45]}, ${day_d[46]}, ${day_d[47]}, ${day_d[48]}, ${day_d[49]}, ${day_d[50]}, ${day_d[51]}, ${day_d[52]}, ${day_d[53]}, ${day_d[54]}, ${day_d[55]}, ${day_d[56]}, ${day_d[57]}, ${day_d[58]}, ${day_d[59]}]; 
+	   var day_startprice = [${day_startprice[0]}, ${day_startprice[1]}, ${day_startprice[2]}, ${day_startprice[3]}, ${day_startprice[4]}, ${day_startprice[5]}, ${day_startprice[6]}, ${day_startprice[7]}, ${day_startprice[8]}, ${day_startprice[9]}, ${day_startprice[10]}, ${day_startprice[11]}, ${day_startprice[12]}, ${day_startprice[13]}, ${day_startprice[14]}, ${day_startprice[15]}, ${day_startprice[16]}, ${day_startprice[17]}, ${day_startprice[18]}, ${day_startprice[19]}, ${day_startprice[20]}, ${day_startprice[21]}, ${day_startprice[22]}, ${day_startprice[23]}, ${day_startprice[24]}, ${day_startprice[25]}, ${day_startprice[26]}, ${day_startprice[27]}, ${day_startprice[28]}, ${day_startprice[29]}, ${day_startprice[30]}, ${day_startprice[31]}, ${day_startprice[32]}, ${day_startprice[33]}, ${day_startprice[34]}, ${day_startprice[35]}, ${day_startprice[36]}, ${day_startprice[37]}, ${day_startprice[38]}, ${day_startprice[39]}, ${day_startprice[40]}, ${day_startprice[41]}, ${day_startprice[42]}, ${day_startprice[43]}, ${day_startprice[44]}, ${day_startprice[45]}, ${day_startprice[46]}, ${day_startprice[47]}, ${day_startprice[48]}, ${day_startprice[49]}, ${day_startprice[50]}, ${day_startprice[51]}, ${day_startprice[52]}, ${day_startprice[53]}, ${day_startprice[54]}, ${day_startprice[55]}, ${day_startprice[56]}, ${day_startprice[57]}, ${day_startprice[58]}, ${day_startprice[59]}];
+	   var day_highprice = [${day_highprice[0]}, ${day_highprice[1]}, ${day_highprice[2]}, ${day_highprice[3]}, ${day_highprice[4]}, ${day_highprice[5]}, ${day_highprice[6]}, ${day_highprice[7]}, ${day_highprice[8]}, ${day_highprice[9]}, ${day_highprice[10]}, ${day_highprice[11]}, ${day_highprice[12]}, ${day_highprice[13]}, ${day_highprice[14]}, ${day_highprice[15]}, ${day_highprice[16]}, ${day_highprice[17]}, ${day_highprice[18]}, ${day_highprice[19]}, ${day_highprice[20]}, ${day_highprice[21]}, ${day_highprice[22]}, ${day_highprice[23]}, ${day_highprice[24]}, ${day_highprice[25]}, ${day_highprice[26]}, ${day_highprice[27]}, ${day_highprice[28]}, ${day_highprice[29]}, ${day_highprice[30]}, ${day_highprice[31]}, ${day_highprice[32]}, ${day_highprice[33]}, ${day_highprice[34]}, ${day_highprice[35]}, ${day_highprice[36]}, ${day_highprice[37]}, ${day_highprice[38]}, ${day_highprice[39]}, ${day_highprice[40]}, ${day_highprice[41]}, ${day_highprice[42]}, ${day_highprice[43]}, ${day_highprice[44]}, ${day_highprice[45]}, ${day_highprice[46]}, ${day_highprice[47]}, ${day_highprice[48]}, ${day_highprice[49]}, ${day_highprice[50]}, ${day_highprice[51]}, ${day_highprice[52]}, ${day_highprice[53]}, ${day_highprice[54]}, ${day_highprice[55]}, ${day_highprice[56]}, ${day_highprice[57]}, ${day_highprice[58]}, ${day_highprice[59]}];
+	   var day_lowprice = [${day_lowprice[0]}, ${day_lowprice[1]}, ${day_lowprice[2]}, ${day_lowprice[3]}, ${day_lowprice[4]}, ${day_lowprice[5]}, ${day_lowprice[6]}, ${day_lowprice[7]}, ${day_lowprice[8]}, ${day_lowprice[9]}, ${day_lowprice[10]}, ${day_lowprice[11]}, ${day_lowprice[12]}, ${day_lowprice[13]}, ${day_lowprice[14]}, ${day_lowprice[15]}, ${day_lowprice[16]}, ${day_lowprice[17]}, ${day_lowprice[18]}, ${day_lowprice[19]}, ${day_lowprice[20]}, ${day_lowprice[21]}, ${day_lowprice[22]}, ${day_lowprice[23]}, ${day_lowprice[24]}, ${day_lowprice[25]}, ${day_lowprice[26]}, ${day_lowprice[27]}, ${day_lowprice[28]}, ${day_lowprice[29]}, ${day_lowprice[30]}, ${day_lowprice[31]}, ${day_lowprice[32]}, ${day_lowprice[33]}, ${day_lowprice[34]}, ${day_lowprice[35]}, ${day_lowprice[36]}, ${day_lowprice[37]}, ${day_lowprice[38]}, ${day_lowprice[39]}, ${day_lowprice[40]}, ${day_lowprice[41]}, ${day_lowprice[42]}, ${day_lowprice[43]}, ${day_lowprice[44]}, ${day_lowprice[45]}, ${day_lowprice[46]}, ${day_lowprice[47]}, ${day_lowprice[48]}, ${day_lowprice[49]}, ${day_lowprice[50]}, ${day_lowprice[51]}, ${day_lowprice[52]}, ${day_lowprice[53]}, ${day_lowprice[54]}, ${day_lowprice[55]}, ${day_lowprice[56]}, ${day_lowprice[57]}, ${day_lowprice[58]}, ${day_lowprice[59]}];
+	   var day_lastprice = [${day_lastprice[0]}, ${day_lastprice[1]}, ${day_lastprice[2]}, ${day_lastprice[3]}, ${day_lastprice[4]}, ${day_lastprice[5]}, ${day_lastprice[6]}, ${day_lastprice[7]}, ${day_lastprice[8]}, ${day_lastprice[9]}, ${day_lastprice[10]}, ${day_lastprice[11]}, ${day_lastprice[12]}, ${day_lastprice[13]}, ${day_lastprice[14]}, ${day_lastprice[15]}, ${day_lastprice[16]}, ${day_lastprice[17]}, ${day_lastprice[18]}, ${day_lastprice[19]}, ${day_lastprice[20]}, ${day_lastprice[21]}, ${day_lastprice[22]}, ${day_lastprice[23]}, ${day_lastprice[24]}, ${day_lastprice[25]}, ${day_lastprice[26]}, ${day_lastprice[27]}, ${day_lastprice[28]}, ${day_lastprice[29]}, ${day_lastprice[30]}, ${day_lastprice[31]}, ${day_lastprice[32]}, ${day_lastprice[33]}, ${day_lastprice[34]}, ${day_lastprice[35]}, ${day_lastprice[36]}, ${day_lastprice[37]}, ${day_lastprice[38]}, ${day_lastprice[39]}, ${day_lastprice[40]}, ${day_lastprice[41]}, ${day_lastprice[42]}, ${day_lastprice[43]}, ${day_lastprice[44]}, ${day_lastprice[45]}, ${day_lastprice[46]}, ${day_lastprice[47]}, ${day_lastprice[48]}, ${day_lastprice[49]}, ${day_lastprice[50]}, ${day_lastprice[51]}, ${day_lastprice[52]}, ${day_lastprice[53]}, ${day_lastprice[54]}, ${day_lastprice[55]}, ${day_lastprice[56]}, ${day_lastprice[57]}, ${day_lastprice[58]}, ${day_lastprice[59]}];
+	
+	   var min_d = [${min_d[0]}, ${min_d[1]}, ${min_d[2]}, ${min_d[3]}, ${min_d[4]}, ${min_d[5]}, ${min_d[6]}, ${min_d[7]}, ${min_d[8]}, ${min_d[9]}, ${min_d[10]}, ${min_d[11]}, ${min_d[12]}, ${min_d[13]}, ${min_d[14]}, ${min_d[15]}, ${min_d[16]}, ${min_d[17]}, ${min_d[18]}, ${min_d[19]}, ${min_d[20]}, ${min_d[21]}, ${min_d[22]}, ${min_d[23]}, ${min_d[24]}, ${min_d[25]}, ${min_d[26]}, ${min_d[27]}, ${min_d[28]}, ${min_d[29]}, ${min_d[30]}, ${min_d[31]}, ${min_d[32]}, ${min_d[33]}, ${min_d[34]}, ${min_d[35]}, ${min_d[36]}, ${min_d[37]}, ${min_d[38]}, ${min_d[39]}, ${min_d[40]}, ${min_d[41]}, ${min_d[42]}, ${min_d[43]}, ${min_d[44]}, ${min_d[45]}, ${min_d[46]}, ${min_d[47]}, ${min_d[48]}, ${min_d[49]}, ${min_d[50]}, ${min_d[51]}, ${min_d[52]}, ${min_d[53]}, ${min_d[54]}, ${min_d[55]}, ${min_d[56]}, ${min_d[57]}, ${min_d[58]}, ${min_d[59]}] 
+	   var min_hr = [${min_hr[0]}, ${min_hr[1]}, ${min_hr[2]}, ${min_hr[3]}, ${min_hr[4]}, ${min_hr[5]}, ${min_hr[6]}, ${min_hr[7]}, ${min_hr[8]}, ${min_hr[9]}, ${min_hr[10]}, ${min_hr[11]}, ${min_hr[12]}, ${min_hr[13]}, ${min_hr[14]}, ${min_hr[15]}, ${min_hr[16]}, ${min_hr[17]}, ${min_hr[18]}, ${min_hr[19]}, ${min_hr[20]}, ${min_hr[21]}, ${min_hr[22]}, ${min_hr[23]}, ${min_hr[24]}, ${min_hr[25]}, ${min_hr[26]}, ${min_hr[27]}, ${min_hr[28]}, ${min_hr[29]}, ${min_hr[30]}, ${min_hr[31]}, ${min_hr[32]}, ${min_hr[33]}, ${min_hr[34]}, ${min_hr[35]}, ${min_hr[36]}, ${min_hr[37]}, ${min_hr[38]}, ${min_hr[39]}, ${min_hr[40]}, ${min_hr[41]}, ${min_hr[42]}, ${min_hr[43]}, ${min_hr[44]}, ${min_hr[45]}, ${min_hr[46]}, ${min_hr[47]}, ${min_hr[48]}, ${min_hr[49]}, ${min_hr[50]}, ${min_hr[51]}, ${min_hr[52]}, ${min_hr[53]}, ${min_hr[54]}, ${min_hr[55]}, ${min_hr[56]}, ${min_hr[57]}, ${min_hr[58]}, ${min_hr[59]}]
+	   var min_startprice = [${min_startprice[0]}, ${min_startprice[1]}, ${min_startprice[2]}, ${min_startprice[3]}, ${min_startprice[4]}, ${min_startprice[5]}, ${min_startprice[6]}, ${min_startprice[7]}, ${min_startprice[8]}, ${min_startprice[9]}, ${min_startprice[10]}, ${min_startprice[11]}, ${min_startprice[12]}, ${min_startprice[13]}, ${min_startprice[14]}, ${min_startprice[15]}, ${min_startprice[16]}, ${min_startprice[17]}, ${min_startprice[18]}, ${min_startprice[19]}, ${min_startprice[20]}, ${min_startprice[21]}, ${min_startprice[22]}, ${min_startprice[23]}, ${min_startprice[24]}, ${min_startprice[25]}, ${min_startprice[26]}, ${min_startprice[27]}, ${min_startprice[28]}, ${min_startprice[29]}, ${min_startprice[30]}, ${min_startprice[31]}, ${min_startprice[32]}, ${min_startprice[33]}, ${min_startprice[34]}, ${min_startprice[35]}, ${min_startprice[36]}, ${min_startprice[37]}, ${min_startprice[38]}, ${min_startprice[39]}, ${min_startprice[40]}, ${min_startprice[41]}, ${min_startprice[42]}, ${min_startprice[43]}, ${min_startprice[44]}, ${min_startprice[45]}, ${min_startprice[46]}, ${min_startprice[47]}, ${min_startprice[48]}, ${min_startprice[49]}, ${min_startprice[50]}, ${min_startprice[51]}, ${min_startprice[52]}, ${min_startprice[53]}, ${min_startprice[54]}, ${min_startprice[55]}, ${min_startprice[56]}, ${min_startprice[57]}, ${min_startprice[58]}, ${min_startprice[59]}]
+	   var min_highprice = [${min_highprice[0]}, ${min_highprice[1]}, ${min_highprice[2]}, ${min_highprice[3]}, ${min_highprice[4]}, ${min_highprice[5]}, ${min_highprice[6]}, ${min_highprice[7]}, ${min_highprice[8]}, ${min_highprice[9]}, ${min_highprice[10]}, ${min_highprice[11]}, ${min_highprice[12]}, ${min_highprice[13]}, ${min_highprice[14]}, ${min_highprice[15]}, ${min_highprice[16]}, ${min_highprice[17]}, ${min_highprice[18]}, ${min_highprice[19]}, ${min_highprice[20]}, ${min_highprice[21]}, ${min_highprice[22]}, ${min_highprice[23]}, ${min_highprice[24]}, ${min_highprice[25]}, ${min_highprice[26]}, ${min_highprice[27]}, ${min_highprice[28]}, ${min_highprice[29]}, ${min_highprice[30]}, ${min_highprice[31]}, ${min_highprice[32]}, ${min_highprice[33]}, ${min_highprice[34]}, ${min_highprice[35]}, ${min_highprice[36]}, ${min_highprice[37]}, ${min_highprice[38]}, ${min_highprice[39]}, ${min_highprice[40]}, ${min_highprice[41]}, ${min_highprice[42]}, ${min_highprice[43]}, ${min_highprice[44]}, ${min_highprice[45]}, ${min_highprice[46]}, ${min_highprice[47]}, ${min_highprice[48]}, ${min_highprice[49]}, ${min_highprice[50]}, ${min_highprice[51]}, ${min_highprice[52]}, ${min_highprice[53]}, ${min_highprice[54]}, ${min_highprice[55]}, ${min_highprice[56]}, ${min_highprice[57]}, ${min_highprice[58]}, ${min_highprice[59]}]
+	   var min_lowprice = [${min_lowprice[0]}, ${min_lowprice[1]}, ${min_lowprice[2]}, ${min_lowprice[3]}, ${min_lowprice[4]}, ${min_lowprice[5]}, ${min_lowprice[6]}, ${min_lowprice[7]}, ${min_lowprice[8]}, ${min_lowprice[9]}, ${min_lowprice[10]}, ${min_lowprice[11]}, ${min_lowprice[12]}, ${min_lowprice[13]}, ${min_lowprice[14]}, ${min_lowprice[15]}, ${min_lowprice[16]}, ${min_lowprice[17]}, ${min_lowprice[18]}, ${min_lowprice[19]}, ${min_lowprice[20]}, ${min_lowprice[21]}, ${min_lowprice[22]}, ${min_lowprice[23]}, ${min_lowprice[24]}, ${min_lowprice[25]}, ${min_lowprice[26]}, ${min_lowprice[27]}, ${min_lowprice[28]}, ${min_lowprice[29]}, ${min_lowprice[30]}, ${min_lowprice[31]}, ${min_lowprice[32]}, ${min_lowprice[33]}, ${min_lowprice[34]}, ${min_lowprice[35]}, ${min_lowprice[36]}, ${min_lowprice[37]}, ${min_lowprice[38]}, ${min_lowprice[39]}, ${min_lowprice[40]}, ${min_lowprice[41]}, ${min_lowprice[42]}, ${min_lowprice[43]}, ${min_lowprice[44]}, ${min_lowprice[45]}, ${min_lowprice[46]}, ${min_lowprice[47]}, ${min_lowprice[48]}, ${min_lowprice[49]}, ${min_lowprice[50]}, ${min_lowprice[51]}, ${min_lowprice[52]}, ${min_lowprice[53]}, ${min_lowprice[54]}, ${min_lowprice[55]}, ${min_lowprice[56]}, ${min_lowprice[57]}, ${min_lowprice[58]}, ${min_lowprice[59]}]
+	   var min_lastprice = [${min_lastprice[0]}, ${min_lastprice[1]}, ${min_lastprice[2]}, ${min_lastprice[3]}, ${min_lastprice[4]}, ${min_lastprice[5]}, ${min_lastprice[6]}, ${min_lastprice[7]}, ${min_lastprice[8]}, ${min_lastprice[9]}, ${min_lastprice[10]}, ${min_lastprice[11]}, ${min_lastprice[12]}, ${min_lastprice[13]}, ${min_lastprice[14]}, ${min_lastprice[15]}, ${min_lastprice[16]}, ${min_lastprice[17]}, ${min_lastprice[18]}, ${min_lastprice[19]}, ${min_lastprice[20]}, ${min_lastprice[21]}, ${min_lastprice[22]}, ${min_lastprice[23]}, ${min_lastprice[24]}, ${min_lastprice[25]}, ${min_lastprice[26]}, ${min_lastprice[27]}, ${min_lastprice[28]}, ${min_lastprice[29]}, ${min_lastprice[30]}, ${min_lastprice[31]}, ${min_lastprice[32]}, ${min_lastprice[33]}, ${min_lastprice[34]}, ${min_lastprice[35]}, ${min_lastprice[36]}, ${min_lastprice[37]}, ${min_lastprice[38]}, ${min_lastprice[39]}, ${min_lastprice[40]}, ${min_lastprice[41]}, ${min_lastprice[42]}, ${min_lastprice[43]}, ${min_lastprice[44]}, ${min_lastprice[45]}, ${min_lastprice[46]}, ${min_lastprice[47]}, ${min_lastprice[48]}, ${min_lastprice[49]}, ${min_lastprice[50]}, ${min_lastprice[51]}, ${min_lastprice[52]}, ${min_lastprice[53]}, ${min_lastprice[54]}, ${min_lastprice[55]}, ${min_lastprice[56]}, ${min_lastprice[57]}, ${min_lastprice[58]}, ${min_lastprice[59]}]
+	   
+	   
+	
+	
 	//window.onload = function () {
-	var a = 0;
 	
  	$("#minute").click(function(){
-		console.log(a);
-		var minDataPoints = [];
-		var minChart = new CanvasJS.Chart(
-		      "chartContainer",
-		      {
-		         animationEnabled : true,
-		         theme : "light2", // "light1", "light2", "dark1", "dark2"
-		         exportEnabled : true,
-		         title : {
-		            text : stockName
-		         },
-		         subtitles : [ {
-		            text : "minute"
-		         } ],
-		         axisX : {
-		            interval : 1,
-		            valueFormatString : "mm"
-		         },
-		         axisY : {
-		            includeZero : false,
-		            prefix : "",
-		            title : "Price"
-		         },
-		         toolTip : {
-		            content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
-		         },
-		         data : [ {
-		            type : "candlestick",
-		            yValueFormatString : "##0원",
-		            dataPoints : minDataPoints
-		         } ]
-		      });   
+ 		$("#chartcontainer").empty();
+ 		var minData = [];
+ 		for (var i = 0; i < 60; i++) {
+ 			minData.push({
+				 x : new Date(parseInt(min_d[i]/10000),
+	                        parseInt(min_d[i]%10000/100),
+	                        min_d[i]%100,
+	                        parseInt(min_hr[i]/100),
+	                        min_hr[i]%100
 
-		function getMinDataPointsFromCSV() {
-		   var min_d = [${min_d[0]}, ${min_d[1]}, ${min_d[2]}, ${min_d[3]}, ${min_d[4]}, ${min_d[5]}, ${min_d[6]}, ${min_d[7]}, ${min_d[8]}, ${min_d[9]}, ${min_d[10]}, ${min_d[11]}, ${min_d[12]}, ${min_d[13]}, ${min_d[14]}, ${min_d[15]}, ${min_d[16]}, ${min_d[17]}, ${min_d[18]}, ${min_d[19]}, ${min_d[20]}, ${min_d[21]}, ${min_d[22]}, ${min_d[23]}, ${min_d[24]}, ${min_d[25]}, ${min_d[26]}, ${min_d[27]}, ${min_d[28]}, ${min_d[29]}, ${min_d[30]}, ${min_d[31]}, ${min_d[32]}, ${min_d[33]}, ${min_d[34]}, ${min_d[35]}, ${min_d[36]}, ${min_d[37]}, ${min_d[38]}, ${min_d[39]}, ${min_d[40]}, ${min_d[41]}, ${min_d[42]}, ${min_d[43]}, ${min_d[44]}, ${min_d[45]}, ${min_d[46]}, ${min_d[47]}, ${min_d[48]}, ${min_d[49]}, ${min_d[50]}, ${min_d[51]}, ${min_d[52]}, ${min_d[53]}, ${min_d[54]}, ${min_d[55]}, ${min_d[56]}, ${min_d[57]}, ${min_d[58]}, ${min_d[59]}] 
-		   var min_hr = [${min_hr[0]}, ${min_hr[1]}, ${min_hr[2]}, ${min_hr[3]}, ${min_hr[4]}, ${min_hr[5]}, ${min_hr[6]}, ${min_hr[7]}, ${min_hr[8]}, ${min_hr[9]}, ${min_hr[10]}, ${min_hr[11]}, ${min_hr[12]}, ${min_hr[13]}, ${min_hr[14]}, ${min_hr[15]}, ${min_hr[16]}, ${min_hr[17]}, ${min_hr[18]}, ${min_hr[19]}, ${min_hr[20]}, ${min_hr[21]}, ${min_hr[22]}, ${min_hr[23]}, ${min_hr[24]}, ${min_hr[25]}, ${min_hr[26]}, ${min_hr[27]}, ${min_hr[28]}, ${min_hr[29]}, ${min_hr[30]}, ${min_hr[31]}, ${min_hr[32]}, ${min_hr[33]}, ${min_hr[34]}, ${min_hr[35]}, ${min_hr[36]}, ${min_hr[37]}, ${min_hr[38]}, ${min_hr[39]}, ${min_hr[40]}, ${min_hr[41]}, ${min_hr[42]}, ${min_hr[43]}, ${min_hr[44]}, ${min_hr[45]}, ${min_hr[46]}, ${min_hr[47]}, ${min_hr[48]}, ${min_hr[49]}, ${min_hr[50]}, ${min_hr[51]}, ${min_hr[52]}, ${min_hr[53]}, ${min_hr[54]}, ${min_hr[55]}, ${min_hr[56]}, ${min_hr[57]}, ${min_hr[58]}, ${min_hr[59]}]
-		   var min_startprice = [${min_startprice[0]}, ${min_startprice[1]}, ${min_startprice[2]}, ${min_startprice[3]}, ${min_startprice[4]}, ${min_startprice[5]}, ${min_startprice[6]}, ${min_startprice[7]}, ${min_startprice[8]}, ${min_startprice[9]}, ${min_startprice[10]}, ${min_startprice[11]}, ${min_startprice[12]}, ${min_startprice[13]}, ${min_startprice[14]}, ${min_startprice[15]}, ${min_startprice[16]}, ${min_startprice[17]}, ${min_startprice[18]}, ${min_startprice[19]}, ${min_startprice[20]}, ${min_startprice[21]}, ${min_startprice[22]}, ${min_startprice[23]}, ${min_startprice[24]}, ${min_startprice[25]}, ${min_startprice[26]}, ${min_startprice[27]}, ${min_startprice[28]}, ${min_startprice[29]}, ${min_startprice[30]}, ${min_startprice[31]}, ${min_startprice[32]}, ${min_startprice[33]}, ${min_startprice[34]}, ${min_startprice[35]}, ${min_startprice[36]}, ${min_startprice[37]}, ${min_startprice[38]}, ${min_startprice[39]}, ${min_startprice[40]}, ${min_startprice[41]}, ${min_startprice[42]}, ${min_startprice[43]}, ${min_startprice[44]}, ${min_startprice[45]}, ${min_startprice[46]}, ${min_startprice[47]}, ${min_startprice[48]}, ${min_startprice[49]}, ${min_startprice[50]}, ${min_startprice[51]}, ${min_startprice[52]}, ${min_startprice[53]}, ${min_startprice[54]}, ${min_startprice[55]}, ${min_startprice[56]}, ${min_startprice[57]}, ${min_startprice[58]}, ${min_startprice[59]}]
-		   var min_highprice = [${min_highprice[0]}, ${min_highprice[1]}, ${min_highprice[2]}, ${min_highprice[3]}, ${min_highprice[4]}, ${min_highprice[5]}, ${min_highprice[6]}, ${min_highprice[7]}, ${min_highprice[8]}, ${min_highprice[9]}, ${min_highprice[10]}, ${min_highprice[11]}, ${min_highprice[12]}, ${min_highprice[13]}, ${min_highprice[14]}, ${min_highprice[15]}, ${min_highprice[16]}, ${min_highprice[17]}, ${min_highprice[18]}, ${min_highprice[19]}, ${min_highprice[20]}, ${min_highprice[21]}, ${min_highprice[22]}, ${min_highprice[23]}, ${min_highprice[24]}, ${min_highprice[25]}, ${min_highprice[26]}, ${min_highprice[27]}, ${min_highprice[28]}, ${min_highprice[29]}, ${min_highprice[30]}, ${min_highprice[31]}, ${min_highprice[32]}, ${min_highprice[33]}, ${min_highprice[34]}, ${min_highprice[35]}, ${min_highprice[36]}, ${min_highprice[37]}, ${min_highprice[38]}, ${min_highprice[39]}, ${min_highprice[40]}, ${min_highprice[41]}, ${min_highprice[42]}, ${min_highprice[43]}, ${min_highprice[44]}, ${min_highprice[45]}, ${min_highprice[46]}, ${min_highprice[47]}, ${min_highprice[48]}, ${min_highprice[49]}, ${min_highprice[50]}, ${min_highprice[51]}, ${min_highprice[52]}, ${min_highprice[53]}, ${min_highprice[54]}, ${min_highprice[55]}, ${min_highprice[56]}, ${min_highprice[57]}, ${min_highprice[58]}, ${min_highprice[59]}]
-		   var min_lowprice = [${min_lowprice[0]}, ${min_lowprice[1]}, ${min_lowprice[2]}, ${min_lowprice[3]}, ${min_lowprice[4]}, ${min_lowprice[5]}, ${min_lowprice[6]}, ${min_lowprice[7]}, ${min_lowprice[8]}, ${min_lowprice[9]}, ${min_lowprice[10]}, ${min_lowprice[11]}, ${min_lowprice[12]}, ${min_lowprice[13]}, ${min_lowprice[14]}, ${min_lowprice[15]}, ${min_lowprice[16]}, ${min_lowprice[17]}, ${min_lowprice[18]}, ${min_lowprice[19]}, ${min_lowprice[20]}, ${min_lowprice[21]}, ${min_lowprice[22]}, ${min_lowprice[23]}, ${min_lowprice[24]}, ${min_lowprice[25]}, ${min_lowprice[26]}, ${min_lowprice[27]}, ${min_lowprice[28]}, ${min_lowprice[29]}, ${min_lowprice[30]}, ${min_lowprice[31]}, ${min_lowprice[32]}, ${min_lowprice[33]}, ${min_lowprice[34]}, ${min_lowprice[35]}, ${min_lowprice[36]}, ${min_lowprice[37]}, ${min_lowprice[38]}, ${min_lowprice[39]}, ${min_lowprice[40]}, ${min_lowprice[41]}, ${min_lowprice[42]}, ${min_lowprice[43]}, ${min_lowprice[44]}, ${min_lowprice[45]}, ${min_lowprice[46]}, ${min_lowprice[47]}, ${min_lowprice[48]}, ${min_lowprice[49]}, ${min_lowprice[50]}, ${min_lowprice[51]}, ${min_lowprice[52]}, ${min_lowprice[53]}, ${min_lowprice[54]}, ${min_lowprice[55]}, ${min_lowprice[56]}, ${min_lowprice[57]}, ${min_lowprice[58]}, ${min_lowprice[59]}]
-		   var min_lastprice = [${min_lastprice[0]}, ${min_lastprice[1]}, ${min_lastprice[2]}, ${min_lastprice[3]}, ${min_lastprice[4]}, ${min_lastprice[5]}, ${min_lastprice[6]}, ${min_lastprice[7]}, ${min_lastprice[8]}, ${min_lastprice[9]}, ${min_lastprice[10]}, ${min_lastprice[11]}, ${min_lastprice[12]}, ${min_lastprice[13]}, ${min_lastprice[14]}, ${min_lastprice[15]}, ${min_lastprice[16]}, ${min_lastprice[17]}, ${min_lastprice[18]}, ${min_lastprice[19]}, ${min_lastprice[20]}, ${min_lastprice[21]}, ${min_lastprice[22]}, ${min_lastprice[23]}, ${min_lastprice[24]}, ${min_lastprice[25]}, ${min_lastprice[26]}, ${min_lastprice[27]}, ${min_lastprice[28]}, ${min_lastprice[29]}, ${min_lastprice[30]}, ${min_lastprice[31]}, ${min_lastprice[32]}, ${min_lastprice[33]}, ${min_lastprice[34]}, ${min_lastprice[35]}, ${min_lastprice[36]}, ${min_lastprice[37]}, ${min_lastprice[38]}, ${min_lastprice[39]}, ${min_lastprice[40]}, ${min_lastprice[41]}, ${min_lastprice[42]}, ${min_lastprice[43]}, ${min_lastprice[44]}, ${min_lastprice[45]}, ${min_lastprice[46]}, ${min_lastprice[47]}, ${min_lastprice[48]}, ${min_lastprice[49]}, ${min_lastprice[50]}, ${min_lastprice[51]}, ${min_lastprice[52]}, ${min_lastprice[53]}, ${min_lastprice[54]}, ${min_lastprice[55]}, ${min_lastprice[56]}, ${min_lastprice[57]}, ${min_lastprice[58]}, ${min_lastprice[59]}]
-		   
-		   for (var i = 1; i < 60; i++) {
-			   if(min_hr[i]-min_hr[0]>200)
-		   			break; 
-		      minDataPoints.push({
-		            x : new Date(parseInt(min_d[i]/10000),
-		                  parseInt(min_d[i]%10000/100),
-		                  min_d[i]%100,
-		                  parseInt(min_hr[i]/100),
-		                  min_hr[i]%100
+	                  ),
+		         y:  [ parseFloat(min_startprice[i]), parseFloat(min_highprice[i]),
+	                 parseFloat(min_lowprice[i]),
+	                 parseFloat(min_lastprice[i]) ]
+		     });
+		 }
+	     
+	     var options = {
+	    		
+	         series: [{
+	             data: minData
+	         }],
+	         chart: {
+	             type: 'candlestick',
+	             redrawOnParentResize: true,
+	             zoom: {
+	                 enabled: false}
+	         },
+	         title: {
+	             text: stockName,
+	             align: 'left'
+	         },
+	         xaxis: {
+	             type: 'datetime',
+	             labels: {
+	            	 formatter: function(val, opts) {
+		                   var st = new Date(val);
+		                   var hour = st.getHours();
+		                   var min = st.getMinutes();
+		                   if(min<10) min = "0"+min;
+		                   var text = hour + ":" +min;
+		                   return text
+		                 }
+	             },
+	             tooltip: {
+	                 formatter: function(val, opts) {
+	                   var st = new Date(val);
+	                   var hour = st.getHours();
+	                   var min = st.getMinutes();
+	                   if(min<10) min = "0"+min;
+	                   var text = hour + ":" +min;
+	                   return text
+	                 }
+	               }
+	         },
+	         yaxis: {
+	             tooltip: {
+	                 enabled: true
+	             }
+	         },
+	         
+	         plotOptions: {
+	        	 candlestick: {
+	        	        colors: {
+	        	          upward: '#FF0000',
+	        	          downward: '#5B5AFF'
+	        	        },
+	        	        wick: {
+	        	          useFillColor: true
+	        	        }
+	        	      }, 
+	        	 bar: {
+			          horizontal: false,
+			          startingShape: 'flat',
+			          endingShape: 'flat',
+			          columnWidth: '15%',
+			          barHeight: '70%',
+			          distributed: false,
+			          rangeBarOverlap: true,
+			          colors: {
+			              ranges: [{
+			                  from: 0,
+			                  to: 0,
+			                  color: undefined
+			              }],
+			              backgroundBarColors: [],
+			              backgroundBarOpacity: 1,
+			              backgroundBarRadius: 0,
+			          }
+			      }
+			  }
+	     };
 
-		            ),
-		            y : [ parseFloat(min_startprice[i]), parseFloat(min_highprice[i]),
-		                  parseFloat(min_lowprice[i]),
-		                  parseFloat(min_lastprice[i]) ],
-		            z : parseInt(min_d[i]/10000) + '-'
-		                  + parseInt(min_d[i]%10000/100) + '-'
-		                  + min_d[i]%100 + " "
-		                  + parseInt(min_hr[i]/100) + ":"
-		                  + min_hr[i]%100
-		         });
-		      
-		   }
-		   minChart.render();
-		}
-		getMinDataPointsFromCSV();
-
-		
-		
+	     var minchart = new ApexCharts(document.querySelector("#chartcontainer"), options);
+	     minchart.render();	
+ 	
 	});
 		
 	
 	$("#day").click(function(){
-		var dayDataPoints = [];
+		$("#chartcontainer").empty();
 		
-		var dayChart = new CanvasJS.Chart(
-		      "chartContainer",
-		      {
-		         animationEnabled : true,
-		         theme : "light2", // "light1", "light2", "dark1", "dark2"
-		         exportEnabled : true,
-		         title : {
-		            text : stockName
-		         },
-		         subtitles : [ {
-		            text : "day"
-		         } ],
-		         axisX : {
-		            interval : 1,
-		            valueFormatString : "DD"
-		         },
-		         axisY : {
-		            includeZero : false,
-		            prefix : "",
-		            title : "Price"
-		         },
-		         toolTip : {
-		            content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
-		         },
-		         data : [ {
-		            type : "candlestick",
-		            yValueFormatString : "##0원",
-		            dataPoints : dayDataPoints
-		         } ]
-		      });   
+		var dayData = [];
+		for (var i = 0; i < 60; i++) {
+			dayData.push({
+		         x: new Date(
+		        		 parseInt(day_d[i]/10000),
+		                  parseInt(day_d[i]%10000/100)-1,
+		                  day_d[i]%100+1
+		                  ),
+		         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
+	                 parseFloat(day_lowprice[i]),
+	                 parseFloat(day_lastprice[i]) ]
+		     });
+		 }
+	     
+	     var options = {
+	    		
+	         series: [{
+	             data: dayData
+	         }],
+	         chart: {
+	             type: 'candlestick',
+	             redrawOnParentResize: true,
+	             zoom: {
+	                 enabled: false}
+	         },
+	         title: {
+	             text: stockName,
+	             align: 'left'
+	         },
+	         xaxis: {
+	             type: 'datetime',
+	             labels: {
+	                 datetimeFormatter: {
+	                     year: 'yyyy',
+	                     month: 'MM/dd',
+	                     day: 'dd',
+	                     hour: 'HH:mm'
+	                 }
+	             },
+	             tooltip: {
+	                 formatter: function(val, opts) {
+	                   var st = new Date(val);
+	                   var mon = st.getMonth()+1;
+	                   var day = st.getDate()-1;
+	                   if(day == 0 ){
+	                	   day = 31;
+	                	   mon = mon-1;
+	                   }
+	                   var text = mon + "/" +day;
+	                   return text
+	                 }
+	               }
+	         },
+	         yaxis: {
+	             tooltip: {
+	                 enabled: true
+	             }
+	         },
+	         
+	         plotOptions: {
+	        	 candlestick: {
+	        	        colors: {
+	        	          upward: '#FF0000',
+	        	          downward: '#5B5AFF'
+	        	        },
+	        	        wick: {
+	        	          useFillColor: true
+	        	        }
+	        	      }, 
+	        	 bar: {
+			          horizontal: false,
+			          startingShape: 'flat',
+			          endingShape: 'flat',
+			          columnWidth: '15%',
+			          barHeight: '70%',
+			          distributed: false,
+			          rangeBarOverlap: true,
+			          colors: {
+			              ranges: [{
+			                  from: 0,
+			                  to: 0,
+			                  color: undefined
+			              }],
+			              backgroundBarColors: [],
+			              backgroundBarOpacity: 1,
+			              backgroundBarRadius: 0,
+			          }
+			      }
+			  }
+	     };
 
-		function getDayDataPointsFromCSV() {
-		   var day_d = [${day_d[0]}, ${day_d[1]}, ${day_d[2]}, ${day_d[3]}, ${day_d[4]}, ${day_d[5]}, ${day_d[6]}, ${day_d[7]}, ${day_d[8]}, ${day_d[9]}, ${day_d[10]}, ${day_d[11]}, ${day_d[12]}, ${day_d[13]}, ${day_d[14]}, ${day_d[15]}, ${day_d[16]}, ${day_d[17]}, ${day_d[18]}, ${day_d[19]}, ${day_d[20]}, ${day_d[21]}, ${day_d[22]}, ${day_d[23]}, ${day_d[24]}, ${day_d[25]}, ${day_d[26]}, ${day_d[27]}, ${day_d[28]}, ${day_d[29]}, ${day_d[30]}, ${day_d[31]}, ${day_d[32]}, ${day_d[33]}, ${day_d[34]}, ${day_d[35]}, ${day_d[36]}, ${day_d[37]}, ${day_d[38]}, ${day_d[39]}, ${day_d[40]}, ${day_d[41]}, ${day_d[42]}, ${day_d[43]}, ${day_d[44]}, ${day_d[45]}, ${day_d[46]}, ${day_d[47]}, ${day_d[48]}, ${day_d[49]}, ${day_d[50]}, ${day_d[51]}, ${day_d[52]}, ${day_d[53]}, ${day_d[54]}, ${day_d[55]}, ${day_d[56]}, ${day_d[57]}, ${day_d[58]}, ${day_d[59]}] 
-		   var day_startprice = [${day_startprice[0]}, ${day_startprice[1]}, ${day_startprice[2]}, ${day_startprice[3]}, ${day_startprice[4]}, ${day_startprice[5]}, ${day_startprice[6]}, ${day_startprice[7]}, ${day_startprice[8]}, ${day_startprice[9]}, ${day_startprice[10]}, ${day_startprice[11]}, ${day_startprice[12]}, ${day_startprice[13]}, ${day_startprice[14]}, ${day_startprice[15]}, ${day_startprice[16]}, ${day_startprice[17]}, ${day_startprice[18]}, ${day_startprice[19]}, ${day_startprice[20]}, ${day_startprice[21]}, ${day_startprice[22]}, ${day_startprice[23]}, ${day_startprice[24]}, ${day_startprice[25]}, ${day_startprice[26]}, ${day_startprice[27]}, ${day_startprice[28]}, ${day_startprice[29]}, ${day_startprice[30]}, ${day_startprice[31]}, ${day_startprice[32]}, ${day_startprice[33]}, ${day_startprice[34]}, ${day_startprice[35]}, ${day_startprice[36]}, ${day_startprice[37]}, ${day_startprice[38]}, ${day_startprice[39]}, ${day_startprice[40]}, ${day_startprice[41]}, ${day_startprice[42]}, ${day_startprice[43]}, ${day_startprice[44]}, ${day_startprice[45]}, ${day_startprice[46]}, ${day_startprice[47]}, ${day_startprice[48]}, ${day_startprice[49]}, ${day_startprice[50]}, ${day_startprice[51]}, ${day_startprice[52]}, ${day_startprice[53]}, ${day_startprice[54]}, ${day_startprice[55]}, ${day_startprice[56]}, ${day_startprice[57]}, ${day_startprice[58]}, ${day_startprice[59]}]
-		   var day_highprice = [${day_highprice[0]}, ${day_highprice[1]}, ${day_highprice[2]}, ${day_highprice[3]}, ${day_highprice[4]}, ${day_highprice[5]}, ${day_highprice[6]}, ${day_highprice[7]}, ${day_highprice[8]}, ${day_highprice[9]}, ${day_highprice[10]}, ${day_highprice[11]}, ${day_highprice[12]}, ${day_highprice[13]}, ${day_highprice[14]}, ${day_highprice[15]}, ${day_highprice[16]}, ${day_highprice[17]}, ${day_highprice[18]}, ${day_highprice[19]}, ${day_highprice[20]}, ${day_highprice[21]}, ${day_highprice[22]}, ${day_highprice[23]}, ${day_highprice[24]}, ${day_highprice[25]}, ${day_highprice[26]}, ${day_highprice[27]}, ${day_highprice[28]}, ${day_highprice[29]}, ${day_highprice[30]}, ${day_highprice[31]}, ${day_highprice[32]}, ${day_highprice[33]}, ${day_highprice[34]}, ${day_highprice[35]}, ${day_highprice[36]}, ${day_highprice[37]}, ${day_highprice[38]}, ${day_highprice[39]}, ${day_highprice[40]}, ${day_highprice[41]}, ${day_highprice[42]}, ${day_highprice[43]}, ${day_highprice[44]}, ${day_highprice[45]}, ${day_highprice[46]}, ${day_highprice[47]}, ${day_highprice[48]}, ${day_highprice[49]}, ${day_highprice[50]}, ${day_highprice[51]}, ${day_highprice[52]}, ${day_highprice[53]}, ${day_highprice[54]}, ${day_highprice[55]}, ${day_highprice[56]}, ${day_highprice[57]}, ${day_highprice[58]}, ${day_highprice[59]}]
-		   var day_lowprice = [${day_lowprice[0]}, ${day_lowprice[1]}, ${day_lowprice[2]}, ${day_lowprice[3]}, ${day_lowprice[4]}, ${day_lowprice[5]}, ${day_lowprice[6]}, ${day_lowprice[7]}, ${day_lowprice[8]}, ${day_lowprice[9]}, ${day_lowprice[10]}, ${day_lowprice[11]}, ${day_lowprice[12]}, ${day_lowprice[13]}, ${day_lowprice[14]}, ${day_lowprice[15]}, ${day_lowprice[16]}, ${day_lowprice[17]}, ${day_lowprice[18]}, ${day_lowprice[19]}, ${day_lowprice[20]}, ${day_lowprice[21]}, ${day_lowprice[22]}, ${day_lowprice[23]}, ${day_lowprice[24]}, ${day_lowprice[25]}, ${day_lowprice[26]}, ${day_lowprice[27]}, ${day_lowprice[28]}, ${day_lowprice[29]}, ${day_lowprice[30]}, ${day_lowprice[31]}, ${day_lowprice[32]}, ${day_lowprice[33]}, ${day_lowprice[34]}, ${day_lowprice[35]}, ${day_lowprice[36]}, ${day_lowprice[37]}, ${day_lowprice[38]}, ${day_lowprice[39]}, ${day_lowprice[40]}, ${day_lowprice[41]}, ${day_lowprice[42]}, ${day_lowprice[43]}, ${day_lowprice[44]}, ${day_lowprice[45]}, ${day_lowprice[46]}, ${day_lowprice[47]}, ${day_lowprice[48]}, ${day_lowprice[49]}, ${day_lowprice[50]}, ${day_lowprice[51]}, ${day_lowprice[52]}, ${day_lowprice[53]}, ${day_lowprice[54]}, ${day_lowprice[55]}, ${day_lowprice[56]}, ${day_lowprice[57]}, ${day_lowprice[58]}, ${day_lowprice[59]}]
-		   var day_lastprice = [${day_lastprice[0]}, ${day_lastprice[1]}, ${day_lastprice[2]}, ${day_lastprice[3]}, ${day_lastprice[4]}, ${day_lastprice[5]}, ${day_lastprice[6]}, ${day_lastprice[7]}, ${day_lastprice[8]}, ${day_lastprice[9]}, ${day_lastprice[10]}, ${day_lastprice[11]}, ${day_lastprice[12]}, ${day_lastprice[13]}, ${day_lastprice[14]}, ${day_lastprice[15]}, ${day_lastprice[16]}, ${day_lastprice[17]}, ${day_lastprice[18]}, ${day_lastprice[19]}, ${day_lastprice[20]}, ${day_lastprice[21]}, ${day_lastprice[22]}, ${day_lastprice[23]}, ${day_lastprice[24]}, ${day_lastprice[25]}, ${day_lastprice[26]}, ${day_lastprice[27]}, ${day_lastprice[28]}, ${day_lastprice[29]}, ${day_lastprice[30]}, ${day_lastprice[31]}, ${day_lastprice[32]}, ${day_lastprice[33]}, ${day_lastprice[34]}, ${day_lastprice[35]}, ${day_lastprice[36]}, ${day_lastprice[37]}, ${day_lastprice[38]}, ${day_lastprice[39]}, ${day_lastprice[40]}, ${day_lastprice[41]}, ${day_lastprice[42]}, ${day_lastprice[43]}, ${day_lastprice[44]}, ${day_lastprice[45]}, ${day_lastprice[46]}, ${day_lastprice[47]}, ${day_lastprice[48]}, ${day_lastprice[49]}, ${day_lastprice[50]}, ${day_lastprice[51]}, ${day_lastprice[52]}, ${day_lastprice[53]}, ${day_lastprice[54]}, ${day_lastprice[55]}, ${day_lastprice[56]}, ${day_lastprice[57]}, ${day_lastprice[58]}, ${day_lastprice[59]}]
-		   
-		   for (var i = 1; i < 60; i++) {
-		      dayDataPoints.push({
-		            x : new Date(parseInt(day_d[i]/10000),
-		                  parseInt(day_d[i]%10000/100),
-		                  day_d[i]%100
-		                  
-		            ),
-		            y : [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
-		                  parseFloat(day_lowprice[i]),
-		                  parseFloat(day_lastprice[i]) ],
-		            z : parseInt(day_d[i]/10000) + '-'
-		                  + parseInt(day_d[i]%10000/100) + '-'
-		                  + day_d[i]%100
-		         });
-		      
-		   }
-		   dayChart.render();
-		}
-		getDayDataPointsFromCSV();
-	});
+	     var daychart = new ApexCharts(document.querySelector("#chartcontainer"), options);
+	     daychart.render();
+	}); 
 	
-	
-	window.onload = function () {
-		var dayDataPoints = [];
-		
-		var dayChart = new CanvasJS.Chart(
-		      "chartContainer",
-		      {
-		         animationEnabled : true,
-		         theme : "light2", // "light1", "light2", "dark1", "dark2"
-		         exportEnabled : true,
-		         title : {
-		            text : stockName
-		         },
-		         subtitles : [ {
-		            text : "day"
-		         } ],
-		         axisX : {
-		            interval : 1,
-		            valueFormatString : "DD"
-		         },
-		         axisY : {
-		            includeZero : false,
-		            prefix : "",
-		            title : "Price"
-		         },
-		         toolTip : {
-		            content : "Date: {z}<br /><strong>Price:</strong><br />시초가: {y[0]}, 종가: {y[3]}<br />고가: {y[1]}, 저가: {y[2]}"
-		         },
-		         data : [ {
-		            type : "candlestick",
-		            yValueFormatString : "##0원",
-		            dataPoints : dayDataPoints
-		         } ]
-		      });   
+	var mainData = [];
+	for (var i = 0; i < 60; i++) {
+		mainData.push({
+	         x: new Date(
+	        		 parseInt(day_d[i]/10000),
+	                  parseInt(day_d[i]%10000/100)-1,
+	                  day_d[i]%100+1
+	                  ),
+	         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
+                parseFloat(day_lowprice[i]),
+                parseFloat(day_lastprice[i]) ]
+	     });
+	 }
+    
+    var options = {
+   		
+        series: [{
+            data: mainData
+        }],
+        chart: {
+            type: 'candlestick',
+            redrawOnParentResize: true,
+            zoom: {
+                enabled: false}
+        },
+        title: {
+            text: stockName,
+            align: 'left'
+        },
+        xaxis: {
+            type: 'datetime',
+            labels: {
+                datetimeFormatter: {
+                    year: 'yyyy',
+                    month: 'MM/dd',
+                    day: 'dd',
+                    hour: 'HH:mm'
+                }
+            },
+            tooltip: {
+                formatter: function(val, opts) {
+                  var st = new Date(val);
+                  var mon = st.getMonth()+1;
+                  var day = st.getDate()-1;
+                  if(day == 0 ){
+               	   day = 31;
+               	   mon = mon-1;
+                  }
+                  var text = mon + "/" +day;
+                  return text
+                }
+              }
+        },
+        yaxis: {
+            tooltip: {
+                enabled: true
+            }
+        },
+        
+        plotOptions: {
+       	 candlestick: {
+       	        colors: {
+       	          upward: '#FF0000',
+       	          downward: '#5B5AFF'
+       	        },
+       	        wick: {
+       	          useFillColor: true
+       	        }
+       	      }, 
+       	 bar: {
+		          horizontal: false,
+		          startingShape: 'flat',
+		          endingShape: 'flat',
+		          columnWidth: '15%',
+		          barHeight: '70%',
+		          distributed: false,
+		          rangeBarOverlap: true,
+		          colors: {
+		              ranges: [{
+		                  from: 0,
+		                  to: 0,
+		                  color: undefined
+		              }],
+		              backgroundBarColors: [],
+		              backgroundBarOpacity: 1,
+		              backgroundBarRadius: 0,
+		          }
+		      }
+		  }
+    };
 
-		function getDayDataPointsFromCSV() {
-		   var day_d = [${day_d[0]}, ${day_d[1]}, ${day_d[2]}, ${day_d[3]}, ${day_d[4]}, ${day_d[5]}, ${day_d[6]}, ${day_d[7]}, ${day_d[8]}, ${day_d[9]}, ${day_d[10]}, ${day_d[11]}, ${day_d[12]}, ${day_d[13]}, ${day_d[14]}, ${day_d[15]}, ${day_d[16]}, ${day_d[17]}, ${day_d[18]}, ${day_d[19]}, ${day_d[20]}, ${day_d[21]}, ${day_d[22]}, ${day_d[23]}, ${day_d[24]}, ${day_d[25]}, ${day_d[26]}, ${day_d[27]}, ${day_d[28]}, ${day_d[29]}, ${day_d[30]}, ${day_d[31]}, ${day_d[32]}, ${day_d[33]}, ${day_d[34]}, ${day_d[35]}, ${day_d[36]}, ${day_d[37]}, ${day_d[38]}, ${day_d[39]}, ${day_d[40]}, ${day_d[41]}, ${day_d[42]}, ${day_d[43]}, ${day_d[44]}, ${day_d[45]}, ${day_d[46]}, ${day_d[47]}, ${day_d[48]}, ${day_d[49]}, ${day_d[50]}, ${day_d[51]}, ${day_d[52]}, ${day_d[53]}, ${day_d[54]}, ${day_d[55]}, ${day_d[56]}, ${day_d[57]}, ${day_d[58]}, ${day_d[59]}] 
-		   var day_startprice = [${day_startprice[0]}, ${day_startprice[1]}, ${day_startprice[2]}, ${day_startprice[3]}, ${day_startprice[4]}, ${day_startprice[5]}, ${day_startprice[6]}, ${day_startprice[7]}, ${day_startprice[8]}, ${day_startprice[9]}, ${day_startprice[10]}, ${day_startprice[11]}, ${day_startprice[12]}, ${day_startprice[13]}, ${day_startprice[14]}, ${day_startprice[15]}, ${day_startprice[16]}, ${day_startprice[17]}, ${day_startprice[18]}, ${day_startprice[19]}, ${day_startprice[20]}, ${day_startprice[21]}, ${day_startprice[22]}, ${day_startprice[23]}, ${day_startprice[24]}, ${day_startprice[25]}, ${day_startprice[26]}, ${day_startprice[27]}, ${day_startprice[28]}, ${day_startprice[29]}, ${day_startprice[30]}, ${day_startprice[31]}, ${day_startprice[32]}, ${day_startprice[33]}, ${day_startprice[34]}, ${day_startprice[35]}, ${day_startprice[36]}, ${day_startprice[37]}, ${day_startprice[38]}, ${day_startprice[39]}, ${day_startprice[40]}, ${day_startprice[41]}, ${day_startprice[42]}, ${day_startprice[43]}, ${day_startprice[44]}, ${day_startprice[45]}, ${day_startprice[46]}, ${day_startprice[47]}, ${day_startprice[48]}, ${day_startprice[49]}, ${day_startprice[50]}, ${day_startprice[51]}, ${day_startprice[52]}, ${day_startprice[53]}, ${day_startprice[54]}, ${day_startprice[55]}, ${day_startprice[56]}, ${day_startprice[57]}, ${day_startprice[58]}, ${day_startprice[59]}]
-		   var day_highprice = [${day_highprice[0]}, ${day_highprice[1]}, ${day_highprice[2]}, ${day_highprice[3]}, ${day_highprice[4]}, ${day_highprice[5]}, ${day_highprice[6]}, ${day_highprice[7]}, ${day_highprice[8]}, ${day_highprice[9]}, ${day_highprice[10]}, ${day_highprice[11]}, ${day_highprice[12]}, ${day_highprice[13]}, ${day_highprice[14]}, ${day_highprice[15]}, ${day_highprice[16]}, ${day_highprice[17]}, ${day_highprice[18]}, ${day_highprice[19]}, ${day_highprice[20]}, ${day_highprice[21]}, ${day_highprice[22]}, ${day_highprice[23]}, ${day_highprice[24]}, ${day_highprice[25]}, ${day_highprice[26]}, ${day_highprice[27]}, ${day_highprice[28]}, ${day_highprice[29]}, ${day_highprice[30]}, ${day_highprice[31]}, ${day_highprice[32]}, ${day_highprice[33]}, ${day_highprice[34]}, ${day_highprice[35]}, ${day_highprice[36]}, ${day_highprice[37]}, ${day_highprice[38]}, ${day_highprice[39]}, ${day_highprice[40]}, ${day_highprice[41]}, ${day_highprice[42]}, ${day_highprice[43]}, ${day_highprice[44]}, ${day_highprice[45]}, ${day_highprice[46]}, ${day_highprice[47]}, ${day_highprice[48]}, ${day_highprice[49]}, ${day_highprice[50]}, ${day_highprice[51]}, ${day_highprice[52]}, ${day_highprice[53]}, ${day_highprice[54]}, ${day_highprice[55]}, ${day_highprice[56]}, ${day_highprice[57]}, ${day_highprice[58]}, ${day_highprice[59]}]
-		   var day_lowprice = [${day_lowprice[0]}, ${day_lowprice[1]}, ${day_lowprice[2]}, ${day_lowprice[3]}, ${day_lowprice[4]}, ${day_lowprice[5]}, ${day_lowprice[6]}, ${day_lowprice[7]}, ${day_lowprice[8]}, ${day_lowprice[9]}, ${day_lowprice[10]}, ${day_lowprice[11]}, ${day_lowprice[12]}, ${day_lowprice[13]}, ${day_lowprice[14]}, ${day_lowprice[15]}, ${day_lowprice[16]}, ${day_lowprice[17]}, ${day_lowprice[18]}, ${day_lowprice[19]}, ${day_lowprice[20]}, ${day_lowprice[21]}, ${day_lowprice[22]}, ${day_lowprice[23]}, ${day_lowprice[24]}, ${day_lowprice[25]}, ${day_lowprice[26]}, ${day_lowprice[27]}, ${day_lowprice[28]}, ${day_lowprice[29]}, ${day_lowprice[30]}, ${day_lowprice[31]}, ${day_lowprice[32]}, ${day_lowprice[33]}, ${day_lowprice[34]}, ${day_lowprice[35]}, ${day_lowprice[36]}, ${day_lowprice[37]}, ${day_lowprice[38]}, ${day_lowprice[39]}, ${day_lowprice[40]}, ${day_lowprice[41]}, ${day_lowprice[42]}, ${day_lowprice[43]}, ${day_lowprice[44]}, ${day_lowprice[45]}, ${day_lowprice[46]}, ${day_lowprice[47]}, ${day_lowprice[48]}, ${day_lowprice[49]}, ${day_lowprice[50]}, ${day_lowprice[51]}, ${day_lowprice[52]}, ${day_lowprice[53]}, ${day_lowprice[54]}, ${day_lowprice[55]}, ${day_lowprice[56]}, ${day_lowprice[57]}, ${day_lowprice[58]}, ${day_lowprice[59]}]
-		   var day_lastprice = [${day_lastprice[0]}, ${day_lastprice[1]}, ${day_lastprice[2]}, ${day_lastprice[3]}, ${day_lastprice[4]}, ${day_lastprice[5]}, ${day_lastprice[6]}, ${day_lastprice[7]}, ${day_lastprice[8]}, ${day_lastprice[9]}, ${day_lastprice[10]}, ${day_lastprice[11]}, ${day_lastprice[12]}, ${day_lastprice[13]}, ${day_lastprice[14]}, ${day_lastprice[15]}, ${day_lastprice[16]}, ${day_lastprice[17]}, ${day_lastprice[18]}, ${day_lastprice[19]}, ${day_lastprice[20]}, ${day_lastprice[21]}, ${day_lastprice[22]}, ${day_lastprice[23]}, ${day_lastprice[24]}, ${day_lastprice[25]}, ${day_lastprice[26]}, ${day_lastprice[27]}, ${day_lastprice[28]}, ${day_lastprice[29]}, ${day_lastprice[30]}, ${day_lastprice[31]}, ${day_lastprice[32]}, ${day_lastprice[33]}, ${day_lastprice[34]}, ${day_lastprice[35]}, ${day_lastprice[36]}, ${day_lastprice[37]}, ${day_lastprice[38]}, ${day_lastprice[39]}, ${day_lastprice[40]}, ${day_lastprice[41]}, ${day_lastprice[42]}, ${day_lastprice[43]}, ${day_lastprice[44]}, ${day_lastprice[45]}, ${day_lastprice[46]}, ${day_lastprice[47]}, ${day_lastprice[48]}, ${day_lastprice[49]}, ${day_lastprice[50]}, ${day_lastprice[51]}, ${day_lastprice[52]}, ${day_lastprice[53]}, ${day_lastprice[54]}, ${day_lastprice[55]}, ${day_lastprice[56]}, ${day_lastprice[57]}, ${day_lastprice[58]}, ${day_lastprice[59]}]
-		   
-		   for (var i = 1; i < 60; i++) {
-		      dayDataPoints.push({
-		            x : new Date(parseInt(day_d[i]/10000),
-		                  parseInt(day_d[i]%10000/100),
-		                  day_d[i]%100
-		                  
-		            ),
-		            y : [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
-		                  parseFloat(day_lowprice[i]),
-		                  parseFloat(day_lastprice[i]) ],
-		            z : parseInt(day_d[i]/10000) + '-'
-		                  + parseInt(day_d[i]%10000/100) + '-'
-		                  + day_d[i]%100
-		         });
-		      
-		   }
-		   dayChart.render();
-		}
-		getDayDataPointsFromCSV();
-	}	
+    var chart = new ApexCharts(document.querySelector("#chartcontainer"), options);
+    chart.render();
+	
+	 
+	
+	 
 	 
 	
 	</script>
