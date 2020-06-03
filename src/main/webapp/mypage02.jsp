@@ -176,9 +176,6 @@ $(document).ready(function(){
             </tr>
           </tbody>
         </table>
-         <div class="chart-div" style="border:1px solid #dee2e6; margin-bottom: 60px;">
-         		<%@include file="Chart_minSC.jsp" %>
-         </div>
       </div> 
       <!-- 수익률 끝 -->
       <!-- 계좌 시작-->
