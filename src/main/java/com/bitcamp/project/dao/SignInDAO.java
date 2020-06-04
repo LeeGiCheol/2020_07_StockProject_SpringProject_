@@ -5,6 +5,6 @@ import com.bitcamp.project.vo.UserVO;
 public interface SignInDAO {
 	public UserVO logIn(UserVO vo);
 	public void logOut();
-	public void findId();
+	public UserVO findId(UserVO vo);
 	public UserVO findPw(UserVO vo);
 }

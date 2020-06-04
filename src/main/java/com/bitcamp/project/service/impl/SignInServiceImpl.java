@@ -24,8 +24,8 @@ public class SignInServiceImpl implements SignInService {
 	}
 
 	@Override
-	public void findId() {
-		// TODO Auto-generated method stub
+	public UserVO findId(UserVO vo) {
+		return signInDAO.findId(vo);
 
 	}
 

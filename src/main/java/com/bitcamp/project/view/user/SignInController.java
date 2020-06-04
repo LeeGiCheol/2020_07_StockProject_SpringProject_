@@ -50,6 +50,29 @@ public class SignInController {
 		return "mainpage";
 	}
 	
+	@GetMapping(value="/forGetId")
+	public String findIdView() {
+		return "forgetidpage";
+	}
+	
+	@SuppressWarnings("unused")
+	@PostMapping(value="/forGetId")
+	public String findId(UserVO vo, @ModelAttribute("tel") String tel, HttpSession session) {
+		vo.setTel(tel);
+		vo = signInService.findId(vo);
+		System.out.println("setTel : " + tel);
+		System.out.println(vo);
+		if(vo==null) {
+			System.out.println("없는회원");
+			return "/forgetIdFail";
+		}else {
+			System.out.println("있는회원");
+		}
+		return null;
+	}
+	
+	
+	
 	@GetMapping(value="/forGetPassword")
 	public String findPwView() {
 		return "forgetpasswordpage";
@@ -58,9 +81,9 @@ public class SignInController {
 	@PostMapping(value="/forGetPassword")
 	public String findPw(UserVO vo, @ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpSession session) {
 		vo.setId(id);
-		System.out.println("vo.setid : " + id);
+//		System.out.println("vo.setid : " + id);
 		vo.setPw(pw);
-		System.out.println("vo.setpassword : " + pw);
+//		System.out.println("vo.setpassword : " + pw);
 		vo = signInService.findPw(vo);
 		if(vo==null) {
 			System.out.println("인증번호 틀림");

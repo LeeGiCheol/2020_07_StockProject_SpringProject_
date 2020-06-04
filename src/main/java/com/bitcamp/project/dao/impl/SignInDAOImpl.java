@@ -24,8 +24,8 @@ public class SignInDAOImpl implements SignInDAO{
 	}
 
 	@Override
-	public void findId() {
-		// TODO Auto-generated method stub
+	public UserVO findId(UserVO vo) {
+		return mybatis.selectOne("findId", vo);
 		
 	}
 

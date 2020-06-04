@@ -672,8 +672,7 @@ input[type="button"], button {
 						<strong class="tit">아이디 찾기</strong>
 						<p class="txt">아이디가 생각나지 않으세요? 아이디 찾는 방법을 선택해주세요.</p>
 					</div>
-					<form action="/rpan/member/searchUserId/resultUserId" method="post"
-						id="frm" name="frm">
+					<form action="/forGetId" method="post" id="frm" name="frm">
 						<input name="certType" class="certType" type="hidden" value="1">
 						<input name="custNm" id="custNm" type="hidden" value=""> <input
 							name="di" id="di" type="hidden" value="">
@@ -688,26 +687,24 @@ input[type="button"], button {
 											입력하셔야 해당 메일로 인증번호를 받을 수 있습니다.
 										</p>
 										<ul class="form-list">
-											<li><strong class="tit">성명</strong> <span
+<!-- 											<li><strong class="tit">성명</strong> <span
 												class="input-style"> <input type="text"
 													placeholder="성명을 입력해주세요." id="custNm2" name="custNm2">
 													<button type="button" class="delete">삭제</button>
-											</span></li>
-											<li class="input-type"><strong class="tit">이메일
+											</span></li> -->
+											<!-- <li class="input-type"><strong class="tit">이메일
 													주소</strong> <span class="input-style"> <input type="text"
 													placeholder="이메일 주소를 입력해주세요." id="email" name="email">
 													<button type="button" class="delete">삭제</button>
 											</span>
 												<button type="button" class="btn-t gray"
-													onclick="emailAjax();">인증번호</button></li>
-											<li class="input-type" id="_liCert2"><strong class="tit">인증번호
-													입력</strong> <span class="input-style"> <input type="text"
-													placeholder="인증번호를 입력해주세요." id="certificationNo2"
-													name="certificationNo2" maxlength="8">
+													onclick="emailAjax();">인증번호</button></li> -->
+											<li class="input-type" id="_liCert2">
+											<strong class="tit">인증번호입력</strong> <span class="input-style"> 
+											<input type="text" placeholder="휴대폰번호를 입력해주세요." id="certificationNo2" name="tel" maxlength="11">
 													<button type="button" class="delete">삭제</button>
 											</span>
-												<button type="button" class="btn-t gray"
-													onclick="emailCertAjax();">인증하기</button></li>
+												<button type="submit" class="btn-t gray" onclick="emailCertAjax();">아이디 조회</button></li>
 										</ul>
 									</div>
 								</div></li>
