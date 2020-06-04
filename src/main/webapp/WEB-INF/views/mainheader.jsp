@@ -23,7 +23,7 @@
 					<strong>개미굴</strong> 님
 				</dt>
 			</dl>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="/logOut">로그아웃</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">알림<span>N</span></a></li>
 		</ul>

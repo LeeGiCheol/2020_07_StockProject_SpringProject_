@@ -20,8 +20,7 @@ public class SignInServiceImpl implements SignInService {
 
 	@Override
 	public void logOut() {
-		// TODO Auto-generated method stub
-
+		signInDAO.logOut();
 	}
 
 	@Override
