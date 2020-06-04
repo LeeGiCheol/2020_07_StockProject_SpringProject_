@@ -21,7 +21,6 @@ public class SignInDAOImpl implements SignInDAO{
 	@Override
 	public void logOut() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -31,9 +30,8 @@ public class SignInDAOImpl implements SignInDAO{
 	}
 
 	@Override
-	public void findPw() {
-		// TODO Auto-generated method stub
-		
+	public UserVO findPw(UserVO vo) {
+		return mybatis.selectOne("findPassword", vo);
 	}
 
 }

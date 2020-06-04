@@ -6,5 +6,5 @@ public interface SignInDAO {
 	public UserVO logIn(UserVO vo);
 	public void logOut();
 	public void findId();
-	public void findPw();
+	public UserVO findPw(UserVO vo);
 }

@@ -64,6 +64,13 @@
 		WHERE id = #{id}
 	</select>
 	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPassword" parameterType="user" resultType="user">
+		SELECT id,pw
+		FROM user
+		WHERE id=#{id} 
+		AND pw=#{pw}
+	</select>
 
 	<!-- 개인정보 수정하는 SQL UserInfoDAO.userInfoUpdate -->
 	<update id="updateUser" parameterType="user">

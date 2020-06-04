@@ -49,6 +49,29 @@ public class SignInController {
 		session.invalidate();
 		return "mainpage";
 	}
+	
+	@GetMapping(value="/forGetPassword")
+	public String findPwView() {
+		return "forgetpasswordpage";
+		
+	}
+	@PostMapping(value="/forGetPassword")
+	public String findPw(UserVO vo, @ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpSession session) {
+		vo.setId(id);
+		System.out.println("vo.setid : " + id);
+		vo.setPw(pw);
+		System.out.println("vo.setpassword : " + pw);
+		vo = signInService.findPw(vo);
+		if(vo==null) {
+			System.out.println("인증번호 틀림");
+		}
+		else {
+			System.out.println("너의 새 비밀번호는 ?????니다.");
+		}
+		return null;
+		
+	}
+	
 }
 
 

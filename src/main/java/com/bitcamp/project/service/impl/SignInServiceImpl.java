@@ -30,9 +30,8 @@ public class SignInServiceImpl implements SignInService {
 	}
 
 	@Override
-	public void findPw() {
-		// TODO Auto-generated method stub
-
+	public UserVO findPw(UserVO vo) {
+		return signInDAO.findPw(vo);
 	}
 
 }
