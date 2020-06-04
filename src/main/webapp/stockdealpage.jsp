@@ -317,8 +317,8 @@
 											</div>
 											<script type="text/javascript">
 												function sumplus(num) {
-													var text = document.getElementById("sum");
-													text_val = parseInt(sum.value);
+													var text = document.getElementById("buying_qu");
+													text_val = parseInt(buying_qu.value);
 													text_val += num;
 													text.value = text_val;
 												}

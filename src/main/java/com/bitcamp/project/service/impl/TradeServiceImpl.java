@@ -20,6 +20,11 @@ public class TradeServiceImpl implements TradeService {
 
 
 	@Override
+	public List getHistory(String id) {
+		return tradeDAO.getHistory(id);
+	}
+
+	@Override
 	public List getUnsettled_ID(String id) {
 		return tradeDAO.getUnsettled_ID(id);
 	}
