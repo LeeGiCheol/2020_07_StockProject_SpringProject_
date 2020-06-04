@@ -83,14 +83,14 @@ ul i {
 	background: #fff;
 	margin-bottom: 10px;
 	overflow: hidden;
-	border: 1px solid gray;
+	border: 1px solid #dddddd;
 }
 .col-md-9>div {
 	position: relative;
 	background: #fff;
 	margin-bottom: 10px;
 	overflow: hidden;
-	border: 1px solid gray;
+	border: 1px solid #dddddd;
 }
 .login-box div>p>a:after {
 	content: "|";
