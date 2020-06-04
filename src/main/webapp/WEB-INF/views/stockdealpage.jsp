@@ -61,10 +61,10 @@
 									class="btn btn-secondary btn-sm companydata-btn" id="day">
 									일차트보기</button>
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn" id="day">
+									class="btn btn-secondary btn-sm companydata-btn" onclick="window.open('/trade_history','거래기록','width=430,height=500,location=no,status=no,scrollbars=yes');">
 									거래 기록</button>
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn" id="day">
+									class="btn btn-secondary btn-sm companydata-btn" onclick="window.open('/myStock','보유 주식','width=430,height=500,location=no,status=no,scrollbars=yes');">
 									보유 종목</button>
 							</form>
 

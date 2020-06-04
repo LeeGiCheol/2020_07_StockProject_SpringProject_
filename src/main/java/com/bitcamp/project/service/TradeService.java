@@ -33,4 +33,6 @@ public interface TradeService {
 	public void clearChart();
 
 	public long getMoney(String id);
+	
+	public List getHistory(String id);
 }

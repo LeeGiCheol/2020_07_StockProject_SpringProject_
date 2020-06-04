@@ -23,7 +23,6 @@ import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
-import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
@@ -44,7 +43,20 @@ public class TradeController {
 //
 //		return jsonObject;
 //	}
-
+	@GetMapping(value = "/trade_history")
+	public ModelAndView history() {
+		ModelAndView mav = new ModelAndView();
+		String id = null;
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
+			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.setViewName("blank");
+			return mav;
+		}
+		return mav;
+	}
+	
 	@PostMapping(value = "/modify")
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,

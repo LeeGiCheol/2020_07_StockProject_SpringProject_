@@ -119,6 +119,10 @@
   <select id="getMoney" resultType="long">
   	select money from usermoney where id = #{id}
   </select>
+  
+  <select id="getHistory" resultType="list">
+  
+  </select>
 
 
 </mapper>
