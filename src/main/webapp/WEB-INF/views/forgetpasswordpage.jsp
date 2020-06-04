@@ -670,7 +670,7 @@ input[type="button"], button {
 				<div class="id-result">
 					<div class="find-desc">
 						<strong class="tit">비밀번호 찾기</strong>
-						<p class="txt">비밀번호가 생각나지 않으세요? 비밀번호 찾는 방법을 선택해주세요.</p>
+						<p class="txt" style="display: none;">비밀번호가 생각나지 않으세요? 비밀번호 찾는 방법을 선택해주세요.</p>
 					</div>
 					<form action="/rpan/member/searchUserId/resultUserId" method="post"
 						id="frm" name="frm">
@@ -712,7 +712,6 @@ input[type="button"], button {
 									</div>
 								</div></li>
 						</ul>
-						<!-- // 2014.04.21 마크업 수정 -->
 
 						<div class="bt-area">
 							<a href="javascript:formSubmit();" class="btn-b gray">다음</a>
@@ -720,9 +719,9 @@ input[type="button"], button {
 						<div class="find-info">
 							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> <span
 								class="bt-area"> <a
-								href="https://member.paxnet.co.kr/rpan/member/join/step1"
+								href="#"
 								class="btn-t">회원가입</a> <a
-								href="https://member.paxnet.co.kr/rpan/member/searchPwd"
+								href="#"
 								class="btn-t">비밀번호 찾기</a>
 							</span>
 						</div>
