@@ -670,50 +670,59 @@ input[type="button"], button {
 				<div class="id-result">
 					<div class="find-desc">
 						<strong class="tit">비밀번호 찾기</strong>
-						<p class="txt">비밀번호가 생각나지 않으세요? 비밀번호 찾는 방법을 선택해주세요.</p>
+						<p class="txt" style="display: none;">비밀번호가 생각나지 않으세요? 비밀번호 찾는 방법을 선택해주세요.</p>
 					</div>
-					<form action="/forGetPassword" method="post" id="frm" name="frm">
+					<form action="/rpan/member/searchUserId/resultUserId" method="post"
+						id="frm" name="frm">
 						<input name="certType" class="certType" type="hidden" value="1">
-						<input name="custNm" id="custNm" type="hidden" value=""> 
-						<input name="di" id="di" type="hidden" value="">
+						<input name="custNm" id="custNm" type="hidden" value=""> <input
+							name="di" id="di" type="hidden" value="">
+
 						<ul class="find-list step_toggle">
+
 							<li><a href="#">본인 확인 이메일 인증</a>
 								<div class="fint-list-cont">
 									<div class="find-box">
-										<p>회원가입 시 입력한 <span class="color-red">이메일 주소와 동일한 주소</span>를 입력하셔야 해당 메일로 인증번호를 받을 수 있습니다.</p>
+										<p>
+											회원가입 시 입력한 <span class="color-red">이메일 주소와 동일한 주소</span>를
+											입력하셔야 해당 메일로 인증번호를 받을 수 있습니다.
+										</p>
 										<ul class="form-list">
-										<!-- 	<li><strong class="tit">성명</strong> <span
+											<li><strong class="tit">성명</strong> <span
 												class="input-style"> <input type="text"
-													placeholder="성명을 입력해주세요." id="custNm2" name="name">
+													placeholder="성명을 입력해주세요." id="custNm2" name="custNm2">
 													<button type="button" class="delete">삭제</button>
-											</span></li> -->
+											</span></li>
 											<li class="input-type"><strong class="tit">이메일
 													주소</strong> <span class="input-style"> <input type="text"
-													placeholder="이메일 주소를 입력해주세요." id="email" name="id">
+													placeholder="이메일 주소를 입력해주세요." id="email" name="email">
 													<button type="button" class="delete">삭제</button>
 											</span>
 												<button type="button" class="btn-t gray"
 													onclick="emailAjax();">인증번호</button></li>
-											<li class="input-type" id="_liCert2"><strong class="tit">인증번호입력</strong> 
-										 	<span class="input-style"> 
-										 	<!-- 인증번호 어떻게 할지 몰라 일시적으로 패스워드로.. -->
-											<input type="text" placeholder="인증번호를 입력해주세요." id="certificationNo2" name="pw" maxlength="8">
+											<li class="input-type" id="_liCert2"><strong class="tit">인증번호
+													입력</strong> <span class="input-style"> <input type="text"
+													placeholder="인증번호를 입력해주세요." id="certificationNo2"
+													name="certificationNo2" maxlength="8">
 													<button type="button" class="delete">삭제</button>
 											</span>
-												<button type="submit" class="btn-t gray" onclick="emailCertAjax();">인증하기</button></li>
+												<button type="button" class="btn-t gray"
+													onclick="emailCertAjax();">인증하기</button></li>
 										</ul>
 									</div>
 								</div></li>
 						</ul>
-						<!-- // 2014.04.21 마크업 수정 -->
+
 						<div class="bt-area">
 							<a href="javascript:formSubmit();" class="btn-b gray">다음</a>
 						</div>
 						<div class="find-info">
-							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span>
-							<span class="bt-area"> 
-   							<a href="https://member.paxnet.co.kr/rpan/member/join/step1" class="btn-t">회원가입</a>
-    						 <a href="https://member.paxnet.co.kr/rpan/member/searchPwd" class="btn-t">비밀번호 찾기</a>
+							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> <span
+								class="bt-area"> <a
+								href="#"
+								class="btn-t">회원가입</a> <a
+								href="#"
+								class="btn-t">비밀번호 찾기</a>
 							</span>
 						</div>
 					</form>

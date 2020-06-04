@@ -99,7 +99,7 @@ body.member {
 
 .contents.member {
 	margin-right: 0;
-	min-height: 600px;
+	min-height: 400px;
 }
 
 
@@ -222,278 +222,62 @@ body.member {
 	line-height: 100%;
 }
 
-
-/*------------------------------------------------------*/
-
-@media only screen and (max-width: 979px) {
-	.find-desc {
-		padding: 0 15px;
-		text-align: left;
-		margin: 0;
-	}
+[class*="message-st"] {
+    max-width: 460px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 150%;
 }
-
-.find-desc {
-	margin: 50px 0 0 0;
-	text-align: center;
+.id-result [class*="message-st"] {
+    margin-top: 0;
 }
-
-@media only screen and (max-width: 979px) {
-	.find-desc .tit {
-		display: none;
-	}
+@media only screen and (max-width: 979px){
+.id-result [class*="message-st"] {
+    margin-top: 20px;
 }
-
-@media only screen and (max-width: 979px) {
-	.find-desc {
-		padding: 0 15px;
-		text-align: left;
-		margin: 0;
-	}
 }
-
-.find-desc .tit {
-	font-size: 32px;
+[class*="message-st"] .big-text {
+    position: relative;
+    font-size: 20px;
+    line-height: 150%;
+    /*padding-top: 100px;*/
 }
-
-@media only screen and (max-width: 979px) {
-	.find-desc .txt {
-		color: #888;
-		margin: 0;
-	}
+.big-text {
+    font-size: 16px;
+    line-height: 170%;
+    color: #222;
 }
-
-.find-desc .txt {
-	margin: 20px 0 0 0;
-	color: #444;
-}
-
-@media only screen and (max-width: 979px) {
-	.find-desc {
-		padding: 0 15px;
-		text-align: left;
-		margin: 0;
-	}
-}
-
-.find-list {
-    margin: 30px 0 0 0;
-}
-
-.find-list li.selected {
-	position: relative;
-}
-
-@media only screen and (max-width: 979px) {
-	.find-list {
-		margin: 15px 0 0 0;
-	}
-}
-
-.find-list li {
-	border-left: 0;
-	border-right: 0;
-}
-
-.find-list li {
-	position: relative;
-	margin: -1px 0 0 0;
-	border: 1px solid #ccc;
-}
-
-.find-list li.selected:after {
-	content: "";
-	z-index: 1;
-	position: absolute;
-	top: -1px;
-	left: -1px;
-	right: -1px;
-	bottom: 1px;
-	width: 100%;
-	height: 100%;
-	border: 1px solid #ff545b;
-}
-
-.find-list li a {
-	display: block;
-	height: auto;
-	padding: 25px 49px 25px 55px;
-	line-height: normal;
-	color: #444;
-	font-size: 16px;
-}
-
-@media only screen and (max-width: 979px) {
-	.find-list li a {
-		padding: 25px 20px 25px 15px;
-		font-size: 16px;
-	}
+[class*="message-st"] {
+    max-width: 460px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 150%;
 }
 /*
-@media only screen and (max-width: 979px) {
-	.find-list li a:before {
-		content: "";
-		left: 15px;
-		top: 25px;
-		width: 20px;
-		height: 20px;
-		background: url(/rpan/common/images/icon_big_sprite.png?update=20180329) no-repeat -230px -95px;
-		background-size: 250px 250px;
-	}
-}
-
-.find-list li a:before {
-	content: "";
-	position: absolute;
-	top: 23px;
-	left: 20px;
-	width: 25px;
-	height: 25px;
-	background: url(/rpan/common/images/bg_form.png?update=20180329) no-repeat 0 -866px;
-	vertical-align: middle;
-}
-
-.find-list li a:before {
-	background-position: 0 -806px;
+[class*="message-st"] .big-text:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background: url(/resources/img/icon.png) no-repeat 0 0;
 }
 */
-.find-list li .fint-list-cont {
-	display: block;
-	padding: 0 49px 30px 55px;
+[class*="message-st"] span {
+    display: inline-block;
+    font-size: inherit;
 }
-
-@media only screen and (max-width: 979px) {
-	.find-list li.selected a:before {
-		background-position: -230px -65px;
-	}
+#idfail{
+height: 150px;
+width: 150px;
 }
-
-@media only screen and (max-width: 979px) {
-	.find-list li .fint-list-cont {
-		padding: 0 15px 20px;
-	}
+@media only screen and (max-width: 979px){
+[class*="message-st"] .big-text {
+    font-size: 16px;
 }
-
-.find-list li .find-box {
-	position: relative;
-	z-index: 2;
 }
-
-.find-list .form-list {
-	margin: 15px 0 0 0;
-}
-
-.find-list .form-list li:first-child {
-	margin: 0;
-}
-
-.find-list .form-list li {
-	margin: 8px 0 0 0;
-	border: 0;
-}
-
-.find-list .form-list li .tit {
-	position: absolute;
-	top: -99999em;
-	left: -99999em;
-	width: 0;
-	height: 0;
-	text-indent: -99999em;
-}
-
-@media only screen and (max-width: 979px) {
-	.find-list li {
-		border-left: 0;
-		border-right: 0;
-	}
-}
-
-.find-list .form-list li .input-style {
-	width: 100%;
-}
-
-[class*="input-style"] {
-	display: inline-block;
-	position: relative;
-}
-
-@media only screen and (max-width: 979px) {
-	input[type="text"], input[type="password"], input[type="tel"] {
-		padding: 9px 35px 10px 10px;
-		height: 36px;
-	}
-}
-
-input[type="text"], input[type="password"], input[type="tel"] {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	line-height: 1;
-	width: 100%;
-	padding: 5px 35px 6px 10px;
-	border: 1px solid #ccc;
-	background: #fff;
-	color: #000;
-	vertical-align: middle;
-	box-sizing: border-box;
-	border-radius: 0;
-}
-
-.member [class*="input-style"] button {
-	top: 0;
-	margin-top: 0;
-}
-
-@media only screen and (max-width: 979px) {
-	[class*="input-style"] .delete {
-		background-position: 10px -295px;
-		background-size: 20px 450px;
-	}
-}
-
-[class*="input-style"] .delete {
-	background-position: 10px -500px;
-	display: none;
-}
-
-@media only screen and (max-width: 979px) {
-	[class*="input-style"] button {
-		height: 36px;
-		margin-top: -17px;
-	}
-}
-
-[class*="input-style"] button {
-	position: absolute;
-	right: 1px;
-	top: 50%;
-	margin-top: -13px;
-	width: 30px;
-	height: 27px;
-	text-indent: -9999px;
-	background-image: url(/rpan/common/images/bg_form.png?update=20180329);
-	background-repeat: no-repeat;
-}
-
-input[type="button"], button {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	cursor: pointer;
-	background: none;
-}
-
-.find-list .form-list li.input-type {
-	padding-right: 82px;
-}
-
-.find-list .form-list li.input-type .btn-t {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-/*------------------------------------------------------*/
 
 [class*="btn-"].gray {
 	background: #444;
@@ -563,7 +347,7 @@ input[type="button"], button {
 }
 
 @media only screen and (max-width: 979px) {
-	.find-list+.bt-area {
+.message-st-no + .bt-area {
 		margin-top: 20px;
 	}
 }
@@ -673,51 +457,13 @@ input[type="button"], button {
 			<div class="cont-area">
 				<h1 class="tit-h1 line">아이디 찾기</h1>
 				<div class="id-result">
-					<div class="find-desc">
-						<strong class="tit">아이디 찾기</strong>
-						<p class="txt" style="display: none;">아이디가 생각나지 않으세요? 아이디 찾는 방법을 선택해주세요.</p>
-					</div>
-					<form action="/forGetId" method="post" id="frm" name="frm">
-						<input name="certType" class="certType" type="hidden" value="1">
-						<input name="custNm" id="custNm" type="hidden" value=""> <input
-							name="di" id="di" type="hidden" value="">
-
-						<ul class="find-list step_toggle">
-
-							<li><a>회원가입 시 등록한 휴대전화 번호로 인증</a>
-								<div class="fint-list-cont">
-									<div class="find-box">
-										<p>
-											회원가입 시 입력한 <span class="color-red">휴대전화 번호와 동일한 번호</span>를
-											입력하셔야 인증번호를 받을 수 있습니다.
-										</p>
-										<ul class="form-list">
-<!-- 											<li><strong class="tit">성명</strong> <span
-												class="input-style"> <input type="text"
-													placeholder="성명을 입력해주세요." id="custNm2" name="custNm2">
-													<button type="button" class="delete">삭제</button>
-											</span></li> -->
-											<!-- <li class="input-type"><strong class="tit">이메일
-													주소</strong> <span class="input-style"> <input type="text"
-													placeholder="휴대폰 번호는 대시(-)없이 숫자만 입력해주세요." id="email" name="email">
-													<button type="button" class="delete">삭제</button>
-											</span>
-												<button type="button" class="btn-t gray"
-													onclick="emailAjax();">인증번호</button></li> -->
-											<li class="input-type" id="_liCert2">
-											<strong class="tit">인증번호입력</strong> <span class="input-style"> 
-											<input type="text" placeholder="휴대폰번호를 입력해주세요." id="certificationNo2" name="tel" maxlength="11">
-													<button type="button" class="delete">삭제</button>
-											</span>
-												<button type="submit" class="btn-t gray" onclick="emailCertAjax();">아이디 조회</button></li>
-										</ul>
-									</div>
-								</div></li>
-						</ul>
-						<!-- // 2014.04.21 마크업 수정 -->
+						<div class="message-st-no"> 
+							<img class="" id="idfail" src="/resources/img/icon.png">
+							<p class="big-text">입력하신 정보와 <span class="color-red">일치하는 회원정보</span>가 없습니다.<br>다른 방법으로 다시 시도해 보세요.</p>
+						</div>
 
 						<div class="bt-area">
-							<a href="javascript:formSubmit();" class="btn-b gray">다음</a>
+							<a href="javascript:formSubmit();" class="btn-b gray">다시 시도하기</a>
 						</div>
 						<div class="find-info">
 							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> <span
@@ -728,7 +474,6 @@ input[type="button"], button {
 								class="btn-t">비밀번호 찾기</a>
 							</span>
 						</div>
-					</form>
 				</div>
 			</div>
 		</div>
