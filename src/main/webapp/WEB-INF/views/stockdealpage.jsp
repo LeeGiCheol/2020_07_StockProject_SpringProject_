@@ -100,14 +100,14 @@
 								</tr> -->
 							</tbody>
 
-							<tbody id="up" href="#">
+							<tbody id="up">
 								<!-- ajax 로 호가 + 주입 -->
 							</tbody>
 
 							<tbody>
 								<tr id="upDownColor">
 									<td>현재가</td>
-									<td id="price"></td>
+									<td><button id="price" style="color: #ff0000;"></button></td>
 									<td id="beforeAndUpdown"></td>
 								</tr>
 							</tbody>
@@ -954,7 +954,7 @@
 	<script id="upPrice" type="text/x-jsrender">
 			<tr>
 				<td></td>
-				<td onClick="(function(){
+				<td><button onClick="(function(){
 							$('#buying_price').val('{{:up}}');
 							$('#selling_price').val('{{:up}}');
 							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
@@ -969,7 +969,7 @@
 	<script id="downPrice" type="text/x-jsrender">
 			<tr>
 				<td></td>
-				<td onClick="(function(){
+				<td><button onClick="(function(){
 							$('#buying_price').val('{{:down}}');
 							$('#selling_price').val('{{:down}}');
 							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
