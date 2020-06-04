@@ -216,21 +216,9 @@
 																				<tr>
 																					<td class="title"><span>종목명</span></td>
 																					<td><div class="tdArea">${stockName }</div></td>
-																					<td class="title"><span>단가</span></td>
-																					<td>
-																						<div class="tdArea">
-																							<input type="text" class="alignR"
-																								id="possible_nOrdUnpr" name="possible_nOrdUnpr"
-																								value="9,900" title="단가 입력">
-																						</div>
-																					</td>
 																				</tr>
 																			</tbody>
 																		</table>
-																		<div class="btnSearch">
-																			<a href="#none" onclick="self_sch(2);"
-																				class="btnStyle btnS btnWGray">조회</a>
-																		</div>
 																	</fieldset>
 																</div>
 																<!-- //조회 -->
@@ -251,7 +239,7 @@
 																</table>
 															</div>
 															<!--// conSection-->
-															<a href="#none" class="popClose">매수가능 닫기</a>
+															<a href="#none" class="popClose">보유 금액 닫기</a>
 														</div>
 													</div> <input type="hidden" for="nOrdUnpr" name="sName"
 													value="${stockName}" />
@@ -300,6 +288,12 @@
 												});
 												
 											});
+											function sumplus(num) {
+												var text = document.getElementById("buying_qu");
+												text_val = parseInt(buying_qu.value);
+												text_val += num;
+												text.value = text_val;
+											}
 											</script>
 										</div>
 										<div class="sumArea">
