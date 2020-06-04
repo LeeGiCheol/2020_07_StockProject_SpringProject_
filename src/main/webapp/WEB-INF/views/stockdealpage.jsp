@@ -567,7 +567,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
@@ -663,6 +663,7 @@
  		$("#chartcontainer").empty();
  		var minData = [];
  		for (var i = 0; i < 60; i++) {
+ 			if(min_hr[i] > min_hr[0]) break;
  			minData.push({
 				 x : new Date(parseInt(min_d[i]/10000),
 	                        parseInt(min_d[i]%10000/100),
@@ -716,7 +717,13 @@
 	               }
 	         },
 	         yaxis: {
-	             tooltip: {
+	        	 labels: {
+	        		    formatter: function (value) {
+	        		    	value = parseInt(value);
+	        		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	        		    }
+	        		  },
+	        	 tooltip: {
 	                 enabled: true
 	             }
 	         },
@@ -815,7 +822,12 @@
 	                 }
 	               }
 	         },
-	         yaxis: {
+	         yaxis: {labels: {
+     		    formatter: function (value) {
+     		    	value = parseInt(value);
+     		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      		    }
+      		  },
 	             tooltip: {
 	                 enabled: true
 	             }
@@ -910,7 +922,12 @@
                 }
               }
         },
-        yaxis: {
+        yaxis: {labels: {
+		    formatter: function (value) {
+  		      	value = parseInt(value);
+		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  		    }
+  		  },
             tooltip: {
                 enabled: true
             }
