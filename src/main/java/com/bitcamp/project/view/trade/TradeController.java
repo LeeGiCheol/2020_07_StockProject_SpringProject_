@@ -144,11 +144,13 @@ public class TradeController {
 	@PostMapping(value = "/selling")
 	public ModelAndView selling(@RequestParam(value = "sellingQu") String qu,
 			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-//		String id = "test"; // test 용 아이디
+		price= price.replace(",", "");
 		ModelAndView mav = new ModelAndView();
-
-		if (id == null) {
+		String id = null;
+		
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
 			mav.setViewName("notice");
@@ -183,17 +185,22 @@ public class TradeController {
 	@PostMapping(value = "/buying")
 	public ModelAndView buying(@RequestParam(value = "buyingQu") String qu,
 			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-//		String id = "test"; // test 용 아이디
-
+		price = price.replace(",", "");
 		ModelAndView mav = new ModelAndView();
-
-		if (id == null) {
+		String id = null;
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
 			mav.setViewName("notice");
 			return mav;
 		}
+//		String id = "test"; // test 용 아이디
+
+		
+
+		
 
 		long money = tradeService.getMoney(id);
 		if (money < Long.parseLong(price) * Long.parseLong(qu)) {
