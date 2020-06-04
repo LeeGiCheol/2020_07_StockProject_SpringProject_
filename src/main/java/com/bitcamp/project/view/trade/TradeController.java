@@ -234,6 +234,7 @@ public class TradeController {
 			StockVO sv = new StockVO();
 			sv.setId(id);
 			sv.setStockName(stockName);
+			int myStockQu = tradeService.getStockQuantity(sv);
 			long money = tradeService.getMoney(id);
 			List unsettled = tradeService.getUnsettled_ID(id);
 			mav.addObject("unsettled", unsettled);
