@@ -114,8 +114,7 @@ public class TradeDAOImpl implements TradeDAO {
 
 	@Override
 	public List getHistory(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return mybatis.selectList("stock.getHistory", id);
 	}
 	
 

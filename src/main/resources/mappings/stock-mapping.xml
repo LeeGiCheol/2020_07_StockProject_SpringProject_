@@ -120,8 +120,8 @@
   	select money from usermoney where id = #{id}
   </select>
   
-  <select id="getHistory" resultType="list">
-  
+  <select id="getHistory" resultType="map">
+  	select * from tradinghistory where id = #{id} order by tno desc;
   </select>
 
 

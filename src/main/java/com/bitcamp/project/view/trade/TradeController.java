@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,8 +44,10 @@ public class TradeController {
 //
 //		return jsonObject;
 //	}
+
 	@GetMapping(value = "/trade_history")
 	public ModelAndView history() {
+		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		ModelAndView mav = new ModelAndView();
 		String id = null;
 		try {
@@ -54,9 +57,24 @@ public class TradeController {
 			mav.setViewName("blank");
 			return mav;
 		}
+
+		List<Map> history = tradeService.getHistory(id);
+
+		for (int i = 0; i < history.size(); i++) {
+			history.get(i).put("tdatetime", new Date(((Date)history.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
+			if (history.get(i).get("category").equals("buy")) {
+				history.get(i).put("category", "매수");
+			} else if (history.get(i).get("category").equals("sell")) {
+				history.get(i).put("category", "매도");
+			}
+			history.get(i).put("tprice", formatter.format(history.get(i).get("tprice")));
+		}
+
+		mav.addObject("history", history);
+		mav.setViewName("tradehistory");
 		return mav;
 	}
-	
+
 	@PostMapping(value = "/modify")
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
@@ -156,10 +174,10 @@ public class TradeController {
 	@PostMapping(value = "/selling")
 	public ModelAndView selling(@RequestParam(value = "sellingQu") String qu,
 			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {
-		price= price.replace(",", "");
+		price = price.replace(",", "");
 		ModelAndView mav = new ModelAndView();
 		String id = null;
-		
+
 		try {
 			id = ((UserVO) session.getAttribute("loginUser")).getId();
 		} catch (Exception e) {
@@ -210,10 +228,6 @@ public class TradeController {
 		}
 //		String id = "test"; // test 용 아이디
 
-		
-
-		
-
 		long money = tradeService.getMoney(id);
 		if (money < Long.parseLong(price) * Long.parseLong(qu)) {
 			mav.addObject("msg", "잔액이 부족합니다");
@@ -241,10 +255,10 @@ public class TradeController {
 	public ModelAndView tradeView(Info vo) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		String stockName = vo.getStockName();
-		
+
 		if (stockName == null)
 			stockName = "삼성전자";
-		
+
 		ModelAndView mav = new ModelAndView();
 		String stockCode = tradeService.stockSearch(stockName);
 
@@ -296,7 +310,7 @@ public class TradeController {
 			mav.setViewName("notice");
 			return mav;
 		}
-		
+
 		mav.addObject("min_d", minChartData[0]);
 		mav.addObject("min_hr", minChartData[1]);
 		mav.addObject("min_startprice", minChartData[2]);
