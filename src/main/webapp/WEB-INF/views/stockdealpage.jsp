@@ -314,12 +314,21 @@
 													<a onclick="sumplus(10);"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													onclick="sumplus(100);"
-													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
-													onclick="#" class="buying-check-btn btnStyle btnS btnSum">최대</a>
+													class="buying-check-btn btnStyle btnS btnSum">100주</a> 
+													<a id= "buy_max" class="buying-check-btn btnStyle btnS btnSum">최대</a>
 												</span>
 											</div>
-											<script type="text/javascript">
+											<script>
 											$(document).ready(function(){
+												$("#buy_max").click(function(){
+													var money = parseInt('${money}'.replace(/,/g,"").replace('원',''))
+													var price = parseInt($("#buying_price").val().replace(/,/g,""))
+													var max_qu = parseInt(money / price)
+													$("#buying_qu").val(max_qu);
+													var result = price * max_qu
+													$("#buying_result").text(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+												});
+												
 												$("#buying_qu").change(function(){
 													var result = parseInt($("#buying_price").val().replace(/,/g,"")) * $("#buying_qu").val()
 													$("#buying_result").text(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -644,6 +653,10 @@
 	$('#price').click( function(){
 		$('#buying_price').val($(this).text());
 		$('#selling_price').val($(this).text());
+		var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
+		$('#buying_result').text(buy_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+		var sell_result = parseInt($('#selling_price').val().replace(/,/g,'')) * $('#selling_qu').val()
+		$('#selling_result').text(sell_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 	})
 	
 	var day_d = [${day_d[0]}, ${day_d[1]}, ${day_d[2]}, ${day_d[3]}, ${day_d[4]}, ${day_d[5]}, ${day_d[6]}, ${day_d[7]}, ${day_d[8]}, ${day_d[9]}, ${day_d[10]}, ${day_d[11]}, ${day_d[12]}, ${day_d[13]}, ${day_d[14]}, ${day_d[15]}, ${day_d[16]}, ${day_d[17]}, ${day_d[18]}, ${day_d[19]}, ${day_d[20]}, ${day_d[21]}, ${day_d[22]}, ${day_d[23]}, ${day_d[24]}, ${day_d[25]}, ${day_d[26]}, ${day_d[27]}, ${day_d[28]}, ${day_d[29]}, ${day_d[30]}, ${day_d[31]}, ${day_d[32]}, ${day_d[33]}, ${day_d[34]}, ${day_d[35]}, ${day_d[36]}, ${day_d[37]}, ${day_d[38]}, ${day_d[39]}, ${day_d[40]}, ${day_d[41]}, ${day_d[42]}, ${day_d[43]}, ${day_d[44]}, ${day_d[45]}, ${day_d[46]}, ${day_d[47]}, ${day_d[48]}, ${day_d[49]}, ${day_d[50]}, ${day_d[51]}, ${day_d[52]}, ${day_d[53]}, ${day_d[54]}, ${day_d[55]}, ${day_d[56]}, ${day_d[57]}, ${day_d[58]}, ${day_d[59]}]; 
@@ -993,6 +1006,10 @@
 				<td onClick="(function(){
 							$('#buying_price').val('{{:up}}');
 							$('#selling_price').val('{{:up}}');
+							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
+        					$('#buying_result').text(buy_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+							var sell_result = parseInt($('#selling_price').val().replace(/,/g,'')) * $('#selling_qu').val()
+							$('#selling_result').text(sell_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							})()">
 				{{:up}}</td>
 				<td></td>
@@ -1004,6 +1021,10 @@
 				<td onClick="(function(){
 							$('#buying_price').val('{{:down}}');
 							$('#selling_price').val('{{:down}}');
+							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
+        					$('#buying_result').text(buy_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+							var sell_result = parseInt($('#selling_price').val().replace(/,/g,'')) * $('#selling_qu').val()
+							$('#selling_result').text(sell_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							})()">
 				{{:down}}</td>
 				<td></td>
