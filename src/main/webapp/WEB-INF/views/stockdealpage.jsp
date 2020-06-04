@@ -11,14 +11,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
-
-<link rel="stylesheet"
-	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/mainheader.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
@@ -31,61 +29,7 @@
 </head>
 <body>
 
-	<div class="header">
-		<!-- 상단  nav -->
-		<ul class="nav justify-content-end top-nav">
-			<li class="breadcrumb-item"><a id="top-nav-font"
-				href="/signInPage">로그인</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font"
-				href="/signUpPage/1">회원가입</a></li>
-		</ul>
-		<ul class="nav justify-content-end top-nav">
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
-		</ul>
-		<!-- 상단  nav end -->
-		<!-- 메인  nav -->
-		<nav
-			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-			<a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stock
-				gallery</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search"
-							placeholder="통합검색" aria-label="Search">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
-							type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-				</ul>
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> 커뮤니티 </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">자유게시판</a> <a
-								class="dropdown-item" href="#">포트폴리오</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">뉴스</a>
-						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
-							class="sr-only">(current)</span></a></li>
-				</ul>
-			</div>
-		</nav>
-		<!-- 메인 nav end -->
-	</div>
+	<%@include file="mainheader.jsp" %> 
 
 	<!-- 전체메뉴 백그라운드-->
 	<div class="all-dim"></div>
@@ -116,6 +60,12 @@
 								<button type="button"
 									class="btn btn-secondary btn-sm companydata-btn" id="day">
 									일차트보기</button>
+								<button type="button"
+									class="btn btn-secondary btn-sm companydata-btn" id="day">
+									거래 기록</button>
+								<button type="button"
+									class="btn btn-secondary btn-sm companydata-btn" id="day">
+									보유 종목</button>
 							</form>
 
 						</div>
@@ -150,7 +100,7 @@
 								</tr> -->
 							</tbody>
 
-							<tbody id="up">
+							<tbody id="up" href="#">
 								<!-- ajax 로 호가 + 주입 -->
 							</tbody>
 
@@ -579,6 +529,7 @@
 
 	</div>
 
+	<%@include file="mainfooter.jsp" %>
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
 
 	<script>

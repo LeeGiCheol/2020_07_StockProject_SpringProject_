@@ -37,6 +37,9 @@ a, a:link, a:visited, a:active, a:hover {
 p {
     line-height: 160%;
 }
+.table{
+	margin-bottom: 0;
+}
 
 .container {
    padding: 20px 0 30px 0;
