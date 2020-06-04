@@ -224,7 +224,7 @@
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
 													class="alignR" id="buying_price" name="buyingPrice"
-													numberOnly> 원 <span class="buying-check"> <a
+													readOnly> 원 <span class="buying-check"> <a
 													class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 													<script>
 												$(document).ready(function() {
@@ -309,7 +309,7 @@
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
-													class="alignR" name="buyingQu" id="sum" value="0"
+													class="alignR" name="buyingQu" id="buying_qu" value="0"
 													onclick="" numberOnly> 주 <span class="buying-check">
 													<a onclick="sumplus(10);"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
@@ -320,23 +320,23 @@
 											</div>
 											<script type="text/javascript">
 											$(document).ready(function(){
-												$("#sum").keyup(function(){
-													var result = $("#buying_price").val() * $("#sum").val()
+												$("#buying_qu").change(function(){
+													var result = parseInt($("#buying_price").val().replace(/,/g,"")) * $("#buying_qu").val()
 													$("#buying_result").text(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 												});
 												
-												$("#buying_price").keyup(function(){
-													var result = $("#buying_price").val() * $("#sum").val()
+												$("#buying_price").change(function(){
+													var result = parseInt($("#buying_price").val().replace(/,/g,"")) * $("#buying_qu").val()
 													$("#buying_result").text(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 												});
 												
 												$("#selling_price").keyup(function(){
-													var result = $("#selling_price").val() * $("#selling_qu").val()
+													var result = parseInt($("#selling_price").val().replace(/,/g,"")) * $("#selling_qu").val()
 													$("#selling_result").text(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 												});
 												
 												$("#selling_qu").keyup(function(){
-													var result = $("#selling_price").val() * $("#selling_qu").val()
+													var result = parseInt($("#selling_price").val().replace(/,/g,"")) * $("#selling_qu").val()
 													$("#selling_result").text(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 												});
 												
@@ -370,7 +370,7 @@
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
 													class="alignR" id="selling_price" name="sellingPrice"
-													numberOnly> 원 <span class="buying-check"> <a
+													readOnly> 원 <span class="buying-check"> <a
 													onclick="#"
 													class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
 													<div class="layerPopup">
@@ -640,6 +640,11 @@
 			}); 
 		}, 1000); // SET INTERVAL5
 	});
+	
+	$('#price').click( function(){
+		$('#buying_price').val($(this).text());
+		$('#selling_price').val($(this).text());
+	})
 	
 	var day_d = [${day_d[0]}, ${day_d[1]}, ${day_d[2]}, ${day_d[3]}, ${day_d[4]}, ${day_d[5]}, ${day_d[6]}, ${day_d[7]}, ${day_d[8]}, ${day_d[9]}, ${day_d[10]}, ${day_d[11]}, ${day_d[12]}, ${day_d[13]}, ${day_d[14]}, ${day_d[15]}, ${day_d[16]}, ${day_d[17]}, ${day_d[18]}, ${day_d[19]}, ${day_d[20]}, ${day_d[21]}, ${day_d[22]}, ${day_d[23]}, ${day_d[24]}, ${day_d[25]}, ${day_d[26]}, ${day_d[27]}, ${day_d[28]}, ${day_d[29]}, ${day_d[30]}, ${day_d[31]}, ${day_d[32]}, ${day_d[33]}, ${day_d[34]}, ${day_d[35]}, ${day_d[36]}, ${day_d[37]}, ${day_d[38]}, ${day_d[39]}, ${day_d[40]}, ${day_d[41]}, ${day_d[42]}, ${day_d[43]}, ${day_d[44]}, ${day_d[45]}, ${day_d[46]}, ${day_d[47]}, ${day_d[48]}, ${day_d[49]}, ${day_d[50]}, ${day_d[51]}, ${day_d[52]}, ${day_d[53]}, ${day_d[54]}, ${day_d[55]}, ${day_d[56]}, ${day_d[57]}, ${day_d[58]}, ${day_d[59]}]; 
 	   var day_startprice = [${day_startprice[0]}, ${day_startprice[1]}, ${day_startprice[2]}, ${day_startprice[3]}, ${day_startprice[4]}, ${day_startprice[5]}, ${day_startprice[6]}, ${day_startprice[7]}, ${day_startprice[8]}, ${day_startprice[9]}, ${day_startprice[10]}, ${day_startprice[11]}, ${day_startprice[12]}, ${day_startprice[13]}, ${day_startprice[14]}, ${day_startprice[15]}, ${day_startprice[16]}, ${day_startprice[17]}, ${day_startprice[18]}, ${day_startprice[19]}, ${day_startprice[20]}, ${day_startprice[21]}, ${day_startprice[22]}, ${day_startprice[23]}, ${day_startprice[24]}, ${day_startprice[25]}, ${day_startprice[26]}, ${day_startprice[27]}, ${day_startprice[28]}, ${day_startprice[29]}, ${day_startprice[30]}, ${day_startprice[31]}, ${day_startprice[32]}, ${day_startprice[33]}, ${day_startprice[34]}, ${day_startprice[35]}, ${day_startprice[36]}, ${day_startprice[37]}, ${day_startprice[38]}, ${day_startprice[39]}, ${day_startprice[40]}, ${day_startprice[41]}, ${day_startprice[42]}, ${day_startprice[43]}, ${day_startprice[44]}, ${day_startprice[45]}, ${day_startprice[46]}, ${day_startprice[47]}, ${day_startprice[48]}, ${day_startprice[49]}, ${day_startprice[50]}, ${day_startprice[51]}, ${day_startprice[52]}, ${day_startprice[53]}, ${day_startprice[54]}, ${day_startprice[55]}, ${day_startprice[56]}, ${day_startprice[57]}, ${day_startprice[58]}, ${day_startprice[59]}];
@@ -985,18 +990,28 @@
 	<script id="upPrice" type="text/x-jsrender">
 			<tr>
 				<td></td>
-				<td>{{:up}}</td>
+				<td onClick="(function(){
+							$('#buying_price').val('{{:up}}');
+							$('#selling_price').val('{{:up}}');
+							})()">
+				{{:up}}</td>
 				<td></td>
 			</tr>
 	</script>
 	<script id="downPrice" type="text/x-jsrender">
-
 			<tr>
 				<td></td>
-				<td>{{:down}}</td>
+				<td onClick="(function(){
+							$('#buying_price').val('{{:down}}');
+							$('#selling_price').val('{{:down}}');
+							})()">
+				{{:down}}</td>
 				<td></td>
 			</tr>
 	</script>
+
+
+
 
 </body>
 </html>
