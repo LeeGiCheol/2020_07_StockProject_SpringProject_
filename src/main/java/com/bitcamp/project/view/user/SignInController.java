@@ -44,8 +44,9 @@ public class SignInController {
 			return "login";
 	}
 	
-	@GetMapping(value="/logout")
-	public String logout() {
+	@GetMapping(value="/logOut")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		return "mainpage";
 	}
 }
