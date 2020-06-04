@@ -567,7 +567,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
@@ -663,6 +663,7 @@
  		$("#chartcontainer").empty();
  		var minData = [];
  		for (var i = 0; i < 60; i++) {
+ 			if(min_hr[i] > min_hr[0]) break;
  			minData.push({
 				 x : new Date(parseInt(min_d[i]/10000),
 	                        parseInt(min_d[i]%10000/100),
@@ -716,7 +717,13 @@
 	               }
 	         },
 	         yaxis: {
-	             tooltip: {
+	        	 labels: {
+	        		    formatter: function (value) {
+	        		    	value = parseInt(value);
+	        		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	        		    }
+	        		  },
+	        	 tooltip: {
 	                 enabled: true
 	             }
 	         },
@@ -815,7 +822,12 @@
 	                 }
 	               }
 	         },
-	         yaxis: {
+	         yaxis: {labels: {
+     		    formatter: function (value) {
+     		    	value = parseInt(value);
+     		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      		    }
+      		  },
 	             tooltip: {
 	                 enabled: true
 	             }
@@ -874,7 +886,7 @@
     var options = {
    		
         series: [{
-            data: mainData
+        	data: mainData
         }],
         chart: {
             type: 'candlestick',
@@ -910,7 +922,12 @@
                 }
               }
         },
-        yaxis: {
+        yaxis: {labels: {
+		    formatter: function (value) {
+  		      	value = parseInt(value);
+		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  		    }
+  		  },
             tooltip: {
                 enabled: true
             }
@@ -945,7 +962,14 @@
 		              backgroundBarRadius: 0,
 		          }
 		      }
-		  }
+		  },
+		  tooltip: {
+			  custom: function({series, seriesIndex, dataPointIndex, w}) {
+               
+			    return '<DIV style="border: 1px solid #48BAE4; height: auto; width: auto;">시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '<br>종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '<br>저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '<br>고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</DIV>'
+			  }
+			}
+		 
     };
 
     var chart = new ApexCharts(document.querySelector("#chartcontainer"), options);
