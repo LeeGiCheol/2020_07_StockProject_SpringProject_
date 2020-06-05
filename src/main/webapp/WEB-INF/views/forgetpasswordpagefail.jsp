@@ -57,7 +57,7 @@ ol, ul {
 }
 
 a, a:link, a:visited, a:active, a:hover {
-	text-decoration: none;
+	text-decoration: none;color:#444444;
 }
 
 body.member {

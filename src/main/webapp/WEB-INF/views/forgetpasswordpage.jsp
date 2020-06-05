@@ -57,7 +57,7 @@ ol, ul {
 }
 
 a, a:link, a:visited, a:active, a:hover {
-	text-decoration: none;
+	text-decoration: none;color:#444444;
 }
 
 body.member {
@@ -672,7 +672,7 @@ input[type="button"], button {
 						<strong class="tit">비밀번호 찾기</strong>
 						<p class="txt" style="display: none;">비밀번호가 생각나지 않으세요? 비밀번호 찾는 방법을 선택해주세요.</p>
 					</div>
-					<form action="/rpan/member/searchUserId/resultUserId" method="post"
+					<form action="/forGetPassword" method="post"
 						id="frm" name="frm">
 						<input name="certType" class="certType" type="hidden" value="1">
 						<input name="custNm" id="custNm" type="hidden" value=""> <input
@@ -712,14 +712,15 @@ input[type="button"], button {
 									</div>
 								</div></li>
 						</ul>
-
+	   				    <br>
+                 		<br>
 						<div class="bt-area">
 							<a href="javascript:formSubmit();" class="btn-b gray">다음</a>
 						</div>
 						<div class="find-info">
 							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> <span
 								class="bt-area"> <a
-								href="#"
+								href="/signUpPage/1"
 								class="btn-t">회원가입</a> <a
 								href="#"
 								class="btn-t">비밀번호 찾기</a>

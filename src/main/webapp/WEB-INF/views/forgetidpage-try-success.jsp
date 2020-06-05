@@ -19,25 +19,122 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
    var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
    tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
    figure, footer, header, hgroup, menu, nav, section, summary, time,
-   audio, video {margin: 0;padding: 0;  border: 0;vertical-align: baseline;font-size: 14px;background: transparent;list-style: none;
-   box-sizing: border-box;word-break: break-all;}
-body {  line-height: 1; -webkit-text-size-adjust: none;background: #eff3f6;color: #000;}
-span, em, mark, strong, b, label {margin: 0;padding: 0;border: 0;vertical-align: baseline;background: transparent;list-style: none;box-sizing: border-box;}
-p {line-height: 160%;}
-ol, ul {list-style: none;}
-a, a:link, a:visited, a:active, a:hover {text-decoration: none; color:#444444;}
-body.member {background: #fff;}
-.color-red {color: #ff545b !important;}
-@media ( max-width : 979px) {body .containerNew {padding-top: 0;}}
-@media ( max-width : 979px) {.containerNew {padding-top: 104px;}}
-@media only screen and (max-width: 979px) {.containerNew {padding: 0;padding-bottom: 170px;}}
-.containerNew {position: relative;max-width: 1260px;height: 100%;padding: 20px 0 0 0;margin: 0 auto;}
-.contents.member {margin-right: 0;min-height: 600px;}
-@media only screen and (max-width: 1599px) {.contents.member {margin: 0 auto 100px;}}
-@media only screen and (max-width: 979px) {.contents.member {margin-bottom: 0;}}
-@media only screen and (max-width: 979px) {.contents {position: inherit;min-height: initial;}}
-@media only screen and (max-width: 1599px) {.contents {margin: 0 auto;max-width: 1260px;}}
-.contents {position: relative;z-index: 1;min-height: 920px;}
+   audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   font-size: 14px;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+   word-break: break-all;
+}
+
+body {
+   line-height: 1;
+   -webkit-text-size-adjust: none;
+   background: #eff3f6;
+   color: #000;
+}
+
+span, em, mark, strong, b, label {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+}
+
+p {
+   line-height: 160%;
+}
+
+ol, ul {
+   list-style: none;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+   text-decoration: none;color:#444444;
+}
+
+body.member {
+   background: #fff;
+}
+
+.color-red {
+   color: #ff545b !important;
+}
+
+@media ( max-width : 979px) {
+   body .containerNew {
+      padding-top: 0;
+   }
+}
+
+@media ( max-width : 979px) {
+   .containerNew {
+      padding-top: 104px;
+   }
+}
+
+@media only screen and (max-width: 979px) {
+   .containerNew {
+      padding: 0;
+      padding-bottom: 170px;
+   }
+}
+
+.containerNew {
+   position: relative;
+   max-width: 1260px;
+   height: 100%;
+   padding: 20px 0 0 0;
+   margin: 0 auto;
+}
+
+
+
+.contents.member {
+   margin-right: 0;
+   min-height: 600px;
+}
+
+
+
+@media only screen and (max-width: 1599px) {
+   .contents.member {
+      margin: 0 auto 100px;
+   }
+}
+
+@media only screen and (max-width: 979px) {
+   .contents.member {
+      margin-bottom: 0;
+   }
+}
+
+@media only screen and (max-width: 979px) {
+   .contents {
+      position: inherit;
+      min-height: initial;
+   }
+}
+
+@media only screen and (max-width: 1599px) {
+   .contents {
+      margin: 0 auto;
+      max-width: 1260px;
+   }
+}
+
+.contents {
+   position: relative;
+   z-index: 1;
+   min-height: 920px;
+}
 
 .cont-area {
    margin-right: 310px;
@@ -580,7 +677,7 @@ input[type="button"], button {
                   <strong class="tit">아이디 찾기</strong>
                   <p class="txt" style="display: none;">아이디가 생각나지 않으세요? 아이디 찾는 방법을 선택해주세요.</p>
                </div>
-               <form action="/forGetId" method="post" id="frm" name="frm">
+               <form action="/forGetIdTry" method="post" id="frm" name="frm">
                   <input name="certType" class="certType" type="hidden" value="1">
                   <input name="custNm" id="custNm" type="hidden" value=""> 
                   <input name="di" id="di" type="hidden" value="">
@@ -588,19 +685,17 @@ input[type="button"], button {
                      <li><a>회원가입 시 등록한 휴대전화 번호로 인증</a>
                         <div class="fint-list-cont">
                            <div class="find-box">
-                              <p> 회원가입 시 입력한 <span class="color-red">휴대전화 번호와 동일한 번호</span>를 입력하셔야 인증번호를 받을 수 있습니다.
-                              </p>
+                              <p> 회원가입 시 입력한 <span class="color-red">휴대전화 번호와 동일한 번호</span>를 입력하셔야 인증번호를 받을 수 있습니다.</p>
                               <ul class="form-list">
-                                 <li class="input-type"><strong class="tit"></strong> <span class="input-style"> 
-                                 <input type="text" placeholder="휴대폰 번호는 대시(-)없이 숫자만 입력해주세요." id="tel" name="tel">
-                                 </span>
-                                    <button type="submit" class="btn-t gray">인증번호전송</button></li>
+                                <li class="input-type" id="_liCert2"><strong class="tit"></strong><span class="input-style">
+                                 <input type="text" placeholder="인증번호를 입력해주세요." id="answer" name="answer" maxlength="8">
+                                 </span><button type="submit" class="btn-t gray">인증번호입력</button></li>
                               </ul>
                            </div>
                         </div>
                       </li>
                   </ul>
-				  <br>
+                  <br>
                   <br>
                   <div class="find-info">
                      <span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> <span class="bt-area">
