@@ -25,6 +25,7 @@ import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
@@ -45,7 +46,36 @@ public class TradeController {
 //
 //		return jsonObject;
 //	}
-
+	@GetMapping(value = "/myStock")
+	public ModelAndView myStock(@RequestParam(value = "page") int page) {
+		ModelAndView mav = new ModelAndView();
+		String id = null;
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
+			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.setViewName("blank");
+			return mav;
+		}
+		
+		List<Map> holdingStock = tradeService.getHoldingStock(id);
+		List<Map> pageHoldingStock = new ArrayList<>();
+		
+		try {
+			for (int i = (page - 1) * 15; i < page * 15; i++) {
+				pageHoldingStock.add(holdingStock.get(i));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		mav.addObject("total", holdingStock.size());
+		mav.addObject("pageHoldingStock", pageHoldingStock);
+		mav.setViewName("holdingStock");
+		return mav;
+	}
+	
+		
 	@GetMapping(value = "/trade_history")
 	public ModelAndView history(@RequestParam(value = "page") int page) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");

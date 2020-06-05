@@ -8,6 +8,8 @@ import com.bitcamp.project.vo.StockVO;
 public interface TradeService {
 	public String stockSearch(String stockName);
 		
+	public List getHoldingStock(String id);
+	
 	public List getUnsettled_ID(String id);
 	
 	public void modify(StockVO vo);
