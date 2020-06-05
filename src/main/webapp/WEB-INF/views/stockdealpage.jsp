@@ -173,7 +173,7 @@
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" id="buying_price" name="buyingPrice"
+													class="alignR" id="buying_price" name="buyingPrice" value="표 클릭"
 													readOnly> 원 <span class="buying-check"> <a
 													class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 													<script>
@@ -322,12 +322,12 @@
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" id="selling_price" name="sellingPrice"
+													class="alignR" id="selling_price" name="sellingPrice" value="표 클릭"
 													readOnly> 원 <span class="buying-check"> <a
 													onclick="#"
 													class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
 													<div class="layerPopup">
-														<div class="layerBox layerStock" id="poplayer_possible"
+														<div class="layerBox layerStock"  id="poplayer_possible"
 															style="display: block;">
 															<h1>매도가능</h1>
 															<!-- conSection -->
