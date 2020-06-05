@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ForgetIdPageFailController {
+public class ForgetIdPageSuccessController {
 	
-	@GetMapping("/forgetidfail")
+	@GetMapping("/forgetpasswordsuccess")
 	public String newsBoard() {
-		return "forgetidpagefail";
+		return "forgetpasswordpagesuccess";
 	}
 }
