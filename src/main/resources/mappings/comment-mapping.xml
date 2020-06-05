@@ -7,8 +7,8 @@
 
 	
 	<insert id="writeComment">
-		INSERT INTO commentList (pno, id, ccontent, cdatetime)
-		VALUES(#{pno}, #{id}, #{ccontent}, sysdate())	
+		INSERT INTO commentList (pno, id, nickname, ccontent, cdateTime)
+		VALUES(#{pno}, #{id}, #{nickname}, #{ccontent}, sysdate())	
 	</insert>
 	
 	<select id="commentCount" parameterType="comment" resultType="int">

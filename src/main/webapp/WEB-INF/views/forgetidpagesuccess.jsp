@@ -22,15 +22,31 @@
 	<div class="containerNew">
 		<div class="contents member">
 			<div class="cont-area">
-				<h1 class="tit-h1 line">비밀번호 찾기</h1>
+				<h1 class="tit-h1 line">아이디 찾기</h1>
 				<div class="id-result">
 						<div class="message-st-no"> 
 							<img class="" id="idfail" src="/resources/img/icon.png">
-							<p class="big-text">입력하신 정보와 <span class="color-red">일치하는 회원정보</span>가 없습니다.<br>다른 방법으로 다시 시도해 보세요.</p>
+							<p class="big-text">
+								<span class="color-red">아이디 조회 결과</span> 입력하신 정보와 일치하는 
+								<span class="break"> 아이디는 다음과 같습니다.</span>
+							</p>
 						</div>
-
+						<div class="result-box">
+						<ul class="result-list">
+						
+							<li>
+								<span class="id">
+									
+								<label for="radio1" class="label">개미굴</label>
+								</span>
+								<span class="join">가입일 <em class="date">2020.06.04 </em></span>
+									
+							</li>	
+						
+						</ul>
+					</div>
 						<div class="bt-area">
-							<a href="javascript:formSubmit();" class="btn-b gray">다시 시도하기</a>
+							<a href="javascript:formSubmit();" class="btn-b gray">로그인</a>
 						</div>
 						<div class="find-info">
 							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> <span

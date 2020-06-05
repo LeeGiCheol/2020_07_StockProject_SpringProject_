@@ -21,19 +21,21 @@ public class SignInDAOImpl implements SignInDAO{
 	@Override
 	public void logOut() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public UserVO findId(UserVO vo) {
+		return mybatis.selectOne("findId", vo);
 		
 	}
 
 	@Override
-	public void findId() {
-		// TODO Auto-generated method stub
-		
+	public void tryId() {
 	}
-
+	
 	@Override
-	public void findPw() {
-		// TODO Auto-generated method stub
-		
+	public UserVO findPw(UserVO vo) {
+		return mybatis.selectOne("findPassword", vo);
 	}
 
 }

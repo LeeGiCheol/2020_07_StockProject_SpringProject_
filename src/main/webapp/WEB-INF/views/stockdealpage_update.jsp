@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/css/stockdealpage.css">
+<link rel="stylesheet" href="/resources/css/stockdealpage_update.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -22,22 +22,10 @@
 <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
-
-<style>
-tr td button{
-	background: transparent;
-	border: none;
-	margin: 0;
-	padding: 0;
-} 
-</style>
-
-<body>
+<body class="member">
 
 	<%@include file="mainheader.jsp" %> 
 
@@ -116,8 +104,8 @@ tr td button{
 
 							<tbody>
 								<tr id="upDownColor">
-									<td >현재가</td>
-									<button><td id="price"></td></button>
+									<td>현재가</td>
+									<td><button id="price" style="color: #ff0000;"></button></td>
 									<td id="beforeAndUpdown"></td>
 								</tr>
 							</tbody>
@@ -183,7 +171,7 @@ tr td button{
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" id="buying_price" name="buyingPrice" value="표 클릭"
+													class="alignR" id="buying_price" name="buyingPrice"
 													readOnly> 원 <span class="buying-check"> <a
 													class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 													<script>
@@ -332,12 +320,12 @@ tr td button{
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" id="selling_price" name="sellingPrice" value="표 클릭"
+													class="alignR" id="selling_price" name="sellingPrice"
 													readOnly> 원 <span class="buying-check"> <a
 													onclick="#"
 													class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
 													<div class="layerPopup">
-														<div class="layerBox layerStock"  id="poplayer_possible"
+														<div class="layerBox layerStock" id="poplayer_possible"
 															style="display: block;">
 															<h1>매도가능</h1>
 															<!-- conSection -->
@@ -750,7 +738,7 @@ tr td button{
 		                  parseInt(day_d[i]%10000/100)-1,
 		                  day_d[i]%100+1
 		                  ),
-		         y:  [ parseFloat(day_start[i]), parseFloat(day_highprice[i]),
+		         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
 	                 parseFloat(day_lowprice[i]),
 	                 parseFloat(day_lastprice[i]) ]
 		     });
