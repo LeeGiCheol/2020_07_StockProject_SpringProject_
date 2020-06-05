@@ -20,6 +20,7 @@ public class CommentDAOImpl implements CommentDAO {
 	
 	@Override
 	public int writeComment(CommentVO vo) {
+		System.out.println("mybatis insert + " +vo);
 		return mybatis.insert("comment.writeComment", vo);
 	}
 

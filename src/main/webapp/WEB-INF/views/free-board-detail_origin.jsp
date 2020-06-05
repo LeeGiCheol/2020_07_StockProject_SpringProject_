@@ -13,15 +13,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
 <link href="/resources/css/free-board-detail1.css" rel="stylesheet">
-<!-- <link rel="stylesheet" type="text/css" href="jpaginate/style.css"/> -->
-
-<script src="http://code.jquery.com/jquery-3.1.0.js"></script>
-<script src="/resources/jpaginate/jQuery.paginate.js"></script>
-<script src="https://www.jsviews.com/download/jsrender.js"></script>
-
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#btnDelete").click(function() {
@@ -41,9 +33,55 @@ div>ul>li {
 </head>
 
 <body>
+	<!-- header start -->
+	<header>
+		<!-- 상단  nav -->
+		<ul class="nav justify-content-end top-nav">
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
+		</ul>
+		<!-- 상단  nav end -->
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
+			<a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stock
+				gallery</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-<%@include file="mainheader.jsp" %> 
-
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
+					<form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="search"
+							placeholder="통합검색" aria-label="Search">
+						<button class="btn btn-outline-secondary my-2 my-sm-0"
+							type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> 커뮤니티 </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">자유게시판</a> <a
+								class="dropdown-item" href="#">포트폴리오</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">뉴스</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
+							class="sr-only">(current)</span></a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- header end -->
 	<!-- article start -->
 	<!-- 상단메뉴 -->
 	<div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
@@ -79,21 +117,54 @@ div>ul>li {
 				<div class="sideBar col-md-4 order-md-2 mb-4">
 					<div class="col-md-8 order-md-1"></div>
 					<hr>
-					<div id="boardboard">
-						
+					<div>
+						<div>
+							<div class="notice-header">
+								<div class="title-wrap">
+									<p class="category-info">
+										<a href="/notice">자유게시판</a>
+									</p>
+									<h2 id="" class="notice-title">${boardDetail.title}</h2>
+								</div>
+								<div class="info-wrap">
+									<ul class="notice-info">
+										<li class="author"><i class="fa fa-user-circle"></i>${boardDetail.nickname}</li>
+										<li class="date"><i class="far fa-clock"></i>${boardDetail.bdateTime}</li>
+									</ul>
+								</div>
+								<div class="article">${boardDetail.bcontent}</div>
+							</div>
+							<hr>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div>
-		<h2 id='commentBody' class='comment-title'>댓글</h2>
-		
-		<div id="commentcomment">
-		</div>
-		
+		<div id="testt">
+			<c:forEach var="commentList" items="${commentList}">
+				<!-- 댓글 -->
+				<h2 id="commentBody" class="comment-title">댓글</h2>
+				<div class="commentBody">
+					<i class="fa fa-user-circle"></i> <b>${commentList.nickname}</b><br>
+					<i class="far fa-clock"></i>${commentList.cdataTime}<br> <br>
+					${commentList.ccontent}
 
-					<!-- 댓글이 없으면 버튼이 안뜨게 하려고 -->
-			<%-- <c:if test="${commentList[0] ne null}"> --%>
+					<c:if test="${loginUser.nickname eq commentList.nickname}">
+						<button type="button" class="btn btn-sm btn-primary"
+							id="btnUpdate"
+							onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정</button>
+						<button type="button" class="btn btn-sm btn-primary"
+							id="btnDelete">삭제</button>
+					</c:if>
+					<br>
+					<hr class="comment-hr">
+
+				</div>
+
+			</c:forEach>
+
+			<!-- 댓글이 없으면 버튼이 안뜨게 하려고 -->
+			<c:if test="${commentList[0] ne null}">
 				<nav aria-label="..." class="pagination">
 					<ul class="pagination">
 	
@@ -129,9 +200,9 @@ div>ul>li {
 							</li>
 						</c:if>
 						
-		<!-- 여기부터  -->				
+						
 						<!-- 한번에 5개 페이지 보여줌 -->
-	 					<c:forEach begin="${commentPage.startPage }"
+						<c:forEach begin="${commentPage.startPage }"
 							end="${commentPage.endPage }" var="p">
 							<c:choose>
 								<c:when test="${p == commentPage.nowPage}">
@@ -147,9 +218,7 @@ div>ul>li {
 									</li>
 								</c:when>
 							</c:choose>
-						</c:forEach> 
-						
-		<!-- 여기까지 -->				
+						</c:forEach>
 						
 						<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
 						<c:if test="${commentPage.nowPage == commentPage.lastPage}">
@@ -167,7 +236,7 @@ div>ul>li {
 							<li>
 								<a class="page-link"
 									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}"
-									tabindex="+1" aria-disabled="true" data-ajax="false">
+									tabindex="+1" aria-disabled="true">
 									<i class="fas fa-angle-right"></i>
 								</a>
 							</li>
@@ -184,29 +253,25 @@ div>ul>li {
 					</ul>
 				</nav>
 	
-			<%-- </c:if> --%>
-
-<div id="ab">
-						</div>
-
+			</c:if>
 
 			<hr>
 			<div class="comment-wrap">
 				<div>
 					<div class="comment-form">
-						<form action="/board/writeComment" method="POST" id="commentForm">
+						<form action="/board/writeComment" method="POST">
 							<fieldset>
 								<dl class="comment-write">
 									<dt>
+									<input type="hidden" name="pno" value="${boardDetail.pno}">
 										<label for="[##_comment_input_comment_##]">내용</label>
 									</dt>
 									<dd>
-										<input type="hidden" name="pno" value="${boardDetail.pno}">
 										<textarea name="ccontent" id="[##_comment_input_comment_##]"
 											placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea>
 									</dd>
 								</dl>
-								<button type="button" class="reply-btn" onClick="fn_comment('${boardDetail.pno }')">댓글 남기기</button>
+								<button type="submit" class="reply-btn" >댓글 남기기</button>
 							</fieldset>
 						</form>
 
@@ -230,138 +295,37 @@ div>ul>li {
 					</c:if>
 				</div>
 			</div>
-	
 		</div>
-		
-		
-		
-		
 		<!-- 댓글 끝 -->
 	</article>
 
 	<!-- article end -->
+	<!-- footer start -->
+	<div class=footer_div>
+		<footer class="footer_info">
+			<p>
+				<a href="https://www.naver.com">회사소개</a> | <a
+					href="https://www.google.co.kr">광고안내</a> | <a
+					href="https://www.naver.com">이용약관</a> | <a
+					href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a>
+			</p>
+			<p>Copyright ⓒ 2020 - 2020 stock gallery. All rights reserved.</p>
+		</footer>
+	</div>
+	<!-- footer end -->
 
-<%@include file="mainfooter.jsp" %>
 
 
-<script>
+
+	<script>
+
 
 		
-		$(function(){
-	    	ab()
-
-	    })
-	    
-	    
-	    function ab(){
-	    
-	    
-		var pno = ${boardDetail.pno}
-		var page = "&bnowPage="+${commentPage.nowPage}
-		
-			console.log(page)
-			$.ajax({
-				type : 'GET',
-				url : '${pageContext.request.contextPath}/board/free/detail/ajax?pno='+pno + page,
-				dataType : 'json',
-				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
-				success : function(data){ 
-					console.log(data)
-					var board = "";
-				var boardTitle = data.boardDetail.title
-				var boardNickname = data.boardDetail.nickname
-				var boardDatetime = data.boardDetail.bdateTime
-				var boardContent = data.boardDetail.bcontent
-				
-				console.log(boardNickname)
-					
-					
-					
-				board +=	'<div class="notice-header">'
-				board +=		'<div class="title-wrap">'
-				board +=			'<p class="category-info"></p>'
-				board +=			'<h2 id="" class="notice-title">'+boardTitle+'</h2>'
-				board +=		'</div>'
-				board +=		'<div class="info-wrap">'
-				board +=			'<ul class="notice-info">'
-				board +=				'<li class="author">'
-				board +=					'<i class="fa fa-user-circle"></i>'+boardNickname
-				board +=				'</li>'
-				board +=				'<li class="date">'
-				board +=					'<i class="far fa-clock"></i>'+boardDatetime
-				board +=				'</li>'
-				board +=			'</ul>'
-				board +=		'</div>'
-				board +=		'<div class="article">'+boardContent
-				board +=		'</div>'
-				board +=	'</div>'
-				board +=	'<hr>'
-						
-				
-				$("#boardboard").html(board)
-
-				
-				var e = "";
-				for(var i=0; i<data.commentList.length; i++){
-					
-					e += "<div class='commentBody'>"
-					e += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
-					e += "<i class='far fa-clock'></i>"+data.commentList[i].cdataTime+"<br> <br>"
-					e += data.commentList[i].ccontent
-					e += "</div>"
-
-					$("#commentcomment").empty().html(e)
-				}	
-				console.log(data.boardDetail) 	
-		
-	 			},
-				error : function(error, data){
-					console.log(data)
-					console.log(error)
-					alert('error!!'); 
-	
-				}
-	
-			});
-	    }
-			
-
-	   
-		function fn_comment(code){
-		    
-		    $.ajax({
-		        type:'POST',
-		        url : "${pageContext.request.contextPath}/board/writeComment",
-		        data:$("#commentForm").serialize(),
-		        success : function(data){
-		            if(data=="success")
-		            {
-		                ab();
-		                $("#ccontent").val("");
-		            }
-		        },
-		        error:function(request,status,error){
-		        	console.log(error)
-		       }
-		        
-		    });
-		}
-
-
-	
-</script>
-
-<script id="tmpl_contact" type="text/x-jsrender">
-		<div class='commentBody'>
-		<i class='fa fa-user-circle'></i> <b>{{:nickname}}</b><br>
-		<i class='far fa-clock'></i>{{:cdataTime}}<br> <br>
-		{{:ccontent}}
-		</div>
-</script>
-
+	</script>
 
 
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
