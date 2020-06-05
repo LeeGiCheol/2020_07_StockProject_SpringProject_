@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/css/stockdealpage.css">
+<link rel="stylesheet" href="/resources/css/stockdealpage_update.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
