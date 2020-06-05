@@ -27,6 +27,16 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
+
+<style>
+tr td button{
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+} 
+</style>
+
 <body>
 
 	<%@include file="mainheader.jsp" %> 
@@ -106,8 +116,8 @@
 
 							<tbody>
 								<tr id="upDownColor">
-									<td>현재가</td>
-									<td><button id="price" style="color: #ff0000;"></button></td>
+									<td >현재가</td>
+									<button><td id="price"></td></button>
 									<td id="beforeAndUpdown"></td>
 								</tr>
 							</tbody>
@@ -740,7 +750,7 @@
 		                  parseInt(day_d[i]%10000/100)-1,
 		                  day_d[i]%100+1
 		                  ),
-		         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
+		         y:  [ parseFloat(day_start[i]), parseFloat(day_highprice[i]),
 	                 parseFloat(day_lowprice[i]),
 	                 parseFloat(day_lastprice[i]) ]
 		     });
