@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
@@ -44,9 +46,38 @@ public class TradeController {
 //
 //		return jsonObject;
 //	}
-
+	@GetMapping(value = "/myStock")
+	public ModelAndView myStock(@RequestParam(value = "page") int page) {
+		ModelAndView mav = new ModelAndView();
+		String id = null;
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
+			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.setViewName("blank");
+			return mav;
+		}
+		
+		List<Map> holdingStock = tradeService.getHoldingStock(id);
+		List<Map> pageHoldingStock = new ArrayList<>();
+		
+		try {
+			for (int i = (page - 1) * 15; i < page * 15; i++) {
+				pageHoldingStock.add(holdingStock.get(i));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		mav.addObject("total", holdingStock.size());
+		mav.addObject("pageHoldingStock", pageHoldingStock);
+		mav.setViewName("holdingStock");
+		return mav;
+	}
+	
+		
 	@GetMapping(value = "/trade_history")
-	public ModelAndView history() {
+	public ModelAndView history(@RequestParam(value = "page") int page) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		ModelAndView mav = new ModelAndView();
 		String id = null;
@@ -59,18 +90,26 @@ public class TradeController {
 		}
 
 		List<Map> history = tradeService.getHistory(id);
+		List<Map> pageHistory = new ArrayList<>();
 
-		for (int i = 0; i < history.size(); i++) {
-			history.get(i).put("tdatetime", new Date(((Date)history.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
-			if (history.get(i).get("category").equals("buy")) {
-				history.get(i).put("category", "매수");
-			} else if (history.get(i).get("category").equals("sell")) {
-				history.get(i).put("category", "매도");
+		try {
+			for (int i = (page - 1) * 15; i < page * 15; i++) {
+				history.get(i).put("tdatetime",
+						new Date(((Date) history.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
+				if (history.get(i).get("category").equals("buy")) {
+					history.get(i).put("category", "매수");
+				} else if (history.get(i).get("category").equals("sell")) {
+					history.get(i).put("category", "매도");
+				}
+				history.get(i).put("tprice", formatter.format(history.get(i).get("tprice")));
+				pageHistory.add(history.get(i));
 			}
-			history.get(i).put("tprice", formatter.format(history.get(i).get("tprice")));
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-
-		mav.addObject("history", history);
+		
+		mav.addObject("total", history.size());
+		mav.addObject("pageHistory", pageHistory);
 		mav.setViewName("tradehistory");
 		return mav;
 	}
