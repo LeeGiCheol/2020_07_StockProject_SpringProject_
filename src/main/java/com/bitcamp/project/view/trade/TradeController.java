@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +47,7 @@ public class TradeController {
 //	}
 
 	@GetMapping(value = "/trade_history")
-	public ModelAndView history() {
+	public ModelAndView history(@RequestParam(value = "page") int page) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		ModelAndView mav = new ModelAndView();
 		String id = null;
@@ -59,18 +60,26 @@ public class TradeController {
 		}
 
 		List<Map> history = tradeService.getHistory(id);
+		List<Map> pageHistory = new ArrayList<>();
 
-		for (int i = 0; i < history.size(); i++) {
-			history.get(i).put("tdatetime", new Date(((Date)history.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
-			if (history.get(i).get("category").equals("buy")) {
-				history.get(i).put("category", "매수");
-			} else if (history.get(i).get("category").equals("sell")) {
-				history.get(i).put("category", "매도");
+		try {
+			for (int i = (page - 1) * 15; i < page * 15; i++) {
+				history.get(i).put("tdatetime",
+						new Date(((Date) history.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
+				if (history.get(i).get("category").equals("buy")) {
+					history.get(i).put("category", "매수");
+				} else if (history.get(i).get("category").equals("sell")) {
+					history.get(i).put("category", "매도");
+				}
+				history.get(i).put("tprice", formatter.format(history.get(i).get("tprice")));
+				pageHistory.add(history.get(i));
 			}
-			history.get(i).put("tprice", formatter.format(history.get(i).get("tprice")));
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-
-		mav.addObject("history", history);
+		
+		mav.addObject("total", history.size());
+		mav.addObject("pageHistory", pageHistory);
 		mav.setViewName("tradehistory");
 		return mav;
 	}
