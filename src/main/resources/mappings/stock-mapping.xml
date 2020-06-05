@@ -7,6 +7,10 @@
 <mapper namespace="stock">
 <resultMap type="stock" id="st"></resultMap>
 
+	<select id="getHoldingStock" resultType="map">
+		select stockName, quantity from holdingstock where id = #{id} and quantity > 0;
+	</select>
+	
 	<update id="modify">
 		update unsettled set quantity = #{newQuantity} where uno = #{uno};
 		update unsettledcheck set rPrice = #{newPrice} where uno = #{uno};

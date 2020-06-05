@@ -8,6 +8,8 @@ import com.bitcamp.project.vo.StockVO;
 public interface TradeDAO {
 	public List getUnsettled_ID(String id);
 	
+	public List getHoldingStock(String id);
+	
 	public String stockSearch(String stockName);
 	
 	public void modify(StockVO vo);

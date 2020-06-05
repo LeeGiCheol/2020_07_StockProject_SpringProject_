@@ -22,7 +22,7 @@
 	<div class="containerNew">
 		<div class="contents member">
 			<div class="cont-area">
-				<h1 class="tit-h1 line">비밀번호 찾기</h1>
+				<h1 class="tit-h1 line">아이디 찾기</h1>
 				<div class="id-result">
 						<div class="message-st-no"> 
 							<img class="" id="idfail" src="/resources/img/icon.png">

@@ -40,8 +40,6 @@ public class RequestChart {
 			pw.flush();
 			String echo = br.readLine();
 			System.out.print(echo+" => ");
-			Date now = new Date();
-			System.out.println(now);
 //
 //			long end = System.currentTimeMillis();
 //
