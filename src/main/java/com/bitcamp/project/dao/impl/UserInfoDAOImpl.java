@@ -1,5 +1,6 @@
 package com.bitcamp.project.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,8 +20,10 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	
 	@Override
 	public List getNotice(String id) {
-		// TODO Auto-generated method stub
-		return null;  //여기서부터 수정 user mapping getNotice 수정
+		List notice = new ArrayList<>(); 
+		notice.add(mybatis.selectList("user.getTradeNotice", id));
+//		notice.add(mybatis.selectList("user.getCommentNotice", id));
+		return notice;  //여기서부터 수정 user mapping getNotice 수정
 	}
 
 	@Override

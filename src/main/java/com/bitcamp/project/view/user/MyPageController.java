@@ -61,7 +61,12 @@ public class MyPageController {
 		ModelAndView mav = new ModelAndView();
 		String id = ((UserVO) session.getAttribute("loginUser")).getId();
 		
-//		userInfoService.getNotice(id);
+		List notice = userInfoService.getNotice(id);
+		List tradeNotice = (List) notice.get(0);
+		System.out.println(tradeNotice);
+//		List commentNotice = (List) notice.get(1);
+		mav.addObject("tradeNotice" , tradeNotice);
+//		mav.addObject("commentNotice" , commentNotice);
 		mav.setViewName("mypage04");
 		return mav;
 	}
