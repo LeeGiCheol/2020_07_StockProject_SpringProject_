@@ -113,7 +113,7 @@ div>ul>li {
 											placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea>
 									</dd>
 								</dl>
-								<button type="button" class="reply-btn" onClick="fn_comment('${boardDetail.pno }')">댓글 남기기</button>
+								<button type="button" class="reply-btn" onClick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
 							</fieldset>
 						</form>
 
@@ -173,8 +173,8 @@ div>ul>li {
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
-					console.log(data)
 				
+					// 게시판상세보기
 					var board = "";
 					var boardTitle = data.boardDetail.title
 					var boardNickname = data.boardDetail.nickname
@@ -204,10 +204,9 @@ div>ul>li {
 					
 					$("#boardList").html(board)
 	
-					
+
+					// 댓글
 					var comment= "";
-					
-					
 					
 					for(var i=0; i<data.commentList.length; i++){
 						
@@ -220,6 +219,8 @@ div>ul>li {
 						$("#commentList").empty().html(comment)
 					}	
 					
+					
+					// 페이징처리
 					var commentPaging = "";
 					
 					// 댓글이 4개 이상일 때 띄우기
@@ -289,37 +290,27 @@ div>ul>li {
 							commentPaging += '</li>'
 						}
 						
-						
 	 					$("#commentPaging").empty().html(commentPaging)
-	 					
- 				} 
-				
-				
-				
-				
-		
+ 					} 
 	 			},
 				error : function(error, data){
 					console.log(data)
 					console.log(error)
 					alert('error!!'); 
-	
 				}
-	
 			});
 	    }
 			
 
 	   // 댓글등록
-		function fn_comment(code){
+		function writeComment(pno){
 		    
 		    $.ajax({
 		        type:'POST',
 		        url : "${pageContext.request.contextPath}/board/writeComment",
 		        data:$("#commentForm").serialize(),
 		        success : function(data){
-		            if(data=="success")
-		            {
+		            if(data=="success"){
 		                list();
 		                $("#ccontent").val("");
 		            }
@@ -330,6 +321,7 @@ div>ul>li {
 		        
 		    });
 		}
+	   
 
 
 	
