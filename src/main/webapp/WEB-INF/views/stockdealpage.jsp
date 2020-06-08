@@ -53,7 +53,7 @@ tr td button{
 							<form action="/trade" id="searchForm"
 								class="form-inline my-2 my-lg-0 chartdata-form" method="GET">
 								<input class="form-control mr-sm-2 stock-search-input"
-									type="search" placeholder="통합검색" id="stockSearch"
+									type="search" placeholder="종목 검색" id="stockSearch"
 									aria-label="Search" name="stockName">
 								<button
 									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
@@ -750,7 +750,7 @@ tr td button{
 		                  parseInt(day_d[i]%10000/100)-1,
 		                  day_d[i]%100+1
 		                  ),
-		         y:  [ parseFloat(day_start[i]), parseFloat(day_highprice[i]),
+		         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
 	                 parseFloat(day_lowprice[i]),
 	                 parseFloat(day_lastprice[i]) ]
 		     });
@@ -947,12 +947,6 @@ tr td button{
 
     var chart = new ApexCharts(document.querySelector("#chartcontainer"), options);
     chart.render();
-	
-	 
-	
-	 
-	 
-	
 	</script>
 
 	<script id="upPrice" type="text/x-jsrender">
