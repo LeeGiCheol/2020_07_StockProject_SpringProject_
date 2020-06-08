@@ -51,7 +51,7 @@ tr td button{
 							<form action="/trade" id="searchForm"
 								class="form-inline chartdata-form" method="GET">
 								<input class="form-control mr-sm-2 stock-search-input"
-									type="search" placeholder="통합검색" id="stockSearch"
+									type="search" placeholder="종목 검색" id="stockSearch"
 									aria-label="Search" name="stockName">
 								<button
 									class="btn btn-outline-secondary stock-search-btn"
@@ -384,11 +384,13 @@ tr td button{
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
+
 												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input type="text"
 													class="alignR" id="selling_price" name="sellingPrice" readOnly></span> 원 
 													<span class="buying-check"> <a onclick="#" class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
+
 													<div class="layerPopup">
-														<div class="layerBox layerStock" id="poplayer_possible"
+														<div class="layerBox layerStock"  id="poplayer_possible"
 															style="display: block;">
 															<h1>매도가능</h1>
 															<!-- conSection -->
@@ -1040,12 +1042,6 @@ tr td button{
 
     var chart = new ApexCharts(document.querySelector("#chartcontainer"), options);
     chart.render();
-	
-	 
-	
-	 
-	 
-	
 	</script>
 
 	<script id="upPrice" type="text/x-jsrender">

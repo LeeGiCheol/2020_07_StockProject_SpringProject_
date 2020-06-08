@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.SignInService;
 import com.bitcamp.project.vo.UserVO;
@@ -25,7 +26,8 @@ public class SignInController {
 	}
 	
 	@PostMapping(value="/signIn")
-	public String signIn(@ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpSession session) {
+	public ModelAndView signIn(@ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		UserVO vo = new UserVO();
 		vo.setId(id);
 		vo = signInService.logIn(vo);
@@ -38,12 +40,24 @@ public class SignInController {
 //			System.out.println("pw2 " + pw);
 			if(vo.getPw().equals(pw)) {
 				session.setAttribute("loginUser", vo);
-				return "mainpage";
+				mav.addObject("msg", "로그인 성공!");
+				mav.addObject("location", "/trade");
+				mav.setViewName("notice");
+				return mav;
 			}
-			else return "login";
+			else {
+				mav.addObject("msg", "로그인 실패!");
+				mav.addObject("location", "/signInPage");
+				mav.setViewName("notice");
+				return mav;
+			}
 		}
-		else 
-			return "login";
+		else {
+			mav.addObject("msg", "로그인 실패!");
+			mav.addObject("location", "/signInPage");
+			mav.setViewName("notice");
+			return mav;
+		}
 	}
 	
 	@GetMapping(value="/logOut")

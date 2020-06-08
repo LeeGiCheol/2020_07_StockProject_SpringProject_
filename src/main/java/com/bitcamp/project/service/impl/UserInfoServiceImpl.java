@@ -1,5 +1,7 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Autowired
 	private UserInfoDAO userInfoDAO;
 	
+	
+	
+	@Override
+	public List getNotice(String id) {
+		return userInfoDAO.getNotice(id);
+	}
+
 	@Override
 	public void memberInfo() {
 		// TODO Auto-generated method stub
