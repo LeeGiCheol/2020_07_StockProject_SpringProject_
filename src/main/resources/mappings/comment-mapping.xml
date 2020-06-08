@@ -25,6 +25,17 @@
 		limit #{start}, #{cntPerPage}
 	</select>
 	
+	<update id="updateComment">
+		UPDATE commentList
+		SET ccontent=#{ccontent}
+		WHERE cno=#{cno}
+	</update>
+	
+	<delete id="deleteComment">
+		DELETE FROM commentList
+		WHERE cno=#{cno}
+	</delete>
+	
 	<!-- <select id="commentList" resultType="comment">
 		SELECT * FROM commentList
 		WHERE pno = #{pno} 

@@ -113,7 +113,7 @@ div>ul>li {
 											placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea>
 									</dd>
 								</dl>
-								<button type="button" class="reply-btn" onClick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
+								<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
 							</fieldset>
 						</form>
 
@@ -208,14 +208,28 @@ div>ul>li {
 					// 댓글
 					var comment= "";
 					
+					
 					for(var i=0; i<data.commentList.length; i++){
 						
-						comment += "<div class='commentBody'>"
+						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
 						comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
 						comment += "<i class='far fa-clock'></i>"+data.commentList[i].cdataTime+"<br> <br>"
-						comment += data.commentList[i].ccontent
-						comment += "</div>"
-	
+						comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>"
+						
+						// 내 댓글에 수정/삭제 버튼 띄우기
+						if("${loginUser.nickname}" == data.commentList[i].nickname){
+							var test = data.commentList[i].ccontent
+							console.log("${loginUser.nickname}")
+							//console.log(data.commentList.nickname)
+							comment +=  	   '<button type="button" class="btn btn-sm btn-primary"'
+							comment += 		   'id="btnUpdate'+data.commentList[i].cno+'" onclick="updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ')">수정</button>'
+							comment += 	       '<button type="button" class="btn btn-sm btn-primary"'
+							comment += 		   'id="btnDelete" onclick="deleteComment(' + data.commentList[i].cno + ')">삭제</button>'
+						}
+							comment += '</div>'
+							
+	 
+						
 						$("#commentList").empty().html(comment)
 					}	
 					
@@ -322,6 +336,56 @@ div>ul>li {
 		    });
 		}
 	   
+
+		
+
+		//댓글 수정창 input
+		function updateCommentView(cno, ccontent){
+		    var comment ='';
+		    
+		    comment += '<div class="input-group">';
+		    comment += 		'<input type="text" name="ccontent'+cno+'" value="'+ccontent+'"/>';
+		    comment += 		'<button class="btn btn-primary" type="button" onclick="updateComment('+cno+');">확인</button>';
+		    comment += '</div>';
+		    
+		    
+		    $("#btnUpdate"+cno+"").hide()
+		    
+		    $('#com'+cno).html(comment);
+		    
+		}
+		
+		// 댓글 수정
+		function updateComment(cno){
+		    var ccontent = $('[name=ccontent'+cno+']').val();
+		    
+		    $.ajax({
+		        url : "${pageContext.request.contextPath}/board/updateComment",
+		        type : 'POST',
+		        data : { 'cno' : cno, 'ccontent' : ccontent },
+		        success : function(data){
+		        	console.log(data)
+		            if(data=="success") 
+		            	list(); 
+		        }
+		    });
+		}
+		 
+		// 댓글 삭제
+		function deleteComment(cno){
+			 $.ajax({
+		        url : "${pageContext.request.contextPath}/board/deleteComment",
+		        type : 'POST',
+		        data : { 'cno' : cno },
+		        success : function(data){
+		        	console.log(data)
+		        	if(data=="success") 
+		            	list(); 
+		        }
+			 })
+		        
+		}
+
 
 
 	
