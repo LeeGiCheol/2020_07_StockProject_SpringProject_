@@ -750,7 +750,7 @@ tr td button{
 		                  parseInt(day_d[i]%10000/100)-1,
 		                  day_d[i]%100+1
 		                  ),
-		         y:  [ parseFloat(day_start[i]), parseFloat(day_highprice[i]),
+		         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
 	                 parseFloat(day_lowprice[i]),
 	                 parseFloat(day_lastprice[i]) ]
 		     });

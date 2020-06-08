@@ -79,7 +79,7 @@ div>ul>li {
 				<div class="sideBar col-md-4 order-md-2 mb-4">
 					<div class="col-md-8 order-md-1"></div>
 					<hr>
-					<div id="boardboard">
+					<div id="boardList">
 						
 					</div>
 				</div>
@@ -88,106 +88,13 @@ div>ul>li {
 		<div>
 		<h2 id='commentBody' class='comment-title'>댓글</h2>
 		
-		<div id="commentcomment">
+		<!-- 댓글 -->
+		<div id="commentList">
 		</div>
 		
-
-					<!-- 댓글이 없으면 버튼이 안뜨게 하려고 -->
-			<%-- <c:if test="${commentList[0] ne null}"> --%>
-				<nav aria-label="..." class="pagination">
-					<ul class="pagination">
-	
-	
-						<!-- << 버튼 -->
-						<li>
-							<a class="page-link"
-								href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=1"
-								tabindex="-1" aria-disabled="true">
-								<i class="fas fa-angle-double-left"></i>
-							</a>
-						</li>
-	
-						<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-						<c:if test="${commentPage.nowPage == 1}">
-							<li>
-								<a class="page-link"
-									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage}"
-									tabindex="-1" aria-disabled="true">
-									<i class="fas fa-angle-left"></i>
-								</a>
-							</li>
-						</c:if>
-						
-						<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-						<c:if test="${commentPage.nowPage != 1}">
-							<li>
-								<a class="page-link"
-									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"
-									tabindex="-1" aria-disabled="true">
-									<i class="fas fa-angle-left"></i>
-								</a>
-							</li>
-						</c:if>
-						
-		<!-- 여기부터  -->				
-						<!-- 한번에 5개 페이지 보여줌 -->
-	 					<c:forEach begin="${commentPage.startPage }"
-							end="${commentPage.endPage }" var="p">
-							<c:choose>
-								<c:when test="${p == commentPage.nowPage}">
-									<li class="page-item active" aria-current="page">
-										<a class="page-link" href="#">${p}
-											<span class="sr-only">(current)</span>
-										</a>
-									</li>
-								</c:when>
-								<c:when test="${p != commentPage.nowPage}">
-									<li class="page-item">
-										<a class="page-link" href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${p}">${p}</a>
-									</li>
-								</c:when>
-							</c:choose>
-						</c:forEach> 
-						
-		<!-- 여기까지 -->				
-						
-						<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-						<c:if test="${commentPage.nowPage == commentPage.lastPage}">
-							<li>
-								<a class="page-link"
-									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage}"
-									tabindex="+1" aria-disabled="true">
-									<i class="fas fa-angle-right"></i>
-								</a>
-							</li>
-						</c:if>
-						
-						<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
-						<c:if test="${commentPage.nowPage != commentPage.lastPage}">
-							<li>
-								<a class="page-link"
-									href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}"
-									tabindex="+1" aria-disabled="true" data-ajax="false">
-									<i class="fas fa-angle-right"></i>
-								</a>
-							</li>
-						</c:if> 
-	
-						<!-- >> 버튼 -->
-						<li>
-							<a class="page-link"
-							href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}"
-							tabindex="-1" aria-disabled="true">
-								<i class="fas fa-angle-double-right"></i>
-							</a>
-						</li>
-					</ul>
-				</nav>
-	
-			<%-- </c:if> --%>
-
-<div id="ab">
-						</div>
+		<!-- 댓글 페이징 -->
+		<div id="commentPaging">
+		</div>
 
 
 			<hr>
@@ -248,12 +155,12 @@ div>ul>li {
 
 		
 		$(function(){
-	    	ab()
+	    	list()
 
 	    })
 	    
-	    
-	    function ab(){
+	    // 목록 뿌리기
+	    function list(){
 	    
 	    
 		var pno = ${boardDetail.pno}
@@ -267,52 +174,129 @@ div>ul>li {
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
 					console.log(data)
+				
 					var board = "";
-				var boardTitle = data.boardDetail.title
-				var boardNickname = data.boardDetail.nickname
-				var boardDatetime = data.boardDetail.bdateTime
-				var boardContent = data.boardDetail.bcontent
-				
-				console.log(boardNickname)
-					
-					
-					
-				board +=	'<div class="notice-header">'
-				board +=		'<div class="title-wrap">'
-				board +=			'<p class="category-info"></p>'
-				board +=			'<h2 id="" class="notice-title">'+boardTitle+'</h2>'
-				board +=		'</div>'
-				board +=		'<div class="info-wrap">'
-				board +=			'<ul class="notice-info">'
-				board +=				'<li class="author">'
-				board +=					'<i class="fa fa-user-circle"></i>'+boardNickname
-				board +=				'</li>'
-				board +=				'<li class="date">'
-				board +=					'<i class="far fa-clock"></i>'+boardDatetime
-				board +=				'</li>'
-				board +=			'</ul>'
-				board +=		'</div>'
-				board +=		'<div class="article">'+boardContent
-				board +=		'</div>'
-				board +=	'</div>'
-				board +=	'<hr>'
+					var boardTitle = data.boardDetail.title
+					var boardNickname = data.boardDetail.nickname
+					var boardDatetime = data.boardDetail.bdateTime
+					var boardContent = data.boardDetail.bcontent
 						
-				
-				$("#boardboard").html(board)
-
-				
-				var e = "";
-				for(var i=0; i<data.commentList.length; i++){
+					board +=	'<div class="notice-header">'
+					board +=		'<div class="title-wrap">'
+					board +=			'<p class="category-info"></p>'
+					board +=			'<h2 id="" class="notice-title">'+boardTitle+'</h2>'
+					board +=		'</div>'
+					board +=		'<div class="info-wrap">'
+					board +=			'<ul class="notice-info">'
+					board +=				'<li class="author">'
+					board +=					'<i class="fa fa-user-circle"></i>'+boardNickname
+					board +=				'</li>'
+					board +=				'<li class="date">'
+					board +=					'<i class="far fa-clock"></i>'+boardDatetime
+					board +=				'</li>'
+					board +=			'</ul>'
+					board +=		'</div>'
+					board +=		'<div class="article">'+boardContent
+					board +=		'</div>'
+					board +=	'</div>'
+					board +=	'<hr>'
+							
 					
-					e += "<div class='commentBody'>"
-					e += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
-					e += "<i class='far fa-clock'></i>"+data.commentList[i].cdataTime+"<br> <br>"
-					e += data.commentList[i].ccontent
-					e += "</div>"
-
-					$("#commentcomment").empty().html(e)
-				}	
-				console.log(data.boardDetail) 	
+					$("#boardList").html(board)
+	
+					
+					var comment= "";
+					
+					
+					
+					for(var i=0; i<data.commentList.length; i++){
+						
+						comment += "<div class='commentBody'>"
+						comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
+						comment += "<i class='far fa-clock'></i>"+data.commentList[i].cdataTime+"<br> <br>"
+						comment += data.commentList[i].ccontent
+						comment += "</div>"
+	
+						$("#commentList").empty().html(comment)
+					}	
+					
+					var commentPaging = "";
+					
+					// 댓글이 4개 이상일 때 띄우기
+	 				if(data.commentPage.total >= 4) {
+	 					commentPaging += '<nav aria-label="..." class="pagination">' 
+						commentPaging += '<ul class="pagination">' 
+						
+						
+						// 1페이지가 아니면
+	 					if(data.commentPage.nowPage != 1){
+	 						
+	 						// << 버튼 
+	 						commentPaging +=	'<li>'
+	 						commentPaging +=		'<a class="page-link"'
+	 						commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=1"'
+	 						commentPaging +=			'tabindex="-1" aria-disabled="true">'
+	 						commentPaging +=			'<i class="fas fa-angle-double-left"></i>'
+	 						commentPaging +=		'</a>'
+	 						commentPaging +=	'</li>'
+	 						
+	 						// < 버튼
+			 				commentPaging +=	'<li>'
+		 					commentPaging +=		'<a class="page-link"'
+							commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"'
+							commentPaging +=			'tabindex="-1" aria-disabled="true">'
+							commentPaging +=			'<i class="fas fa-angle-left"></i>'
+							commentPaging +=		'</a>'
+							commentPaging +=	'</li>'
+	 					}
+						
+						// 한번에 5개 페이지 보여줌
+						for(var i=data.commentPage.startPage; i<=data.commentPage.endPage; i++){
+							if(i == data.commentPage.nowPage){
+								commentPaging +=	'<li class="page-item active" aria-current="page">'
+								commentPaging +=			'<a class="page-link" href="#">'+i
+								commentPaging +=				'<span class="sr-only">(current)</span>'
+								commentPaging +=				'</a>'
+								commentPaging +=		'</li>'
+							}
+							if(i != data.commentPage.nowPage){
+								commentPaging +=	'<li class="page-item">'
+								
+								commentPaging +=	"<a class='page-link' href='/board/free/detail?pno="+data.boardDetail.pno+"&bnowPage="+i+"'>"+i+"</a>"
+							
+								commentPaging +=	'</li>'
+							}
+						}
+						
+						
+						// 마지막페이지아닐때
+						if(data.commentPage.nowPage != data.commentPage.lastPage){
+							commentPaging += '<li>'
+							commentPaging += 	'<a class="page-link"'
+							commentPaging += 		"href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}'"
+							commentPaging += 		'tabindex="+1" aria-disabled="true" data-ajax="false">'
+							commentPaging += 			'<i class="fas fa-angle-right"></i>'
+							commentPaging += 	'</a>'
+							commentPaging += '</li>'
+							
+							// >> 버튼
+							commentPaging += '<li>'
+							commentPaging += '<a class="page-link"'
+							commentPaging += "href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}'"						
+							commentPaging += 'tabindex="-1" aria-disabled="true">'
+							commentPaging += 		'<i class="fas fa-angle-double-right"></i>'
+							commentPaging += 	'</a>'
+							commentPaging += '</li>'
+						}
+						
+						
+	 					$("#commentPaging").empty().html(commentPaging)
+	 					
+ 				} 
+				
+				
+				
+				
 		
 	 			},
 				error : function(error, data){
@@ -326,7 +310,7 @@ div>ul>li {
 	    }
 			
 
-	   
+	   // 댓글등록
 		function fn_comment(code){
 		    
 		    $.ajax({
@@ -336,7 +320,7 @@ div>ul>li {
 		        success : function(data){
 		            if(data=="success")
 		            {
-		                ab();
+		                list();
 		                $("#ccontent").val("");
 		            }
 		        },
@@ -350,8 +334,8 @@ div>ul>li {
 
 	
 </script>
-
-<script id="tmpl_contact" type="text/x-jsrender">
+<!--  
+<script id="commnet" type="text/x-jsrender">
 		<div class='commentBody'>
 		<i class='fa fa-user-circle'></i> <b>{{:nickname}}</b><br>
 		<i class='far fa-clock'></i>{{:cdataTime}}<br> <br>
@@ -359,7 +343,7 @@ div>ul>li {
 		</div>
 </script>
 
-
+-->
 
 </body>
 <script

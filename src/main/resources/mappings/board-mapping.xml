@@ -140,7 +140,6 @@
 		where bno = 1
 	</select>
 		
-		<!-- map add --> 
 	<select id="boardList" parameterType="page" resultType="board">
 		select *
 		from board
