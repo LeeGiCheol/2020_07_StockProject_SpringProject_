@@ -20,6 +20,10 @@
 		<result property="address" column="ADDRESS"/>
 		<result property="charge" column="CHARGE"/>
 	</resultMap> -->
+	
+	<select id="getNotice" resultType="map">
+	
+	</select>
 
 	<insert id="signUp">
 		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
