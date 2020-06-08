@@ -54,6 +54,7 @@ public class SignInController {
 	
 	@GetMapping(value="/forGetId")
 	public String findIdView() {
+		System.out.println("로그");
 		return "forgetidpage";
 	}
 	

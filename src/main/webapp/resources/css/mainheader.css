@@ -160,7 +160,7 @@
 	}
 }
 @media ( max-width : 979px) {
-	.nav-item {
+.navbar-nav .nav-item .nav-item {
 		margin-bottom: 10px;
 	}
 }

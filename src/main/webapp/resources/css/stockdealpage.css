@@ -1,107 +1,9 @@
 @charset "UTF-8";
 
-/*--------------------------- start 공통 적용 css ---------------------------*/
-
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
-	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
-	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
-	figure, footer, header, hgroup, menu, nav, section, summary, time,
-	audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	font-size: 14px;
-	background: transparent;
-	list-style: none;
-	box-sizing: border-box;
-	word-break: break-all;
-}
-
-body {
-	line-height: 1;
-	-webkit-text-size-adjust: none;
-	background: #eff3f6;
-	color: #000;
-}
-
-span, em, mark, strong, b, label {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	background: transparent;
-	list-style: none;
-	box-sizing: border-box;
-}
-
-p {
-	line-height: 160%;
-}
-
-ol, ul {
-	list-style: none;
-}
-
-a, a:link, a:visited, a:active, a:hover {
-	text-decoration: none;
-}
-
-body.member {
-	background: #fff;
-}
-em, i {
-    font-style: normal;
-}
-table {
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border: 0;
-}
-legend, caption {
-    font-size: 0;
-    overflow: hidden;
-    text-indent: -9999999px;
-    height: 0;
-    width: 0;
-    line-height: 0;
-}
-td, th {
-    word-break: break-all;
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-input[type="text"], input[type="password"], input[type="tel"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    line-height: 1;
-    width: 100%;
-    padding: 5px 35px 6px 10px;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #000;
-    vertical-align: middle;
-    box-sizing: border-box;
-    border-radius: 0;
-}
-.color-red {
-	color: #f6212a !important;
-}
-
-/*--------------------------- end 공통 적용 css ---------------------------*/
-
-
-/*
 html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
    pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
    var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
@@ -153,15 +55,25 @@ tr td button{
 .table{
 	margin-bottom: 0;
 }
-*/
-.container {
-   padding: 20px 0 30px 0;
+.containerNew{
+position: relative;
+    max-width: 1260px;
+    height: 100%;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+@media (max-width: 979px)
+.containerNew {
+    padding-top: 104px;
+}
+@media only screen and (max-width: 979px)
+.containerNew {
+    padding: 0;
+    padding-bottom: 170px;
 }
 
-.container>.row .col-md-9 .chartdata {
-   border: 1px solid gray;
-   padding: 10px;
-   margin-bottom: 10px;
+.container {
+   padding: 20px 0 30px 0;
 }
 
 em, address {
@@ -174,7 +86,6 @@ input, label, button {
 
 .row {
    margin: 0;
-   padding: 20px;
 }
 
 .carousel-control-prev, .carousel-item {
@@ -193,12 +104,9 @@ input, label, button {
    font-size: 24px;
    line-height: 30px;
    padding: 10px;
+   font-weight: 600;
 }
 
-.chartdata, .stock-price-chart, .stock-deal {
-   padding: 0;
-   border: 1px solid gray;
-}
 
 #chartContainer {
    height: 300px;
@@ -213,9 +121,24 @@ input, label, button {
    overflow: hidden;
    line-height: 23px;
 }
+.col-md-9, .col-md-3{
+    padding-right: 5px;
+    padding-left: 5px;
 
-.chartdata-nav, .chartdata-body, .stock-price-chart {
-   padding: 10px;
+}
+.col-md-9>div {
+    position: relative;
+    background: #fff;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: 1px solid #dddddd;
+}
+.col-md-3>div {
+    position: relative;
+    background: #fff;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: 1px solid #dddddd;
 }
 
 .stock-buying {
@@ -225,16 +148,45 @@ input, label, button {
    color: #666;
    font-size: 13px;
    background: #fff;
-   border: 1px solid #dcdcdc;
-   border-top: 0;
 }
-
+.stock-deal-button{
+    position: relative;
+    margin-left: 10px;
+}
+@media only screen and (max-width: 576px){
+.stock-deal-button {
+    position: relative;
+    margin-top: 10px;
+}
+}
+@media only screen and (max-width:668px){
+.stock-deal-button {
+    position: relative;
+    margin-left: 0;
+    margin-top: 10px
+}
+}
+@media (min-width: 576px){
+	
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    margin-right: .5rem!important;
+}
+}
+.chartdata-nav{
+	width: 100%;
+	margin: 30px 0 30px 0;
+	padding-right: 5px;
+    padding-left: 5px;
+}
 .input-area {
    margin-top: 15px;
 }
 
 .input-area>div {
-   margin-top: 8px;
+   margin-top: 12px;
 }
 
 .detail label {
@@ -356,41 +308,13 @@ a.btnSum:before {
     display: inline-block;
     margin: -2px 0 0 -1px;
 }
-
-
-.layerPopup, .layerPopup-buying-cancel{
-font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", sans-serif;
-line-height: 20px;
-letter-spacing: -1px;
-font-size: 13px;
-margin: 0;
-padding: 0;
-position: relative;
-font-weight: normal;
-color: #767676;
-display: none;
-right: 330px;
-}
-.layerPopup-buying-cancel{
-font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", sans-serif;
-line-height: 20px;
-letter-spacing: -1px;
-font-size: 13px;
-margin: 0;
-padding: 0;
-position: relative;
-font-weight: normal;
-color: #767676;
-display: none;
-right: 310px;
-}
 .layerStock {
     z-index: 1;
-    position: absolute;
+    position: relative;
     left: 0;
     top: 3px;
     padding: 20px 15px;
-    width: 531px;
+    width: 100%;
     background: #fff;
     border: 2px solid #474747;
 }
@@ -518,4 +442,312 @@ a.btnStyle {
 }
 #mySelect:disabled {
   background: #ccc;
+}
+.tableDesc{
+	border: none !important;
+	margin: 0;
+}
+.nav-item-last a{
+	border-right: none !important;
+}
+.stock-nav-tab li {
+    width: 33.333%;
+}
+.stock-nav-tab li.selected a, .stock-nav-tab li:active>a, .stock-nav-tab li.active>a {
+    z-index: 3;
+    background: #fff;
+    line-height: 50px;
+    color: #5a6268 !important;
+}
+[class*="stock-nav-tab"] li.selected a:after, li:active>a, li.active>a {
+    border-bottom: 2px solid #5a6268;
+}
+[class*="stock-nav-tab"] li a {
+    position: relative;
+    z-index: 1;
+    display: block;
+    line-height: 50px;
+    text-align: center;
+    color: #000;
+    border-right: 1px solid #eaeaea;
+    background: #f9f9f9;
+    box-sizing: border-box;
+}
+.nav-link {
+	padding: 0;
+
+	}
+@media only screen and (max-width: 1599px){
+	
+.stock-deal {
+    margin: 0 auto 100px;
+}
+}
+.layerPopup {
+    position: relative;
+    font-weight: normal;
+    color: #767676;
+}
+}
+.layerPopup .layerBox {
+    display: none;
+    position: absolute;
+    top: 23px;
+    left: 0;
+    z-index: 2;
+    width: 300px;
+    padding: 20px 15px;
+    border: 2px solid #474747;
+    background-color: #fff;
+    text-align: left;
+}
+.stock-deal-control{
+	float: right;
+	width: 332.625px;
+}
+@media only screen and (max-width: 1260px){
+.stock-deal-control {
+	width: 100%;
+	}
+}
+@media only screen and (max-width: 979px){
+.stock-deal-control {
+	width: 100%;
+	}
+}
+.stock-deal-rank{
+	float: left;
+	width: 50%;
+}
+.stock-price-chart{
+	border: none !important;
+}
+
+.stock-chart-table{
+	width: 100%;
+	border: 1px solid #dddddd;
+}
+#stockName {
+    font-size: 18px;
+    font-weight: 500;
+    border-bottom: 2px solid #d5d5d5;
+    padding: 13px;
+}
+
+
+[data-tooltip-text]:hover {
+	position: relative;
+}
+.upper-text, .now-text, .Lower-text, .inside-text, .inside-up-text, .inside-down-text{
+	border-right: 1px solid #dddddd;
+	font-size: 16px;
+	padding: 10px;
+	text-align: center;
+}
+.table-border{
+	border-bottom: 1px solid #dddddd;
+	background: #f5fafd;
+	font-size: 16px;
+	padding: 10px;
+	 text-align: center;
+}
+.Lower-text{
+	border-top: 1px solid #dddddd;
+	background: #fcf2f2;
+}
+.inside-down-text{
+	background: #fcf2f2;
+	color: #a3a3a3;
+}
+.upper-text{
+	border-bottom: 1px solid #dddddd;
+	background: #ecf2fc;
+}
+.inside-up-text{
+	background: #ecf2fc;
+	color: #a3a3a3v;
+}
+.now-text{
+	border-bottom: 1px solid #dddddd;
+	border-top: 1px solid #dddddd;
+	background: #eaeaea;
+	font-weight: 600;
+}
+#trad_frm button{
+	border: none;
+	padding: 0;
+	width: 100%;
+	height: 35px;"
+}
+ 
+
+[data-tooltip-text]:after {
+	-webkit-transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+	-moz-transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+	transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+
+	background-color: rgba(0, 0, 0, 0.8);
+
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+	-moz-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+	box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+	
+  -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+  color: #FFFFFF;
+	font-size: 14px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	padding: 7px 12px;
+	position: absolute;
+	width: 240px;
+	min-width: 50px;
+	max-width: 300px;
+	word-wrap: break-word;
+
+	z-index: 9999;
+
+	opacity: 0;
+	left: -9999px;
+  top: 90%;
+	
+	content: attr(data-tooltip-text);
+}
+
+[data-tooltip-text]:hover:after {
+	top: 130%;
+	left: 0;
+	opacity: 1;
+}
+
+.aside_area{
+    float: left;
+    width: 592px;
+    margin-right: 10px;
+    padding: 10px;
+    height: 230px;
+}
+.h_popular-left {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    width: 50%;
+    float: left;
+    border-bottom: 2px solid #dddddd;
+}
+.h_popular-right {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    width: 50%;
+    float: right;
+    border-bottom: 2px solid #dddddd;
+}
+.tbl_home_left {
+    width: 50%;
+    border: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-right: 1px solid #dddddd;
+    float: left;
+}
+.tbl_home_right {
+    width: 50%;
+    border: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+    float: right;
+}
+
+caption {
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
+
+[class*="tbl_home_"] thead {
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+[class*="tbl_home_"]  thead {
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+[class*="tbl_home_"]  tbody tr.up td {
+    color: #e00400;
+}
+[class*="tbl_home_"]  tbody td {
+    color: #666;
+    font-family: tahoma,sans-serif;
+    text-align: right;
+}
+[class*="tbl_home_"]  tbody td em.bu_p {
+    margin: -1px 0 1px;
+    _margin: 1px 0 -1px;
+    vertical-align: middle;
+}
+.bu_pup2 {
+    width: 7px !important;
+    height: 11px !important;
+    background-position: 0 -40px;
+}
+.bu_p {
+    display: inline-block !important;
+    background: url(https://ssl.pstatic.net/static/nfinance/img/spr_bu.gif) no-repeat;
+}
+.blind {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+[class*="tbl_home_"]  tbody th {
+    height: 22px;
+    padding: 5px;
+    font-weight: normal;
+    text-align: left;
+}
+[class*="tbl_home_"]  tbody th em {
+    margin-right: 5px;
+    color: #6879ab;
+    font-family: tahoma;
+    font-size: 16px;
+    font-weight: bold;
+}
+[class*="tbl_home_"]  tbody th a {
+    color: #5f5f5f;
+    white-space: nowrap;
+}
+[class*="tbl_home_"]  tbody tr.down td {
+    color: #003ace;
+}
+.bu_pdn {
+    width: 7px !important;
+    height: 6px !important;
+    background-position: 0 -80px;
+}
+@media only screen and (max-width: 979px){
+.aside_area {
+	width: 100%;
+	}
+}
+@media only screen and (max-width: 1260px){
+.aside_area {
+	width: 100%;
+	}
 }

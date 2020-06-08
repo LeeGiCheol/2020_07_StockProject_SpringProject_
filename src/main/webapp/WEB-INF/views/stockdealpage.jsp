@@ -43,132 +43,180 @@ tr td button{
 
 	<!-- 전체메뉴 백그라운드-->
 	<div class="all-dim"></div>
-	<div class="container">
+	<div class="containerNew">
 		<div class="stock-deal">
 			<div class="stock-deal-nav">거래</div>
 			<div class="row">
-				<div class="col-md-8">
-					<div class="chartdata">
-						<div class="chartdata-nav">
+			<div class="chartdata-nav">
 							<form action="/trade" id="searchForm"
-								class="form-inline my-2 my-lg-0 chartdata-form" method="GET">
+								class="form-inline chartdata-form" method="GET">
 								<input class="form-control mr-sm-2 stock-search-input"
 									type="search" placeholder="통합검색" id="stockSearch"
 									aria-label="Search" name="stockName">
 								<button
-									class="btn btn-outline-secondary my-2 my-sm-0 stock-search-btn"
+									class="btn btn-outline-secondary stock-search-btn"
 									id="stockBtn" type="submit">
 									<i class="fas fa-search"></i>
 								</button>
+								<div class="stock-deal-button">
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn"
+									class="btn btn-secondary companydata-btn"
 									onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
 								</button>
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn" id="minute">
+									class="btn btn-secondary companydata-btn" id="minute">
 									분차트보기</button>
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn" id="day">
+									class="btn btn-secondary companydata-btn" id="day">
 									일차트보기</button>
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn" onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
+									class="btn btn-secondary companydata-btn" onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
 									거래 기록</button>
 								<button type="button"
-									class="btn btn-secondary btn-sm companydata-btn" onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
+									class="btn btn-secondary companydata-btn" onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
 									보유 종목</button>
+								</div>
 							</form>
 
 						</div>
+				<div class="col-md-9">
+					<div class="chartdata">
 						<div class="chartdata-body">
 							<div id="chartcontainer"></div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="stock-price-chart">
-						<table class="table table-bordered">
+					<div class="aside_area aside_popular">
+					
+						<h3 class="h_popular-left">
+							<span>인기 검색 종목</span>
+						</h3>
+						<h3 class="h_popular-right">
+							<span>인기 종목</span>
+						</h3>
+					
+					<div class="table-body-left">
+						<table class="tbl_home_left">
+							<caption>
+								인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
+							</caption>
+							<colgroup>
+								<col>
+								<col width="60">
+								<col width="65">
+							</colgroup>
 							<thead>
 								<tr>
-									<th scope="col" colspan="3" id="stockName">${stockName}</th>
+									<th scope="col">구분</th>
+									<th scope="col">현재가</th>
+									<th scope="col">전일대비</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td></td>
-									<td>호가</td>
-									<td></td>
+							<tbody class="rank-table">
+								<tr class="up">
+									<th scope="row"><em>1.</em><a href="/item/main.nhn?code=007570" onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">일양약품</a></th>
+									<td>79,300</td>
+									<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em><span class="tah p11 red02"> 18,300 </span></td>
 								</tr>
-								<tr>
-									<td>상한가</td>
-									<td id="maximum"></td>
-									<td></td>
+								<tr class="down">
+									<th scope="row"><em>2.</em><a href="/item/main.nhn?code=005930" onclick="clickcr(this, &quot;boa.list&quot;, &quot;005930&quot;, &quot;2&quot;, event);">삼성전자</a></th>
+									<td>54,900</td>
+									<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em><span class="tah p11 nv01"> 600 </span></td>
 								</tr>
-								<!-- <tr>
-									<td rowspan="5"></td>
-									<td></td>
-									<td></td>
-								</tr> -->
-							</tbody>
-
-							<tbody id="up">
-								<!-- ajax 로 호가 + 주입 -->
-							</tbody>
-
-							<tbody>
-								<tr id="upDownColor">
-									<td >현재가</td>
-									<button><td id="price"></td></button>
-									<td id="beforeAndUpdown"></td>
+								<tr class="up">
+									<th scope="row"><em>3.</em><a href="/item/main.nhn?code=010145" onclick="clickcr(this, &quot;boa.list&quot;, &quot;010145&quot;, &quot;3&quot;, event);">삼성중공우</a></th>
+									<td>201,500</td>
+									<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em><span class="tah p11 red02"> 46,500 </span></td>
 								</tr>
-							</tbody>
-
-							<tbody id="down">
-								<!-- ajax 로 호가 - 주입 -->
-							</tbody>
-
-							<!-- <tr>
-									<td rowspan="5"></td>
-									<td>9,770</td>
-									<td></td>
+								<tr class="up">
+									<th scope="row"><em>4.</em><a href="/item/main.nhn?code=000100" onclick="clickcr(this, &quot;boa.list&quot;, &quot;000100&quot;, &quot;4&quot;, event);">유한양행</a></th>
+									<td>57,000</td>
+									<td><em class="bu_p bu_pup"><span class="blind">상승</span></em><span class="tah p11 red02"> 5,200 </span></td>
 								</tr>
-								<tr>
-									<td>9,760</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>9,750</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>9,740</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>9,730</td>
-									<td></td>
-								</tr>  -->
-							<tbody>
-								<tr>
-
-									<td>하한가</td>
-									<td id="minimum"></td>
-									<td></td>
+								<tr class="up">
+									<th scope="row"><em>5.</em><a href="/item/main.nhn?code=010140" onclick="clickcr(this, &quot;boa.list&quot;, &quot;010140&quot;, &quot;5&quot;, event);">삼성중공업</a></th>
+									<td>6,990</td>
+									<td><em class="bu_p bu_pup"><span class="blind">상승</span></em><span class="tah p11 red02"> 260 </span></td>
 								</tr>
 							</tbody>
 						</table>
+						</div>
+						<div class="table-body-rigth">
+						<table class="tbl_home_right">
+							<caption>
+								인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
+							</caption>
+							<colgroup>
+								<col>
+								<col width="60">
+								<col width="65">
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col">구분</th>
+									<th scope="col">현재가</th>
+									<th scope="col">전일대비</th>
+								</tr>
+							</thead>
+							<tbody class="rank-table">
+								<tr class="up">
+									<th scope="row"><em>1.</em><a
+										href="/item/main.nhn?code=007570"
+										onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">일양약품</a></th>
+									<td>79,300</td>
+									<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em><span
+										class="tah p11 red02"> 18,300 </span></td>
+								</tr>
+								<tr class="down">
+									<th scope="row"><em>2.</em><a
+										href="/item/main.nhn?code=005930"
+										onclick="clickcr(this, &quot;boa.list&quot;, &quot;005930&quot;, &quot;2&quot;, event);">삼성전자</a></th>
+									<td>54,900</td>
+									<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em><span
+										class="tah p11 nv01"> 600 </span></td>
+								</tr>
+								<tr class="up">
+									<th scope="row"><em>3.</em><a
+										href="/item/main.nhn?code=010145"
+										onclick="clickcr(this, &quot;boa.list&quot;, &quot;010145&quot;, &quot;3&quot;, event);">삼성중공우</a></th>
+									<td>201,500</td>
+									<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em><span
+										class="tah p11 red02"> 46,500 </span></td>
+								</tr>
+								<tr class="up">
+									<th scope="row"><em>4.</em><a
+										href="/item/main.nhn?code=000100"
+										onclick="clickcr(this, &quot;boa.list&quot;, &quot;000100&quot;, &quot;4&quot;, event);">유한양행</a></th>
+									<td>57,000</td>
+									<td><em class="bu_p bu_pup"><span class="blind">상승</span></em><span
+										class="tah p11 red02"> 5,200 </span></td>
+								</tr>
+								<tr class="up">
+									<th scope="row"><em>5.</em><a
+										href="/item/main.nhn?code=010140"
+										onclick="clickcr(this, &quot;boa.list&quot;, &quot;010140&quot;, &quot;5&quot;, event);">삼성중공업</a></th>
+									<td>6,990</td>
+									<td><em class="bu_p bu_pup"><span class="blind">상승</span></em><span
+										class="tah p11 red02"> 260 </span></td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+						<a href="/sise/lastsearch2.nhn" class="btn_more"
+							onclick="clickcr(this, 'boa.more', '', '', event);"><em
+							class="btn_more4"><span class="blind">인기 검색 종목 더보기</span></em></a>
 					</div>
 					<div class="stock-deal-control">
 						<div class="stock-deal-control-nav">
-							<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-								<li class="nav-item" role="presentation"><a
-									class="nav-link active" id="pills-home-tab" data-toggle="pill"
+							<ul class="nav stock-nav-tab" id="pills-tab" role="tablist">
+								<li class="nav-item active" role="presentation"><a
+									class="nav-link" id="pills-home-tab" data-toggle="pill"
 									href="#pills-home" role="tab" aria-controls="pills-home"
 									aria-selected="true">매수</a></li>
 								<li class="nav-item" role="presentation"><a
 									class="nav-link" id="pills-profile-tab" data-toggle="pill"
 									href="#pills-profile" role="tab" aria-controls="pills-profile"
 									aria-selected="false">매도</a></li>
-								<li class="nav-item" role="presentation"><a
+								<li class="nav-item nav-item-last" role="presentation"><a
 									class="nav-link" id="pills-contact-tab" data-toggle="pill"
 									href="#pills-contact" role="tab" aria-controls="pills-contact"
 									aria-selected="false">정정/취소</a></li>
@@ -182,9 +230,9 @@ tr td button{
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr">단가</label> <input type="text"
+												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input type="text"
 													class="alignR" id="buying_price" name="buyingPrice"
-													readOnly> 원 <span class="buying-check"> <a
+													readOnly></span> 원 <span class="buying-check"> <a
 													class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 													<script>
 												$(document).ready(function() {
@@ -203,9 +251,22 @@ tr td button{
 													  $("input:text[numberOnly]").on("keyup", function() {
 														    $(this).val($(this).val().replace(/[^0-9]/g,""));
 														});
+														$(".newboard-nav-item").each(function() {
+															$(this).click(function() {
+																$(this).addClass("selected"); //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+																$(this).siblings().removeClass("selected"); //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+															});
+														});
+														$(function() {
+															var sBtn = $("ul > li"); //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
+															sBtn.find("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
+																sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
+																$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+															});
+														});
 													});
 												</script>
-													<div class="layerPopup">
+													<div class="layerPopup" style="display: none;">
 														<div class="layerBox layerStock" id="poplayer_possible"
 															style="display: block;">
 															<h1>매수가능</h1>
@@ -313,16 +374,8 @@ tr td button{
 											</span>
 										</div>
 									</div>
-									<button style="width: 100%; height: auto;" type="submit">매수주문</button>
+									<button type="submit">매수주문</button>
 								</form>
-								<div class="tableDesc">
-									<ul class="dotList">
-										<li>정규시장 주문시간 안내 : 08:20~15:30</li>
-										<li>시간외종가 주문시간 안내 : 장 개시 전 종가 – 08:30~08:40 / 장 마감 후 종가 –
-											15:40~16:00</li>
-										<li>ELW 종목은 시간외 거래 불가</li>
-									</ul>
-								</div>
 							</div>
 
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel"
@@ -331,11 +384,9 @@ tr td button{
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" id="selling_price" name="sellingPrice"
-													readOnly> 원 <span class="buying-check"> <a
-													onclick="#"
-													class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
+												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input type="text"
+													class="alignR" id="selling_price" name="sellingPrice" readOnly></span> 원 
+													<span class="buying-check"> <a onclick="#" class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
 													<div class="layerPopup">
 														<div class="layerBox layerStock" id="poplayer_possible"
 															style="display: block;">
@@ -386,16 +437,8 @@ tr td button{
 											</span>
 										</div>
 									</div>
-									<button style="width: 100%; height: auto;" type="submit">매도주문</button>
+									<button type="submit">매도주문</button>
 								</form>
-								<div class="tableDesc">
-									<ul class="dotList">
-										<li>정규시장 주문시간 안내 : 08:20~15:30</li>
-										<li>시간외종가 주문시간 안내 : 장 개시 전 종가 – 08:30~08:40 / 장 마감 후 종가 –
-											15:40~16:00</li>
-										<li>ELW 종목은 시간외 거래 불가</li>
-									</ul>
-								</div>
 							</div>
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 								aria-labelledby="pills-contact-tab">
@@ -489,14 +532,14 @@ tr td button{
 												</span>
 											</div>
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 35px;"
-													class="btn-cc">단가</label> <input type="text" class="alignA"
-													id="mySelect" name="modifyPrice" numberOnly> <input
+												<label for="nOrdUnpr" style="margin-right: 39px;"
+													class="btn-cc">단가</label><span data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input type="text" class="alignA"
+													id="mySelect" name="modifyPrice" readonly></span> <input
 													type="text" class="alignB" id="mySelect" value="0"
 													style="display: none;" disabled> 원
 											</div>
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 35px;">수량</label>
+												<label for="nOrdUnpr" style="margin-right: 34px;">수량</label>
 												<input type="text" class="alignR" name="modifyQu" numberOnly>
 												주
 
@@ -509,23 +552,73 @@ tr td button{
 											</span>
 										</div>
 									</div>
-									<button style="width: 100%; height: auto;" class="btn-modify"
+									<button class="btn-modify"
 										type="submit">정정주문</button>
 									<button style="width: 100%; height: auto; display: none;"
 										class="btn-cancel" type="submit">취소주문</button>
 								</form>
-								<div class="tableDesc">
-									<ul class="dotList">
-										<li>정규시장 주문시간 안내 : 08:20~15:30</li>
-										<li>시간외종가 주문시간 안내 : 장 개시 전 종가 – 08:30~08:40 / 장 마감 후 종가 –
-											15:40~16:00</li>
-										<li>ELW 종목은 시간외 거래 불가</li> console.log(${d });
-										console.log(${hr});
-									</ul>
-								</div>
 							</div>
-
 						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-3">
+					<div class="stock-price-chart">
+						<table class="stock-chart-table	">
+							<colgroup>
+								<col width="30%">
+								<col width="30%">
+								<col width="40%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col" colspan="3" id="stockName">${stockName}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td scope="col" class="table-border"></td>
+									<td scope="col" class="table-border">호가</td>
+									<td scope="col" class="table-border"></td>
+								</tr>
+								<tr>
+									<td scope="col" class="upper-text">상한가</td>
+									<td scope="col"  class="upper-text" id="maximum"></td>
+									<td scope="col"></td>
+								</tr>
+							</tbody>
+
+							<tbody id="up">
+								<!-- ajax 로 호가 + 주입 -->
+							</tbody>
+
+							<tbody>
+								<tr id="upDownColor">
+									<td scope="col" class="now-text">현재가</td>
+									<td scope="col" class="now-text" id="price"></td>
+									<td scope="col" class="now-text" id="beforeAndUpdown"></td>
+								</tr>
+							</tbody>
+
+							<tbody id="down">
+								<!-- ajax 로 호가 - 주입 -->
+							</tbody>
+							<tbody>
+								<tr>
+									<td scope="col" class="Lower-text">하한가</td>
+									<td scope="col" class="Lower-text" id="minimum"></td>
+									<td scope="col"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="tableDesc">
+						<ul class="dotList">
+							<li>정규시장 주문시간 안내 : 08:20~15:30</li>
+							<li>시간외종가 주문시간 안내 : 장 개시 전 종가 – 08:30~08:40 / 장 마감 후 종가 –
+								15:40~16:00</li>
+							<li>ELW 종목은 시간외 거래 불가</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -573,11 +666,11 @@ tr td button{
 						
 						// 어제 대비 현재가가 오른경우
 						if(data.before.indexOf("+") != -1){					
-							$('#upDownColor').css("color", "red");
+							$('#upDownColor').css("color", "rgb(255, 0, 0)");
 						} 
 						// 내린경우
 						else {
-							$('#upDownColor').css("color", "Aqua");
+							$('#upDownColor').css("color", "rgb(91, 90, 255)");
 						}
 						
 						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
@@ -750,7 +843,7 @@ tr td button{
 		                  parseInt(day_d[i]%10000/100)-1,
 		                  day_d[i]%100+1
 		                  ),
-		         y:  [ parseFloat(day_start[i]), parseFloat(day_highprice[i]),
+		         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
 	                 parseFloat(day_lowprice[i]),
 	                 parseFloat(day_lastprice[i]) ]
 		     });
@@ -957,8 +1050,8 @@ tr td button{
 
 	<script id="upPrice" type="text/x-jsrender">
 			<tr>
-				<td></td>
-				<td><button onClick="(function(){
+				<td scope="col" class="inside-text"></td>
+				<td scope="col" class="inside-up-text"><button onClick="(function(){
 							$('#buying_price').val('{{:up}}');
 							$('#selling_price').val('{{:up}}');
 							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
@@ -967,13 +1060,13 @@ tr td button{
 							$('#selling_result').text(sell_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							})()">
 				{{:up}}</td>
-				<td></td>
+				<td scope="col"></td>
 			</tr>
 	</script>
 	<script id="downPrice" type="text/x-jsrender">
 			<tr>
-				<td></td>
-				<td><button onClick="(function(){
+				<td scope="col" class="inside-text"></td>
+				<td scope="col" class="inside-down-text"><button onClick="(function(){
 							$('#buying_price').val('{{:down}}');
 							$('#selling_price').val('{{:down}}');
 							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
@@ -982,7 +1075,7 @@ tr td button{
 							$('#selling_result').text(sell_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							})()">
 				{{:down}}</td>
-				<td></td>
+				<td scope="col"></td>
 			</tr>
 	</script>
 
