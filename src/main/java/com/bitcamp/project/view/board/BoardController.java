@@ -95,18 +95,11 @@ public class BoardController {
 
 		
 		// 댓글리스트
-		//cVo.setPno(pno);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("boardDetail", boardDetail);
 		map.put("commentList", (List<CommentVO>)commentList.get("commentList"));
 		map.put("commentPage", (PagingVO)commentList.get("commentPage"));
-//		ModelAndView mav = new ModelAndView();
-//		
-//		mav.addObject("boardDetail", boardDetail);
-//		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
-//		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
-//		mav.setViewName("free-board-detail");
 		
 		return map;
 	}

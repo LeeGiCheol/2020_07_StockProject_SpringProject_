@@ -1,6 +1,7 @@
 package com.bitcamp.project.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,7 @@ public class MyPostDAOImpl implements MyPostDAO {
 	}
 
 	@Override
-	public void myListDelete() {
-		// TODO Auto-generated method stub
-
+	public void deleteMyPost(Map<String, String> myMap) {
+		mybatis.delete("board.deleteMyPost", myMap);
 	}
 }

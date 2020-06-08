@@ -26,8 +26,7 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public int updateComment(CommentVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mybatis.update("comment.updateComment", vo);
 	}
 
 	@Override
