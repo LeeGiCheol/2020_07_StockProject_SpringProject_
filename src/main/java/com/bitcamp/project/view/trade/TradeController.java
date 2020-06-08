@@ -25,7 +25,6 @@ import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
-import stockCode.RequestChart;
 import stockCode.StockParsing;
 
 @Controller
@@ -319,8 +318,8 @@ public class TradeController {
 
 		stockName = stockName.toUpperCase();
 
-		RequestChart rc = new RequestChart();
-		rc.connection(stockName);
+		//RequestChart rc = new RequestChart();
+		//rc.connection(stockName);
 
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);
