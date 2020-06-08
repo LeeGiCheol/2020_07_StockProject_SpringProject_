@@ -17,13 +17,13 @@
 		</ul>
 		<ul class="nav justify-content-end top-nav">
 			<a href="#"><img class="" cust_id="" id="_myhomeId"
-				src="resources/img/pi_08.png"></a>
+				src="/resources/img/pi_08.png"></a>
 			<dl>
 				<dt>
 					<strong>개미굴</strong> 님
 				</dt>
 			</dl>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그아웃</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="/logOut">로그아웃</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">알림<span>N</span></a></li>
 		</ul>
@@ -31,8 +31,8 @@
 		<!-- 메인  nav -->
 		<nav
 			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-			<a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stock
-				gallery</a>
+			<a href="#" class="navbar-logo"><img class="" id="logo" src="/resources/img/logo.png"></a>
+			<a class="navbar-brand" href="#">Stock gallery</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -53,7 +53,7 @@
 				</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						class="nav-link dropdown-toggle toggle-btn" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> 커뮤니티 </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">

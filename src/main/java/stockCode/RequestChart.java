@@ -13,7 +13,10 @@ import java.sql.ResultSet;
 import java.util.Date;
 
 public class RequestChart {
+	String onOff = "OFF";
 	public void connection(String stockName) {
+		if(onOff.equals("OFF"))
+			return;
 		BufferedReader bin;
 		Connection conn;
 		PreparedStatement pstmt;
@@ -40,8 +43,6 @@ public class RequestChart {
 			pw.flush();
 			String echo = br.readLine();
 			System.out.print(echo+" => ");
-			Date now = new Date();
-			System.out.println(now);
 //
 //			long end = System.currentTimeMillis();
 //

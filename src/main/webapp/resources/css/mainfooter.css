@@ -1,25 +1,8 @@
 @charset "UTF-8";
 
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
-	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
-	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
-	figure, footer, header, hgroup, menu, nav, section, summary, time,
-	audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	font-size: 14px;
-	background: transparent;
-	list-style: none;
-	box-sizing: border-box;
-	word-break: break-all;
-}
-
 /* footer start */
 .footer_div {
-	border-top: 1px solid gray;
+	border-top: 1px solid #dddddd;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	background-color: #fff;

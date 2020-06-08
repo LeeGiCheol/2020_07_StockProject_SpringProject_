@@ -121,30 +121,32 @@
 	<select id="getMyBoard" parameterType="page" resultType="board">
 		select *
 		from board
-		where id=#{util.id}
+		where id=#{a.id}
 		limit #{start}, #{cntPerPage}
 	</select>
 	
 	<select id="getMyComment" parameterType="page" resultType="comment">
 		select *
 		from commentList
-		where id=#{util.id}
+		where id=#{id}
 		limit #{start}, #{cntPerPage}
 	</select>
 	
-	<delete id="deleteMyPost" parameterType="map">
-		delete
-		<choose>
-			<when test='type.equals("board")'>
-				from board
-				where pno=#{no}
-			</when>
-			<when test='type.equals("comment")'>
-				from commentlist
-				where cno=#{no}
-			</when>
-		</choose>
-	</delete>
+	
+	<!-- 자유게시판 페이징처리 -->
+	<select id="boardCount" parameterType="board" resultType="int">
+		select count(*)
+		from board
+		where bno = 1
+	</select>
+		
+	<select id="boardList" parameterType="page" resultType="board">
+		select *
+		from board
+		where bno=1
+		order by pno desc
+		limit #{start}, #{cntPerPage}
+	</select>
 	
 	
 </mapper>

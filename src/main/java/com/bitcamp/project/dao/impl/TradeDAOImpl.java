@@ -19,6 +19,11 @@ public class TradeDAOImpl implements TradeDAO {
 	
 
 	@Override
+	public List getHoldingStock(String id) {
+		return mybatis.selectList("stock.getHoldingStock" , id);
+	}
+
+	@Override
 	public List getUnsettled_ID(String id) {
 		return mybatis.selectList("stock.getUnsettled_ID", id);
 	}
@@ -112,5 +117,10 @@ public class TradeDAOImpl implements TradeDAO {
 		}
 	}
 
+	@Override
+	public List getHistory(String id) {
+		return mybatis.selectList("stock.getHistory", id);
+	}
+	
 
 }

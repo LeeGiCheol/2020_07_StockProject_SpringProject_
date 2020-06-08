@@ -1,6 +1,8 @@
 package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +45,73 @@ public class TradeController {
 //
 //		return jsonObject;
 //	}
+	@GetMapping(value = "/myStock")
+	public ModelAndView myStock(@RequestParam(value = "page") int page) {
+		ModelAndView mav = new ModelAndView();
+		String id = null;
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
+			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.setViewName("blank");
+			return mav;
+		}
+		
+		List<Map> holdingStock = tradeService.getHoldingStock(id);
+		List<Map> pageHoldingStock = new ArrayList<>();
+		
+		try {
+			for (int i = (page - 1) * 15; i < page * 15; i++) {
+				pageHoldingStock.add(holdingStock.get(i));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		mav.addObject("total", holdingStock.size());
+		mav.addObject("pageHoldingStock", pageHoldingStock);
+		mav.setViewName("holdingStock");
+		return mav;
+	}
+	
+		
+	@GetMapping(value = "/trade_history")
+	public ModelAndView history(@RequestParam(value = "page") int page) {
+		DecimalFormat formatter = new DecimalFormat("###,###,###");
+		ModelAndView mav = new ModelAndView();
+		String id = null;
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
+			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.setViewName("blank");
+			return mav;
+		}
+
+		List<Map> history = tradeService.getHistory(id);
+		List<Map> pageHistory = new ArrayList<>();
+
+		try {
+			for (int i = (page - 1) * 15; i < page * 15; i++) {
+				history.get(i).put("tdatetime",
+						new Date(((Date) history.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
+				if (history.get(i).get("category").equals("buy")) {
+					history.get(i).put("category", "매수");
+				} else if (history.get(i).get("category").equals("sell")) {
+					history.get(i).put("category", "매도");
+				}
+				history.get(i).put("tprice", formatter.format(history.get(i).get("tprice")));
+				pageHistory.add(history.get(i));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		mav.addObject("total", history.size());
+		mav.addObject("pageHistory", pageHistory);
+		mav.setViewName("tradehistory");
+		return mav;
+	}
 
 	@PostMapping(value = "/modify")
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
@@ -129,7 +198,7 @@ public class TradeController {
 			tradeService.stockCancel(vo);
 			break;
 		}
-		
+
 		if (modify.equals("cancle"))
 			modify = "취소";
 		else
@@ -143,11 +212,13 @@ public class TradeController {
 	@PostMapping(value = "/selling")
 	public ModelAndView selling(@RequestParam(value = "sellingQu") String qu,
 			@RequestParam(value = "sellingPrice") String price, @RequestParam(value = "sName") String stockName) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-//		String id = "test"; // test 용 아이디
+		price = price.replace(",", "");
 		ModelAndView mav = new ModelAndView();
+		String id = null;
 
-		if (id == null) {
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
 			mav.setViewName("notice");
@@ -182,17 +253,18 @@ public class TradeController {
 	@PostMapping(value = "/buying")
 	public ModelAndView buying(@RequestParam(value = "buyingQu") String qu,
 			@RequestParam(value = "buyingPrice") String price, @RequestParam(value = "sName") String stockName) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-//		String id = "test"; // test 용 아이디
-		
+		price = price.replace(",", "");
 		ModelAndView mav = new ModelAndView();
-
-		if (id == null) {
+		String id = null;
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
 			mav.setViewName("notice");
 			return mav;
 		}
+//		String id = "test"; // test 용 아이디
 
 		long money = tradeService.getMoney(id);
 		if (money < Long.parseLong(price) * Long.parseLong(qu)) {
@@ -221,8 +293,13 @@ public class TradeController {
 	public ModelAndView tradeView(Info vo) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		String stockName = vo.getStockName();
+
+		if (stockName == null)
+			stockName = "삼성전자";
+
 		ModelAndView mav = new ModelAndView();
-		
+		String stockCode = tradeService.stockSearch(stockName);
+
 		try {
 			String id = ((UserVO) session.getAttribute("loginUser")).getId();
 			StockVO sv = new StockVO();
@@ -233,41 +310,43 @@ public class TradeController {
 			List unsettled = tradeService.getUnsettled_ID(id);
 			mav.addObject("unsettled", unsettled);
 			mav.addObject("myStockQu", myStockQu);
-			mav.addObject("money",formatter.format(money)+"원");
+			mav.addObject("money", formatter.format(money) + "원");
 		} catch (Exception e) {
 			mav.addObject("myStockQu", "로그인이 필요합니다");
 			mav.addObject("money", "로그인이 필요합니다");
 		}
-//		String id = "test"; // test 용 아이디
-		
-		if (stockName == null)
-			stockName = "삼성전자";
 
 		stockName = stockName.toUpperCase();
 
-//		RequestChart rc = new RequestChart();
-//		rc.connection(stockName);
-		
-		
+		//RequestChart rc = new RequestChart();
+		//rc.connection(stockName);
+
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);
 
 		Integer[][] minChartData = new Integer[6][60];
 		Integer[][] dayChartData = new Integer[6][60];
 //
-		for (int i = 0; i < 60; i++) {
-			minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
-			minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
-			minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
-			minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
-			minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
-			minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
+		try {
+			for (int i = 0; i < 60; i++) {
+				minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
+				minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
+				minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
+				minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
+				minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
+				minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
 
-			dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
-			dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
-			dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
-			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
-			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+				dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
+				dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
+				dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
+				dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
+				dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+			}
+		} catch (Exception e) {
+			mav.addObject("msg", "정확한 종목명을 입력해주세요");
+			mav.addObject("location", "/trade");
+			mav.setViewName("notice");
+			return mav;
 		}
 
 		mav.addObject("min_d", minChartData[0]);
@@ -284,6 +363,7 @@ public class TradeController {
 		mav.addObject("day_lastprice", dayChartData[5]);
 
 		mav.addObject("stockName", stockName);
+		mav.addObject("stockCode", stockCode);
 		mav.setViewName("stockdealpage");
 		return mav;
 
@@ -292,7 +372,6 @@ public class TradeController {
 	@RequestMapping(value = "/trade/search")
 	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
 		String stockName = vo.getStockName();
-
 
 		StockParsing st = new StockParsing();
 

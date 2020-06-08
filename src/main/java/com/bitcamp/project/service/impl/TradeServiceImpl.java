@@ -15,9 +15,16 @@ public class TradeServiceImpl implements TradeService {
 
 	@Autowired
 	TradeDAO tradeDAO;
-	
-	
 
+	@Override
+	public List getHoldingStock(String id) {
+		return tradeDAO.getHoldingStock(id);
+	}
+
+	@Override
+	public List getHistory(String id) {
+		return tradeDAO.getHistory(id);
+	}
 
 	@Override
 	public List getUnsettled_ID(String id) {

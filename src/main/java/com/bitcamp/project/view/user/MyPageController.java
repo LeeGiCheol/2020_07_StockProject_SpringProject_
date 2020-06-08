@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.MyPostService;
 import com.bitcamp.project.service.UserInfoService;
@@ -55,6 +56,23 @@ public class MyPageController {
 		session.setAttribute("commentPage",(PagingVO)myPost.get("commentPage"));
 		return "mypage03";
 	}
+	
+	
+	@GetMapping(value="/myPage04")
+	public ModelAndView myPage04(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		
+		List notice = userInfoService.getNotice(id);
+		List tradeNotice = (List) notice.get(0);
+		System.out.println(tradeNotice);
+//		List commentNotice = (List) notice.get(1);
+		mav.addObject("tradeNotice" , tradeNotice);
+//		mav.addObject("commentNotice" , commentNotice);
+		mav.setViewName("mypage04");
+		return mav;
+	}
+	
 	
 	@PostMapping(value="/updateUser")
 	public String updateUser(@ModelAttribute("pw") String pw, @ModelAttribute("address") String address,

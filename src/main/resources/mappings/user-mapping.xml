@@ -20,6 +20,15 @@
 		<result property="address" column="ADDRESS"/>
 		<result property="charge" column="CHARGE"/>
 	</resultMap> -->
+	
+	<select id="getTradeNotice" resultType="map">
+			select notice.tno, stockName, category, tdatetime, tprice,quantity from stocknotice as notice join tradinghistory as td on td.tno = notice.tno where td.id = #{id} order by notice.tno desc;
+	</select>
+	
+	<select id="getCommentNotice" resultType="map">
+			
+	</select>
+	
 
 	<insert id="signUp">
 		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
@@ -63,7 +72,20 @@
 		FROM user
 		WHERE id = #{id}
 	</select>
+	<!-- 아이디찾기 -->
+	<select id="findId" parameterType="user" resultType="user">
+		SELECT *
+		FROM user
+		WHERE tel=#{tel}
+	</select>
 	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPassword" parameterType="user" resultType="user">
+		SELECT id,pw
+		FROM user
+		WHERE id=#{id} 
+		AND pw=#{pw}
+	</select>
 
 	<!-- 개인정보 수정하는 SQL UserInfoDAO.userInfoUpdate -->
 	<update id="updateUser" parameterType="user">

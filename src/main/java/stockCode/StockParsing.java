@@ -58,7 +58,7 @@ public class StockParsing {
 //				System.out.println(minimum);
 			////////////////////////////////////////
 				
-				System.out.println(up_c);
+//				System.out.println(up_c);
 				
 
 				// 
@@ -158,7 +158,7 @@ public class StockParsing {
 						break;
 					}
 					if(currentPrice == kospiTable[left]) {
-						System.out.println(currentPrice);
+//						System.out.println(currentPrice);
 						left++;
 						i++;
 						continue;
@@ -177,11 +177,11 @@ public class StockParsing {
 				}
 			}
 			
-			System.out.println("up "+Arrays.toString(up));
-			System.out.println("down "+Arrays.toString(down));
-			
-				
-			System.out.println("현재가 " + currentPrice);
+//			System.out.println("up "+Arrays.toString(up));
+//			System.out.println("down "+Arrays.toString(down));
+//			
+//				
+//			System.out.println("현재가 " + currentPrice);
 			
 			Info inf = new Info();
 			inf.setStockName(stockName);

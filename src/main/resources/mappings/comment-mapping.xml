@@ -7,8 +7,8 @@
 
 	
 	<insert id="writeComment">
-		INSERT INTO commentList (pno, id, ccontent, cdatetime)
-		VALUES(#{pno}, #{id}, #{ccontent}, sysdate())	
+		INSERT INTO commentList (pno, id, nickname, ccontent, cdateTime)
+		VALUES(#{pno}, #{id}, #{nickname}, #{ccontent}, sysdate())	
 	</insert>
 	
 	<select id="commentCount" parameterType="comment" resultType="int">
@@ -17,13 +17,24 @@
 		where pno=#{pno}
 	</select>
 		 
-	<select id="commentList" parameterType="map" resultType="comment">
+	<select id="commentList" parameterType="page" resultType="comment">
 		select *
 		from commentList
-		where pno=#{commentVO.pno}
+		where pno=#{util.pno}
 		order by cno desc
-		limit #{pagingVO.start}, #{pagingVO.cntPerPage}
+		limit #{start}, #{cntPerPage}
 	</select>
+	
+	<update id="updateComment">
+		UPDATE commentList
+		SET ccontent=#{ccontent}
+		WHERE cno=#{cno}
+	</update>
+	
+	<delete id="deleteComment">
+		DELETE FROM commentList
+		WHERE cno=#{cno}
+	</delete>
 	
 	<!-- <select id="commentList" resultType="comment">
 		SELECT * FROM commentList

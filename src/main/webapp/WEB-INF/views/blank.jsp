@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	보유한 수량이 부족합니다
+<script>
+	alert('${msg}');
+	self.close();
+	</script>
 </body>
 </html>

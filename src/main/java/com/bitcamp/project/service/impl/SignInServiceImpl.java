@@ -20,20 +20,24 @@ public class SignInServiceImpl implements SignInService {
 
 	@Override
 	public void logOut() {
-		// TODO Auto-generated method stub
+		signInDAO.logOut();
+	}
+
+	@Override
+	public UserVO findId(UserVO vo) {
+		return signInDAO.findId(vo);
+
+	}
+	
+	@Override
+	public UserVO tryId(UserVO vo) {
+		return null;
 
 	}
 
 	@Override
-	public void findId() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void findPw() {
-		// TODO Auto-generated method stub
-
+	public UserVO findPw(UserVO vo) {
+		return signInDAO.findPw(vo);
 	}
 
 }
