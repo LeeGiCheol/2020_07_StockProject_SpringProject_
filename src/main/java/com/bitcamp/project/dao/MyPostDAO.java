@@ -1,6 +1,7 @@
 package com.bitcamp.project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
@@ -14,6 +15,6 @@ public interface MyPostDAO {
 	public int countComment(UserVO loginUser);
 	public List<BoardVO> myBoardList(PagingVO page);
 	public List<CommentVO> myCommentList(PagingVO page);
-	public void myListDelete();
+	public void deleteMyPost(Map<String, String> myMap);
 	
 }

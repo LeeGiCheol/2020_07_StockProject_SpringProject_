@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.h2.engine.SysProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,11 +38,10 @@ public class MyPostServiceImpl implements MyPostService {
 	public Map<String, Object> myPostList(UserVO loginUser, int bnowPage, int cnowPage) {
 		PagingVO boardPage = new PagingVO(myPostDAO.countBoard(loginUser), bnowPage, 3);
 		PagingVO commentPage = new PagingVO(myPostDAO.countComment(loginUser), cnowPage, 3);
-		boardPage.getA().put("id", loginUser.getId());
-		commentPage.setId(loginUser.getId());
+		boardPage.getUtil().put("id", loginUser.getId());
+		commentPage.getUtil().put("id", loginUser.getId());
 		List<BoardVO> myBoard = myPostDAO.myBoardList(boardPage);
 		List<CommentVO> myComment = myPostDAO.myCommentList(commentPage);
-		System.out.println(boardPage.toString());
 		
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("myBoard", myBoard);
@@ -53,8 +53,13 @@ public class MyPostServiceImpl implements MyPostService {
 	}
 
 	@Override
-	public void myListDelete() {
-
+	public void deleteMyPost(String deleted[], String type) {
+		Map<String, String> myMap = new HashMap<String, String>();
+		myMap.put("type", type);
+		for (int i = 0; i < deleted.length; i++) {
+			myMap.put("no", deleted[i]);
+			myPostDAO.deleteMyPost(myMap);
+		}
 	}
 
 }

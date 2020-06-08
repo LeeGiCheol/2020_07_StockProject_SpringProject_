@@ -36,17 +36,17 @@ public class SignInController {
 //			System.out.println("pw2 " + pw);
 			if(vo.getPw().equals(pw)) {
 				session.setAttribute("loginUser", vo);
-				return "mainpage";
+				return "redirect:/mainPage";
 			}
-			else return "login";
+			else return "redirect:/signInPage";
 		}
 		else 
-			return "login";
+			return "redirect:/signInPage";
 	}
 	
 	@GetMapping(value="/logout")
 	public String logout() {
-		return "mainpage";
+		return "redirect:/mainPage";
 	}
 }
 
