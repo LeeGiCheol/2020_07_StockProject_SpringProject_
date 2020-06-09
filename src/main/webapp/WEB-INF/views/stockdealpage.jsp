@@ -634,21 +634,9 @@ tr td button{
 						var a = 1;
 						
 						for(var i=0; i<data.topName.length-1; i++){
-<<<<<<< HEAD
+
 							topRank += '<tr class="up">'
 							topRank += '<th scope="row"><em>'+a+'</em>'
-=======
-							if(data.topUpDown[i].indexOf("+") != -1){							
-								topRank += '<tr class="up"  style="width:50px">'
-								topRank += '<th scope="row"><em>'+a+'</em>'
-							}
-							
-							else if(data.topUpDown[i].indexOf("-") != -1){
-								topRank += '<tr class="down">'
-              					topRank += '<th scope="row"><em>'+a+'</em>'
-							}
-							
->>>>>>> eb4136f4cd11926ee2e30582a40ad556f9c42cf7
 							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
 							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
 							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
