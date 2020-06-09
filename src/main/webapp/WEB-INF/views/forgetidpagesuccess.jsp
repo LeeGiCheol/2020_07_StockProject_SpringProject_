@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>forgetidpage</title>
+<title>아이디찾기</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -23,7 +23,7 @@
 		<div class="contents member">
 			<div class="cont-area">
 				<h1 class="tit-h1 line">아이디 찾기</h1>
-				<div class="id-result">
+					<div class="id-result">
 						<div class="message-st-no"> 
 							<img class="" id="idfail" src="/resources/img/icon.png">
 							<p class="big-text">
@@ -32,32 +32,18 @@
 							</p>
 						</div>
 						<div class="result-box">
-						<ul class="result-list">
-						
-							<li>
-								<span class="id">
-									
-								<label for="radio1" class="label">개미굴</label>
-								</span>
-								<span class="join">가입일 <em class="date">2020.06.04 </em></span>
-									
-							</li>	
-						
-						</ul>
-					</div>
-						<div class="bt-area">
-							<a href="javascript:formSubmit();" class="btn-b gray">로그인</a>
+							<ul class="result-list">
+								<li style="margin-left:103px; padding-bottom:30px;">
+								<span class="id"><label for="radio1" class="label">${findUser.id}</label></span></li>	
+							</ul>
 						</div>
+						<div class="bt-area"><a href="/signInPage" class="btn-b gray">로그인</a></div>
 						<div class="find-info">
-							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> <span
-								class="bt-area"> <a
-								href="#"
-								class="btn-t">회원가입</a> <a
-								href="#"
-								class="btn-t">비밀번호 찾기</a>
-							</span>
+							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> 
+							<span class="bt-area"> <a href="/signUpPage/1" class="btn-t">회원가입</a>
+						    <a href="/forgetPassword" class="btn-t">비밀번호 찾기</a></span>
 						</div>
-				</div>
+					</div>
 			</div>
 		</div>
 	</div>
