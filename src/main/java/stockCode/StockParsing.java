@@ -34,7 +34,7 @@ public class StockParsing {
 		
 		try {
 			String url = "https://finance.naver.com/item/main.nhn?code=" + code;
-//			String url = "https://finance.naver.com/item/main.nhn?code=" + "005930";
+//			String url = "https://finance.naver.com/item/main.nhn?code=" + "098460";
 			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
 			doc = Jsoup.connect(url).get();
 			Elements viewLists = doc.select("#middle");
@@ -66,7 +66,6 @@ public class StockParsing {
 				String[] cPrice = currentPrice_.split(" ");
 				String[] up_ = up_c.split(" ");
 				String[] down_ = down_c.split(" ");
-				
 				
 				
 				
@@ -131,17 +130,22 @@ public class StockParsing {
 				}
 				
 				for (int i = 0; i < kospiTable.length; i++) {
-					if(currentPrice == kospiTable[i]) {
-//						System.out.println("kospi " + kospiTable[i]);
-						k = i;
-						break;
+					if(kospidaq) {
+						if(currentPrice == kospiTable[i]) {
+	//						System.out.println("kospi " + kospiTable[i]);
+							k = i;
+							break;
+						}
 					}
-					else if(currentPrice == kosdaqTable[i]) {
-//						System.out.println("kosdaq " + kosdaqTable[i]);
-						k = i;
-						break;
+					else {
+						if(currentPrice == kosdaqTable[i]) {
+	//						System.out.println("kosdaq " + kosdaqTable[i]);
+							k = i;
+							break;
+						}
 					}
 				}
+				
 				
 				
 				// 호가 앞뒤로 6개씩 
@@ -154,34 +158,60 @@ public class StockParsing {
 				
 				
 				for (int i = 20; i > 0; i--) {
-					if(left > right) {
-						break;
+					if(kospidaq) {
+					
+						if(left > right) {
+							break;
+						}
+						if(currentPrice == kospiTable[left]) {
+	//						System.out.println(currentPrice);
+							left++;
+							i++;
+							continue;
+						}
+						if(left < k) {
+							down[l] = kospiTable[left];
+							left++;
+							i++;
+							l--;
+						}
+						else {
+							up[j] = kospiTable[left];
+							left++;
+							j--;
+						}
 					}
-					if(currentPrice == kospiTable[left]) {
-//						System.out.println(currentPrice);
-						left++;
-						i++;
-						continue;
-					}
-					if(left < k) {
-						down[l] = kospiTable[left];
-						left++;
-						i++;
-						l--;
-					}
-					else {
-						up[j] = kospiTable[left];
-						left++;
-						j--;
+					if(!kospidaq) {
+						
+						if(left > right) {
+							break;
+						}
+						if(currentPrice == kosdaqTable[left]) {
+	//						System.out.println(currentPrice);
+							left++;
+							i++;
+							continue;
+						}
+						if(left < k) {
+							down[l] = kosdaqTable[left];
+							left++;
+							i++;
+							l--;
+						}
+						else {
+							up[j] = kosdaqTable[left];
+							left++;
+							j--;
+						}
 					}
 				}
 			}
 			
+//			System.out.println("현재가 " + currentPrice);
 //			System.out.println("up "+Arrays.toString(up));
 //			System.out.println("down "+Arrays.toString(down));
-//			
-//				
-//			System.out.println("현재가 " + currentPrice);
+			
+				
 			
 			Info inf = new Info();
 			inf.setStockName(stockName);

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,35 +13,6 @@
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
-	<script>
-	$(document).ready(function(){ 
-		function checkPw() {
-			var password = $('#password').val();
-			console.log(password);
-			var passwordAgain = $('#passwordAgain').val();
-			console.log(passwordAgain);
-			
-			/* 비밀번호와 비밀번호 확인이 다르면 */
-			if (password != passwordAgain){
-				$('#pwResult').empty();
-				var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
-				$('#pwResult').append(html);
-			}
-			/* 비밀번호 길이 제한 */
-			else if($('#password').val().length < 8 || $('#password').val().length > 13){
-				var html="<tr><td colspan='3' style='color: red'>비밀번호는 8자리 이상 13자리 이하만 가능합니다.</td></tr>"; 
-				$('#pwResult').empty();
-				$('#pwResult').append(html);
-			}
-			/* 둘다 맞을떄  */
-			else if(password == passwordAgain){
-				var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>비밀번호 사용가능합니다.</td></tr>"; 
-				$('#pwResult').empty();
-				$('#pwResult').append(html);
-			}
-		}
-	});
-	</script> 
 <style>
 .gray{width: 172px; height:44px; margin-left: 214px; margin-top: 30px;}
 </style>
@@ -75,7 +45,7 @@
 									<td>
 										<span class="input-style-case02">
 											<input type="password" id="password" name="password" class="pw"
-											placeholder="새 비밀번호를 입력해주세요." oninput="checkPw()">
+											placeholder="새로운 비밀번호를 입력해주세요." maxlength="13">
 										</span>	 
 									</td>
 								</tr>
@@ -84,14 +54,20 @@
 									<td>
 										<span class="input-style-case02">
 											<input type="password" id="passwordAgain" name="passwordAgain" class="pw" 
-												placeholder="새 비밀번호를 한 번 더 입력해주세요." oninput="checkPw()">
-											<ul><li style="list-style:none;" id="pwResult"></li></ul>
-										</span>	 
+												placeholder="새로운 비밀번호를 한 번 더 입력해주세요." style="margin-bottom: 13px;"
+												maxlength="13">
+										</span>
+										<div style="text-align: center;">
+											<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
+											<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+											<div class="alert alert-danger" id="alert-length">최소 8자 , 최대 13자로 입력해주세요.</div>
+										</div>
+										
 									</td>
 								</tr>
 							</tbody>
 						</table>
-						<button type="submit" id="show-answer" class="btn-t gray">비밀번호 저장</button>
+						<button id="submit" type="submit" id="show-answer" class="btn-t gray">비밀번호 저장</button>
 					</form>
 				</div>
 				</div>
@@ -103,6 +79,34 @@
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+	<script type="text/javascript"> 
+	$(function(){ 
+		$("#alert-success").hide(); 
+		$("#alert-danger").hide();
+		$("#alert-length").hide();
+		$("input").keyup(function(){ 
+			var pwd1=$("#password").val(); 
+			var pwd2=$("#passwordAgain").val(); 
+			if(pwd1 != "" || pwd2 != ""){ 
+				if(pwd1 != pwd2){
+					$("#alert-success").hide(); 
+					$("#alert-danger").show();
+					$("#alert-length").hide();
+					$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%"); 
+				}else if($('#password').val().length < 8 || $('#password').val().length > 13){ 
+					$("#alert-success").hide(); 
+					$("#alert-danger").hide();
+					$("#alert-length").show();
+					$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");  	
+				}else if(pwd1 == pwd2){ 
+					$("#alert-success").show(); 
+					$("#alert-danger").hide();
+					$("#alert-length").hide();
+					$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");  	
+				}
+			}
+		}); 
+	});
+	</script>
 </body>
 </html>

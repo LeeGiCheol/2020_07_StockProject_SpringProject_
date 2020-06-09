@@ -122,6 +122,12 @@
 		select *
 		from board
 		where id=#{util.id}
+		<if test='util.bSearchStyle.equals("제목")'>
+		and title like CONCAT('%', #{util.boardKeyword}, '%')
+		</if>
+		<if test='util.bSearchStyle.equals("내용")'>
+		and bcontent like CONCAT('%', #{util.boardKeyword}, '%')
+		</if>
 		limit #{start}, #{cntPerPage}
 	</select>
 	
@@ -129,6 +135,9 @@
 		select *
 		from commentList
 		where id=#{util.id}
+		<if test='!util.commentKeyword.equals("")'>
+		and ccontent like CONCAT('%', #{util.commentKeyword}, '%')
+		</if>
 		limit #{start}, #{cntPerPage}
 	</select>
 	

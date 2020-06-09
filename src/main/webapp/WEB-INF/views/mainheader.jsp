@@ -25,7 +25,7 @@
 			</dl>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="/logOut">로그아웃</a></li>
 			<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="/myPage04?page=1">알림<span>N</span></a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="/myPage04">알림<span>N</span></a></li>
 		</ul>
 		<!-- 상단  nav end -->
 		<!-- 메인  nav -->

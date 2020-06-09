@@ -138,7 +138,7 @@ public class SignInController {
 			if(email_answer.equals(EmailNumStr)) { // 대답과 인증번호가 같다면
 				return "/forgetpasswordpagereset"; 
 			}else {
-				return "/forgetpasswordpage-try-fail"; // alert창 띄우고 다시 인증화면으로
+				return "/forgetpasswordpagefail"; // 대답과 인증번호가 다르면
 			} 
 		}
 		return null;
@@ -156,10 +156,10 @@ public class SignInController {
 			UserVO finduserVO = (UserVO) session.getAttribute("findUser");
 			finduserVO.setPw(password);
 			vo = signInService.updatePw(finduserVO);
-			System.out.println(finduserVO);
-		}else{
-			System.out.println("패스워드랑 패스워드 어게인이 다름 : " + password + passwordAgain);
+			return "/forgetpasswordpagesuccess";
+		}else{ // 비밀번호랑 비밀번호 확인이 같지않으면 어처피 클릭이 되지 않아 else는 구현 안함
+			
 		}
-		return "forgetpasswordpagereset";
+	return "forgetpasswordpagereset";
 	}
 }

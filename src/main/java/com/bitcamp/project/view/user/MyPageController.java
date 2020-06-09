@@ -43,7 +43,10 @@ public class MyPageController {
 	}
 
 	@GetMapping(value="/myPage03")
-	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage, @ModelAttribute("cnowPage") String cnowPage) {
+	public String myPage03(HttpSession session, 
+			@ModelAttribute("bnowPage") String bnowPage, @ModelAttribute("cnowPage") String cnowPage, 
+			@ModelAttribute("bSearchStyle")String bSearchStyle,
+			@ModelAttribute("boardKeyword")String boardKeyword, @ModelAttribute("commentKeyword")String commentKeyword) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		if(loginUser == null)
 			return "redirec:/mainPage";
@@ -53,48 +56,51 @@ public class MyPageController {
 		if(cnowPage == null || cnowPage.equals("")) {
 			cnowPage = "1";
 		}
-		Map<String, Object> myPost = myPostService.myPostList(loginUser, Integer.parseInt(bnowPage), Integer.parseInt(cnowPage));
+		if(bSearchStyle.equals(""))
+			boardKeyword = "";
+		Map<String, Object> myPost = myPostService.myPostList(loginUser, Integer.parseInt(bnowPage), Integer.parseInt(cnowPage)
+				,bSearchStyle, boardKeyword, commentKeyword);
 		session.setAttribute("myBoard", (List<BoardVO>)myPost.get("myBoard"));
 		session.setAttribute("myComment",(List<CommentVO>)myPost.get("myComment"));
 		session.setAttribute("boardPage",(PagingVO)myPost.get("boardPage"));
 		session.setAttribute("commentPage",(PagingVO)myPost.get("commentPage"));
+		session.setAttribute("bSearchStyle", bSearchStyle);
+		session.setAttribute("boardKeyword", boardKeyword);
+		session.setAttribute("commentKeyword", commentKeyword);
 		return "mypage03";
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping(value="/myPage04")
-	public ModelAndView myPage04(HttpSession session, @RequestParam(value = "page") int page) {
+	public ModelAndView myPage04(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String id = ((UserVO) session.getAttribute("loginUser")).getId();
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		
 		List<Map> notice = userInfoService.getNotice(id);
 		List<Map> tradeNotice = (List) notice.get(0);
-		List<Map> tradePageHistory = new ArrayList<>();
-		
-		int pageCount = 2;
+		List<Map> commentNotice = (List) notice.get(1);
+		List<Map> modifiedNotice = new ArrayList<>();
 		
 		try {
-			for (int i = (page - 1) * pageCount; i < page * pageCount; i++) {
+			for (int i = 0; i < tradeNotice.size(); i++) {
 				tradeNotice.get(i).put("tdatetime",
 						new Date(((Date) tradeNotice.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
 				if (tradeNotice.get(i).get("category").equals("buy")) {
-					tradeNotice.get(i).put("category", "매수");
+					tradeNotice.get(i).put("category", "매수 완료");
 				} else if (tradeNotice.get(i).get("category").equals("sell")) {
-					tradeNotice.get(i).put("category", "매도");
+					tradeNotice.get(i).put("category", "매도 완료");
 				}
 				tradeNotice.get(i).put("tprice", formatter.format(tradeNotice.get(i).get("tprice")));
-				tradePageHistory.add(tradeNotice.get(i));
+				modifiedNotice.add(tradeNotice.get(i));
 			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		System.out.println(tradeNotice);
-//		List commentNotice = (List) notice.get(1);
-//		mav.addObject("commentNotice" , commentNotice);
-		
-		mav.addObject("total", tradeNotice.size());
-		mav.addObject("tradePageHistory", tradePageHistory);
+		mav.addObject("commentNotice" , commentNotice);
+		mav.addObject("modifiedNotice", modifiedNotice);
 		mav.setViewName("mypage04");
 		return mav;
 	}
@@ -132,15 +138,4 @@ public class MyPageController {
 			return "redirect:/myPage03";
 		}
 	}
-	
-	@PostMapping(value="/myPage03/*")
-	public String searchPost(@ModelAttribute("bSearchStyle")String bSearchStyle, @ModelAttribute("cSearchStyle")String cSearchStyle,
-			HttpSession session, @ModelAttribute("bnowPage") String bnowPage, @ModelAttribute("cnowPage") String cnowPage) {
-		
-		if(cSearchStyle.equals(""))
-			return null;
-		else
-			return null;
-	}
-	
 }

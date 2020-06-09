@@ -74,10 +74,10 @@ public class TopStock {
 				}
 				
 			}
-			System.out.println(Arrays.toString(topName));
-			System.out.println(Arrays.toString(topCurrentPrice));
-			System.out.println(Arrays.toString(topBefore));
-			System.out.println(Arrays.toString(topUpDown));
+//			System.out.println(Arrays.toString(topName));
+//			System.out.println(Arrays.toString(topCurrentPrice));
+//			System.out.println(Arrays.toString(topBefore));
+//			System.out.println(Arrays.toString(topUpDown));
 			
 			
 			
@@ -88,7 +88,7 @@ public class TopStock {
 			String[] searchList_ = searchLists.split(" ");
 			
 			
-			System.out.println("test"+Arrays.toString(searchList_));
+//			System.out.println("test"+Arrays.toString(searchList_));
 
 			for (int i = 0; i < searchList_.length; i++) {
 				if(i % 3 == 0) {
@@ -127,7 +127,7 @@ public class TopStock {
 					}
 					if(ha != -1) {
 						searchSangHa[h] = searchSangHa_[i].substring(ha, ha+2);
-						System.out.println(searchSangHa[h]);
+//						System.out.println(searchSangHa[h]);
 						h++;
 					}
 					
@@ -137,18 +137,18 @@ public class TopStock {
 					}
 				}
 			
-			System.out.println(Arrays.toString(searchSangHa));
+//			System.out.println(Arrays.toString(searchSangHa));
 			
 			
 			
-			System.out.println(Arrays.toString(searchName_));
+//			System.out.println(Arrays.toString(searchName_));
 			for (int i = 0; i < searchName_.length; i++) {
 				
 				searchName[i] = searchName_[i].replace(i+1+".", "");
 			}
 			
 			
-			System.out.println(Arrays.toString(searchName));
+//			System.out.println(Arrays.toString(searchName));
 			
 			
 			Info inf = new Info();
