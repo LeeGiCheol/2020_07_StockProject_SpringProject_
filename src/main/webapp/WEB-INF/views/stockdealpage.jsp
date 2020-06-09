@@ -364,6 +364,8 @@ tr td button{
 												text_val = parseInt(buying_qu.value);
 												text_val += num;
 												text.value = text_val;
+												var result = parseInt($("#buying_price").val().replace(/,/g,"")) * $("#buying_qu").val()
+												$("#buying_result").text(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 											}
 											</script>
 										</div>
