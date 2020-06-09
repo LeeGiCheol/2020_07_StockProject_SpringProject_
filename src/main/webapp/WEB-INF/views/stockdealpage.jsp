@@ -67,20 +67,20 @@ tr td button{
 								</span>
 						<div class="stock-deal-button">
 								<button type="button"
-									class="btn btn-secondary companydata-btn"
+									class="btn btn-secondary companydata-btn stock-btn"
 									onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
 								</button>
 								<button type="button"
-									class="btn btn-secondary companydata-btn" id="minute">
+									class="btn btn-secondary companydata-btn stock-btn" id="minute">
 									분차트보기</button>
 								<button type="button"
-									class="btn btn-secondary companydata-btn" id="day">
+									class="btn btn-secondary companydata-btn stock-btn" id="day">
 									일차트보기</button>
 								<button type="button"
-									class="btn btn-secondary companydata-btn" onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
+									class="btn btn-secondary companydata-btn stock-btn" onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
 									거래 기록</button>
 								<button type="button"
-									class="btn btn-secondary companydata-btn" onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
+									class="btn btn-secondary companydata-btn stock-btn" onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
 									보유 종목</button>
 								</div>
 							</form>
@@ -632,7 +632,7 @@ tr td button{
 						var topRank = "";
 						var a = 1;
 						
-						for(var i=0; i<data.topName.length; i++){
+						for(var i=0; i<data.topName.length-1; i++){
 							if(data.topUpDown[i].indexOf("+") != -1){							
 								topRank += '<tr class="up"  style="width:50px">'
 								topRank += '<th scope="row"><em>'+a+'</em>'

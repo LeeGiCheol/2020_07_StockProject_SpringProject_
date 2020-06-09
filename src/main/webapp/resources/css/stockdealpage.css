@@ -55,11 +55,16 @@ tr td button{
 .table{
 	margin-bottom: 0;
 }
+.stock-btn{
+	padding: 3px;
+	font-size: 10px;
+	margin-bottom: 1.5px;
+}
 .containerNew{
-position: relative;
+	position: relative;
     max-width: 1260px;
     height: 100%;
-    padding: 20px 0 0 0;
+    padding: 20px 0 100px 0;
     margin: 0 auto;
 }
 @media (max-width: 979px)
@@ -667,11 +672,11 @@ a.btnStyle {
     border-bottom: 2px solid #dddddd;
 }
 .tbl_home_left {
-    width: 50%;
+    width: 48.4%;
     border: 0;
     table-layout: fixed;
     border-collapse: collapse;
-    border-right: 1px solid #dddddd;
+    margin-right:10px;
     float: left;
 }
 .tbl_home_right {
@@ -679,6 +684,7 @@ a.btnStyle {
     border: 0;
     table-layout: fixed;
     border-collapse: collapse;
+    border-left: 1px solid #dddddd;
     float: right;
 }
 
@@ -737,9 +743,15 @@ caption {
     margin: -1px;
     overflow: hidden;
 }
-[class*="tbl_home_"]  tbody th {
+[class*="tbl_home_"]  #topRank th {
     height: 22px;
     padding: 5px;
+    font-weight: normal;
+    text-align: left;
+}
+[class*="tbl_home_"]  .rank-table th {
+    height: 22px;
+    padding: 5px 5px 5px 10px;
     font-weight: normal;
     text-align: left;
 }

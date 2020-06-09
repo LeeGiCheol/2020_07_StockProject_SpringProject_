@@ -62,39 +62,36 @@ public class MyPageController {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping(value="/myPage04")
-	public ModelAndView myPage04(HttpSession session, @RequestParam(value = "page") int page) {
+	public ModelAndView myPage04(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String id = ((UserVO) session.getAttribute("loginUser")).getId();
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		
 		List<Map> notice = userInfoService.getNotice(id);
 		List<Map> tradeNotice = (List) notice.get(0);
-		List<Map> tradePageHistory = new ArrayList<>();
-		
-		int pageCount = 2;
+		List<Map> commentNotice = (List) notice.get(1);
+		List<Map> modifiedNotice = new ArrayList<>();
 		
 		try {
-			for (int i = (page - 1) * pageCount; i < page * pageCount; i++) {
+			for (int i = 0; i < tradeNotice.size(); i++) {
 				tradeNotice.get(i).put("tdatetime",
 						new Date(((Date) tradeNotice.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
 				if (tradeNotice.get(i).get("category").equals("buy")) {
-					tradeNotice.get(i).put("category", "매수");
+					tradeNotice.get(i).put("category", "매수 완료");
 				} else if (tradeNotice.get(i).get("category").equals("sell")) {
-					tradeNotice.get(i).put("category", "매도");
+					tradeNotice.get(i).put("category", "매도 완료");
 				}
 				tradeNotice.get(i).put("tprice", formatter.format(tradeNotice.get(i).get("tprice")));
-				tradePageHistory.add(tradeNotice.get(i));
+				modifiedNotice.add(tradeNotice.get(i));
 			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		System.out.println(tradeNotice);
-//		List commentNotice = (List) notice.get(1);
-//		mav.addObject("commentNotice" , commentNotice);
-		
-		mav.addObject("total", tradeNotice.size());
-		mav.addObject("tradePageHistory", tradePageHistory);
+		mav.addObject("commentNotice" , commentNotice);
+		mav.addObject("modifiedNotice", modifiedNotice);
 		mav.setViewName("mypage04");
 		return mav;
 	}

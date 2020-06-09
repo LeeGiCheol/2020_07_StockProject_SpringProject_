@@ -22,7 +22,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	public List getNotice(String id) {
 		List notice = new ArrayList<>(); 
 		notice.add(mybatis.selectList("user.getTradeNotice", id));
-//		notice.add(mybatis.selectList("user.getCommentNotice", id));
+		notice.add(mybatis.selectList("user.getCommentNotice", id));
 		return notice;  //여기서부터 수정 user mapping getNotice 수정
 	}
 
