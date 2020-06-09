@@ -135,21 +135,23 @@ $(function() {
     <!-- section end -->
     <!-- article start -->
     <article class="bg-light container">
-        <div class="allBody">
-    <div class="row">
-        <div class="sideBar col-md-4 order-md-2 mb-4">
-          <div class="col-md-8 order-md-1"></div>
-          <h4 class="mb-3">작성 글, 댓글</h4>
-        </div>
-    </div>
+    <div class="allBody">
+	    <div class="row">
+	        <div class="sideBar col-md-4 order-md-2 mb-4">
+	          <div class="col-md-8 order-md-1"></div>
+	          <h4 class="mb-3">작성 글, 댓글</h4>
+	        </div>
+	    </div>
     </div>
     <!-- 게시판 -->
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="pills-write-tab" data-toggle="pill" href="#pills-write" role="tab" aria-controls="pills-write" aria-selected="true">작성한 글</a>
+        <a class="nav-link active" id="pills-write-tab" data-toggle="pill" href="#pills-write" 
+        role="tab" aria-controls="pills-write" aria-selected="true">작성한 글</a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-commnet-tab" data-toggle="pill" href="#pills-commnet" role="tab" aria-controls="pills-commnet" aria-selected="false">작성한 댓글</a>
+        <a class="nav-link" id="pills-commnet-tab" data-toggle="pill" href="#pills-commnet" 
+        role="tab" aria-controls="pills-commnet" aria-selected="false">작성한 댓글</a>
       </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">

@@ -58,22 +58,29 @@ tr td button{
 									id="stockBtn" type="submit">
 									<i class="fas fa-search"></i>
 								</button>
-								<div class="stock-deal-button">
+								<h3><a href="#" class="btnOverInfo" id="h3_stockName">${stockName}</a></h3>
+								<span id="span_pr_rate" class="number down"> 
+								<em><span id="em_cprice"> 10,550 </span></em> 
+								<span id="span_cprice_diff">
+								▼ <strong>100 (0.94%)</strong>
+								</span>
+								</span>
+						<div class="stock-deal-button">
 								<button type="button"
-									class="btn btn-secondary companydata-btn"
+									class="btn btn-secondary companydata-btn stock-btn"
 									onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
 								</button>
 								<button type="button"
-									class="btn btn-secondary companydata-btn" id="minute">
+									class="btn btn-secondary companydata-btn stock-btn" id="minute">
 									분차트보기</button>
 								<button type="button"
-									class="btn btn-secondary companydata-btn" id="day">
+									class="btn btn-secondary companydata-btn stock-btn" id="day">
 									일차트보기</button>
 								<button type="button"
-									class="btn btn-secondary companydata-btn" onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
+									class="btn btn-secondary companydata-btn stock-btn" onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
 									거래 기록</button>
 								<button type="button"
-									class="btn btn-secondary companydata-btn" onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
+									class="btn btn-secondary companydata-btn stock-btn" onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
 									보유 종목</button>
 								</div>
 							</form>
@@ -507,15 +514,15 @@ tr td button{
 					<div class="stock-price-chart">
 						<table class="stock-chart-table	">
 							<colgroup>
+								<col width="25%">
 								<col width="30%">
-								<col width="30%">
-								<col width="40%">
+								<col width="45%">
 							</colgroup>
-							<thead>
+<%-- 							<thead>
 								<tr>
 									<th scope="col" colspan="3" id="stockName">${stockName}</th>
 								</tr>
-							</thead>
+							</thead> --%>
 							<tbody>
 								<tr>
 									<td scope="col" class="table-border"></td>
@@ -627,8 +634,21 @@ tr td button{
 						var a = 1;
 						
 						for(var i=0; i<data.topName.length-1; i++){
+<<<<<<< HEAD
 							topRank += '<tr class="up">'
 							topRank += '<th scope="row"><em>'+a+'</em>'
+=======
+							if(data.topUpDown[i].indexOf("+") != -1){							
+								topRank += '<tr class="up"  style="width:50px">'
+								topRank += '<th scope="row"><em>'+a+'</em>'
+							}
+							
+							else if(data.topUpDown[i].indexOf("-") != -1){
+								topRank += '<tr class="down">'
+              					topRank += '<th scope="row"><em>'+a+'</em>'
+							}
+							
+>>>>>>> eb4136f4cd11926ee2e30582a40ad556f9c42cf7
 							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
 							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
 							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
@@ -746,10 +766,6 @@ tr td button{
 	             zoom: {
 	                 enabled: false}
 	         },
-	         title: {
-	             text: stockName,
-	             align: 'left'
-	         },
 	         xaxis: {
 	             type: 'datetime',
 	             labels: {
@@ -851,10 +867,6 @@ tr td button{
 	             zoom: {
 	                 enabled: false}
 	         },
-	         title: {
-	             text: stockName,
-	             align: 'left'
-	         },
 	         xaxis: {
 	             type: 'datetime',
 	             labels: {
@@ -950,10 +962,6 @@ tr td button{
             redrawOnParentResize: true,
             zoom: {
                 enabled: false}
-        },
-        title: {
-            text: stockName,
-            align: 'left'
         },
         xaxis: {
             type: 'datetime',

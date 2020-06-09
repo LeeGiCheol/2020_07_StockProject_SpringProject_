@@ -37,5 +37,11 @@ public class SignInDAOImpl implements SignInDAO{
 	public UserVO findPw(UserVO vo) {
 		return mybatis.selectOne("findPassword", vo);
 	}
+	
+	@Override
+	public UserVO updatePw(UserVO vo) {
+		return mybatis.selectOne("updatePassword", vo);
+	}
+	
 
 }

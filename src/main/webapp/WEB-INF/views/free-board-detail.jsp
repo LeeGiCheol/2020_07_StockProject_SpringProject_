@@ -34,8 +34,77 @@
 	});
 </script>
 <style>
-div>ul>li {
-	width: 380px;
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+   figure, footer, header, hgroup, menu, nav, section, summary, time,
+   audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   font-size: 14px;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+   word-break: break-all;
+}
+
+span, em, mark, strong, b, label {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+}
+
+em, i {
+   font-style: normal;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+   text-decoration: none;
+}
+
+p {
+    line-height: 160%;
+}
+
+.table td, .table th {
+    padding: 6px;
+}
+tr td button{
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+} 
+.table{
+	margin-bottom: 0;
+}
+.containerNew{
+position: relative;
+    max-width: 1260px;
+    height: 100%;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+@media (max-width: 979px)
+.containerNew {
+    padding-top: 104px;
+}
+@media only screen and (max-width: 979px)
+.containerNew {
+    padding: 0;
+    padding-bottom: 170px;
 }
 </style>
 </head>
@@ -43,7 +112,8 @@ div>ul>li {
 <body>
 
 <%@include file="mainheader.jsp" %> 
-
+	
+	<div class="containerNew">
 	<!-- article start -->
 	<!-- 상단메뉴 -->
 	<div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
@@ -140,6 +210,7 @@ div>ul>li {
 	
 		</div>
 		
+		</div>
 		
 		
 		

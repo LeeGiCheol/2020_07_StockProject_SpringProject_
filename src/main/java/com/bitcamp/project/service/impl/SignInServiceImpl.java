@@ -30,14 +30,17 @@ public class SignInServiceImpl implements SignInService {
 	}
 	
 	@Override
-	public UserVO tryId(UserVO vo) {
-		return null;
-
+	public void tryId() {
 	}
 
 	@Override
 	public UserVO findPw(UserVO vo) {
 		return signInDAO.findPw(vo);
+	}
+	
+	@Override
+	public UserVO updatePw(UserVO vo) {
+		return signInDAO.updatePw(vo);
 	}
 
 }

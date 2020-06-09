@@ -24,15 +24,15 @@
 				<div class="id-result">
 					<div class="message-st-no"> 
 						<img class="" id="idfail" src="/resources/img/icon.png">
-						<p class="big-text">입력하신 인증번호는 <span class="color-red">일치하지 않습니다</span><br>다시 시도해주세요.</p>
+						<p class="big-text">입력하신 정보와 <span class="color-red">일치하는 회원정보</span>가 없습니다.<br>다른 방법으로 다시 시도해 보세요.</p>
 					</div>
 
-					<div class="bt-area"><a href=/forgetPasswordTry	class="btn-b gray">다시 시도하기</a></div>
+					<div class="bt-area"><a href=/forgetPassword	class="btn-b gray">다시 시도하기</a></div>
 					<div class="find-info">
 						<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> 
 						<span class="bt-area"> 
 						<a href="/signUpPage/1" class="btn-t">회원가입</a>
-  					    <a href="/forgetId" class="btn-t">아이디 찾기</a>
+    					    <a href="/forgetId" class="btn-t">아이디 찾기</a>
 						</span>
 					</div>
 				</div>

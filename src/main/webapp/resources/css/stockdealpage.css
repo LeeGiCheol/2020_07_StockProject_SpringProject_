@@ -55,11 +55,16 @@ tr td button{
 .table{
 	margin-bottom: 0;
 }
+.stock-btn{
+	padding: 3px;
+	font-size: 10px;
+	margin-bottom: 1.5px;
+}
 .containerNew{
-position: relative;
+	position: relative;
     max-width: 1260px;
     height: 100%;
-    padding: 20px 0 0 0;
+    padding: 20px 0 100px 0;
     margin: 0 auto;
 }
 @media (max-width: 979px)
@@ -70,10 +75,6 @@ position: relative;
 .containerNew {
     padding: 0;
     padding-bottom: 170px;
-}
-
-.container {
-   padding: 20px 0 30px 0;
 }
 
 em, address {
@@ -150,21 +151,46 @@ input, label, button {
    background: #fff;
 }
 .stock-deal-button{
-    position: relative;
-    margin-left: 10px;
+    position: absolute;
+    right: 0;
+    
+}
+h3> a {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 28px;
+    padding-left: 23px;
+    color: #333;
+}
+.number {
+    margin-left: 8px;
+    color: #333;
+}
+.number em {
+    font-size: 25px;
+    line-height: 26px;
+}
+.down {
+    color: #1a64d2 !important;
 }
 @media only screen and (max-width: 576px){
 .stock-deal-button {
     position: relative;
     margin-top: 10px;
+    width: 100%;
 }
 }
-@media only screen and (max-width:668px){
+@media only screen and (max-width:960px){
 .stock-deal-button {
     position: relative;
     margin-left: 0;
     margin-top: 10px
 }
+}
+.form-control{
+	width: 30%;
+	
+	margin-right: .5rem!important;
 }
 @media (min-width: 576px){
 	
@@ -541,7 +567,7 @@ a.btnStyle {
 .upper-text, .now-text, .Lower-text, .inside-text, .inside-up-text, .inside-down-text{
 	border-right: 1px solid #dddddd;
 	font-size: 16px;
-	padding: 10px;
+	padding: 8px;
 	text-align: center;
 }
 .table-border{
@@ -646,11 +672,11 @@ a.btnStyle {
     border-bottom: 2px solid #dddddd;
 }
 .tbl_home_left {
-    width: 50%;
+    width: 48.4%;
     border: 0;
     table-layout: fixed;
     border-collapse: collapse;
-    border-right: 1px solid #dddddd;
+    margin-right:10px;
     float: left;
 }
 .tbl_home_right {
@@ -658,6 +684,7 @@ a.btnStyle {
     border: 0;
     table-layout: fixed;
     border-collapse: collapse;
+    border-left: 1px solid #dddddd;
     float: right;
 }
 
@@ -716,9 +743,15 @@ caption {
     margin: -1px;
     overflow: hidden;
 }
-[class*="tbl_home_"]  tbody th {
+[class*="tbl_home_"]  #topRank th {
     height: 22px;
     padding: 5px;
+    font-weight: normal;
+    text-align: left;
+}
+[class*="tbl_home_"]  .rank-table th {
+    height: 22px;
+    padding: 5px 5px 5px 10px;
     font-weight: normal;
     text-align: left;
 }

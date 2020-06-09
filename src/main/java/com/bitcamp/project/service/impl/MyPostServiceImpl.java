@@ -1,11 +1,9 @@
 package com.bitcamp.project.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.h2.engine.SysProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,11 +33,15 @@ public class MyPostServiceImpl implements MyPostService {
 	}
 
 	@Override
-	public Map<String, Object> myPostList(UserVO loginUser, int bnowPage, int cnowPage) {
+	public Map<String, Object> myPostList(UserVO loginUser, int bnowPage, int cnowPage,
+			String bSearchStyle, String boardKeyword, String commentKeyword) {
 		PagingVO boardPage = new PagingVO(myPostDAO.countBoard(loginUser), bnowPage, 3);
 		PagingVO commentPage = new PagingVO(myPostDAO.countComment(loginUser), cnowPage, 3);
 		boardPage.getUtil().put("id", loginUser.getId());
+		boardPage.getUtil().put("bSearchStyle", bSearchStyle);
+		boardPage.getUtil().put("boardKeyword", boardKeyword);
 		commentPage.getUtil().put("id", loginUser.getId());
+		commentPage.getUtil().put("commentKeyword", commentKeyword);
 		List<BoardVO> myBoard = myPostDAO.myBoardList(boardPage);
 		List<CommentVO> myComment = myPostDAO.myCommentList(commentPage);
 		
