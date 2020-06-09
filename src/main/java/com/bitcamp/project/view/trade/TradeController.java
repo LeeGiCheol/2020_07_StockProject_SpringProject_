@@ -58,10 +58,10 @@ public class TradeController {
 			mav.setViewName("blank");
 			return mav;
 		}
-		
+
 		List<Map> holdingStock = tradeService.getHoldingStock(id);
 		List<Map> pageHoldingStock = new ArrayList<>();
-		
+
 		try {
 			for (int i = (page - 1) * 15; i < page * 15; i++) {
 				pageHoldingStock.add(holdingStock.get(i));
@@ -69,14 +69,13 @@ public class TradeController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		mav.addObject("total", holdingStock.size());
 		mav.addObject("pageHoldingStock", pageHoldingStock);
 		mav.setViewName("holdingStock");
 		return mav;
 	}
-	
-		
+
 	@GetMapping(value = "/trade_history")
 	public ModelAndView history(@RequestParam(value = "page") int page) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -108,7 +107,7 @@ public class TradeController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		mav.addObject("total", history.size());
 		mav.addObject("pageHistory", pageHistory);
 		mav.setViewName("tradehistory");
@@ -309,7 +308,14 @@ public class TradeController {
 			sv.setStockName(stockName);
 			int myStockQu = tradeService.getStockQuantity(sv);
 			long money = tradeService.getMoney(id);
-			List unsettled = tradeService.getUnsettled_ID(id);
+			List<Map> unsettled = tradeService.getUnsettled_ID(id);
+			for (int i = 0; i < unsettled.size(); i++) {
+				if (unsettled.get(i).get("category").equals("sell"))
+					unsettled.get(i).put("category", "매도");
+				else if (unsettled.get(i).get("category").equals("buy"))
+					unsettled.get(i).put("category", "매수");
+				unsettled.get(i).put("rPrice", formatter.format(unsettled.get(i).get("rPrice")));
+			}
 			mav.addObject("unsettled", unsettled);
 			mav.addObject("myStockQu", myStockQu);
 			mav.addObject("money", formatter.format(money) + "원");
@@ -367,10 +373,7 @@ public class TradeController {
 		mav.addObject("stockName", stockName);
 		mav.addObject("stockCode", stockCode);
 		mav.setViewName("stockdealpage");
-		
-		
-		
-		
+
 		return mav;
 
 	}
@@ -436,12 +439,9 @@ public class TradeController {
 		map.put("minimum", trade.getMinimum()); // 하한가
 		map.put("up", jArray);
 		map.put("down", jArray);
-		
-		
-		
-		
+
 		TopStock ts = new TopStock();
-		
+
 		Info topStock = ts.topStock();
 		String[] topName = topStock.getTopName();
 		String[] topCurrentPrice = topStock.getTopCurrentPrice();
@@ -451,25 +451,20 @@ public class TradeController {
 		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
 		String[] searchUpDown = topStock.getSearchUpDown();
 		String[] searchSangHa = topStock.getSearchSangHa();
-		
-		
+
 		for (int i = 0; i < topName.length; i++) {
 			map.put("topName", topName);
 			map.put("topCurrentPrice", topCurrentPrice);
 			map.put("topBefore", topBefore);
 			map.put("topUpDown", topUpDown);
 		}
-		
+
 		for (int i = 0; i < searchUpDown.length; i++) {
 			map.put("searchName", searchName);
 			map.put("searchCurrentPrice", searchCurrentPrice);
 			map.put("searchUpDown", searchUpDown);
 			map.put("searchSangHa", searchSangHa);
 		}
-		
-		
-		
-		
 
 		// 차트
 

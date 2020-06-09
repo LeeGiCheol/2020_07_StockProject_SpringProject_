@@ -80,7 +80,7 @@ td>a {
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">뉴스</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="/trade">거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
 							class="sr-only">(current)</span></a></li>
 				</ul>
@@ -94,28 +94,28 @@ td>a {
 			<!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
 			<li
 				class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage01"
-				onclick="location.href='mypage01.jsp'">
+				onclick="location.href='/myPage01'">
 				<div>
 					<h6 class="my-0">내정보</h6>
 				</div>
 			</li>
 			<li
 				class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage02"
-				onclick="location.href='mypage02.jsp'">
+				onclick="location.href='/myPage02'">
 				<div>
 					<h6 class="my-0">계좌정보</h6>
 				</div>
 			</li>
 			<li
 				class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage03"
-				onclick="location.href='mypage03.jsp'">
+				onclick="location.href='/myPage03'">
 				<div>
 					<h6 class="my-0">작성 글, 댓글</h6>
 				</div>
 			</li>
 			<li
 				class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed mypage04"
-				onclick="location.href='mypage04.jsp'">
+				onclick="location.href='/myPage04'">
 				<div>
 					<h6 class="my-0">알림</h6>
 				</div>
