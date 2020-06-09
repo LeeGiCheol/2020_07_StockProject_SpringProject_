@@ -794,3 +794,23 @@ caption {
 	width: 100%;
 	}
 }
+@media screen and (max-width: 576px) {
+	.col-md-9 {
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+		-webkit-box-orient: vertical;
+		-moz-box-orient: vertical;
+		box-orient: vertical;
+	}
+	.stock-deal-control {
+		-webkit-box-ordinal-group: 2;
+		-moz-box-ordinal-group: 2;
+		box-ordinal-group: 2;
+	}
+	.aside_area {
+		-webkit-box-ordinal-group: 3;
+		-moz-box-ordinal-group: 3;
+		box-ordinal-group: 3;
+	}
+}
