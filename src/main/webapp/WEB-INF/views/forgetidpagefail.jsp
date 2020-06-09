@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>forgetidpage</title>
+<title>아이디찾기</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -30,14 +30,14 @@
 						</div>
 
 						<div class="bt-area">
-							<a href="javascript:formSubmit();" class="btn-b gray">다시 시도하기</a>
+							<a href="/forgetId" class="btn-b gray">다시 시도하기</a>
 						</div>
 						<div class="find-info">
 							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> <span
 								class="bt-area"> <a
-								href="#"
+								href="/signUpPage/1"
 								class="btn-t">회원가입</a> <a
-								href="#"
+								href="/forgetPassword"
 								class="btn-t">비밀번호 찾기</a>
 							</span>
 						</div>

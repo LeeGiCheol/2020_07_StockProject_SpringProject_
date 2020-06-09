@@ -8,4 +8,5 @@ public interface SignInDAO {
 	public UserVO findId(UserVO vo);
 	public void tryId();
 	public UserVO findPw(UserVO vo);
+	public UserVO updatePw(UserVO vo);
 }

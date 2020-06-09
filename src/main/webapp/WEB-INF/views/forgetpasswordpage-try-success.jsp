@@ -14,6 +14,10 @@
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
+<script >
+function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
+function msg(){alert("인증번호를 이미 전송하였습니다.")}
+</script>
 </head>
 <body class="member">
 	<%@include file="mainheader.jsp"%>
@@ -26,7 +30,8 @@
 						<strong class="tit">비밀번호 찾기</strong>
 						<p class="txt" style="display: none;">비밀번호가 생각나지 않으세요? 비밀번호 찾는 방법을 선택해주세요.</p>
 					</div>
-					<form action="/forgetPassword" method="post" id="frm" name="frm">
+					<form action="/forgetPasswordTry" method="post" id="frm" name="frm">
+
 						<ul class="find-list step_toggle">
 							<li><a href="#">본인 확인 이메일 인증</a>
 								<div class="fint-list-cont">
@@ -37,19 +42,25 @@
 										</p>
 										<ul class="form-list">
 											<li class="input-type">
-											<input type="text"	placeholder="이메일 주소를 입력해주세요." id="id" name="id" onKeyPress="return numkeyCheck(event)">
-											<button type="submit" class="btn-t gray">인증번호전송</button></li>
+											<input type="text"	placeholder="${findUser.id}" id="id" name="id" readonly>
+											<button type="button" class="btn-t gray" onclick="msg()">인증번호전송</button></li>
+													
+											<li class="input-type" id="_liCert2"> 
+											<input type="password" placeholder="인증번호를 입력해주세요." id="email_answer" 
+											name="email_answer" onKeyPress="return numkeyCheck(event)">
+											<button type="submit" class="btn-t gray">인증번호입력</button></li>
+													 
 										</ul>
 									</div>
-								</div>
-							</li>
+								</div></li>
 						</ul>
 	   				    <br>
                  		<br>
 						<div class="find-info">
 							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> 
-							<span class="bt-area"><a href="/signUpPage/1" class="btn-t">회원가입</a>
-     					    <a href="/forgetId" class="btn-t">아이디 찾기</a>
+							<span class="bt-area">
+						    <a href="/signUpPage/1" class="btn-t">회원가입</a>
+						    <a href="/forgetId" class="btn-t">아이디 찾기</a>
 							</span>
 						</div>
 					</form>
@@ -59,7 +70,6 @@
 	</div>
 
 	<%@include file="mainfooter.jsp"%>
-
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

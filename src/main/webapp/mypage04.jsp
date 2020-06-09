@@ -38,6 +38,17 @@
   			console.info(page + ' (from event listening)');
   		});
   		});  
+  	$(function() {
+  		window.pagObj = $('#pagination2').twbsPagination({
+  			totalPages : 35,
+  			visiblePages : 5,
+  			onPageClick : function(event, page) {
+  				console.info(page + ' (from options)');
+  			}
+  		}).on('page', function(event, page) {
+  			console.info(page + ' (from event listening)');
+  		});
+  		}); 
     });    
   
   
@@ -126,7 +137,20 @@ td > a{cursor:pointer}
 <!-- section start -->
 <!-- section end -->
 <!-- article start -->
-      <article class="bg-light container">
+	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="pills-trade-success-tab" data-toggle="pill" href="#pills-trade-success" 
+        role="tab" aria-controls="pills-trade-success" aria-selected="true">거래 체결</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-board-notice-tab" data-toggle="pill" href="#pills-board-notice" 
+        role="tab" aria-controls="pills-board-notice" aria-selected="false">게시판 알림</a>
+      </li>
+    </ul>
+    <!-- 거래체결  -->
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-trade-success" role="tabpanel" aria-labelledby="pills-trade-success-tab" style="margin-bottom: 300px;">
+      	<article class="bg-light container">
          <div class="allBody">
         	<div class="row">
           		 <div class="sideBar col-md-4 order-md-2 mb-4">
@@ -149,34 +173,46 @@ td > a{cursor:pointer}
               <td><div class="custom-control custom-checkbox">
                 <input type="checkbox" id="jb-checkbox1" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
               <th scope="row">7</th>
-              <td><a onclick="window.location.href='alarm-detail.jsp'">관리자에게 메세지가 왔습니다</a></td>
+              <td><a onclick="window.location.href='alarm-detail.jsp'">거래 체결</a></td>
             </tr>
-            <tr> 
-              <td>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" id="jb-checkbox6" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox6"></label>
-                </div>
-              </td>
-                <th>6</th>
-              <td><a onclick="window.location.href='alarm-detail.jsp'">'삼성전자 요즘 왜그래요?'글에 '홍길동'님께서 댓글을 남기셨습니다.</a></td>
+       	</table>
+          <form class="form-inline my-2 my-lg-0 underSearchForm">
+              <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
+          </form>
+        <div class="paging">
+			<div class="paging-body">
+				<ul class="pagination" id="pagination2"></ul>
+			</div>
+    	</div>
+       </article>
+      </div>
+    <!-- 거래체결 end -->
+    <!-- 게시판 알림  -->
+      <div class="tab-pane fade show active" id="pills-board-notice" role="tabpanel" aria-labelledby="pills-board-notice-tab" style="margin-bottom: 300px;">
+      	<article class="bg-light container">
+         <div class="allBody">
+        	<div class="row">
+          		 <div class="sideBar col-md-4 order-md-2 mb-4">
+            		<div class="col-md-8 order-md-1"></div>
+          			  <h4 class="mb-3">알림</h4>
+         		 </div>
+      		</div>
+     	 </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <td class="checkno"><div class="custom-control custom-checkbox">
+                <input type="checkbox" id="jb-checkboxAll" class="custom-control-input"><label class="custom-control-label" for="jb-checkboxAll"></label></div></td>
+              <th class="no" scope="col">번호</th>
+              <th class="title" scope="col">알림제목</th>
             </tr>
+          </thead>
+          <tbody>
             <tr> 
               <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox3" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox3"></label></div></td>
-              <th scope="row">5</th>
-              <td><a onclick="window.location.href='alarm-detail.jsp'"></a></td>
-            </tr>
-            <tr> 
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox4" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox4"></label></div></td>
-              <th scope="row">4</th>
-              <td><a onclick="window.location.href='alarm-detail.jsp'"></a></td>
-            </tr>
-            <tr> 
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox5" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox5"></label></div></td>
-              <th scope="row">3</th>
-              <td><a onclick="window.location.href='alarm-detail.jsp'"></a></td>
+                <input type="checkbox" id="jb-checkbox1" class="custom-control-input check"><label class="custom-control-label" for="jb-checkbox1"></label></div></td>
+              <th scope="row">7</th>
+              <td><a onclick="window.location.href='alarm-detail.jsp'">게시판 알림</a></td>
             </tr>
        	</table>
           <form class="form-inline my-2 my-lg-0 underSearchForm">
@@ -188,6 +224,10 @@ td > a{cursor:pointer}
 			</div>
     	</div>
        </article>
+      </div>
+    </div>
+    <!-- 게시판 알림 end -->
+      
 <!-- article end -->
 <!-- footer start -->
     <div class=footer_div>
