@@ -15,5 +15,5 @@ public interface BoardService {
 	public int count(BoardVO vo);
 	public int commentCount(BoardVO vo);
 	public Map<String, Object> boardList(BoardVO vo, int nowPage);
-
+	public int updateViews(BoardVO vo);
 }

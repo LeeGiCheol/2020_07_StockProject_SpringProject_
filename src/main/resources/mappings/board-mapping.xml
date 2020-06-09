@@ -95,10 +95,17 @@
 		limit #{start}, #{cntPerPage}
 	</select>
 	
+	<!-- 댓글 등록 시 게시물 옆에 개수 띄우기용 -->
 	<update id="commentCount">
-		UPDATE board set
+		UPDATE board SET
 		commentCount = commentCount + 1
-		WHERE pno = #{pno};	
+		WHERE pno = #{pno}	
+	</update>
+	
+	<update id="updateViews">
+		UPDATE board SET
+		views = views + 1
+		WHERE pno = #{pno}
 	</update>
 	
 </mapper>

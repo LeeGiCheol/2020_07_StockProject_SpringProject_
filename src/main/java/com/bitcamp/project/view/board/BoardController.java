@@ -77,10 +77,12 @@ public class BoardController {
 		}
 		ModelAndView mav = new ModelAndView();
 		BoardVO boardDetail = boardService.getBoard(vo);
+		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
 		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
+
 		mav.setViewName("free-board-detail");
 		
 		return mav;

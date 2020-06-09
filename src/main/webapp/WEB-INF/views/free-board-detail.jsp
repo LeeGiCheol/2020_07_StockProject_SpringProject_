@@ -458,6 +458,13 @@ position: relative;
 		}
 		
 		
+/* 		history.pushState(null, null, location.href);
+
+		window.onpopstate = function(event) {
+			console.log(event)
+			location.href = "/board/free";
+
+		}; */
 
 
 

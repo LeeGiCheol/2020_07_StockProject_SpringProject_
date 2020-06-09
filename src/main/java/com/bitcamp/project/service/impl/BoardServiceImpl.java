@@ -64,5 +64,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	
-
+	public int updateViews(BoardVO vo) {
+		return boardDAO.updateViews(vo);
+	}
 }
