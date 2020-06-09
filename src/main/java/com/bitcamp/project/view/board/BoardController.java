@@ -63,8 +63,12 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board/free/write")
-	public String boardWrite(BoardVO vo, UserVO loginUser) {
+	public String boardWrite(BoardVO vo) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		
 		vo.setId(loginUser.getId());
+		vo.setBno(1); // 자유게시판
+		
 		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
 //		return "free-board";
@@ -109,14 +113,14 @@ public class BoardController {
 	public String updateBoardView(BoardVO vo, Model model) {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
-		System.out.println("mmmmm"+boardUpdate);
+//		System.out.println("mmmmm"+boardUpdate);
 		return "updateForm";
 	}
 
 	@PostMapping("/board/free/update")
 	public String updateBoard(BoardVO vo, Model model) {
-		System.out.println("test");
-		System.out.println(vo);
+//		System.out.println("test");
+//		System.out.println(vo);
 		boardService.updateBoard(vo);
 		return "redirect:/board/free";
 	}

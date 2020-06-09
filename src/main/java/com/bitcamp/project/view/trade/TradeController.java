@@ -2,6 +2,7 @@ package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -385,6 +386,8 @@ public class TradeController {
 		StockParsing st = new StockParsing();
 
 		String stockCode = tradeService.stockSearch(stockName);
+//		System.out.println("stockName "+stockName);
+		
 		Info trade = st.parse(stockCode);
 //		System.out.println(trade.toString());
 
@@ -408,7 +411,7 @@ public class TradeController {
 		String[] up = new String[6];
 		String[] down = new String[6];
 		String currentPrice = null;
-
+		
 		for (int i = 0; i < up_.length; i++) {
 
 			up[i] = formatter.format(up_[i]);
@@ -423,8 +426,8 @@ public class TradeController {
 		JSONObject obj = new JSONObject();
 		JSONArray jArray = new JSONArray();
 
-		JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 		for (int i = 0; i < up.length; i++) {
+			JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 			sObject.put("up", up[i]);
 			sObject.put("down", down[i]);
 			jArray.add(sObject);
