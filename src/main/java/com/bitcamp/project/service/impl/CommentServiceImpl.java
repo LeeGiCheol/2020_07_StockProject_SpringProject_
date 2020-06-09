@@ -12,7 +12,6 @@ import com.bitcamp.project.service.CommentService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.UserVO;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -52,6 +51,10 @@ public class CommentServiceImpl implements CommentService {
 		return commentDAO.count(vo);
 	}
 	
+	
+	public int commentNoticeInsert(BoardVO vo) {
+		return commentDAO.commentNoticeInsert(vo);
+	}
 
 
 	

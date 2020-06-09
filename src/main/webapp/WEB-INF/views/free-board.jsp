@@ -200,7 +200,7 @@ position: relative;
 				<li class="nav-item" role="presentation"><input type="radio"
 					class="nav-link active" id="pills-board-all-tab" data-toggle="pill"
 					href="#pills-board-all" role="tab" aria-controls="pills-board-all"
-					aria-selected="true" name="check" checked="checked">전체글</li>
+					aria-selected="true" name="check" >전체글</li>
 				<li class="nav-item" role="presentation"><input type="radio" class="nav-link"
 					id="pills-board-best-tab" data-toggle="pill"
 					href="#pills-board-best" role="tab"
@@ -228,7 +228,14 @@ position: relative;
 									<tr>
 										<td>${board.pno}</td>
 										<!-- 글번호 -->
-										<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
+										<c:choose>
+											<c:when test="${board.commentCount ne 0}">
+												<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a>&nbsp;(${board.commentCount})</td>
+											</c:when>
+											<c:otherwise>
+												<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
+											</c:otherwise>
+										</c:choose>
 										<!-- 글 제목 -->
 										<td>${board.nickname}</td>
 										<!-- 글쓴이 -->

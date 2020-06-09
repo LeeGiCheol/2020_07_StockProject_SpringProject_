@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="getCommentNotice" resultType="map">
-			SELECT c.pno, title FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id}
+			SELECT c.pno, c.title FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id}
 	</select>
 	
 

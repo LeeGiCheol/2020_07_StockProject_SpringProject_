@@ -4,76 +4,13 @@
 
 
 <mapper namespace="board">
-<!-- 
-	<resultMap id="boardResult" type="board">
-		<id property="pno" column="PNO"/>
-		<result property="nickname" column="NICKNAME"/>
-		<result property="title" column="TITLE"/>
-		<result property="bcontent" column="BCONTENT"/>
-		<result property="views" column="VIEWS"/>
-		<result property="views" column="VIEWS"/>
-		<result property="views" column="VIEWS"/>
-		<result property="views" column="VIEWS"/>
-		<result property="views" column="VIEWS"/>
-	</resultMap>
--->
-<!-- 
-	<insert id="insertBoard" parameterType="board">
-		insert into board(SEQ, TITLE, WRITER, CONTENT)
-		values((select nvl(max(SEQ), 0)+1 from board),
-		#{title},#{writer},#{content})
+
+	<insert id="writeFreeBoard">
+		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
+		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, 1, 0)	
 	</insert>
 	
-	<update id="updateBoard">
-		update board set TITLE=#{title},
-		CONTENT=#{content} where SEQ=#{seq}
-	</update>
 	
-	<delete id="deleteBoard">
-		delete board where SEQ=#{seq}
-	</delete>
-	
-	<select id="getBoard" resultType="board">
-		select * from board where SEQ=#{seq}
-	</select>
-	
-	CDATA영역에 작성된 데이터는 단순 문자 데이터이다
-	     그러므로 XML 파서는 처리하지 말아라.
-	<select id="getBoardLt" resultType="board">
-		<![CDATA[
-		select * from board where SEQ <= #{seq}
-		]]>
-	</select>
-		
-	<select id="getBoardList_T" resultType="board">
-		select * from board
-		where TITLE like '%'||#{searchKeyword}||'%'
-		order by SEQ desc
-	</select>
-
-	<select id="getBoardList_C" resultType="board">
-		select * from board
-		where CONTENT like '%'||#{searchKeyword}||'%'
-		order by SEQ desc
-	</select>
-
-	<select id="getBoardList" resultType="board">
-		select * from board
-		where 1=1
-		<if test="searchCondition == 'title'">
-			and TITLE like '%'||#{searchKeyword}||'%'
-		</if>
-		<if test="searchCondition == 'content'">
-			and CONTENT like '%'||#{searchKeyword}||'%'
-		</if> 
-		order by SEQ desc
-	</select>
-	-->
-	
-	<insert id="writeFreeBoard">
-		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno)
-		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, 1)	
-		</insert>
 	
 	<update id="updateBoard">
 		UPDATE board 
@@ -90,7 +27,7 @@
 	<select id="getBoard" parameterType = "board" resultType="board">
 		SELECT * 
 		FROM board
-		WHERE pno = #{pno} 
+		WHERE pno = #{pno}
 	</select>
 	
 	<select id="getBoardList" resultType="board">
@@ -111,6 +48,7 @@
 		from board
 		where id=#{id}
 	</select>
+	
 	
 	<select id="myCommentCount" parameterType="user" resultType="int">
 		select count(*)
@@ -157,5 +95,10 @@
 		limit #{start}, #{cntPerPage}
 	</select>
 	
+	<update id="commentCount">
+		UPDATE board set
+		commentCount = #{commentCount}
+		WHERE pno = #{pno};	
+	</update>
 	
 </mapper>

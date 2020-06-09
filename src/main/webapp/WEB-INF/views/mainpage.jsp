@@ -91,6 +91,8 @@
 							</div>
 						</div>
 					</div>
+					
+					
 					<div class="community-new">
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
@@ -222,71 +224,81 @@
 				</div>
 
 			</div>
-
-			<div class="col-md-3">
-				<div class="login-box">
-					<div class="div-login-box">
-						<form method='post' action="#">
-							<fieldset>
-								<div class="chk">
-									<input type="checkbox" name="sID" id="check-id"><label
-										for="check-id">아이디 저장</label> <input type="checkbox"
-										name="autoLogin" onClick="" id="check-log"><label
-										for="check-log">자동로그인</label>
-								</div>
+			
+				<div class="col-md-3">
+				
+				
+				
+				<c:choose>
+					<c:when test="${loginUser eq null}">
+						<div class="login-box">
+							<div class="div-login-box">
+								<form method='post' action="#">
+									<fieldset>
+										<div class="chk">
+											<input type="checkbox" name="sID" id="check-id"><label
+												for="check-id">아이디 저장</label> <input type="checkbox"
+												name="autoLogin" onClick="" id="check-log"><label
+												for="check-log">자동로그인</label>
+										</div>
+										<p>
+											<input type="text" name="custId" value="" id="user_id"
+												title="아이디 입력" placeholder="아이디"> <input
+												type="password" name="passwd" value="" id="user_pw"
+												title="비밀번호 입력" placeholder="비밀번호"> <input
+												type="submit" value="로그인" onclick="">
+										</p>
+									</fieldset>
+								</form>
 								<p>
-									<input type="text" name="custId" value="" id="user_id"
-										title="아이디 입력" placeholder="아이디"> <input
-										type="password" name="passwd" value="" id="user_pw"
-										title="비밀번호 입력" placeholder="비밀번호"> <input
-										type="submit" value="로그인" onclick="">
+									<a href="#">회원가입</a><span><a href="#" class="idforgot">아이디</a><a href="#">비밀번호
+											찾기</a></span> <span class="social-login"> <a href="#"
+										class="social-type naver">네이버 로그인</a> <a href="#"
+										class="social-type kakaotalk">카카오톡 로그인</a> <a href="#"
+										class="social-type facebook">페이스북 로그인</a> <a href="#"
+										class="social-type google">구글 로그인</a>
+									</span>
 								</p>
-							</fieldset>
-						</form>
-						<p>
-							<a href="#">회원가입</a><span><a href="#" class="idforgot">아이디</a><a href="#">비밀번호
-									찾기</a></span> <span class="social-login"> <a href="#"
-								class="social-type naver">네이버 로그인</a> <a href="#"
-								class="social-type kakaotalk">카카오톡 로그인</a> <a href="#"
-								class="social-type facebook">페이스북 로그인</a> <a href="#"
-								class="social-type google">구글 로그인</a>
-							</span>
-						</p>
-					</div>
-				</div>
+							</div>
+						</div>
+					</c:when>
+					
+					<c:otherwise>
+						<div class="login-box">
+							<div class="div-login-box-after" style class="login-out">
+								<p class="proimg_div-after">
+									<a href="#"><img class="" cust_id="" id="_myhomeId"
+										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+										class="current_badge_s"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+								</p>
+								<dl>
+									<dt>
+										<strong>개미굴</strong>님
+										<button type="button" class="logout"
+											onclick="location.href='https://member.paxnet.co.kr/rpan/member/logout';">로그아웃</button>
+									</dt>
+									<dd>
+										<a href="https://member.paxnet.co.kr/rpan/member/info/userInfo">내정보</a>
+										<a
+											href="https://member.paxnet.co.kr/rpan/member/searchPwd/changePswd">비밀번호
+											변경</a>
+									</dd>
+								</dl>
+								<ul class="dot-list02 color-rightgray">
+									<li id="_liBall">자산 <a href="#">0</a> 원
+									</li>
+									<li id="_liCyber">포인트 <a href="#">0</a></li>
+								</ul>
+							</div>
+							<div class="login-after-btn">
+								<a href="#">MyPage</a> 
+								<a href="#">알림<span> N</span></a>
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
 
-				<div class="login-box">
-					<div class="div-login-box-after" style class="login-out">
-						<p class="proimg_div-after">
-							<a href="#"><img class="" cust_id="" id="_myhomeId"
-								src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
-								class="current_badge_s"
-								src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
-						</p>
-						<dl>
-							<dt>
-								<strong>개미굴</strong>님
-								<button type="button" class="logout"
-									onclick="location.href='https://member.paxnet.co.kr/rpan/member/logout';">로그아웃</button>
-							</dt>
-							<dd>
-								<a href="https://member.paxnet.co.kr/rpan/member/info/userInfo">내정보</a>
-								<a
-									href="https://member.paxnet.co.kr/rpan/member/searchPwd/changePswd">비밀번호
-									변경</a>
-							</dd>
-						</dl>
-						<ul class="dot-list02 color-rightgray">
-							<li id="_liBall">자산 <a href="#">0</a> 원
-							</li>
-							<li id="_liCyber">포인트 <a href="#">0</a></li>
-						</ul>
-					</div>
-					<div class="login-after-btn">
-						<a href="#">MyPage</a> 
-						<a href="#">알림<span> N</span></a>
-					</div>
-				</div>
 
 				<div class="ranking">
 					<span class="ranking-nav">주간 랭킹</span>

@@ -47,7 +47,7 @@ public class BoardController {
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage));
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
-		PagingVO a = (PagingVO)boardList.get("boardPage");
+		//model.addAttribute("commentCount", commentCount);
 //		System.out.println(a.toString());
 //		System.out.println(boardList);
 		

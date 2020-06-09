@@ -1,8 +1,6 @@
 package com.bitcamp.project.dao.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +46,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public int count(BoardVO vo) {
 		return mybatis.selectOne("board.boardCount", vo);
 	}
-	
 
+	@Override
+	public int commentCount(BoardVO vo) {
+		return mybatis.update("board.commentCount", vo);
+	}
+	
+	
 	
 }

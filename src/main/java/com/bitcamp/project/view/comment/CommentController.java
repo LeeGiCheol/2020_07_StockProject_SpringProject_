@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
@@ -19,12 +20,17 @@ public class CommentController {
 
 	@Autowired
 	CommentService commentService;
-	
+	@Autowired
+	BoardService boardService;
 	
     @RequestMapping(value="/board/writeComment")
     @ResponseBody
     public String writeCommentAjax(BoardVO bVo, CommentVO vo, HttpServletRequest request) throws Exception{
-        
+		// 게시물 옆에 댓글 개수 띄우기용
+    	int commentCount = boardService.commentCount(bVo);
+    	// 댓글 알림용
+    	bVo.setCommentCount(commentCount);
+    	commentService.commentNoticeInsert(bVo);
         HttpSession session = request.getSession();
         UserVO loginVO = (UserVO)session.getAttribute("loginUser");
         try {
