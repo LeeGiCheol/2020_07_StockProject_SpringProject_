@@ -121,14 +121,14 @@
 	<select id="getMyBoard" parameterType="page" resultType="board">
 		select *
 		from board
-		where id=#{a.id}
+		where id=#{util.id}
 		limit #{start}, #{cntPerPage}
 	</select>
 	
 	<select id="getMyComment" parameterType="page" resultType="comment">
 		select *
 		from commentList
-		where id=#{id}
+		where id=#{util.id}
 		limit #{start}, #{cntPerPage}
 	</select>
 	
@@ -140,7 +140,6 @@
 		where bno = 1
 	</select>
 		
-		<!-- map add --> 
 	<select id="boardList" parameterType="page" resultType="board">
 		select *
 		from board

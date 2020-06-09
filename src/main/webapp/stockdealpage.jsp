@@ -220,7 +220,7 @@
 										<div class="input-area">
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">단가</label> <input type="text"
-													class="alignR" name="buyingPrice" numberonly> 원 <span
+													class="alignR" name="buyingPrice" readonly> 원 <span
 													class="buying-check"> 
 												<a class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 												<script>

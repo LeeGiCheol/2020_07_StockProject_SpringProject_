@@ -1,5 +1,6 @@
 package com.bitcamp.project.view.board;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
@@ -18,6 +23,7 @@ import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
+import com.google.gson.Gson;
 
 @Controller
 public class BoardController {
@@ -65,29 +71,37 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/free/detail")
-	public String getBoard(BoardVO vo, CommentVO cVo, Model model, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
+	public ModelAndView getView(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage) {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
-		System.out.println("test1 "+vo);
+		ModelAndView mav = new ModelAndView();
 		BoardVO boardDetail = boardService.getBoard(vo);
-		System.out.println("test2 "+boardDetail);
+		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
+		mav.addObject("boardDetail", boardDetail);
+		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
+		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
+		mav.setViewName("free-board-detail");
 		
-		System.out.println("session "+session.getAttribute("loginUser"));
-		System.out.println("model "+boardDetail.getNickname());
-		model.addAttribute("boardDetail", boardDetail);
+		return mav;
+	}
+	
+	@GetMapping("/board/free/detail/ajax")
+	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage) {
+		if(nowPage == null || nowPage.equals("")){
+			nowPage = "1";
+		}
+		BoardVO boardDetail = boardService.getBoard(vo);
 
 		
 		// 댓글리스트
-		//cVo.setPno(pno);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardDetail", boardDetail);
+		map.put("commentList", (List<CommentVO>)commentList.get("commentList"));
+		map.put("commentPage", (PagingVO)commentList.get("commentPage"));
 		
-		
-		model.addAttribute("commentList", (List<CommentVO>)commentList.get("commentList"));
-		model.addAttribute("commentPage", (PagingVO)commentList.get("commentPage"));
-		
-		System.out.println(commentList);
-		return "free-board-detail";
+		return map;
 	}
 	
 	

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,28 +27,28 @@
             alert("취소하셨습니다.");
           }
         })
-  	$(function() {
-  		window.pagObj = $('#pagination').twbsPagination({
-  			totalPages : 35,
-  			visiblePages : 5,
-  			onPageClick : function(event, page) {
-  				console.info(page + ' (from options)');
-  			}
-  		}).on('page', function(event, page) {
-  			console.info(page + ' (from event listening)');
-  		});
-  		});  
-  	$(function() {
-  		window.pagObj = $('#pagination2').twbsPagination({
-  			totalPages : 35,
-  			visiblePages : 5,
-  			onPageClick : function(event, page) {
-  				console.info(page + ' (from options)');
-  			}
-  		}).on('page', function(event, page) {
-  			console.info(page + ' (from event listening)');
-  		});
-  		}); 
+     $(function() {
+        window.pagObj = $('#pagination').twbsPagination({
+           totalPages : 35,
+           visiblePages : 5,
+           onPageClick : function(event, page) {
+              console.info(page + ' (from options)');
+           }
+        }).on('page', function(event, page) {
+           console.info(page + ' (from event listening)');
+        });
+        });  
+     $(function() {
+        window.pagObj = $('#pagination2').twbsPagination({
+           totalPages : 35,
+           visiblePages : 5,
+           onPageClick : function(event, page) {
+              console.info(page + ' (from options)');
+           }
+        }).on('page', function(event, page) {
+           console.info(page + ' (from event listening)');
+        });
+        }); 
     });    
   
   
@@ -137,7 +137,7 @@ td > a{cursor:pointer}
 <!-- section start -->
 <!-- section end -->
 <!-- article start -->
-	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
         <a class="nav-link active" id="pills-trade-success-tab" data-toggle="pill" href="#pills-trade-success" 
         role="tab" aria-controls="pills-trade-success" aria-selected="true">거래 체결</a>
@@ -150,15 +150,15 @@ td > a{cursor:pointer}
     <!-- 거래체결  -->
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-trade-success" role="tabpanel" aria-labelledby="pills-trade-success-tab" style="margin-bottom: 300px;">
-      	<article class="bg-light container">
+         <article class="bg-light container">
          <div class="allBody">
-        	<div class="row">
-          		 <div class="sideBar col-md-4 order-md-2 mb-4">
-            		<div class="col-md-8 order-md-1"></div>
-          			  <h4 class="mb-3">알림</h4>
-         		 </div>
-      		</div>
-     	 </div>
+           <div class="row">
+                 <div class="sideBar col-md-4 order-md-2 mb-4">
+                  <div class="col-md-8 order-md-1"></div>
+                     <h4 class="mb-3">알림</h4>
+                </div>
+            </div>
+         </div>
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -175,29 +175,29 @@ td > a{cursor:pointer}
               <th scope="row">7</th>
               <td><a onclick="window.location.href='alarm-detail.jsp'">거래 체결</a></td>
             </tr>
-       	</table>
+          </table>
           <form class="form-inline my-2 my-lg-0 underSearchForm">
               <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
           </form>
         <div class="paging">
-			<div class="paging-body">
-				<ul class="pagination" id="pagination2"></ul>
-			</div>
-    	</div>
+         <div class="paging-body">
+            <ul class="pagination" id="pagination2"></ul>
+         </div>
+       </div>
        </article>
       </div>
     <!-- 거래체결 end -->
     <!-- 게시판 알림  -->
       <div class="tab-pane fade show active" id="pills-board-notice" role="tabpanel" aria-labelledby="pills-board-notice-tab" style="margin-bottom: 300px;">
-      	<article class="bg-light container">
+         <article class="bg-light container">
          <div class="allBody">
-        	<div class="row">
-          		 <div class="sideBar col-md-4 order-md-2 mb-4">
-            		<div class="col-md-8 order-md-1"></div>
-          			  <h4 class="mb-3">알림</h4>
-         		 </div>
-      		</div>
-     	 </div>
+           <div class="row">
+                 <div class="sideBar col-md-4 order-md-2 mb-4">
+                  <div class="col-md-8 order-md-1"></div>
+                     <h4 class="mb-3">알림</h4>
+                </div>
+            </div>
+         </div>
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -214,15 +214,15 @@ td > a{cursor:pointer}
               <th scope="row">7</th>
               <td><a onclick="window.location.href='alarm-detail.jsp'">게시판 알림</a></td>
             </tr>
-       	</table>
+          </table>
           <form class="form-inline my-2 my-lg-0 underSearchForm">
               <div><button class="btn btn-primary btn-lg btn-block remove" type="submit">삭제</button></div>
           </form>
         <div class="paging">
-			<div class="paging-body">
-				<ul class="pagination" id="pagination"></ul>
-			</div>
-    	</div>
+         <div class="paging-body">
+            <ul class="pagination" id="pagination"></ul>
+         </div>
+       </div>
        </article>
       </div>
     </div>

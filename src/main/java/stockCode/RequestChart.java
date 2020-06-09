@@ -13,7 +13,10 @@ import java.sql.ResultSet;
 import java.util.Date;
 
 public class RequestChart {
+	String onOff = "OFF";
 	public void connection(String stockName) {
+		if(onOff.equals("OFF"))
+			return;
 		BufferedReader bin;
 		Connection conn;
 		PreparedStatement pstmt;
