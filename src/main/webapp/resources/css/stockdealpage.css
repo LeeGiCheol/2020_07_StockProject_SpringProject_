@@ -747,17 +747,17 @@ caption {
 }
 @media only screen and (max-width: 576px){
 [class*="tbl_home_"] tbody th em {
-    font-size: 7px;
+    font-size: 9px;
 }
 }
 @media only screen and (max-width: 576px){
 [class*="tbl_home_"]  tbody td {
-    font-size: 7px;
+    font-size: 9px;
 }
 }
 @media only screen and (max-width: 576px){
 [class*="tbl_home_"] tbody th a {
-	 font-size: 7px;
+	 font-size: 9px;
 	}
 }
 [class*="tbl_home_"]  tbody td em.bu_p {
