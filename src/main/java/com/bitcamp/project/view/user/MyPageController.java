@@ -39,7 +39,10 @@ public class MyPageController {
 	}
 
 	@GetMapping(value="/myPage03")
-	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage, @ModelAttribute("cnowPage") String cnowPage) {
+	public String myPage03(HttpSession session, 
+			@ModelAttribute("bnowPage") String bnowPage, @ModelAttribute("cnowPage") String cnowPage, 
+			@ModelAttribute("bSearchStyle")String bSearchStyle,
+			@ModelAttribute("boardKeyword")String boardKeyword, @ModelAttribute("commentKeyword")String commentKeyword) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		if(loginUser == null)
 			return "redirec:/mainPage";
@@ -49,11 +52,17 @@ public class MyPageController {
 		if(cnowPage == null || cnowPage.equals("")) {
 			cnowPage = "1";
 		}
-		Map<String, Object> myPost = myPostService.myPostList(loginUser, Integer.parseInt(bnowPage), Integer.parseInt(cnowPage));
+		if(bSearchStyle.equals(""))
+			boardKeyword = "";
+		Map<String, Object> myPost = myPostService.myPostList(loginUser, Integer.parseInt(bnowPage), Integer.parseInt(cnowPage)
+				,bSearchStyle, boardKeyword, commentKeyword);
 		session.setAttribute("myBoard", (List<BoardVO>)myPost.get("myBoard"));
 		session.setAttribute("myComment",(List<CommentVO>)myPost.get("myComment"));
 		session.setAttribute("boardPage",(PagingVO)myPost.get("boardPage"));
 		session.setAttribute("commentPage",(PagingVO)myPost.get("commentPage"));
+		session.setAttribute("bSearchStyle", bSearchStyle);
+		session.setAttribute("boardKeyword", boardKeyword);
+		session.setAttribute("commentKeyword", commentKeyword);
 		return "mypage03";
 	}
 	
@@ -106,15 +115,4 @@ public class MyPageController {
 			return "redirect:/myPage03";
 		}
 	}
-	
-	@PostMapping(value="/myPage03/*")
-	public String searchPost(@ModelAttribute("bSearchStyle")String bSearchStyle, @ModelAttribute("cSearchStyle")String cSearchStyle,
-			HttpSession session, @ModelAttribute("bnowPage") String bnowPage, @ModelAttribute("cnowPage") String cnowPage) {
-		
-		if(cSearchStyle.equals(""))
-			return null;
-		else
-			return null;
-	}
-	
 }

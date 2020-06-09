@@ -180,14 +180,14 @@ function deleteComment(){
           </tbody>
         </table>
         <br>
-       <form id="myBoardForm" class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage03/searchBoard" method="POST">
+       <form id="myBoardForm" class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage03" method="GET">
         <!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 	        <select class="nav-link dropdown-toggle" name="bSearchStyle">
-	        	<option value="" selected>선택</option>
-	        	<option value="제목">제목</option>
-	        	<option value="내용">내용</option>
+	        	<option value="" <c:if test='${bSearchStyle eq ""}'>selected</c:if>>선택</option>
+	        	<option value="제목" <c:if test='${bSearchStyle eq "제목"}'>selected</c:if>>제목</option>
+	        	<option value="내용" <c:if test='${bSearchStyle eq "내용"}'>selected</c:if>>내용</option>
 	        </select>
-          <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search" name="boardKeyword" value="${boardKeyword}">
           <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
               <i class="fas fa-search"></i></button>
           <input type="hidden" id="delBoardList" name="delBoardList">
@@ -254,13 +254,13 @@ function deleteComment(){
           </tbody>
         </table>
         <br>
-        <form id="myCommentForm" class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage03/searchComment" method="POST">
-	        <select class="nav-link dropdown-toggle" name="cSearchStyle">
+        <form id="myCommentForm" class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage03" method="GET">
+	        <!-- <select class="nav-link dropdown-toggle" name="cSearchStyle">
 	        	<option value="" selected>선택</option>
 	        	<option value="제목">제목</option>
 	        	<option value="내용">내용</option>
-	        </select>
-            <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
+	        </select> -->
+            <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search" name="commentKeyword" value="${commentKeyword}">
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
                 <i class="fas fa-search"></i></button>
             <input type="hidden" id="delCommentList" name="delCommentList">
