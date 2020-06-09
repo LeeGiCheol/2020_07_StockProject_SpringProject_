@@ -58,7 +58,14 @@ tr td button{
 									id="stockBtn" type="submit">
 									<i class="fas fa-search"></i>
 								</button>
-								<div class="stock-deal-button">
+								<h3><a href="#" class="btnOverInfo" id="h3_stockName">${stockName}</a></h3>
+								<span id="span_pr_rate" class="number down"> 
+								<em><span id="em_cprice"> 10,550 </span></em> 
+								<span id="span_cprice_diff">
+								▼ <strong>100 (0.94%)</strong>
+								</span>
+								</span>
+						<div class="stock-deal-button">
 								<button type="button"
 									class="btn btn-secondary companydata-btn"
 									onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
@@ -568,15 +575,15 @@ tr td button{
 					<div class="stock-price-chart">
 						<table class="stock-chart-table	">
 							<colgroup>
+								<col width="25%">
 								<col width="30%">
-								<col width="30%">
-								<col width="40%">
+								<col width="45%">
 							</colgroup>
-							<thead>
+<%-- 							<thead>
 								<tr>
 									<th scope="col" colspan="3" id="stockName">${stockName}</th>
 								</tr>
-							</thead>
+							</thead> --%>
 							<tbody>
 								<tr>
 									<td scope="col" class="table-border"></td>
@@ -757,10 +764,6 @@ tr td button{
 	             zoom: {
 	                 enabled: false}
 	         },
-	         title: {
-	             text: stockName,
-	             align: 'left'
-	         },
 	         xaxis: {
 	             type: 'datetime',
 	             labels: {
@@ -862,10 +865,6 @@ tr td button{
 	             zoom: {
 	                 enabled: false}
 	         },
-	         title: {
-	             text: stockName,
-	             align: 'left'
-	         },
 	         xaxis: {
 	             type: 'datetime',
 	             labels: {
@@ -961,10 +960,6 @@ tr td button{
             redrawOnParentResize: true,
             zoom: {
                 enabled: false}
-        },
-        title: {
-            text: stockName,
-            align: 'left'
         },
         xaxis: {
             type: 'datetime',
