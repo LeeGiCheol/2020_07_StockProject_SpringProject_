@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/css/stockdealpage.css">
+<link rel="stylesheet" href="/resources/css/stockdealpage2.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -59,12 +59,7 @@ tr td button{
 									<i class="fas fa-search"></i>
 								</button>
 								<h3><a href="#" class="btnOverInfo" id="h3_stockName">${stockName}</a></h3>
-								<span id="span_pr_rate" class="number down"> 
-								<em><span id="em_cprice"> 10,550 </span></em> 
-								<span id="span_cprice_diff">
-								▼ <strong>100 (0.94%)</strong>
-								</span>
-								</span>
+								<span id="nowStock"> </span>
 						<div class="stock-deal-button">
 								<button type="button"
 									class="btn btn-secondary companydata-btn stock-btn"
@@ -601,20 +596,63 @@ tr td button{
 			 	/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
+						console.log(data)
 						$('#element').css('margin', '5px');
 						$('#price').text(data.currentPrice);
 						
+						
+						var nowStock = "";
+						var before = "";						
+						
+						if(data.before.indexOf("+") != -1){
+							before = data.before.replace("+","");
+							nowStock += '<tr class="up">'
+						}
+						         
+						if(data.before.indexOf("+") == -1){
+							before = data.before.replace("-","");
+							nowStock += '<tr class="down">'
+						}
+						else{
+							nowStock += '<tr class="same">'
+						}
+						         
+						nowStock += '<td>'+data.currentPrice+'</td>'
+						           
+						if(data.before.indexOf("+") != -1){
+							nowStock += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+							nowStock += 	'<span class="tah p11 red02">'+ before + " ("+data.updown+")"+'</span></td>'
+						}
+						               
+						else if(data.before.indexOf("+") == -1){
+							nowStock +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
+							nowStock +=     '<span class="tah p11 nv01">'+ before + " ("+data.updown+")"+'</span></td>'
+						}
+						else{
+							nowStock += '<td><span class="tah p11"> 0 </span></td>'
+						}
+						nowStock += '</tr>'
+													
+						$('#nowStock').html(nowStock);
+						
+						
 						// 어제 대비 현재가가 오른경우
-						if(data.before.indexOf("+") != -1){					
+						if(data.before.indexOf("+") != -1){	
+							before = data.before.replace("+", "");
+							console.log(before)
 							$('#upDownColor').css("color", "rgb(255, 0, 0)");
+							$('#beforeAndUpdown').html(before + " , " + data.updown);
+
 						} 
 						// 내린경우
-						else {
+						else if (data.before.indexOf("+") == -1){
+							before = data.before.replace("-", "");
 							$('#upDownColor').css("color", "rgb(91, 90, 255)");
+							$('#beforeAndUpdown').html(before + " , " + data.updown);
+
 						}
 						
 						
-						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 						$('#maximum').html(data.maximum);
 						$('#minimum').html(data.minimum);
 						var templ = $.templates("#upPrice");
@@ -624,8 +662,6 @@ tr td button{
 						var str2 = templ2.render(data.down);
 						$("#down").html(str2);
 						$("#stockName").html(data.stockName);
-						
-						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 						
 						
 						
