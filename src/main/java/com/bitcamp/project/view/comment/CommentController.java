@@ -28,11 +28,13 @@ public class CommentController {
     public String writeCommentAjax(BoardVO bVo, CommentVO vo, HttpServletRequest request) throws Exception{
 		// 게시물 옆에 댓글 개수 띄우기용
     	int commentCount = boardService.commentCount(bVo);
+
     	// 댓글 알림용
     	bVo.setCommentCount(commentCount);
     	commentService.commentNoticeInsert(bVo);
         HttpSession session = request.getSession();
         UserVO loginVO = (UserVO)session.getAttribute("loginUser");
+      
         try {
         	vo.setNickname(loginVO.getNickname());
         	vo.setId(loginVO.getId());

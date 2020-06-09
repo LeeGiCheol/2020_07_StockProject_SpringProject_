@@ -228,15 +228,17 @@ position: relative;
 									<tr>
 										<td>${board.pno}</td>
 										<!-- 글번호 -->
+										
 										<c:choose>
 											<c:when test="${board.commentCount ne 0}">
 												<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a>&nbsp;(${board.commentCount})</td>
+										<!-- 글 제목 -->
 											</c:when>
 											<c:otherwise>
 												<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
 											</c:otherwise>
 										</c:choose>
-										<!-- 글 제목 -->
+										
 										<td>${board.nickname}</td>
 										<!-- 글쓴이 -->
 										<td>${board.bdateTime}</td>
@@ -492,6 +494,8 @@ position: relative;
 	<!-- article end -->
 </div>
 	<%@include file="mainfooter.jsp" %>	
+
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
