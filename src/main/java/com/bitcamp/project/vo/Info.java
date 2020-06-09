@@ -16,6 +16,20 @@ public class Info {
 	private String minimum; // 하한가
 	private int[] up; // 호가+
 	private int[] down; // 호가-
+	
+	private String[] topName; // 상한가 TOP 종목
+	private String[] topCurrentPrice; // 상한가 TOP 현재가
+	private String[] topBefore; // 상한가 TOP 전일비
+	private String[] topUpDown; // 상한가 TOP 인기등락률
+	
+	private String[] searchName; // 검색 TOP 종목
+	private String[] searchCurrentPrice; // 검색 TOP 현재가
+	private String[] searchUpDown; // 검색 TOP 인기등락률
+	private String[] searchSangHa; // 검색 TOP 전날대비 상승 하락
+	
+	
+	
+	
 	public String getStockName() {
 		return stockName;
 	}
@@ -63,6 +77,58 @@ public class Info {
 	}
 	public void setDown(int[] down) {
 		this.down = down;
+	}
+	
+	public String[] getTopName() {
+		return topName;
+	}
+	public void setTopName(String[] topName) {
+		this.topName = topName;
+	}
+	public String[] getTopCurrentPrice() {
+		return topCurrentPrice;
+	}
+	public void setTopCurrentPrice(String[] topCurrentPrice) {
+		this.topCurrentPrice = topCurrentPrice;
+	}
+	public String[] getTopBefore() {
+		return topBefore;
+	}
+	public void setTopBefore(String[] topBefore) {
+		this.topBefore = topBefore;
+	}
+	public String[] getTopUpDown() {
+		return topUpDown;
+	}
+	public void setTopUpDown(String[] topUpDown) {
+		this.topUpDown = topUpDown;
+	}
+	
+	
+	public String[] getSearchName() {
+		return searchName;
+	}
+	public void setSearchName(String[] searchName) {
+		this.searchName = searchName;
+	}
+	public String[] getSearchCurrentPrice() {
+		return searchCurrentPrice;
+	}
+	public void setSearchCurrentPrice(String[] searchCurrentPrice) {
+		this.searchCurrentPrice = searchCurrentPrice;
+	}
+	public String[] getSearchUpDown() {
+		return searchUpDown;
+	}
+	public void setSearchUpDown(String[] searchUpDown) {
+		this.searchUpDown = searchUpDown;
+	}
+	
+	public String[] getSearchSangHa() {
+		return searchSangHa;
+	}
+	public void setSearchSangHa(String[] searchSangHa) {
+		this.searchSangHa = searchSangHa;
 	}
 	@Override
 	public String toString() {

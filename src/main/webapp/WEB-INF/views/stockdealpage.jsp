@@ -88,10 +88,10 @@ tr td button{
 					<div class="aside_area aside_popular">
 					
 						<h3 class="h_popular-left">
-							<span>인기 검색 종목</span>
+							<span>TOP 종목</span>
 						</h3>
 						<h3 class="h_popular-right">
-							<span>인기 종목</span>
+							<span>인기 검색 종목</span>
 						</h3>
 					
 					<div class="table-body-left">
@@ -101,7 +101,7 @@ tr td button{
 							</caption>
 							<colgroup>
 								<col>
-								<col width="60">
+								<col width="65">
 								<col width="65">
 							</colgroup>
 							<thead>
@@ -111,32 +111,8 @@ tr td button{
 									<th scope="col">전일대비</th>
 								</tr>
 							</thead>
-							<tbody class="rank-table">
-								<tr class="up">
-									<th scope="row"><em>1.</em><a href="/item/main.nhn?code=007570" onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">일양약품</a></th>
-									<td>79,300</td>
-									<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em><span class="tah p11 red02"> 18,300 </span></td>
-								</tr>
-								<tr class="down">
-									<th scope="row"><em>2.</em><a href="/item/main.nhn?code=005930" onclick="clickcr(this, &quot;boa.list&quot;, &quot;005930&quot;, &quot;2&quot;, event);">삼성전자</a></th>
-									<td>54,900</td>
-									<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em><span class="tah p11 nv01"> 600 </span></td>
-								</tr>
-								<tr class="up">
-									<th scope="row"><em>3.</em><a href="/item/main.nhn?code=010145" onclick="clickcr(this, &quot;boa.list&quot;, &quot;010145&quot;, &quot;3&quot;, event);">삼성중공우</a></th>
-									<td>201,500</td>
-									<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em><span class="tah p11 red02"> 46,500 </span></td>
-								</tr>
-								<tr class="up">
-									<th scope="row"><em>4.</em><a href="/item/main.nhn?code=000100" onclick="clickcr(this, &quot;boa.list&quot;, &quot;000100&quot;, &quot;4&quot;, event);">유한양행</a></th>
-									<td>57,000</td>
-									<td><em class="bu_p bu_pup"><span class="blind">상승</span></em><span class="tah p11 red02"> 5,200 </span></td>
-								</tr>
-								<tr class="up">
-									<th scope="row"><em>5.</em><a href="/item/main.nhn?code=010140" onclick="clickcr(this, &quot;boa.list&quot;, &quot;010140&quot;, &quot;5&quot;, event);">삼성중공업</a></th>
-									<td>6,990</td>
-									<td><em class="bu_p bu_pup"><span class="blind">상승</span></em><span class="tah p11 red02"> 260 </span></td>
-								</tr>
+							<tbody id="topRank">
+								
 							</tbody>
 						</table>
 						</div>
@@ -157,47 +133,8 @@ tr td button{
 									<th scope="col">전일대비</th>
 								</tr>
 							</thead>
-							<tbody class="rank-table">
-								<tr class="up">
-									<th scope="row"><em>1.</em><a
-										href="/item/main.nhn?code=007570"
-										onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">일양약품</a></th>
-									<td>79,300</td>
-									<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em><span
-										class="tah p11 red02"> 18,300 </span></td>
-								</tr>
-								<tr class="down">
-									<th scope="row"><em>2.</em><a
-										href="/item/main.nhn?code=005930"
-										onclick="clickcr(this, &quot;boa.list&quot;, &quot;005930&quot;, &quot;2&quot;, event);">삼성전자</a></th>
-									<td>54,900</td>
-									<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em><span
-										class="tah p11 nv01"> 600 </span></td>
-								</tr>
-								<tr class="up">
-									<th scope="row"><em>3.</em><a
-										href="/item/main.nhn?code=010145"
-										onclick="clickcr(this, &quot;boa.list&quot;, &quot;010145&quot;, &quot;3&quot;, event);">삼성중공우</a></th>
-									<td>201,500</td>
-									<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em><span
-										class="tah p11 red02"> 46,500 </span></td>
-								</tr>
-								<tr class="up">
-									<th scope="row"><em>4.</em><a
-										href="/item/main.nhn?code=000100"
-										onclick="clickcr(this, &quot;boa.list&quot;, &quot;000100&quot;, &quot;4&quot;, event);">유한양행</a></th>
-									<td>57,000</td>
-									<td><em class="bu_p bu_pup"><span class="blind">상승</span></em><span
-										class="tah p11 red02"> 5,200 </span></td>
-								</tr>
-								<tr class="up">
-									<th scope="row"><em>5.</em><a
-										href="/item/main.nhn?code=010140"
-										onclick="clickcr(this, &quot;boa.list&quot;, &quot;010140&quot;, &quot;5&quot;, event);">삼성중공업</a></th>
-									<td>6,990</td>
-									<td><em class="bu_p bu_pup"><span class="blind">상승</span></em><span
-										class="tah p11 red02"> 260 </span></td>
-								</tr>
+							<tbody class="rank-table" id="searchRank">
+								
 							</tbody>
 						</table>
 						</div>
@@ -655,14 +592,6 @@ tr td button{
 			 	/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
-					//console.log("현재가 = "+JSON.stringify(data.currentPrice));
-					//console.log("전일비 + 등락률 = "+JSON.stringify(data.before + data.updown));
-					
-					//console.log(stockName);
-
-				//	console.log(data.up);
-					/* if(data.before != null) { */
-						console.log(data.currentPrice);
 						$('#element').css('margin', '5px');
 						$('#price').text(data.currentPrice);
 						
@@ -686,10 +615,91 @@ tr td button{
 						$("#down").html(str2);
 						$("#stockName").html(data.stockName);
 						
+						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
+						
+						
+						
+						// top 종목(상한가) 5개
+						var topRank = "";
+						var a = 1;
+						
+						for(var i=0; i<data.topName.length; i++){
+							if(data.topUpDown[i].indexOf("+") != -1){							
+								topRank += '<tr class="up"  style="width:50px">'
+								topRank += '<th scope="row"><em>'+a+'</em>'
+							}
+							
+							else if(data.topUpDown[i].indexOf("-") != -1){
+								topRank += '<tr class="down">'
+              					topRank += '<th scope="row"><em>'+a+'</em>'
+							}
+							
+							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
+							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
+							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
+							//class="bu_p bu_pup2"
+							//class="bu_p bu_pdn"
+              				if(data.topUpDown[i].indexOf("+") != -1){
+              					topRank += '<td><em><span class="blind">상한가</span></em>'
+              					topRank += 	'<span class="tah p11 red02">'+data.topUpDown[i]+'</span></td>'
+							}
+              				
+              				else if(data.topUpDown[i].indexOf("-") != -1){
+              					topRank +=   '<td><em><span class="blind">하락</span></em>'
+           						topRank +=     '<span class="tah p11 nv01">'+data.topUpDown[i]+'</span></td>'
+							}
+               				
+               				
+          					searchRank += '</tr>'
+							a++
+						}
+						$("#topRank").html(topRank);
 
+						
+						
+						// 인기검색종목 5개
+						var searchRank = "";
+						var a = 1;
+						
+					      for(var i=0; i<data.searchName.length; i++){
+					          if(data.searchSangHa[i]=="up"){
+					            searchRank += '<tr class="up">'
+					          }
+					          
+					          else if(data.searchSangHa[i]=="down"){
+					            searchRank += '<tr class="down">'
+					          }
+					          else if(data.searchSangHa[i]=='0'){
+					            searchRank += '<tr class="same">'
+					          }
+					          searchRank += '<th scope="row"><em>'+a+'</em>'
+					          
+					          searchRank += 	'<a href="/trade?stockName='+data.searchName[i]+'">'+data.searchName[i]+'</a></th>'
+					          searchRank += '<td>'+data.searchCurrentPrice[i]+'</td>'
+					            
+					          if(data.searchSangHa[i]=="up"){
+					            searchRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+					            searchRank += 	'<span class="tah p11 red02">'+data.searchUpDown[i]+'</span></td>'
+					          }
+					                  
+					          else if(data.searchSangHa[i]=="down"){
+					            searchRank +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
+					            searchRank +=     '<span class="tah p11 nv01">'+data.searchUpDown[i]+'</span></td>'
+					          }
+					          else if(data.searchSangHa[i]=='0'){
+					            searchRank += '<td><span class="tah p11"> 0 </span></td>'
+					          }
+	          					searchRank += '</tr>'
+								a++
+						}
+						$("#searchRank").html(searchRank);
+						
+						
+						
+						
+						
 
 					//$('#price').text(data.currentPrice);
-					$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 					
 					
 				},

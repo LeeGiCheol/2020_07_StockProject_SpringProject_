@@ -250,40 +250,97 @@
 								type="button">삭제</button>
 						</div>
 					</form>
-					<div class="paging">
-						<div class="paging-body">
-							<ul class="pagination" id="pagination-all">
+						
+					<!-- 페이징 -->				
+					<nav aria-label="..." class="pagination">
+					    <ul class="pagination">
+					
+					
+					      <!-- << 버튼 -->
+					      <li>
+					        <a class="page-link"
+					          href="/board/free?bnowPage=1"
+					          tabindex="-1" aria-disabled="true">
+					          <i class="fas fa-angle-double-left"></i>
+					        </a>
+					      </li>
+					
+					      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage == 1}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            tabindex="-1" aria-disabled="true">
+					            <i class="fas fa-angle-left"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage != 1}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage-1}"
+					            tabindex="-1" aria-disabled="true">
+					            <i class="fas fa-angle-left"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 한번에 5개 페이지 보여줌 -->
+					       <c:forEach begin="${boardPage.startPage }"
+					        end="${boardPage.endPage }" var="p">
+					        <c:choose>
+					          <c:when test="${p == boardPage.nowPage}">
+					            <li class="page-item active" aria-current="page">
+					              <a class="page-link" href="#">${p}
+					                <span class="sr-only">(current)</span>
+					              </a>
+					            </li>
+					          </c:when>
+					          <c:when test="${p != boardPage.nowPage}">
+					            <li class="page-item">
+					              <a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
+					            </li>
+					          </c:when>
+					        </c:choose>
+					      </c:forEach> 
+					      
+					      
+					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            tabindex="+1" aria-disabled="true">
+					            <i class="fas fa-angle-right"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage+1}"
+					            tabindex="+1" aria-disabled="true" data-ajax="false">
+					            <i class="fas fa-angle-right"></i>
+					          </a>
+					        </li>
+					      </c:if> 
+					
+					      <!-- >> 버튼 -->
+					      <li>
+					        <a class="page-link"
+					        href="/board/free?bnowPage=${boardPage.lastPage}"
+					        tabindex="-1" aria-disabled="true">
+					          <i class="fas fa-angle-double-right"></i>
+					        </a>
+					      </li>
+					    </ul>
+					  </nav>
 
-								<c:if test="${boardPage.startPage != 1 }">
-									<li><a class="page-link"
-										href="/board/free?bnowPage=${boardPage.startPage - 1 }"
-										tabindex="-1" aria-disabled="true">◀</a></li>
-								</c:if>
-								<c:forEach begin="${boardPage.startPage }"
-									end="${boardPage.endPage }" var="p">
-									<c:choose>
-										<c:when test="${p == boardPage.nowPage}">
-											<li class="page-item active" aria-current="page"><a
-												class="page-link" href="#">${p}<span class="sr-only">(current)</span></a>
-											</li>
-										</c:when>
-										<c:when test="${p != boardPage.nowPage}">
-											<li class="page-item"><a class="page-link"
-												href="/board/free?bnowPage=${p}">${p}</a></li>
-										</c:when>
-									</c:choose>
-								</c:forEach>
-								<c:if test="${boardPage.endPage != boardPage.lastPage}">
-									<li><a class="page-link"
-										href="/board/free?bnowPage=${boardPage.endPage+1}"
-										tabindex="+1" aria-disabled="true">▶</a></li>
-								</c:if>
-							</ul>
 
-
-
-						</div>
-					</div>
 				</div>
 				<!-- 인기글 -->
 				<div class="tab-pane fade" id="pills-board-best" role="tabpanel"
