@@ -25,7 +25,9 @@ import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.RequestChart;
 import stockCode.StockParsing;
+import stockCode.TopStock;
 
 @Controller
 public class TradeController {
@@ -318,8 +320,8 @@ public class TradeController {
 
 		stockName = stockName.toUpperCase();
 
-		//RequestChart rc = new RequestChart();
-		//rc.connection(stockName);
+		RequestChart rc = new RequestChart();
+		rc.connection(stockName);
 
 		Map<String, Object> minChart = tradeService.minuteChart(stockName);
 		Map<String, Object> dayChart = tradeService.dayChart(stockName);
@@ -365,6 +367,10 @@ public class TradeController {
 		mav.addObject("stockName", stockName);
 		mav.addObject("stockCode", stockCode);
 		mav.setViewName("stockdealpage");
+		
+		
+		
+		
 		return mav;
 
 	}
@@ -414,8 +420,8 @@ public class TradeController {
 		JSONObject obj = new JSONObject();
 		JSONArray jArray = new JSONArray();
 
+		JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 		for (int i = 0; i < up.length; i++) {
-			JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 			sObject.put("up", up[i]);
 			sObject.put("down", down[i]);
 			jArray.add(sObject);
@@ -430,6 +436,40 @@ public class TradeController {
 		map.put("minimum", trade.getMinimum()); // 하한가
 		map.put("up", jArray);
 		map.put("down", jArray);
+		
+		
+		
+		
+		TopStock ts = new TopStock();
+		
+		Info topStock = ts.topStock();
+		String[] topName = topStock.getTopName();
+		String[] topCurrentPrice = topStock.getTopCurrentPrice();
+		String[] topBefore = topStock.getTopBefore();
+		String[] topUpDown = topStock.getTopUpDown();
+		String[] searchName = topStock.getSearchName();
+		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
+		String[] searchUpDown = topStock.getSearchUpDown();
+		String[] searchSangHa = topStock.getSearchSangHa();
+		
+		
+		for (int i = 0; i < topName.length; i++) {
+			map.put("topName", topName);
+			map.put("topCurrentPrice", topCurrentPrice);
+			map.put("topBefore", topBefore);
+			map.put("topUpDown", topUpDown);
+		}
+		
+		for (int i = 0; i < searchUpDown.length; i++) {
+			map.put("searchName", searchName);
+			map.put("searchCurrentPrice", searchCurrentPrice);
+			map.put("searchUpDown", searchUpDown);
+			map.put("searchSangHa", searchSangHa);
+		}
+		
+		
+		
+		
 
 		// 차트
 

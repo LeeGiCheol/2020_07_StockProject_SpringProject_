@@ -197,7 +197,7 @@ td>a {
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${tradeNotice}" var="list">
+						<c:forEach items="${tradePageHistory}" var="list">
 							<tr>
 								<td><div class="custom-control custom-checkbox">
 										<input type="checkbox" id="jb-checkbox1"
@@ -220,9 +220,11 @@ td>a {
 							type="submit">삭제</button>
 					</div>
 				</form>
-				<div class="paging">
-					<div class="paging-body">
-						<ul class="pagination" id="pagination2"></ul>
+				<div>
+					<div>
+						<c:forEach var="i" begin="0" end="${(total-1)/2}">
+							<a href="/myPage04?page=${i+1}">${i+1}</a>
+						</c:forEach>
 					</div>
 				</div>
 			</article>

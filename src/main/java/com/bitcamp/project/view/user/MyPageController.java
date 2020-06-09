@@ -1,5 +1,8 @@
 package com.bitcamp.project.view.user;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.MyPostService;
@@ -59,16 +63,38 @@ public class MyPageController {
 	
 	
 	@GetMapping(value="/myPage04")
-	public ModelAndView myPage04(HttpSession session) {
+	public ModelAndView myPage04(HttpSession session, @RequestParam(value = "page") int page) {
 		ModelAndView mav = new ModelAndView();
 		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		
-		List notice = userInfoService.getNotice(id);
-		List tradeNotice = (List) notice.get(0);
+		List<Map> notice = userInfoService.getNotice(id);
+		List<Map> tradeNotice = (List) notice.get(0);
+		List<Map> tradePageHistory = new ArrayList<>();
+		
+		int pageCount = 2;
+		
+		try {
+			for (int i = (page - 1) * pageCount; i < page * pageCount; i++) {
+				tradeNotice.get(i).put("tdatetime",
+						new Date(((Date) tradeNotice.get(i).get("tdatetime")).getTime() - (1000 * 60 * 60 * 9)));
+				if (tradeNotice.get(i).get("category").equals("buy")) {
+					tradeNotice.get(i).put("category", "매수");
+				} else if (tradeNotice.get(i).get("category").equals("sell")) {
+					tradeNotice.get(i).put("category", "매도");
+				}
+				tradeNotice.get(i).put("tprice", formatter.format(tradeNotice.get(i).get("tprice")));
+				tradePageHistory.add(tradeNotice.get(i));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		System.out.println(tradeNotice);
 //		List commentNotice = (List) notice.get(1);
-		mav.addObject("tradeNotice" , tradeNotice);
 //		mav.addObject("commentNotice" , commentNotice);
+		
+		mav.addObject("total", tradeNotice.size());
+		mav.addObject("tradePageHistory", tradePageHistory);
 		mav.setViewName("mypage04");
 		return mav;
 	}
