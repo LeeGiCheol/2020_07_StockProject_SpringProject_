@@ -157,7 +157,7 @@ input, label, button {
     right: 0;
     
 }
-h3> a {
+.btnOverInfo {
     font-size: 28px;
     font-weight: 500;
     line-height: 28px;
@@ -794,6 +794,35 @@ caption {
 	width: 100%;
 	}
 }
+
+#nowStock{
+	margin-left: 10px;
+	padding: 0;
+}
+.mainsame{
+	font-size: 25px;
+	line-height: 26px;
+	color: #333 !important;
+}
+.mainup{
+	font-size: 25px;
+	line-height: 26px;
+	color: #ca2623 !important;
+}
+.maindown {
+	font-size: 25px;
+    color: #1a64d2 !important;
+}
+.maindown-num {
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: 600;
+}
+.mainup-num {
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: 600;
+}
 @media screen and (max-width: 576px) {
 	.col-md-9 {
 		display: -webkit-box;
@@ -812,5 +841,18 @@ caption {
 		-webkit-box-ordinal-group: 3;
 		-moz-box-ordinal-group: 3;
 		box-ordinal-group: 3;
+	}
+	.btnOverInfo{
+	font-size: 18px;
+	}
+	.mainsame{
+	font-size: 18px;
+	}
+	.mainup{
+	font-size: 18px;
+	
+	}
+	.maindown{
+	font-size: 18px;
 	}
 }

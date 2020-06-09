@@ -58,7 +58,7 @@ tr td button{
 									id="stockBtn" type="submit">
 									<i class="fas fa-search"></i>
 								</button>
-								<h3><a href="#" class="btnOverInfo" id="h3_stockName">${stockName}</a></h3>
+								<h3 class="btnOverInfo" id="h3_stockName">${stockName}</h3>
 								<span id="nowStock"> </span>
 						<div class="stock-deal-button">
 								<button type="button"
@@ -606,26 +606,26 @@ tr td button{
 						
 						if(data.before.indexOf("+") != -1){
 							before = data.before.replace("+","");
-							nowStock += '<tr class="up">'
+							nowStock += '<tr class="mainup">'
 						}
 						         
 						if(data.before.indexOf("+") == -1){
 							before = data.before.replace("-","");
-							nowStock += '<tr class="down">'
+							nowStock += '<tr class="maindown">'
 						}
 						else{
-							nowStock += '<tr class="same">'
+							nowStock += '<tr class="mainsame">'
 						}
 						         
 						nowStock += '<td>'+data.currentPrice+'</td>'
 						           
 						if(data.before.indexOf("+") != -1){
-							nowStock += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+							nowStock += '<td class="mainup-num"><em><span>▲</span></em>'
 							nowStock += 	'<span class="tah p11 red02">'+ before + " ("+data.updown+")"+'</span></td>'
 						}
 						               
 						else if(data.before.indexOf("+") == -1){
-							nowStock +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
+							nowStock +=   '<td class="maindown-num"><em><span>▼</span></em>'
 							nowStock +=     '<span class="tah p11 nv01">'+ before + " ("+data.updown+")"+'</span></td>'
 						}
 						else{
