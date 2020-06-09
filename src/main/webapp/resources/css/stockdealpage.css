@@ -55,10 +55,12 @@ tr td button{
 .table{
 	margin-bottom: 0;
 }
+@media only screen and (max-width: 576px){
 .stock-btn{
 	padding: 3px;
 	font-size: 10px;
 	margin-bottom: 1.5px;
+}
 }
 .containerNew{
 	position: relative;
@@ -484,6 +486,7 @@ a.btnStyle {
     background: #fff;
     line-height: 50px;
     color: #5a6268 !important;
+    font-weight: bold;
 }
 [class*="stock-nav-tab"] li.selected a:after, li:active>a, li.active>a {
     border-bottom: 2px solid #5a6268;
@@ -567,7 +570,7 @@ a.btnStyle {
 .upper-text, .now-text, .Lower-text, .inside-text, .inside-up-text, .inside-down-text{
 	border-right: 1px solid #dddddd;
 	font-size: 16px;
-	padding: 8px;
+	padding: 10px;
 	text-align: center;
 }
 .table-border{
@@ -672,15 +675,15 @@ a.btnStyle {
     border-bottom: 2px solid #dddddd;
 }
 .tbl_home_left {
-    width: 48.4%;
+    width: 48.5%;
     border: 0;
     table-layout: fixed;
     border-collapse: collapse;
-    margin-right:10px;
+    margin-right:6px;
     float: left;
 }
 .tbl_home_right {
-    width: 50%;
+    width: 49%;
     border: 0;
     table-layout: fixed;
     border-collapse: collapse;
@@ -705,14 +708,6 @@ caption {
     line-height: 0;
     text-indent: -9999px;
 }
-[class*="tbl_home_"]  thead {
-    overflow: hidden;
-    width: 1px;
-    height: 1px;
-    font-size: 0;
-    line-height: 0;
-    text-indent: -9999px;
-}
 [class*="tbl_home_"]  tbody tr.up td {
     color: #e00400;
 }
@@ -720,11 +715,56 @@ caption {
     color: #666;
     font-family: tahoma,sans-serif;
     text-align: right;
+    font-size: 12px;
+}
+[class*="tbl_home_"]  tbody th a {
+    color: #5f5f5f;
+    white-space: nowrap;
+    font-size: 12px;
+}
+[class*="tbl_home_"]  #topRank th {
+    height: 22px;
+     padding: 5px 0 5px 5px;
+    font-weight: normal;
+    text-align: left;
+}
+[class*="tbl_home_"]  .rank-table th {
+    height: 22px;
+    padding: 5px 0 5px 10px;
+    font-weight: normal;
+    text-align: left;
+}
+[class*="tbl_home_"]  tbody th em {
+    margin-right: 5px;
+    color: #6879ab;
+    font-family: tahoma;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+[class*="tbl_home_"]  tbody tr.down td {
+    color: #003ace;
+}
+@media only screen and (max-width: 576px){
+[class*="tbl_home_"] tbody th em {
+    font-size: 7px;
+}
+}
+@media only screen and (max-width: 576px){
+[class*="tbl_home_"]  tbody td {
+    font-size: 7px;
+}
+}
+@media only screen and (max-width: 576px){
+[class*="tbl_home_"] tbody th a {
+	 font-size: 7px;
+	}
 }
 [class*="tbl_home_"]  tbody td em.bu_p {
     margin: -1px 0 1px;
     _margin: 1px 0 -1px;
     vertical-align: middle;
+    
 }
 .bu_pup2 {
     width: 7px !important;
@@ -743,41 +783,10 @@ caption {
     margin: -1px;
     overflow: hidden;
 }
-[class*="tbl_home_"]  #topRank th {
-    height: 22px;
-    padding: 5px;
-    font-weight: normal;
-    text-align: left;
-}
-[class*="tbl_home_"]  .rank-table th {
-    height: 22px;
-    padding: 5px 5px 5px 10px;
-    font-weight: normal;
-    text-align: left;
-}
-[class*="tbl_home_"]  tbody th em {
-    margin-right: 5px;
-    color: #6879ab;
-    font-family: tahoma;
-    font-size: 16px;
-    font-weight: bold;
-}
-[class*="tbl_home_"]  tbody th a {
-    color: #5f5f5f;
-    white-space: nowrap;
-}
-[class*="tbl_home_"]  tbody tr.down td {
-    color: #003ace;
-}
 .bu_pdn {
     width: 7px !important;
     height: 6px !important;
     background-position: 0 -80px;
-}
-@media only screen and (max-width: 979px){
-.aside_area {
-	width: 100%;
-	}
 }
 @media only screen and (max-width: 1260px){
 .aside_area {

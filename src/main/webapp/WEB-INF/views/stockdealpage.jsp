@@ -107,9 +107,9 @@ tr td button{
 								인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
 							</caption>
 							<colgroup>
-								<col>
-								<col width="65">
-								<col width="65">
+								<col width="40%">
+								<col width="20%">
+								<col width="20%">
 							</colgroup>
 							<thead>
 								<tr>
@@ -129,9 +129,9 @@ tr td button{
 								인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
 							</caption>
 							<colgroup>
-								<col>
-								<col width="60">
-								<col width="65">
+								<col width="40%">
+								<col width="20%">
+								<col width="20%">
 							</colgroup>
 							<thead>
 								<tr>
