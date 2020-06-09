@@ -10,7 +10,7 @@ function ok(){
     alert('인증번호가 일치하지 않습니다.')
   }
   ok();
-  window.location.href="/forgetIdTry";
+  window.location.href="/forgetPasswordTry";
 </script>
 </head>
 <body>

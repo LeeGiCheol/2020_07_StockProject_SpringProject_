@@ -16,7 +16,7 @@ public class ExampleSend {
   public static String numStr = ""; //난수가 저장될 변수
   public static void main(String[] args, String tel) {
 	  Random rand = new Random();
-	    for(int i=0;i<6;i++) {
+	    for(int i=0;i<4;i++) {
 	        //0~9 까지 난수 생성
 	        String ran = Integer.toString(rand.nextInt(10));
 	            numStr += ran;

@@ -25,35 +25,6 @@
 				$(".check").prop("checked", false);
 			}
 		})
-		$(".remove").click(function() {
-			if (confirm("정말로 삭제하시겠습니까?")) {
-				alert("jS구성하기");
-			} else {
-				alert("취소하셨습니다.");
-			}
-		})
-		$(function() {
-			window.pagObj = $('#pagination').twbsPagination({
-				totalPages : 35,
-				visiblePages : 5,
-				onPageClick : function(event, page) {
-					console.info(page + ' (from options)');
-				}
-			}).on('page', function(event, page) {
-				console.info(page + ' (from event listening)');
-			});
-		});
-		$(function() {
-			window.pagObj = $('#pagination2').twbsPagination({
-				totalPages : 35,
-				visiblePages : 5,
-				onPageClick : function(event, page) {
-					console.info(page + ' (from options)');
-				}
-			}).on('page', function(event, page) {
-				console.info(page + ' (from event listening)');
-			});
-		});
 	});
 </script>
 <style>
@@ -197,7 +168,7 @@ td>a {
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${tradeNotice}" var="list">
+						<c:forEach items="${modifiedNotice}" var="list">
 							<tr>
 								<td><div class="custom-control custom-checkbox">
 										<input type="checkbox" id="jb-checkbox1"
@@ -214,16 +185,9 @@ td>a {
 							</tr>
 						</c:forEach>
 				</table>
-				<form class="form-inline my-2 my-lg-0 underSearchForm">
-					<div>
-						<button class="btn btn-primary btn-lg btn-block remove"
-							type="submit">삭제</button>
-					</div>
-				</form>
-				<div class="paging">
-					<div class="paging-body">
-						<ul class="pagination" id="pagination2"></ul>
-					</div>
+				
+				<div>
+				
 				</div>
 			</article>
 		</div>
@@ -250,32 +214,28 @@ td>a {
 										class="custom-control-input"><label
 										class="custom-control-label" for="jb-checkboxAll"></label>
 								</div></td>
-							<th class="no" scope="col">번호</th>
-							<th class="title" scope="col">알림제목</th>
+							<th class="no" scope="col">글번호</th>
+							<th class="title" scope="col">내용</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><div class="custom-control custom-checkbox">
-									<input type="checkbox" id="jb-checkbox1"
-										class="custom-control-input check"><label
-										class="custom-control-label" for="jb-checkbox1"></label>
-								</div></td>
-							<th scope="row">7</th>
-							<td><a onclick="window.location.href='alarm-detail.jsp'">게시판
-									알림</a></td>
-						</tr>
+						<c:forEach items="${commentNotice}" var="list">
+							<tr>
+								<td><div class="custom-control custom-checkbox">
+										<input type="checkbox" id="jb-checkbox1"
+											class="custom-control-input check"><label
+											class="custom-control-label" for="jb-checkbox1"></label>
+									</div></td>
+								<td class="first" title="글번호"><c:out value="${list.pno}" /></td>
+								<td title="내용"><c:out value="${list.title}" /> 글에 댓글이 달렸습니다.</td>
+							</tr>
+						</c:forEach>
 				</table>
 				<form class="form-inline my-2 my-lg-0 underSearchForm">
-					<div>
-						<button class="btn btn-primary btn-lg btn-block remove"
-							type="submit">삭제</button>
-					</div>
+					
 				</form>
 				<div class="paging">
-					<div class="paging-body">
-						<ul class="pagination" id="pagination"></ul>
-					</div>
+				
 				</div>
 			</article>
 		</div>

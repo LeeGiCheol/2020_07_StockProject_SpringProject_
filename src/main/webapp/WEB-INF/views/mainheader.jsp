@@ -12,8 +12,8 @@
 	<div class="header">
 		<!-- 상단  nav -->
 		<ul class="nav justify-content-end top-nav">
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
-			<li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="/signInPage">로그인</a></li>
+			<li class="breadcrumb-item"><a id="top-nav-font" href="/signUpPage/1">회원가입</a></li>
 		</ul>
 		<ul class="nav justify-content-end top-nav">
 			<a href="#"><img class="" cust_id="" id="_myhomeId"
