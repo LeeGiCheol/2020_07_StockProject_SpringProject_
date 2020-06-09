@@ -606,6 +606,7 @@ tr td button{
 							$('#upDownColor').css("color", "rgb(91, 90, 255)");
 						}
 						
+						
 						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 						$('#maximum').html(data.maximum);
 						$('#minimum').html(data.minimum);
@@ -625,34 +626,15 @@ tr td button{
 						var topRank = "";
 						var a = 1;
 						
-						for(var i=0; i<data.topName.length; i++){
-							if(data.topUpDown[i].indexOf("+") != -1){							
-								topRank += '<tr class="up"  style="width:50px">'
-								topRank += '<th scope="row"><em>'+a+'</em>'
-							}
-							
-							else if(data.topUpDown[i].indexOf("-") != -1){
-								topRank += '<tr class="down">'
-              					topRank += '<th scope="row"><em>'+a+'</em>'
-							}
-							
+						for(var i=0; i<data.topName.length-1; i++){
+							topRank += '<tr class="up">'
+							topRank += '<th scope="row"><em>'+a+'</em>'
 							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
 							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
 							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
-							//class="bu_p bu_pup2"
-							//class="bu_p bu_pdn"
-              				if(data.topUpDown[i].indexOf("+") != -1){
-              					topRank += '<td><em><span class="blind">상한가</span></em>'
-              					topRank += 	'<span class="tah p11 red02">'+data.topUpDown[i]+'</span></td>'
-							}
-              				
-              				else if(data.topUpDown[i].indexOf("-") != -1){
-              					topRank +=   '<td><em><span class="blind">하락</span></em>'
-           						topRank +=     '<span class="tah p11 nv01">'+data.topUpDown[i]+'</span></td>'
-							}
-               				
-               				
-          					searchRank += '</tr>'
+           					topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+           					topRank += 	'<span class="tah p11 red02">'+data.topBefore[i]+'</span></td>'
+           					topRank += '</tr>'
 							a++
 						}
 						$("#topRank").html(topRank);
@@ -696,13 +678,8 @@ tr td button{
 						}
 						$("#searchRank").html(searchRank);
 						
-						
-						
-						
-						
 
 					//$('#price').text(data.currentPrice);
-					
 					
 				},
 				error : function(error) {
