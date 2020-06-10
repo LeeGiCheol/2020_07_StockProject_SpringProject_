@@ -12,8 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +21,6 @@ import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
-import com.google.gson.Gson;
 
 @Controller
 public class BoardController {
@@ -43,11 +40,10 @@ public class BoardController {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
-		System.out.println("vo "+vo.toString());
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage));
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
-		PagingVO a = (PagingVO)boardList.get("boardPage");
+		//model.addAttribute("commentCount", commentCount);
 //		System.out.println(a.toString());
 //		System.out.println(boardList);
 		
@@ -58,9 +54,9 @@ public class BoardController {
 	
 	@GetMapping("/board/free/write")
 	public String boardWriteView(BoardVO vo, Model model) {
-	
 		return "writeForm";
 	}
+	
 	
 	@PostMapping("/board/free/write")
 	public String boardWrite(BoardVO vo) {
@@ -81,10 +77,12 @@ public class BoardController {
 		}
 		ModelAndView mav = new ModelAndView();
 		BoardVO boardDetail = boardService.getBoard(vo);
+		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
 		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
+
 		mav.setViewName("free-board-detail");
 		
 		return mav;

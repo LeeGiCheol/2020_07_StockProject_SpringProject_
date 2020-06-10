@@ -194,9 +194,9 @@ position: relative;
 				</div>
 				<div class="buttons">
 					<button type="button" class="btn btn-sm btn-primary" id="btnList"
-						onclick="window.location.href='free-board.jsp'">목록</button>
+						onclick="window.location.href='/board/free'">목록</button>
 					<button type="button" class="btn btn-sm btn-primary" id="btnMyList"
-						onclick="window.location.href='mypage03.jsp'">내가 쓴글</button>
+						onclick="window.location.href='/myPage03'">내가 쓴글</button>
 
 					<c:if test="${loginUser.nickname eq boardDetail.nickname}">
 						<button type="button" class="btn btn-sm btn-primary"
@@ -456,6 +456,16 @@ position: relative;
 			 })
 		        
 		}
+		
+		
+/* 		history.pushState(null, null, location.href);
+
+		window.onpopstate = function(event) {
+			console.log(event)
+			location.href = "/board/free";
+
+		}; */
+
 
 
 

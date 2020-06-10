@@ -44,6 +44,11 @@ public class BoardServiceImpl implements BoardService{
 	public int count(BoardVO vo) {
 		return boardDAO.count(vo);
 	}
+	
+	public int commentCount(BoardVO vo) {
+		return boardDAO.commentCount(vo);
+	}
+
 
 	@Override
 	public Map<String, Object> boardList(BoardVO vo, int nowPage) {
@@ -59,5 +64,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	
-
+	public int updateViews(BoardVO vo) {
+		return boardDAO.updateViews(vo);
+	}
 }
