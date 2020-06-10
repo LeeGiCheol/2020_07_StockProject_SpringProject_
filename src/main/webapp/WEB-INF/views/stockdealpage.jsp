@@ -87,6 +87,55 @@ tr td button{
 							<div id="chartcontainer"></div>
 						</div>
 					</div>
+					<div class="m-stock-price-chart">
+						<table class="stock-chart-table	">
+							<colgroup>
+								<col width="25%">
+								<col width="30%">
+								<col width="45%">
+							</colgroup>
+<%-- 							<thead>
+								<tr>
+									<th scope="col" colspan="3" id="stockName">${stockName}</th>
+								</tr>
+							</thead> --%>
+							<tbody>
+								<tr>
+									<td scope="col" class="table-border"></td>
+									<td scope="col" class="table-border">호가</td>
+									<td scope="col" class="table-border"></td>
+								</tr>
+								<tr>
+									<td scope="col" class="upper-text">상한가</td>
+									<td scope="col"  class="upper-text" id="m-maximum"></td>
+									<td scope="col"></td>
+								</tr>
+							</tbody>
+
+							<tbody id="m-up">
+								<!-- ajax 로 호가 + 주입 -->
+							</tbody>
+
+							<tbody>
+								<tr id="m-upDownColor">
+									<td scope="col" class="now-text">현재가</td>
+									<td scope="col" class="now-text"> <button id="m-price"></button></td>
+									<td scope="col" class="now-text" id="m-beforeAndUpdown"></td>
+								</tr>
+							</tbody>
+
+							<tbody id="m-down">
+								<!-- ajax 로 호가 - 주입 -->
+							</tbody>
+							<tbody>
+								<tr>
+									<td scope="col" class="Lower-text">하한가</td>
+									<td scope="col" class="Lower-text" id="m-minimum"></td>
+									<td scope="col"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 					<div class="aside_area aside_popular">
 					
 						<h3 class="h_popular-left">
@@ -598,7 +647,7 @@ tr td button{
 				success : function(data) {
 						console.log(data)
 						$('#element').css('margin', '5px');
-						$('#price').text(data.currentPrice);
+						$('#price,#m-price').text(data.currentPrice);
 						
 						
 						var nowStock = "";
@@ -640,27 +689,27 @@ tr td button{
 						if(data.before.indexOf("+") != -1){	
 							before = data.before.replace("+", "");
 							console.log(before)
-							$('#upDownColor').css("color", "rgb(255, 0, 0)");
-							$('#beforeAndUpdown').html(before + " , " + data.updown);
+							$('#upDownColor,#m-upDownColor,#m-price').css("color", "rgb(255, 0, 0)");
+							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " , " + data.updown);
 
 						} 
 						// 내린경우
 						else if (data.before.indexOf("+") == -1){
 							before = data.before.replace("-", "");
-							$('#upDownColor').css("color", "rgb(91, 90, 255)");
-							$('#beforeAndUpdown').html(before + " , " + data.updown);
+							$('#upDownColor,#m-upDownColor,#m-price').css("color", "rgb(91, 90, 255)");
+							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " , " + data.updown);
 
 						}
 						
 						
-						$('#maximum').html(data.maximum);
-						$('#minimum').html(data.minimum);
+						$('#maximum,#m-maximum').html(data.maximum);
+						$('#minimum,#m-minimum').html(data.minimum);
 						var templ = $.templates("#upPrice");
 						var str = templ.render(data.up);
-						$("#up").html(str);
+						$("#up,#m-up").html(str);
 						var templ2 = $.templates("#downPrice");
 						var str2 = templ2.render(data.down);
-						$("#down").html(str2);
+						$("#down,#m-down").html(str2);
 						$("#stockName").html(data.stockName);
 						
 						
@@ -733,7 +782,7 @@ tr td button{
 		}, 1000); // SET INTERVAL5
 	});
 	
-	$('#price').click( function(){
+	$('#price,#m-price').click( function(){
 		$('#buying_price').val($(this).text());
 		$('#selling_price').val($(this).text());
 		var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
