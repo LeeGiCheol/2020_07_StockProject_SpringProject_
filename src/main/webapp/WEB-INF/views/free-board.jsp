@@ -108,6 +108,24 @@ position: relative;
     font-weight: bold;
     line-height: 100%;
 }
+.board-free-write{
+	padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+    background: #ff545b;
+    border: 1px solid #ff545b;
+    color: #fff;
+    float: right;
+}
+.nav-pills{
+	float: left;
+}
+.free-board-link{
+border-radius:0 !important;
+}
+.board-free-table{
+	width: 100%;
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -196,23 +214,37 @@ position: relative;
 	<h1 class="tit-h1 line" style="cursor:pointer;">자유게시판</h1>
 		<div class="board-type">
 			<!-- 게시판 -->
+			<div class="board-free-nav">
 			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-				<li class="nav-item" role="presentation"><input type="radio"
-					class="nav-link active" id="pills-board-all-tab" data-toggle="pill"
-					href="#pills-board-all" role="tab" aria-controls="pills-board-all"
-					aria-selected="true" name="check" checked="checked">전체글</li>
-				<li class="nav-item" role="presentation"><input type="radio" class="nav-link"
-					id="pills-board-best-tab" data-toggle="pill"
-					href="#pills-board-best" role="tab"
-					aria-controls="pills-board-best" aria-selected="false" name="check">인기글</li>
-			</ul>
+					<li class="nav-item" role="presentation">
+					<a class="free-board-link nav-link active" id="pills-board-all-tab"
+						data-toggle="pill" href="#pills-board-all" role="tab"
+						aria-controls="pills-board-all" aria-selected="true">전체글</a>
+					</li>
+					<li class="nav-item" role="presentation">
+					<a class="free-board-link nav-link" id="pills-board-best-tab" data-toggle="pill"
+						href="#pills-board-best" role="tab"
+						aria-controls="pills-board-best" aria-selected="false">인기글</a>
+					</li>
+					
+				</ul>
+				<button class="board-free-write" type="button" onclick="location.href='/board/free/write'">작성</button>	
+			</div>
 			<div class="tab-content" id="pills-tabContent">
 				<div class="tab-pane fade show active" id="pills-board-all"
 					role="tabpanel" aria-labelledby="pills-board-all-tab"
 					style="margin-bottom: 300px;">
 					<!-- 전체글 -->
-					<table class="table table-bordered">
-						<thead>
+					<table class="board-free-table">
+							<colgroup>
+								<col width="10%">
+								<col width="35	%">
+								<col width="20%">
+								<col width="15%">
+								<col width="10%">
+								<col width="10%">
+							</colgroup>
+							<thead>
 							<tr>
 								<th class="no" scope="col">번호</th>
 								<th class="title" scope="col">글제목</th>
@@ -362,7 +394,7 @@ position: relative;
 				<div class="tab-pane fade" id="pills-board-best" role="tabpanel"
 					aria-labelledby="pills-board-best-tab"
 					style="margin-bottom: 300px;">
-					<table class="table table-bordered">
+					<table class="board-free-table">
 						<thead>
 							<tr>
 								<td class="checkno"><div
