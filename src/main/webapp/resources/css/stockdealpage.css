@@ -602,6 +602,9 @@ a.btnStyle {
 	background: #eaeaea;
 	font-weight: 600;
 }
+#m-price, #price{
+	font-weight: 600;
+}
 #trad_frm button{
 	border: none;
 	padding: 0;
@@ -823,8 +826,12 @@ caption {
 	font-size: 14px;
 	font-weight: 600;
 }
+/* .m-stock-price-chart{
+	display: none;
+} */
+
 @media screen and (max-width: 576px) {
-	.col-md-9 {
+ 	.col-md-9 {
 		display: -webkit-box;
 		display: -moz-box;
 		display: box;
@@ -832,15 +839,21 @@ caption {
 		-moz-box-orient: vertical;
 		box-orient: vertical;
 	}
-	.stock-deal-control {
-		-webkit-box-ordinal-group: 2;
-		-moz-box-ordinal-group: 2;
-		box-ordinal-group: 2;
-	}
 	.aside_area {
+		-webkit-box-ordinal-group: 4;
+		-moz-box-ordinal-group: 4;
+		box-ordinal-group: 4;
+	}
+	.stock-deal-control {
 		-webkit-box-ordinal-group: 3;
 		-moz-box-ordinal-group: 3;
 		box-ordinal-group: 3;
+	}
+	.m-stock-price-chart{
+	display: block;
+	}
+	.stock-price-chart{
+	display: none;
 	}
 	.btnOverInfo{
 	font-size: 18px;
