@@ -59,6 +59,9 @@
 			<when test='nickname != null and nickname !="" '>
 				WHERE nickname = #{nickname}
 			</when>
+			<when test='tel != null and tel !="" '>
+				WHERE tel = #{tel} 
+			</when>
 		</choose>
 		
 		
@@ -102,8 +105,6 @@
 		set PW=#{pw}, ADDRESS=#{address}, TEL=#{tel}, showEsetSetting=#{showEsetSetting}
 		where ID=#{id}
 	</update>
-	
-	
 	<!-- <insert id="nickname">
 	</insert> -->
 	
