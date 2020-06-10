@@ -231,6 +231,9 @@ position: relative;
 	    })
 	    
 	    // 목록 뿌리기
+	    
+	    var like = "좋아요";
+	    
 	    function list(){
 	    
 	    
@@ -244,9 +247,10 @@ position: relative;
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
-				
+					console.log(data)
 					// 게시판상세보기
 					var board = "";
+					
 					var boardTitle = data.boardDetail.title
 					var boardNickname = data.boardDetail.nickname
 					var boardDatetime = data.boardDetail.bdateTime
@@ -268,6 +272,7 @@ position: relative;
 					board +=			'</ul>'
 					board +=		'</div>'
 					board +=		'<div class="article">'+boardContent
+					board +=		'<div style="position:absolute; bottom:0px;"><span id="likes"><button id="likesBtn" onclick="updateLikes('+data.boardDetail.pno+')">'+like+'</button>'+data.boardDetail.likes+'</span></div>'
 					board +=		'</div>'
 					board +=	'</div>'
 					board +=	'<hr>'
@@ -473,9 +478,33 @@ position: relative;
 	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
 	        return strDate;
 	    }
-	    
-	    
 		
+	    
+	    function updateLikes(pno){
+		    $.ajax({
+				type : 'GET',
+				url : '${pageContext.request.contextPath}/board/free/detail/likes/ajax',
+				dataType : 'json',
+				data : {"pno" : pno},
+				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
+				success : function(data){ 
+					list();
+					
+					    /* if (like=="좋아요") 
+					    	like = "좋아요 취소"
+					    
+				    	else
+					    	like = "좋아요" */
+				},
+			    error : function(error, data){
+			    	
+					console.log(data)
+					console.log(error)
+					alert('error!!'); 
+			    }
+		    })
+		}			
+	    
 		
 /* 		history.pushState(null, null, location.href);
 

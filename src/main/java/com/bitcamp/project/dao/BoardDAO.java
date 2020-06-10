@@ -14,4 +14,6 @@ public interface BoardDAO {
 	public int count(BoardVO vo);
 	public int commentCount(BoardVO vo);
 	public int updateViews(BoardVO vo);
+	public int boardLikes(BoardVO vo);
+
 }

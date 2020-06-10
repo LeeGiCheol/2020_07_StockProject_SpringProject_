@@ -115,10 +115,44 @@
 		WHERE pno = #{pno}	
 	</update>
 	
+	<!-- 조회수 -->
 	<update id="updateViews">
 		UPDATE board SET
 		views = views + 1
 		WHERE pno = #{pno}
 	</update>
+	
+	<!-- 아이디 별 like 체크 (한 게시물에 좋아요 한개만 가능하게하려고) -->
+	<select id="userLikesCount" resultType="int">	
+		SELECT count(*) FROM likelist
+		WHERE id = #{id}
+		AND pno = #{pno}
+	</select>
+	
+	
+	<!-- board 테이블에 like 증가 -->
+	<update id="likesPlusBoard">
+		update board
+		set likes = likes+1
+		where pno = #{pno}	
+	</update>
+	
+	<!-- likelist 테이블에 like 추가 -->
+	<insert id="likesPlusList">
+		insert into likelist (pno, id)
+		values (#{pno}, #{id})
+	</insert>
+	
+	<!-- board 테이블에 like 감소 -->
+	<update id="likesMinusBoard">
+		update board
+		set likes = likes-1
+		where pno = #{pno}
+	</update>
+	
+	<delete id="likesMinusList">
+		delete from likelist
+		where id = #{id}
+	</delete>
 	
 </mapper>

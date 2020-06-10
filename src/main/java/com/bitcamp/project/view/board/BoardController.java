@@ -45,9 +45,7 @@ public class BoardController {
 		if(searchStyle.equals("")) {
 			keyword = "";
 		}
-		System.out.println("sear" + searchStyle + " , " + keyword);
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword);
-		System.out.println("boardboardasdfadgsadg "+boardList.get("boardList"));
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
@@ -136,6 +134,20 @@ public class BoardController {
 		map.put("commentPage", (PagingVO)commentList.get("commentPage"));
 		
 		return map;
+	}
+	
+	@GetMapping("/board/free/detail/likes/ajax")
+	@ResponseBody
+	public int boardLikes(BoardVO vo, @RequestParam("pno") int pno) {
+		UserVO uVo = (UserVO)session.getAttribute("loginUser");
+		try {
+			vo.setId(uVo.getId());
+		}catch(Exception e) {
+			System.out.println("로그인해주ㅠ세요 페이지 만들기");
+		}
+		
+		vo.setPno(pno);
+		return boardService.boardLikes(vo);
 	}
 	
 	

@@ -57,6 +57,23 @@ public class BoardDAOImpl implements BoardDAO {
 		return mybatis.update("board.commentCount", vo);
 	}
 	
+	// 자유게시판 좋아요
+	public int boardLikes(BoardVO vo) {
+		int userLikeCount = mybatis.selectOne("board.userLikesCount", vo);
+		
+		// 한명의 유저가 한 게시물에 대해 좋아요가 0개일때(좋아요를 누른경우)
+		if(userLikeCount == 0) {
+			mybatis.insert("board.likesPlusList", vo);
+			mybatis.update("board.likesPlusBoard", vo);
+			return userLikeCount;
+		}
+		// 한명의 유저가 한 게시물에 대해 좋아요가 1개일때(좋아요 취소를 누른경우)
+		else {
+			mybatis.delete("board.likesMinusList", vo);
+			mybatis.update("board.likesMinusBoard", vo);
+			return userLikeCount;
+		}
+	}
 	
 	
 }
