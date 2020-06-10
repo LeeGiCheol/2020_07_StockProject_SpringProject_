@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,20 +37,51 @@ public class BoardController {
 	
 	
 	@GetMapping("/board/free")
-	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage) {
+	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
-		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage));
+		if(searchStyle.equals("")) {
+			keyword = "";
+		}
+		System.out.println("sear" + searchStyle + " , " + keyword);
+		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword);
+		System.out.println("boardboardasdfadgsadg "+boardList.get("boardList"));
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
-		//model.addAttribute("commentCount", commentCount);
-//		System.out.println(a.toString());
-//		System.out.println(boardList);
-		
+		model.addAttribute("searchStyle", searchStyle);
+		model.addAttribute("keyword", keyword);
+		/*
+			<option class="dropdown-item" value="search_title">제목</option> 
+			<option class="dropdown-item" value="search_comment">내용</option> 
+			<option class="dropdown-item" value="search_title_comment">제목 + 내용</option> 
+			<option class="dropdown-item" value="search_nick">글쓴이</option>
+		 */
 		
 		return "free-board";
 	}
+	
+//	@GetMapping("/board/free")
+//	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+//			String searchStyle, String boardKeyword) {
+//		if(nowPage == null || nowPage.equals("")){
+//			nowPage = "1";
+//		}
+//		if(searchStyle.equals("")) {
+//			boardKeyword = "";
+//		}
+//		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, boardKeyword);
+//		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
+//		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
+//		//model.addAttribute("commentCount", commentCount);
+////		System.out.println(a.toString());
+////		System.out.println(boardList);
+//		
+//		
+//		return "free-board";
+//	}
+//	
 	
 	
 	@GetMapping("/board/free/write")

@@ -44,6 +44,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	@Override
 	public List<BoardVO> getBoardList(PagingVO vo) {
+		System.out.println("getBoardlist "+vo.getUtil());
 		return mybatis.selectList("board.boardList", vo);
 	}
 

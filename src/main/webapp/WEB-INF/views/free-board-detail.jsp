@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
-<link href="/resources/css/free-board-detail1.css" rel="stylesheet">
+<link href="/resources/css/free-board-detail.css" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="jpaginate/style.css"/> -->
 
 <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
@@ -263,7 +263,7 @@ position: relative;
 					board +=					'<i class="fa fa-user-circle"></i>'+boardNickname
 					board +=				'</li>'
 					board +=				'<li class="date">'
-					board +=					'<i class="far fa-clock"></i>'+boardDatetime
+					board +=					'<i class="far fa-clock"></i>'+changeDate(boardDatetime)
 					board +=				'</li>'
 					board +=			'</ul>'
 					board +=		'</div>'
@@ -284,7 +284,7 @@ position: relative;
 						
 						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
 						comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
-						comment += "<i class='far fa-clock'></i>"+data.commentList[i].cdataTime+"<br> <br>"
+						comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdataTime)+"<br> <br>"
 						comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>"
 						
 						// 내 댓글에 수정/삭제 버튼 띄우기
@@ -456,6 +456,25 @@ position: relative;
 			 })
 		        
 		}
+		
+		
+	    // datetime 변환
+	    function changeDate(date){
+	        var date = new Date(date);
+			console.log(date.toString())
+	        
+	        year = date.getFullYear();
+	        month = date.getMonth();
+	        month += 1;
+	        day = date.getDate();
+	        hour = date.getHours();
+	        minute = date.getMinutes();
+	        second = date.getSeconds();
+	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+	        return strDate;
+	    }
+	    
+	    
 		
 		
 /* 		history.pushState(null, null, location.href);
