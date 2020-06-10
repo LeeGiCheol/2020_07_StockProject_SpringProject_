@@ -826,9 +826,9 @@ caption {
 	font-size: 14px;
 	font-weight: 600;
 }
-/* .m-stock-price-chart{
+.m-stock-price-chart{
 	display: none;
-} */
+}
 
 @media screen and (max-width: 576px) {
  	.col-md-9 {
