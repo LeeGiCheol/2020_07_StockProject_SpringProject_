@@ -108,6 +108,178 @@ position: relative;
     font-weight: bold;
     line-height: 100%;
 }
+
+/* [class*="-btn"].red {
+    background: #ff545b;
+    border: 1px solid #ff545b;
+    color: #fff;
+} */
+[class*="board-write-btn"] {
+	position: relative;
+    background: #c8c8c8;
+    border: 1px solid #b3b3b3;
+    line-height: 100%;
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+.board-write-btn a:hover{
+	color: gray !important;
+}
+[class*="board-write-btn"] {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+}
+.board-free-btn{
+	float: left;
+}
+.board-free-nav{
+	height: 30px;
+	margin-bottom: 20px;
+	position: relative;
+}
+.board-free-table{
+	width: 100%;
+	border-top: #000 1px solid;
+	margin-bottom: 15px;
+}
+.writer{
+	text-align: left;
+}
+.board-writer,.board-title{
+	text-align: left;
+}
+.board-title a{
+	display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	max-width: 67%/*80%;; */;
+	color: #000;
+}
+thead tr{
+	border-bottom: 1px solid #dddddd;
+	color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px !important;
+    
+}
+thead tr th{
+	padding: 10px 0 10px 0;	
+}
+
+tbody tr{
+	border-bottom: 1px solid #dddddd;
+    text-align: center;
+    font-size: 13px !important;
+    color: #888;
+  
+}
+tbody tr td{
+	padding: 10px 0 10px 0;	
+}
+.paging,.search-area {
+    clear: both;
+    padding: 0 0 30px 0;
+    text-align: center;
+    position: relative;
+}
+.paging p.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+.paging-body {
+    display: inline-block;
+    padding-left: 0;
+}
+.search-area-body{
+    display: inline-block;
+    padding-left: 0;
+}
+.dropdown-toggle-board{
+    border: 1px solid #ced4da;
+    color:  #888;
+	margin-right: .5rem!important;
+    padding: .375rem .75rem;
+}
+.dropdown-board {
+border-radius: 0 !important;
+color:  #888 !important;
+margin-top: 1px;
+}
+.board-search, .board-search-btn{
+border-radius: 0 !important;
+ border: 1px solid #ced4da;
+ color:  #888;
+}
+.page-link{
+    color: #888888 !important;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: white;
+    border: 1.5px solid #888888 !important;
+}
+.board-free-nav p.right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -15px;
+}
+.board-item{
+ color:  #888;
+}
+input[type='radio'] {
+  -webkit-appearance:none;
+  width:16px;
+  height:16px;
+  border:1px solid darkgray;
+  border-radius:50%;
+  outline:none;
+  background:#e6e6e6;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+input[type='radio']:before {
+  content:'';
+  display:block;
+  width:60%;
+  height:60%;
+  margin: 20% auto;  
+  border-radius:50%;  
+  
+}
+input[type='radio']:checked:before {
+  background:gray;
+}
+.new-board{
+	margin-right: 10px;
+}
+.new-board, .hot-board{
+	vertical-align: middle;
+}
+.paging + .board-search {
+    padding-bottom: 30px;
+}
+@media only screen and (max-width: 979px){
+.containerNew{
+	padding: 0;
+}
+.free-board {
+	border: none;
+}
+.tit-h1{
+	font-size: 16px;
+}
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -132,30 +304,7 @@ position: relative;
 				alert("취소하셨습니다.");
 			}
 		})
-		// pagination 추가  
-		/* $(function() {
-			window.pagObj = $('#pagination-all').twbsPagination({
-				totalPages : 35,
-				visiblePages : 5,
-				onPageClick : function(event, page) {
-					console.info(page + ' (from options)');
-				}
-			}).on('page', function(event, page) {
-				console.info(page + ' (from event listening)');
-			});
-			}); 
-		// pagination 추가  
-		$(function() {
-		window.pagObj = $('#pagination-best').twbsPagination({
-			totalPages : 35,
-			visiblePages : 5,
-			onPageClick : function(event, page) {
-				console.info(page + ' (from options)');
-			}
-		}).on('page', function(event, page) {
-			console.info(page + ' (from event listening)');
-		});
-		});  */
+
 	});
 </script>
 </head>
@@ -195,91 +344,74 @@ position: relative;
 	<div class="free-board">
 	<h1 class="tit-h1 line" style="cursor:pointer;">자유게시판</h1>
 		<div class="board-type">
-			<!-- 게시판 -->
-			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-				<li class="nav-item" role="presentation"><input type="radio"
-					class="nav-link active" id="pills-board-all-tab" data-toggle="pill"
-					href="#pills-board-all" role="tab" aria-controls="pills-board-all"
-					aria-selected="true" name="check" >전체글</li>
-				<li class="nav-item" role="presentation"><input type="radio" class="nav-link"
-					id="pills-board-best-tab" data-toggle="pill"
-					href="#pills-board-best" role="tab"
-					aria-controls="pills-board-best" aria-selected="false" name="check">인기글</li>
-			</ul>
+			<div class="board-free-nav">
+					<form class="board-list-top policy-in">
+						<p class="pc-only">
+							<input type="radio" class="ordeby" id="orderby1" name="orderby"
+								value="recentOrdr" checked=""><label for="orderby1"  class="new-board">최신순</label>
+							<input type="radio" class="ordeby" id="orderby2" name="orderby"
+								value="popularOrdr"><label for="orderby2" class="hot-board">인기순</label>
+						</p>
+					</form>
+					<p class="right"><a href="location.href='/board/free/write'" class="board-write-btn red"">글쓰기</a></p>
+			<!-- <button class="board-write-btn red" type="button" onclick="location.href='/board/free/write'">글쓰기</button> -->
+			</div>
 			<div class="tab-content" id="pills-tabContent">
-				<div class="tab-pane fade show active" id="pills-board-all"
-					role="tabpanel" aria-labelledby="pills-board-all-tab"
-					style="margin-bottom: 300px;">
 					<!-- 전체글 -->
-					<table class="table table-bordered">
-						<thead>
+					<table class="board-free-table">
+							<colgroup>
+								<col width="10%">
+								<col width="40%">
+								<col width="15%">
+								<col width="10%">
+								<col width="10%">
+								<col width="15%">
+							</colgroup>
+							<thead>
 							<tr>
-								<th class="no" scope="col">번호</th>
-								<th class="title" scope="col">글제목</th>
-								<th class="writer" scope="col">글쓴이</th>
-								<th class="date" scope="col">작성일</th>
+								<th class="no" scope="col">N0</th>
+								<th class="title" scope="col">제목</th>
+								<th class="writer" scope="col">작성자</th>
 								<th class="views" scope="col">조회</th>
 								<th class="likes" scope="col">추천</th>
+								<th class="date" scope="col">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${boardList}" var="board">
 								<c:if test="${board.bno eq 1}">
 									<tr>
-										<td>${board.pno}</td>
+										<td class="board-no">${board.pno}</td>
 										<!-- 글번호 -->
 										
 										<c:choose>
 											<c:when test="${board.commentCount ne 0}">
-												<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a>&nbsp;(${board.commentCount})</td>
+												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a>&nbsp;(${board.commentCount})</td>
 										<!-- 글 제목 -->
 											</c:when>
 											<c:otherwise>
-												<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
+												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
 											</c:otherwise>
 										</c:choose>
 										
-										<td>${board.nickname}</td>
+										<td class="board-writer">${board.nickname}</td>
 										<!-- 글쓴이 -->
-										<td>${board.bdateTime}</td>
-										<!-- 날짜 -->
-										<td>${board.views}</td>
+										<td class="board-views">${board.views}</td>
 										<!-- 조회수 -->
-										<td>${board.likes}</td>
+										<td class="board-likes">${board.likes}</td>
 										<!-- 추천수 -->
+										<td class="board-date">${board.bdateTime}</td>
+										<!-- 날짜 -->
 									</tr>
 								</c:if>
 							</c:forEach>
 
 						</tbody>
 					</table>
-					<br>
-					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
-						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
-						<select name="searchStyle">
-							<option class="nav-link dropdown-toggle" id="dropdown01"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected</c:if>>선택</option>
-							<option class="dropdown-item" value="search_title"<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option> 
-							<option class="dropdown-item" value="search_content"<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option> 
-							<option class="dropdown-item" value="search_title_content"<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option> 
-							<option class="dropdown-item" value="search_nick"<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
-						</select>
-						<input class="form-control mr-sm-2" type="search"
-							placeholder="search" aria-label="Search" name="keyword">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
-							type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-						<div class="buttons">
-							<button class="btn btn-primary btn-lg btn-block add"
-								type="button" onclick="location.href='/board/free/write'">작성</button>
-							<button class="btn btn-primary btn-lg btn-block remove"
-								type="button">삭제</button>
-						</div>
-					</form>
-						
-					<!-- 페이징 -->				
+					
+					<!-- 페이징 -->
+					<div class="paging">	
+					<div class="paging-body">				
 					<nav aria-label="..." class="pagination">
 					    <ul class="pagination">
 					
@@ -367,140 +499,38 @@ position: relative;
 					      </li>
 					    </ul>
 					  </nav>
-
-
+					 </div>
+					 <p class="right"><a href="location.href='/board/free/write'" class="board-write-btn red"">글쓰기</a></p>
 				</div>
-				<!-- 인기글 -->
-				<div class="tab-pane fade" id="pills-board-best" role="tabpanel"
-					aria-labelledby="pills-board-best-tab"
-					style="margin-bottom: 300px;">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<td class="checkno"><div
-										class="custom-control custom-checkbox">
-										<input type="checkbox" id="jb-checkboxAll-best"
-											class="custom-control-input"><label
-											class="custom-control-label" for="jb-checkboxAll-best"></label>
-									</div></td>
-								<th class="no" scope="col">번호</th>
-								<th class="title" scope="col">글제목</th>
-								<th class="writer" scope="col">글쓴이</th>
-								<th class="date" scope="col">작성일</th>
-								<th class="views" scope="col">조회</th>
-								<th class="likes" scope="col">추천</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><div class="custom-control custom-checkbox">
-										<input type="checkbox" id="jb-checkbox1-best"
-											class="custom-control-input check-best"><label
-											class="custom-control-label" for="jb-checkbox1-best"></label>
-									</div></td>
-								<th scope="row">5</th>
-								<td><a
-									onclick="window.location.href='free-board-detail.jsp'">이 글은
-										테스트용 인기글입니다.</a></td>
-								<td>글쓴이</td>
-								<td>2020.05.21</td>
-								<td>270</td>
-								<td>30</td>
-							</tr>
-							<tr>
-								<td><div class="custom-control custom-checkbox">
-										<input type="checkbox" id="jb-checkbox2-best"
-											class="custom-control-input check-best"><label
-											class="custom-control-label" for="jb-checkbox2-best"></label>
-									</div></td>
-								<th scope="row">4</th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td><div class="custom-control custom-checkbox">
-										<input type="checkbox" id="jb-checkbox3-best"
-											class="custom-control-input check-best"><label
-											class="custom-control-label" for="jb-checkbox3-best"></label>
-									</div></td>
-								<th scope="row">3</th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td><div class="custom-control custom-checkbox">
-										<input type="checkbox" id="jb-checkbox4-best"
-											class="custom-control-input check-best"><label
-											class="custom-control-label" for="jb-checkbox4-best"></label>
-									</div></td>
-								<th scope="row">2</th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td><div class="custom-control custom-checkbox">
-										<input type="checkbox" id="jb-checkbox5-best"
-											class="custom-control-input check-best"><label
-											class="custom-control-label" for="jb-checkbox5-best"></label>
-									</div></td>
-								<th scope="row">1</th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-					
-					<br>
-					<form class="form-inline my-2 my-lg-0 underSearchForm">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown01"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a>
-							
-							<div class="dropdown-menu" aria-labelledby="dropdown01">
-							<a class="dropdown-item" href="javascript:void(0)">제목</a> 
-							<a class="dropdown-item" href="javascript:void(0)">내용</a> 
-							<a class="dropdown-item" href="javascript:void(0)">제목 + 내용</a> 
-							<a class="dropdown-item" href="javascript:void(0)">글쓴이</a>	
-							</div>
-							
-							<input class="form-control mr-sm-2" type="search"
-								placeholder="search" aria-label="Search">
-							<button class="btn btn-outline-secondary my-2 my-sm-0"
-								type="submit">
-								<i class="fas fa-search"></i>
-							</button>
-							<div class="buttons"></div>
-						
+				
+				<div class="search-area">
+					<div  class="search-area-body">
+					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
+						<select class="dropdown-toggle-board" name="searchStyle">
+							<option class="nav-link dropdown-toggle board-item" id="dropdown01"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
+							<option class="dropdown-item board-item" value="search_title"<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option> 
+							<option class="dropdown-item board-item" value="search_content"<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option> 
+							<option class="dropdown-item board-item" value="search_title_content"<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option> 
+							<option class="dropdown-item board-item" value="search_nick"<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
+						</select>
+						<input class="form-control mr-sm-2 board-search" type="search"
+							placeholder="검색어 입력" aria-label="Search">
+						<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
+							type="submit">
+							<i class="fas fa-search"></i>
+						</button>
 					</form>
+					</div>
+				</div>
 
-					<!-- 
-            <ul class="pagination">
-              <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">◀</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item disabled"><a class="page-link" href="#" tabindex="+1" aria-disabled="true">▶</a></li>
-            </ul> -->
-					<!--    </nav> -->
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- article end -->
-</div>
 	<%@include file="mainfooter.jsp" %>	
 
 
