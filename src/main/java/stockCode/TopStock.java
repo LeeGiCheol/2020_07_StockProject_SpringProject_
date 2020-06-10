@@ -126,7 +126,7 @@ public class TopStock {
 						}
 					}
 					if(ha != -1) {
-						searchSangHa[h] = searchSangHa_[i].substring(ha, ha+2);
+						searchSangHa[h] = searchSangHa_[i].substring(ha, ha+4);
 //						System.out.println(searchSangHa[h]);
 						h++;
 					}

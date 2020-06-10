@@ -39,8 +39,8 @@
 	</delete>
 	
 	<insert id="commentNoticeInsert">
-		INSERT INTO commentNotice (id, pno, title, ndatetime)
-		SELECT id, pno, title, now()
+		INSERT INTO commentNotice (id, pno, ndatetime)
+		SELECT id, pno , now()
 		FROM board 
 		WHERE pno = #{pno}
 	</insert>

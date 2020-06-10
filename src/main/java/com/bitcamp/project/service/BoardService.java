@@ -14,6 +14,6 @@ public interface BoardService {
 //	void uploadBoard(BoardVO vo) throws IllegalStateException, IOException;
 	public int count(BoardVO vo);
 	public int commentCount(BoardVO vo);
-	public Map<String, Object> boardList(BoardVO vo, int nowPage);
+	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword);
 	public int updateViews(BoardVO vo);
 }

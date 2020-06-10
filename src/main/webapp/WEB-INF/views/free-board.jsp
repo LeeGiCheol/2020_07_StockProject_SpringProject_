@@ -254,16 +254,19 @@ position: relative;
 						</tbody>
 					</table>
 					<br>
-					<form class="form-inline my-2 my-lg-0 underSearchForm">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdown01"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown01">
-							<a class="dropdown-item" href="#">제목</a> <a class="dropdown-item"
-								href="#">내용</a> <a class="dropdown-item" href="#">제목 + 내용</a> <a
-								class="dropdown-item" href="#">글쓴이</a>
-						</div>
+					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
+						<select name="searchStyle">
+							<option class="nav-link dropdown-toggle" id="dropdown01"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected</c:if>>선택</option>
+							<option class="dropdown-item" value="search_title"<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option> 
+							<option class="dropdown-item" value="search_content"<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option> 
+							<option class="dropdown-item" value="search_title_content"<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option> 
+							<option class="dropdown-item" value="search_nick"<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
+						</select>
 						<input class="form-control mr-sm-2" type="search"
-							placeholder="search" aria-label="Search">
+							placeholder="search" aria-label="Search" name="keyword">
 						<button class="btn btn-outline-secondary my-2 my-sm-0"
 							type="submit">
 							<i class="fas fa-search"></i>
@@ -458,22 +461,27 @@ position: relative;
 							</tr>
 						</tbody>
 					</table>
+					
 					<br>
 					<form class="form-inline my-2 my-lg-0 underSearchForm">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown01">
-							<a class="dropdown-item" href="#">제목</a> <a class="dropdown-item"
-								href="#">내용</a> <a class="dropdown-item" href="#">제목 + 내용</a> <a
-								class="dropdown-item" href="#">글쓴이</a>
-						</div>
-						<input class="form-control mr-sm-2" type="search"
-							placeholder="search" aria-label="Search">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
-							type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-						<div class="buttons"></div>
+							
+							<div class="dropdown-menu" aria-labelledby="dropdown01">
+							<a class="dropdown-item" href="javascript:void(0)">제목</a> 
+							<a class="dropdown-item" href="javascript:void(0)">내용</a> 
+							<a class="dropdown-item" href="javascript:void(0)">제목 + 내용</a> 
+							<a class="dropdown-item" href="javascript:void(0)">글쓴이</a>	
+							</div>
+							
+							<input class="form-control mr-sm-2" type="search"
+								placeholder="search" aria-label="Search">
+							<button class="btn btn-outline-secondary my-2 my-sm-0"
+								type="submit">
+								<i class="fas fa-search"></i>
+							</button>
+							<div class="buttons"></div>
+						
 					</form>
 
 					<!-- 
