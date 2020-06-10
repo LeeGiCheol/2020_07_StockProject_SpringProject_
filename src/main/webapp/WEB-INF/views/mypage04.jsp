@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <link href="/resources/css/mypage04.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+
 <style>
 .paging-body {margin-left: 300px;margin-bottom: 300px;}
 td>a {cursor: pointer;}
@@ -46,7 +47,7 @@ td>a {cursor: pointer;}
 	        <div class="sideBar col-md-4 order-md-2 mb-4">
 	          <div class="col-md-8 order-md-1"></div>
 	          <h4 class="mb-3">알림</h4>
-	          <h5>(확인시 자동 삭제)</h5>
+	          <h6>(확인시 자동 삭제)</h6>
 	        </div>
 	    </div>
     <!-- 게시판 -->
