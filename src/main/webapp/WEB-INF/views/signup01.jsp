@@ -67,8 +67,6 @@ body {margin: 0px;}
 				return false;
 			}
 		}
-
-
 	</script>
 	
 </body>
