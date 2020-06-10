@@ -903,7 +903,14 @@ tr td button{
 			              backgroundBarRadius: 0,
 			          }
 			      }
-			  }
+			  },
+
+			  tooltip: {
+				  custom: function({series, seriesIndex, dataPointIndex, w}) {
+	               
+				    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
+				  }
+				}
 	     };
 
 	     var minchart = new ApexCharts(document.querySelector("#chartcontainer"), options);
@@ -1004,7 +1011,14 @@ tr td button{
 			              backgroundBarRadius: 0,
 			          }
 			      }
-			  }
+			  },
+
+			  tooltip: {
+				  custom: function({series, seriesIndex, dataPointIndex, w}) {
+	               
+				    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
+				  }
+				}
 	     };
 
 	     var daychart = new ApexCharts(document.querySelector("#chartcontainer"), options);
@@ -1120,6 +1134,7 @@ tr td button{
 				<td scope="col" class="inside-up-text"><button onClick="(function(){
 							$('#buying_price').val('{{:up}}');
 							$('#selling_price').val('{{:up}}');
+							$('#mySelect').val('{{:up}}');
 							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
         					$('#buying_result').text(buy_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							var sell_result = parseInt($('#selling_price').val().replace(/,/g,'')) * $('#selling_qu').val()
@@ -1135,6 +1150,7 @@ tr td button{
 				<td scope="col" class="inside-down-text"><button onClick="(function(){
 							$('#buying_price').val('{{:down}}');
 							$('#selling_price').val('{{:down}}');
+							$('#mySelect').val('{{:down}}');
 							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
         					$('#buying_result').text(buy_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							var sell_result = parseInt($('#selling_price').val().replace(/,/g,'')) * $('#selling_qu').val()
