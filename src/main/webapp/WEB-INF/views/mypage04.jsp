@@ -46,6 +46,7 @@ td>a {cursor: pointer;}
 	        <div class="sideBar col-md-4 order-md-2 mb-4">
 	          <div class="col-md-8 order-md-1"></div>
 	          <h4 class="mb-3">알림</h4>
+	          <h5>(확인시 자동 삭제)</h5>
 	        </div>
 	    </div>
     <!-- 게시판 -->

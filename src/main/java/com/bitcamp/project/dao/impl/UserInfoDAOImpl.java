@@ -19,6 +19,11 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	
 	
 	@Override
+	public void deleteNotice(String id) {
+		mybatis.delete("user.deleteNotice", id);
+	}
+
+	@Override
 	public List getNotice(String id) {
 		List notice = new ArrayList<>(); 
 		notice.add(mybatis.selectList("user.getTradeNotice", id));

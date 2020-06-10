@@ -26,9 +26,13 @@
 	</select>
 	
 	<select id="getCommentNotice" resultType="map">
-			SELECT c.pno, c.title FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id}
+			SELECT c.pno, title FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id}
 	</select>
 	
+	<delete id="deleteNotice">
+		delete from stocknotice where id = #{id};
+		delete from commentnotice where id = #{id};
+	</delete>
 
 	<insert id="signUp">
 		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
