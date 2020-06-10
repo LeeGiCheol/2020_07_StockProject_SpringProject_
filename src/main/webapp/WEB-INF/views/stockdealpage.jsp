@@ -587,7 +587,7 @@ tr td button{
 							<tbody>
 								<tr id="upDownColor">
 									<td scope="col" class="now-text">현재가</td>
-									<td scope="col" class="now-text" id="price"></td>
+									<td scope="col" class="now-text"><button id="price"></button></td>
 									<td scope="col" class="now-text" id="beforeAndUpdown"></td>
 								</tr>
 							</tbody>
@@ -687,17 +687,24 @@ tr td button{
 						
 						// 어제 대비 현재가가 오른경우
 						if(data.before.indexOf("+") != -1){	
-							before = data.before.replace("+", "");
+							before = data.before.replace("+", "▲");
 							console.log(before)
-							$('#upDownColor,#m-upDownColor,#m-price').css("color", "rgb(255, 0, 0)");
-							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " , " + data.updown);
+							$('#upDownColor,#m-upDownColor,#price,#m-price').css("color", "rgb(255, 0, 0)");
+							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " (" + data.updown+")");
 
 						} 
 						// 내린경우
-						else if (data.before.indexOf("+") == -1){
+						else if (data.before.indexOf("-") != -1){
+							before = data.before.replace("-", "▼");
+							$('#upDownColor,#m-upDownColor,#price,#m-price').css("color", "rgb(91, 90, 255)");
+							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " (" + data.updown+")");
+
+						}
+						// 같은경우
+						else if (data.before.indexOf("0") != -1){
 							before = data.before.replace("-", "");
-							$('#upDownColor,#m-upDownColor,#m-price').css("color", "rgb(91, 90, 255)");
-							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " , " + data.updown);
+							$('#upDownColor,#m-upDownColor,#price,#m-price').css("color", "#333");
+							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " (" + data.updown+")");
 
 						}
 						
