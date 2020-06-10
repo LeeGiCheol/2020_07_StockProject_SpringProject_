@@ -119,16 +119,17 @@ public class TradeController {
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
 			@RequestParam(value = "cancleModify") String modify) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-//		String id = "test"; // test 용 아이디
+		String id = null;
 		ModelAndView mav = new ModelAndView();
-
-		if (id == null) {
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/signInPage");
 			mav.setViewName("notice");
 			return mav;
 		}
+//		String id = "test"; // test 용 아이디
 
 		StockVO vo = new StockVO();
 

@@ -9,14 +9,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.MyPostService;
@@ -111,9 +111,9 @@ public class MyPageController {
 		mav.addObject("commentNotice", commentNotice);
 		mav.addObject("modifiedNotice", modifiedNotice);
 		mav.setViewName("mypage04");
-		
+
 		userInfoService.deleteNotice(id);
-		
+
 		return mav;
 	}
 
@@ -152,14 +152,19 @@ public class MyPageController {
 	}
 
 	@RequestMapping("/notice/json")
-	public JSONObject notice(HttpSession session) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-		JSONObject obj = new JSONObject();
-		List<Map> notice = userInfoService.getNotice(id);
-		if (notice == null) {
-
+	public @ResponseBody String notice(HttpSession session) {
+		String id = null;
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
+			return null;
 		}
-		return obj;
+
+//		JSONObject obj = new JSONObject();
+		List<List> notice = userInfoService.getNotice(id);
+		if ((notice.get(0).size() == 0) && (notice.get(1).size() == 0))
+			return "NONE";
+		else return "NOTICE";
 	}
 
 }
