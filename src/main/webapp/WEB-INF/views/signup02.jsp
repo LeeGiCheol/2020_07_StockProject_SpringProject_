@@ -13,6 +13,9 @@
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
+<script>
+function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
+</script>
 </head>
 <body>
 	<%@include file="mainheader.jsp" %>
@@ -28,12 +31,12 @@
 			<div class="password">
 				<label for="inputPassword">비밀번호</label>
 				<div class="form-group col-md-6" >
-					 <input type="password" class="form-control" id="inputPassword" placeholder="8~13자 입력하세요" name="pw" oninput="checkPw()">
+					 <input type="password" class="form-control" id="inputPassword" placeholder="8자 ~ 13자 입력해주세요." name="pw" oninput="checkPw()">
 				</div>
 				<label for="inputPasswordAgain">비밀번호확인</label>
 				<div class="form-group col-md-6">
 					 <input	type="password" class="form-control" id="inputPasswordAgain"
-						placeholder="비밀번호를 입력하세요 " oninput="checkPw()">
+						placeholder="한 번 더 입력해주세요. " oninput="checkPw()">
 					<ul><li style="list-style:none;" id="pwResult"></li></ul>
 						
 				</div>
@@ -48,28 +51,33 @@
 				</div>
 				<label for="inputAddress col-md-6">추천인</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="추천인 닉네임을 입력하세요">
+					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="추천인 닉네임을 입력해주세요.">
 				<button type="button" class="btn btn-secondary" id="friendCheck">　추천하기　</button>	
 				<ul><li style="list-style:none;" id="friendResult"></li></ul>
-					
 				</div>
+				
 				<label for="inputAddress col-md-6">주소</label>
 				<div class="form-group" style="display: -webkit-box;">
 					 <input type="text"	class="form-control" id="inputAddress" name="address" required="true" >
 				<button type="button" class="btn btn-secondary" onclick="goPopup();">우편번호찾기</button>		
 				</div>
+				
 				<label for="inputPhone col-md-6" >휴대폰</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputPhone" name="tel">
-				<button type="button" class="btn btn-secondary">인증번호받기</button>		
+					<input placeholder="휴대폰번호롤 입력해주세요." type="text"	class="form-control" id="inputPhone" name="tel" onKeyPress="return numkeyCheck(event)" maxlength="11">
+					<button type="button" class="btn btn-secondary" id="telCheck">인증번호받기</button>
+					<ul><li style="list-style:none;" id="telResult"></li></ul>		
 				</div>
+				
 				<label for="inputPhone col-md-6">인증번호확인</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text" class="form-control" id="inputPhone" placeholder="인증번호를 입력하세요">
-                <button type="submit" class="btn btn-secondary">인증번호확인</button>	 
+					 <input type="text" class="form-control" id="inputCtel" name="cTel" 
+						 placeholder="인증번호를 입력해주세요." onKeyPress="return numkeyCheck(event)">
+                	 <button type="submit" class="btn btn-secondary" id="cTelCheck">인증번호확인</button>
+                	 <ul><li style="list-style:none;" id="cTelResult"></li></ul>	 
               
 				</div>
-                </div>
+           </div>
                 
                 <!-- 노출 수정 -->
             <div style="margin-left:294px; margin-top: 30px; margin-bottom: 10px; display: -webkit-box;">
@@ -227,6 +235,75 @@
 		});  
 		
 		
+		// 휴대폰 중복확인
+		$('#telCheck').on('click', function(){ 
+			$.ajax({ 
+				type: 'GET', 
+				url: '${pageContext.request.contextPath}/telCheck', 
+				data: { "tel" : $('#inputPhone').val() }, 
+				success: function(data){ 
+					if(data == 0 && $.trim($('#inputPhone').val()) != ''){
+						idx= true;
+						$('#inputPhone').attr("readonly", true);
+						
+ 						var html="<tr><td colspan='3' style='color: green'>문자메세지를 확인해주세요.</td></tr>"; 
+						$('#telResult').empty();
+						$('#telResult').append(html);
+						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
+						checkflag +=1;
+					}else if(data == 2 || $.trim($('#inputPhone').val()) == ""){
+						var html="<tr><td colspan='3' style='color: red'>11자리를 [ ex)01012345678 ] 입력해주세요.</td></tr>";
+						$('#telResult').empty();
+						$('#telResult').append(html);
+						document.getElementById("inputPhone").value="";
+						// 중복체크 실패 시 회원가입 버튼 비활성화
+					}
+					else{
+						var html="<tr><td colspan='3' style='color: red'>이미 등록된 번호입니다.</td></tr>";
+						$('#telResult').empty();
+						$('#telResult').append(html);
+						document.getElementById("inputPhone").value="";
+						// 중복체크 실패 시 회원가입 버튼 비활성화
+					}
+				},
+				error: function(){
+					alert("서버에러");
+				}
+				
+			});  
+		});  
+		
+		// 휴대폰 인증번호확인
+		$('#cTelCheck').on('click', function(){ 
+			$.ajax({ 
+				type: 'GET', 
+				url: '${pageContext.request.contextPath}/cTelCheck', 
+				data: { "cTel" : $('#inputCtel').val() }, 
+				success: function(data){ 
+					if(data == 0 && $.trim($('#inputCtel').val()) != ''){
+						idx= true;
+						$('#inputCtel').attr("readonly", true);
+						
+ 						var html="<tr><td colspan='3' style='color: green'>인증성공</td></tr>"; 
+						$('#cTelResult').empty();
+						$('#cTelResult').append(html);
+						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
+						checkflag +=1;
+					}else{
+						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요.)</td></tr>";
+						$('#cTelResult').empty();
+						$('#cTelResult').append(html);
+						document.getElementById("inputCtel").value="";
+						// 중복체크 실패 시 회원가입 버튼 비활성화
+					}
+				},
+				error: function(){
+					alert("서버에러");
+				}
+				
+			});  
+		});  		
+		
 		
 		
 		$('#nickCheck').on('click', function(){ 
@@ -262,8 +339,6 @@
 				
 			});  
 		});  
-		
-		
 		
 		
 	
