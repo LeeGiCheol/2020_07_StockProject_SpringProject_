@@ -670,6 +670,7 @@ tr td button{
 							nowStock += '<tr class="maindown">'
 						}
 						else if(data.before.indexOf("0") != -1){
+							before = data.before.replace("0","0");
 							nowStock += '<tr class="mainsame">'
 						}
 						         
@@ -686,7 +687,7 @@ tr td button{
 						}
 						else if(data.before.indexOf("0") != -1){
 							nowStock += '<td><span class="tah p11"></span>'
-							nowStock +=     '<span class="no0">'+ before +" (-"+")"+'</span></td>'
+							nowStock +=     '<span class="no0">' + "&nbsp;&nbsp;" + before +" ("+data.updown+")"+'</span></td>'
 						}
 						nowStock += '</tr>'
 													
