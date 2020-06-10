@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sound.midi.Soundbank;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.project.service.SignUpService;
 import com.bitcamp.project.vo.UserVO;
-
+import static com.bitcamp.project.view.user.SignUpSend.signUpNumStr;
 @Controller
 public class SignUpController {
 	
@@ -64,8 +65,8 @@ public class SignUpController {
 	
 
 	@ResponseBody 
-	@GetMapping(value= {"/idCheck", "/nickCheck", "/friendCheck"})
-	public String duplicateCheck(@ModelAttribute("id") String id, 
+	@GetMapping(value= {"/idCheck", "/nickCheck", "/friendCheck", "/telCheck", "/cTelCheck"})
+	public String duplicateCheck(@ModelAttribute("id") String id, @ModelAttribute("tel") String tel, @ModelAttribute("cTel") String cTel,
 								@ModelAttribute("nickname") String nickname, HttpServletRequest request) {
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -98,6 +99,34 @@ public class SignUpController {
 			int result=signUpService.duplicateCheck(map);
 			System.out.println("friend2 "+result);
 			return Integer.toString(result);
+		}
+		// 휴대폰 인증번호 전송
+		else if(request.getServletPath().equals("/telCheck")) {
+			map.put("tel", tel);
+			int result=signUpService.duplicateCheck(map);
+			if((Integer)tel.length() == 11) {
+				if(result == 0) {
+					SignUpSend send = new SignUpSend();
+					send.sendSMS(tel);
+				}
+			}else {
+				result = 2;
+				return Integer.toString(result);
+			}
+			
+			return Integer.toString(result);
+		}
+		// 휴대폰 인증번호 확인
+		else if(request.getServletPath().equals("/cTelCheck")) {
+			int result = 0;
+			System.out.println("cTel : " + cTel + "/////" + signUpNumStr);
+			if(signUpNumStr.equals(cTel)) {
+				result = 0;
+				return Integer.toString(result);
+			}else {
+				result = 1;
+				return Integer.toString(result);
+			}
 		}
 		return null;
 	}

@@ -32,13 +32,13 @@
 					</dl>
 					<li class="breadcrumb-item"><a id="top-nav-font"
 						href="/logOut">로그아웃</a></li>
-					<li class="breadcrumb-item"><a id="top-nav-font" href="#">마이페이지</a></li>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/myPage01">마이페이지</a></li>
 					<li class="breadcrumb-item"><a id="top-nav-font"
 						href="/myPage04">알림<span id="notice"></span></a></li>
 				</ul>
 			</c:otherwise>
 		</c:choose>
-		<script>
+		<script type="text/javascript">
 		$(function() {
 		var obj = new Object();
 		var jsonData = JSON.stringify(obj);
@@ -88,12 +88,12 @@
 						id="navbarDropdown" role="button" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">자유게시판</a> <a
+							<a class="dropdown-item" href="/board/free">자유게시판</a> <a
 								class="dropdown-item" href="#">포트폴리오</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">뉴스</a>
+							<a class="dropdown-item" href="/news">뉴스</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="/trade">거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">고객센터<span
 							class="sr-only">(current)</span></a></li>
 				</ul>

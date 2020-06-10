@@ -62,7 +62,6 @@
 											<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 											<div class="alert alert-danger" id="alert-length">최소 8자 , 최대 13자로 입력해주세요.</div>
 										</div>
-										
 									</td>
 								</tr>
 							</tbody>

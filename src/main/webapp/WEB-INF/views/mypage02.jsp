@@ -134,9 +134,6 @@ $(document).ready(function(){
             </tr>
           </tbody>
         </table>
-         <div class="chart-div" style="border:1px solid #dee2e6; margin-bottom: 60px;">
-         		<%@include file="Chart_minSC.jsp" %>
-         </div>
       </div> 
       <!-- 수익률 끝 -->
       <!-- 계좌 시작-->
@@ -167,33 +164,6 @@ $(document).ready(function(){
               <td>3</td>
               <td>28,300</td>
               <td>+ 7,300</td>
-            </tr>
-            <tr>
-              <th></th>
-              <td>뮤직뱅크</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th></th>
-              <td>인기가요</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th></th>
-              <td>쇼음악중심</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
             </tr>
           </tbody>
         </table>

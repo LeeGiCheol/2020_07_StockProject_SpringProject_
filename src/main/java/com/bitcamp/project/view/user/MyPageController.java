@@ -128,7 +128,7 @@ public class MyPageController {
 		loginUser.setShowEsetSetting(Integer.parseInt(showEset));
 		userInfoService.memberInfoUpdate(loginUser);
 		session.setAttribute("loginUser", loginUser);
-		return "redirect:mypage01";
+		return "redirect:/myPage01";
 	}
 
 	@GetMapping(value = "/delete/*")

@@ -30,10 +30,6 @@
 		WHERE pno = #{pno}
 	</select>
 	
-	<select id="getBoardList" resultType="board">
-		SELECT * FROM board
-		ORDER BY pno DESC
-	</select>
 	
 	<!-- 기존것 -->
 	<select id="getMyBoard2" parameterType="user" resultType="board">
@@ -88,11 +84,28 @@
 	</select>
 		
 	<select id="boardList" parameterType="page" resultType="board">
-		select *
-		from board
-		where bno=1
-		order by pno desc
-		limit #{start}, #{cntPerPage}
+		SELECT *
+		FROM board
+		WHERE bno=1
+		
+		<!-- 제목검색 -->
+		<if test='util.searchStyle.equals("search_title")'>
+		AND title LIKE CONCAT('%', #{util.keyword}, '%')
+		</if>
+		<!--  -->
+		<if test='util.searchStyle.equals("search_content")'>
+		AND bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+		</if>
+		<if test='util.searchStyle.equals("search_title_content")'>
+		AND title LIKE CONCAT('%', #{util.keyword}, '%')
+		OR bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+		</if>
+		<if test='util.searchStyle.equals("search_nick")'>
+		AND nickname LIKE CONCAT('%', #{util.keyword}, '%')
+		</if>
+		
+		ORDER BY pno DESC
+		LIMIT #{start}, #{cntPerPage}
 	</select>
 	
 	<!-- 댓글 등록 시 게시물 옆에 개수 띄우기용 -->
@@ -102,10 +115,44 @@
 		WHERE pno = #{pno}	
 	</update>
 	
+	<!-- 조회수 -->
 	<update id="updateViews">
 		UPDATE board SET
 		views = views + 1
 		WHERE pno = #{pno}
 	</update>
+	
+	<!-- 아이디 별 like 체크 (한 게시물에 좋아요 한개만 가능하게하려고) -->
+	<select id="userLikesCount" resultType="int">	
+		SELECT count(*) FROM likelist
+		WHERE id = #{id}
+		AND pno = #{pno}
+	</select>
+	
+	
+	<!-- board 테이블에 like 증가 -->
+	<update id="likesPlusBoard">
+		update board
+		set likes = likes+1
+		where pno = #{pno}	
+	</update>
+	
+	<!-- likelist 테이블에 like 추가 -->
+	<insert id="likesPlusList">
+		insert into likelist (pno, id)
+		values (#{pno}, #{id})
+	</insert>
+	
+	<!-- board 테이블에 like 감소 -->
+	<update id="likesMinusBoard">
+		update board
+		set likes = likes-1
+		where pno = #{pno}
+	</update>
+	
+	<delete id="likesMinusList">
+		delete from likelist
+		where id = #{id}
+	</delete>
 	
 </mapper>

@@ -653,16 +653,23 @@ tr td button{
 						var nowStock = "";
 						var before = "";						
 						
+						if(data.before.indexOf("+") != -1)
+							console.log(data.before)
+						if(data.before.indexOf("+") == -1)
+							console.log("2 "+data.before)
+							
+						
+						
 						if(data.before.indexOf("+") != -1){
 							before = data.before.replace("+","");
 							nowStock += '<tr class="mainup">'
 						}
 						         
-						if(data.before.indexOf("+") == -1){
+						else if(data.before.indexOf("-") != -1){
 							before = data.before.replace("-","");
 							nowStock += '<tr class="maindown">'
 						}
-						else{
+						else if(data.before.indexOf("0") != -1){
 							nowStock += '<tr class="mainsame">'
 						}
 						         
@@ -673,12 +680,13 @@ tr td button{
 							nowStock += 	'<span class="tah p11 red02">'+ before + " ("+data.updown+")"+'</span></td>'
 						}
 						               
-						else if(data.before.indexOf("+") == -1){
+						else if(data.before.indexOf("-") != -1){
 							nowStock +=   '<td class="maindown-num"><em><span>▼</span></em>'
 							nowStock +=     '<span class="tah p11 nv01">'+ before + " ("+data.updown+")"+'</span></td>'
 						}
-						else{
-							nowStock += '<td><span class="tah p11"> 0 </span></td>'
+						else if(data.before.indexOf("0") != -1){
+							nowStock += '<td><span class="tah p11"></span>'
+							nowStock +=     '<span class="no0">'+ before +" (-"+")"+'</span></td>'
 						}
 						nowStock += '</tr>'
 													
@@ -726,16 +734,17 @@ tr td button{
 						var a = 1;
 						
 						for(var i=0; i<data.topName.length-1; i++){
-
-							topRank += '<tr class="up">'
-							topRank += '<th scope="row"><em>'+a+'</em>'
-							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
-							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
-							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
-           					topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-           					topRank += 	'<span class="tah p11 red02">'+data.topBefore[i]+'</span></td>'
-           					topRank += '</tr>'
-							a++
+							if(data.topName[i] != null){
+								topRank += '<tr class="up">'
+								topRank += '<th scope="row"><em>'+a+'</em>'
+								topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
+								topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
+								topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
+	           					topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+	           					topRank += 	'<span class="tah p11 red02">'+data.topBefore[i]+'</span></td>'
+	           					topRank += '</tr>'
+								a++
+							}
 						}
 						$("#topRank").html(topRank);
 
