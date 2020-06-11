@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.PagingVO;
 
 
 public interface BoardService {
@@ -14,7 +15,7 @@ public interface BoardService {
 //	void uploadBoard(BoardVO vo) throws IllegalStateException, IOException;
 	public int count(BoardVO vo);
 	public int commentCount(BoardVO vo);
-	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword);
+	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword, String orderby);
 	public int updateViews(BoardVO vo);
 	public int boardLikes(BoardVO vo);
 }

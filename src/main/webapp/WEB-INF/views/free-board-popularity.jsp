@@ -367,17 +367,12 @@ display: none;
 		})
 		
 		
-		
-		
-	    $("input:radio[name='orderby']").click(function(){
+		 $("input:radio[name='orderby']").click(function(){
 
 	    	$("#form").submit()
-	    })
+	     })
+		
 	});
-	
-
-
-	
 </script>
 </head>
 <body>
@@ -400,9 +395,9 @@ display: none;
 					<form id="form" class="board-list-top policy-in" action='/board/free'>
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
-								value="recentOrdr" checked=""><label for="orderby1"  class="new-board">최신순</label>
+								value="recentOrdr"><label for="orderby1"  class="new-board">최신순</label>
 							<input type="radio" class="ordeby" id="orderby2" name="orderby"
-								value="popularOrdr"><label for="orderby2" class="hot-board" >인기순</label>
+								value="popularOrdr" checked=""><label for="orderby2" class="hot-board">인기순</label>
 						</p>
 					</form>
 		 			 
@@ -475,7 +470,7 @@ display: none;
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
-					          href="/board/free?bnowPage=1"
+					          href="/board/free?orderby=popularOrdr&bnowPage=1"
 					          tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
@@ -484,7 +479,7 @@ display: none;
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.nowPage}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -496,7 +491,7 @@ display: none;
 					      <c:if test="${boardPage.nowPage != 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage-1}"
+					            href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.nowPage-1}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -516,7 +511,7 @@ display: none;
 					          </c:when>
 					          <c:when test="${p != boardPage.nowPage}">
 					            <li class="page-item">
-					              <a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
+					              <a class="page-link" href="/board/free?orderby=popularOrdr&bnowPage=${p}">${p}</a>
 					            </li>
 					          </c:when>
 					        </c:choose>
@@ -525,36 +520,36 @@ display: none;
 					      
 					      
 					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
-					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
-					        <li>
-					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage}"
-					            tabindex="+1" aria-disabled="true">
-					            <i class="fas fa-angle-right"></i>
-					          </a>
-					        </li>
-					      </c:if>
-					      
-					      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
-					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
-					        <li>
-					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage+1}"
-					            tabindex="+1" aria-disabled="true" data-ajax="false">
-					            <i class="fas fa-angle-right"></i>
-					          </a>
-					        </li>
-					      </c:if> 
-					
-					      <!-- >> 버튼 -->
-					      <li>
-					        <a class="page-link"
-					        href="/board/free?bnowPage=${boardPage.lastPage}"
-					        tabindex="-1" aria-disabled="true">
-					          <i class="fas fa-angle-double-right"></i>
-					        </a>
-					      </li>
+					     	 <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+						      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
+						        <li>
+						          <a class="page-link"
+						            href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.nowPage}"
+						            tabindex="+1" aria-disabled="true">
+						            <i class="fas fa-angle-right"></i>
+						          </a>
+						        </li>
+						      </c:if>
+						      
+						      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+						      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
+						        <li>
+						          <a class="page-link"
+						            href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.nowPage+1}"
+						            tabindex="+1" aria-disabled="true" data-ajax="false">
+						            <i class="fas fa-angle-right"></i>
+						          </a>
+						        </li>
+						      </c:if> 
+						
+						      <!-- >> 버튼 -->
+						      <li>
+						        <a class="page-link"
+						        href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.lastPage}"
+						        tabindex="-1" aria-disabled="true">
+						          <i class="fas fa-angle-double-right"></i>
+						        </a>
+						      </li>
 					      
 					      </c:if>
 					    </ul>

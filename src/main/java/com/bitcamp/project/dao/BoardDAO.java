@@ -11,6 +11,7 @@ public interface BoardDAO {
 	public int deleteBoard(BoardVO vo);
 	public BoardVO getBoard(BoardVO vo);
 	public List<BoardVO> getBoardList(PagingVO vo);
+	public List<BoardVO> getPopularBoardList(PagingVO vo);
 	public int count(BoardVO vo);
 	public int commentCount(BoardVO vo);
 	public int updateViews(BoardVO vo);

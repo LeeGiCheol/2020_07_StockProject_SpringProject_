@@ -282,7 +282,7 @@
 									<dt>
 										<strong>${loginUser.nickname}</strong>님
 										<button type="button" class="logout"
-											onclick="location.href='https://member.paxnet.co.kr/rpan/member/logout';">로그아웃</button>
+											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
 										<a href="https://member.paxnet.co.kr/rpan/member/info/userInfo">내정보</a>
