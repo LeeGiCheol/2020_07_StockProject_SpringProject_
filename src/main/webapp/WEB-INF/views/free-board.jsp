@@ -393,7 +393,11 @@ display: none;
 								value="popularOrdr"><label for="orderby2" class="hot-board">인기순</label>
 						</p>
 					</form>
-					<p class="right"><a href="location.href='/board/free/write'" class="board-write-btn">글쓰기</a></p>
+		 			 
+		 			 <c:if test="${loginUser != null}">
+						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
+					 </c:if>	
+					 		
 			</div>
 			<div class="tab-content" id="pills-tabContent">
 					<!-- 전체글 -->
@@ -454,7 +458,7 @@ display: none;
 					<nav aria-label="..." class="pagination">
 					    <ul class="pagination">
 					
-					
+					<c:if test="${boardPage.nowPage != 1}">
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
@@ -463,7 +467,6 @@ display: none;
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
 					      </li>
-					
 					      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
@@ -474,6 +477,7 @@ display: none;
 					          </a>
 					        </li>
 					      </c:if>
+					</c:if>
 					      
 					      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage != 1}">
@@ -506,6 +510,8 @@ display: none;
 					      </c:forEach> 
 					      
 					      
+					      
+					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
 					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
 					        <li>
@@ -536,10 +542,16 @@ display: none;
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
 					      </li>
+					      
+					      </c:if>
 					    </ul>
 					  </nav>
 					 </div>
-					 <p class="right"><a href="location.href='/board/free/write'" class="board-write-btn red">글쓰기</a></p>
+
+
+					 <c:if test="${loginUser != null}">
+						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
+					 </c:if>
 				</div>
 				
 				<div class="search-area">

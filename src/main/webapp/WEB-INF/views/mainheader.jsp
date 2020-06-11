@@ -28,7 +28,7 @@
 						src="/resources/img/pi_08.png"></a>
 					<dl>
 						<dt>
-							<strong>개미굴</strong> 님
+							<strong>${loginUser.nickname}</strong> 님
 						</dt>
 					</dl>
 					<li class="breadcrumb-item"><a id="top-nav-font"

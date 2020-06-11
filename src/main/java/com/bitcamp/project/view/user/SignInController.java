@@ -46,7 +46,7 @@ public class SignInController {
 			if(vo.getPw().equals(pw)) {
 				session.setAttribute("loginUser", vo);
 				mav.addObject("msg", "로그인 성공!");
-				mav.addObject("location", "/trade");
+				mav.addObject("location", "/mainPage");
 				mav.setViewName("notice");
 				return mav;
 			}

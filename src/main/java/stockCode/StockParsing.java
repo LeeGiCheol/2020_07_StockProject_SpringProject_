@@ -34,7 +34,7 @@ public class StockParsing {
 		
 		try {
 			String url = "https://finance.naver.com/item/main.nhn?code=" + code;
-//			String url = "https://finance.naver.com/item/main.nhn?code=" + "098460";
+//			String url = "https://finance.naver.com/item/main.nhn?code=" + "010145";
 			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
 			doc = Jsoup.connect(url).get();
 			Elements viewLists = doc.select("#middle");
@@ -76,11 +76,10 @@ public class StockParsing {
 				
 				upDown = bFUD[6] + "%";
 				
-				if(bFUD[1].equals("상승")) {
-
+				if(bFUD[1].equals("상승") || bFUD[1].equals("상한가")) {
 					before = "+" + bFUD[2];
 				}
-				else if(bFUD[1].equals("하락")) {
+				else if(bFUD[1].equals("하락") || bFUD[1].equals("하한가")) {
 					before = "-" + bFUD[2];
 				}
 				else if(bFUD[1].equals("보합")) {
@@ -207,11 +206,17 @@ public class StockParsing {
 				}
 			}
 			
+			
+				
+//			System.out.println(stockName);
+//			System.out.println(currentPrice);
+//			System.out.println(before);
+//			System.out.println(upDown);
+//			System.out.println(maximum);
+//			System.out.println(minimum);
 //			System.out.println("현재가 " + currentPrice);
 //			System.out.println("up "+Arrays.toString(up));
 //			System.out.println("down "+Arrays.toString(down));
-			
-				
 			
 			Info inf = new Info();
 			inf.setStockName(stockName);

@@ -31,38 +31,44 @@
 				<div class="stock-ranking">
 					<nav>
 						<div class="nav nav-tabs" role="tablist">
-							<a class="nav-item">인기 종목</a> <a class="nav-item">인기 상품</a>
+							<a class="nav-item">TOP 종목</a> <a class="nav-item">인기 검색 종목</a>
 						</div>
 					</nav>
 					<div class="tab-content">
+						
 						<div class=".tab-pane" id="tab1">
-							<ul class="step1">
-								<li id="test_1"><a><i>1</i> <span>soccer</span>
-										<p class="color-red">21%</p></a></li>
-								<li id="test_2"><a><i>2</i> <span>rose</span>
-										<p class="color-red">19%</p></a></a></li>
-								<li id="test_3"><a><i>3</i> <span>김선달</span>
-										<p class="color-red">17%</p></a></li>
-								<li id="test_4"><a><i>4</i> <span>칠성부대</span>
-										<p class="color-red">14%</p></a></li>
-								<li id="test_5"><a><i>5</i> <span>강태공</span>
-										<p class="color-red">13%</p></a></li>
-							</ul>
+							<table class="tbl_home_left">
+								<colgroup>
+									<col width="25%">
+									<col width="30%">
+									<col width="45%">
+							<tbody class="rank-table" id="topRank">
+								
+							</tbody>
+							
+							
+							</table>
+							
 						</div>
+						
 						<div class=".tab-pane" id="tab2">
-							<ul class="step2">
-								<li id="test_1"><a><i>1</i> <span>soccer</span>
-										<p class="color-red">21%</p></a></li>
-								<li id="test_2"><a><i>2</i> <span>rose</span>
-										<p class="color-red">19%</p></a></a></li>
-								<li id="test_3"><a><i>3</i> <span>김선달</span>
-										<p class="color-red">17%</p></a></li>
-								<li id="test_4"><a><i>4</i> <span>칠성부대</span>
-										<p class="color-red">14%</p></a></li>
-								<li id="test_5"><a><i>5</i> <span>강태공</span>
-										<p class="color-red">13%</p></a></li>
-							</ul>
+							<table class="tbl_home_right">
+								<colgroup>
+									<col width="25%">
+									<col width="30%">
+									<col width="45%">
+							<tbody class="rank-table" id="searchRank">
+								
+							</tbody>
+							
+							
+							</table>
+						
 						</div>
+						
+						
+						
+						
 					</div>
 				</div>
 
@@ -274,7 +280,7 @@
 								</p>
 								<dl>
 									<dt>
-										<strong>개미굴</strong>님
+										<strong>${loginUser.nickname}</strong>님
 										<button type="button" class="logout"
 											onclick="location.href='https://member.paxnet.co.kr/rpan/member/logout';">로그아웃</button>
 									</dt>
@@ -357,5 +363,90 @@
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+<script>
+	
+	
+	
+	$(document).ready(function(){
+		
+		function stockRanking(){
+			$.ajax({
+				type : "GET",
+				url : '${pageContext.request.contextPath}/mainPage/stockRankAjax',
+				datatype : "JSON",
+				success : function(data) {
+				
+					// top 종목(상한가) 5개
+					var topRank = "";
+					var a = 1;
+					
+					for(var i=0; i<data.topName.length-1; i++){
+						if(data.topName[i] != null){
+							topRank += '<tr class="up">'
+							topRank += '<th scope="row"><em>'+a+'</em>'
+							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
+							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
+							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
+								topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+								topRank += 	'<span class="tah p11 red02">'+data.topBefore[i]+'</span></td>'
+								topRank += '</tr>'
+							a++
+						}
+					}
+					$("#topRank").html(topRank);
+					
+					
+					
+					//인기검색종목 5개
+					var searchRank = "";
+					var a = 1;
+					
+					 for(var i=0; i<data.searchName.length; i++){
+					     if(data.searchSangHa[i]=="up"){
+					       searchRank += '<tr class="up">'
+					     }
+					     
+					     else if(data.searchSangHa[i]=="down"){
+					       searchRank += '<tr class="down">'
+					     }
+					     else if(data.searchSangHa[i]=='0'){
+					       searchRank += '<tr class="same">'
+					     }
+					     searchRank += '<th scope="row"><em>'+a+'</em>'
+					     
+					     searchRank += 	'<a href="/trade?stockName='+data.searchName[i]+'">'+data.searchName[i]+'</a></th>'
+					     searchRank += '<td>'+data.searchCurrentPrice[i]+'</td>'
+					       
+					     if(data.searchSangHa[i]=="up"){
+					       searchRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+					       searchRank += 	'<span class="tah p11 red02">'+data.searchUpDown[i]+'</span></td>'
+					     }
+					             
+					     else if(data.searchSangHa[i]=="down"){
+					       searchRank +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
+					       searchRank +=     '<span class="tah p11 nv01">'+data.searchUpDown[i]+'</span></td>'
+					     }
+					     else if(data.searchSangHa[i]=='0'){
+					       searchRank += '<td><span class="tah p11"> 0 </span></td>'
+					     }
+							searchRank += '</tr>'
+						a++
+					}
+					$("#searchRank").html(searchRank);
+					
+					}
+				})
+		
+			}stockRanking();
+			
+			
+			timer = setInterval(function () {
+				stockRanking();
+			},5000)
+			
+		})
+
+</script>
 </body>
 </html>
