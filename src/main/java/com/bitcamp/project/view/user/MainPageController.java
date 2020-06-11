@@ -34,7 +34,7 @@ public class MainPageController {
 			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
 			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
 		}
-
+		mav.addObject("current", ((HashMap) dayChart.get(0)).get("lastprice"));
 		mav.addObject("day_d", dayChartData[0]);
 		mav.addObject("day_startprice", dayChartData[2]);
 		mav.addObject("day_highprice", dayChartData[3]);
