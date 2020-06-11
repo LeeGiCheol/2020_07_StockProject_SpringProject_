@@ -224,6 +224,9 @@ border-radius: 0 !important;
  border: 1px solid #ced4da;
  color:  #888;
 }
+.dropdown-item{
+ color:  #888 !important;
+}
 .page-link{
     color: #888888 !important;
 }
@@ -263,30 +266,6 @@ border-radius: 0 !important;
 				alert("취소하셨습니다.");
 			}
 		})
-		// pagination 추가  
-		/* $(function() {
-			window.pagObj = $('#pagination-all').twbsPagination({
-				totalPages : 35,
-				visiblePages : 5,
-				onPageClick : function(event, page) {
-					console.info(page + ' (from options)');
-				}
-			}).on('page', function(event, page) {
-				console.info(page + ' (from event listening)');
-			});
-			}); 
-		// pagination 추가  
-		$(function() {
-		window.pagObj = $('#pagination-best').twbsPagination({
-			totalPages : 35,
-			visiblePages : 5,
-			onPageClick : function(event, page) {
-				console.info(page + ' (from options)');
-			}
-		}).on('page', function(event, page) {
-			console.info(page + ' (from event listening)');
-		});
-		});  */
 	});
 </script>
 </head>
@@ -502,6 +481,7 @@ border-radius: 0 !important;
 				</div>
 					  <p class="right"><a href="location.href='/board/free/write'" class="board-write-btn red"">글쓰기</a></p>
 				</div>
+				
 					<div class="search-area">
 					<div  class="search-area-body">
 					<form class="form-inline my-2 my-lg-0 underSearchForm">
@@ -629,7 +609,13 @@ border-radius: 0 !important;
 							type="submit">
 							<i class="fas fa-search"></i>
 						</button>
-						<div class="buttons"></div>
+						<select name="searchStyle">
+							<option class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" selected="">선택</option>
+							<option class="dropdown-item" value="search_title">제목</option> 
+							<option class="dropdown-item" value="search_content">내용</option> 
+							<option class="dropdown-item" value="search_title_content">제목 + 내용</option> 
+							<option class="dropdown-item" value="search_nick">글쓴이</option>
+						</select>
 					</form>
 
 					<!-- 

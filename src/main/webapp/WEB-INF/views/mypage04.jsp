@@ -42,7 +42,7 @@ td>a {cursor: pointer;}
 	</div>
 	<!-- section end -->
     <!-- article start -->
-    <article class="bg-light container">
+    <article class="container" style="margin-left: 382px;">
 	    <div class="row">
 	        <div class="sideBar col-md-4 order-md-2 mb-4">
 	          <div class="col-md-8 order-md-1"></div>

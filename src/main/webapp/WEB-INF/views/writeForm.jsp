@@ -76,11 +76,7 @@
 			</form>
 		</div>
 	</article>  
-
 	<%@include file="mainfooter.jsp" %>
-<script>
-	
-</script>
 </body>
 <script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script> <!-- 글쓰기 메뉴들 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>

@@ -236,52 +236,12 @@ $(function() {
             <tr>
               <td><div class="custom-control custom-checkbox">
                 <input type="checkbox" id="jb-checkbox1-commnet" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox1-commnet"></label></div></td>
-              <th scope="row">5</th><!-- ${board.no} -->
-              <td>이 글은 테스트용 댓글쓰기입니다.</td><!-- ${board.title} -->
-              <td>글쓴이</td><!-- ${board.writer} -->
-              <td>2020.05.21</td><!-- ${board.date} -->
-              <td>270</td><!-- ${board.views} -->
-              <td>30</td><!-- ${board.likes} -->
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox2-commnet" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox2-commnet"></label></div></td>
-              <th scope="row">4</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox3-commnet" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox3-commnet"></label></div></td>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox4-commnet" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox4-commnet"></label></div></td>
-              <th scope="row">2</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><div class="custom-control custom-checkbox">
-                <input type="checkbox" id="jb-checkbox5-commnet" class="custom-control-input"><label class="custom-control-label" for="jb-checkbox5-commnet"></label></div></td>
-              <th scope="row">1</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th scope="row">5</th>
+              <td>이 글은 테스트용 댓글쓰기입니다.</td>
+              <td>글쓴이</td>
+              <td>2020.05.21</td>
+              <td>270</td>
+              <td>30</td>
             </tr>
           </tbody>
         </table>
