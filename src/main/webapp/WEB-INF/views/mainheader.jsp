@@ -27,7 +27,7 @@
 						src="/resources/img/pi_08.png"></a>
 					<dl>
 						<dt>
-							<strong>개미굴</strong> 님
+							<strong>${loginUser.nickname}</strong> 님
 						</dt>
 					</dl>
 					<li class="breadcrumb-item"><a id="top-nav-font"
@@ -63,7 +63,7 @@
 			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
 			<a href="#" class="navbar-logo"><img class="" id="logo"
 				src="/resources/img/logo.png"></a> <a class="navbar-brand"
-				href="#">Fanstay Stock</a>
+				href="/mainPage">Fanstay Stock</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"

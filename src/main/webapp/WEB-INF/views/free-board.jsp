@@ -147,8 +147,8 @@ position: relative;
     overflow: hidden;
 	max-width: 67%/*80%;; */;
 	color: #000;
-	
-    display: -webkit-box;
+	display: -webkit-inline-box;
+   /*  display: -webkit-box; */
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 }
@@ -260,6 +260,9 @@ input[type='radio']:checked:before {
 .paging + .board-search {
     padding-bottom: 30px;
 }
+.board-views span, .board-likes span {
+    display: none;
+}
 @media only screen and (max-width: 979px){
 .containerNew{
 	padding: 0;
@@ -290,7 +293,6 @@ display: none;
 }
 .board-title {
     width: 100%;
-    margin-bottom: 6px;
 }
 .board-writer, .board-views, .board-likes, .board-date {
     width: auto;
@@ -299,17 +301,20 @@ display: none;
     line-height: 22px;
     float: left;
 }
-.board-free-table tbody tr td{
-	padding: 0;
-}
 .board-writer, .board-views, .board-likes {
     background: url(/resources/img/bg_line.png) no-repeat right 50%;
-    padding-right: 10px;
+    padding-right: 10px !important;
     margin-right: 8px;
+}
+.board-free-table tbody tr td{
+	padding: 0;
 }
 .board-title a{
 	max-width: 100%;
 	line-height: 22px;
+}
+.board-views span, .board-likes span {
+    display: inline;
 }
 }
 .tab-content{
@@ -317,6 +322,13 @@ display: none;
     background: #fff;
     margin-bottom: 10px;
     overflow: hidden;
+}
+.comment-num{
+	display: inline-block;
+    margin: -1px 0 0 3px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #ff545b;
 }
 </style>
 <script>
@@ -364,8 +376,11 @@ display: none;
 								value="popularOrdr"><label for="orderby2" class="hot-board">인기순</label>
 						</p>
 					</form>
-					<p class="right"><a href="location.href='/board/free/write'" class="board-write-btn">글쓰기</a></p>
-			<!-- <button class="board-write-btn red" type="button" onclick="location.href='/board/free/write'">글쓰기</button> -->
+		 			 
+		 			 <c:if test="${loginUser != null}">
+						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
+					 </c:if>	
+					 		
 			</div>
 			<div class="tab-content" id="pills-tabContent">
 					<!-- 전체글 -->
@@ -397,7 +412,7 @@ display: none;
 										
 										<c:choose>
 											<c:when test="${board.commentCount ne 0}">
-												<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a>&nbsp;(${board.commentCount})</td>
+												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a><b class="comment-num">&nbsp;${board.commentCount}</b></td>
 										<!-- 글 제목 -->
 											</c:when>
 											<c:otherwise>
@@ -407,9 +422,9 @@ display: none;
 										
 										<td class="board-writer">${board.nickname}</td>
 										<!-- 글쓴이 -->
-										<td class="board-views">${board.views}</td>
+										<td class="board-views"><span>조회 </span>${board.views}</td>
 										<!-- 조회수 -->
-										<td class="board-likes">${board.likes}</td>
+										<td class="board-likes"><span>추천 </span>${board.likes}</td>
 										<!-- 추천수 -->
 										<td class="board-date">${board.bdateTime}</td>
 										<!-- 날짜 -->
@@ -426,7 +441,7 @@ display: none;
 					<nav aria-label="..." class="pagination">
 					    <ul class="pagination">
 					
-					
+					<c:if test="${boardPage.nowPage != 1}">
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
@@ -435,7 +450,6 @@ display: none;
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
 					      </li>
-					
 					      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
@@ -446,6 +460,7 @@ display: none;
 					          </a>
 					        </li>
 					      </c:if>
+					</c:if>
 					      
 					      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage != 1}">
@@ -478,6 +493,8 @@ display: none;
 					      </c:forEach> 
 					      
 					      
+					      
+					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
 					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
 					        <li>
@@ -508,10 +525,16 @@ display: none;
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
 					      </li>
+					      
+					      </c:if>
 					    </ul>
 					  </nav>
 					 </div>
-					 <p class="right"><a href="location.href='/board/free/write'" class="board-write-btn red"">글쓰기</a></p>
+
+					 <c:if test="${loginUser != null}">
+						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
+					 </c:if>
+
 				</div>
 				
 				<div class="search-area">

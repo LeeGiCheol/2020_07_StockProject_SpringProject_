@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Map<String, Object> commentList(CommentVO vo, int nowPage) {
-		PagingVO commentPage = new PagingVO(commentDAO.count(vo), nowPage, 3);
+		PagingVO commentPage = new PagingVO(commentDAO.count(vo), nowPage, 10);
 		commentPage.getUtil().put("pno", vo.getPno());
 		List<CommentVO> commentList = commentDAO.getCommentList(commentPage);
 		Map<String, Object> postMap = new HashMap<String, Object>();
