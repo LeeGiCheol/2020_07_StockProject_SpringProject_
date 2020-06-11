@@ -8,7 +8,6 @@
 <title>마이페이지</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<!-- CSS파일 -->
 <link href="resources/css/mypage03.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -52,13 +51,15 @@ function deleteComment(){
 }
 
 </script>
+<style>
+.pagination{margin-left: 65px; margin-top:40px;}
+</style>
 </head>
 <body>
 <%@include file="mainheader.jsp" %>
     <!-- section start -->
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
-        <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
         <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage01" onclick="location.href='/myPage01'">
           <div> 
             <h6 class="my-0">내정보</h6>
@@ -219,12 +220,12 @@ function deleteComment(){
             <input type="hidden" id="delCommentList" name="delCommentList">
           <div><button class="btn btn-primary btn-lg btn-block remove" type="button" onclick="deleteComment();">삭제</button></div>
             <nav aria-label="..." class="pagination">
-                        	<ul class="pagination">
-			<c:if test="${commentPage.startPage != 1 }">
-				<li>
-					<a class="page-link" href="/myPage03?cnowPage=${commentPage.startPage - 1 }"tabindex="-1" aria-disabled="true">◀</a>
-				</li>
-			</c:if>
+           	<ul class="pagination">
+				<c:if test="${commentPage.startPage != 1 }">	
+							<li>
+								<a class="page-link" href="/myPage03?cnowPage=${commentPage.startPage - 1 }"tabindex="-1" aria-disabled="true">◀</a>
+							</li>
+				</c:if>
 			<c:forEach begin="${commentPage.startPage }" end="${commentPage.endPage }" var="p">
 				<c:choose>
 					<c:when test="${p == commentPage.nowPage}">

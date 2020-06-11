@@ -30,9 +30,8 @@
 .signup01_policy{color: red; margin-top: 20px; margin-left: 100px;}
 .signup01_box2{overflow: scroll; border:1px solid #DDDDDD; margin-top: 20px; margin-left: 100px; width: 1700px; height: 150px;}
 .signup01_check2{margin-left: 1530px; margin-top: 25px;}
-.signup01_nextButton{width:80px;font-size: 16px; color: rgb(255, 255, 255); margin-left:1705px; margin-bottom:30px;  
-	text-align: center; line-height: 2.5em; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; 
-	background-color:#6c757d;}
+.signup01_nextButton{border: none; width: 391px; margin-bottom: 20px; font-size: 16px; color: rgb(255, 255, 255); margin-left: 25px; text-align: center; line-height: 2.5em; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: #6c757d;}
+.signup01_nextButton:hover{color: #fff;background-color: #5a6268;border: none;}
 @media only screen and (max-width: 1324px) {
    .signup_allBody {padding: 10px 20px 40px 20px;}
    .signup_allBody {width: auto;height: 1623px;min-width: auto;margin-right: 310px;position: static;}
