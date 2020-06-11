@@ -3,6 +3,7 @@ package com.bitcamp.project.view.user;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,11 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -118,7 +119,8 @@ public class MyPageController {
 	}
 
 	@PostMapping(value = "/updateUser")
-	public String updateUser(@ModelAttribute("address") String address, @ModelAttribute("showEsetSetting") String showEset, HttpSession session) {
+	public String updateUser(@ModelAttribute("address") String address,
+			@ModelAttribute("showEsetSetting") String showEset, HttpSession session) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		loginUser.setAddress(address);
 		loginUser.setShowEsetSetting(Integer.parseInt(showEset));
@@ -126,20 +128,36 @@ public class MyPageController {
 		session.setAttribute("loginUser", loginUser);
 		return "redirect:/myPage01";
 	}
+
 	
-	@GetMapping(value = "/mypageUpdatePassword")
-	public String mypageUpdatePasswordView() {
-		return "mypage-update-password";
+	
+	
+	@GetMapping(value = "/mypageUpdatePassword") 
+	public String mypageUpdatePasswordView() { 
+	return "mypage-update-password"; 
 	}
-	
-	@PostMapping(value = "/mypageUpdatePassword")
+	 
+	@GetMapping(value = "/mypageUpdatePasswordEnd")
 	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		System.out.println("★★★★ 비밀번호 변경, password : " + password);
 		loginUser.setPw(password);
-		System.out.println("★★★★ 비밀번호 변경, id :" + loginUser.getId());
+		userInfoService.updatePassword(loginUser);
 		session.setAttribute("loginUser", loginUser);
-		return "redirect:/myPage01";
+		return "myPage01";
+	}
+
+	@GetMapping(value = "/mypageUpdatePasswordCheck")
+	@ResponseBody
+	public String mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session,
+			HttpServletRequest request) {
+		Map<String, String> map = new HashMap<String, String>();
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		map.put("pw", nowPassword);
+		map.put("id", loginUser.getId());
+		loginUser.setPw(nowPassword);
+		int result = userInfoService.mypageUpdatePasswordCheck(map);
+		session.setAttribute("loginUser", loginUser);
+		return Integer.toString(result);
 	}
 
 	@GetMapping(value = "/delete/*")
@@ -175,7 +193,8 @@ public class MyPageController {
 		List<List> notice = userInfoService.getNotice(id);
 		if ((notice.get(0).size() == 0) && (notice.get(1).size() == 0))
 			return "NONE";
-		else return "NOTICE";
+		else
+			return "NOTICE";
 	}
 
 }
