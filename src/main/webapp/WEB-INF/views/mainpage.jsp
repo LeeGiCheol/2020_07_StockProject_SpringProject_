@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <style type="text/css">
 .containerNew {
     position: relative;

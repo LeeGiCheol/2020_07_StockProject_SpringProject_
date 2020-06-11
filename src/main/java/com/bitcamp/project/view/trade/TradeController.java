@@ -158,7 +158,7 @@ public class TradeController {
 				return mav;
 			}
 
-			vo.setNewPrice(Integer.parseInt(price));
+			vo.setNewPrice(Integer.parseInt(price.replaceAll(",", "")));
 			vo.setNewQuantity(Integer.parseInt(qu));
 			vo.setQuantity((Integer) unsettledDetail.get("quantity"));
 			int myStockQu = tradeService.getStockQuantity(vo);
