@@ -132,9 +132,10 @@ public class MyPageController {
 	}
 
 	@PostMapping(value = "/updateUser")
-	public String updateUser(@ModelAttribute("address") String address,
+	public String updateUser(@ModelAttribute("nickname") String nickname, @ModelAttribute("address") String address,
 			@ModelAttribute("showEsetSetting") String showEset, HttpSession session) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		loginUser.setNickname(nickname);
 		loginUser.setAddress(address);
 		loginUser.setShowEsetSetting(Integer.parseInt(showEset));
 		userInfoService.memberInfoUpdate(loginUser);

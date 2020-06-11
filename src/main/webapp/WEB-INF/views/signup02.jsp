@@ -165,13 +165,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 
 			
 			var checked =  $('#passwordCheck').val();
-			/* 
-			// 중복확인 성공 시 checkflag가 1씩 증가 id, nickname용 (두개 다 성공할 시 checkflag는 2가 된다)
-			if(checkflag != 10){
-				alert("중복확인을 해주세요");
-				return false;
-			} */
-			
 			// 비밀번호 확인 체크가 안되면 value는 undefiend 되면 value에 값이 들어와 로그인 된다  
 			if(checked == undefined){
 				alert("비밀번호를 확인해주세요");
@@ -195,7 +188,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
  						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
 						$('#idResult').empty();
 						$('#idResult').append(html);
-						checkflag +=1;
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else if(atSign == -1 || com == -1){
 						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요.</td></tr>";
@@ -236,7 +228,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						$('#telResult').empty();
 						$('#telResult').append(html);
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-						checkflag +=1;
 					}else if(data == 2 || $.trim($('#inputPhone').val()) == ""){
 						var html="<tr><td colspan='3' style='color: red'>11자리를 입력해주세요.[ ex)01012345678 ]</td></tr>";
 						$('#telResult').empty();
@@ -273,7 +264,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
  						var html="<tr><td colspan='3' style='color: green'>인증성공</td></tr>"; 
 						$('#cTelResult').empty();
 						$('#cTelResult').append(html);
-						/* checkflag +=1; */
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
 						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요.)</td></tr>";
@@ -312,7 +302,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
  						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
-						checkflag +=1;
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
 						var html="<tr><td colspan='3' style='color: red'>중복된 닉네임입니다.</td></tr>";

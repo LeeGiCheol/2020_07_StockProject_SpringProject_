@@ -63,7 +63,7 @@
             <div class="mb-3">
               <label for="userNickname">닉네임</label>
               <div>
-                <input type="text" class="form-control" id="usern=Nickname" name="nickname" value="${loginUser.nickname}"></input>
+                <input type="text" class="form-control" id="userNickname" name="nickname" value="${loginUser.nickname}"></input>
               </div>
             </div>
             <!-- <div class="row">
