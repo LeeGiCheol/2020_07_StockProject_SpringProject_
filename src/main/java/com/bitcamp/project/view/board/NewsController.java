@@ -10,4 +10,8 @@ public class NewsController {
 	public String newsBoard() {
 		return "newsboard";
 	}
+	@GetMapping("/test")
+	public String test() {
+		return "free-board-update";
+	}
 }

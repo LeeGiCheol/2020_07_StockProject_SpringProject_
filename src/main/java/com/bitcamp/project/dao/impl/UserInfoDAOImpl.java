@@ -19,6 +19,11 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	
 	
 	@Override
+	public void deleteNotice(String id) {
+		mybatis.delete("user.deleteNotice", id);
+	}
+
+	@Override
 	public List getNotice(String id) {
 		List notice = new ArrayList<>(); 
 		notice.add(mybatis.selectList("user.getTradeNotice", id));
@@ -43,4 +48,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		mybatis.update("user.updateUser", vo);
 	}
 
+	@Override
+	public void updatePassword(UserVO vo) {
+		mybatis.update("user.mypageUpdatePassword", vo);
+	}
+	
 }

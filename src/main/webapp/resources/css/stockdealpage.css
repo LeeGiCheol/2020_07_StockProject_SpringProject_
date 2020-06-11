@@ -55,10 +55,12 @@ tr td button{
 .table{
 	margin-bottom: 0;
 }
+@media only screen and (max-width: 576px){
 .stock-btn{
 	padding: 3px;
 	font-size: 10px;
 	margin-bottom: 1.5px;
+}
 }
 .containerNew{
 	position: relative;
@@ -155,7 +157,7 @@ input, label, button {
     right: 0;
     
 }
-h3> a {
+.btnOverInfo {
     font-size: 28px;
     font-weight: 500;
     line-height: 28px;
@@ -484,6 +486,7 @@ a.btnStyle {
     background: #fff;
     line-height: 50px;
     color: #5a6268 !important;
+    font-weight: bold;
 }
 [class*="stock-nav-tab"] li.selected a:after, li:active>a, li.active>a {
     border-bottom: 2px solid #5a6268;
@@ -567,7 +570,7 @@ a.btnStyle {
 .upper-text, .now-text, .Lower-text, .inside-text, .inside-up-text, .inside-down-text{
 	border-right: 1px solid #dddddd;
 	font-size: 16px;
-	padding: 8px;
+	padding: 10px;
 	text-align: center;
 }
 .table-border{
@@ -597,6 +600,9 @@ a.btnStyle {
 	border-bottom: 1px solid #dddddd;
 	border-top: 1px solid #dddddd;
 	background: #eaeaea;
+	font-weight: 600;
+}
+#m-price, #price{
 	font-weight: 600;
 }
 #trad_frm button{
@@ -672,15 +678,15 @@ a.btnStyle {
     border-bottom: 2px solid #dddddd;
 }
 .tbl_home_left {
-    width: 48.4%;
+    width: 48.5%;
     border: 0;
     table-layout: fixed;
     border-collapse: collapse;
-    margin-right:10px;
+    margin-right:6px;
     float: left;
 }
 .tbl_home_right {
-    width: 50%;
+    width: 49%;
     border: 0;
     table-layout: fixed;
     border-collapse: collapse;
@@ -705,14 +711,6 @@ caption {
     line-height: 0;
     text-indent: -9999px;
 }
-[class*="tbl_home_"]  thead {
-    overflow: hidden;
-    width: 1px;
-    height: 1px;
-    font-size: 0;
-    line-height: 0;
-    text-indent: -9999px;
-}
 [class*="tbl_home_"]  tbody tr.up td {
     color: #e00400;
 }
@@ -720,11 +718,57 @@ caption {
     color: #666;
     font-family: tahoma,sans-serif;
     text-align: right;
+    font-size: 12px;
+}
+[class*="tbl_home_"]  tbody th a {
+    color: #5f5f5f;
+    white-space: nowrap;
+    font-size: 12px;
+}
+[class*="tbl_home_"]  #topRank th {
+    height: 22px;
+     padding: 5px 0 5px 5px;
+    font-weight: normal;
+    text-align: left;
+}
+[class*="tbl_home_"]  .rank-table th {
+    height: 22px;
+    padding: 5px 0 5px 10px;
+    font-weight: normal;
+    text-align: left;
+}
+[class*="tbl_home_"]  tbody th em {
+    margin-right: 5px;
+    color: #6879ab;
+    font-family: tahoma;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+[class*="tbl_home_"]  tbody tr.down td {
+    color: #003ace;
+}
+@media only screen and (max-width: 576px){
+[class*="tbl_home_"] tbody th em {
+    font-size: 9px;
+}
+}
+@media only screen and (max-width: 576px){
+[class*="tbl_home_"]  tbody td {
+    font-size: 9px;
+}
+}
+@media only screen and (max-width: 576px){
+[class*="tbl_home_"] tbody th a {
+	 font-size: 9px;
+	 
+	}
 }
 [class*="tbl_home_"]  tbody td em.bu_p {
     margin: -1px 0 1px;
     _margin: 1px 0 -1px;
     vertical-align: middle;
+    
 }
 .bu_pup2 {
     width: 7px !important;
@@ -743,44 +787,86 @@ caption {
     margin: -1px;
     overflow: hidden;
 }
-[class*="tbl_home_"]  #topRank th {
-    height: 22px;
-    padding: 5px;
-    font-weight: normal;
-    text-align: left;
-}
-[class*="tbl_home_"]  .rank-table th {
-    height: 22px;
-    padding: 5px 5px 5px 10px;
-    font-weight: normal;
-    text-align: left;
-}
-[class*="tbl_home_"]  tbody th em {
-    margin-right: 5px;
-    color: #6879ab;
-    font-family: tahoma;
-    font-size: 16px;
-    font-weight: bold;
-}
-[class*="tbl_home_"]  tbody th a {
-    color: #5f5f5f;
-    white-space: nowrap;
-}
-[class*="tbl_home_"]  tbody tr.down td {
-    color: #003ace;
-}
 .bu_pdn {
     width: 7px !important;
     height: 6px !important;
     background-position: 0 -80px;
 }
-@media only screen and (max-width: 979px){
+@media only screen and (max-width: 1260px){
 .aside_area {
 	width: 100%;
 	}
 }
-@media only screen and (max-width: 1260px){
-.aside_area {
-	width: 100%;
+
+#nowStock{
+	margin-left: 10px;
+	padding: 0;
+}
+.mainsame{
+	font-size: 25px;
+	line-height: 26px;
+	color: #333 !important;
+}
+.mainup{
+	font-size: 25px;
+	line-height: 26px;
+	color: #ca2623 !important;
+}
+.maindown {
+	font-size: 25px;
+    color: #1a64d2 !important;
+}
+.maindown-num {
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: 600;
+}
+.mainup-num {
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: 600;
+}
+.m-stock-price-chart{
+	display: none;
+}
+
+@media screen and (max-width: 576px) {
+ 	.col-md-9 {
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+		-webkit-box-orient: vertical;
+		-moz-box-orient: vertical;
+		box-orient: vertical;
+	}
+	.aside_area {
+		-webkit-box-ordinal-group: 4;
+		-moz-box-ordinal-group: 4;
+		box-ordinal-group: 4;
+	}
+	.stock-deal-control {
+		-webkit-box-ordinal-group: 3;
+		-moz-box-ordinal-group: 3;
+		box-ordinal-group: 3;
+	}
+	.m-stock-price-chart{
+	display: block;
+	border: none !important;
+	}
+	.stock-price-chart{
+	display: none;
+	}
+	.btnOverInfo{
+	font-size: 18px;
+	}
+	.mainsame{
+	font-size: 18px;
+	}
+	.mainup{
+	font-size: 18px;
+	
+	}
+	.maindown{
+	font-size: 18px;
 	}
 }

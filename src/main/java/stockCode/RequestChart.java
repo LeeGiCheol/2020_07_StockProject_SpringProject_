@@ -24,7 +24,7 @@ public class RequestChart {
 		String squery;
 		String stockCode = null;
 		try {
-			Socket sock = new Socket("192.168.0.53", 8000);
+			Socket sock = new Socket("192.168.0.227", 8000);
 			// 키보드 데이터 입력 객체 생성
 			InputStreamReader inK = new InputStreamReader(System.in);
 			BufferedReader keyboard = new BufferedReader(inK);

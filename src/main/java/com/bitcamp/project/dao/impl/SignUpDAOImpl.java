@@ -21,8 +21,8 @@ public class SignUpDAOImpl implements SignUpDAO {
 		
 		// 추천인 입력 시 포인트 증가
 		if(vo.getFriend() != null && vo.getFriend() !="") {
-			System.out.println("id==="+vo.getId());
-			System.out.println("friend==="+vo.getFriend());
+//			System.out.println("id==="+vo.getId());
+//			System.out.println("friend==="+vo.getFriend());
 			mybatis.update("user.pointUp", vo);
 		}
 		
@@ -30,11 +30,11 @@ public class SignUpDAOImpl implements SignUpDAO {
 
 	@Override
 	public int duplicateCheck(Map<String, String> map) {
-		System.out.println("DAO"+map.get("id"));
-		System.out.println("DAO2 "+map.get("nickname"));
-		System.out.println("DAO3 "+map.get("id"));
+//		System.out.println("DAO"+map.get("id"));
+//		System.out.println("DAO2 "+map.get("nickname"));
+//		System.out.println("DAO3 "+map.get("id"));
 		int result = mybatis.selectOne("user.idCheck", map);
-		System.out.println(result);
+//		System.out.println(result);
 		return result;
 	}
 

@@ -44,10 +44,19 @@ public class BoardServiceImpl implements BoardService{
 	public int count(BoardVO vo) {
 		return boardDAO.count(vo);
 	}
+	
+	public int commentCount(BoardVO vo) {
+		return boardDAO.commentCount(vo);
+	}
+
 
 	@Override
-	public Map<String, Object> boardList(BoardVO vo, int nowPage) {
-		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, 10);
+	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword, String orderby) {
+		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, 30);
+		boardPage.getUtil().put("searchStyle", searchStyle);
+		boardPage.getUtil().put("keyword", keyword);
+		boardPage.getUtil().put("orderby", orderby);
+		
 //		boardPage.getUtil().put("",vo.get)
 //		boardPage.setId(vo.getId());
 		List<BoardVO> boardList = boardDAO.getBoardList(boardPage);
@@ -59,5 +68,16 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	
+	public int updateViews(BoardVO vo) {
+		return boardDAO.updateViews(vo);
+	}
+	
+	public int boardLikes(BoardVO vo) {
+		return boardDAO.boardLikes(vo);
+	}
 
+	
+	
+	
+	
 }

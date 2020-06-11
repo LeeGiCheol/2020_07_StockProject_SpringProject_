@@ -18,6 +18,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	
 	@Override
+	public void deleteNotice(String id) {
+		userInfoDAO.deleteNotice(id);
+	}
+
+	@Override
 	public List getNotice(String id) {
 		return userInfoDAO.getNotice(id);
 	}
@@ -37,6 +42,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void memberInfoUpdate(UserVO vo) {
 		userInfoDAO.memberInfoUpdate(vo);
+	}
+
+	@Override
+	public void updatePassword(UserVO vo) {
+		userInfoDAO.updatePassword(vo);
 	}
 
 }

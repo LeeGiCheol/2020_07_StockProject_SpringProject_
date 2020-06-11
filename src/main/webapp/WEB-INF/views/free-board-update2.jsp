@@ -15,7 +15,310 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
-<link rel="stylesheet" href="/resources/css/free-board.css">
+
+<style>
+
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+   figure, footer, header, hgroup, menu, nav, section, summary, time,
+   audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   font-size: 14px;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+   word-break: break-all;
+}
+
+span, em, mark, strong, b, label {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+}
+
+em, i {
+   font-style: normal;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+   text-decoration: none;
+}
+
+p {
+    line-height: 160%;
+}
+
+.table td, .table th {
+    padding: 6px;
+}
+tr td button{
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+} 
+.table{
+	margin-bottom: 0;
+}
+.containerNew{
+position: relative;
+    max-width: 1260px;
+    height: 100%;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+.free-board {
+    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
+    margin-bottom: /*70px*/40px;
+    background: #fff;
+    position: relative;
+    border: 1px solid #dddddd;
+}
+.tit-h1.line {
+    margin: 0 -30px 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 0 30px 20px;
+}
+.tit-h1 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    line-height: 100%;
+}
+
+/* [class*="-btn"].red {
+    background: #ff545b;
+    border: 1px solid #ff545b;
+    color: #fff;
+} */
+[class*="board-write-btn"] {
+	position: relative;
+    background: #c8c8c8;
+    border: 1px solid #b3b3b3;
+    line-height: 100%;
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+.board-write-btn a:hover{
+	color: gray !important;
+}
+[class*="board-write-btn"] {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+}
+.board-free-btn{
+	float: left;
+}
+.board-free-nav{
+	height: 30px;
+	margin-bottom: 20px;
+	position: relative;
+}
+.board-free-table{
+	border-top: #000 1px solid;
+	margin-bottom: 15px;
+	width: 100%;
+}
+.writer{
+	text-align: left;
+}
+.board-writer,.board-title{
+	text-align: left;
+}
+.board-title a{
+    overflow: hidden;
+	max-width: 67%/*80%;; */;
+	color: #000;
+	
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+thead tr{
+	border-bottom: 1px solid #dddddd;
+	color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px !important;
+    
+}
+thead tr th{
+	padding: 10px 0 10px 0;	
+}
+
+tbody tr{
+	border-bottom: 1px solid #dddddd;
+    text-align: center;
+    font-size: 13px !important;
+    color: #888;
+  
+}
+tbody tr td{
+	padding: 10px 0 10px 0;	
+}
+.paging,.search-area {
+    clear: both;
+    padding: 0 0 30px 0;
+    text-align: center;
+    position: relative;
+}
+.paging p.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+.paging-body {
+    display: inline-block;
+    padding-left: 0;
+}
+.search-area-body{
+    display: inline-block;
+    padding-left: 0;
+}
+.dropdown-toggle-board{
+    border: 1px solid #ced4da;
+    color:  #888;
+	margin-right: .5rem!important;
+    padding: .375rem .75rem;
+}
+.dropdown-board {
+border-radius: 0 !important;
+color:  #888 !important;
+margin-top: 1px;
+}
+.board-search, .board-search-btn{
+border-radius: 0 !important;
+ border: 1px solid #ced4da;
+ color:  #888;
+}
+.page-link{
+    color: #888888 !important;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: white;
+    border: 1.5px solid #888888 !important;
+}
+.board-free-nav p.right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -15px;
+}
+.board-item{
+ color:  #888;
+}
+input[type='radio'] {
+  -webkit-appearance:none;
+  width:16px;
+  height:16px;
+  border:1px solid darkgray;
+  border-radius:50%;
+  outline:none;
+  background:#e6e6e6;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+input[type='radio']:before {
+  content:'';
+  display:block;
+  width:60%;
+  height:60%;
+  margin: 20% auto;  
+  border-radius:50%;  
+  
+}
+input[type='radio']:checked:before {
+  background:gray;
+}
+.new-board{
+	margin-right: 10px;
+}
+.new-board, .hot-board{
+	vertical-align: middle;
+}
+.paging + .board-search {
+    padding-bottom: 30px;
+}
+@media only screen and (max-width: 979px){
+.containerNew{
+	padding: 0;
+}
+.free-board {
+	border: none;
+    min-height: auto;
+    margin-right: 0;
+    padding: 20px 0 120px;
+    max-width: none !important;
+    width: 100% !important;
+}
+.board-free-nav{
+	margin: 10px;
+}
+.tit-h1{
+	font-size: 20px;
+	margin: 0 !important;
+}
+.board-free-table thead, .board-no{
+display: none;
+}
+.board-free-table tbody tr{
+    display: block;
+    position: relative;
+    padding: 10px;
+    height: 64px;
+}
+.board-title {
+    width: 100%;
+    margin-bottom: 6px;
+}
+.board-writer, .board-views, .board-likes, .board-date {
+    width: auto;
+    display: inline-block;
+    padding: 0;
+    line-height: 22px;
+    float: left;
+}
+.board-free-table tbody tr td{
+	padding: 0;
+}
+.board-writer, .board-views, .board-likes {
+    background: url(/resources/img/bg_line.png) no-repeat right 50%;
+    padding-right: 10px;
+    margin-right: 8px;
+}
+.board-title a{
+	max-width: 100%;
+	line-height: 22px;
+}
+}
+.tab-content{
+	position: relative;
+    background: #fff;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+</style>
 <script>
 	$(document).ready(function() {
 		$("#jb-checkboxAll-best").click(function() {
@@ -39,66 +342,30 @@
 				alert("취소하셨습니다.");
 			}
 		})
-		
-		
-		
-		
-	    $("input:radio[name='orderby']").click(function(){
-
-	    	$("#form").submit()
-	    })
 	});
-	
-
-
-	
 </script>
 </head>
 <body>
 
 	<%@include file="mainheader.jsp" %> 
-	<div class="all-dim"></div>
+	
+	
 	<div class="containerNew">
-	<div class="board-page">
 	<!-- article start -->
-	<div class="row">
-	<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
-						<ul>
-							<li><a href="#"><span>자유게시판</span></a></li>
-							<li><a href="#"><span>포트폴리오</span></a></li>
-							<li class="last"><a href="#"><span>뉴스</span></a></li>
-						</ul>
-					</div>
-				</div>
-  <div class="col-md-10">
 	<div class="free-board">
-	<div class="drop-nav">
-	<h1 class="tit-h1 line">자유게시판</h1>
-	</div>
-	<div class="m-drop-nav">
-	<h1 class="m-drop-tit-title line" style="cursor:pointer;">자유게시판 ▼</h1>
-	</div>
-	<div class="m-drop-down">
-	<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="#">자유게시판</a></h1>
-	<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
-	<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="#">뉴스</a></h1>
-	</div>
+	<h1 class="tit-h1 line" style="cursor:pointer;">자유게시판</h1>
 		<div class="board-type">
 			<div class="board-free-nav">
-					<form id="form" class="board-list-top policy-in" action='/board/free'>
+					<form class="board-list-top policy-in">
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
 								value="recentOrdr" checked=""><label for="orderby1"  class="new-board">최신순</label>
 							<input type="radio" class="ordeby" id="orderby2" name="orderby"
-								value="popularOrdr"><label for="orderby2" class="hot-board" >인기순</label>
+								value="popularOrdr"><label for="orderby2" class="hot-board">인기순</label>
 						</p>
 					</form>
-		 			 
-		 			 <c:if test="${loginUser != null}">
-						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
-					 </c:if>	
-					 		
+					<p class="right"><a href="location.href='/board/free/write'" class="board-write-btn">글쓰기</a></p>
+			<!-- <button class="board-write-btn red" type="button" onclick="location.href='/board/free/write'">글쓰기</button> -->
 			</div>
 			<div class="tab-content" id="pills-tabContent">
 					<!-- 전체글 -->
@@ -123,7 +390,6 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${boardList}" var="board">
-							
 								<c:if test="${board.bno eq 1}">
 									<tr>
 										<td class="board-no">${board.pno}</td>
@@ -131,7 +397,7 @@
 										
 										<c:choose>
 											<c:when test="${board.commentCount ne 0}">
-												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
+												<td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a>&nbsp;(${board.commentCount})</td>
 										<!-- 글 제목 -->
 											</c:when>
 											<c:otherwise>
@@ -141,9 +407,9 @@
 										
 										<td class="board-writer">${board.nickname}</td>
 										<!-- 글쓴이 -->
-										<td class="board-views"><span>조회 </span>${board.views}</td>
+										<td class="board-views">${board.views}</td>
 										<!-- 조회수 -->
-										<td class="board-likes"><span>추천 </span>${board.likes}</td>
+										<td class="board-likes">${board.likes}</td>
 										<!-- 추천수 -->
 										<td class="board-date">${board.bdateTime}</td>
 										<!-- 날짜 -->
@@ -160,7 +426,7 @@
 					<nav aria-label="..." class="pagination">
 					    <ul class="pagination">
 					
-					<c:if test="${boardPage.nowPage != 1}">
+					
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
@@ -169,6 +435,7 @@
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
 					      </li>
+					
 					      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
@@ -179,7 +446,6 @@
 					          </a>
 					        </li>
 					      </c:if>
-					</c:if>
 					      
 					      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage != 1}">
@@ -212,8 +478,6 @@
 					      </c:forEach> 
 					      
 					      
-					      
-					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
 					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
 					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
 					        <li>
@@ -244,16 +508,10 @@
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
 					      </li>
-					      
-					      </c:if>
 					    </ul>
 					  </nav>
 					 </div>
-
-
-					 <c:if test="${loginUser != null}">
-						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
-					 </c:if>
+					 <p class="right"><a href="location.href='/board/free/write'" class="board-write-btn red"">글쓰기</a></p>
 				</div>
 				
 				<div class="search-area">
@@ -282,42 +540,6 @@
 		</div>
 	</div>
 </div>
-</div>
-</div>
-  <script type="text/javascript">
-  $( document ).ready(function() {
-	  console.log( "document ready!" );
-
-	  var $sticky = $('.sticky');
-	  var $stickyrStopper = $('.footer_info');
-	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
-
-	    var generalSidebarHeight = $sticky.innerHeight();
-	    var stickyTop = $sticky.offset().top;
-	    var stickOffset = 0;
-	    var stickyStopperPosition = $stickyrStopper.offset().top;
-	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-	    var diff = stopPoint + stickOffset;
-
-	    $(window).scroll(function(){ // scroll event
-	      var windowTop = $(window).scrollTop(); // returns number
-
-	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
-	      } else if (stickyTop < windowTop+stickOffset) {
-	          $sticky.css({ position: 'fixed', top: stickOffset });
-	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
-	      }
-	    });
-
-	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
-	});
-  </script>
-	</div>
 
 	<!-- article end -->
 	<%@include file="mainfooter.jsp" %>	

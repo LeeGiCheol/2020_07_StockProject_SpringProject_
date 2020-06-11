@@ -58,13 +58,8 @@ tr td button{
 									id="stockBtn" type="submit">
 									<i class="fas fa-search"></i>
 								</button>
-								<h3><a href="#" class="btnOverInfo" id="h3_stockName">${stockName}</a></h3>
-								<span id="span_pr_rate" class="number down"> 
-								<em><span id="em_cprice"> 10,550 </span></em> 
-								<span id="span_cprice_diff">
-								▼ <strong>100 (0.94%)</strong>
-								</span>
-								</span>
+								<h3 class="btnOverInfo" id="h3_stockName">${stockName}</h3>
+								<span id="nowStock"> </span>
 						<div class="stock-deal-button">
 								<button type="button"
 									class="btn btn-secondary companydata-btn stock-btn"
@@ -92,6 +87,55 @@ tr td button{
 							<div id="chartcontainer"></div>
 						</div>
 					</div>
+					<div class="m-stock-price-chart">
+						<table class="stock-chart-table	">
+							<colgroup>
+								<col width="25%">
+								<col width="30%">
+								<col width="45%">
+							</colgroup>
+<%-- 							<thead>
+								<tr>
+									<th scope="col" colspan="3" id="stockName">${stockName}</th>
+								</tr>
+							</thead> --%>
+							<tbody>
+								<tr>
+									<td scope="col" class="table-border"></td>
+									<td scope="col" class="table-border">호가</td>
+									<td scope="col" class="table-border"></td>
+								</tr>
+								<tr>
+									<td scope="col" class="upper-text">상한가</td>
+									<td scope="col"  class="upper-text" id="m-maximum"></td>
+									<td scope="col"></td>
+								</tr>
+							</tbody>
+
+							<tbody id="m-up">
+								<!-- ajax 로 호가 + 주입 -->
+							</tbody>
+
+							<tbody>
+								<tr id="m-upDownColor">
+									<td scope="col" class="now-text">현재가</td>
+									<td scope="col" class="now-text"> <button id="m-price"></button></td>
+									<td scope="col" class="now-text" id="m-beforeAndUpdown"></td>
+								</tr>
+							</tbody>
+
+							<tbody id="m-down">
+								<!-- ajax 로 호가 - 주입 -->
+							</tbody>
+							<tbody>
+								<tr>
+									<td scope="col" class="Lower-text">하한가</td>
+									<td scope="col" class="Lower-text" id="m-minimum"></td>
+									<td scope="col"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 					<div class="aside_area aside_popular">
 					
 						<h3 class="h_popular-left">
@@ -107,9 +151,9 @@ tr td button{
 								인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
 							</caption>
 							<colgroup>
-								<col>
-								<col width="65">
-								<col width="65">
+								<col width="40%">
+								<col width="20%">
+								<col width="20%">
 							</colgroup>
 							<thead>
 								<tr>
@@ -129,9 +173,9 @@ tr td button{
 								인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
 							</caption>
 							<colgroup>
-								<col>
-								<col width="60">
-								<col width="65">
+								<col width="40%">
+								<col width="20%">
+								<col width="20%">
 							</colgroup>
 							<thead>
 								<tr>
@@ -543,7 +587,7 @@ tr td button{
 							<tbody>
 								<tr id="upDownColor">
 									<td scope="col" class="now-text">현재가</td>
-									<td scope="col" class="now-text" id="price"></td>
+									<td scope="col" class="now-text"><button id="price"></button></td>
 									<td scope="col" class="now-text" id="beforeAndUpdown"></td>
 								</tr>
 							</tbody>
@@ -576,7 +620,8 @@ tr td button{
 
 	<%@include file="mainfooter.jsp" %>
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
-
+		
+ 
 	<script>
 	var stockName = "${stockName}";
 	if(stockName === ''){
@@ -589,42 +634,103 @@ tr td button{
 		//console.log("check" + stockName);
 	});
 	
-	$(function() {
+	$(document).ready(function(){
 		var obj = new Object();
 		var jsonData = JSON.stringify(obj);
 		var pageUrl = "삼성전자";
 		var pageTitle = "http://localhost:8080/trade";
-		timer = setInterval( function () {
+		
+		
+		function stock(){
+		
 			$.ajax({
 				type : "POST",
 				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
 			 	/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
+						console.log(data)
 						$('#element').css('margin', '5px');
-						$('#price').text(data.currentPrice);
+						$('#price,#m-price').text(data.currentPrice);
+						
+						
+						var nowStock = "";
+						var before = "";						
+						
+						if(data.before.indexOf("+") != -1)
+							console.log(data.before)
+						if(data.before.indexOf("+") == -1)
+							console.log("2 "+data.before)
+							
+						
+						
+						if(data.before.indexOf("+") != -1){
+							before = data.before.replace("+","");
+							nowStock += '<tr class="mainup">'
+						}
+						         
+						else if(data.before.indexOf("-") != -1){
+							before = data.before.replace("-","");
+							nowStock += '<tr class="maindown">'
+						}
+						else if(data.before.indexOf("0") != -1){
+							before = data.before.replace("0","0");
+							nowStock += '<tr class="mainsame">'
+						}
+						         
+						nowStock += '<td>'+data.currentPrice+'</td>'
+						           
+						if(data.before.indexOf("+") != -1){
+							nowStock += '<td class="mainup-num"><em><span>▲</span></em>'
+							nowStock += 	'<span class="tah p11 red02">'+ before + " ("+data.updown+")"+'</span></td>'
+						}
+						               
+						else if(data.before.indexOf("-") != -1){
+							nowStock +=   '<td class="maindown-num"><em><span>▼</span></em>'
+							nowStock +=     '<span class="tah p11 nv01">'+ before + " ("+data.updown+")"+'</span></td>'
+						}
+						else if(data.before.indexOf("0") != -1){
+							nowStock += '<td><span class="tah p11"></span>'
+							nowStock +=     '<span class="no0">' + "&nbsp;&nbsp;" + before +" ("+data.updown+")"+'</span></td>'
+						}
+						nowStock += '</tr>'
+													
+						$('#nowStock').html(nowStock);
+						
 						
 						// 어제 대비 현재가가 오른경우
-						if(data.before.indexOf("+") != -1){					
-							$('#upDownColor').css("color", "rgb(255, 0, 0)");
+						if(data.before.indexOf("+") != -1){	
+							before = data.before.replace("+", "▲");
+							console.log(before)
+							$('#upDownColor,#m-upDownColor,#price,#m-price').css("color", "rgb(255, 0, 0)");
+							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " (" + data.updown+")");
+
 						} 
 						// 내린경우
-						else {
-							$('#upDownColor').css("color", "rgb(91, 90, 255)");
+						else if (data.before.indexOf("-") != -1){
+							before = data.before.replace("-", "▼");
+							$('#upDownColor,#m-upDownColor,#price,#m-price').css("color", "rgb(91, 90, 255)");
+							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " (" + data.updown+")");
+
+						}
+						// 같은경우
+						else if (data.before.indexOf("0") != -1){
+							before = data.before.replace("-", "");
+							$('#upDownColor,#m-upDownColor,#price,#m-price').css("color", "#333");
+							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " (" + data.updown+")");
+
 						}
 						
-						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
-						$('#maximum').html(data.maximum);
-						$('#minimum').html(data.minimum);
+						
+						$('#maximum,#m-maximum').html(data.maximum);
+						$('#minimum,#m-minimum').html(data.minimum);
 						var templ = $.templates("#upPrice");
 						var str = templ.render(data.up);
-						$("#up").html(str);
+						$("#up,#m-up").html(str);
 						var templ2 = $.templates("#downPrice");
 						var str2 = templ2.render(data.down);
-						$("#down").html(str2);
+						$("#down,#m-down").html(str2);
 						$("#stockName").html(data.stockName);
-						
-						$('#beforeAndUpdown').html(data.before + " , " + data.updown);
 						
 						
 						
@@ -633,34 +739,17 @@ tr td button{
 						var a = 1;
 						
 						for(var i=0; i<data.topName.length-1; i++){
-							if(data.topUpDown[i].indexOf("+") != -1){							
-								topRank += '<tr class="up"  style="width:50px">'
+							if(data.topName[i] != null){
+								topRank += '<tr class="up">'
 								topRank += '<th scope="row"><em>'+a+'</em>'
+								topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
+								topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
+								topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
+	           					topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+	           					topRank += 	'<span class="tah p11 red02">'+data.topBefore[i]+'</span></td>'
+	           					topRank += '</tr>'
+								a++
 							}
-							
-							else if(data.topUpDown[i].indexOf("-") != -1){
-								topRank += '<tr class="down">'
-              					topRank += '<th scope="row"><em>'+a+'</em>'
-							}
-							
-							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
-							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
-							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
-							//class="bu_p bu_pup2"
-							//class="bu_p bu_pdn"
-              				if(data.topUpDown[i].indexOf("+") != -1){
-              					topRank += '<td><em><span class="blind">상한가</span></em>'
-              					topRank += 	'<span class="tah p11 red02">'+data.topUpDown[i]+'</span></td>'
-							}
-              				
-              				else if(data.topUpDown[i].indexOf("-") != -1){
-              					topRank +=   '<td><em><span class="blind">하락</span></em>'
-           						topRank +=     '<span class="tah p11 nv01">'+data.topUpDown[i]+'</span></td>'
-							}
-               				
-               				
-          					searchRank += '</tr>'
-							a++
 						}
 						$("#topRank").html(topRank);
 
@@ -703,23 +792,23 @@ tr td button{
 						}
 						$("#searchRank").html(searchRank);
 						
-						
-						
-						
-						
 
 					//$('#price').text(data.currentPrice);
-					
 					
 				},
 				error : function(error) {
 					console.log("error");
 				}
 			}); 
-		}, 1000); // SET INTERVAL5
+		}stock();
+		
+		timer = setInterval(function () {
+			stock();
+		}, 1000); // SET INTERVAL
+		
 	});
 	
-	$('#price').click( function(){
+	$('#price,#m-price').click( function(){
 		$('#buying_price').val($(this).text());
 		$('#selling_price').val($(this).text());
 		var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
@@ -840,7 +929,14 @@ tr td button{
 			              backgroundBarRadius: 0,
 			          }
 			      }
-			  }
+			  },
+
+			  tooltip: {
+				  custom: function({series, seriesIndex, dataPointIndex, w}) {
+	               
+				    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
+				  }
+				}
 	     };
 
 	     var minchart = new ApexCharts(document.querySelector("#chartcontainer"), options);
@@ -941,7 +1037,14 @@ tr td button{
 			              backgroundBarRadius: 0,
 			          }
 			      }
-			  }
+			  },
+
+			  tooltip: {
+				  custom: function({series, seriesIndex, dataPointIndex, w}) {
+	               
+				    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
+				  }
+				}
 	     };
 
 	     var daychart = new ApexCharts(document.querySelector("#chartcontainer"), options);
@@ -1041,7 +1144,7 @@ tr td button{
 		  tooltip: {
 			  custom: function({series, seriesIndex, dataPointIndex, w}) {
                
-			    return '<DIV style="border: 1px solid #48BAE4; height: auto; width: auto;">시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '<br>종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '<br>저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '<br>고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</DIV>'
+			    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
 			  }
 			}
 		 
@@ -1057,6 +1160,7 @@ tr td button{
 				<td scope="col" class="inside-up-text"><button onClick="(function(){
 							$('#buying_price').val('{{:up}}');
 							$('#selling_price').val('{{:up}}');
+							$('#mySelect').val('{{:up}}');
 							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
         					$('#buying_result').text(buy_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							var sell_result = parseInt($('#selling_price').val().replace(/,/g,'')) * $('#selling_qu').val()
@@ -1072,6 +1176,7 @@ tr td button{
 				<td scope="col" class="inside-down-text"><button onClick="(function(){
 							$('#buying_price').val('{{:down}}');
 							$('#selling_price').val('{{:down}}');
+							$('#mySelect').val('{{:down}}');
 							var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
         					$('#buying_result').text(buy_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							var sell_result = parseInt($('#selling_price').val().replace(/,/g,'')) * $('#selling_qu').val()

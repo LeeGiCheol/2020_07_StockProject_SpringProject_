@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,7 +22,6 @@ import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
-import com.google.gson.Gson;
 
 @Controller
 public class BoardController {
@@ -38,36 +36,56 @@ public class BoardController {
 	CommentService commentService;
 	
 	
-	@GetMapping("/board/free")
-	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage) {
+	@GetMapping(value= {"/board/free", "/board/free/popularity"})
+	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
+							@ModelAttribute("orderby") String orderby /*recentOrdr = 최신순 popularOrdr = 인기순*/ ) {
+		
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
-		System.out.println("vo "+vo.toString());
-		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage));
+		if(searchStyle.equals("")) {
+			keyword = "";
+		}
+		if(orderby.equals("")) {
+			orderby = "recentOrdr";
+		}
+		
+		System.out.println("orderby " + orderby);
+		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby);
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
-		PagingVO a = (PagingVO)boardList.get("boardPage");
-//		System.out.println(a.toString());
-//		System.out.println(boardList);
+		model.addAttribute("searchStyle", searchStyle);
+		model.addAttribute("keyword", keyword);
 		
 		
-		return "free-board";
+		if(orderby.equals("recentOrdr")) {
+			return "free-board";
+		}
+		else {
+			return "free-board-popularity";
+		}
 	}
+	
+	
+	
 	
 	
 	@GetMapping("/board/free/write")
 	public String boardWriteView(BoardVO vo, Model model) {
-	
 		return "writeForm";
 	}
 	
+	
 	@PostMapping("/board/free/write")
-	public String boardWrite(BoardVO vo, UserVO loginUser) {
+	public String boardWrite(BoardVO vo) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		
 		vo.setId(loginUser.getId());
+		vo.setBno(1); // 자유게시판
+		System.out.println("bovo "+vo);
 		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
-//		return "free-board";
 	}
 	
 	@GetMapping("/board/free/detail")
@@ -77,10 +95,12 @@ public class BoardController {
 		}
 		ModelAndView mav = new ModelAndView();
 		BoardVO boardDetail = boardService.getBoard(vo);
+		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
 		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
+
 		mav.setViewName("free-board-detail");
 		
 		return mav;
@@ -104,19 +124,33 @@ public class BoardController {
 		return map;
 	}
 	
+	@GetMapping("/board/free/detail/likes/ajax")
+	@ResponseBody
+	public int boardLikes(BoardVO vo, @RequestParam("pno") int pno) {
+		UserVO uVo = (UserVO)session.getAttribute("loginUser");
+		try {
+			vo.setId(uVo.getId());
+		}catch(Exception e) {
+			System.out.println("로그인해주ㅠ세요 페이지 만들기");
+		}
+		
+		vo.setPno(pno);
+		return boardService.boardLikes(vo);
+	}
+	
 	
 	@GetMapping("/board/free/update")
 	public String updateBoardView(BoardVO vo, Model model) {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
-		System.out.println("mmmmm"+boardUpdate);
+//		System.out.println("mmmmm"+boardUpdate);
 		return "updateForm";
 	}
 
 	@PostMapping("/board/free/update")
 	public String updateBoard(BoardVO vo, Model model) {
-		System.out.println("test");
-		System.out.println(vo);
+//		System.out.println("test");
+//		System.out.println(vo);
 		boardService.updateBoard(vo);
 		return "redirect:/board/free";
 	}

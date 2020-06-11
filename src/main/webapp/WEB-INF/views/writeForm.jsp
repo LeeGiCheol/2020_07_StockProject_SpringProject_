@@ -20,19 +20,39 @@
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 
 <script>
-$(document).on('click', '#btnSave', function(e) {
-		e.preventDefault();
-		$("#form").submit();
-	});
-	
-	$(document).on(
-		'click',
-		'#btnList',
-		function(e) {
-		e.preventDefault();
-		location.href = "${pageContext.request.contextPath}/board/getBoardList";
-});
-      
+	function btnSave(){
+		// 글제목
+		var title = $("#title").val();
+		// 글내용 -> 
+		var content = $("p").html();
+		
+		if(content == '<br data-cke-filler="true">'){
+			content = content.replace('<br data-cke-filler="true">', " ")
+		}
+		
+		if(content.indexOf("&nbsp;") != -1){
+			console.log("????")
+			content = content.replace("&nbsp;", " ")
+		}
+		console.log(content)
+		
+		if(content.trim() == '<br data-cke-filler="true">' && title == ""){
+			alert('제목과 내용을 입력해주세요')
+			$("#title").focus();
+		}
+		else if(content == '<br data-cke-filler="true">' || content.trim() == ""){
+			alert('내용을 입력해주세요')
+		}
+		else if(title.trim() == ""){
+			alert('제목을 입력해주세요')			
+			$("#title").focus();
+		}
+		else{
+			$("#form").submit();
+		}
+	};
+
+
 </script>
 </head>
 <body>
@@ -60,18 +80,16 @@ $(document).on('click', '#btnSave', function(e) {
 					<textarea class="form-control" rows="5" name="bcontent" id="content" placeholder="내용을 입력해 주세요"></textarea>
 			   </div>
 			<div>
-				<button type="submit" class="btn btn-sm btn-primary" id="btnSave" >저장</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick="btnSave()">저장</button>
                 <button type="button" class="btn btn-sm btn-primary" id="btnCancle" onclick="window.location.href='/board/free'">취소</button>
 			</div>
 			</form>
 		</div>
 	</article>  
-
 	<%@include file="mainfooter.jsp" %>
-
 </body>
 <script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script> <!-- 글쓰기 메뉴들 -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </html>

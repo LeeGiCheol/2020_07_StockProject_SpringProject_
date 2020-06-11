@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
-<link href="/resources/css/free-board-detail1.css" rel="stylesheet">
+<link href="/resources/css/free-board-detail.css" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="jpaginate/style.css"/> -->
 
 <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
@@ -24,6 +24,25 @@
 
 <script>
 	$(document).ready(function() {
+		
+		setTimeout(function() {
+			var w = $(".image").children().width();
+			var h = $(".image").children().height();
+			
+			if(w > 1024){
+				var ri = 1024/w;
+				w = w * ri;
+				h = h * ri;
+			}
+			var a_h = $(".article").children().height();
+			var a_w = $(".article").children().width();
+			
+			console.log(w+" / "+h+" && "+ a_w+" / "+ a_h);
+			$(".image").children().width(w);
+			 $(".image").children().height(h);
+			
+		}, 50);
+		
 		$("#btnDelete").click(function() {
 			if (confirm("정말로 삭제하시겠습니까?")) {
 				location.href = '/board/free/delete?pno=${boardDetail.pno}';
@@ -179,11 +198,20 @@ position: relative;
 									</dt>
 									<dd>
 										<input type="hidden" name="pno" value="${boardDetail.pno}">
-										<textarea name="ccontent" id="[##_comment_input_comment_##]"
-											placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea>
+
+									<c:if test="${loginUser != null}">
+											<textarea name="ccontent" id="[##_comment_input_comment_##]"
+												placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea>
+									</c:if>
+	
+									<c:if test="${loginUser == null}">
+											<textarea name="ccontent" id="[##_comment_input_comment_##]"
+												placeholder="댓글을 작성하시려면 로그인을 해주세요" onclick="location.href='/signInPage'"></textarea>
+									</c:if>
+
 									</dd>
 								</dl>
-								<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
+									<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
 							</fieldset>
 						</form>
 
@@ -194,9 +222,9 @@ position: relative;
 				</div>
 				<div class="buttons">
 					<button type="button" class="btn btn-sm btn-primary" id="btnList"
-						onclick="window.location.href='free-board.jsp'">목록</button>
+						onclick="window.location.href='/board/free'">목록</button>
 					<button type="button" class="btn btn-sm btn-primary" id="btnMyList"
-						onclick="window.location.href='mypage03.jsp'">내가 쓴글</button>
+						onclick="window.location.href='/myPage03'">내가 쓴글</button>
 
 					<c:if test="${loginUser.nickname eq boardDetail.nickname}">
 						<button type="button" class="btn btn-sm btn-primary"
@@ -231,6 +259,9 @@ position: relative;
 	    })
 	    
 	    // 목록 뿌리기
+	    
+	    var like = "좋아요";
+	    
 	    function list(){
 	    
 	    
@@ -244,9 +275,10 @@ position: relative;
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
-				
+					console.log(data)
 					// 게시판상세보기
 					var board = "";
+					
 					var boardTitle = data.boardDetail.title
 					var boardNickname = data.boardDetail.nickname
 					var boardDatetime = data.boardDetail.bdateTime
@@ -263,11 +295,12 @@ position: relative;
 					board +=					'<i class="fa fa-user-circle"></i>'+boardNickname
 					board +=				'</li>'
 					board +=				'<li class="date">'
-					board +=					'<i class="far fa-clock"></i>'+boardDatetime
+					board +=					'<i class="far fa-clock"></i>'+changeDate(boardDatetime)
 					board +=				'</li>'
 					board +=			'</ul>'
 					board +=		'</div>'
 					board +=		'<div class="article">'+boardContent
+					board +=		'<div style="position:absolute; bottom:0px;"><span id="likes"><button id="likesBtn" onclick="updateLikes('+data.boardDetail.pno+')">'+like+'</button>'+data.boardDetail.likes+'</span></div>'
 					board +=		'</div>'
 					board +=	'</div>'
 					board +=	'<hr>'
@@ -284,7 +317,7 @@ position: relative;
 						
 						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
 						comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
-						comment += "<i class='far fa-clock'></i>"+data.commentList[i].cdataTime+"<br> <br>"
+						comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdataTime)+"<br> <br>"
 						comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>"
 						
 						// 내 댓글에 수정/삭제 버튼 띄우기
@@ -456,6 +489,61 @@ position: relative;
 			 })
 		        
 		}
+		
+		
+	    // datetime 변환
+	    function changeDate(date){
+	        var date = new Date(date);
+			console.log(date.toString())
+	        
+	        year = date.getFullYear();
+	        month = date.getMonth();
+	        month += 1;
+	        day = date.getDate();
+	        hour = date.getHours();
+	        minute = date.getMinutes();
+	        second = date.getSeconds();
+	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+	        return strDate;
+	    }
+		
+	    
+	    function updateLikes(pno){
+		    $.ajax({
+				type : 'GET',
+				url : '${pageContext.request.contextPath}/board/free/detail/likes/ajax',
+				dataType : 'json',
+				data : {"pno" : pno},
+				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
+				success : function(data){ 
+					list();
+					
+					    /* if (like=="좋아요") 
+					    	like = "좋아요 취소"
+					    
+				    	else
+					    	like = "좋아요" */
+				},
+			    error : function(error, data){
+			    	
+					console.log(data)
+					console.log(error)
+					alert('error!!'); 
+			    }
+		    })
+		}			
+	    
+	    
+	    
+		
+/* 		history.pushState(null, null, location.href);
+
+		window.onpopstate = function(event) {
+			console.log(event)
+			location.href = "/board/free";
+
+		}; */
+
 
 
 

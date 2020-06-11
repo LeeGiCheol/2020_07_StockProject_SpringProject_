@@ -15,7 +15,333 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
-<link rel="stylesheet" href="/resources/css/free-board.css">
+
+<style>
+
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+   figure, footer, header, hgroup, menu, nav, section, summary, time,
+   audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   font-size: 14px;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+   word-break: break-all;
+}
+
+span, em, mark, strong, b, label {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+}
+
+em, i {
+   font-style: normal;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+   text-decoration: none;
+}
+
+p {
+    line-height: 160%;
+}
+
+.table td, .table th {
+    padding: 6px;
+}
+tr td button{
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+} 
+.table{
+	margin-bottom: 0;
+}
+.containerNew{
+position: relative;
+    max-width: 1260px;
+    height: 100%;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+.free-board {
+    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
+    margin-bottom: /*70px*/40px;
+    background: #fff;
+    position: relative;
+    border: 1px solid #dddddd;
+}
+.tit-h1 {
+    margin: 0 -30px 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 0 30px 20px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    line-height: 100%;
+}
+/* .tit-h1 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    line-height: 100%;
+}
+ */
+/* [class*="-btn"].red {
+    background: #ff545b;
+    border: 1px solid #ff545b;
+    color: #fff;
+} */
+[class*="board-write-btn"] {
+	position: relative;
+    background: #c8c8c8;
+    border: 1px solid #b3b3b3;
+    line-height: 100%;
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+.board-write-btn a:hover{
+	color: gray !important;
+}
+[class*="board-write-btn"] {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+}
+.board-free-btn{
+	float: left;
+}
+.board-free-nav{
+	height: 30px;
+	margin-bottom: 20px;
+	position: relative;
+}
+.board-free-table{
+	border-top: #000 1px solid;
+	margin-bottom: 15px;
+	width: 100%;
+}
+.writer{
+	text-align: left;
+}
+.board-writer,.board-title{
+	text-align: left;
+}
+.board-title a{
+    overflow: hidden;
+	max-width: 67%/*80%;; */;
+	color: #000;
+	display: -webkit-inline-box;
+   /*  display: -webkit-box; */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+thead tr{
+	border-bottom: 1px solid #dddddd;
+	color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px !important;
+    
+}
+thead tr th{
+	padding: 10px 0 10px 0;	
+}
+
+tbody tr{
+	border-bottom: 1px solid #dddddd;
+    text-align: center;
+    font-size: 13px !important;
+    color: #888;
+  
+}
+tbody tr td{
+	padding: 10px 0 10px 0;	
+}
+.paging,.search-area {
+    clear: both;
+    padding: 0 0 30px 0;
+    text-align: center;
+    position: relative;
+}
+.paging p.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+.paging-body {
+    display: inline-block;
+    padding-left: 0;
+}
+.search-area-body{
+    display: inline-block;
+    padding-left: 0;
+}
+.dropdown-toggle-board{
+    border: 1px solid #ced4da;
+    color:  #888;
+	margin-right: .5rem!important;
+    padding: .375rem .75rem;
+}
+.dropdown-board {
+border-radius: 0 !important;
+color:  #888 !important;
+margin-top: 1px;
+}
+.board-search, .board-search-btn{
+border-radius: 0 !important;
+ border: 1px solid #ced4da;
+ color:  #888;
+}
+.page-link{
+    color: #888888 !important;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: white;
+    border: 1.5px solid #888888 !important;
+}
+.board-free-nav p.right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -15px;
+}
+.board-item{
+ color:  #888;
+}
+input[type='radio'] {
+  -webkit-appearance:none;
+  width:16px;
+  height:16px;
+  border:1px solid darkgray;
+  border-radius:50%;
+  outline:none;
+  background:#e6e6e6;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+input[type='radio']:before {
+  content:'';
+  display:block;
+  width:60%;
+  height:60%;
+  margin: 20% auto;  
+  border-radius:50%;  
+  
+}
+input[type='radio']:checked:before {
+  background:gray;
+}
+.new-board{
+	margin-right: 10px;
+}
+.new-board, .hot-board{
+	vertical-align: middle;
+}
+.paging + .board-search {
+    padding-bottom: 30px;
+}
+.board-views span, .board-likes span {
+    display: none;
+}
+@media only screen and (max-width: 979px){
+.containerNew{
+	padding: 0;
+}
+.free-board {
+	border: none;
+    min-height: auto;
+    margin-right: 0;
+    padding: 20px 0 120px;
+    max-width: none !important;
+    width: 100% !important;
+}
+.board-free-nav{
+	margin: 10px;
+}
+.tit-h1{
+	font-size: 20px;
+	margin: 0 !important;
+	padding: 0 10px 20px;
+}
+.board-free-table thead, .board-no{
+display: none;
+}
+.board-free-table tbody tr{
+    display: block;
+    position: relative;
+    padding: 10px;
+    height: 64px;
+}
+.board-title {
+    width: 100%;
+}
+.board-writer, .board-views, .board-likes, .board-date {
+    width: auto;
+    display: inline-block;
+    padding: 0;
+    line-height: 22px;
+    float: left;
+}
+.board-writer, .board-views, .board-likes {
+    background: url(/resources/img/bg_line.png) no-repeat right 50%;
+    padding-right: 10px !important;
+    margin-right: 8px;
+}
+.board-free-table tbody tr td{
+	padding: 0;
+}
+.board-title a{
+	/* max-width: 100%; */
+	width: 400px;
+	line-height: 22px;
+}
+.board-views span, .board-likes span {
+    display: inline;
+}
+}
+.tab-content{
+	position: relative;
+    background: #fff;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.comment-num{
+	display: inline-block;
+    margin: -1px 0 0 3px;
+    font-size: 13px;
+    font-weight: normal;
+   /*  color: #ff545b; */
+}
+.sidebar {
+  float: left;
+  width: 350px;
+  border: 1px solid #000000;
+}
+</style>
 <script>
 	$(document).ready(function() {
 		$("#jb-checkboxAll-best").click(function() {
@@ -41,57 +367,37 @@
 		})
 		
 		
-		
-		
-	    $("input:radio[name='orderby']").click(function(){
+		 $("input:radio[name='orderby']").click(function(){
 
 	    	$("#form").submit()
-	    })
+	     })
+		
 	});
-	
-
-
-	
 </script>
 </head>
 <body>
 
 	<%@include file="mainheader.jsp" %> 
-	<div class="all-dim"></div>
+
 	<div class="containerNew">
-	<div class="board-page">
 	<!-- article start -->
 	<div class="row">
 	<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
-						<ul>
-							<li><a href="#"><span>자유게시판</span></a></li>
-							<li><a href="#"><span>포트폴리오</span></a></li>
-							<li class="last"><a href="#"><span>뉴스</span></a></li>
-						</ul>
-					</div>
-				</div>
+					  <div class="sidebar sticky">
+    This is side bar
+  </div>
+  </div>
   <div class="col-md-10">
 	<div class="free-board">
-	<div class="drop-nav">
-	<h1 class="tit-h1 line">자유게시판</h1>
-	</div>
-	<div class="m-drop-nav">
-	<h1 class="m-drop-tit-title line" style="cursor:pointer;">자유게시판 ▼</h1>
-	</div>
-	<div class="m-drop-down">
-	<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="#">자유게시판</a></h1>
-	<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
-	<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="#">뉴스</a></h1>
-	</div>
+	<h1 class="tit-h1 line" style="cursor:pointer;">자유게시판</h1>
 		<div class="board-type">
 			<div class="board-free-nav">
 					<form id="form" class="board-list-top policy-in" action='/board/free'>
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
-								value="recentOrdr" checked=""><label for="orderby1"  class="new-board">최신순</label>
+								value="recentOrdr"><label for="orderby1"  class="new-board">최신순</label>
 							<input type="radio" class="ordeby" id="orderby2" name="orderby"
-								value="popularOrdr"><label for="orderby2" class="hot-board" >인기순</label>
+								value="popularOrdr" checked=""><label for="orderby2" class="hot-board">인기순</label>
 						</p>
 					</form>
 		 			 
@@ -164,7 +470,7 @@
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
-					          href="/board/free?bnowPage=1"
+					          href="/board/free?orderby=popularOrdr&bnowPage=1"
 					          tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
@@ -173,7 +479,7 @@
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.nowPage}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -185,7 +491,7 @@
 					      <c:if test="${boardPage.nowPage != 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage-1}"
+					            href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.nowPage-1}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -205,7 +511,7 @@
 					          </c:when>
 					          <c:when test="${p != boardPage.nowPage}">
 					            <li class="page-item">
-					              <a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
+					              <a class="page-link" href="/board/free?orderby=popularOrdr&bnowPage=${p}">${p}</a>
 					            </li>
 					          </c:when>
 					        </c:choose>
@@ -214,36 +520,36 @@
 					      
 					      
 					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
-					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
-					        <li>
-					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage}"
-					            tabindex="+1" aria-disabled="true">
-					            <i class="fas fa-angle-right"></i>
-					          </a>
-					        </li>
-					      </c:if>
-					      
-					      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
-					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
-					        <li>
-					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage+1}"
-					            tabindex="+1" aria-disabled="true" data-ajax="false">
-					            <i class="fas fa-angle-right"></i>
-					          </a>
-					        </li>
-					      </c:if> 
-					
-					      <!-- >> 버튼 -->
-					      <li>
-					        <a class="page-link"
-					        href="/board/free?bnowPage=${boardPage.lastPage}"
-					        tabindex="-1" aria-disabled="true">
-					          <i class="fas fa-angle-double-right"></i>
-					        </a>
-					      </li>
+					     	 <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+						      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
+						        <li>
+						          <a class="page-link"
+						            href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.nowPage}"
+						            tabindex="+1" aria-disabled="true">
+						            <i class="fas fa-angle-right"></i>
+						          </a>
+						        </li>
+						      </c:if>
+						      
+						      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+						      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
+						        <li>
+						          <a class="page-link"
+						            href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.nowPage+1}"
+						            tabindex="+1" aria-disabled="true" data-ajax="false">
+						            <i class="fas fa-angle-right"></i>
+						          </a>
+						        </li>
+						      </c:if> 
+						
+						      <!-- >> 버튼 -->
+						      <li>
+						        <a class="page-link"
+						        href="/board/free?orderby=popularOrdr&bnowPage=${boardPage.lastPage}"
+						        tabindex="-1" aria-disabled="true">
+						          <i class="fas fa-angle-double-right"></i>
+						        </a>
+						      </li>
 					      
 					      </c:if>
 					    </ul>
@@ -281,9 +587,7 @@
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-</div>
+
   <script type="text/javascript">
   $( document ).ready(function() {
 	  console.log( "document ready!" );
@@ -303,22 +607,20 @@
 	      var windowTop = $(window).scrollTop(); // returns number
 
 	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
+	          $sticky.css({ position: 'absolute', top: diff });
 	      } else if (stickyTop < windowTop+stickOffset) {
 	          $sticky.css({ position: 'fixed', top: stickOffset });
 	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
+	          $sticky.css({position: 'absolute', top: 'initial'});
 	      }
 	    });
 
 	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
 	});
   </script>
 	</div>
-
+	</div>
+</div>
 	<!-- article end -->
 	<%@include file="mainfooter.jsp" %>	
 </body>

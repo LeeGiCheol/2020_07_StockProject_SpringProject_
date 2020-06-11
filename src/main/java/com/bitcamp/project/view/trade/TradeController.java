@@ -2,6 +2,7 @@ package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -118,16 +119,17 @@ public class TradeController {
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
 			@RequestParam(value = "cancleModify") String modify) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-//		String id = "test"; // test 용 아이디
+		String id = null;
 		ModelAndView mav = new ModelAndView();
-
-		if (id == null) {
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/signInPage");
 			mav.setViewName("notice");
 			return mav;
 		}
+//		String id = "test"; // test 용 아이디
 
 		StockVO vo = new StockVO();
 
@@ -385,6 +387,8 @@ public class TradeController {
 		StockParsing st = new StockParsing();
 
 		String stockCode = tradeService.stockSearch(stockName);
+//		System.out.println("stockName "+stockName);
+		
 		Info trade = st.parse(stockCode);
 //		System.out.println(trade.toString());
 
@@ -408,7 +412,7 @@ public class TradeController {
 		String[] up = new String[6];
 		String[] down = new String[6];
 		String currentPrice = null;
-
+		
 		for (int i = 0; i < up_.length; i++) {
 
 			up[i] = formatter.format(up_[i]);
@@ -423,8 +427,8 @@ public class TradeController {
 		JSONObject obj = new JSONObject();
 		JSONArray jArray = new JSONArray();
 
-		JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 		for (int i = 0; i < up.length; i++) {
+			JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 			sObject.put("up", up[i]);
 			sObject.put("down", down[i]);
 			jArray.add(sObject);

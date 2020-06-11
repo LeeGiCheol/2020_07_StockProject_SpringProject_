@@ -9,4 +9,6 @@ public interface UserInfoDAO {
 	public void memberDelete();
 	public void memberInfoUpdate(UserVO vo);
 	public List getNotice(String id);
+	public void deleteNotice(String id);
+	public void updatePassword(UserVO vo);
 }

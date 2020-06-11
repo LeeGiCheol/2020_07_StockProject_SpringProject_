@@ -8,8 +8,10 @@
 	
 	<insert id="writeComment">
 		INSERT INTO commentList (pno, id, nickname, ccontent, cdateTime)
-		VALUES(#{pno}, #{id}, #{nickname}, #{ccontent}, sysdate())	
+		VALUES(#{pno}, #{id}, #{nickname}, #{ccontent}, sysdate());
 	</insert>
+	
+
 	
 	<select id="commentCount" parameterType="comment" resultType="int">
 		select count(*)
@@ -35,6 +37,13 @@
 		DELETE FROM commentList
 		WHERE cno=#{cno}
 	</delete>
+	
+	<insert id="commentNoticeInsert">
+		INSERT INTO commentNotice (id, pno, ndatetime)
+		SELECT id, pno , now()
+		FROM board 
+		WHERE pno = #{pno}
+	</insert>
 	
 	<!-- <select id="commentList" resultType="comment">
 		SELECT * FROM commentList

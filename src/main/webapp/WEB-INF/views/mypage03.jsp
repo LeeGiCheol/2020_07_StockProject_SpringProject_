@@ -8,8 +8,9 @@
 <title>마이페이지</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<!-- CSS파일 -->
 <link href="resources/css/mypage03.css" rel="stylesheet">
+<link href="resources/css/mainheader.css" rel="stylesheet">
+<link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -68,60 +69,15 @@ function deleteComment(){
 }
 
 </script>
+<style>
+.pagination{margin-left: 65px; margin-top:40px;}
+</style>
 </head>
 <body>
-    <!-- header start -->
-    <header>
-        <!-- 상단  nav start -->
-        <ul class="nav justify-content-end top-nav">
-            <li class="breadcrumb-item"><a id="top-nav-font" href="#">로그인</a></li>
-            <li class="breadcrumb-item"><a id="top-nav-font" href="#">회원가입</a></li>
-        </ul>
-        <!-- 상단  nav end -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-            <a class="navbar-brand" href="#"><i class="fas fa-users"></i>Stock
-                gallery</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search"
-                            placeholder="통합검색" aria-label="Search">
-                        <button class="btn btn-outline-secondary my-2 my-sm-0"
-                            type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                        role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"> 커뮤니티 </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">자유게시판</a> <a
-                                class="dropdown-item" href="#">포트폴리오</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">뉴스</a>
-                        </div></li>
-                    <li class="nav-item"><a class="nav-link" href="#">거래</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">고객센터<span
-                            class="sr-only">(current)</span></a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <!-- header end -->
+<%@include file="mainheader.jsp" %>
     <!-- section start -->
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
-        <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
         <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed mypage01" onclick="location.href='/myPage01'">
           <div> 
             <h6 class="my-0">내정보</h6>
@@ -282,12 +238,12 @@ function deleteComment(){
             <input type="hidden" id="delCommentList" name="delCommentList">
           <div><button class="btn btn-primary btn-lg btn-block remove" type="button" onclick="deleteComment();">삭제</button></div>
             <nav aria-label="..." class="pagination">
-                        	<ul class="pagination">
-			<c:if test="${commentPage.startPage != 1 }">
-				<li>
-					<a class="page-link" href="/myPage03?cnowPage=${commentPage.startPage - 1 }"tabindex="-1" aria-disabled="true">◀</a>
-				</li>
-			</c:if>
+           	<ul class="pagination">
+				<c:if test="${commentPage.startPage != 1 }">	
+							<li>
+								<a class="page-link" href="/myPage03?cnowPage=${commentPage.startPage - 1 }"tabindex="-1" aria-disabled="true">◀</a>
+							</li>
+				</c:if>
 			<c:forEach begin="${commentPage.startPage }" end="${commentPage.endPage }" var="p">
 				<c:choose>
 					<c:when test="${p == commentPage.nowPage}">
@@ -314,15 +270,7 @@ function deleteComment(){
     </div>
     </article>
 <!-- article end -->
-<!-- footer start -->
-    <div class=footer_div>
-        <footer class="footer_info">
-              <p><a href="https://www.naver.com">회사소개</a>  |  <a href="https://www.google.co.kr">광고안내</a>  |  <a href="https://www.naver.com">이용약관</a>  |  <a href="https://www.google.co.kr"><strong>개인정보처리방침</strong></a></p>
-              <p>Copyright ⓒ 2020 - 20
-              20 stock gallery. All rights reserved.</p>
-        </footer>
-    </div>
-<!-- footer end --> 
+<%@include file="mainfooter.jsp" %>
 </body>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script> -->
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>

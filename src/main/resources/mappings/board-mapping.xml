@@ -4,76 +4,13 @@
 
 
 <mapper namespace="board">
-<!-- 
-	<resultMap id="boardResult" type="board">
-		<id property="pno" column="PNO"/>
-		<result property="nickname" column="NICKNAME"/>
-		<result property="title" column="TITLE"/>
-		<result property="bcontent" column="BCONTENT"/>
-		<result property="views" column="VIEWS"/>
-		<result property="views" column="VIEWS"/>
-		<result property="views" column="VIEWS"/>
-		<result property="views" column="VIEWS"/>
-		<result property="views" column="VIEWS"/>
-	</resultMap>
--->
-<!-- 
-	<insert id="insertBoard" parameterType="board">
-		insert into board(SEQ, TITLE, WRITER, CONTENT)
-		values((select nvl(max(SEQ), 0)+1 from board),
-		#{title},#{writer},#{content})
+
+	<insert id="writeFreeBoard">
+		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
+		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, 1, 0)	
 	</insert>
 	
-	<update id="updateBoard">
-		update board set TITLE=#{title},
-		CONTENT=#{content} where SEQ=#{seq}
-	</update>
 	
-	<delete id="deleteBoard">
-		delete board where SEQ=#{seq}
-	</delete>
-	
-	<select id="getBoard" resultType="board">
-		select * from board where SEQ=#{seq}
-	</select>
-	
-	CDATA영역에 작성된 데이터는 단순 문자 데이터이다
-	     그러므로 XML 파서는 처리하지 말아라.
-	<select id="getBoardLt" resultType="board">
-		<![CDATA[
-		select * from board where SEQ <= #{seq}
-		]]>
-	</select>
-		
-	<select id="getBoardList_T" resultType="board">
-		select * from board
-		where TITLE like '%'||#{searchKeyword}||'%'
-		order by SEQ desc
-	</select>
-
-	<select id="getBoardList_C" resultType="board">
-		select * from board
-		where CONTENT like '%'||#{searchKeyword}||'%'
-		order by SEQ desc
-	</select>
-
-	<select id="getBoardList" resultType="board">
-		select * from board
-		where 1=1
-		<if test="searchCondition == 'title'">
-			and TITLE like '%'||#{searchKeyword}||'%'
-		</if>
-		<if test="searchCondition == 'content'">
-			and CONTENT like '%'||#{searchKeyword}||'%'
-		</if> 
-		order by SEQ desc
-	</select>
-	-->
-	
-	<insert id="writeFreeBoard">
-		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno)
-		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, 1)	
-		</insert>
 	
 	<update id="updateBoard">
 		UPDATE board 
@@ -90,13 +27,9 @@
 	<select id="getBoard" parameterType = "board" resultType="board">
 		SELECT * 
 		FROM board
-		WHERE pno = #{pno} 
+		WHERE pno = #{pno}
 	</select>
 	
-	<select id="getBoardList" resultType="board">
-		SELECT * FROM board
-		ORDER BY pno DESC
-	</select>
 	
 	<!-- 기존것 -->
 	<select id="getMyBoard2" parameterType="user" resultType="board">
@@ -111,6 +44,7 @@
 		from board
 		where id=#{id}
 	</select>
+	
 	
 	<select id="myCommentCount" parameterType="user" resultType="int">
 		select count(*)
@@ -161,12 +95,88 @@
 	</select>
 		
 	<select id="boardList" parameterType="page" resultType="board">
-		select *
-		from board
-		where bno=1
-		order by pno desc
-		limit #{start}, #{cntPerPage}
+		SELECT *
+		FROM board
+		WHERE bno=1
+		<choose>
+			<!-- 제목검색 -->
+			<when test='util.searchStyle.equals("search_title")'>
+			AND title LIKE CONCAT('%', #{util.keyword}, '%')
+			ORDER BY pno DESC
+			</when>
+			<!--  -->
+			<when test='util.searchStyle.equals("search_content")'>
+			AND bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+			ORDER BY pno DESC
+			</when>
+			<when test='util.searchStyle.equals("search_title_content")'>
+			AND title LIKE CONCAT('%', #{util.keyword}, '%')
+			OR bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+			ORDER BY pno DESC
+			</when>
+			<when test='util.searchStyle.equals("search_nick")'>
+			AND nickname LIKE CONCAT('%', #{util.keyword}, '%')
+			ORDER BY pno DESC
+			</when>
+			<when test='util.orderby.equals("recentOrdr")'>
+			ORDER BY pno DESC
+			</when>
+			<when test='util.orderby.equals("popularOrdr")'>
+			ORDER BY likes desc, pno DESC
+			</when>
+		</choose>	
+		
+		LIMIT #{start}, #{cntPerPage}
 	</select>
 	
+	
+		
+	
+	<!-- 댓글 등록 시 게시물 옆에 개수 띄우기용 -->
+	<update id="commentCount">
+		UPDATE board SET
+		commentCount = commentCount + 1
+		WHERE pno = #{pno}	
+	</update>
+	
+	<!-- 조회수 -->
+	<update id="updateViews">
+		UPDATE board SET
+		views = views + 1
+		WHERE pno = #{pno}
+	</update>
+	
+	<!-- 아이디 별 like 체크 (한 게시물에 좋아요 한개만 가능하게하려고) -->
+	<select id="userLikesCount" resultType="int">	
+		SELECT count(*) FROM likelist
+		WHERE id = #{id}
+		AND pno = #{pno}
+	</select>
+	
+	
+	<!-- board 테이블에 like 증가 -->
+	<update id="likesPlusBoard">
+		update board
+		set likes = likes+1
+		where pno = #{pno}	
+	</update>
+	
+	<!-- likelist 테이블에 like 추가 -->
+	<insert id="likesPlusList">
+		insert into likelist (pno, id)
+		values (#{pno}, #{id})
+	</insert>
+	
+	<!-- board 테이블에 like 감소 -->
+	<update id="likesMinusBoard">
+		update board
+		set likes = likes-1
+		where pno = #{pno}
+	</update>
+	
+	<delete id="likesMinusList">
+		delete from likelist
+		where id = #{id}
+	</delete>
 	
 </mapper>

@@ -29,6 +29,10 @@
 			SELECT c.pno, title FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id}
 	</select>
 	
+	<delete id="deleteNotice">
+		delete from stocknotice where id = #{id};
+		delete from commentnotice where id = #{id};
+	</delete>
 
 	<insert id="signUp">
 		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
@@ -54,6 +58,9 @@
 			</when>
 			<when test='nickname != null and nickname !="" '>
 				WHERE nickname = #{nickname}
+			</when>
+			<when test='tel != null and tel !="" '>
+				WHERE tel = #{tel} 
 			</when>
 		</choose>
 		
@@ -91,15 +98,18 @@
 		set pw=#{pw}
 		where id=#{id}
 	</update>
-	
+	<!-- 마이페이지 비밀번호 수정 -->
+	<update id="mypageUpdatePassword" parameterType="user">
+		update user
+		set pw=#{pw}
+		where id=#{id}
+	</update>
 	<!-- 개인정보 수정하는 SQL UserInfoDAO.userInfoUpdate -->
 	<update id="updateUser" parameterType="user">
 		update user
-		set PW=#{pw}, ADDRESS=#{address}, TEL=#{tel}, showEsetSetting=#{showEsetSetting}
+		set ADDRESS=#{address}, showEsetSetting=#{showEsetSetting}
 		where ID=#{id}
 	</update>
-	
-	
 	<!-- <insert id="nickname">
 	</insert> -->
 	

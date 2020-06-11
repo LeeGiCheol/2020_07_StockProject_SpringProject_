@@ -75,9 +75,12 @@
 	color: gray;
 }
 
-.navbar-custom {
+.navbar-custom,.justify-content-end {
 	background-color: white !important;
-	border-bottom: 1px solid #dddddd;
+	margin: 0 auto;
+    max-width: 1260px;
+    border: none !important;
+        padding: 0.5rem 1rem;
 }
 
 .btn-outline-success {
@@ -95,13 +98,12 @@
 	padding: 0.5rem 1rem;
 }
 
-.justify-content-end {
+.top-nav,.main-nav {
 	border-bottom: 1px solid #dddddd;
 }
 
 .header .top-nav {
 	font-size: 0.8rem;
-	padding: 0.5rem 1rem;
 	background-color: white;
 }
 
@@ -155,7 +157,7 @@
 }
 
 @media ( max-width : 979px) {
-	.navbar-custom {
+	.main-nav {
 		border-bottom: 2px solid #444;
 	}
 }

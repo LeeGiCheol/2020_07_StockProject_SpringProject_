@@ -12,7 +12,6 @@ import com.bitcamp.project.service.CommentService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.UserVO;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -38,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Map<String, Object> commentList(CommentVO vo, int nowPage) {
-		PagingVO commentPage = new PagingVO(commentDAO.count(vo), nowPage, 3);
+		PagingVO commentPage = new PagingVO(commentDAO.count(vo), nowPage, 10);
 		commentPage.getUtil().put("pno", vo.getPno());
 		List<CommentVO> commentList = commentDAO.getCommentList(commentPage);
 		Map<String, Object> postMap = new HashMap<String, Object>();
@@ -52,6 +51,10 @@ public class CommentServiceImpl implements CommentService {
 		return commentDAO.count(vo);
 	}
 	
+	
+	public int commentNoticeInsert(BoardVO vo) {
+		return commentDAO.commentNoticeInsert(vo);
+	}
 
 
 	
