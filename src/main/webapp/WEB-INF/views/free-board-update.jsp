@@ -266,30 +266,6 @@ border-radius: 0 !important;
 				alert("취소하셨습니다.");
 			}
 		})
-		// pagination 추가  
-		/* $(function() {
-			window.pagObj = $('#pagination-all').twbsPagination({
-				totalPages : 35,
-				visiblePages : 5,
-				onPageClick : function(event, page) {
-					console.info(page + ' (from options)');
-				}
-			}).on('page', function(event, page) {
-				console.info(page + ' (from event listening)');
-			});
-			}); 
-		// pagination 추가  
-		$(function() {
-		window.pagObj = $('#pagination-best').twbsPagination({
-			totalPages : 35,
-			visiblePages : 5,
-			onPageClick : function(event, page) {
-				console.info(page + ' (from options)');
-			}
-		}).on('page', function(event, page) {
-			console.info(page + ' (from event listening)');
-		});
-		});  */
 	});
 </script>
 </head>
