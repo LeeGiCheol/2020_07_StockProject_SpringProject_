@@ -118,15 +118,26 @@ public class MyPageController {
 	}
 
 	@PostMapping(value = "/updateUser")
-	public String updateUser(@ModelAttribute("pw") String pw, @ModelAttribute("address") String address,
-			@ModelAttribute("tel") String tel, @ModelAttribute("showEsetSetting") String showEset,
-			HttpSession session) {
+	public String updateUser(@ModelAttribute("address") String address, @ModelAttribute("showEsetSetting") String showEset, HttpSession session) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		loginUser.setPw(pw);
 		loginUser.setAddress(address);
-		loginUser.setTel(tel);
 		loginUser.setShowEsetSetting(Integer.parseInt(showEset));
 		userInfoService.memberInfoUpdate(loginUser);
+		session.setAttribute("loginUser", loginUser);
+		return "redirect:/myPage01";
+	}
+	
+	@GetMapping(value = "/mypageUpdatePassword")
+	public String mypageUpdatePasswordView() {
+		return "mypage-update-password";
+	}
+	
+	@PostMapping(value = "/mypageUpdatePassword")
+	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		System.out.println("★★★★ 비밀번호 변경, password : " + password);
+		loginUser.setPw(password);
+		System.out.println("★★★★ 비밀번호 변경, id :" + loginUser.getId());
 		session.setAttribute("loginUser", loginUser);
 		return "redirect:/myPage01";
 	}

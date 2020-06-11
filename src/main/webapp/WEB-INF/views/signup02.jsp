@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
+function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
 </script>
 </head>
 <body>
@@ -24,42 +25,39 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 			<div class="allBody">
 				<label for="inputEmail">이메일</</label> 
 				<div class="form-group col-md-6" style="display: -webkit-box;">
-					<input type="email"	class="form-control" id="inputEmail" name="id">
-				<button type="button" class="btn btn-secondary" id="idCheck">　중복확인　</button>
-				<ul><li style="list-style:none;" id="idResult"></li></ul>
+					<input type="email"	class="form-control" id="inputEmail" name="id" onKeyPress="return spaceCheck(event)">
+					<button type="button" class="btn btn-secondary" id="idCheck">　중복확인　</button>
+					<ul><li style="list-style:none;" id="idResult"></li></ul>
 				</div>
 			<div class="password">
 				<label for="inputPassword">비밀번호</label>
 				<div class="form-group col-md-6" >
-					 <input type="password" class="form-control" id="inputPassword" placeholder="8자 ~ 13자 입력해주세요." name="pw" oninput="checkPw()">
+					 <input type="password" class="form-control" id="inputPassword" placeholder="8자 ~ 13자 입력해주세요." name="pw" oninput="checkPw()" onKeyPress="return spaceCheck(event)">
 				</div>
 				<label for="inputPasswordAgain">비밀번호확인</label>
-				<div class="form-group col-md-6">
-					 <input	type="password" class="form-control" id="inputPasswordAgain"
-						placeholder="한 번 더 입력해주세요. " oninput="checkPw()">
-					<ul><li style="list-style:none;" id="pwResult"></li></ul>
-						
+				<div class="form-group col-md-6" style="display: -webkit-box;">
+					 <input	type="password" class="form-control" id="inputPasswordAgain" placeholder="한 번 더 입력해주세요. " oninput="checkPw()" onKeyPress="return spaceCheck(event)">
+					 <ul><li style="list-style:none;" id="pwResult"></li></ul>
 				</div>
 				
             </div>
 				<label for="inputnickname col-md-6">닉네임</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputNickname" name="nickname">
-				<button type="button" class="btn btn-secondary" id="nickCheck">　중복확인　</button>	
-				<ul><li style="list-style:none;" id="nickNameResult"></li></ul>
-					
+					 <input type="text"	class="form-control" id="inputNickname" name="nickname" onKeyPress="return spaceCheck(event)">
+					 <button type="button" class="btn btn-secondary" id="nickCheck">　중복확인　</button>	
+					 <ul><li style="list-style:none;" id="nickNameResult"></li></ul>
 				</div>
 				<label for="inputAddress col-md-6">추천인</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="추천인 닉네임을 입력해주세요.">
-				<button type="button" class="btn btn-secondary" id="friendCheck">　추천하기　</button>	
-				<ul><li style="list-style:none;" id="friendResult"></li></ul>
+					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="" onKeyPress="return spaceCheck(event)">
+					 <button type="button" class="btn btn-secondary" id="friendCheck">　추천하기　</button>	
+					 <ul><li style="list-style:none;" id="friendResult"></li></ul>
 				</div>
 				
 				<label for="inputAddress col-md-6">주소</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputAddress" name="address" required="true" >
-				<button type="button" class="btn btn-secondary" onclick="goPopup();">우편번호찾기</button>		
+					 <input type="text"	class="form-control" id="inputAddress" name="address" required="true" readonly>
+					 <button type="button" class="btn btn-secondary" onclick="goPopup();">우편번호찾기</button>		
 				</div>
 				
 				<label for="inputPhone col-md-6" >휴대폰</label>
@@ -71,11 +69,9 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 				
 				<label for="inputPhone col-md-6">인증번호확인</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text" class="form-control" id="inputCtel" name="cTel" 
-						 placeholder="인증번호를 입력해주세요." onKeyPress="return numkeyCheck(event)">
-                	 <button type="submit" class="btn btn-secondary" id="cTelCheck">인증번호확인</button>
-                	 <ul><li style="list-style:none;" id="cTelResult"></li></ul>	 
-              
+					 <input type="text" class="form-control" id="inputCtel" name="cTel" placeholder="인증번호를 입력해주세요." onKeyPress="return numkeyCheck(event)"> 
+                	 <button type="button" class="btn btn-secondary" id="cTelCheck">인증번호확인</button>
+              		 <ul><li style="list-style:none;" id="cTelResult"></li></ul>	 
 				</div>
            </div>
                 
@@ -139,11 +135,6 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 
 	$(document).ready(function(e){ 
 		var checkflag = 0;
-		/* $(".cancle").on("click", function(){
-			
-			location.href = "/login";
-					    
-		}) */
 	
 		$("#submit").on("click", function(){
 			if($("#inputEmail").val()==""){
@@ -161,6 +152,17 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 				$("#inputNickname").focus();
 				return false;
 			}
+			if($("#inputPhone").val()==""){
+				alert("휴대폰번호를 입력해주세요.");
+				$("#inputPhone").focus();
+				return false;
+			}
+			if($("#cTel").val()==""){
+				alert("휴대폰번호 인증번호를 입력해주세요.");
+				$("#cTel").focus();
+				return false;
+			}
+
 			
 			var checked =  $('#passwordCheck').val();
 			
@@ -177,11 +179,6 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 			}
 		});
 		
-		
-		
-		
-		
-		
 		$('#idCheck').on('click', function(){ 
 			$.ajax({ 
 				type: 'GET', 
@@ -195,42 +192,31 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 						idx= true;
 						$('#inputEmail').attr("readonly", true);
 						
- 						var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
+ 						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
 						$('#idResult').empty();
 						$('#idResult').append(html);
-						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
-						//$("#submit").removeAttr("disabled");
-						
 						checkflag +=1;
-						
+						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else if(atSign == -1 || com == -1){
-						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요</td></tr>";
+						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요.</td></tr>";
 						
 						$('#idResult').empty();
 						$('#idResult').append(html);
-						// 중복체크 실패 시 회원가입 버튼 비활성화
-						//$("#submit").attr("disabled", "disabled");
-						// 지우기
 						document.getElementById("inputEmail").value="";
-						
-					
+						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 					else{
-						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
+						var html="<tr><td colspan='3' style='color: red'>중복된 이메일입니다.</td></tr>";
 						
 						$('#idResult').empty();
 						$('#idResult').append(html);
-						// 중복체크 실패 시 회원가입 버튼 비활성화
-						//$("#submit").attr("disabled", "disabled");
-						// 지우기
 						document.getElementById("inputEmail").value="";
-
+						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 				},
 				error: function(){
 					alert("에러");
 				}
-				
 			});  
 		});  
 		
@@ -249,21 +235,21 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
  						var html="<tr><td colspan='3' style='color: green'>문자메세지를 확인해주세요.</td></tr>"; 
 						$('#telResult').empty();
 						$('#telResult').append(html);
-						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
+						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 						checkflag +=1;
 					}else if(data == 2 || $.trim($('#inputPhone').val()) == ""){
-						var html="<tr><td colspan='3' style='color: red'>11자리를 [ ex)01012345678 ] 입력해주세요.</td></tr>";
+						var html="<tr><td colspan='3' style='color: red'>11자리를 입력해주세요.[ ex)01012345678 ]</td></tr>";
 						$('#telResult').empty();
 						$('#telResult').append(html);
 						document.getElementById("inputPhone").value="";
-						// 중복체크 실패 시 회원가입 버튼 비활성화
+						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 					else{
 						var html="<tr><td colspan='3' style='color: red'>이미 등록된 번호입니다.</td></tr>";
 						$('#telResult').empty();
 						$('#telResult').append(html);
 						document.getElementById("inputPhone").value="";
-						// 중복체크 실패 시 회원가입 버튼 비활성화
+						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 				},
 				error: function(){
@@ -287,14 +273,14 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
  						var html="<tr><td colspan='3' style='color: green'>인증성공</td></tr>"; 
 						$('#cTelResult').empty();
 						$('#cTelResult').append(html);
-						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
-						checkflag +=1;
+						/* checkflag +=1; */
+						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
 						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요.)</td></tr>";
 						$('#cTelResult').empty();
 						$('#cTelResult').append(html);
 						document.getElementById("inputCtel").value="";
-						// 중복체크 실패 시 회원가입 버튼 비활성화
+						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 				},
 				error: function(){
@@ -312,25 +298,29 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 				url: '${pageContext.request.contextPath}/nickCheck', 
 				data: { "nickname" : $('#inputNickname').val() }, 
 				success: function(data){ 
-					if(data == 0 && $.trim($('#inputNickname').val()) != ''){
-						idx= true;
-						$('#inputNickname').attr("readonly", true);
-						
- 						var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
-						$('#nickNameResult').empty();
-						$('#nickNameResult').append(html);
-						// 중복체크를 성공한 경우에만 회원가입 버튼 활성화
-						//$("#submit").removeAttr("disabled");
-						
-						checkflag +=1;
-					}else{
-						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
+					if($.trim($('#inputNickname').val()) == ""){
+						var html="<tr><td colspan='3' style='color: red'>공백은 불가능합니다.</td></tr>";
 						
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
 						document.getElementById("inputNickname").value="";
 						// 중복체크 실패 시 회원가입 버튼 비활성화
-						//$("#submit").attr("disabled", "disabled");
+						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+					}else if(data == 0 && $.trim($('#inputNickname').val()) != ""){
+						idx= true;
+						$('#inputNickname').attr("readonly", true);
+ 						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
+						$('#nickNameResult').empty();
+						$('#nickNameResult').append(html);
+						checkflag +=1;
+						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+					}else{
+						var html="<tr><td colspan='3' style='color: red'>중복된 닉네임입니다.</td></tr>";
+						$('#nickNameResult').empty();
+						$('#nickNameResult').append(html);
+						document.getElementById("inputNickname").value="";
+						// 중복체크 실패 시 회원가입 버튼 비활성화
+						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 				},
 				error: function(){
@@ -347,33 +337,32 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 				type: 'GET', 
 				url: '${pageContext.request.contextPath}/friendCheck', 
 				data: { "nickname" : $('#inputFriend').val() }, 
-				success: function(data){ 
-					if(data == 0 && $.trim($('#inputFriend').val()) != ''){
-						var html="<tr><td colspan='3' style='color: red'>사용불가능</td></tr>";
-						
+				success: function(data){
+					if($.trim($('#inputFriend').val()) == ""){
+						var html="<tr><td colspan='3' style='color: blue'>공백은 불가능합니다.</td></tr>";
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
 						document.getElementById("inputFriend").value="";
-					}else{
-						
-						idx= true;
-						$('#inputFriend').attr("readonly", true);
-						
- 						var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>"; 
-						
+					}else if(data == 0 && $.trim($('#inputFriend').val()) != ''){
+						var html="<tr><td colspan='3' style='color: blue'>존재하지않은 닉네임입니다.</td></tr>";
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
-						
+						document.getElementById("inputFriend").value="";
+						/* $("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%"); */
+					}else{
+						idx= true;
+						$('#inputFriend').attr("readonly", true);
+						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
+						$('#friendResult').empty();
+						$('#friendResult').append(html);
+						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}
 				},
 				error: function(){
 					alert("서버에러");
 				}
-				
 			});  
 		});  
-		
-	
 	});
 	
 		
@@ -381,51 +370,32 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
 		var password = $('#inputPassword').val();
 		var passwordLength = $('#inputPassword');
 		var passwordAgain = $('#inputPasswordAgain').val();
-	    	   
-	/* 	if(passwordAgain=="" && (password != passwordAgain)){
-			$("#inputPasswordAgain").css("background-color", "#FFCECE");
-	
-			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
-			
-			$('#pwResult').empty();
-			$('#pwResult').append(html);
-		}
-	      */
-		
 	    // 비밀번호, 비밀번호 확인이 다른 경우
 		if (password != passwordAgain) {
 			$("#inputPasswordAgain").css("background-color", "#FFCECE");
 			
 			$('#pwResult').empty();
-			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요</td></tr>"; 
-			
+			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요.</td></tr>"; 
 			$('#pwResult').append(html);
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 		}
-	      
-	      
 		// 비밀번호 길이 제한
 		else if($('#inputPassword').val().length < 8 || $('#inputPassword').val().length > 13){
 		
-			var html="<tr><td colspan='3' style='color: red'>비밀번호는 8자리 이상 13자리 이하만 가능합니다.</td></tr>"; 
+			var html="<tr><td colspan='3' style='color: red'>비밀번호는 8자리 이상 \n13자리 이하만 가능합니다.</td></tr>"; 
 			$('#pwResult').empty();
-			
 			$('#pwResult').append(html);
-			
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 		} 
-		       
 	    // 맞는 경우
 		else if(password == passwordAgain){
 			$("#inputPasswordAgain").css("background-color", "#B0F6AC");
-			
-			var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>사용가능</td></tr>"; 
-			
+			var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>사용 가능합니다.</td></tr>"; 
 			$('#pwResult').empty();
-			
 			$('#pwResult').append(html);
+			$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 		}
 	}
-  
 </script>
-
 </body>
 </html>

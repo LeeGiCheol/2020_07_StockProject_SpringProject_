@@ -98,11 +98,16 @@
 		set pw=#{pw}
 		where id=#{id}
 	</update>
-	
+	<!-- 마이페이지 비밀번호 수정 -->
+	<update id="mypageUpdatePassword" parameterType="user">
+		update user
+		set pw=#{pw}
+		where id=#{id}
+	</update>
 	<!-- 개인정보 수정하는 SQL UserInfoDAO.userInfoUpdate -->
 	<update id="updateUser" parameterType="user">
 		update user
-		set PW=#{pw}, ADDRESS=#{address}, TEL=#{tel}, showEsetSetting=#{showEsetSetting}
+		set ADDRESS=#{address}, showEsetSetting=#{showEsetSetting}
 		where ID=#{id}
 	</update>
 	<!-- <insert id="nickname">
