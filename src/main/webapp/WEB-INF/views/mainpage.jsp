@@ -21,6 +21,20 @@
     padding: 20px 0 0 0;
     margin: 0 auto;
 }
+.btnOverInfo {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 28px;
+    padding-left: 23px;
+    color: #333;
+        padding: 10px;
+}
+#nowStock {
+    margin-left: 10px;
+    padding: 0;
+        font-size: 25px;
+    color: #1a64d2 !important;
+}
 @media only screen and (max-width: 979px){
 .containerNew {
     padding: 0;
@@ -37,11 +51,16 @@
 		
 		<div class="row">
 			<div class="col-md-9">
-
-			KOSPI: ${current/100 } 
 			<!-- 현재 코스피 주가지수 -->
-				<div class="chartdata">
-				</div>
+					<div class="chartdata">
+						<div class="chartdata-body">
+						<div class="chartdate-nav">
+							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 }</span></h3>
+							
+						</div>
+						<div id="chartcontainer"></div>
+						</div>
+					</div>
 
 				<div class="stock-ranking">
 					<nav>
@@ -547,10 +566,10 @@
    				 
    		    };
 
-   		    var chart = new ApexCharts(document.querySelector(".chartdata"), options);
+   		    var chart = new ApexCharts(document.querySelector("#chartcontainer"), options);
    		    chart.render();
 			
-		});
+		})
 
 </script>
 </body>

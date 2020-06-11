@@ -65,11 +65,11 @@ dt {
 }
 
 .containerNew>.row .col-md-9 .chartdata {
-	padding: 10px;
+	padding: 30px;
 }
-.chartdata{
+/* .chartdata{
 	height: 300px !important;
-}
+} */
 
 .col-md-9, .col-md-3 {
 	padding-right: 5px;
@@ -308,7 +308,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 
 .login-box .social-login {
 	margin-top: 7px;
-	margin-left: 9px;
+	/* margin-left: 9px */;
 	padding: 0;
 	border: none;
 }
@@ -443,9 +443,9 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	overflow: auto;
 }
 
-#chartContainer {
+/* #chartContainer {
 	height: 300px;
-}
+} */
 
 .color-red {
 	color: #ff545b !important;
@@ -469,7 +469,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	width: 50%;
 	line-height: 28px;
 	margin-right: -2px;
-	padding: 5px;
+	padding: 10px;
 	color: #495057 !important;
 }
 
@@ -593,6 +593,9 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	overflow: hidden;
 	line-height: 23px;
 	padding: 3px;
+}
+.faq, .ranking{
+	padding: 10px;
 }
 .news-nav {
 	border-bottom: 1px solid gray;
