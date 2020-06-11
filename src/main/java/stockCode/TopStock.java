@@ -1,14 +1,12 @@
 package stockCode;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
+import com.bitcamp.project.dao.TradeDAO;
+import com.bitcamp.project.dao.impl.TradeDAOImpl;
 import com.bitcamp.project.vo.Info;
 
 public class TopStock {
@@ -80,14 +78,20 @@ public class TopStock {
 //			System.out.println(Arrays.toString(topUpDown));
 			
 			
-			
+			String abba[]= new String[10];
 			
 			String searchLists = doc.select("#container > div.aside > div.group_aside > div.aside_area.aside_popular > table > tbody").text();
 			
-			
+//			searchLists = searchLists.replace("..", "");
 			String[] searchList_ = searchLists.split(" ");
-			
-			
+//			System.out.println(searchList_);
+//			String test2 =  "^[0-9]*$";
+//			for (int i = 0; i < searchList_.length; i++) {
+//				if((isStringDouble(searchList_[i+1])))
+//					abba[i] = searchList_[i].concat(searchList_[i+1]);
+//			}
+//			System.out.println(searchList_);
+//			
 //			System.out.println("test"+Arrays.toString(searchList_));
 
 			for (int i = 0; i < searchList_.length; i++) {
@@ -148,9 +152,21 @@ public class TopStock {
 			}
 			
 			
-//			System.out.println(Arrays.toString(searchName));
+//			
+//			TradeDAO tradeDAO = new TradeDAOImpl();
+//			for (int i = 0; i < topName.length; i++) {
+//				if(topName[i].contains("..")) {
+//					topName[i].replace("..", "");
+//					tradeDAO.stockSearch(topName[i]);
+//				}
+//				if(searchName[i].contains("..")) {
+//					searchName[i].replace("..", "");
+//					tradeDAO.stockSearch(searchName[i]);
+//				}
+//			}
 			
-			
+			System.out.println(Arrays.toString(topName));
+			System.out.println(Arrays.toString(searchName));
 			Info inf = new Info();
 			inf.setTopName(topName);
 			inf.setTopCurrentPrice(topCurrentPrice);
@@ -168,5 +184,15 @@ public class TopStock {
 		}
 		
 		return null;
+		
+		
 	}
+//	static boolean isStringDouble(String s) {
+//		try {
+//			Double.parseDouble(s);
+//			return true;
+//		} catch (NumberFormatException e) {
+//			return false;
+//		}
+//	}
 }

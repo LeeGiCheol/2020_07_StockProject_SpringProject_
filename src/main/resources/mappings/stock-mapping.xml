@@ -134,6 +134,12 @@
 		where id=#{id}
 	</select>
 
+ 	<!-- 종목랭킹 파싱에 필요할 수 있어서 만듬
+	<select id="stockNameSearch" resultType="String">
+		SELECT stockName FROM stocklist
+		WHERE stockname LIKE CONCAT(#{stockName}, '%');
+	</select>
+ -->
 </mapper>
 
   
