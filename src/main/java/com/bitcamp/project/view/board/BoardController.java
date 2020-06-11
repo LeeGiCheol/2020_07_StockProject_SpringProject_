@@ -39,7 +39,7 @@ public class BoardController {
 	@GetMapping(value= {"/board/free", "/board/free/popularity"})
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
-							@ModelAttribute("orderby") String orderby /*recentOrdr = 최신순 popularOrdr = 인기순*/ ) {
+							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
 		
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
@@ -48,10 +48,9 @@ public class BoardController {
 			keyword = "";
 		}
 		if(orderby.equals("")) {
-			orderby = "recentOrdr";
+			orderby = "new";
 		}
 		
-		System.out.println("orderby " + orderby);
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby);
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
@@ -59,11 +58,11 @@ public class BoardController {
 		model.addAttribute("keyword", keyword);
 		
 		
-		if(orderby.equals("recentOrdr")) {
+		if(orderby.equals("new")) {
 			return "free-board";
 		}
 		else {
-			return "free-board-popularity";
+			return "free-board-best";
 		}
 	}
 	

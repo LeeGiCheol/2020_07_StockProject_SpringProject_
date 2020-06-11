@@ -360,7 +360,7 @@ display: none;
 }
 .comment-num{
 	display: inline-block;
-    margin: -1px 0 0 3px;
+    margin: -1px 0 0 10px;
     font-size: 13px;
     font-weight: normal;
    /*  color: #ff545b; */

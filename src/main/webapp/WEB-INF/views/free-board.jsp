@@ -65,9 +65,9 @@
 	<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-							<li><a href="#"><span>자유게시판</span></a></li>
+							<li><a href="/board/free"><span>자유게시판</span></a></li>
 							<li><a href="#"><span>포트폴리오</span></a></li>
-							<li class="last"><a href="#"><span>뉴스</span></a></li>
+							<li class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -80,18 +80,18 @@
 	<h1 class="m-drop-tit-title line" style="cursor:pointer;">자유게시판 ▼</h1>
 	</div>
 	<div class="m-drop-down">
-	<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="#">자유게시판</a></h1>
+	<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
 	<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
-	<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="#">뉴스</a></h1>
+	<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 	</div>
 		<div class="board-type">
 			<div class="board-free-nav">
 					<form id="form" class="board-list-top policy-in" action='/board/free'>
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
-								value="recentOrdr" checked=""><label for="orderby1"  class="new-board">최신순</label>
+								value="new" checked=""><label for="orderby1"  class="new-board">최신순</label>
 							<input type="radio" class="ordeby" id="orderby2" name="orderby"
-								value="popularOrdr"><label for="orderby2" class="hot-board" >인기순</label>
+								value="best"><label for="orderby2" class="hot-board" >인기순</label>
 						</p>
 					</form>
 		 			 
