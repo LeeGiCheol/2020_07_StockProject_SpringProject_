@@ -96,10 +96,16 @@ public class TradingCheck {
 					sv.setBuysell(1);
 					System.out.println("case: buy");
 					mybatis.insert("stock.buying", sv);
-					if (mybatis.selectOne("stock.getStockQuantity", sv) == null)
+					if ((Map) mybatis.selectOne("stock.getStockQuantity", sv) == null)
 						mybatis.insert("stock.insertHoldingstock", sv);
-					else
+					else {
+						int oldAVG = (int) ((Map) mybatis.selectOne("stock.getStockQuantity", sv)).get("avgprice");
+						int oldQu = (int) ((Map) mybatis.selectOne("stock.getStockQuantity", sv)).get("quantity");
+						System.out.println(oldAVG + "  /  " + oldQu);
+						sv.setAvgprice((oldAVG*oldQu+sv.getQuantity()*sv.getrPrice())/(oldQu+sv.getQuantity()));
 						mybatis.update("stock.updateHoldingstock", sv);
+						mybatis.update("stock.updateAVG", sv);
+					}
 				} else if (sv.getCategory().equals("sell")) { // 판매 거래시
 					System.out.println("case: sell");
 					sv.setBuysell(1);

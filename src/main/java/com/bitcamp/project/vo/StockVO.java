@@ -8,6 +8,7 @@ public class StockVO {
 	private int rPrice;
 	private int quantity;
 	private int tprice;
+	private int avgprice;
 	private int newPrice;
 	private int newQuantity;
 	private String stockCode;
@@ -22,6 +23,14 @@ public class StockVO {
 	
 	
 	
+	public int getAvgprice() {
+		return avgprice;
+	}
+
+	public void setAvgprice(int avgprice) {
+		this.avgprice = avgprice;
+	}
+
 	public int getTno() {
 		return tno;
 	}

@@ -49,9 +49,6 @@
 	    })
 	});
 	
-
-
-	
 </script>
 </head>
 <body>
