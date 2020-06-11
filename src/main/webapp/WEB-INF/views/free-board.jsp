@@ -88,18 +88,22 @@ position: relative;
     position: relative;
     border: 1px solid #dddddd;
 }
-.tit-h1.line {
+.tit-h1 {
     margin: 0 -30px 30px;
     border-bottom: 1px solid #eaeaea;
     padding: 0 30px 20px;
-}
-.tit-h1 {
     font-size: 20px;
     margin-bottom: 30px;
     font-weight: bold;
     line-height: 100%;
 }
-
+/* .tit-h1 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    line-height: 100%;
+}
+ */
 /* [class*="-btn"].red {
     background: #ff545b;
     border: 1px solid #ff545b;
@@ -281,6 +285,7 @@ input[type='radio']:checked:before {
 .tit-h1{
 	font-size: 20px;
 	margin: 0 !important;
+	padding: 0 10px 20px;
 }
 .board-free-table thead, .board-no{
 display: none;
@@ -310,7 +315,8 @@ display: none;
 	padding: 0;
 }
 .board-title a{
-	max-width: 100%;
+	/* max-width: 100%; */
+	width: 400px;
 	line-height: 22px;
 }
 .board-views span, .board-likes span {
@@ -328,7 +334,12 @@ display: none;
     margin: -1px 0 0 3px;
     font-size: 13px;
     font-weight: normal;
-    color: #ff545b;
+   /*  color: #ff545b; */
+}
+.sidebar {
+  float: left;
+  width: 350px;
+  border: 1px solid #000000;
 }
 </style>
 <script>
@@ -360,10 +371,16 @@ display: none;
 <body>
 
 	<%@include file="mainheader.jsp" %> 
-	
-	
+
 	<div class="containerNew">
 	<!-- article start -->
+	<div class="row">
+	<div class="col-md-2">
+					  <div class="sidebar sticky">
+    This is side bar
+  </div>
+  </div>
+  <div class="col-md-10">
 	<div class="free-board">
 	<h1 class="tit-h1 line" style="cursor:pointer;">자유게시판</h1>
 		<div class="board-type">
@@ -412,7 +429,7 @@ display: none;
 										
 										<c:choose>
 											<c:when test="${board.commentCount ne 0}">
-												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a><b class="comment-num">&nbsp;${board.commentCount}</b></td>
+												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
 										<!-- 글 제목 -->
 											</c:when>
 											<c:otherwise>
@@ -531,10 +548,10 @@ display: none;
 					  </nav>
 					 </div>
 
+
 					 <c:if test="${loginUser != null}">
 						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
 					 </c:if>
-
 				</div>
 				
 				<div class="search-area">
@@ -562,8 +579,40 @@ display: none;
 			</div>
 		</div>
 	</div>
-</div>
 
+  <script type="text/javascript">
+  $( document ).ready(function() {
+	  console.log( "document ready!" );
+
+	  var $sticky = $('.sticky');
+	  var $stickyrStopper = $('.footer_info');
+	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+	    var generalSidebarHeight = $sticky.innerHeight();
+	    var stickyTop = $sticky.offset().top;
+	    var stickOffset = 0;
+	    var stickyStopperPosition = $stickyrStopper.offset().top;
+	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+	    var diff = stopPoint + stickOffset;
+
+	    $(window).scroll(function(){ // scroll event
+	      var windowTop = $(window).scrollTop(); // returns number
+
+	      if (stopPoint < windowTop) {
+	          $sticky.css({ position: 'absolute', top: diff });
+	      } else if (stickyTop < windowTop+stickOffset) {
+	          $sticky.css({ position: 'fixed', top: stickOffset });
+	      } else {
+	          $sticky.css({position: 'absolute', top: 'initial'});
+	      }
+	    });
+
+	  }
+	});
+  </script>
+	</div>
+	</div>
+</div>
 	<!-- article end -->
 	<%@include file="mainfooter.jsp" %>	
 </body>

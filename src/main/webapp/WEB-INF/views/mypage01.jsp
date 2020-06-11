@@ -24,6 +24,11 @@
                 <h6 class="my-0">내정보</h6>
               </div>
             </li>
+            <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='/mypageUpdatePassword'" >
+              <div>
+                <h6 class="my-0">비밀번호변경</h6>
+              </div>
+            </li>
             <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='/myPage02'">
               <div>
                 <h6 class="my-0">계좌정보</h6>
@@ -54,13 +59,14 @@
                 </div>
               </div>
             </div>
+            <br>
             <div class="mb-3">
               <label for="userNickname">닉네임</label>
               <div>
                 <input type="text" class="form-control" id="usern=Nickname" name="nickname" value="${loginUser.nickname}"></input>
               </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="password">비밀번호</label>
                   <input type="password" class="form-control" name="pw" id="userPassword">
@@ -76,15 +82,16 @@
 					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 					<div class="alert alert-danger" id="alert-length">최소 8자 , 최대 13자로 입력해주세요.</div>
 					<div class="alert alert-info" id="alert-empty" style="color:white; background-color: #007BFF">현재 비밀번호를 입력해주세요.  비밀번호를 변경하실려면 새 비밀번호를 입력하세요.</div>
-		    </div>
-    
+		    </div> -->
+    		<br>
             <div class="mb-3">
               <label for="address">주소</label>
 	             <div style="display: -webkit-box;">
-		             <input style="width: 575px;" type="text" class="form-control" id="userAddress" name="address" value="${loginUser.address}">
+		             <input style="width: 575px;" type="text" class="form-control" id="userAddress" name="address" value="${loginUser.address}" readonly>
 		             <button style="margin-left: 30px;" type="button" class="btn btn-secondary" onclick="goPopup();">우편번호찾기</button>
              </div>
             </div>
+            <br>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="cc-name">연락처</label>
@@ -96,9 +103,10 @@
                 <div class="form-control" id="userPoint">${loginUser.point} 점</div>
               </div>
             </div>
-            <hr class="mb-4">
-            <small class="text-muted">다른 사용자에게 보유 자산 및 수익률과 거래내역을 노출 하시겠습니까?</small>
             <br>
+            <hr class="mb-4">
+            <br>
+            <small class="text-muted">다른 사용자에게 보유 자산 및 수익률과 거래내역을 노출 하시겠습니까?</small>
             <br>
             <div class="ask-form">
                 <div class="custom-control custom-radio">
@@ -114,6 +122,7 @@
             <div class="buttons">
             <button class="btn btn-primary btn-lg btn-block save" id="formsave" type="submit">저장</button>
             <button class="btn btn-primary btn-lg btn-block remove" type="submit">회원탈퇴</button>
+			<br><br><br><br>
           </div>
          </form>
        </div>
@@ -149,7 +158,8 @@ function goPopup(){
 //}
 /** API 서비스 제공항목 확대 (2017.02) **/
 
-$(document).ready(function(){
+//비밀번호 변경 사이트 위치가 옮겨저 주석처리
+/* $(document).ready(function(){
 	$("#alert-empty").show();
 	$("#formsave").attr("disabled", "disabled");$("#formsave").attr("style", "opacity:20%");
 	$(function(){ 
@@ -182,7 +192,7 @@ $(document).ready(function(){
 				}
 			}); 
 		});
-	});
+	}); */
 
 function jusoCallBack(roadFullAddr){
 	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.

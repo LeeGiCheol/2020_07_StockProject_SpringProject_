@@ -11,6 +11,7 @@
 </head>
 <body>
 	<div class="header">
+	<div class="top-nav">
 		<!-- 상단  nav -->
 		<c:choose>
 			<c:when test="${loginUser eq null}">
@@ -57,8 +58,10 @@
 			}, 1000); // SET INTERVAL5
 		});
 		</script>
+		</div>
 		<!-- 상단  nav end -->
 		<!-- 메인  nav -->
+		<div class="main-nav">
 		<nav
 			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
 			<a href="#" class="navbar-logo"><img class="" id="logo"
@@ -99,6 +102,7 @@
 				</ul>
 			</div>
 		</nav>
+	</div>
 		<!-- 메인 nav end -->
 	</div>
 </body>
