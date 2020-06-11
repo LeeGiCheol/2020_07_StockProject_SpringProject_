@@ -24,6 +24,25 @@
 
 <script>
 	$(document).ready(function() {
+		
+		setTimeout(function() {
+			var w = $(".image").children().width();
+			var h = $(".image").children().height();
+			
+			if(w > 1024){
+				var ri = 1024/w;
+				w = w * ri;
+				h = h * ri;
+			}
+			var a_h = $(".article").children().height();
+			var a_w = $(".article").children().width();
+			
+			console.log(w+" / "+h+" && "+ a_w+" / "+ a_h);
+			$(".image").children().width(w);
+			 $(".image").children().height(h);
+			
+		}, 50);
+		
 		$("#btnDelete").click(function() {
 			if (confirm("정말로 삭제하시겠습니까?")) {
 				location.href = '/board/free/delete?pno=${boardDetail.pno}';

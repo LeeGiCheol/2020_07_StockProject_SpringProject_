@@ -376,7 +376,7 @@ display: none;
 								value="popularOrdr"><label for="orderby2" class="hot-board">인기순</label>
 						</p>
 					</form>
-					<p class="right"><a href="location.href='/board/free/write'" class="board-write-btn">글쓰기</a></p>
+					<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
 			</div>
 			<div class="tab-content" id="pills-tabContent">
 					<!-- 전체글 -->
@@ -522,7 +522,7 @@ display: none;
 					    </ul>
 					  </nav>
 					 </div>
-					 <p class="right"><a href="location.href='/board/free/write'" class="board-write-btn red"">글쓰기</a></p>
+					 <p class="right"><a href='/board/free/write' class="board-write-btn red"">글쓰기</a></p>
 				</div>
 				
 				<div class="search-area">
