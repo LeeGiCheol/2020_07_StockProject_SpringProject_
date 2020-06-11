@@ -63,6 +63,10 @@ dt {
 .row {
     margin: 0;
 }
+.col-md-10, .col-md-2 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
 .container>.row .col-md-9 .chartdata {
 	border: 1px solid gray;
 	padding: 10px;
@@ -127,7 +131,10 @@ ul i {
 .m-drop-nav, .m-drop-down {
     display: none;
 }
-
+.m-drop-tit-body:hover > a {
+  color: #000000;
+  font-weight: 600;
+}
 .contents {
 	position: relative;
 	z-index: 1;
@@ -205,7 +212,6 @@ ul i {
 
 .week {
 	min-height: 30px;
-	margin: 0 -30px;
 	padding: 0 30px 20px;
 	border-bottom: #444444 1px solid;
 	position: relative;
@@ -308,11 +314,11 @@ ul i {
 	display: inline-block;
 	overflow: hidden;
 	text-indent: -9999em;
-	background: url(resources/img/btn_board.png) no-repeat -82px 0px;
+	background: url(/resources/img/btn_board.png) no-repeat -82px 0px;
 	vertical-align: middle;
 }
 .datepicker-dropdown{
-    top: 335px !important;
+    top: 320px;
 }
 .week .date {
     text-align: center;
@@ -367,13 +373,6 @@ border: none;
     box-sizing: border-box;
     text-align: center;
 }	
-.paging, .board-search {
-    padding-bottom: 30px;
-}
-.board-search {
-    text-align: center;
-    box-sizing: border-box;
-}
 [class*="select-style"] button.btn {
     color: #888;
     display: inline-block;
@@ -430,14 +429,65 @@ border: none;
 }
 .first{
 	padding-top: 20px;
+	border-top: 1px solid #eaeaea;
 }
 .m-drop-nav{
 	display: block;
 }
 }
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#cssmenu ul {
+  position: relative;
+  z-index: 597;
+  float: left;
+}
+#cssmenu ul li {
+  float: left;
+  min-height: 1px;
+  line-height: 1em;
+  vertical-align: middle;
+}
+#cssmenu ul li.hover,
+#cssmenu ul li:hover {
+  position: relative;
+  z-index: 599;
+  cursor: default;
+}
+#cssmenu ul ul {
+  margin-top: 1px;
+  visibility: hidden;
+  position: absolute;
+  top: 1px;
+  left: 99%;
+  z-index: 598;
+  width: 100%;
+}
+#cssmenu ul ul li {
+  float: none;
+}
+#cssmenu ul ul ul {
+  top: 1px;
+  left: 99%;
+}
+#cssmenu ul li:hover > ul {
+  visibility: visible;
+}
+#cssmenu ul li {
+  float: none;
+}
+#cssmenu ul ul li {
+  font-weight: normal;
+}
 /* Custom CSS Styles */
 #cssmenu {
-  font-family: 'Lato', sans-serif;
   font-size: 18px;
   width: 200px;
   background: white;
@@ -518,4 +568,58 @@ padding: 25px 10px;
   border-right: 10px solid #fff;
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
+}
+.paging,.search-area {
+    clear: both;
+    padding: 0 0 30px 0;
+    text-align: center;
+    position: relative;
+}
+.paging p.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+.paging-body {
+    display: inline-block;
+    padding-left: 0;
+}
+.search-area-body{
+    display: inline-block;
+    padding-left: 0;
+}
+.dropdown-toggle-board{
+    border: 1px solid #ced4da;
+    color:  #888;
+	margin-right: .5rem!important;
+    padding: .375rem .75rem;
+}
+.dropdown-board {
+border-radius: 0 !important;
+color:  #888 !important;
+margin-top: 1px;
+}
+.board-search, .board-search-btn{
+border-radius: 0 !important;
+ border: 1px solid #ced4da;
+ color:  #888;
+}
+.page-link{
+    color: #888888 !important;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: white;
+    border: 1.5px solid #888888 !important;
+}
+.board-free-nav p.right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -15px;
+}
+.board-item{
+ color:  #888;
 }
