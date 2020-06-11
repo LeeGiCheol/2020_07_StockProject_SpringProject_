@@ -335,8 +335,6 @@
 
 			<div class="col-md-3">
 
-
-
 				<c:choose>
 					<c:when test="${loginUser eq null}">
 						<div class="login-box">
