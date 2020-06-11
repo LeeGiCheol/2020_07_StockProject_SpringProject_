@@ -1,6 +1,7 @@
 package com.bitcamp.project.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public void updatePassword(UserVO vo) {
 		userInfoDAO.updatePassword(vo);
 	}
+
+	@Override
+	public int mypageUpdatePasswordCheck(Map<String, String> map) {
+		return userInfoDAO.mypageUpdatePasswordCheck(map);
+	}
+
+	
 
 }

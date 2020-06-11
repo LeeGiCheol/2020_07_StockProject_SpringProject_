@@ -34,7 +34,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						<p class="txt">새로운 비밀번호를 등록해 주세요.</p>
 					</div>
 					<div class="form-table pass-reset">
-					<form action="/mypageUpdatePassword" method="post" id="frm" name="frm">
+					<form action="/mypageUpdatePasswordCheck" method="post" id="frm" name="frm">
 						<table>
 							<tbody>
 								<tr>
@@ -66,8 +66,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</tr>
 							</tbody>
 						</table>
-						
-						<button id="submit" type="submit" id="show-answer" class="btn-t gray">비밀번호 저장</button>
+						<button id="submit" type="submit" class="btn-t gray">비밀번호 저장</button>
 					</form>
 				</div>
 				</div>
@@ -108,6 +107,36 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			}
 		}); 
 	});
+	
+	$('#submit').on('click', function(){ 
+		$.ajax({ 
+			type: 'GET', 
+			url: '${pageContext.request.contextPath}/mypageUpdatePasswordCheck', 
+			data: { "nowPassword" : $('#nowPassword').val() }, 
+			success: function(data){ 
+				 if(data == 1){
+					 alert("비밀번호가 일치합니다.")
+					 $.ajax({ 
+							type: 'GET', 
+							url: '${pageContext.request.contextPath}/mypageUpdatePasswordEnd', 
+							data: { "password" : $('#password').val() }, 
+							success:location.href = "/myPage01"
+							,
+							error: function(){
+							}
+						});  
+				 }else{
+					 alert("현재비밀번호가 불일치합니다.")
+					 location.href = "/mypageUpdatePassword";
+					 $('#nowPassword').empty();
+				 }
+			},
+			error: function(){
+				alert("에러");
+			}
+		});  
+	});  
+	
 	</script>
 </body>
 </html>
