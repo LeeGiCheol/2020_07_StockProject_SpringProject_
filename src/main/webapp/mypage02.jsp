@@ -34,17 +34,48 @@ $(document).ready(function(){
     // pagination 추가  
 	$(function() {
 		window.pagObj = $('#pagination').twbsPagination({
-			totalPages : 35,
-			visiblePages : 5,
+			totalPages : 16,
+			visiblePages : 5,	
 			onPageClick : function(event, page) {
-				console.info(page + ' (from options)');
+				console.info("현재 페이지" + page);
 			}
 		}).on('page', function(event, page) {
 			console.info(page + ' (from event listening)');
 		});
-		});     
-    
+		});
 });
+/*
+function testAjax(id){
+	  jQuery.ajax({ 
+		 type: "POST", 
+		 url: "/myPage02_myrate", //실행 결과 페이지
+		 data: {id:"aaa", name:"bbb"},
+		 success: function(result) {
+			 	console.log("성공");
+		        $("#pills-tabContent").html(result);
+		    		},
+		 error: function(result) {
+		     	alert("에러가 발생하였습니다."); //실패시 실행부분
+		  }
+		}); 
+}
+
+$("#pills-rate-tab").on("click",function(e){
+	alert("수익률 탭");
+	jQuery.ajax({ 
+		type: "POST", 
+		url: "/myPage02_myrate", //실행 결과 페이지
+		data: {id:"aaa", name:"bbb"},
+		success: function(result) {
+				console.log(result);
+				$("#pills-tabContent").html(result);
+			},
+		error: function(result) {
+				alert("에러가 발생하였습니다."); //실패시 실행부분
+			}
+	});
+});
+*/
 </script>
 <style>
 .paging-body{margin-left:355px; margin-bottom: 300px;}
@@ -140,7 +171,7 @@ $(document).ready(function(){
     <!-- 게시판 -->
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-rate-tab" data-toggle="pill" href="#pills-rate" role="tab" aria-controls="pills-rate" aria-selected="true">수익률</a>
+        <a class="nav-link active" id="pills-rate-tab" data-toggle="pill" href="#pills-rate" role="tab" aria-controls="pills-rate" aria-selected="true">수익률</a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="pills-account-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" aria-selected="false">계좌</a>
@@ -150,8 +181,8 @@ $(document).ready(function(){
       </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-      <!-- 수익률 시작-->
-      <div class="tab-pane fade" id="pills-rate" role="tabpanel" aria-labelledby="pills-rate-tab">
+      <!-- 수익률 시작 -->
+      <div class="tab-pane fade show active" id="pills-rate" role="tabpanel" aria-labelledby="pills-rate-tab">
         <b>user.Nickname</b> 님의 수익률
         <br>
         <br>
@@ -239,7 +270,7 @@ $(document).ready(function(){
           <form class="form-inline my-2 my-lg-0 underSearchForm">
             <div>
               <div class="search-box">
-                <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" name="accountSearch" placeholder="search" aria-label="Search">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i></button>
               </div>   
@@ -277,7 +308,7 @@ $(document).ready(function(){
                       <div class='col-md-3 col-xs-4'>
                         <div class="form-group">
                             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                  <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="05/25/2020">
+                                  <input type="text" name="startDate" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="05/25/2020">
                                 <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -286,7 +317,7 @@ $(document).ready(function(){
                       </div>
                     <div class='col-md-3 col-xs-4'>
                         <div class="form-group">
-                            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                            <div class="input-group date" name="endDate" id="datetimepicker2" data-target-input="nearest">
                                   <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="05/30/2020">
                                 <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -341,7 +372,7 @@ $(document).ready(function(){
                   <thead>
                     <tr class="category-search-article">
                       <div class="category-search">
-                      <input class="form-control mr-sm-2 category-search-box" type="search" placeholder="종목검색" aria-label="Search">
+                      <input class="form-control mr-sm-2 category-search-box" name="tradeSearch" type="search" placeholder="종목검색" aria-label="Search">
                         <button class="btn btn-outline-secondary my-2 my-sm-0 " type="submit"><i class="fas fa-search"></i></button>
                       </div> 
                     </tr>

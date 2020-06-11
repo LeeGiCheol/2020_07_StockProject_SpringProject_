@@ -141,6 +141,17 @@
 		limit #{start}, #{cntPerPage}
 	</select>
 	
+	<delete id="deleteMyPost" parameterType="map">
+		delete
+		<if test='type.equals("board")'>
+		from board
+		where pno=#{no}
+		</if>
+		<if test='type.equals("comment")'>
+		from commentlist
+		where cno=#{no}
+		</if>
+	</delete>
 	
 	<!-- 자유게시판 페이징처리 -->
 	<select id="boardCount" parameterType="board" resultType="int">

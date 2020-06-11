@@ -33,7 +33,20 @@ public class MyPageController {
 	private MyPostService myPostService;
 	
 	@GetMapping(value="/myPage01")
-	public String myPage01() {
+	public String myPage01(@ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
+			@ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
+			@ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate) {
+		if(nowPage1.equals(""))
+			nowPage1 = "1";
+		if(nowPage2.equals(""))
+			nowPage2 = "1";
+		if(nowPage3.equals(""))
+			nowPage3 = "1";
+		
+		PagingVO pv1 = new PagingVO();
+		PagingVO pv2 = new PagingVO();
+		PagingVO pv3 = new PagingVO();
+		
 		return "mypage01";
 	}
 	

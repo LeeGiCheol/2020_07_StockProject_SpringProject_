@@ -19,18 +19,6 @@ public class MyPostServiceImpl implements MyPostService {
 	
 	@Autowired
 	MyPostDAO myPostDAO;
-	
-	@Override
-	public void myListSearch() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void myCommentList() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public Map<String, Object> myPostList(UserVO loginUser, int bnowPage, int cnowPage,

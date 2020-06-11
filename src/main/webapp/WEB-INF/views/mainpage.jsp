@@ -226,7 +226,7 @@
 			<div class="col-md-3">
 				<div class="login-box">
 					<div class="div-login-box">
-						<form method='post' action="#">
+						<form method='post' action="/signIn">
 							<fieldset>
 								<div class="chk">
 									<input type="checkbox" name="sID" id="check-id"><label
@@ -235,9 +235,9 @@
 										for="check-log">자동로그인</label>
 								</div>
 								<p>
-									<input type="text" name="custId" value="" id="user_id"
+									<input type="text" name="id" value="" id="user_id"
 										title="아이디 입력" placeholder="아이디"> <input
-										type="password" name="passwd" value="" id="user_pw"
+										type="password" name="pw" value="" id="user_pw"
 										title="비밀번호 입력" placeholder="비밀번호"> <input
 										type="submit" value="로그인" onclick="">
 								</p>
