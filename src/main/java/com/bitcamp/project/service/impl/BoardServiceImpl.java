@@ -52,7 +52,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword) {
-		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, 10);
+		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, 30);
 		boardPage.getUtil().put("searchStyle", searchStyle);
 		boardPage.getUtil().put("keyword", keyword);
 		
