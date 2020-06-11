@@ -68,7 +68,7 @@ public class SignInController {
 	@GetMapping(value="/logOut")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "mainpage";
+		return "redirect:/mainPage";
 	}
 	
 	@GetMapping(value="/forgetId")

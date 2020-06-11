@@ -51,10 +51,11 @@ public class BoardServiceImpl implements BoardService{
 
 
 	@Override
-	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword) {
+	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword, String orderby) {
 		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, 30);
 		boardPage.getUtil().put("searchStyle", searchStyle);
 		boardPage.getUtil().put("keyword", keyword);
+		boardPage.getUtil().put("orderby", orderby);
 		
 //		boardPage.getUtil().put("",vo.get)
 //		boardPage.setId(vo.getId());
