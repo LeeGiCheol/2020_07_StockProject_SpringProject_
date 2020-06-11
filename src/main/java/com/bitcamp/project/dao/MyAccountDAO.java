@@ -1,5 +1,7 @@
 package com.bitcamp.project.dao;
 
+import com.bitcamp.project.vo.UserVO;
+
 public interface MyAccountDAO {
 	public void moneyCharging();
 	
@@ -9,4 +11,6 @@ public interface MyAccountDAO {
 	public void myStockSearch();
 	
 	public void tradeList();
+	
+	public int countMyStock(UserVO loginUser);
 }

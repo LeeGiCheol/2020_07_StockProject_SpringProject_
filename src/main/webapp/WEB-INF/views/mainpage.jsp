@@ -7,10 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>mainpage</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainpage.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
@@ -31,17 +29,15 @@
 </style>
 </head>
 <body>
-
 	<%@include file="mainheader.jsp"%>
-
 	<!-- 전체메뉴 백그라운드-->
 	<div class="all-dim"></div>
-
 
 	<div class="containerNew">
 		
 		<div class="row">
 			<div class="col-md-9">
+
 			KOSPI: ${current/100 } 
 			<!-- 현재 코스피 주가지수 -->
 				<div class="chartdata">
@@ -98,22 +94,16 @@
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
-								<button type="button" class="btn btn-secondary btn-sm plus">더보기</button>
+								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 							</div>
 						</nav>
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
-									<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a>
-										<p class="nickname">승리OK</p></li>
-									<li id="test_1"><a href="#">테슬라 model3 충돌 테스트</a>
-										<p class="nickname">스톡king</p></li>
-									<li id="test_1"><a href="#">출시 후 단 한 명의 사망자도 발생하지 않은</a>
-										<p class="nickname">증권가속보3</p></li>
-									<li id="test_1"><a href="#">전고체배터리 기술변화에 따른 전망</a>
-										<p class="nickname">승리OK</p></li>
-									<li id="test_1"><a href="#">대치동 은마아파트 실거주 후기</a>
-										<p class="nickname">증권가속보3</p></li>
+									<c:forEach var="bestBoardList" items="${bestBoardList}">
+										<li id="test_1"><a href="/board/free/detail?pno=${bestBoardList.pno}">${bestBoardList.title}</a>
+											<p class="nickname">${bestBoardList.nickname}</p></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -124,22 +114,16 @@
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">신규 글</a>
-								<button type="button" class="btn btn-secondary btn-sm plus">더보기</button>
+								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free'">더보기</button>
 							</div>
 						</nav>
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
-									<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a>
-										<p class="nickname">승리OK</p></li>
-									<li id="test_1"><a href="#">테슬라 model3 충돌 테스트</a>
-										<p class="nickname">스톡king</p></li>
-									<li id="test_1"><a href="#">출시 후 단 한 명의 사망자도 발생하지 않은</a>
-										<p class="nickname">증권가속보3</p></li>
-									<li id="test_1"><a href="#">전고체배터리 기술변화에 따른 전망</a>
-										<p class="nickname">승리OK</p></li>
-									<li id="test_1"><a href="#">대치동 은마아파트 실거주 후기</a>
-										<p class="nickname">증권가속보3</p></li>
+									<c:forEach var="newBoardList" items="${newBoardList}">
+										<li id="test_1"><a href="/board/free/detail?pno=${newBoardList.pno}">${newBoardList.title}</a>
+											<p class="nickname">${newBoardList.nickname}</p></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -254,8 +238,6 @@
 
 			<div class="col-md-3">
 
-
-
 				<c:choose>
 					<c:when test="${loginUser eq null}">
 						<div class="login-box">
@@ -263,27 +245,27 @@
 								<form method='post' action="#">
 									<fieldset>
 										<div class="chk">
-											<input type="checkbox" name="sID" id="check-id"><label
-												for="check-id">아이디 저장</label> <input type="checkbox"
-												name="autoLogin" onClick="" id="check-log"><label
-												for="check-log">자동로그인</label>
+											<input type="checkbox" name="sID" id="check-id">
+											<label for="check-id">아이디 저장</label>
+											<input type="checkbox" name="autoLogin" onClick="" id="check-log">
+											<label for="check-log">자동로그인</label>
 										</div>
 										<p>
-											<input type="text" name="custId" value="" id="user_id"
-												title="아이디 입력" placeholder="아이디"> <input
-												type="password" name="passwd" value="" id="user_pw"
-												title="비밀번호 입력" placeholder="비밀번호"> <input
-												type="submit" value="로그인" onclick="">
+											<input type="text" name="custId" value="" id="user_id" title="아이디 입력" placeholder="아이디">
+											<input type="password" name="passwd" value="" id="user_pw" title="비밀번호 입력" placeholder="비밀번호"> 
+											<input type="submit" value="로그인" onclick="">	
 										</p>
 									</fieldset>
 								</form>
 								<p>
-									<a href="#">회원가입</a><span><a href="#" class="idforgot">아이디</a><a
-										href="#">비밀번호 찾기</a></span> <span class="social-login"> <a
-										href="#" class="social-type naver">네이버 로그인</a> <a href="#"
-										class="social-type kakaotalk">카카오톡 로그인</a> <a href="#"
-										class="social-type facebook">페이스북 로그인</a> <a href="#"
-										class="social-type google">구글 로그인</a>
+									<a href="/signUpPage">회원가입</a>
+									<span><a href="/forgetId" class="idforgot">아이디 찾기</a>
+									<a href="/forgetPassword">비밀번호 찾기</a></span>
+								    <span class="social-login"> 
+								    <a href="#" class="social-type naver">네이버 로그인</a>
+									<a href="#" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="#" class="social-type facebook">페이스북 로그인</a>
+									<a href="#" class="social-type google">구글 로그인</a>
 									</span>
 								</p>
 							</div>
@@ -294,7 +276,7 @@
 						<div class="login-box">
 							<div class="div-login-box-after" style class="login-out">
 								<p class="proimg_div-after">
-									<a href="#"><img class="" cust_id="" id="_myhomeId"
+									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
 										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
 										class="current_badge_s"
 										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
@@ -306,21 +288,17 @@
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
-										<a
-											href="https://member.paxnet.co.kr/rpan/member/info/userInfo">내정보</a>
-										<a
-											href="https://member.paxnet.co.kr/rpan/member/searchPwd/changePswd">비밀번호
-											변경</a>
+										<a href="/myPage01">내정보</a>
+										<a href="mypageUpdatePassword">비밀번호 변경</a>
 									</dd>
 								</dl>
 								<ul class="dot-list02 color-rightgray">
-									<li id="_liBall">자산 <a href="#">0</a> 원
-									</li>
-									<li id="_liCyber">포인트 <a href="#">0</a></li>
+									<li id="_liBall">자산 <a href="/myPage02">0</a> 원</li>
+									<li id="_liCyber">포인트 <a href="/myPage01">${loginUser.point}점</a></li>
 								</ul>
 							</div>
 							<div class="login-after-btn">
-								<a href="#">MyPage</a> <a href="#">알림<span> N</span></a>
+								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span>N</span></a>
 							</div>
 						</div>
 					</c:otherwise>
@@ -382,15 +360,10 @@
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
 	<script>
-	
-	
-	
 	$(document).ready(function(){
 		
 		function stockRanking(){

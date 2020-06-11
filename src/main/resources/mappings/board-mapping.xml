@@ -75,6 +75,17 @@
 		limit #{start}, #{cntPerPage}
 	</select>
 	
+	<delete id="deleteMyPost" parameterType="map">
+		delete
+		<if test='type.equals("board")'>
+		from board
+		where pno=#{no}
+		</if>
+		<if test='type.equals("comment")'>
+		from commentlist
+		where cno=#{no}
+		</if>
+	</delete>
 	
 	<!-- 자유게시판 페이징처리 -->
 	<select id="boardCount" parameterType="board" resultType="int">
@@ -90,32 +101,52 @@
 		<choose>
 			<!-- 제목검색 -->
 			<when test='util.searchStyle.equals("search_title")'>
-			AND title LIKE CONCAT('%', #{util.keyword}, '%')
-			ORDER BY pno DESC
+				AND title LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY pno DESC
+				LIMIT #{start}, #{cntPerPage}
 			</when>
-			<!--  -->
+			<!-- 내용검색 -->
 			<when test='util.searchStyle.equals("search_content")'>
-			AND bcontent LIKE CONCAT('%', #{util.keyword}, '%')
-			ORDER BY pno DESC
+				AND bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY pno DESC
+				LIMIT #{start}, #{cntPerPage}
 			</when>
+			<!-- 제목 + 내용검색 -->
 			<when test='util.searchStyle.equals("search_title_content")'>
-			AND title LIKE CONCAT('%', #{util.keyword}, '%')
-			OR bcontent LIKE CONCAT('%', #{util.keyword}, '%')
-			ORDER BY pno DESC
+				AND title LIKE CONCAT('%', #{util.keyword}, '%')
+				OR bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY pno DESC
+				LIMIT #{start}, #{cntPerPage}
 			</when>
+			<!-- 닉네임 검색 -->
 			<when test='util.searchStyle.equals("search_nick")'>
-			AND nickname LIKE CONCAT('%', #{util.keyword}, '%')
-			ORDER BY pno DESC
+				AND nickname LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY pno DESC
+				LIMIT #{start}, #{cntPerPage}
 			</when>
-			<when test='util.orderby.equals("recentOrdr")'>
-			ORDER BY pno DESC
+			<!-- 최신순 -->
+			<when test='util.orderby.equals("new")'>
+				ORDER BY pno DESC
+				LIMIT #{start}, #{cntPerPage}
 			</when>
-			<when test='util.orderby.equals("popularOrdr")'>
-			ORDER BY likes desc, pno DESC
+			<!-- 인기순 -->
+			<when test='util.orderby.equals("best")'>
+				ORDER BY likes DESC, pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 메인페이지 인기글 -->
+			<when test='util.orderby.equals("mainNew")'>
+				ORDER BY likes DESC
+				LIMIT 5;
+			</when>
+			<!-- 메인페이지 신규글 -->
+			<when test='util.orderby.equals("mainBest")'>
+				ORDER BY pno DESC
+				LIMIT 5;
 			</when>
 		</choose>	
 		
-		LIMIT #{start}, #{cntPerPage}
+		
 	</select>
 	
 	

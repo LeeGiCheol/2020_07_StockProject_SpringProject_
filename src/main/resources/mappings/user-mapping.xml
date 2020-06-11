@@ -63,8 +63,6 @@
 				WHERE tel = #{tel} 
 			</when>
 		</choose>
-		
-		
 	</select>
 	
 	<update id="pointUp" parameterType="user">
@@ -98,6 +96,13 @@
 		set pw=#{pw}
 		where id=#{id}
 	</update>
+	<!-- 마이페이지 비밀번호 수정시 현재 비밀번호 체크 -->
+	<select id="mypageUpdatePasswordCheck" resultType="int" parameterType="map">
+		SELECT count(id)
+		FROM user
+		WHERE pw=#{pw} 
+		AND id=#{id}
+	</select>
 	<!-- 마이페이지 비밀번호 수정 -->
 	<update id="mypageUpdatePassword" parameterType="user">
 		update user

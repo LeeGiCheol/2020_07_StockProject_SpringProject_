@@ -13,6 +13,22 @@
 <link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+$(document).ready(function(){
+	$("#jb-checkboxAll-comment").click(function(){
+	    if($("#jb-checkboxAll-comment").prop("checked")){
+	        $(".comment").prop("checked",true);
+	    }else{
+	        $(".comment").prop("checked",false);
+	    }
+	})
+	$("#jb-checkboxAll").click(function(){
+	    if($("#jb-checkboxAll").prop("checked")){
+	        $(".board").prop("checked",true);
+	    }else{
+	        $(".board").prop("checked",false);
+	    }
+	})
+});
 function deleteBoard(){
 	var boardID = "";
 	
@@ -98,10 +114,10 @@ function deleteComment(){
     <!-- 게시판 -->
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="pills-write-tab" data-toggle="pill" href="#pills-write" role="tab" aria-controls="pills-write" aria-selected="true">작성한 글</a>
+        <a class="nav-link active" id="pills-write-tab" data-toggle="pill" href="#pills-write" role="tab" aria-controls="pills-write" aria-selected=true>작성한 글</a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-commnet-tab" data-toggle="pill" href="#pills-commnet" role="tab" aria-controls="pills-commnet" aria-selected="false">작성한 댓글</a>
+        <a class="nav-link " id="pills-commnet-tab" data-toggle="pill" href="#pills-commnet" role="tab" aria-controls="pills-commnet" aria-selected="false">작성한 댓글</a>
       </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">

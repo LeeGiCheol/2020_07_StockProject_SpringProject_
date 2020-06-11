@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.TradeService;
+import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.Info;
 
 import stockCode.TopStock;
@@ -19,12 +22,15 @@ public class MainPageController {
 	
 	@Autowired
 	TradeService tradeService;
+	
+	@Autowired
+	BoardService boardService;
 
 	@GetMapping(value = "/mainPage")
-	public ModelAndView mainPage() {
+	public ModelAndView mainPage(BoardVO vo) {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> dayChart = tradeService.dayChart("종합주가지수");
-
+		System.out.println("vo? "+vo);
 		Integer[][] dayChartData = new Integer[6][60];
 //
 		for (int i = 0; i < 60; i++) {
@@ -34,6 +40,12 @@ public class MainPageController {
 			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
 			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
 		}
+		
+		Map<String, Object> bestBoardList = boardService.boardList(vo, 0, "", "", "mainNew");
+		Map<String, Object> newBoardList = boardService.boardList(vo, 0, "", "", "mainBest");
+		mav.addObject("bestBoardList", (List<BoardVO>)bestBoardList.get("boardList"));
+		mav.addObject("newBoardList", (List<BoardVO>)newBoardList.get("boardList"));
+		
 		mav.addObject("current", ((HashMap) dayChart.get(0)).get("lastprice"));
 		mav.addObject("day_d", dayChartData[0]);
 		mav.addObject("day_startprice", dayChartData[2]);

@@ -34,7 +34,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						<p class="txt">새로운 비밀번호를 등록해 주세요.</p>
 					</div>
 					<div class="form-table pass-reset">
-					<form action="/mypageUpdatePassword" method="post" id="frm" name="frm">
+					<form action="/mypageUpdatePasswordCheck" method="post" id="frm" name="frm">
 						<table>
 							<tbody>
 								<tr>
@@ -42,6 +42,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 									<td><span class="input-style-case02">
 									<input type="password" id="nowPassword" name="nowPassword" class="pw" 
 									placeholder="기존 비밀번호를 입력해주세요." onKeyPress="return spaceCheck(event)" maxlength="13"></span>
+									<button type="button" class="btn btn-secondary" id="idCheck">　비밀번호확인　</button>
 									</td>
 								</tr>
 								<tr>
@@ -66,8 +67,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</tr>
 							</tbody>
 						</table>
-						
-						<button id="submit" type="submit" id="show-answer" class="btn-t gray">비밀번호 저장</button>
+						<button id="submit" type="submit" class="btn-t gray">비밀번호 저장</button>
 					</form>
 				</div>
 				</div>
@@ -108,6 +108,21 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			}
 		}); 
 	});
+	
+	$('#submit').on('click', function(){ 
+		$.ajax({ 
+			type: 'GET', 
+			url: '${pageContext.request.contextPath}/mypageUpdatePasswordCheck', 
+			data: { "nowPassword" : $('#nowPassword').val() }, 
+			success: function(data){ 
+				console.log(data)
+			},
+			error: function(){
+				alert("에러");
+			}
+		});  
+	});  
+	
 	</script>
 </body>
 </html>

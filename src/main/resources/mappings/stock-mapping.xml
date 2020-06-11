@@ -127,7 +127,12 @@
   <select id="getHistory" resultType="map">
   	select * from tradinghistory where id = #{id} order by tno desc;
   </select>
-
+	
+	<select id="stockCount" resultType="int">
+		select count(*)
+		from hodingstock
+		where id=#{id}
+	</select>
 
 </mapper>
 

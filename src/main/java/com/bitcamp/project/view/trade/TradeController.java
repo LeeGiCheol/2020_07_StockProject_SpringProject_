@@ -353,10 +353,10 @@ public class TradeController {
 				dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
 			}
 		} catch (Exception e) {
-			mav.addObject("msg", "정확한 종목명을 입력해주세요");
-			mav.addObject("location", "/trade");
-			mav.setViewName("notice");
-			return mav;
+//			mav.addObject("msg", "정확한 종목명을 입력해주세요");
+//			mav.addObject("location", "/trade");
+//			mav.setViewName("notice");
+//			return mav;
 		}
 
 		mav.addObject("min_d", minChartData[0]);

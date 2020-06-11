@@ -2,6 +2,7 @@ package com.bitcamp.project.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public void updatePassword(UserVO vo) {
 		mybatis.update("user.mypageUpdatePassword", vo);
+	}
+	
+	@Override
+	public int mypageUpdatePasswordCheck(Map<String, String> map) {
+		int result = mybatis.selectOne("user.mypageUpdatePasswordCheck", map); 
+		return result;
 	}
 	
 }
