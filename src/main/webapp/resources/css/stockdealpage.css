@@ -851,6 +851,7 @@ caption {
 	}
 	.m-stock-price-chart{
 	display: block;
+	border: none !important;
 	}
 	.stock-price-chart{
 	display: none;
