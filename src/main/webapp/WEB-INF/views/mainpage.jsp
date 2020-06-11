@@ -274,7 +274,7 @@
 								</p>
 								<dl>
 									<dt>
-										<strong>개미굴</strong>님
+										<strong>${loginUser.nickname}</strong>님
 										<button type="button" class="logout"
 											onclick="location.href='https://member.paxnet.co.kr/rpan/member/logout';">로그아웃</button>
 									</dt>

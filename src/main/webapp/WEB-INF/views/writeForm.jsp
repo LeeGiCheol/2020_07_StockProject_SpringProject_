@@ -26,14 +26,24 @@
 		// 글내용 -> 
 		var content = $("p").html();
 		
-		if(content == '<br data-cke-filler="true">' && title == ""){
+		if(content == '<br data-cke-filler="true">'){
+			content = content.replace('<br data-cke-filler="true">', " ")
+		}
+		
+		if(content.indexOf("&nbsp;") != -1){
+			console.log("????")
+			content = content.replace("&nbsp;", " ")
+		}
+		console.log(content)
+		
+		if(content.trim() == '<br data-cke-filler="true">' && title == ""){
 			alert('제목과 내용을 입력해주세요')
 			$("#title").focus();
 		}
-		else if(content == '<br data-cke-filler="true">'){
+		else if(content == '<br data-cke-filler="true">' || content.trim() == ""){
 			alert('내용을 입력해주세요')
 		}
-		else if(title == ""){
+		else if(title.trim() == ""){
 			alert('제목을 입력해주세요')			
 			$("#title").focus();
 		}

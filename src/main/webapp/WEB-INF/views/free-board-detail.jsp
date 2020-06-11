@@ -179,11 +179,20 @@ position: relative;
 									</dt>
 									<dd>
 										<input type="hidden" name="pno" value="${boardDetail.pno}">
-										<textarea name="ccontent" id="[##_comment_input_comment_##]"
-											placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea>
+
+									<c:if test="${loginUser != null}">
+											<textarea name="ccontent" id="[##_comment_input_comment_##]"
+												placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea>
+									</c:if>
+	
+									<c:if test="${loginUser == null}">
+											<textarea name="ccontent" id="[##_comment_input_comment_##]"
+												placeholder="댓글을 작성하시려면 로그인을 해주세요" onclick="location.href='/signInPage'"></textarea>
+									</c:if>
+
 									</dd>
 								</dl>
-								<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
+									<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
 							</fieldset>
 						</form>
 
@@ -504,6 +513,8 @@ position: relative;
 			    }
 		    })
 		}			
+	    
+	    
 	    
 		
 /* 		history.pushState(null, null, location.href);
