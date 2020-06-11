@@ -115,7 +115,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			data: { "nowPassword" : $('#nowPassword').val() }, 
 			success: function(data){ 
 				 if(data == 1){
-					 alert("비밀번호가 일치합니다.")
+					 alert("비밀번호가 성공적으로 바뀌었습니다.")
 					 $.ajax({ 
 							type: 'GET', 
 							url: '${pageContext.request.contextPath}/mypageUpdatePasswordEnd', 

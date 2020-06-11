@@ -346,26 +346,6 @@
 			</div>
 
 			<div class="col-md-3">
-<<<<<<< HEAD
-				<div class="login-box">
-					<div class="div-login-box">
-						<form method='post' action="/signIn">
-							<fieldset>
-								<div class="chk">
-									<input type="checkbox" name="sID" id="check-id"><label
-										for="check-id">아이디 저장</label> <input type="checkbox"
-										name="autoLogin" onClick="" id="check-log"><label
-										for="check-log">자동로그인</label>
-								</div>
-								<p>
-									<input type="text" name="id" value="" id="user_id"
-										title="아이디 입력" placeholder="아이디"> <input
-										type="password" name="pw" value="" id="user_pw"
-										title="비밀번호 입력" placeholder="비밀번호"> <input
-										type="submit" value="로그인" onclick="">
-=======
-
-
 
 				<c:choose>
 					<c:when test="${loginUser eq null}">
@@ -396,7 +376,6 @@
 										class="social-type facebook">페이스북 로그인</a> <a href="#"
 										class="social-type google">구글 로그인</a>
 									</span>
->>>>>>> 1d3e9c7514038208b7fef1e733ecc30ce29a38a2
 								</p>
 							</div>
 						</div>
