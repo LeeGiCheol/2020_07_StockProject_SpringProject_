@@ -620,7 +620,8 @@ tr td button{
 
 	<%@include file="mainfooter.jsp" %>
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
-
+		
+ 
 	<script>
 	var stockName = "${stockName}";
 	if(stockName === ''){
@@ -633,12 +634,15 @@ tr td button{
 		//console.log("check" + stockName);
 	});
 	
-	$(function() {
+	$(document).ready(function(){
 		var obj = new Object();
 		var jsonData = JSON.stringify(obj);
 		var pageUrl = "삼성전자";
 		var pageTitle = "http://localhost:8080/trade";
-		timer = setInterval( function () {
+		
+		
+		function stock(){
+		
 			$.ajax({
 				type : "POST",
 				url : '${pageContext.request.contextPath}/trade/search?stockName='+stockName,
@@ -796,7 +800,12 @@ tr td button{
 					console.log("error");
 				}
 			}); 
-		}, 1000); // SET INTERVAL5
+		}stock();
+		
+		timer = setInterval(function () {
+			stock();
+		}, 1000); // SET INTERVAL
+		
 	});
 	
 	$('#price,#m-price').click( function(){
