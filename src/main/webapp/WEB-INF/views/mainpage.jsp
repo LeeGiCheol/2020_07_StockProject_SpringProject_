@@ -191,22 +191,16 @@
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
-								<button type="button" class="btn btn-secondary btn-sm plus">더보기</button>
+								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 							</div>
 						</nav>
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
-									<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a>
-										<p class="nickname">승리OK</p></li>
-									<li id="test_1"><a href="#">테슬라 model3 충돌 테스트</a>
-										<p class="nickname">스톡king</p></li>
-									<li id="test_1"><a href="#">출시 후 단 한 명의 사망자도 발생하지 않은</a>
-										<p class="nickname">증권가속보3</p></li>
-									<li id="test_1"><a href="#">전고체배터리 기술변화에 따른 전망</a>
-										<p class="nickname">승리OK</p></li>
-									<li id="test_1"><a href="#">대치동 은마아파트 실거주 후기</a>
-										<p class="nickname">증권가속보3</p></li>
+									<c:forEach var="bestBoardList" items="${bestBoardList}">
+										<li id="test_1"><a href="/board/free/detail?pno=${bestBoardList.pno}">${bestBoardList.title}</a>
+											<p class="nickname">${bestBoardList.nickname}</p></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -217,22 +211,16 @@
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">신규 글</a>
-								<button type="button" class="btn btn-secondary btn-sm plus">더보기</button>
+								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free'">더보기</button>
 							</div>
 						</nav>
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
-									<li id="test_1"><a href="#">직접 경험한 동네의 중요성</a>
-										<p class="nickname">승리OK</p></li>
-									<li id="test_1"><a href="#">테슬라 model3 충돌 테스트</a>
-										<p class="nickname">스톡king</p></li>
-									<li id="test_1"><a href="#">출시 후 단 한 명의 사망자도 발생하지 않은</a>
-										<p class="nickname">증권가속보3</p></li>
-									<li id="test_1"><a href="#">전고체배터리 기술변화에 따른 전망</a>
-										<p class="nickname">승리OK</p></li>
-									<li id="test_1"><a href="#">대치동 은마아파트 실거주 후기</a>
-										<p class="nickname">증권가속보3</p></li>
+									<c:forEach var="newBoardList" items="${newBoardList}">
+										<li id="test_1"><a href="/board/free/detail?pno=${newBoardList.pno}">${newBoardList.title}</a>
+											<p class="nickname">${newBoardList.nickname}</p></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
