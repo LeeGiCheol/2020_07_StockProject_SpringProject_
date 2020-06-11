@@ -44,4 +44,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 		userInfoDAO.memberInfoUpdate(vo);
 	}
 
+	@Override
+	public void updatePassword(UserVO vo) {
+		userInfoDAO.updatePassword(vo);
+	}
+
 }

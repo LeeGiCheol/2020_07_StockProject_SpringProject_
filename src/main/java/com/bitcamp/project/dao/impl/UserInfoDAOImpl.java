@@ -48,4 +48,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		mybatis.update("user.updateUser", vo);
 	}
 
+	@Override
+	public void updatePassword(UserVO vo) {
+		mybatis.update("user.mypageUpdatePassword", vo);
+	}
+	
 }
