@@ -60,26 +60,6 @@ public class BoardController {
 		return "free-board";
 	}
 	
-//	@GetMapping("/board/free")
-//	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
-//			String searchStyle, String boardKeyword) {
-//		if(nowPage == null || nowPage.equals("")){
-//			nowPage = "1";
-//		}
-//		if(searchStyle.equals("")) {
-//			boardKeyword = "";
-//		}
-//		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, boardKeyword);
-//		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
-//		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
-//		//model.addAttribute("commentCount", commentCount);
-////		System.out.println(a.toString());
-////		System.out.println(boardList);
-//		
-//		
-//		return "free-board";
-//	}
-//	
 	
 	
 	@GetMapping("/board/free/write")
@@ -94,10 +74,9 @@ public class BoardController {
 		
 		vo.setId(loginUser.getId());
 		vo.setBno(1); // 자유게시판
-		
+		System.out.println("bovo "+vo);
 		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
-//		return "free-board";
 	}
 	
 	@GetMapping("/board/free/detail")
