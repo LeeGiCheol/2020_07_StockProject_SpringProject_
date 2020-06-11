@@ -158,7 +158,7 @@ public class TradeController {
 				return mav;
 			}
 
-			vo.setNewPrice(Integer.parseInt(price));
+			vo.setNewPrice(Integer.parseInt(price.replaceAll(",", "")));
 			vo.setNewQuantity(Integer.parseInt(qu));
 			vo.setQuantity((Integer) unsettledDetail.get("quantity"));
 			int myStockQu = tradeService.getStockQuantity(vo);
@@ -446,29 +446,18 @@ public class TradeController {
 
 		TopStock ts = new TopStock();
 
-		Info topStock = ts.topStock();
-		String[] topName = topStock.getTopName();
-		String[] topCurrentPrice = topStock.getTopCurrentPrice();
-		String[] topBefore = topStock.getTopBefore();
-		String[] topUpDown = topStock.getTopUpDown();
-		String[] searchName = topStock.getSearchName();
-		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
-		String[] searchUpDown = topStock.getSearchUpDown();
-		String[] searchSangHa = topStock.getSearchSangHa();
-
-		for (int i = 0; i < topName.length; i++) {
-			map.put("topName", topName);
-			map.put("topCurrentPrice", topCurrentPrice);
-			map.put("topBefore", topBefore);
-			map.put("topUpDown", topUpDown);
-		}
-
-		for (int i = 0; i < searchUpDown.length; i++) {
-			map.put("searchName", searchName);
-			map.put("searchCurrentPrice", searchCurrentPrice);
-			map.put("searchUpDown", searchUpDown);
-			map.put("searchSangHa", searchSangHa);
-		}
+//		Info topStock = ts.topStock();
+//		String[] topName = topStock.getTopName();
+//		String[] topCurrentPrice = topStock.getTopCurrentPrice();
+//		String[] topBefore = topStock.getTopBefore();
+//		String[] topUpDown = topStock.getTopUpDown();
+//		String[] searchName = topStock.getSearchName();
+//		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
+//		String[] searchUpDown = topStock.getSearchUpDown();
+//		String[] searchSangHa = topStock.getSearchSangHa();
+//
+//		for (int i = 0; i < topBefore.length; i++) {
+//			map.put("topName", topName);
 
 		// 차트
 

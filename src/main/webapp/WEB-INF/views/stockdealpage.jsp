@@ -26,6 +26,13 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	
 </head>
 
 <style>
@@ -620,7 +627,8 @@ tr td button{
 
 	<%@include file="mainfooter.jsp" %>
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
-		
+	<!-- 검색 자동완성용 js -->
+	<script src="/resources/js/stockAutoComplete.js" type="text/javascript"></script>	
  
 	<script>
 	var stockName = "${stockName}";
@@ -628,10 +636,8 @@ tr td button{
 		stockName = '삼성전자';
 	}
 		
-    //console.log("지발"+stockName);
 	$("#stockBtn").click(function(){
 		stockName = document.all.searchForm.stockSearch.value;
-		//console.log("check" + stockName);
 	});
 	
 	$(document).ready(function(){
@@ -649,7 +655,6 @@ tr td button{
 			 	/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
-						console.log(data)
 						$('#element').css('margin', '5px');
 						$('#price,#m-price').text(data.currentPrice);
 						
@@ -657,11 +662,6 @@ tr td button{
 						var nowStock = "";
 						var before = "";						
 						
-						if(data.before.indexOf("+") != -1)
-							console.log(data.before)
-						if(data.before.indexOf("+") == -1)
-							console.log("2 "+data.before)
-							
 						
 						
 						if(data.before.indexOf("+") != -1){
@@ -701,7 +701,6 @@ tr td button{
 						// 어제 대비 현재가가 오른경우
 						if(data.before.indexOf("+") != -1){	
 							before = data.before.replace("+", "▲");
-							console.log(before)
 							$('#upDownColor,#m-upDownColor,#price,#m-price').css("color", "rgb(255, 0, 0)");
 							$('#beforeAndUpdown,#m-beforeAndUpdown').html(before + " (" + data.updown+")");
 
@@ -805,6 +804,14 @@ tr td button{
 		timer = setInterval(function () {
 			stock();
 		}, 1000); // SET INTERVAL
+		
+		
+		// 검색 자동완성
+		$( "#stockSearch" ).autocomplete({
+			source: stockAutoComplete()
+		});
+		
+		
 		
 	});
 	
@@ -1186,7 +1193,6 @@ tr td button{
 				<td scope="col"></td>
 			</tr>
 	</script>
-
 
 
 
