@@ -145,7 +145,7 @@ public class TradeController {
 		}
 
 		vo.setCategory((String) unsettledDetail.get("category"));
-		vo.setRPrice((Integer) unsettledDetail.get("rPrice"));
+		vo.setrPrice((Integer) unsettledDetail.get("rPrice"));
 		vo.setStockName((String) unsettledDetail.get("stockName"));
 
 		switch (modify) {
@@ -243,7 +243,7 @@ public class TradeController {
 			return mav;
 		}
 
-		vo.setRPrice(Integer.parseInt(price));
+		vo.setrPrice(Integer.parseInt(price));
 
 		tradeService.stockSelling(vo);
 		mav.addObject("msg", "매도 등록: " + stockName + ", " + price);
@@ -281,7 +281,7 @@ public class TradeController {
 		vo.setId(id);
 		vo.setQuantity(Integer.parseInt(qu));
 		vo.setStockName(stockName);
-		vo.setRPrice(Integer.parseInt(price));
+		vo.setrPrice(Integer.parseInt(price));
 
 		tradeService.stockBuying(vo);
 

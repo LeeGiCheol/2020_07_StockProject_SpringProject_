@@ -88,7 +88,7 @@ public class TradingCheck {
 			if (price == (Integer) map.get("rPrice")) { // 가격 동일시
 				System.out.println(" --> 동일가격 확인 & 거래 실행");
 				StockVO sv = mybatis.selectOne("stock.completeUnsettled", map.get("uno"));
-				sv.setRPrice((Integer) map.get("rPrice"));
+				sv.setrPrice((Integer) map.get("rPrice"));
 				sv.setStockName((String) map.get("stockName"));
 				mybatis.delete("stock.delUnsettled", sv);
 
@@ -102,7 +102,7 @@ public class TradingCheck {
 						int oldAVG = (int) ((Map) mybatis.selectOne("stock.getStockQuantity", sv)).get("avgprice");
 						int oldQu = (int) ((Map) mybatis.selectOne("stock.getStockQuantity", sv)).get("quantity");
 						System.out.println(oldAVG + "  /  " + oldQu);
-						sv.setAvgprice((oldAVG*oldQu+sv.getQuantity()*sv.getRPrice())/(oldQu+sv.getQuantity()));
+						sv.setAvgprice((oldAVG*oldQu+sv.getQuantity()*sv.getrPrice())/(oldQu+sv.getQuantity()));
 						mybatis.update("stock.updateHoldingstock", sv);
 						mybatis.update("stock.updateAVG", sv);
 					}
