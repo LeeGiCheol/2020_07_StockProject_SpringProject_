@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
 <style>
 .gray{width: 172px; height:44px; margin-left: 214px; margin-top: 30px;}
 </style>
@@ -108,6 +109,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		}); 
 	});
 	
+	
 	$('#submit').on('click', function(){ 
 		$.ajax({ 
 			type: 'GET', 
@@ -115,18 +117,18 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			data: { "nowPassword" : $('#nowPassword').val() }, 
 			success: function(data){ 
 				 if(data == 1){
-					 alert("비밀번호가 성공적으로 바뀌었습니다.")
+					alert("비밀번호가 변경되었습니다.") 
 					 $.ajax({ 
 							type: 'GET', 
 							url: '${pageContext.request.contextPath}/mypageUpdatePasswordEnd', 
 							data: { "password" : $('#password').val() }, 
-							success:location.href = "/myPage01"
+							success:location.href = "/logOut" 
 							,
 							error: function(){
 							}
 						});  
 				 }else{
-					 alert("현재비밀번호가 불일치합니다.")
+					 alert("현재비밀번호가 일치하지않습니다.")
 					 location.href = "/mypageUpdatePassword";
 					 $('#nowPassword').empty();
 				 }
