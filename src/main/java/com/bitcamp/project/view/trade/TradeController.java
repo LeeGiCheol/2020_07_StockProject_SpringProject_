@@ -2,6 +2,7 @@ package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -421,10 +422,10 @@ public class TradeController {
 
 		// 배열을 json화 시켜서 보낸다 (호가)
 		JSONObject obj = new JSONObject();
-		JSONArray jArray = new JSONArray();
 
-		JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
+		JSONArray jArray = new JSONArray();
 		for (int i = 0; i < up.length; i++) {
+			JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 			sObject.put("up", up[i]);
 			sObject.put("down", down[i]);
 			jArray.add(sObject);
@@ -453,6 +454,9 @@ public class TradeController {
 		String[] searchUpDown = topStock.getSearchUpDown();
 		String[] searchSangHa = topStock.getSearchSangHa();
 
+		System.out.println("----------"+Arrays.toString(topUpDown));
+		System.out.println("++++++++++"+Arrays.toString(searchUpDown));
+		
 		for (int i = 0; i < topName.length; i++) {
 			map.put("topName", topName);
 			map.put("topCurrentPrice", topCurrentPrice);

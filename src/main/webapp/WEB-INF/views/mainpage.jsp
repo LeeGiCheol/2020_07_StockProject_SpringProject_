@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +73,7 @@ position:relative;
 					<div class="chartdata-2">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">
-							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 }</span></h3>
+							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 } ${(day_lastprice[0]-day_lastprice[1])/100} ${fn:substring((day_lastprice[0]-day_lastprice[1])/day_lastprice[1]*100,0,5) }%</span></h3>
 							<a href="#" class="refresh"><i class="fas fa-redo"></i>새로고침</a>
 						</div>
 						<div id="chartcontainer"></div>
@@ -334,11 +335,30 @@ position:relative;
 								</ul>
 							</div>
 							<div class="login-after-btn">
-								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span>N</span></a>
+								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
 							</div>
 						</div>
 					</c:otherwise>
 				</c:choose>
+					<script type="text/javascript">
+		$(function() {
+		var obj = new Object();
+		var jsonData = JSON.stringify(obj);
+		timer = setInterval( function () {
+			$.ajax({
+				type : "POST",
+				url : '${pageContext.request.contextPath}/notice/json',
+			 	/* data : JSON.stringify(jsonData),  */
+				datatype : "JSON",
+				success : function(data) {
+					if(data=='NOTICE')
+						$('#noticeMain').text('NEW');
+					else $('#noticeMain').text('');
+					}	
+				}); 
+			}, 1000); // SET INTERVAL5
+		});
+		</script>
 
 
 				<div class="ranking">
@@ -488,7 +508,6 @@ position:relative;
    			var day_highprice = [${day_highprice[0]}, ${day_highprice[1]}, ${day_highprice[2]}, ${day_highprice[3]}, ${day_highprice[4]}, ${day_highprice[5]}, ${day_highprice[6]}, ${day_highprice[7]}, ${day_highprice[8]}, ${day_highprice[9]}, ${day_highprice[10]}, ${day_highprice[11]}, ${day_highprice[12]}, ${day_highprice[13]}, ${day_highprice[14]}, ${day_highprice[15]}, ${day_highprice[16]}, ${day_highprice[17]}, ${day_highprice[18]}, ${day_highprice[19]}, ${day_highprice[20]}, ${day_highprice[21]}, ${day_highprice[22]}, ${day_highprice[23]}, ${day_highprice[24]}, ${day_highprice[25]}, ${day_highprice[26]}, ${day_highprice[27]}, ${day_highprice[28]}, ${day_highprice[29]}, ${day_highprice[30]}, ${day_highprice[31]}, ${day_highprice[32]}, ${day_highprice[33]}, ${day_highprice[34]}, ${day_highprice[35]}, ${day_highprice[36]}, ${day_highprice[37]}, ${day_highprice[38]}, ${day_highprice[39]}, ${day_highprice[40]}, ${day_highprice[41]}, ${day_highprice[42]}, ${day_highprice[43]}, ${day_highprice[44]}, ${day_highprice[45]}, ${day_highprice[46]}, ${day_highprice[47]}, ${day_highprice[48]}, ${day_highprice[49]}, ${day_highprice[50]}, ${day_highprice[51]}, ${day_highprice[52]}, ${day_highprice[53]}, ${day_highprice[54]}, ${day_highprice[55]}, ${day_highprice[56]}, ${day_highprice[57]}, ${day_highprice[58]}, ${day_highprice[59]}];
    			var day_lowprice = [${day_lowprice[0]}, ${day_lowprice[1]}, ${day_lowprice[2]}, ${day_lowprice[3]}, ${day_lowprice[4]}, ${day_lowprice[5]}, ${day_lowprice[6]}, ${day_lowprice[7]}, ${day_lowprice[8]}, ${day_lowprice[9]}, ${day_lowprice[10]}, ${day_lowprice[11]}, ${day_lowprice[12]}, ${day_lowprice[13]}, ${day_lowprice[14]}, ${day_lowprice[15]}, ${day_lowprice[16]}, ${day_lowprice[17]}, ${day_lowprice[18]}, ${day_lowprice[19]}, ${day_lowprice[20]}, ${day_lowprice[21]}, ${day_lowprice[22]}, ${day_lowprice[23]}, ${day_lowprice[24]}, ${day_lowprice[25]}, ${day_lowprice[26]}, ${day_lowprice[27]}, ${day_lowprice[28]}, ${day_lowprice[29]}, ${day_lowprice[30]}, ${day_lowprice[31]}, ${day_lowprice[32]}, ${day_lowprice[33]}, ${day_lowprice[34]}, ${day_lowprice[35]}, ${day_lowprice[36]}, ${day_lowprice[37]}, ${day_lowprice[38]}, ${day_lowprice[39]}, ${day_lowprice[40]}, ${day_lowprice[41]}, ${day_lowprice[42]}, ${day_lowprice[43]}, ${day_lowprice[44]}, ${day_lowprice[45]}, ${day_lowprice[46]}, ${day_lowprice[47]}, ${day_lowprice[48]}, ${day_lowprice[49]}, ${day_lowprice[50]}, ${day_lowprice[51]}, ${day_lowprice[52]}, ${day_lowprice[53]}, ${day_lowprice[54]}, ${day_lowprice[55]}, ${day_lowprice[56]}, ${day_lowprice[57]}, ${day_lowprice[58]}, ${day_lowprice[59]}];
    			var day_lastprice = [${day_lastprice[0]}, ${day_lastprice[1]}, ${day_lastprice[2]}, ${day_lastprice[3]}, ${day_lastprice[4]}, ${day_lastprice[5]}, ${day_lastprice[6]}, ${day_lastprice[7]}, ${day_lastprice[8]}, ${day_lastprice[9]}, ${day_lastprice[10]}, ${day_lastprice[11]}, ${day_lastprice[12]}, ${day_lastprice[13]}, ${day_lastprice[14]}, ${day_lastprice[15]}, ${day_lastprice[16]}, ${day_lastprice[17]}, ${day_lastprice[18]}, ${day_lastprice[19]}, ${day_lastprice[20]}, ${day_lastprice[21]}, ${day_lastprice[22]}, ${day_lastprice[23]}, ${day_lastprice[24]}, ${day_lastprice[25]}, ${day_lastprice[26]}, ${day_lastprice[27]}, ${day_lastprice[28]}, ${day_lastprice[29]}, ${day_lastprice[30]}, ${day_lastprice[31]}, ${day_lastprice[32]}, ${day_lastprice[33]}, ${day_lastprice[34]}, ${day_lastprice[35]}, ${day_lastprice[36]}, ${day_lastprice[37]}, ${day_lastprice[38]}, ${day_lastprice[39]}, ${day_lastprice[40]}, ${day_lastprice[41]}, ${day_lastprice[42]}, ${day_lastprice[43]}, ${day_lastprice[44]}, ${day_lastprice[45]}, ${day_lastprice[46]}, ${day_lastprice[47]}, ${day_lastprice[48]}, ${day_lastprice[49]}, ${day_lastprice[50]}, ${day_lastprice[51]}, ${day_lastprice[52]}, ${day_lastprice[53]}, ${day_lastprice[54]}, ${day_lastprice[55]}, ${day_lastprice[56]}, ${day_lastprice[57]}, ${day_lastprice[58]}, ${day_lastprice[59]}];
-			
    			var mainData = [];
    			for (var i = 0; i < 60; i++) {
    				mainData.push({
@@ -564,7 +583,7 @@ position:relative;
    				          horizontal: false,
    				          startingShape: 'flat',
    				          endingShape: 'flat',
-   				          columnWidth: '15%',
+   				          columnWidth: '12%',
    				          barHeight: '70%',
    				          distributed: false,
    				          rangeBarOverlap: true,
