@@ -26,9 +26,7 @@
     font-size: 28px;
     font-weight: 500;
     line-height: 28px;
-    padding-left: 23px;
     color: #333;
-        padding: 10px;
 }
 #nowStock {
     margin-left: 10px;
@@ -40,6 +38,15 @@
 .containerNew {
     padding: 0;
 }
+}
+.refresh {
+position:relative;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 5px;
+    color: #333;
+    top: 7px;
 }
 </style>
 </head>
@@ -53,11 +60,20 @@
 		<div class="row">
 			<div class="col-md-9">
 			<!-- 현재 코스피 주가지수 -->
-					<div class="chartdata">
+					<div class="chartdata-1">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">
 							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 }</span></h3>
-							
+							<a href="#" class="refresh"><i class="fas fa-redo"></i>새로고침</a>
+						</div>
+						<div id="chartcontainer"></div>
+						</div>
+					</div>
+					<div class="chartdata-2">
+						<div class="chartdata-body">
+						<div class="chartdate-nav">
+							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 }</span></h3>
+							<a href="#" class="refresh"><i class="fas fa-redo"></i>새로고침</a>
 						</div>
 						<div id="chartcontainer"></div>
 						</div>

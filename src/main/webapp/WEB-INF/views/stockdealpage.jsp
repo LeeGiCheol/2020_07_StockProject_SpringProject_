@@ -42,6 +42,13 @@ tr td button{
 	margin: 0;
 	padding: 0;
 } 
+.refresh, .fa-redo {
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 5px;
+    color: #333;
+}
 </style>
 
 <body>
@@ -67,6 +74,7 @@ tr td button{
 								</button>
 								<h3 class="btnOverInfo" id="h3_stockName">${stockName}</h3>
 								<span id="nowStock"> </span>
+								<a href="#" class="refresh"><i class="fas fa-redo"></i>새로고침</a>
 						<div class="stock-deal-button">
 								<button type="button"
 									class="btn btn-secondary companydata-btn stock-btn"
