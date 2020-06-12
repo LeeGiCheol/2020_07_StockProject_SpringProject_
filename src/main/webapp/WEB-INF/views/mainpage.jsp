@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +57,7 @@
 					<div class="chartdata">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">
-							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 } ${(day_lastprice[0]-day_lastprice[1])/100} ${(day_lastprice[0]-day_lastprice[1])/day_lastprice[1]}%</span></h3>
+							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 } ${(day_lastprice[0]-day_lastprice[1])/100} ${fn:substring((day_lastprice[0]-day_lastprice[1])/day_lastprice[1]*100,0,5) }%</span></h3>
 						</div>
 						<div id="chartcontainer"></div>
 						</div>
