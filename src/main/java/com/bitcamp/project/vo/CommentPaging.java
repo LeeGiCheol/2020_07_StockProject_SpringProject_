@@ -1,7 +1,5 @@
 package com.bitcamp.project.vo;
 
-import java.util.List;
-
 public class CommentPaging{
 	
 	   // 페이지당 게시물 수

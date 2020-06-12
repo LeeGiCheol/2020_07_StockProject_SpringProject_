@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,12 +24,11 @@
     margin: 0 auto;
 }
 .btnOverInfo {
+float:left;
     font-size: 28px;
     font-weight: 500;
     line-height: 28px;
-    padding-left: 23px;
     color: #333;
-        padding: 10px;
 }
 #nowStock {
     margin-left: 10px;
@@ -40,6 +40,16 @@
 .containerNew {
     padding: 0;
 }
+}
+.refresh {
+position:relative;
+    float: left;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 5px;
+    color: #333;
+    top: 7px;
 }
 </style>
 </head>
@@ -53,13 +63,22 @@
 		<div class="row">
 			<div class="col-md-9">
 			<!-- 현재 코스피 주가지수 -->
-					<div class="chartdata">
+					<div class="chartdata-1">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">
-							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 }</span></h3>
+							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current_kospi/100 } ${(kospi_lastprice[0]-kospi_lastprice[1])/100} ${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></h3>
 							
 						</div>
 						<div id="chartcontainer"></div>
+						</div>
+					</div>
+					<div class="chartdata-2">
+						<div class="chartdata-body">
+						<div class="chartdate-nav">
+							<h3 class="btnOverInfo" id="h3_stockName">KOSDAQ<span id="nowStock">${current_kosdaq/100 } ${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100} ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></h3>
+							
+						</div>
+						<div id="chartcontainer2"></div>
 						</div>
 					</div>
 
@@ -318,11 +337,30 @@
 								</ul>
 							</div>
 							<div class="login-after-btn">
-								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span>N</span></a>
+								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
 							</div>
 						</div>
 					</c:otherwise>
 				</c:choose>
+					<script type="text/javascript">
+		$(function() {
+		var obj = new Object();
+		var jsonData = JSON.stringify(obj);
+		timer = setInterval( function () {
+			$.ajax({
+				type : "POST",
+				url : '${pageContext.request.contextPath}/notice/json',
+			 	/* data : JSON.stringify(jsonData),  */
+				datatype : "JSON",
+				success : function(data) {
+					if(data=='NOTICE')
+						$('#noticeMain').text('NEW');
+					else $('#noticeMain').text('');
+					}	
+				}); 
+			}, 1000); // SET INTERVAL5
+		});
+		</script>
 
 
 				<div class="ranking">
@@ -467,23 +505,22 @@
 			
 			
 //			<!-- 차트 자리 -->
-			var day_d = [${day_d[0]}, ${day_d[1]}, ${day_d[2]}, ${day_d[3]}, ${day_d[4]}, ${day_d[5]}, ${day_d[6]}, ${day_d[7]}, ${day_d[8]}, ${day_d[9]}, ${day_d[10]}, ${day_d[11]}, ${day_d[12]}, ${day_d[13]}, ${day_d[14]}, ${day_d[15]}, ${day_d[16]}, ${day_d[17]}, ${day_d[18]}, ${day_d[19]}, ${day_d[20]}, ${day_d[21]}, ${day_d[22]}, ${day_d[23]}, ${day_d[24]}, ${day_d[25]}, ${day_d[26]}, ${day_d[27]}, ${day_d[28]}, ${day_d[29]}, ${day_d[30]}, ${day_d[31]}, ${day_d[32]}, ${day_d[33]}, ${day_d[34]}, ${day_d[35]}, ${day_d[36]}, ${day_d[37]}, ${day_d[38]}, ${day_d[39]}, ${day_d[40]}, ${day_d[41]}, ${day_d[42]}, ${day_d[43]}, ${day_d[44]}, ${day_d[45]}, ${day_d[46]}, ${day_d[47]}, ${day_d[48]}, ${day_d[49]}, ${day_d[50]}, ${day_d[51]}, ${day_d[52]}, ${day_d[53]}, ${day_d[54]}, ${day_d[55]}, ${day_d[56]}, ${day_d[57]}, ${day_d[58]}, ${day_d[59]}]; 
-			var day_startprice = [${day_startprice[0]}, ${day_startprice[1]}, ${day_startprice[2]}, ${day_startprice[3]}, ${day_startprice[4]}, ${day_startprice[5]}, ${day_startprice[6]}, ${day_startprice[7]}, ${day_startprice[8]}, ${day_startprice[9]}, ${day_startprice[10]}, ${day_startprice[11]}, ${day_startprice[12]}, ${day_startprice[13]}, ${day_startprice[14]}, ${day_startprice[15]}, ${day_startprice[16]}, ${day_startprice[17]}, ${day_startprice[18]}, ${day_startprice[19]}, ${day_startprice[20]}, ${day_startprice[21]}, ${day_startprice[22]}, ${day_startprice[23]}, ${day_startprice[24]}, ${day_startprice[25]}, ${day_startprice[26]}, ${day_startprice[27]}, ${day_startprice[28]}, ${day_startprice[29]}, ${day_startprice[30]}, ${day_startprice[31]}, ${day_startprice[32]}, ${day_startprice[33]}, ${day_startprice[34]}, ${day_startprice[35]}, ${day_startprice[36]}, ${day_startprice[37]}, ${day_startprice[38]}, ${day_startprice[39]}, ${day_startprice[40]}, ${day_startprice[41]}, ${day_startprice[42]}, ${day_startprice[43]}, ${day_startprice[44]}, ${day_startprice[45]}, ${day_startprice[46]}, ${day_startprice[47]}, ${day_startprice[48]}, ${day_startprice[49]}, ${day_startprice[50]}, ${day_startprice[51]}, ${day_startprice[52]}, ${day_startprice[53]}, ${day_startprice[54]}, ${day_startprice[55]}, ${day_startprice[56]}, ${day_startprice[57]}, ${day_startprice[58]}, ${day_startprice[59]}];
-   			var day_highprice = [${day_highprice[0]}, ${day_highprice[1]}, ${day_highprice[2]}, ${day_highprice[3]}, ${day_highprice[4]}, ${day_highprice[5]}, ${day_highprice[6]}, ${day_highprice[7]}, ${day_highprice[8]}, ${day_highprice[9]}, ${day_highprice[10]}, ${day_highprice[11]}, ${day_highprice[12]}, ${day_highprice[13]}, ${day_highprice[14]}, ${day_highprice[15]}, ${day_highprice[16]}, ${day_highprice[17]}, ${day_highprice[18]}, ${day_highprice[19]}, ${day_highprice[20]}, ${day_highprice[21]}, ${day_highprice[22]}, ${day_highprice[23]}, ${day_highprice[24]}, ${day_highprice[25]}, ${day_highprice[26]}, ${day_highprice[27]}, ${day_highprice[28]}, ${day_highprice[29]}, ${day_highprice[30]}, ${day_highprice[31]}, ${day_highprice[32]}, ${day_highprice[33]}, ${day_highprice[34]}, ${day_highprice[35]}, ${day_highprice[36]}, ${day_highprice[37]}, ${day_highprice[38]}, ${day_highprice[39]}, ${day_highprice[40]}, ${day_highprice[41]}, ${day_highprice[42]}, ${day_highprice[43]}, ${day_highprice[44]}, ${day_highprice[45]}, ${day_highprice[46]}, ${day_highprice[47]}, ${day_highprice[48]}, ${day_highprice[49]}, ${day_highprice[50]}, ${day_highprice[51]}, ${day_highprice[52]}, ${day_highprice[53]}, ${day_highprice[54]}, ${day_highprice[55]}, ${day_highprice[56]}, ${day_highprice[57]}, ${day_highprice[58]}, ${day_highprice[59]}];
-   			var day_lowprice = [${day_lowprice[0]}, ${day_lowprice[1]}, ${day_lowprice[2]}, ${day_lowprice[3]}, ${day_lowprice[4]}, ${day_lowprice[5]}, ${day_lowprice[6]}, ${day_lowprice[7]}, ${day_lowprice[8]}, ${day_lowprice[9]}, ${day_lowprice[10]}, ${day_lowprice[11]}, ${day_lowprice[12]}, ${day_lowprice[13]}, ${day_lowprice[14]}, ${day_lowprice[15]}, ${day_lowprice[16]}, ${day_lowprice[17]}, ${day_lowprice[18]}, ${day_lowprice[19]}, ${day_lowprice[20]}, ${day_lowprice[21]}, ${day_lowprice[22]}, ${day_lowprice[23]}, ${day_lowprice[24]}, ${day_lowprice[25]}, ${day_lowprice[26]}, ${day_lowprice[27]}, ${day_lowprice[28]}, ${day_lowprice[29]}, ${day_lowprice[30]}, ${day_lowprice[31]}, ${day_lowprice[32]}, ${day_lowprice[33]}, ${day_lowprice[34]}, ${day_lowprice[35]}, ${day_lowprice[36]}, ${day_lowprice[37]}, ${day_lowprice[38]}, ${day_lowprice[39]}, ${day_lowprice[40]}, ${day_lowprice[41]}, ${day_lowprice[42]}, ${day_lowprice[43]}, ${day_lowprice[44]}, ${day_lowprice[45]}, ${day_lowprice[46]}, ${day_lowprice[47]}, ${day_lowprice[48]}, ${day_lowprice[49]}, ${day_lowprice[50]}, ${day_lowprice[51]}, ${day_lowprice[52]}, ${day_lowprice[53]}, ${day_lowprice[54]}, ${day_lowprice[55]}, ${day_lowprice[56]}, ${day_lowprice[57]}, ${day_lowprice[58]}, ${day_lowprice[59]}];
-   			var day_lastprice = [${day_lastprice[0]}, ${day_lastprice[1]}, ${day_lastprice[2]}, ${day_lastprice[3]}, ${day_lastprice[4]}, ${day_lastprice[5]}, ${day_lastprice[6]}, ${day_lastprice[7]}, ${day_lastprice[8]}, ${day_lastprice[9]}, ${day_lastprice[10]}, ${day_lastprice[11]}, ${day_lastprice[12]}, ${day_lastprice[13]}, ${day_lastprice[14]}, ${day_lastprice[15]}, ${day_lastprice[16]}, ${day_lastprice[17]}, ${day_lastprice[18]}, ${day_lastprice[19]}, ${day_lastprice[20]}, ${day_lastprice[21]}, ${day_lastprice[22]}, ${day_lastprice[23]}, ${day_lastprice[24]}, ${day_lastprice[25]}, ${day_lastprice[26]}, ${day_lastprice[27]}, ${day_lastprice[28]}, ${day_lastprice[29]}, ${day_lastprice[30]}, ${day_lastprice[31]}, ${day_lastprice[32]}, ${day_lastprice[33]}, ${day_lastprice[34]}, ${day_lastprice[35]}, ${day_lastprice[36]}, ${day_lastprice[37]}, ${day_lastprice[38]}, ${day_lastprice[39]}, ${day_lastprice[40]}, ${day_lastprice[41]}, ${day_lastprice[42]}, ${day_lastprice[43]}, ${day_lastprice[44]}, ${day_lastprice[45]}, ${day_lastprice[46]}, ${day_lastprice[47]}, ${day_lastprice[48]}, ${day_lastprice[49]}, ${day_lastprice[50]}, ${day_lastprice[51]}, ${day_lastprice[52]}, ${day_lastprice[53]}, ${day_lastprice[54]}, ${day_lastprice[55]}, ${day_lastprice[56]}, ${day_lastprice[57]}, ${day_lastprice[58]}, ${day_lastprice[59]}];
-			
+			var kospi_d = [${kospi_d[0]}, ${kospi_d[1]}, ${kospi_d[2]}, ${kospi_d[3]}, ${kospi_d[4]}, ${kospi_d[5]}, ${kospi_d[6]}, ${kospi_d[7]}, ${kospi_d[8]}, ${kospi_d[9]}, ${kospi_d[10]}, ${kospi_d[11]}, ${kospi_d[12]}, ${kospi_d[13]}, ${kospi_d[14]}, ${kospi_d[15]}, ${kospi_d[16]}, ${kospi_d[17]}, ${kospi_d[18]}, ${kospi_d[19]}, ${kospi_d[20]}, ${kospi_d[21]}, ${kospi_d[22]}, ${kospi_d[23]}, ${kospi_d[24]}, ${kospi_d[25]}, ${kospi_d[26]}, ${kospi_d[27]}, ${kospi_d[28]}, ${kospi_d[29]}, ${kospi_d[30]}, ${kospi_d[31]}, ${kospi_d[32]}, ${kospi_d[33]}, ${kospi_d[34]}, ${kospi_d[35]}, ${kospi_d[36]}, ${kospi_d[37]}, ${kospi_d[38]}, ${kospi_d[39]}, ${kospi_d[40]}, ${kospi_d[41]}, ${kospi_d[42]}, ${kospi_d[43]}, ${kospi_d[44]}, ${kospi_d[45]}, ${kospi_d[46]}, ${kospi_d[47]}, ${kospi_d[48]}, ${kospi_d[49]}, ${kospi_d[50]}, ${kospi_d[51]}, ${kospi_d[52]}, ${kospi_d[53]}, ${kospi_d[54]}, ${kospi_d[55]}, ${kospi_d[56]}, ${kospi_d[57]}, ${kospi_d[58]}, ${kospi_d[59]}]; 
+			var kospi_startprice = [${kospi_startprice[0]}, ${kospi_startprice[1]}, ${kospi_startprice[2]}, ${kospi_startprice[3]}, ${kospi_startprice[4]}, ${kospi_startprice[5]}, ${kospi_startprice[6]}, ${kospi_startprice[7]}, ${kospi_startprice[8]}, ${kospi_startprice[9]}, ${kospi_startprice[10]}, ${kospi_startprice[11]}, ${kospi_startprice[12]}, ${kospi_startprice[13]}, ${kospi_startprice[14]}, ${kospi_startprice[15]}, ${kospi_startprice[16]}, ${kospi_startprice[17]}, ${kospi_startprice[18]}, ${kospi_startprice[19]}, ${kospi_startprice[20]}, ${kospi_startprice[21]}, ${kospi_startprice[22]}, ${kospi_startprice[23]}, ${kospi_startprice[24]}, ${kospi_startprice[25]}, ${kospi_startprice[26]}, ${kospi_startprice[27]}, ${kospi_startprice[28]}, ${kospi_startprice[29]}, ${kospi_startprice[30]}, ${kospi_startprice[31]}, ${kospi_startprice[32]}, ${kospi_startprice[33]}, ${kospi_startprice[34]}, ${kospi_startprice[35]}, ${kospi_startprice[36]}, ${kospi_startprice[37]}, ${kospi_startprice[38]}, ${kospi_startprice[39]}, ${kospi_startprice[40]}, ${kospi_startprice[41]}, ${kospi_startprice[42]}, ${kospi_startprice[43]}, ${kospi_startprice[44]}, ${kospi_startprice[45]}, ${kospi_startprice[46]}, ${kospi_startprice[47]}, ${kospi_startprice[48]}, ${kospi_startprice[49]}, ${kospi_startprice[50]}, ${kospi_startprice[51]}, ${kospi_startprice[52]}, ${kospi_startprice[53]}, ${kospi_startprice[54]}, ${kospi_startprice[55]}, ${kospi_startprice[56]}, ${kospi_startprice[57]}, ${kospi_startprice[58]}, ${kospi_startprice[59]}];
+   			var kospi_highprice = [${kospi_highprice[0]}, ${kospi_highprice[1]}, ${kospi_highprice[2]}, ${kospi_highprice[3]}, ${kospi_highprice[4]}, ${kospi_highprice[5]}, ${kospi_highprice[6]}, ${kospi_highprice[7]}, ${kospi_highprice[8]}, ${kospi_highprice[9]}, ${kospi_highprice[10]}, ${kospi_highprice[11]}, ${kospi_highprice[12]}, ${kospi_highprice[13]}, ${kospi_highprice[14]}, ${kospi_highprice[15]}, ${kospi_highprice[16]}, ${kospi_highprice[17]}, ${kospi_highprice[18]}, ${kospi_highprice[19]}, ${kospi_highprice[20]}, ${kospi_highprice[21]}, ${kospi_highprice[22]}, ${kospi_highprice[23]}, ${kospi_highprice[24]}, ${kospi_highprice[25]}, ${kospi_highprice[26]}, ${kospi_highprice[27]}, ${kospi_highprice[28]}, ${kospi_highprice[29]}, ${kospi_highprice[30]}, ${kospi_highprice[31]}, ${kospi_highprice[32]}, ${kospi_highprice[33]}, ${kospi_highprice[34]}, ${kospi_highprice[35]}, ${kospi_highprice[36]}, ${kospi_highprice[37]}, ${kospi_highprice[38]}, ${kospi_highprice[39]}, ${kospi_highprice[40]}, ${kospi_highprice[41]}, ${kospi_highprice[42]}, ${kospi_highprice[43]}, ${kospi_highprice[44]}, ${kospi_highprice[45]}, ${kospi_highprice[46]}, ${kospi_highprice[47]}, ${kospi_highprice[48]}, ${kospi_highprice[49]}, ${kospi_highprice[50]}, ${kospi_highprice[51]}, ${kospi_highprice[52]}, ${kospi_highprice[53]}, ${kospi_highprice[54]}, ${kospi_highprice[55]}, ${kospi_highprice[56]}, ${kospi_highprice[57]}, ${kospi_highprice[58]}, ${kospi_highprice[59]}];
+   			var kospi_lowprice = [${kospi_lowprice[0]}, ${kospi_lowprice[1]}, ${kospi_lowprice[2]}, ${kospi_lowprice[3]}, ${kospi_lowprice[4]}, ${kospi_lowprice[5]}, ${kospi_lowprice[6]}, ${kospi_lowprice[7]}, ${kospi_lowprice[8]}, ${kospi_lowprice[9]}, ${kospi_lowprice[10]}, ${kospi_lowprice[11]}, ${kospi_lowprice[12]}, ${kospi_lowprice[13]}, ${kospi_lowprice[14]}, ${kospi_lowprice[15]}, ${kospi_lowprice[16]}, ${kospi_lowprice[17]}, ${kospi_lowprice[18]}, ${kospi_lowprice[19]}, ${kospi_lowprice[20]}, ${kospi_lowprice[21]}, ${kospi_lowprice[22]}, ${kospi_lowprice[23]}, ${kospi_lowprice[24]}, ${kospi_lowprice[25]}, ${kospi_lowprice[26]}, ${kospi_lowprice[27]}, ${kospi_lowprice[28]}, ${kospi_lowprice[29]}, ${kospi_lowprice[30]}, ${kospi_lowprice[31]}, ${kospi_lowprice[32]}, ${kospi_lowprice[33]}, ${kospi_lowprice[34]}, ${kospi_lowprice[35]}, ${kospi_lowprice[36]}, ${kospi_lowprice[37]}, ${kospi_lowprice[38]}, ${kospi_lowprice[39]}, ${kospi_lowprice[40]}, ${kospi_lowprice[41]}, ${kospi_lowprice[42]}, ${kospi_lowprice[43]}, ${kospi_lowprice[44]}, ${kospi_lowprice[45]}, ${kospi_lowprice[46]}, ${kospi_lowprice[47]}, ${kospi_lowprice[48]}, ${kospi_lowprice[49]}, ${kospi_lowprice[50]}, ${kospi_lowprice[51]}, ${kospi_lowprice[52]}, ${kospi_lowprice[53]}, ${kospi_lowprice[54]}, ${kospi_lowprice[55]}, ${kospi_lowprice[56]}, ${kospi_lowprice[57]}, ${kospi_lowprice[58]}, ${kospi_lowprice[59]}];
+   			var kospi_lastprice = [${kospi_lastprice[0]}, ${kospi_lastprice[1]}, ${kospi_lastprice[2]}, ${kospi_lastprice[3]}, ${kospi_lastprice[4]}, ${kospi_lastprice[5]}, ${kospi_lastprice[6]}, ${kospi_lastprice[7]}, ${kospi_lastprice[8]}, ${kospi_lastprice[9]}, ${kospi_lastprice[10]}, ${kospi_lastprice[11]}, ${kospi_lastprice[12]}, ${kospi_lastprice[13]}, ${kospi_lastprice[14]}, ${kospi_lastprice[15]}, ${kospi_lastprice[16]}, ${kospi_lastprice[17]}, ${kospi_lastprice[18]}, ${kospi_lastprice[19]}, ${kospi_lastprice[20]}, ${kospi_lastprice[21]}, ${kospi_lastprice[22]}, ${kospi_lastprice[23]}, ${kospi_lastprice[24]}, ${kospi_lastprice[25]}, ${kospi_lastprice[26]}, ${kospi_lastprice[27]}, ${kospi_lastprice[28]}, ${kospi_lastprice[29]}, ${kospi_lastprice[30]}, ${kospi_lastprice[31]}, ${kospi_lastprice[32]}, ${kospi_lastprice[33]}, ${kospi_lastprice[34]}, ${kospi_lastprice[35]}, ${kospi_lastprice[36]}, ${kospi_lastprice[37]}, ${kospi_lastprice[38]}, ${kospi_lastprice[39]}, ${kospi_lastprice[40]}, ${kospi_lastprice[41]}, ${kospi_lastprice[42]}, ${kospi_lastprice[43]}, ${kospi_lastprice[44]}, ${kospi_lastprice[45]}, ${kospi_lastprice[46]}, ${kospi_lastprice[47]}, ${kospi_lastprice[48]}, ${kospi_lastprice[49]}, ${kospi_lastprice[50]}, ${kospi_lastprice[51]}, ${kospi_lastprice[52]}, ${kospi_lastprice[53]}, ${kospi_lastprice[54]}, ${kospi_lastprice[55]}, ${kospi_lastprice[56]}, ${kospi_lastprice[57]}, ${kospi_lastprice[58]}, ${kospi_lastprice[59]}];
    			var mainData = [];
    			for (var i = 0; i < 60; i++) {
    				mainData.push({
    			         x: new Date(
-   			        		 parseInt(day_d[i]/10000),
-   			                  parseInt(day_d[i]%10000/100)-1,
-   			                  day_d[i]%100+1
+   			        		 parseInt(kospi_d[i]/10000),
+   			                  parseInt(kospi_d[i]%10000/100)-1,
+   			               kospi_d[i]%100+1
    			                  ),
-   			         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
-   		                parseFloat(day_lowprice[i]),
-   		                parseFloat(day_lastprice[i])/100 ]
+   			         y:  [ parseFloat(kospi_startprice[i]), parseFloat(kospi_highprice[i]),
+   		                parseFloat(kospi_lowprice[i]),
+   		                parseFloat(kospi_lastprice[i])/100 ]
    			     });
    			 }
    		    
@@ -495,6 +532,7 @@
    		        chart: {
    		            type: 'candlestick',
    		            redrawOnParentResize: true,
+   		        	 height: '300px',
    		            zoom: {
    		                enabled: false}
    		        },
@@ -547,8 +585,8 @@
    				          horizontal: false,
    				          startingShape: 'flat',
    				          endingShape: 'flat',
-   				          columnWidth: '15%',
-   				          barHeight: '70%',
+   				          columnWidth: '12%',
+   				          barHeight: '80%',
    				          distributed: false,
    				          rangeBarOverlap: true,
    				          colors: {
@@ -574,8 +612,121 @@
 
    		    var chart = new ApexCharts(document.querySelector("#chartcontainer"), options);
    		    chart.render();
-			
+   		    
+   		    
+   		 var kosdaq_d = [${kosdaq_d[0]}, ${kosdaq_d[1]}, ${kosdaq_d[2]}, ${kosdaq_d[3]}, ${kosdaq_d[4]}, ${kosdaq_d[5]}, ${kosdaq_d[6]}, ${kosdaq_d[7]}, ${kosdaq_d[8]}, ${kosdaq_d[9]}, ${kosdaq_d[10]}, ${kosdaq_d[11]}, ${kosdaq_d[12]}, ${kosdaq_d[13]}, ${kosdaq_d[14]}, ${kosdaq_d[15]}, ${kosdaq_d[16]}, ${kosdaq_d[17]}, ${kosdaq_d[18]}, ${kosdaq_d[19]}, ${kosdaq_d[20]}, ${kosdaq_d[21]}, ${kosdaq_d[22]}, ${kosdaq_d[23]}, ${kosdaq_d[24]}, ${kosdaq_d[25]}, ${kosdaq_d[26]}, ${kosdaq_d[27]}, ${kosdaq_d[28]}, ${kosdaq_d[29]}, ${kosdaq_d[30]}, ${kosdaq_d[31]}, ${kosdaq_d[32]}, ${kosdaq_d[33]}, ${kosdaq_d[34]}, ${kosdaq_d[35]}, ${kosdaq_d[36]}, ${kosdaq_d[37]}, ${kosdaq_d[38]}, ${kosdaq_d[39]}, ${kosdaq_d[40]}, ${kosdaq_d[41]}, ${kosdaq_d[42]}, ${kosdaq_d[43]}, ${kosdaq_d[44]}, ${kosdaq_d[45]}, ${kosdaq_d[46]}, ${kosdaq_d[47]}, ${kosdaq_d[48]}, ${kosdaq_d[49]}, ${kosdaq_d[50]}, ${kosdaq_d[51]}, ${kosdaq_d[52]}, ${kosdaq_d[53]}, ${kosdaq_d[54]}, ${kosdaq_d[55]}, ${kosdaq_d[56]}, ${kosdaq_d[57]}, ${kosdaq_d[58]}, ${kosdaq_d[59]}]; 
+			var kosdaq_startprice = [${kosdaq_startprice[0]}, ${kosdaq_startprice[1]}, ${kosdaq_startprice[2]}, ${kosdaq_startprice[3]}, ${kosdaq_startprice[4]}, ${kosdaq_startprice[5]}, ${kosdaq_startprice[6]}, ${kosdaq_startprice[7]}, ${kosdaq_startprice[8]}, ${kosdaq_startprice[9]}, ${kosdaq_startprice[10]}, ${kosdaq_startprice[11]}, ${kosdaq_startprice[12]}, ${kosdaq_startprice[13]}, ${kosdaq_startprice[14]}, ${kosdaq_startprice[15]}, ${kosdaq_startprice[16]}, ${kosdaq_startprice[17]}, ${kosdaq_startprice[18]}, ${kosdaq_startprice[19]}, ${kosdaq_startprice[20]}, ${kosdaq_startprice[21]}, ${kosdaq_startprice[22]}, ${kosdaq_startprice[23]}, ${kosdaq_startprice[24]}, ${kosdaq_startprice[25]}, ${kosdaq_startprice[26]}, ${kosdaq_startprice[27]}, ${kosdaq_startprice[28]}, ${kosdaq_startprice[29]}, ${kosdaq_startprice[30]}, ${kosdaq_startprice[31]}, ${kosdaq_startprice[32]}, ${kosdaq_startprice[33]}, ${kosdaq_startprice[34]}, ${kosdaq_startprice[35]}, ${kosdaq_startprice[36]}, ${kosdaq_startprice[37]}, ${kosdaq_startprice[38]}, ${kosdaq_startprice[39]}, ${kosdaq_startprice[40]}, ${kosdaq_startprice[41]}, ${kosdaq_startprice[42]}, ${kosdaq_startprice[43]}, ${kosdaq_startprice[44]}, ${kosdaq_startprice[45]}, ${kosdaq_startprice[46]}, ${kosdaq_startprice[47]}, ${kosdaq_startprice[48]}, ${kosdaq_startprice[49]}, ${kosdaq_startprice[50]}, ${kosdaq_startprice[51]}, ${kosdaq_startprice[52]}, ${kosdaq_startprice[53]}, ${kosdaq_startprice[54]}, ${kosdaq_startprice[55]}, ${kosdaq_startprice[56]}, ${kosdaq_startprice[57]}, ${kosdaq_startprice[58]}, ${kosdaq_startprice[59]}];
+			var kosdaq_highprice = [${kosdaq_highprice[0]}, ${kosdaq_highprice[1]}, ${kosdaq_highprice[2]}, ${kosdaq_highprice[3]}, ${kosdaq_highprice[4]}, ${kosdaq_highprice[5]}, ${kosdaq_highprice[6]}, ${kosdaq_highprice[7]}, ${kosdaq_highprice[8]}, ${kosdaq_highprice[9]}, ${kosdaq_highprice[10]}, ${kosdaq_highprice[11]}, ${kosdaq_highprice[12]}, ${kosdaq_highprice[13]}, ${kosdaq_highprice[14]}, ${kosdaq_highprice[15]}, ${kosdaq_highprice[16]}, ${kosdaq_highprice[17]}, ${kosdaq_highprice[18]}, ${kosdaq_highprice[19]}, ${kosdaq_highprice[20]}, ${kosdaq_highprice[21]}, ${kosdaq_highprice[22]}, ${kosdaq_highprice[23]}, ${kosdaq_highprice[24]}, ${kosdaq_highprice[25]}, ${kosdaq_highprice[26]}, ${kosdaq_highprice[27]}, ${kosdaq_highprice[28]}, ${kosdaq_highprice[29]}, ${kosdaq_highprice[30]}, ${kosdaq_highprice[31]}, ${kosdaq_highprice[32]}, ${kosdaq_highprice[33]}, ${kosdaq_highprice[34]}, ${kosdaq_highprice[35]}, ${kosdaq_highprice[36]}, ${kosdaq_highprice[37]}, ${kosdaq_highprice[38]}, ${kosdaq_highprice[39]}, ${kosdaq_highprice[40]}, ${kosdaq_highprice[41]}, ${kosdaq_highprice[42]}, ${kosdaq_highprice[43]}, ${kosdaq_highprice[44]}, ${kosdaq_highprice[45]}, ${kosdaq_highprice[46]}, ${kosdaq_highprice[47]}, ${kosdaq_highprice[48]}, ${kosdaq_highprice[49]}, ${kosdaq_highprice[50]}, ${kosdaq_highprice[51]}, ${kosdaq_highprice[52]}, ${kosdaq_highprice[53]}, ${kosdaq_highprice[54]}, ${kosdaq_highprice[55]}, ${kosdaq_highprice[56]}, ${kosdaq_highprice[57]}, ${kosdaq_highprice[58]}, ${kosdaq_highprice[59]}];
+			var kosdaq_lowprice = [${kosdaq_lowprice[0]}, ${kosdaq_lowprice[1]}, ${kosdaq_lowprice[2]}, ${kosdaq_lowprice[3]}, ${kosdaq_lowprice[4]}, ${kosdaq_lowprice[5]}, ${kosdaq_lowprice[6]}, ${kosdaq_lowprice[7]}, ${kosdaq_lowprice[8]}, ${kosdaq_lowprice[9]}, ${kosdaq_lowprice[10]}, ${kosdaq_lowprice[11]}, ${kosdaq_lowprice[12]}, ${kosdaq_lowprice[13]}, ${kosdaq_lowprice[14]}, ${kosdaq_lowprice[15]}, ${kosdaq_lowprice[16]}, ${kosdaq_lowprice[17]}, ${kosdaq_lowprice[18]}, ${kosdaq_lowprice[19]}, ${kosdaq_lowprice[20]}, ${kosdaq_lowprice[21]}, ${kosdaq_lowprice[22]}, ${kosdaq_lowprice[23]}, ${kosdaq_lowprice[24]}, ${kosdaq_lowprice[25]}, ${kosdaq_lowprice[26]}, ${kosdaq_lowprice[27]}, ${kosdaq_lowprice[28]}, ${kosdaq_lowprice[29]}, ${kosdaq_lowprice[30]}, ${kosdaq_lowprice[31]}, ${kosdaq_lowprice[32]}, ${kosdaq_lowprice[33]}, ${kosdaq_lowprice[34]}, ${kosdaq_lowprice[35]}, ${kosdaq_lowprice[36]}, ${kosdaq_lowprice[37]}, ${kosdaq_lowprice[38]}, ${kosdaq_lowprice[39]}, ${kosdaq_lowprice[40]}, ${kosdaq_lowprice[41]}, ${kosdaq_lowprice[42]}, ${kosdaq_lowprice[43]}, ${kosdaq_lowprice[44]}, ${kosdaq_lowprice[45]}, ${kosdaq_lowprice[46]}, ${kosdaq_lowprice[47]}, ${kosdaq_lowprice[48]}, ${kosdaq_lowprice[49]}, ${kosdaq_lowprice[50]}, ${kosdaq_lowprice[51]}, ${kosdaq_lowprice[52]}, ${kosdaq_lowprice[53]}, ${kosdaq_lowprice[54]}, ${kosdaq_lowprice[55]}, ${kosdaq_lowprice[56]}, ${kosdaq_lowprice[57]}, ${kosdaq_lowprice[58]}, ${kosdaq_lowprice[59]}];
+			var kosdaq_lastprice = [${kosdaq_lastprice[0]}, ${kosdaq_lastprice[1]}, ${kosdaq_lastprice[2]}, ${kosdaq_lastprice[3]}, ${kosdaq_lastprice[4]}, ${kosdaq_lastprice[5]}, ${kosdaq_lastprice[6]}, ${kosdaq_lastprice[7]}, ${kosdaq_lastprice[8]}, ${kosdaq_lastprice[9]}, ${kosdaq_lastprice[10]}, ${kosdaq_lastprice[11]}, ${kosdaq_lastprice[12]}, ${kosdaq_lastprice[13]}, ${kosdaq_lastprice[14]}, ${kosdaq_lastprice[15]}, ${kosdaq_lastprice[16]}, ${kosdaq_lastprice[17]}, ${kosdaq_lastprice[18]}, ${kosdaq_lastprice[19]}, ${kosdaq_lastprice[20]}, ${kosdaq_lastprice[21]}, ${kosdaq_lastprice[22]}, ${kosdaq_lastprice[23]}, ${kosdaq_lastprice[24]}, ${kosdaq_lastprice[25]}, ${kosdaq_lastprice[26]}, ${kosdaq_lastprice[27]}, ${kosdaq_lastprice[28]}, ${kosdaq_lastprice[29]}, ${kosdaq_lastprice[30]}, ${kosdaq_lastprice[31]}, ${kosdaq_lastprice[32]}, ${kosdaq_lastprice[33]}, ${kosdaq_lastprice[34]}, ${kosdaq_lastprice[35]}, ${kosdaq_lastprice[36]}, ${kosdaq_lastprice[37]}, ${kosdaq_lastprice[38]}, ${kosdaq_lastprice[39]}, ${kosdaq_lastprice[40]}, ${kosdaq_lastprice[41]}, ${kosdaq_lastprice[42]}, ${kosdaq_lastprice[43]}, ${kosdaq_lastprice[44]}, ${kosdaq_lastprice[45]}, ${kosdaq_lastprice[46]}, ${kosdaq_lastprice[47]}, ${kosdaq_lastprice[48]}, ${kosdaq_lastprice[49]}, ${kosdaq_lastprice[50]}, ${kosdaq_lastprice[51]}, ${kosdaq_lastprice[52]}, ${kosdaq_lastprice[53]}, ${kosdaq_lastprice[54]}, ${kosdaq_lastprice[55]}, ${kosdaq_lastprice[56]}, ${kosdaq_lastprice[57]}, ${kosdaq_lastprice[58]}, ${kosdaq_lastprice[59]}];
+			var mainData = [];
+			for (var i = 0; i < 60; i++) {
+				mainData.push({
+			         x: new Date(
+			        		 parseInt(kosdaq_d[i]/10000),
+			                  parseInt(kosdaq_d[i]%10000/100)-1,
+			               kosdaq_d[i]%100+1
+			                  ),
+			         y:  [ parseFloat(kosdaq_startprice[i]), parseFloat(kosdaq_highprice[i]),
+		                parseFloat(kosdaq_lowprice[i]),
+		                parseFloat(kosdaq_lastprice[i])/100 ]
+			     });
+			 }
+		    
+		    var options = {
+		   		
+		        series: [{
+		        	data: mainData
+		        }],
+		        chart: {
+		            type: 'candlestick',
+		            redrawOnParentResize: true,
+		        	 height: '300px',
+		            zoom: {
+		                enabled: false}
+		        },
+		        xaxis: {
+		            type: 'datetime',
+		            labels: {
+		                datetimeFormatter: {
+		                    year: 'yyyy',
+		                    month: 'MM/dd',
+		                    day: 'dd',
+		                    hour: 'HH:mm'
+		                }
+		            },
+		            tooltip: {
+		                formatter: function(val, opts) {
+		                  var st = new Date(val);
+		                  var mon = st.getMonth()+1;
+		                  var day = st.getDate()-1;
+		                  if(day == 0 ){
+		               	   day = 31;
+		               	   mon = mon-1;
+		                  }
+		                  var text = mon + "/" +day;
+		                  return text
+		                }
+		              }
+		        },
+		        yaxis: {labels: {
+				    formatter: function (value) {
+		  		      	value = parseInt(value);
+				    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		  		    }
+		  		  },
+		            tooltip: {
+		                enabled: true
+		            }
+		        },
+		        
+		        plotOptions: {
+		       	 candlestick: {
+		       	        colors: {
+		       	          upward: '#FF0000',
+		       	          downward: '#5B5AFF'
+		       	        },
+		       	        wick: {
+		       	          useFillColor: true
+		       	        }
+		       	      }, 
+		       	 bar: {
+				          horizontal: false,
+				          startingShape: 'flat',
+				          endingShape: 'flat',
+				          columnWidth: '12%',
+				          barHeight: '80%',
+				          distributed: false,
+				          rangeBarOverlap: true,
+				          colors: {
+				              ranges: [{
+				                  from: 0,
+				                  to: 0,
+				                  color: undefined
+				              }],
+				              backgroundBarColors: [],
+				              backgroundBarOpacity: 1,
+				              backgroundBarRadius: 0,
+				          }
+				      }
+				  },
+				  tooltip: {
+					  custom: function({series, seriesIndex, dataPointIndex, w}) {
+		               
+					    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
+					  }
+					}
+				 
+		    };
+
+		    var chart_kosdaq = new ApexCharts(document.querySelector("#chartcontainer2"), options);
+		    chart_kosdaq.render();
+		    
+   		
 		})
+		
+		
+		
 
 </script>
 </body>

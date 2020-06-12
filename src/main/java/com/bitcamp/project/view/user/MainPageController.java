@@ -29,16 +29,25 @@ public class MainPageController {
 	@GetMapping(value = "/mainPage")
 	public ModelAndView mainPage(BoardVO vo) {
 		ModelAndView mav = new ModelAndView();
-		Map<String, Object> dayChart = tradeService.dayChart("종합주가지수");
+		Map<String, Object> kospiChart = tradeService.dayChart("종합주가지수");
+		Map<String, Object> kosdaqChart = tradeService.dayChart("(코스닥)종합");
+		
 		System.out.println("vo? "+vo);
-		Integer[][] dayChartData = new Integer[6][60];
+		Integer[][] kospiData = new Integer[6][60];
+		Integer[][] kosdaqData = new Integer[6][60];
 //
 		for (int i = 0; i < 60; i++) {
-			dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
-			dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
-			dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
-			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
-			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+			kospiData[0][i] = (Integer) ((HashMap) kospiChart.get(i)).get("d");
+			kospiData[2][i] = (Integer) ((HashMap) kospiChart.get(i)).get("startprice");
+			kospiData[3][i] = (Integer) ((HashMap) kospiChart.get(i)).get("highprice");
+			kospiData[4][i] = (Integer) ((HashMap) kospiChart.get(i)).get("lowprice");
+			kospiData[5][i] = (Integer) ((HashMap) kospiChart.get(i)).get("lastprice");
+			
+			kosdaqData[0][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("d");
+			kosdaqData[2][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("startprice");
+			kosdaqData[3][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("highprice");
+			kosdaqData[4][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("lowprice");
+			kosdaqData[5][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("lastprice");
 		}
 		
 		Map<String, Object> bestBoardList = boardService.boardList(vo, 0, "", "", "mainNew");
@@ -46,12 +55,20 @@ public class MainPageController {
 		mav.addObject("bestBoardList", (List<BoardVO>)bestBoardList.get("boardList"));
 		mav.addObject("newBoardList", (List<BoardVO>)newBoardList.get("boardList"));
 		
-		mav.addObject("current", ((HashMap) dayChart.get(0)).get("lastprice"));
-		mav.addObject("day_d", dayChartData[0]);
-		mav.addObject("day_startprice", dayChartData[2]);
-		mav.addObject("day_highprice", dayChartData[3]);
-		mav.addObject("day_lowprice", dayChartData[4]);
-		mav.addObject("day_lastprice", dayChartData[5]);
+		mav.addObject("current_kospi", ((HashMap) kospiChart.get(0)).get("lastprice"));
+		mav.addObject("current_kosdaq", ((HashMap) kosdaqChart.get(0)).get("lastprice"));
+		
+		mav.addObject("kosdaq_d", kosdaqData[0]);
+		mav.addObject("kosdaq_startprice", kosdaqData[2]);
+		mav.addObject("kosdaq_highprice", kosdaqData[3]);
+		mav.addObject("kosdaq_lowprice", kosdaqData[4]);
+		mav.addObject("kosdaq_lastprice", kosdaqData[5]);
+		
+		mav.addObject("kospi_d", kospiData[0]);
+		mav.addObject("kospi_startprice", kospiData[2]);
+		mav.addObject("kospi_highprice", kospiData[3]);
+		mav.addObject("kospi_lowprice", kospiData[4]);
+		mav.addObject("kospi_lastprice", kospiData[5]);
 
 		mav.setViewName("mainpage");
 		return mav;
@@ -63,29 +80,29 @@ public class MainPageController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		TopStock ts = new TopStock();
 
-//		Info topStock = ts.topStock();
-//		String[] topName = topStock.getTopName();
-//		String[] topCurrentPrice = topStock.getTopCurrentPrice();
-//		String[] topBefore = topStock.getTopBefore();
-//		String[] topUpDown = topStock.getTopUpDown();
-//		String[] searchName = topStock.getSearchName();
-//		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
-//		String[] searchUpDown = topStock.getSearchUpDown();
-//		String[] searchSangHa = topStock.getSearchSangHa();
-//
-//		for (int i = 0; i < topName.length; i++) {
-//			map.put("topName", topName);
-//			map.put("topCurrentPrice", topCurrentPrice);
-//			map.put("topBefore", topBefore);
-//			map.put("topUpDown", topUpDown);
-//		}
-//
-//		for (int i = 0; i < searchUpDown.length; i++) {
-//			map.put("searchName", searchName);
-//			map.put("searchCurrentPrice", searchCurrentPrice);
-//			map.put("searchUpDown", searchUpDown);
-//			map.put("searchSangHa", searchSangHa);
-//		}
+		Info topStock = ts.topStock();
+		String[] topName = topStock.getTopName();
+		String[] topCurrentPrice = topStock.getTopCurrentPrice();
+		String[] topBefore = topStock.getTopBefore();
+		String[] topUpDown = topStock.getTopUpDown();
+		String[] searchName = topStock.getSearchName();
+		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
+		String[] searchUpDown = topStock.getSearchUpDown();
+		String[] searchSangHa = topStock.getSearchSangHa();
+
+		for (int i = 0; i < topName.length; i++) {
+			map.put("topName", topName);
+			map.put("topCurrentPrice", topCurrentPrice);
+			map.put("topBefore", topBefore);
+			map.put("topUpDown", topUpDown);
+		}
+
+		for (int i = 0; i < searchUpDown.length; i++) {
+			map.put("searchName", searchName);
+			map.put("searchCurrentPrice", searchCurrentPrice);
+			map.put("searchUpDown", searchUpDown);
+			map.put("searchSangHa", searchSangHa);
+		}
 		return map;
 	}
 }

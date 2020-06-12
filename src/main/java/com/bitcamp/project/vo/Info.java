@@ -24,6 +24,7 @@ public class Info {
 	
 	private String[] searchName; // 검색 TOP 종목
 	private String[] searchCurrentPrice; // 검색 TOP 현재가
+	private String[] searchBefore; // 검색 TOP 전일비
 	private String[] searchUpDown; // 검색 TOP 인기등락률
 	private String[] searchSangHa; // 검색 TOP 전날대비 상승 하락
 	
@@ -116,6 +117,13 @@ public class Info {
 	}
 	public void setSearchCurrentPrice(String[] searchCurrentPrice) {
 		this.searchCurrentPrice = searchCurrentPrice;
+	}
+	
+	public String[] getSearchBefore() {
+		return searchBefore;
+	}
+	public void setSearchBefore(String[] searchBefore) {
+		this.searchBefore = searchBefore;
 	}
 	public String[] getSearchUpDown() {
 		return searchUpDown;

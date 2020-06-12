@@ -1,5 +1,7 @@
 package com.bitcamp.project.vo;
 
+import lombok.Data;
+
 public class UserVO {
 	private String id; 
 	private String pw;
@@ -90,9 +92,6 @@ public class UserVO {
 				+ ", showEsetSetting=" + showEsetSetting + ", address=" + address + ", charge=" + charge + ", friend="
 				+ friend + "]";
 	}
-	
-	
-	
 	
 	
 	

@@ -42,6 +42,13 @@ tr td button{
 	margin: 0;
 	padding: 0;
 } 
+.refresh, .fa-redo {
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 5px;
+    color: #333;
+}
 </style>
 
 <body>
@@ -67,6 +74,7 @@ tr td button{
 								</button>
 								<h3 class="btnOverInfo" id="h3_stockName">${stockName}</h3>
 								<span id="nowStock"> </span>
+								<a href="#" class="refresh"><i class="fas fa-redo"></i>새로고침</a>
 						<div class="stock-deal-button">
 								<button type="button"
 									class="btn btn-secondary companydata-btn stock-btn"
@@ -655,6 +663,7 @@ tr td button{
 			 	/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
+					console.log(data)
 						$('#element').css('margin', '5px');
 						$('#price,#m-price').text(data.currentPrice);
 						
@@ -758,6 +767,7 @@ tr td button{
 						var searchRank = "";
 						var a = 1;
 						
+
 					      for(var i=0; i<data.searchName.length; i++){
 					          if(data.searchSangHa[i]=="up"){
 					            searchRank += '<tr class="up">'
@@ -917,12 +927,12 @@ tr td button{
 	        	          useFillColor: true
 	        	        }
 	        	      }, 
-	        	 bar: {
+	        	 bar: { //분차트 바 조정
 			          horizontal: false,
 			          startingShape: 'flat',
 			          endingShape: 'flat',
-			          columnWidth: '15%',
-			          barHeight: '70%',
+			          columnWidth: '25%',
+			          barHeight: '10%',
 			          distributed: false,
 			          rangeBarOverlap: true,
 			          colors: {
@@ -1025,12 +1035,12 @@ tr td button{
 	        	          useFillColor: true
 	        	        }
 	        	      }, 
-	        	 bar: {
+	        	 bar: { //일차트 클릭
 			          horizontal: false,
 			          startingShape: 'flat',
 			          endingShape: 'flat',
-			          columnWidth: '15%',
-			          barHeight: '70%',
+			          columnWidth: '11%',
+			          barHeight: '80%',
 			          distributed: false,
 			          rangeBarOverlap: true,
 			          colors: {
@@ -1128,12 +1138,12 @@ tr td button{
        	          useFillColor: true
        	        }
        	      }, 
-       	 bar: {
+       	 bar: { //일차트 메인
 		          horizontal: false,
 		          startingShape: 'flat',
 		          endingShape: 'flat',
-		          columnWidth: '15%',
-		          barHeight: '70%',
+		          columnWidth: '12%',
+		          barHeight: '80%',
 		          distributed: false,
 		          rangeBarOverlap: true,
 		          colors: {
