@@ -2,7 +2,6 @@ package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -119,17 +118,16 @@ public class TradeController {
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
 			@RequestParam(value = "cancleModify") String modify) {
-		String id = null;
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = "test"; // test 용 아이디
 		ModelAndView mav = new ModelAndView();
-		try {
-			id = ((UserVO) session.getAttribute("loginUser")).getId();
-		} catch (Exception e) {
+
+		if (id == null) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/signInPage");
 			mav.setViewName("notice");
 			return mav;
 		}
-//		String id = "test"; // test 용 아이디
 
 		StockVO vo = new StockVO();
 
@@ -158,7 +156,7 @@ public class TradeController {
 				return mav;
 			}
 
-			vo.setNewPrice(Integer.parseInt(price.replaceAll(",", "")));
+			vo.setNewPrice(Integer.parseInt(price));
 			vo.setNewQuantity(Integer.parseInt(qu));
 			vo.setQuantity((Integer) unsettledDetail.get("quantity"));
 			int myStockQu = tradeService.getStockQuantity(vo);
@@ -353,10 +351,10 @@ public class TradeController {
 				dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
 			}
 		} catch (Exception e) {
-//			mav.addObject("msg", "정확한 종목명을 입력해주세요");
-//			mav.addObject("location", "/trade");
-//			mav.setViewName("notice");
-//			return mav;
+			mav.addObject("msg", "정확한 종목명을 입력해주세요");
+			mav.addObject("location", "/trade");
+			mav.setViewName("notice");
+			return mav;
 		}
 
 		mav.addObject("min_d", minChartData[0]);
@@ -387,8 +385,6 @@ public class TradeController {
 		StockParsing st = new StockParsing();
 
 		String stockCode = tradeService.stockSearch(stockName);
-//		System.out.println("stockName "+stockName);
-		
 		Info trade = st.parse(stockCode);
 //		System.out.println(trade.toString());
 
@@ -412,7 +408,7 @@ public class TradeController {
 		String[] up = new String[6];
 		String[] down = new String[6];
 		String currentPrice = null;
-		
+
 		for (int i = 0; i < up_.length; i++) {
 
 			up[i] = formatter.format(up_[i]);
@@ -427,8 +423,8 @@ public class TradeController {
 		JSONObject obj = new JSONObject();
 		JSONArray jArray = new JSONArray();
 
+		JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 		for (int i = 0; i < up.length; i++) {
-			JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 			sObject.put("up", up[i]);
 			sObject.put("down", down[i]);
 			jArray.add(sObject);
@@ -446,18 +442,31 @@ public class TradeController {
 
 		TopStock ts = new TopStock();
 
-//		Info topStock = ts.topStock();
-//		String[] topName = topStock.getTopName();
-//		String[] topCurrentPrice = topStock.getTopCurrentPrice();
-//		String[] topBefore = topStock.getTopBefore();
-//		String[] topUpDown = topStock.getTopUpDown();
-//		String[] searchName = topStock.getSearchName();
-//		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
-//		String[] searchUpDown = topStock.getSearchUpDown();
-//		String[] searchSangHa = topStock.getSearchSangHa();
-//
-//		for (int i = 0; i < topBefore.length; i++) {
-//			map.put("topName", topName);
+		Info topStock = ts.topStock();
+		String[] topName = topStock.getTopName();
+		String[] topCurrentPrice = topStock.getTopCurrentPrice();
+		String[] topBefore = topStock.getTopBefore();
+		String[] topUpDown = topStock.getTopUpDown();
+		String[] searchName = topStock.getSearchName();
+		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
+		String[] searchBefore = topStock.getSearchBefore();
+		String[] searchUpDown = topStock.getSearchUpDown();
+		String[] searchSangHa = topStock.getSearchSangHa();
+
+		for (int i = 0; i < topName.length; i++) {
+			map.put("topName", topName);
+			map.put("topCurrentPrice", topCurrentPrice);
+			map.put("topBefore", topBefore);
+			map.put("topUpDown", topUpDown);
+		}
+
+		for (int i = 0; i < searchUpDown.length; i++) {
+			map.put("searchName", searchName);
+			map.put("searchCurrentPrice", searchCurrentPrice);
+			map.put("searchBefore", searchBefore);
+			map.put("searchUpDown", searchUpDown);
+			map.put("searchSangHa", searchSangHa);
+		}
 
 		// 차트
 

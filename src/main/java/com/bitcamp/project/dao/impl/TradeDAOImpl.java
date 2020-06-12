@@ -122,5 +122,11 @@ public class TradeDAOImpl implements TradeDAO {
 		return mybatis.selectList("stock.getHistory", id);
 	}
 	
+	
+//	// 종목 랭킹 파싱에 필요할 수 있어서 만듬
+//	public String stockNameSearch(String stockName) {
+//		return mybatis.selectOne("stock.stockNameSearch", stockName);
+//	}
+	
 
 }
