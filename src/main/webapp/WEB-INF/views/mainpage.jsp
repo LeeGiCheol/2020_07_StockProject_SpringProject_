@@ -495,6 +495,7 @@
    		        chart: {
    		            type: 'candlestick',
    		            redrawOnParentResize: true,
+   		        	 height: '300px',
    		            zoom: {
    		                enabled: false}
    		        },
