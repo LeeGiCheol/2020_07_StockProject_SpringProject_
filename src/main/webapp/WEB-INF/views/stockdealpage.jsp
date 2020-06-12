@@ -758,7 +758,9 @@ tr td button{
 						var searchRank = "";
 						var a = 1;
 						
+
 					      for(var i=0; i<data.searchName.length; i++){
+					    	  console.log(data.searchUpDown[i])
 					          if(data.searchSangHa[i]=="up"){
 					            searchRank += '<tr class="up">'
 					          }

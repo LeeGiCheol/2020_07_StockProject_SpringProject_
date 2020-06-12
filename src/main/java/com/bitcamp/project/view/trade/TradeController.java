@@ -2,6 +2,7 @@ package com.bitcamp.project.view.trade;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -453,6 +454,9 @@ public class TradeController {
 		String[] searchUpDown = topStock.getSearchUpDown();
 		String[] searchSangHa = topStock.getSearchSangHa();
 
+		System.out.println("----------"+Arrays.toString(topUpDown));
+		System.out.println("++++++++++"+Arrays.toString(searchUpDown));
+		
 		for (int i = 0; i < topName.length; i++) {
 			map.put("topName", topName);
 			map.put("topCurrentPrice", topCurrentPrice);
