@@ -655,6 +655,7 @@ tr td button{
 			 	/* data : JSON.stringify(jsonData),  */
 				datatype : "JSON",
 				success : function(data) {
+					console.log(data)
 						$('#element').css('margin', '5px');
 						$('#price,#m-price').text(data.currentPrice);
 						
@@ -760,7 +761,6 @@ tr td button{
 						
 
 					      for(var i=0; i<data.searchName.length; i++){
-					    	  console.log(data.searchUpDown[i])
 					          if(data.searchSangHa[i]=="up"){
 					            searchRank += '<tr class="up">'
 					          }

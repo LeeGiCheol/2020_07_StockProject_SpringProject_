@@ -145,7 +145,7 @@ public class TradeController {
 		}
 
 		vo.setCategory((String) unsettledDetail.get("category"));
-		vo.setrPrice((Integer) unsettledDetail.get("rPrice"));
+		vo.setRPrice((Integer) unsettledDetail.get("rPrice"));
 		vo.setStockName((String) unsettledDetail.get("stockName"));
 
 		switch (modify) {
@@ -243,7 +243,7 @@ public class TradeController {
 			return mav;
 		}
 
-		vo.setrPrice(Integer.parseInt(price));
+		vo.setRPrice(Integer.parseInt(price));
 
 		tradeService.stockSelling(vo);
 		mav.addObject("msg", "매도 등록: " + stockName + ", " + price);
@@ -281,7 +281,7 @@ public class TradeController {
 		vo.setId(id);
 		vo.setQuantity(Integer.parseInt(qu));
 		vo.setStockName(stockName);
-		vo.setrPrice(Integer.parseInt(price));
+		vo.setRPrice(Integer.parseInt(price));
 
 		tradeService.stockBuying(vo);
 
@@ -422,10 +422,10 @@ public class TradeController {
 
 		// 배열을 json화 시켜서 보낸다 (호가)
 		JSONObject obj = new JSONObject();
-		JSONArray jArray = new JSONArray();
 
-		JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
+		JSONArray jArray = new JSONArray();
 		for (int i = 0; i < up.length; i++) {
+			JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 			sObject.put("up", up[i]);
 			sObject.put("down", down[i]);
 			jArray.add(sObject);
