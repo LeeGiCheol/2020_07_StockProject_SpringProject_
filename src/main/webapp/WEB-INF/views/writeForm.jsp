@@ -80,7 +80,8 @@
 					<textarea class="form-control" rows="5" name="bcontent" id="content" placeholder="내용을 입력해 주세요"></textarea>
 			   </div>
 			<div>
-				<button type="button" class="btn btn-sm btn-primary" onclick="btnSave()">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick="btnSave()" 
+				style="width: 66px; height: 35px; margin-bottom: 59px;">저장</button>
                 <button type="button" class="btn btn-sm btn-primary" id="btnCancle" onclick="window.location.href='/board/free'">취소</button>
 			</div>
 			</form>

@@ -157,13 +157,13 @@
 				</div>
 				<div class="m-drop-down">
 					<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-						<a href="/board/free">뉴스</a>
+						<a href="/news">뉴스</a>
 					</h1>
 					<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-						<a href="#">자유게시판</a>
+						<a href="/board/free">자유게시판</a>
 					</h1>
 					<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
-						<a href="/news">포트폴리오</a>
+						<a href="#">포트폴리오</a>
 					</h1>
 				</div>
 				<div class="newsboard-nav">
@@ -783,27 +783,104 @@
 						</ul>
 					</div>
 				</div>
-				<!-- <div class="paging">
-					<div class="paging-body">
-						<ul class="pagination" id="pagination"></ul>
-					</div>
+				
+				<!-- 페이징 -->
+				<div class="paging">	
+					<div class="paging-body">				
+					<nav aria-label="..." class="pagination">
+					    <ul class="pagination">
+					
+					<c:if test="${boardPage.nowPage != 1}">
+					      <!-- << 버튼 -->
+					      <li>
+					        <a class="page-link"
+					          href="/board/free?bnowPage=1"
+					          tabindex="-1" aria-disabled="true">
+					          <i class="fas fa-angle-double-left"></i>
+					        </a>
+					      </li>
+					      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage == 1}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            tabindex="-1" aria-disabled="true">
+					            <i class="fas fa-angle-left"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					</c:if>
+					      
+					      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage != 1}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage-1}"
+					            tabindex="-1" aria-disabled="true">
+					            <i class="fas fa-angle-left"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 한번에 5개 페이지 보여줌 -->
+					       <c:forEach begin="${boardPage.startPage }"
+					        end="${boardPage.endPage }" var="p">
+					        <c:choose>
+					          <c:when test="${p == boardPage.nowPage}">
+					            <li class="page-item active" aria-current="page">
+					              <a class="page-link" href="#">${p}
+					                <span class="sr-only">(current)</span>
+					              </a>
+					            </li>
+					          </c:when>
+					          <c:when test="${p != boardPage.nowPage}">
+					            <li class="page-item">
+					              <a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
+					            </li>
+					          </c:when>
+					        </c:choose>
+					      </c:forEach> 
+					      
+					      
+					      
+					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
+					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            tabindex="+1" aria-disabled="true">
+					            <i class="fas fa-angle-right"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage+1}"
+					            tabindex="+1" aria-disabled="true" data-ajax="false">
+					            <i class="fas fa-angle-right"></i>
+					          </a>
+					        </li>
+					      </c:if> 
+					
+					      <!-- >> 버튼 -->
+					      <li>
+					        <a class="page-link"
+					        href="/board/free?bnowPage=${boardPage.lastPage}"
+					        tabindex="-1" aria-disabled="true">
+					          <i class="fas fa-angle-double-right"></i>
+					        </a>
+					      </li>
+					      
+					      </c:if>
+					    </ul>
+					  </nav>
+					 </div>
 				</div>
-
-				<div class="board-search">
-					<span class="select-style">
-						<div class="btn-group bootstrap-select">
-							<select name="searchType" id="searchType" class="" tabindex="-98">
-								<option value="cnt" cnt="">제목+내용</option>
-								<option value="regmnNicknm" regmnnicknm="">제목</option>
-								<option value="regmnId" regmnid="">내용</option>
-							</select>
-						</div>
-					</span>
-					<span class="input-style">
-							<input type="text" placeholder="검색어 입력" id="searchText" name="searchText" value="">
-							<button type="button" class="search" onclick="javascript:goSearch();">검색</button>
-					</span>
-				</div> -->
+				
 				<div class="search-area">
 					<div  class="search-area-body">
 					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">

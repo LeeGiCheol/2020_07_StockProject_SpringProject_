@@ -134,34 +134,6 @@ position: relative;
 	
 	<div class="containerNew">
 	<!-- article start -->
-	<!-- 상단메뉴 -->
-	<div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
-		<ul class="list-group mb-3">
-			<!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
-			<li
-				class="sideBarMenuSelect list-group-item d-flex justify-content-between lh-condensed free-board"
-				onclick="location.href='free-board.jsp'">
-				<div>
-					<h6 class="my-0">자유 게시판</h6>
-				</div>
-			</li>
-			<li
-				class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed news-borad"
-				onclick="location.href='newsboard.jsp'">
-				<div>
-					<h6 class="my-0">뉴스 게시판</h6>
-				</div>
-			</li>
-			<li
-				class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed protfolio-board"
-				onclick="location.href='#'">
-				<div>
-					<h6 class="my-0">포트폴리오 게시판</h6>
-				</div>
-			</li>
-		</ul>
-	</div>
-	<!-- 상단메뉴 끝 -->
 	<article class="bg-light container">
 		<div class="allBody">
 			<div class="row">
