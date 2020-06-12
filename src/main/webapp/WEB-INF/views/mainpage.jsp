@@ -24,6 +24,7 @@
     margin: 0 auto;
 }
 .btnOverInfo {
+float:left;
     font-size: 28px;
     font-weight: 500;
     line-height: 28px;
@@ -42,6 +43,7 @@
 }
 .refresh {
 position:relative;
+    float: left;
     margin-left: 5px;
     font-size: 12px;
     font-weight: 600;
@@ -64,7 +66,7 @@ position:relative;
 					<div class="chartdata-1">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">
-							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 }</span></h3>
+							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current/100 } ${(day_lastprice[0]-day_lastprice[1])/100} ${fn:substring((day_lastprice[0]-day_lastprice[1])/day_lastprice[1]*100,0,5) }%</span></h3>
 							<a href="#" class="refresh"><i class="fas fa-redo"></i>새로고침</a>
 						</div>
 						<div id="chartcontainer"></div>
