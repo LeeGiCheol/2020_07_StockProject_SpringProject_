@@ -35,7 +35,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						<p class="txt">새로운 비밀번호를 등록해 주세요.</p>
 					</div>
 					<div class="form-table pass-reset">
-					<form action="/mypageUpdatePasswordCheck" method="post" id="frm" name="frm">
+					<form action="/mypageUpdatePasswordCheck" method="get" id="frm" name="frm">
 						<table>
 							<tbody>
 								<tr>
@@ -116,17 +116,10 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			url: '${pageContext.request.contextPath}/mypageUpdatePasswordCheck', 
 			data: { "nowPassword" : $('#nowPassword').val() }, 
 			success: function(data){ 
+				console.log(1)
 				 if(data == 1){
 					alert("비밀번호가 변경되었습니다.") 
-					 $.ajax({ 
-							type: 'GET', 
-							url: '${pageContext.request.contextPath}/mypageUpdatePasswordEnd', 
-							data: { "password" : $('#password').val() }, 
-							success:location.href = "/logOut" 
-							,
-							error: function(){
-							}
-						});  
+					location.href = "/logOut" 
 				 }else{
 					 alert("현재비밀번호가 일치하지않습니다.")
 					 location.href = "/mypageUpdatePassword";

@@ -36,7 +36,7 @@
 
 	<insert id="signUp">
 		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
-		VALUES(#{id}, PASSWORD(#{pw}), #{nickname}, #{tel}, 10000000, #{showEsetSetting}, #{address}, 1);
+		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 10000000, #{showEsetSetting}, #{address}, 1);
 		
 		
 		<!-- sql 두개 쓰려면 ; 붙여줘야한다 -->

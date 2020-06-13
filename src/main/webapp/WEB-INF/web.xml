@@ -17,9 +17,15 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	
 	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext.xml</param-value>
+		<param-name>
+			contextConfigLocation
+		</param-name>
+		<param-value>
+			classpath:applicationContext.xml
+			/WEB-INF/spring/spring-security.xml
+		</param-value>
 	</context-param>
 	
 	<!-- DispatcherServlet이 생성되기 전에 어플리케이션을

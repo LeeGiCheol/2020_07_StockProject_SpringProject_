@@ -130,7 +130,7 @@ public class BoardController {
 		try {
 			vo.setId(uVo.getId());
 		}catch(Exception e) {
-			System.out.println("로그인해주ㅠ세요 페이지 만들기");
+			return 2;
 		}
 		
 		vo.setPno(pno);

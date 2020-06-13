@@ -18,6 +18,8 @@
 <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
+
 
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
@@ -739,6 +741,20 @@ padding: 25px 10px;
 				data : {"pno" : pno},
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
+					if(data == 0){
+						swal("좋아요", "", "success");
+					}
+					else if(data == 1){
+						swal("좋아요취소", "","error");
+					}
+					else if(data == 2){
+						swal("로그인해주세요", "","error").then(function() {
+							window.location = "/signInPage";
+						});
+					}
+					
+					
+					
 					list();
 					
 					    /* if (like=="좋아요") 
