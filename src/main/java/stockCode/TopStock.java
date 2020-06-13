@@ -153,8 +153,8 @@ public class TopStock {
 //				}
 //			}
 			
-			System.out.println(Arrays.toString(topName));
-			System.out.println(Arrays.toString(searchName));
+//			System.out.println(Arrays.toString(topName));
+//			System.out.println(Arrays.toString(searchName));
 			Info inf = new Info();
 			inf.setTopName(topName);
 			inf.setTopCurrentPrice(topCurrentPrice);

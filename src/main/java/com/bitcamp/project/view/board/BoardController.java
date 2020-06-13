@@ -82,7 +82,6 @@ public class BoardController {
 		
 		vo.setId(loginUser.getId());
 		vo.setBno(1); // 자유게시판
-		System.out.println("bovo "+vo);
 		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
 	}
