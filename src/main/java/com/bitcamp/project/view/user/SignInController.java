@@ -51,7 +51,7 @@ public class SignInController {
 				return mav;
 			}
 			else {
-				mav.addObject("msg", "로그인 실패!");
+				mav.addObject("msg", "아이디 또는 비밀번호가 틀립니다!");
 				mav.addObject("location", "/signInPage");
 				mav.setViewName("notice");
 				return mav;
