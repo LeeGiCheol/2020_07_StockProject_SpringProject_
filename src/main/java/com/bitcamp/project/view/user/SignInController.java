@@ -34,6 +34,7 @@ public class SignInController {
 	public ModelAndView signIn(@ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		UserVO vo = new UserVO();
+		System.out.println("pw : "+pw);
 		vo.setId(id);
 		vo = signInService.logIn(vo);
 //		if(vo != null)
