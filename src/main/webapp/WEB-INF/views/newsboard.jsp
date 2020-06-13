@@ -142,7 +142,7 @@
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li><a href="#"><span>포트폴리오</span></a></li>
+							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
 							<li class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>

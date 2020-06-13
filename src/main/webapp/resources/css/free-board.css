@@ -536,3 +536,7 @@ padding: 25px 10px;
     background: #eff3f6;
     text-indent: -9999px;
 }
+#cssmenu > ul > .mid {
+	border-bottom: 1px solid #d7d8da;
+	border-top: 1px solid #d7d8da;
+}

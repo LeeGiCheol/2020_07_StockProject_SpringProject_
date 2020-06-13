@@ -116,6 +116,54 @@ position: relative;
     padding: 20px 0 0 0;
     margin: 0 auto;
 }
+
+.row {
+   margin: 0;
+}
+.free-board {
+    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
+    margin-bottom: /*70px*/40px;
+    background: #fff;
+    position: relative;
+    border: 1px solid #dddddd;
+}
+.last{
+	border-bottom: 1px solid #eaeaea;
+}
+.m-drop-tit-title{
+    margin: 0 -30px 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 0 30px 20px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    line-height: 100%;
+}
+.tit-h1, .m-drop-tit-title {
+    margin: 0 -30px 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 0 30px 20px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    line-height: 100%;
+}
+.m-drop-tit-body a{
+	color: #848889;
+}
+.m-drop-tit-body:hover > a {
+  color: #000000;
+  font-weight: 600;
+}
+.m-drop-tit-body{
+    margin: 0 -30px 30px;
+    padding: 0 30px 20px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #888888;
+    font-weight: bold;
+    line-height: 100%;
+}
 @media (max-width: 979px)
 .containerNew {
     padding-top: 104px;
@@ -125,21 +173,220 @@ position: relative;
     padding: 0;
     padding-bottom: 170px;
 }
+
+
+.sidebar {
+  float: left;
+  width: auto;
+  border: 1px solid #dddddd;
+  padding: 10px
+}
+.col-md-10, .col-md-2{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+@media only screen and (max-width: 1599px)
+.board-page {
+    margin: 0 auto 100px;
+}
+/* .sidebar a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  display: block;
+  background-color: #dddddd;
+}
+
+.sidebar a:hover {
+  color: #212529;
+} */
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#cssmenu ul {
+  position: relative;
+  z-index: 597;
+  float: left;
+}
+#cssmenu ul li {
+  float: left;
+  min-height: 1px;
+  line-height: 1em;
+  vertical-align: middle;
+}
+#cssmenu ul li.hover,
+#cssmenu ul li:hover {
+  position: relative;
+  z-index: 599;
+  cursor: default;
+}
+#cssmenu ul ul {
+  margin-top: 1px;
+  visibility: hidden;
+  position: absolute;
+  top: 1px;
+  left: 99%;
+  z-index: 598;
+  width: 100%;
+}
+#cssmenu ul ul li {
+  float: none;
+}
+#cssmenu ul ul ul {
+  top: 1px;
+  left: 99%;
+}
+#cssmenu ul li:hover > ul {
+  visibility: visible;
+}
+#cssmenu ul li {
+  float: none;
+}
+#cssmenu ul ul li {
+  font-weight: normal;
+}
+/* Custom CSS Styles */
+#cssmenu {
+  font-size: 18px;
+  width: 200px;
+  background: white;
+  /* border: 1px solid #848889; */
+  border-bottom: 1px solid #d7d8da;
+  border-top: 1px solid #d7d8da;
+  border-right: 1px solid #d7d8da;
+}
+#cssmenu ul a,
+#cssmenu ul a:link,
+#cssmenu ul a:visited {
+	display: block;
+    color: #848889;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 16px;
+}
+#cssmenu > ul {
+  float: none;
+}
+#cssmenu ul {
+  background: #fff;
+}
+#cssmenu > ul > li {
+  border-left: 3px solid #d7d8da;
+}
+#cssmenu > ul > li > a {
+padding: 25px 10px;
+}
+#cssmenu > ul > li:hover {
+  border-left: 3px solid #000000;
+}
+#cssmenu ul li:hover > a {
+  color: #000000;
+  font-weight: 600;
+}
+#cssmenu > ul > li:hover {
+  background: #f6f6f6;
+}
+/* Sub Menu */
+#cssmenu ul ul a:link,
+#cssmenu ul ul a:visited {
+  font-weight: 400;
+  font-size: 14px;
+}
+#cssmenu ul ul {
+  width: 180px;
+  background: none;
+  border-left: 20px solid transparent;
+}
+#cssmenu ul ul a {
+  padding: 8px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+#cssmenu ul ul li {
+  padding: 0 20px;
+  background: #fff;
+}
+#cssmenu ul ul li:last-child {
+  border-bottom: 3px solid #d7d8da;
+  padding-bottom: 10px;
+}
+#cssmenu ul ul li:first-child {
+  padding-top: 10px;
+}
+#cssmenu ul ul li:last-child > a {
+  border-bottom: none;
+}
+#cssmenu ul ul li:first-child:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -20px;
+  top: 13px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+}
+.all-dim {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #eff3f6;
+    text-indent: -9999px;
+}
+#cssmenu > ul > .mid {
+	border-bottom: 1px solid #d7d8da;
+	border-top: 1px solid #d7d8da;
+}
 </style>
 </head>
 
 <body>
 
 <%@include file="mainheader.jsp" %> 
-	
+	<div class="all-dim"></div>
 	<div class="containerNew">
-	<!-- article start -->
-	<article class="bg-light container">
-		<div class="allBody">
+		<div class="board-page">
 			<div class="row">
+				<div class="col-md-2">
+					<div class="sidebar sticky" id="cssmenu">
+						<ul>
+							<li><a href="/board/free"><span>자유게시판</span></a></li>
+							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
+							<li class="last"><a href="/news"><span>뉴스</span></a></li>
+						</ul>
+					</div>
+				</div>
+	  <div class="col-md-10">
+		<div class="free-board">
+		<div class="drop-nav">
+			<h1 class="tit-h1 line">자유게시판</h1>
+		</div>
+		<div class="m-drop-nav">
+			<h1 class="m-drop-tit-title line" style="cursor:pointer;">자유게시판 ▼</h1>
+		</div>
+		<div class="m-drop-down">
+			<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
+			<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
+			<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
+		</div>
+		<div class="allBody">
+<!-- 			<div class="row">
 				<div class="sideBar col-md-4 order-md-2 mb-4">
-					<div class="col-md-8 order-md-1"></div>
-					<hr>
+					<div class="col-md-8 order-md-1"></div> -->
+					
 					<div id="boardList">
 						
 					</div>
@@ -215,7 +462,11 @@ position: relative;
 		
 		
 		<!-- 댓글 끝 -->
-	</article>
+</div>
+</div>
+</div>
+</div>
+
 
 	<!-- article end -->
 
