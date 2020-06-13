@@ -111,6 +111,17 @@ tr td button{
 .table{
 	margin-bottom: 0;
 }
+.all-dim {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #eff3f6;
+    text-indent: -9999px;
+}
 .containerNew{
 position: relative;
     max-width: 1260px;
@@ -118,9 +129,14 @@ position: relative;
     padding: 20px 0 0 0;
     margin: 0 auto;
 }
-
 .row {
    margin: 0;
+}
+.board-views span, .board-likes span {
+    display: none;
+}
+.m-drop-nav, .m-drop-down{
+	display: none;
 }
 .free-board {
     padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
@@ -191,18 +207,7 @@ position: relative;
 .board-page {
     margin: 0 auto 100px;
 }
-/* .sidebar a {
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  display: block;
-  background-color: #dddddd;
-}
-
-.sidebar a:hover {
-  color: #212529;
-} */
+/*start 사이드 바 css */
 #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
@@ -337,21 +342,158 @@ padding: 25px 10px;
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
 }
-.all-dim {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    background: #eff3f6;
-    text-indent: -9999px;
-}
 #cssmenu > ul > .mid {
 	border-bottom: 1px solid #d7d8da;
 	border-top: 1px solid #d7d8da;
 }
+/*end 사이드 바 css */
+.board-view {
+    padding: 0 0 30px;
+}
+.board-view .board-view-tit {
+    position: relative;
+    border-bottom: #eaeaea 1px solid;
+    padding: 0 0 20px;
+}
+.board-view .board-view-tit h1 {
+    font-size: 28px;
+    color: #000;
+    line-height: 1.2;
+    padding-right: 130px;
+    word-break: break-all;
+}
+.board-view .board-view-tit .writer {
+    min-height: 35px;
+    line-height: 35px;
+    margin-top: 10px;
+    color: #888888;
+    font-size: 13px;
+}
+.board-view .board-view-tit .writer .img, .board-view .board-view-tit .writer .text {
+    display: inline;
+}
+.board-view .board-view-tit .writer img {
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 5px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #eaeaea;
+}
+.board-view .board-view-tit .writer span {
+    background: url(/resources/img/bg_line.png) no-repeat right 50%;
+    padding-right: 10px;
+    margin-right: 5px;
+}
+.board-view .board-view-tit .writer span:last-child {
+    background: none;
+}
+.board-view .board-view-cont {
+    border-bottom: #eaeaea 1px solid;
+    padding: 40px 0;
+    line-height: 1.6;
+    min-height: 250px;
+}
+.board-view .board-view-cont p {
+    font-size: 16px;
+}
+.sns-area.board-sns {
+    margin-top: 0;
+    padding-top: 20px;
+}
+.sns-area {
+    min-height: 36px;
+    margin-top: 15px;
+    position: relative;
+    text-align: center;
+    clear: both;
+    z-index: 100;
+    margin-bottom: 60px;
+}
+.sns-area .notify-box {
+    float: left;
+}
+.sns-area .notify-box .notify {
+    height: 28px;
+    line-height: 25px;
+    padding: 0px 15px 0 10px;
+    box-sizing: border-box;
+}
+
+[class*="btn-"] {
+    position: relative;
+    background: #fff;
+    border: 1px solid #444;
+    line-height: 100%;
+    display: inline-block;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+[class*="btn-s"] {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    color: #888;
+}
+input[type="button"], button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    background: none;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+button, select {
+    text-transform: none;
+}
+button {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+.sns-area .notify-box .notify span {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -100px;
+    color: #888888;
+    padding-left: 24px;
+}
+.sns-area .like-box {
+    float: right;
+}
+.sns-area .like-box .like {
+    height: 36px;
+    line-height: 36px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: #a7753a;
+}
+[class*="btn-m"] {
+    padding: /*10px 14px*/7px 14px;
+    min-width: 70px;
+    font-size: 14px;
+}
+.sns-area .like-box .like i {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: url(/resources/img/ico_board.png) no-repeat 0 -60px;
+    text-indent: -9999em;
+    margin-right: 5px;
+}
+
 </style>
 </head>
 
@@ -384,18 +526,12 @@ padding: 25px 10px;
 			<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
 			<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 		</div>
-		<div class="allBody">
-<!-- 			<div class="row">
-				<div class="sideBar col-md-4 order-md-2 mb-4">
-					<div class="col-md-8 order-md-1"></div> -->
-					
-					<div id="boardList">
-						
-					</div>
-				</div>
-			</div>
+		<div class="board-detail">
+			<div id="boardList"></div>
 		</div>
-		<div>
+		<div class="board-view">
+		</div>	
+		<div class="comment">
 		<h2 id='commentBody' class='comment-title'>댓글</h2>
 		
 		<!-- 댓글 -->
@@ -405,9 +541,6 @@ padding: 25px 10px;
 		<!-- 댓글 페이징 -->
 		<div id="commentPaging">
 		</div>
-
-
-			<hr>
 			<div class="comment-wrap">
 				<div>
 					<div class="comment-form">
@@ -458,14 +591,13 @@ padding: 25px 10px;
 			</div>
 	
 		</div>
-		
+		</div>
+		</div>
 		</div>
 		
 		
 		
 		<!-- 댓글 끝 -->
-</div>
-</div>
 </div>
 </div>
 
@@ -509,29 +641,50 @@ padding: 25px 10px;
 					var boardDatetime = data.boardDetail.bdateTime
 					var boardContent = data.boardDetail.bcontent
 						
-					board +=	'<div class="notice-header">'
-					board +=		'<div class="title-wrap">'
-					board +=			'<p class="category-info"></p>'
-					board +=			'<h2 id="" class="notice-title">'+boardTitle+'</h2>'
-					board +=		'</div>'
-					board +=		'<div class="info-wrap">'
-					board +=			'<ul class="notice-info">'
-					board +=				'<li class="author">'
-					board +=					'<i class="fa fa-user-circle"></i>'+boardNickname
-					board +=				'</li>'
-					board +=				'<li class="date">'
-					board +=					'<i class="far fa-clock"></i>'+changeDate(boardDatetime)
-					board +=				'</li>'
-					board +=			'</ul>'
-					board +=		'</div>'
-					board +=		'<div class="article">'+boardContent
-					board +=		'<div style="position:absolute; bottom:0px;"><span id="likes"><button id="likesBtn" onclick="updateLikes('+data.boardDetail.pno+')">'+like+'</button>'+data.boardDetail.likes+'</span></div>'
+					board +='<div class="board-view-tit">'
+					board +=		'<h1>'+boardTitle+'</h1>'
+					board +=		'<div class="writer">'
+					board +=			'<p class="img"><img class="pax_f2_proimg" cust_id="ciaws94" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>'
+					board +=			'<p class="text">'
+					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;">'+boardNickname+'</span>'
+					board +=			'<span class="time">'+changeDate(boardDatetime)+'</span>'
+					board +=			'<span class="viewer"><i>조회</i>64</span>'
+					board +=			'</p>'
 					board +=		'</div>'
 					board +=	'</div>'
-					board +=	'<hr>'
-							
+					board +=	'<div id="bbsWrtCntn" class="board-view-cont" style="word-break:break-word;">'+boardContent+'</div>'
+					board +=	'<div class="sns-area board-sns">'
+					board +=		'<p class="notify-box">'
+					board +=			'<button type="button" id="reportPopupBtn" class="btn-s notify clean-popup-button e-login"><span>신고</span></button>'
+					board +=		'</p>'
+					board +=		'<p class="like-box" id="actBtn" style="">'
+					board +=			'<button class="btn-m like" id="recmBtn" onclick="updateLikes('+data.boardDetail.pno+');"><i>추천</i><span id="recommendCount">'+data.boardDetail.likes+'</span></button>'
+					board +=		'</p>'
+					board +=	'</div>'
+					board +='</div>'
+
+/* 						board +=	'<div class="board-view-tit">'
+							board +=		'<h1>'+boardTitle+'</h1>'
+							board +=			'<p class="category-info"></p>'
+							board +=			'<h2 id="" class="notice-title">'+boardTitle+'</h2>'
+							board +=		'</div>'
+							board +=		'<div class="info-wrap">'
+							board +=			'<ul class="notice-info">'
+							board +=				'<li class="author">'
+							board +=					'<i class="fa fa-user-circle"></i>'+boardNickname
+							board +=				'</li>'
+							board +=				'<li class="date">'
+							board +=					'<i class="far fa-clock"></i>'+changeDate(boardDatetime)
+							board +=				'</li>'
+							board +=			'</ul>'
+							board +=		'</div>'
+							board +=		'<div class="article">'+boardContent
+							board +=		'<div style="position:absolute; bottom:0px;"><span id="likes"><button id="likesBtn" onclick="updateLikes('+data.boardDetail.pno+')">'+like+'</button>'+data.boardDetail.likes+'</span></div>'
+							board +=		'</div>'
+							board +=	'</div>'
+							board +=	'<hr>'	 */				
 					
-					$("#boardList").html(board)
+					$(".board-view").html(board)
 	
 
 					// 댓글
@@ -745,14 +898,13 @@ padding: 25px 10px;
 						swal("좋아요", "", "success");
 					}
 					else if(data == 1){
-						swal("좋아요취소", "","error");
+						swal("좋아요취소", "", "error");
 					}
 					else if(data == 2){
-						swal("로그인해주세요", "","error").then(function() {
+						swal("로그인을 해주세요", "", "error").then(function(){
 							window.location = "/signInPage";
 						});
 					}
-					
 					
 					
 					list();
