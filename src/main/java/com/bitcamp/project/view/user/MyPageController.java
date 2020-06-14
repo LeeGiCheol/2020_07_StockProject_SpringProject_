@@ -157,16 +157,16 @@ public class MyPageController {
 	return "mypage-update-password"; 
 	}
 	 
-//	@GetMapping(value = "/mypageUpdatePasswordEnd")
-//	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
+	@GetMapping(value = "/mypageUpdatePasswordEnd")
+	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
 //		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 //		String encPassword = passwordEncoder.encode(password);
 //		System.out.println(loginUser);
 //		loginUser.setPw(encPassword);
 //		userInfoService.updatePassword(loginUser);
 //		session.setAttribute("loginUser", loginUser);
-//		return "myPage01";
-//	}
+		return "myPage01";
+	}
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")
 	@ResponseBody
@@ -178,6 +178,8 @@ public class MyPageController {
       
 		if(bPasswordEncoder.matches(nowPassword, loginUser.getPw())) {
 			String encPassword = passwordEncoder.encode(password);
+			System.out.println("asd "+password);
+			System.out.println("cde "+encPassword);
 			loginUser.setPw(encPassword);
 			userInfoService.updatePassword(loginUser);
 

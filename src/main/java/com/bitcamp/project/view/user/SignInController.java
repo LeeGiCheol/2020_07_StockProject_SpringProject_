@@ -43,35 +43,36 @@ public class SignInController {
 		UserVO vo = new UserVO();
 		System.out.println("pw : "+pw);
 		vo.setId(id);
-		vo = signInService.logIn(vo);
+		
+		
+			vo = signInService.logIn(vo);
+			if(vo == null) {
+			mav.addObject("msg", "존재하지 않는 아이디입니다!");
+			mav.addObject("location", "/signInPage");
+			mav.setViewName("notice");
+			return mav;
+			}else {
 			String dbPw = vo.getPw(); // db에 저장된 pw
-            String inputPw = pw;	// 사용자가 입력한 pw
-            System.out.println("1 "+dbPw);
-            System.out.println("2 " +inputPw);
-            if(vo != null) {
-	            if(bPasswordEncoder.matches(pw, dbPw)) {
-	            	System.out.println("비밀번호가 일치함");
-	                vo.setPw(dbPw);
-	                session.setAttribute("loginUser", vo);
-					mav.addObject("msg", "로그인 성공!");
-					mav.addObject("location", "/mainPage");
-					mav.setViewName("notice");
-					return mav;
-	            }else {
-	            	System.out.println("비밀번호가 ㄴㄴ");
-	            	mav.addObject("msg", "로그인 실패!");
-					mav.addObject("location", "/signInPage");
-					mav.setViewName("notice");
-					return mav;
-	            }
-			
-            }
-			else {
-				mav.addObject("msg", "로그인 실패!");
+	        String inputPw = pw;	// 사용자가 입력한 pw
+	        System.out.println("1 "+dbPw);
+	        System.out.println("2 " +inputPw);
+	            
+	        if(bPasswordEncoder.matches(pw, dbPw)) {
+	        	System.out.println("비밀번호가 일치함");
+	            vo.setPw(dbPw);
+	            session.setAttribute("loginUser", vo);
+				mav.addObject("msg", "로그인 성공!");
+				mav.addObject("location", "/mainPage");
+				mav.setViewName("notice");
+				return mav;
+	        }else {
+	        	System.out.println("비밀번호가 ㄴㄴ");
+	        	mav.addObject("msg", "로그인 실패!");
 				mav.addObject("location", "/signInPage");
 				mav.setViewName("notice");
 				return mav;
-			}
+	        }
+		}
 	}
 	
 	@GetMapping(value="/logOut")

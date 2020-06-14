@@ -20,6 +20,7 @@
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
@@ -640,7 +641,7 @@ button, input, optgroup, select, textarea {
 					var boardNickname = data.boardDetail.nickname
 					var boardDatetime = data.boardDetail.bdateTime
 					var boardContent = data.boardDetail.bcontent
-						
+
 					board +='<div class="board-view-tit">'
 					board +=		'<h1>'+boardTitle+'</h1>'
 					board +=		'<div class="writer">'
@@ -695,7 +696,7 @@ button, input, optgroup, select, textarea {
 						
 						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
 						comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
-						comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdataTime)+"<br> <br>"
+						comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdateTime)+"<br> <br>"
 						comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>"
 						
 						// 내 댓글에 수정/삭제 버튼 띄우기
@@ -872,16 +873,31 @@ button, input, optgroup, select, textarea {
 	    // datetime 변환
 	    function changeDate(date){
 	        var date = new Date(date);
-			console.log(date.toString())
-	        
 	        year = date.getFullYear();
-	        month = date.getMonth();
-	        month += 1;
+	        month = date.getMonth() + 1;
+	        if(month < 10) {
+	        	month = "0" + month
+	        }
 	        day = date.getDate();
-	        hour = date.getHours();
+	        hour = date.getHours() + 15;
+	        if(hour < 10) {
+	        	hour = "0"+hour;
+	        }
+	        if(hour > 24) {
+	        	hour -= 24;
+	        	if(hour < 10) {
+	        	hour = "0"+hour
+	        	}
+	        }
+	        if(hour == 24){
+	        	hour = "00";
+	        }
 	        minute = date.getMinutes();
+	        if(minute < 10) {
+	        	minute = "0" + minute;
+	        }
 	        second = date.getSeconds();
-	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
 	        return strDate;
 	    }
 		
