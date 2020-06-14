@@ -16,9 +16,6 @@
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <link rel="stylesheet" href="/resources/css/free-board.css">
-<style type="text/css">
-
-</style>
 <script>
 	$(document).ready(function() {
 		$("#jb-checkboxAll-best").click(function() {

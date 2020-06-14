@@ -851,6 +851,14 @@ fieldset, img, abbr, acronym {
 .col-md-2, .drop-nav {
     display: none !important;
 }
+.free-board {
+	margin: 0;
+	border: none;
+	min-height: auto;
+	padding-bottom:120px;
+    max-width: none !important;
+    width: 100% !important;
+}
 .m-drop-nav {
     display: block;
 }
@@ -863,6 +871,7 @@ li.list > .img {
 .comment-cont .cmt-list li.list > div .text {
     padding-left: 45px;
 }
+
 }
 </style>
 </head>
@@ -989,10 +998,10 @@ li.list > .img {
 			    });
 
 			  }
+		  });
 			  $(".m-drop-nav").click(function(){
 				    $(".m-drop-down").slideToggle("slow");
 				  });
-		  });
 		</script>
 		<div class="support-button">
 			<span class="insert"><a href="javascript:writeComment('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
