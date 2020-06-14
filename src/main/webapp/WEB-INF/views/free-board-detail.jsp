@@ -576,9 +576,7 @@ textarea {
 .comment-cont .cmt-list {
     padding-top: 20px;
 }
-.comment-cont .cmt-list > p {
-    border-bottom: none;
-}
+
 .comment-cont .cmt-list > p {
     position: relative;
     font-size: 16px;
@@ -586,6 +584,9 @@ textarea {
     font-weight: bold;
     border-bottom: #eaeaea 1px solid;
     padding-bottom: 10px;
+}
+.comment-cont .cmt-list > p {
+    border-bottom: none;
 }
 .comment-cont .cmt-list > p span {
     color: #ff545b;
@@ -728,8 +729,8 @@ fieldset, img, abbr, acronym {
     border-bottom: #eaeaea 1px solid;
 }
 [class*="btn-"].red {
-    background: #eaeaea;
-    border: 1px solid #eaeaea;
+    background: #444;
+    border: 1px solid #444;
     color: #fff;
 }
 .prev-next {
@@ -835,6 +836,34 @@ fieldset, img, abbr, acronym {
 .board-view .board-view-tit .share-more a.del span {
     background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
 }
+.comment-cont .cmt-list li {
+    border-top: #eaeaea 1px solid;
+}
+@media only screen and (max-width: 979px){
+.containerNew {
+    padding: 0;
+}
+.col-md-10 {
+    max-width: 100% !important;
+    flex: none !important;
+    padding: 0 !important;
+}
+.col-md-2, .drop-nav {
+    display: none !important;
+}
+.m-drop-nav {
+    display: block;
+}
+li.list {
+    padding: 20px 0;
+}
+li.list > .img {
+    left: 0;
+}
+.comment-cont .cmt-list li.list > div .text {
+    padding-left: 45px;
+}
+}
 </style>
 </head>
 
@@ -933,6 +962,37 @@ fieldset, img, abbr, acronym {
 				return 4;
 			}
 		}
+		  $( document ).ready(function() {
+			  console.log( "document ready!" );
+
+			  var $sticky = $('.sticky');
+			  var $stickyrStopper = $('.footer_info');
+			  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+			    var generalSidebarHeight = $sticky.innerHeight();
+			    var stickyTop = $sticky.offset().top;
+			    var stickOffset = 0;
+			    var stickyStopperPosition = $stickyrStopper.offset().top;
+			    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+			    var diff = stopPoint + stickOffset;
+
+			    $(window).scroll(function(){ // scroll event
+			      var windowTop = $(window).scrollTop(); // returns number
+
+			      if (stopPoint < windowTop) {
+			          $sticky.css({ position: 'relative', top: diff });
+			      } else if (stickyTop < windowTop+stickOffset) {
+			          $sticky.css({ position: 'fixed', top: stickOffset });
+			      } else {
+			          $sticky.css({position: 'relative', top: 'initial'});
+			      }
+			    });
+
+			  }
+			  $(".m-drop-nav").click(function(){
+				    $(".m-drop-down").slideToggle("slow");
+				  });
+		  });
 		</script>
 		<div class="support-button">
 			<span class="insert"><a href="javascript:writeComment('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
