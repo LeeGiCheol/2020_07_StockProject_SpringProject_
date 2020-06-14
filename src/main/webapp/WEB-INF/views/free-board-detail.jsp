@@ -724,12 +724,12 @@ fieldset, img, abbr, acronym {
     border: 1px solid #444;
     color: #000;
 }
-#replyArea {
+.replyArea {
     border-bottom: #eaeaea 1px solid;
 }
 [class*="btn-"].red {
-    background: #ff545b;
-    border: 1px solid #ff545b;
+    background: #eaeaea;
+    border: 1px solid #eaeaea;
     color: #fff;
 }
 .prev-next {
@@ -808,6 +808,33 @@ fieldset, img, abbr, acronym {
     background-color: white;
     border: 1.5px solid #888888 !important;
 }
+.board-view .board-view-tit .share-more {
+    position: absolute;
+    top: 12px;
+    right: -10px;
+}
+.board-view .board-view-tit .share-more a {
+    display: inline-block;
+    color: #a7753a;
+    font-size: 13px;
+    padding: 0 10px 0 5px;
+    background: url(/resources/img/bg_line.png) no-repeat right 50%;
+}
+.board-view .board-view-tit .share-more a.modify span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -260px;
+}
+.board-view .board-view-tit .share-more a span {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 24px;
+}
+.board-view .board-view-tit .share-more a.del {
+    background: none;
+}
+.board-view .board-view-tit .share-more a.del span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
+}
 </style>
 </head>
 
@@ -849,32 +876,43 @@ fieldset, img, abbr, acronym {
 		<div class="comment-cont anonymity">
 
 	<!-- 실명인증 -->
+	
+	<form action="/board/writeComment" method="POST" id="commentForm">
 	<div class="cmt-write">
-		<textarea id="inputComment" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="따뜻한 댓글은 글쓴이에게 큰 힘이 됩니다. 욕설/비방이 담긴 댓글은 삭제될 수 있습니다."></textarea>
-		
+	<input type="hidden" name="pno" value="${boardDetail.pno}">
+	<c:if test="${loginUser != null}">
+		<textarea name="ccontent" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="따뜻한 댓글은 글쓴이에게 큰 힘이 됩니다. 욕설/비방이 담긴 댓글은 삭제될 수 있습니다."></textarea>
+	</c:if>
+	<c:if test="${loginUser == null}">
+		<textarea name="ccon
+		tent" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="댓글을 작성하시려면 로그인을 해주세요" onclick="location.href='/signInPage'"></textarea>
+	</c:if>	
 		<p class="text-byte">0/1000 byte</p>
 		<div class="support-button">
-			<span class="insert"><a href="javascript:addComment(this);" class="btn-s gray">등록</a></span>
+			<span class="insert"><a href="javascript:writeComment('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
+			<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
 		</div> 
 		</div>
+	</form>
 	<!-- //cmt-write -->
 	
 	<div class="cmt-list" id="cmt-list" style="">
 		<p>
 			댓글 보기 <span id="commentCnt">1</span>
-			<strong>
+<!-- 			<strong>
 				<input type="radio" id="orderby1" name="orderby3" checked="checked" onclick="changeOrder();"><label for="orderby1">최신순</label>
 				<input type="radio" id="orderby2" name="orderby3" onclick="changeOrder('popular');"><label for="orderby2">인기순</label>
-			</strong>
+			</strong> -->
 		</p>
-		<ul id="replyArea">
 		
-				<li class="list">
+		<ul id="commentList" class="replyArea">
+		
+<!-- 				 <li class="list">
 						<p class="img"><img class="pax_f2_proimg" cust_id="angelina0416" src="/resources/img/pi_08.png"></p>
 						<div>
 							<div class="text" id="text_45219165">
 								<p class="writer">
-									<span id="writer_45219165" onclick="javascript:viewProfile('angelina0416')" style="cursor:pointer;">안녕하세용용</span>
+									<span id="writer_45219165" onclick="#" style="cursor:pointer;">안녕하세용용</span>
 									<span class="data-date-format" data-date-format="Thu Jun 11 13:11:12 KST 2020">06.11</span>
 								</p>
 
@@ -882,17 +920,18 @@ fieldset, img, abbr, acronym {
 
 							</div>
 
-							<!-- //text -->
+							
 							<div class="share-more">
 								<a href="javascript:replyModifyForm('45226441');" class="modify"><span>수정</span></a>
 								<a href="javascript:deleteComment('45226441');" class="del"><span>삭제</span></a>
 							</div>
-							<div class="share-more">
+						<div class="share-more" id="showhide-btn">
 								<a class="notify e-login e-report-comt-popup" href="javascript:bbsComment_report('45219165', '안녕하세용용');"><span>신고</span></a>
 							</div>
 						</div>
-					</li>
-</ul>
+					</li> -->
+		</ul>
+	
 	</div>
 </div>
 		
@@ -903,7 +942,7 @@ fieldset, img, abbr, acronym {
 	</div>
 		<p class="bt-area view-bt-area">
         <span>
-            <a href="javascript:goList();" class="btn-s bodrb">목록</a>
+            <a href="/board/free" class="btn-s bodrb">목록</a>
 			<a href="javascript:goEdit();" class="btn-s red">글쓰기</a>
 		</span>
     	</p>
@@ -926,19 +965,20 @@ fieldset, img, abbr, acronym {
 	        </div>
 	    </div>
 	    
-	    
-		<div class="comment">
+<!-- 	    
+ 		<div class="comment">
 		<h2 id='commentBody' class='comment-title'>댓글</h2>
 		
-		<!-- 댓글 -->
+		댓글
 		<div id="commentList">
 		</div>
 		
-		<!-- 댓글 페이징 -->
+		댓글 페이징
 		<div id="commentPaging">
-		</div>
+		</div> 
 			<div class="comment-wrap">
 				<div>
+				
 					<div class="comment-form">
 						<form action="/board/writeComment" method="POST" id="commentForm">
 							<fieldset>
@@ -968,9 +1008,10 @@ fieldset, img, abbr, acronym {
 
 
 
-					</div>
-				</div>
-				<div class="buttons">
+					</div>-->
+				<!-- </div> -->
+				
+<%-- 				<div class="buttons">
 					<button type="button" class="btn btn-sm btn-primary" id="btnList"
 						onclick="window.location.href='/board/free'">목록</button>
 					<button type="button" class="btn btn-sm btn-primary" id="btnMyList"
@@ -983,19 +1024,15 @@ fieldset, img, abbr, acronym {
 						<button type="button" class="btn btn-sm btn-primary"
 							id="btnDelete">삭제</button>
 					</c:if>
-				</div>
-			</div>
+				</div> 
+			</div>--%>
 	
 		</div>
 		</div>
 		</div>
 		</div>
-		
-		
-		
-		<!-- 댓글 끝 -->
-</div>
-</div>
+	</div>
+	
 
 
 	<!-- article end -->
@@ -1037,7 +1074,8 @@ fieldset, img, abbr, acronym {
 					var boardDatetime = data.boardDetail.bdateTime
 					var boardContent = data.boardDetail.bcontent
 
-					board +='<div class="board-view-tit">'
+					
+					board +=	'<div class="board-view-tit">'
 					board +=		'<h1>'+boardTitle+'</h1>'
 					board +=		'<div class="writer">'
 					board +=			'<p class="img"><img class="pax_f2_proimg" cust_id="ciaws94" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>'
@@ -1047,6 +1085,12 @@ fieldset, img, abbr, acronym {
 					board +=			'<span class="viewer"><i>조회</i>64</span>'
 					board +=			'</p>'
 					board +=		'</div>'
+					board +=		'<c:if test="${loginUser.nickname eq boardDetail.nickname}">'
+					board +=			'<div id="" class="share-more">'
+					board +=				'<a href="/board/free/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
+					board +=				'<a href="javascript:" id="btnDelete" class="del"><span>삭제</span></a>'
+					board +=			'</div>'
+					board +=		'</c:if>'
 					board +=	'</div>'
 					board +=	'<div id="bbsWrtCntn" class="board-view-cont" style="word-break:break-word;">'+boardContent+'</div>'
 					board +=	'<div class="sns-area board-sns">'
@@ -1057,28 +1101,7 @@ fieldset, img, abbr, acronym {
 					board +=			'<button class="btn-m like" id="recmBtn" onclick="updateLikes('+data.boardDetail.pno+');"><i>추천</i><span id="recommendCount">'+data.boardDetail.likes+'</span></button>'
 					board +=		'</p>'
 					board +=	'</div>'
-					board +='</div>'
-
-/* 						board +=	'<div class="board-view-tit">'
-							board +=		'<h1>'+boardTitle+'</h1>'
-							board +=			'<p class="category-info"></p>'
-							board +=			'<h2 id="" class="notice-title">'+boardTitle+'</h2>'
-							board +=		'</div>'
-							board +=		'<div class="info-wrap">'
-							board +=			'<ul class="notice-info">'
-							board +=				'<li class="author">'
-							board +=					'<i class="fa fa-user-circle"></i>'+boardNickname
-							board +=				'</li>'
-							board +=				'<li class="date">'
-							board +=					'<i class="far fa-clock"></i>'+changeDate(boardDatetime)
-							board +=				'</li>'
-							board +=			'</ul>'
-							board +=		'</div>'
-							board +=		'<div class="article">'+boardContent
-							board +=		'<div style="position:absolute; bottom:0px;"><span id="likes"><button id="likesBtn" onclick="updateLikes('+data.boardDetail.pno+')">'+like+'</button>'+data.boardDetail.likes+'</span></div>'
-							board +=		'</div>'
-							board +=	'</div>'
-							board +=	'<hr>'	 */				
+							
 					
 					$(".board-view").html(board)
 	
@@ -1089,22 +1112,47 @@ fieldset, img, abbr, acronym {
 					
 					for(var i=0; i<data.commentList.length; i++){
 						
-						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
+						
+ 						comment += 	"<li class='list' id= 'comment"+ data.commentList[i].cno + "'>"
+						comment += 	"<p class='img'><img class='pax_f2_proimg' cust_id='angelina0416' src='/resources/img/pi_08.png'></p>"
+						comment += 	"<div>"
+						comment += 	"<div class='text'>"
+						comment += 	"<p class='writer'>"
+						comment +=	"<span id='writer_45219165' onclick='#' style='cursor:pointer;'>"+data.commentList[i].nickname+"</span>"
+						comment +=	"<span class='data-date-format'>"+changeDate(data.commentList[i].cdateTime)+"</span>"
+						comment += 	"</p>"
+						comment += 	"<p class='cont' id='com" + data.commentList[i].cno + "'>" +data.commentList[i].ccontent+"</p>"
+						comment += 	"</div>"
+						comment += 	"<div class='share-more'>"
+						comment += 	"<a class='notify e-login e-report-comt-popup' href='#'><span>신고</span></a>"	
+						comment += 	"</div>"
+						comment += 	"</div>"
+						
+						
+						
+						
+/*  						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
 						comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
 						comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdateTime)+"<br> <br>"
-						comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>"
+						comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>" */
 						
 						// 내 댓글에 수정/삭제 버튼 띄우기
 						if("${loginUser.nickname}" == data.commentList[i].nickname){
 							var test = data.commentList[i].ccontent
 							console.log("${loginUser.nickname}")
 							//console.log(data.commentList.nickname)
-							comment +=  	   '<button type="button" class="btn btn-sm btn-primary"'
+							$("#showhide-btn").hide()
+ 							comment +=  	   '<div class="share-more">'
+							comment += 		   '<a href="javascript:updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ');" class="modify"><span>수정</span></a>'
+							comment += 	       '<a href="javascript:deleteComment(' + data.commentList[i].cno + ');" class="del"><span>삭제</span></a>'
+							comment += 		   '</div>'
+
+/* 							comment +=  	   '<button type="button" class="btn btn-sm btn-primary"'
 							comment += 		   'id="btnUpdate'+data.commentList[i].cno+'" onclick="updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ')">수정</button>'
 							comment += 	       '<button type="button" class="btn btn-sm btn-primary"'
-							comment += 		   'id="btnDelete" onclick="deleteComment(' + data.commentList[i].cno + ')">삭제</button>'
+							comment += 		   'id="btnDelete" onclick="deleteComment(' + data.commentList[i].cno + ')">삭제</button>'  */
 						}
-							comment += '</div>'
+							comment += '</li>'
 							
 	 
 						
@@ -1202,6 +1250,7 @@ fieldset, img, abbr, acronym {
 		        url : "${pageContext.request.contextPath}/board/writeComment",
 		        data:$("#commentForm").serialize(),
 		        success : function(data){
+		        	console.log(data);
 		            if(data=="success"){
 		                list();
 		                $("#ccontent").val("");
