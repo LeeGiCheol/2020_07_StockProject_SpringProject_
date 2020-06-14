@@ -67,7 +67,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</tr>
 							</tbody>
 						</table>
-						<button id="submit" type="submit" class="btn-t gray">비밀번호 저장</button>
+						<button id="submit" type="button" class="btn-t gray" onclick="passwordCheck()">비밀번호 저장</button>
 					</form>
 				</div>
 				</div>
@@ -108,29 +108,39 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			}
 		}); 
 	});
+	$('#frm').keypress(function(event){
+	     if ( event.which == 13 ) {
+	         $('#submit').click();
+	         return false;
+	     }
+	});
+
 	
-	
-	$('#submit').on('click', function(){ 
+	function passwordCheck(){
 		$.ajax({ 
 			type: 'GET', 
 			url: '${pageContext.request.contextPath}/mypageUpdatePasswordCheck', 
-			data: { "nowPassword" : $('#nowPassword').val() }, 
+			data: { "nowPassword" : $('#nowPassword').val(),
+					"password" : $('#password').val()}, 
 			success: function(data){ 
-				console.log(1)
-				 if(data == 1){
-					alert("비밀번호가 변경되었습니다.") 
-					location.href = "/logOut" 
-				 }else{
-					 alert("현재비밀번호가 일치하지않습니다.")
-					 location.href = "/mypageUpdatePassword";
-					 $('#nowPassword').empty();
-				 }
+				console.log(data)
+					if(data == 1){
+						swal({text:"성공적으로 비밀번호를 변경하였습니다.", icon:"success"}).then(function(){
+							location.href = '/logOut'
+						});
+						
+					}else if(data == 0){
+						swal({text:"현재비밀번호가 일치하지않습니다.", icon:"error"}).then(function(){
+							location.href = '/mypageUpdatePassword'
+						});
+						$('#nowPassword').empty();
+				 	}
 			},
 			error: function(){
 				alert("에러");
 			}
 		});  
-	});  
+	};  
 	
 	</script>
 </body>
