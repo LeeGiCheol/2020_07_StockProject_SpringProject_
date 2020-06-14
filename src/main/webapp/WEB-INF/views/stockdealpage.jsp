@@ -80,130 +80,6 @@ tr td button {
 						<span id="nowStock"> </span> <a href="#" class="refresh"><i
 							class="fas fa-redo"></i></a>
 
-						<script type="text/javascript">
-								$(".refresh").click(function(){
-									var obj = new Object();
-									var jsonData = JSON.stringify(obj);
-									console.log("asdasd");
-										$.ajax({
-											type : "GET",
-											url : '${pageContext.request.contextPath}/trade/refresh?stockName=${stockName}',
-											datatype : "JSON",
-											success : function(data) {
-												var day_d = data.day_d
-												var day_startprice = data.day_startprice
-												var day_highprice = data.day_highprice
-												var day_lowprice = data.day_lowprice
-												var day_lastprice = data.day_lastprice
-													
-												$("#chartcontainer").empty();
-													
-													var dayData = [];
-													for (var i = 0; i < 60; i++) {
-														dayData.push({
-													         x: new Date(
-													        		 parseInt(day_d[i]/10000),
-													                  parseInt(day_d[i]%10000/100)-1,
-													                  day_d[i]%100+1
-													                  ),
-													         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
-												                 parseFloat(day_lowprice[i]),
-												                 parseFloat(day_lastprice[i]) ]
-													     });
-													 }
-												     
-												     var options = {
-												    		
-												         series: [{
-												             data: dayData
-												         }],
-												         chart: {
-												             type: 'candlestick',
-												             redrawOnParentResize: true,
-												             zoom: {
-												                 enabled: false}
-												         },
-												         xaxis: {
-												             type: 'datetime',
-												             labels: {
-												                 datetimeFormatter: {
-												                     year: 'yyyy',
-												                     month: 'MM/dd',
-												                     day: 'dd',
-												                     hour: 'HH:mm'
-												                 }
-												             },
-												             tooltip: {
-												                 formatter: function(val, opts) {
-												                   var st = new Date(val);
-												                   var mon = st.getMonth()+1;
-												                   var day = st.getDate()-1;
-												                   if(day == 0 ){
-												                	   day = 31;
-												                	   mon = mon-1;
-												                   }
-												                   var text = mon + "/" +day;
-												                   return text
-												                 }
-												               }
-												         },
-												         yaxis: {labels: {
-											     		    formatter: function (value) {
-											     		    	value = parseInt(value);
-											     		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-											      		    }
-											      		  },
-												             tooltip: {
-												                 enabled: true
-												             }
-												         },
-												         
-												         plotOptions: {
-												        	 candlestick: {
-												        	        colors: {
-												        	          upward: '#FF0000',
-												        	          downward: '#5B5AFF'
-												        	        },
-												        	        wick: {
-												        	          useFillColor: true
-												        	        }
-												        	      }, 
-												        	 bar: { //일차트 클릭
-														          horizontal: false,
-														          startingShape: 'flat',
-														          endingShape: 'flat',
-														          columnWidth: '11%',
-														          barHeight: '80%',
-														          distributed: false,
-														          rangeBarOverlap: true,
-														          colors: {
-														              ranges: [{
-														                  from: 0,
-														                  to: 0,
-														                  color: undefined
-														              }],
-														              backgroundBarColors: [],
-														              backgroundBarOpacity: 1,
-														              backgroundBarRadius: 0,
-														          }
-														      }
-														  },
-
-														  tooltip: {
-															  custom: function({series, seriesIndex, dataPointIndex, w}) {
-												               
-															    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
-															  }
-															}
-												     };
-
-												     var daychart = new ApexCharts(document.querySelector("#chartcontainer"), options);
-												     daychart.render();
-											}	
-											}); 
-								})
-								
-								</script>
 						<div class="stock-deal-button">
 							<button type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
@@ -778,6 +654,7 @@ tr td button {
 	<script src="/resources/js/stockAutoComplete.js" type="text/javascript"></script>
 
 	<script>
+	var trriger = 0;
 	var stockName = "${stockName}";
 	if(stockName === ''){
 		stockName = '삼성전자';
@@ -992,6 +869,7 @@ tr td button {
 	//window.onload = function () {
 	
  	$("#minute").click(function(){
+ 		trriger = 1;
  		$("#chartcontainer").empty();
  		var minData = [];
  		for (var i = 0; i < 60; i++) {
@@ -1102,6 +980,7 @@ tr td button {
 		
 	
 	$("#day").click(function(){
+		trriger = 0;
 		$("#chartcontainer").empty();
 		
 		var dayData = [];
@@ -1308,6 +1187,251 @@ tr td button {
 
     var chart = new ApexCharts(document.querySelector("#chartcontainer"), options);
     chart.render();
+    
+    
+    $(".refresh").click(function(){
+		var obj = new Object();
+		var jsonData = JSON.stringify(obj);
+			$.ajax({
+				type : "GET",
+				url : '${pageContext.request.contextPath}/trade/refresh?stockName=${stockName}',
+				datatype : "JSON",
+				success : function(data) {
+					
+					if(trriger == 1){
+						console.log("분차트 리프레쉬")
+						$("#chartcontainer").empty();
+						var min_d = data.min_d
+						var min_hr = data.min_hr
+						var min_startprice = data.min_startprice
+						var min_highprice = data.min_highprice
+						var min_lowprice = data.min_lowprice
+						var min_lastprice = data.min_lastprice
+						
+				 		var minData = [];
+				 		for (var i = 0; i < 60; i++) {
+				 			if(min_hr[i] > min_hr[0]) break;
+				 			minData.push({
+								 x : new Date(parseInt(min_d[i]/10000),
+					                        parseInt(min_d[i]%10000/100),
+					                        min_d[i]%100,
+					                        parseInt(min_hr[i]/100),
+					                        min_hr[i]%100
+
+					                  ),
+						         y:  [ parseFloat(min_startprice[i]), parseFloat(min_highprice[i]),
+					                 parseFloat(min_lowprice[i]),
+					                 parseFloat(min_lastprice[i]) ]
+						     });
+						 }
+					     
+					     var options = {
+					    		
+					         series: [{
+					             data: minData
+					         }],
+					         chart: {
+					             type: 'candlestick',
+					             redrawOnParentResize: true,
+					             zoom: {
+					                 enabled: false}
+					         },
+					         xaxis: {
+					             type: 'datetime',
+					             labels: {
+					            	 formatter: function(val, opts) {
+						                   var st = new Date(val);
+						                   var hour = st.getHours();
+						                   var min = st.getMinutes();
+						                   if(min<10) min = "0"+min;
+						                   var text = hour + ":" +min;
+						                   return text
+						                 }
+					             },
+					             tooltip: {
+					                 formatter: function(val, opts) {
+					                   var st = new Date(val);
+					                   var hour = st.getHours();
+					                   var min = st.getMinutes();
+					                   if(min<10) min = "0"+min;
+					                   var text = hour + ":" +min;
+					                   return text
+					                 }
+					               }
+					         },
+					         yaxis: {
+					        	 labels: {
+					        		    formatter: function (value) {
+					        		    	value = parseInt(value);
+					        		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					        		    }
+					        		  },
+					        	 tooltip: {
+					                 enabled: true
+					             }
+					         },
+					         
+					         plotOptions: {
+					        	 candlestick: {
+					        	        colors: {
+					        	          upward: '#FF0000',
+					        	          downward: '#5B5AFF'
+					        	        },
+					        	        wick: {
+					        	          useFillColor: true
+					        	        }
+					        	      }, 
+					        	 bar: { //분차트 바 조정
+							          horizontal: false,
+							          startingShape: 'flat',
+							          endingShape: 'flat',
+							          columnWidth: '25%',
+							          barHeight: '10%',
+							          distributed: false,
+							          rangeBarOverlap: true,
+							          colors: {
+							              ranges: [{
+							                  from: 0,
+							                  to: 0,
+							                  color: undefined
+							              }],
+							              backgroundBarColors: [],
+							              backgroundBarOpacity: 1,
+							              backgroundBarRadius: 0,
+							          }
+							      }
+							  },
+
+							  tooltip: {
+								  custom: function({series, seriesIndex, dataPointIndex, w}) {
+					               
+								    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
+								  }
+								}
+					     };
+
+					     var minchart = new ApexCharts(document.querySelector("#chartcontainer"), options);
+					     minchart.render();	
+				 	
+					
+					
+					}
+					else {
+					console.log("일차트 리프레쉬")						
+					var day_d = data.day_d
+					var day_startprice = data.day_startprice
+					var day_highprice = data.day_highprice
+					var day_lowprice = data.day_lowprice
+					var day_lastprice = data.day_lastprice
+						
+					$("#chartcontainer").empty();
+						
+						var dayData = [];
+						for (var i = 0; i < 60; i++) {
+							dayData.push({
+						         x: new Date(
+						        		 parseInt(day_d[i]/10000),
+						                  parseInt(day_d[i]%10000/100)-1,
+						                  day_d[i]%100+1
+						                  ),
+						         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
+					                 parseFloat(day_lowprice[i]),
+					                 parseFloat(day_lastprice[i]) ]
+						     });
+						 }
+					     
+					     var options = {
+					    		
+					         series: [{
+					             data: dayData
+					         }],
+					         chart: {
+					             type: 'candlestick',
+					             redrawOnParentResize: true,
+					             zoom: {
+					                 enabled: false}
+					         },
+					         xaxis: {
+					             type: 'datetime',
+					             labels: {
+					                 datetimeFormatter: {
+					                     year: 'yyyy',
+					                     month: 'MM/dd',
+					                     day: 'dd',
+					                     hour: 'HH:mm'
+					                 }
+					             },
+					             tooltip: {
+					                 formatter: function(val, opts) {
+					                   var st = new Date(val);
+					                   var mon = st.getMonth()+1;
+					                   var day = st.getDate()-1;
+					                   if(day == 0 ){
+					                	   day = 31;
+					                	   mon = mon-1;
+					                   }
+					                   var text = mon + "/" +day;
+					                   return text
+					                 }
+					               }
+					         },
+					         yaxis: {labels: {
+				     		    formatter: function (value) {
+				     		    	value = parseInt(value);
+				     		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				      		    }
+				      		  },
+					             tooltip: {
+					                 enabled: true
+					             }
+					         },
+					         
+					         plotOptions: {
+					        	 candlestick: {
+					        	        colors: {
+					        	          upward: '#FF0000',
+					        	          downward: '#5B5AFF'
+					        	        },
+					        	        wick: {
+					        	          useFillColor: true
+					        	        }
+					        	      }, 
+					        	 bar: { //일차트 클릭
+							          horizontal: false,
+							          startingShape: 'flat',
+							          endingShape: 'flat',
+							          columnWidth: '11%',
+							          barHeight: '80%',
+							          distributed: false,
+							          rangeBarOverlap: true,
+							          colors: {
+							              ranges: [{
+							                  from: 0,
+							                  to: 0,
+							                  color: undefined
+							              }],
+							              backgroundBarColors: [],
+							              backgroundBarOpacity: 1,
+							              backgroundBarRadius: 0,
+							          }
+							      }
+							  },
+
+							  tooltip: {
+								  custom: function({series, seriesIndex, dataPointIndex, w}) {
+					               
+								    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
+								  }
+								}
+					     };
+
+					     var daychart = new ApexCharts(document.querySelector("#chartcontainer"), options);
+					     daychart.render();}
+				}	
+				}); 
+	})
+    
+    
 	</script>
 
 	<script id="upPrice" type="text/x-jsrender">

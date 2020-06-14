@@ -791,9 +791,22 @@ fieldset, img, abbr, acronym {
 }
 .paging {
     clear: both;
-    padding: 0 0 30px 0;
     text-align: center;
     position: relative;
+   	margin-top: 20px;
+}
+#commentPaging {
+    display: inline-block;
+    padding-left: 0;
+}
+.page-link {
+    color: #888888 !important;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: white;
+    border: 1.5px solid #888888 !important;
 }
 </style>
 </head>
@@ -884,8 +897,10 @@ fieldset, img, abbr, acronym {
 </div>
 		
 				<!-- 댓글 페이징 -->
+	<div class="paging">
 		<div id="commentPaging">
 		</div>
+	</div>
 		<p class="bt-area view-bt-area">
         <span>
             <a href="javascript:goList();" class="btn-s bodrb">목록</a>
