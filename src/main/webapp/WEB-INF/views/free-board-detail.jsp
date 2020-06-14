@@ -632,8 +632,122 @@ input[type="radio"]:not(old) + label {
     cursor: pointer;
     line-height: 18px;
 }
+.comment-cont .cmt-list li.list {
+    padding: 20px 10px;
+    position: relative;
+}
+.comment-cont .cmt-list li.list > .img {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+.comment-cont .cmt-list li.list > .img > img {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: #eaeaea;
+}
+fieldset, img, abbr, acronym {
+    border: 0;
+}
+
+.comment-cont.anonymity .cmt-list li.list > div {
+    padding-left: 0;
+}
+.comment-cont .cmt-list .list div.text .writer {
+    font-size: 13px;
+    color: #888;
+    vertical-align: top;
+    padding-bottom: 3px;
+    padding-right: 70px;
+}
+.comment-cont .cmt-list .list div.text .writer span:first-child {
+    background: url(/resources/img/bg_line.png) no-repeat right 50%;
+    padding-right: 10px;
+    margin-right: 5px;
+}
+.comment-cont .cmt-list .list div.text .writer {
+    font-size: 13px;
+    color: #888;
+    vertical-align: top;
+    padding-bottom: 3px;
+    padding-right: 70px;
+}
+.comment-cont .cmt-list .list div.text .cont {
+    padding-bottom: 10px;
+    color: #222222;
+    line-height: 1.4;
+    word-break: break-word;
+}
+.comment-cont .cmt-list li.list .share-more {
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+.comment-cont .cmt-list li.list .share-more a:last-child {
+    background: none;
+}
+.comment-cont .cmt-list li.list .share-more a {
+    display: inline-block;
+    color: #a7753a;
+    font-size: 13px;
+    padding: 0 3px 0 4px;
+}
+.comment-cont .cmt-list li.list .share-more a.notify span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -370px;
+}
+.comment-cont .cmt-list li.list .share-more a span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-indent: -9999em;
+}
+.comment-cont .cmt-list li.list > div {
+    padding-left: 45px;
+}
+@media only screen and (min-width: 979px){
+.comment-cont.anonymity .cmt-list li.list > div {
+    padding-left: 45px;
+}
+}
+.bt-area {
+    overflow: hidden;
+    padding: 20px 0 40px;
+}
+.bt-area span {
+    display: block;
+    float: right;
+}
+[class*="btn-s"].bodrb {
+    border: 1px solid #444;
+    color: #000;
+}
 #replyArea {
     border-bottom: #eaeaea 1px solid;
+}
+[class*="btn-"].red {
+    background: #ff545b;
+    border: 1px solid #ff545b;
+    color: #fff;
+}
+.prev-next {
+    width: 100%;
+    overflow: hidden;
+    border-top: #444444 1px solid;
+    margin-bottom: 30px;
+}
+.prev-next > div {
+    border: #eaeaea 1px solid;
+}
+.prev-next > div dl {
+    padding: 10px 20px;
+    overflow: hidden;
+}
+.prev-next > div dl dt {
+    color: #444;
+    float: left;
+    width: 80px;
 }
 </style>
 </head>
@@ -694,32 +808,10 @@ input[type="radio"]:not(old) + label {
 				<input type="radio" id="orderby2" name="orderby3" onclick="changeOrder('popular');"><label for="orderby2">인기순</label>
 			</strong>
 		</p>
-		<ul id="replyArea"><script src="//image.paxnet.co.kr/rpan/common/js/md5.js"></script>
-<script src="//image.paxnet.co.kr/rpan/my/js/my-home.js?update=20191127"></script>
-
-<style>
-.comment-cont .cmt-list div.list .share-more a span{background:url("//image.paxnet.co.kr/rpan/common/images/ico_sub.png") no-repeat 0 -370px;}
-.comment-cont .cmt-list div.list .share-more a:last-child{background:none;}
-.comment-cont .cmt-write-preview .url{padding-bottom:5px;}
-.comment-cont .cmt-list .list div.text .url{padding-bottom:5px;}
-.comment-cont .cmt-write-preview .url .delete {background-position:6px -498px;}
-
-.comment-cont .cmt-list li{border-top:#eaeaea 1px solid;}
-.comment-cont .cmt-list li{border-bottom:none;}
-.comment-cont .cmt-list > p{border-bottom:none;}
-#replyArea {border-bottom:#eaeaea 1px solid;}
-</style>
-
-<style>
-		@media only screen and (min-width: 979px) {
-		    .comment-cont.anonymity .cmt-list li.list > div {padding-left:45px;}
-		}
-		.comment-cont.anonymity  .cmt-list div.list > div {padding-left:60px;}
-</style>
-<div class="commentAttach_45219165" style="display:none;"></div>
-
+		<ul id="replyArea">
+		
 				<li class="list">
-						<p class="img"><img class="pax_f2_proimg" cust_id="angelina0416" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>
+						<p class="img"><img class="pax_f2_proimg" cust_id="angelina0416" src="/resources/img/pi_08.png"></p>
 						<div>
 							<div class="text" id="text_45219165">
 								<p class="writer">
@@ -727,14 +819,8 @@ input[type="radio"]:not(old) + label {
 									<span class="data-date-format" data-date-format="Thu Jun 11 13:11:12 KST 2020">06.11</span>
 								</p>
 
-								<p id="cont_45219165" style="display:none;">저는 고기를 많이 사먹음ㅋㅋ</p>
-								<input type="hidden" id="comt_reg_date_45219165" value="Thu Jun 11 13:11:12 KST 2020">
 								<p class="cont">저는 고기를 많이 사먹음ㅋㅋ</p>
 
-								<span>
-									<button type="button" class="btn-s" onclick="javascript:replyAddForm('45219165', this, '0');">답글달기</button>
-									<button type="button" class="btn-s like" onclick="javascript:addRecommendComment('45219165');"><i>추천</i><span class="_cnt" id="recommend_45219165">0</span></button>
-								</span>
 							</div>
 
 							<!-- //text -->
@@ -745,9 +831,33 @@ input[type="radio"]:not(old) + label {
 					</li>
 </ul>
 	</div>
-	<!-- //cmt-list -->
 </div>
 		
+		<p class="bt-area view-bt-area">
+
+        <span>
+            <a href="javascript:goList();" class="btn-s bodrb">목록</a>
+			<a href="javascript:goEdit();" class="btn-s red">글쓰기</a>
+		</span>
+    	</p>
+    	<div class="prev-next">
+	        <div class="prev">
+	            <dl>
+	                <dt>이전글</dt>
+	                <dd>
+	                    <a href="javascript:goNextPreView('150357583535303','N10841','');">현충원 최고의 명당자리에 묻혀있는 일본군 장교 56명</a>
+	                        </dd>
+	            </dl>
+	        </div>
+	        <div class="next">
+	            <dl>
+	                <dt>다음글</dt>
+	                <dd>
+	                    <a href="javascript:goNextPreView('150357583551308','N10841','');">저는 여자를 좋아하지 않습니다</a>
+	                        </dd>
+	            </dl>
+	        </div>
+	    </div>
 		<div class="comment">
 		<h2 id='commentBody' class='comment-title'>댓글</h2>
 		
