@@ -749,6 +749,51 @@ fieldset, img, abbr, acronym {
     float: left;
     width: 80px;
 }
+.prev-next > div dl dt {
+    color: #444;
+    float: left;
+    width: 80px;
+}
+.prev-next > div.prev dl dt:before {
+    content: "▲";
+    font-size: 9px;
+    padding-right: 7px;
+}
+.prev-next > div dl dd a {
+    display: block;
+    color: #000;
+    line-height: 1.4;
+    overflow: hidden;
+    padding-top: 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    width: 60%;
+}
+.prev-next > div.next {
+    border-top: 0;
+}
+.prev-next > div dl {
+    padding: 10px 20px;
+    overflow: hidden;
+}
+.prev-next > div.next dl dt:before {
+    content: "▼";
+    font-size: 9px;
+    padding-right: 7px;
+}
+.comment-cont .cmt-list li.list .share-more a.modify span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -260px;
+}
+.comment-cont .cmt-list li.list .share-more a.del span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
+}
+.paging {
+    clear: both;
+    padding: 0 0 30px 0;
+    text-align: center;
+    position: relative;
+}
 </style>
 </head>
 
@@ -825,16 +870,22 @@ fieldset, img, abbr, acronym {
 
 							<!-- //text -->
 							<div class="share-more">
+								<a href="javascript:replyModifyForm('45226441');" class="modify"><span>수정</span></a>
+								<a href="javascript:deleteComment('45226441');" class="del"><span>삭제</span></a>
+							</div>
+							<div class="share-more">
 								<a class="notify e-login e-report-comt-popup" href="javascript:bbsComment_report('45219165', '안녕하세용용');"><span>신고</span></a>
-											</div>
+							</div>
 						</div>
 					</li>
 </ul>
 	</div>
 </div>
 		
+				<!-- 댓글 페이징 -->
+		<div id="commentPaging">
+		</div>
 		<p class="bt-area view-bt-area">
-
         <span>
             <a href="javascript:goList();" class="btn-s bodrb">목록</a>
 			<a href="javascript:goEdit();" class="btn-s red">글쓰기</a>
@@ -858,6 +909,8 @@ fieldset, img, abbr, acronym {
 	            </dl>
 	        </div>
 	    </div>
+	    
+	    
 		<div class="comment">
 		<h2 id='commentBody' class='comment-title'>댓글</h2>
 		
