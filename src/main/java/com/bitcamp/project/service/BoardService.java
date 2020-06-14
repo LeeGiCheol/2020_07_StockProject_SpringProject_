@@ -18,4 +18,5 @@ public interface BoardService {
 	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword, String orderby);
 	public int updateViews(BoardVO vo);
 	public int boardLikes(BoardVO vo);
+	public List<BoardVO> boardPrevNext(BoardVO vo);
 }

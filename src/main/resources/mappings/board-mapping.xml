@@ -199,4 +199,20 @@
 		where id = #{id}
 	</delete>
 	
+	<select id="prev_next" resultType="board">
+		<![CDATA[
+		SELECT pno, title 
+		FROM(
+				(SELECT pno, title
+				FROM board
+				WHERE pno < #{pno}
+				ORDER BY pno DESC LIMIT 1) UNION ALL
+				(SELECT pno, title
+				FROM board
+				WHERE pno > #{pno}
+				LIMIT 1) 
+			)AS title;
+		]]>
+	</select>
+	
 </mapper>

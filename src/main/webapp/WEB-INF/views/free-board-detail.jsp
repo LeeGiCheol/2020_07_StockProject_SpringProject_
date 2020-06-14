@@ -892,23 +892,8 @@ fieldset, img, abbr, acronym {
 			<a href="javascript:goEdit();" class="btn-s red">글쓰기</a>
 		</span>
     	</p>
-    	<div class="prev-next">
-	        <div class="prev">
-	            <dl>
-	                <dt>이전글</dt>
-	                <dd>
-	                    <a href="javascript:goNextPreView('150357583535303','N10841','');">현충원 최고의 명당자리에 묻혀있는 일본군 장교 56명</a>
-	                        </dd>
-	            </dl>
-	        </div>
-	        <div class="next">
-	            <dl>
-	                <dt>다음글</dt>
-	                <dd>
-	                    <a href="javascript:goNextPreView('150357583551308','N10841','');">저는 여자를 좋아하지 않습니다</a>
-	                        </dd>
-	            </dl>
-	        </div>
+    	<div class="prev-next" id="prev-next">
+	      
 	    </div>
 	    
 	    
@@ -1168,7 +1153,40 @@ fieldset, img, abbr, acronym {
 						}
 						
 	 					$("#commentPaging").empty().html(commentPaging)
+	 					
+	 					
+	 					
+	 					
+	 					
+	 				
  					} 
+					
+					
+					
+					
+	 				var prev_next = "";
+ 					prev_next += '<div class="prev">'
+					prev_next +=     '<dl>'
+					prev_next +=          '<dt>이전글</dt>'
+					prev_next +=           '<dd>'
+					prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+					prev_next +=                    '</dd>'
+					prev_next +=         '</dl>'
+					prev_next +=    '</div>'
+					prev_next +=     '<div class="next">'
+					prev_next +=         '<dl>'
+					prev_next +=           '<dt>다음글</dt>'
+					prev_next +=          '<dd>'
+					prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[1].pno+'">'+data.boardPrevNext[1].title+'</a>'
+					prev_next +=                     '</dd>'
+					prev_next +=          '</dl>'
+					prev_next +=         '</div>'
+			
+						$("#prev-next").html(prev_next)
+					
+					
+					
+					
 	 			},
 				error : function(error, data){
 					console.log(data)
