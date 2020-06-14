@@ -17,6 +17,7 @@
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 
@@ -1035,7 +1036,7 @@ fieldset, img, abbr, acronym {
 					var boardNickname = data.boardDetail.nickname
 					var boardDatetime = data.boardDetail.bdateTime
 					var boardContent = data.boardDetail.bcontent
-						
+
 					board +='<div class="board-view-tit">'
 					board +=		'<h1>'+boardTitle+'</h1>'
 					board +=		'<div class="writer">'
@@ -1267,16 +1268,31 @@ fieldset, img, abbr, acronym {
 	    // datetime 변환
 	    function changeDate(date){
 	        var date = new Date(date);
-			console.log(date.toString())
-	        
 	        year = date.getFullYear();
-	        month = date.getMonth();
-	        month += 1;
+	        month = date.getMonth() + 1;
+	        if(month < 10) {
+	        	month = "0" + month
+	        }
 	        day = date.getDate();
-	        hour = date.getHours();
+	        hour = date.getHours() + 15;
+	        if(hour < 10) {
+	        	hour = "0"+hour;
+	        }
+	        if(hour > 24) {
+	        	hour -= 24;
+	        	if(hour < 10) {
+	        	hour = "0"+hour
+	        	}
+	        }
+	        if(hour == 24){
+	        	hour = "00";
+	        }
 	        minute = date.getMinutes();
+	        if(minute < 10) {
+	        	minute = "0" + minute;
+	        }
 	        second = date.getSeconds();
-	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
 	        return strDate;
 	    }
 		

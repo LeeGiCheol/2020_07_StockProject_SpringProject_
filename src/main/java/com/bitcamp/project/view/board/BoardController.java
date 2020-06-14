@@ -95,6 +95,7 @@ public class BoardController {
 		BoardVO boardDetail = boardService.getBoard(vo);
 		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
+		System.out.println("시간체크1 " + commentList);
 		mav.addObject("boardDetail", boardDetail);
 		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
@@ -111,9 +112,9 @@ public class BoardController {
 		}
 		BoardVO boardDetail = boardService.getBoard(vo);
 
-		
 		// 댓글리스트
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
+		System.out.println("시간체크 " + commentList);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("boardDetail", boardDetail);
 		map.put("commentList", (List<CommentVO>)commentList.get("commentList"));
