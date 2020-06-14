@@ -303,7 +303,41 @@
 	  $(".m-drop-nav").click(function(){
 		    $(".m-drop-down").slideToggle("slow");
 		  });
-	});
+  });
+  
+		// datetime 변환
+		function changeDate(date){
+			console.log("???? "+date)
+		    var date = new Date(date);
+		    year = date.getFullYear();
+		    month = date.getMonth() + 1;
+		    if(month < 10) {
+		    	month = "0" + month
+		    }
+		    day = date.getDate();
+		    hour = date.getHours() + 15;
+		    if(hour < 10) {
+		    	hour = "0"+hour;
+		    }
+		    if(hour > 24) {
+		    	hour -= 24;
+		    	if(hour < 10) {
+		    	hour = "0"+hour
+		    	}
+		    }
+		    if(hour == 24){
+		    	hour = "00";
+		    }
+		    minute = date.getMinutes();
+		    if(minute < 10) {
+		    	minute = "0" + minute;
+		    }
+		    second = date.getSeconds();
+		    strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
+		    return strDate;
+		}
+
+ 
   </script>
 	</div>
 
