@@ -1222,7 +1222,6 @@ fieldset, img, abbr, acronym {
 		        success : function(data){
 		            if(data=="success"){
 		                list();
-		                $("#ccontent").val("");
 		            }
 		        },
 		        error:function(request,status,error){
