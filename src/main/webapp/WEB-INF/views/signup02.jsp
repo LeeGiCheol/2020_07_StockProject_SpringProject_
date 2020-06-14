@@ -7,7 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>회원가입</title>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script> 
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
@@ -132,18 +133,18 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 	}
 
 
-
+	
 	$(document).ready(function(e){ 
 		var checkflag = 0;
 	
 		$("#submit").on("click", function(){
 			if($("#inputEmail").val()==""){
-				alert("아이디를 입력해주세요.");
+				swal({text:"아이디를 입력해주세요.", icon:"error"})
 				$("#inputEmail").focus();
 				return false;
 			}
 			if($("#inputPassword").val()==""){
-				alert("비밀번호를 입력해주세요.");
+				alert("패스워드를 입력해주세요.");
 				$("#inputPassword").focus();
 				return false;
 			}

@@ -66,23 +66,6 @@
                 <input type="text" class="form-control" id="userNickname" name="nickname" value="${loginUser.nickname}"></input>
               </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="password">비밀번호</label>
-                  <input type="password" class="form-control" name="pw" id="userPassword">
-                </div>
-
-                <div class="col-md-6 mb-3">
-                  <label for="passwordCheck">비밀번호확인</label>
-                  <input type="password" class="form-control" id="userPasswordCheck" placeholder="비밀번호를 한 번 더 입력하세요" required>
-                </div>
-            </div>
-            <div style="text-align: center;">
-					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
-					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
-					<div class="alert alert-danger" id="alert-length">최소 8자 , 최대 13자로 입력해주세요.</div>
-					<div class="alert alert-info" id="alert-empty" style="color:white; background-color: #007BFF">현재 비밀번호를 입력해주세요.  비밀번호를 변경하실려면 새 비밀번호를 입력하세요.</div>
-		    </div> -->
     		<br>
             <div class="mb-3">
               <label for="address">주소</label>
