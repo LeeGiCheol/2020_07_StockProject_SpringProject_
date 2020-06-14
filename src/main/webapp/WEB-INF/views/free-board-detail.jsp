@@ -888,6 +888,52 @@ fieldset, img, abbr, acronym {
 		tent" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="댓글을 작성하시려면 로그인을 해주세요" onclick="location.href='/signInPage'"></textarea>
 	</c:if>	
 		<p class="text-byte">0/1000 byte</p>
+		<script type="text/javascript">
+		//글자의 바이트를 계산해주는 이벤트
+		jQuery(document).on(
+				'input',
+				'.byte-count',
+				function() {
+					var $this = jQuery(this);
+					var content = $this.val();
+					var limiteSize = $this.data('byteLimit');
+					var byteSize = getByteLength(content);
+					if (byteSize > limiteSize) {
+						alert("사이즈를 벗어 났습니다. " + limiteSize + "byte까지 입력가능합니다.");
+						content = cutByteLength(content, limiteSize);
+						$this.val(content);
+						byteSize = getByteLength(content);
+					}
+					$this.next().html(
+							jQuery('<p>').attr('class', 'text-byte').text(
+									byteSize + '/' + limiteSize + ' byte'));
+				});
+		function getByteLength(s) {
+			if (s == null || s.length == 0) {
+				return 0;
+			}
+			var size = 0;
+			for (var i = 0; i < s.length; i++) {
+				size += this.charByteSize(s.charAt(i));
+			}
+			return size;
+		}
+		function charByteSize(ch) {
+			if (ch == null || ch.length == 0) {
+				return 0;
+			}
+			var charCode = ch.charCodeAt(0);
+			if (charCode <= 0x00007F) {
+				return 1;
+			} else if (charCode <= 0x0007FF) {
+				return 2;
+			} else if (charCode <= 0x00FFFF) {
+				return 3;
+			} else {
+				return 4;
+			}
+		}
+		</script>
 		<div class="support-button">
 			<span class="insert"><a href="javascript:writeComment('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
 			<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
