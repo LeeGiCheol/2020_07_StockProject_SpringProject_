@@ -507,7 +507,134 @@ button, input, optgroup, select, textarea {
     text-indent: -9999em;
     margin-right: 5px;
 }
-
+.comment-cont {
+    position: relative;
+    margin-top: 30px;
+}
+.comment-cont .cmt-write {
+    border: #eaeaea 1px solid;
+    box-sizing: border-box;
+    position: relative;
+    clear: both;
+}
+.comment-cont .cmt-write textarea {
+    border: none;
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 18px;
+}
+textarea {
+    padding: 1%;
+    width: 100%;
+    border: 1px solid #ccc;
+    color: #4d4d4d;
+    resize: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+textarea {
+    overflow: auto;
+}
+.comment-cont .cmt-write .text-byte {
+    background: #fff;
+    text-align: right;
+    color: #888;
+    font-size: 13px;
+}
+.comment-cont .cmt-write > p {
+    padding: 10px;
+    background-color: #f9f9f9;
+    position: relative;
+}
+.comment-cont .cmt-write > div.support-button {
+    padding: 10px;
+    background-color: #f9f9f9;
+    position: relative;
+    height: 40px;
+}
+.comment-cont .cmt-write .insert {
+    padding: 0;
+    position: absolute;
+    bottom: 6px;
+    right: 7px;
+}
+.comment-cont .cmt-write .insert .btn-s.gray {
+    border: #444 1px solid;
+    color: #fff;
+}
+[class*="btn-"].gray {
+    background: #444;
+    border: 1px solid #444;
+    color: #fff;
+}
+.comment-cont .cmt-list {
+    padding-top: 20px;
+}
+.comment-cont .cmt-list > p {
+    border-bottom: none;
+}
+.comment-cont .cmt-list > p {
+    position: relative;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    border-bottom: #eaeaea 1px solid;
+    padding-bottom: 10px;
+}
+.comment-cont .cmt-list > p span {
+    color: #ff545b;
+}
+.comment-cont .cmt-list > p strong {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    font-size: 13px;
+    font-weight: normal;
+}
+input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
+    opacity: 0;
+    outline: 0;
+    margin-left: 0;
+    position: absolute;
+    z-index: -1;
+}
+.comment-cont .cmt-list > p strong input[type="radio"]:not(old):checked + label {
+    color: #ff545b;
+}
+.comment-cont .cmt-list > p strong input[type="radio"] + label {
+    margin-left: 10px;
+    color: #666;
+}
+.comment-cont:after {
+    content: "";
+    position: absolute;
+    left: -30px;
+    right: -30px;
+    top: -30px;
+    border-top: #000 1px solid;
+}
+input[type="radio"]:not(old):checked + label {
+    background-image: url(/resources/img/bg_radio_on.png);
+}
+input[type="radio"]:not(old) + label {
+    display: inline-block;
+    height: 18px;
+    padding: 0 0 0 18px;
+    background-image: url(/resources/img/bg_radio.png);
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+    cursor: pointer;
+    line-height: 18px;
+}
+#replyArea {
+    border-bottom: #eaeaea 1px solid;
+}
 </style>
 </head>
 
@@ -545,6 +672,82 @@ button, input, optgroup, select, textarea {
 		</div>
 		<div class="board-view">
 		</div>	
+		
+		<div class="comment-cont anonymity">
+
+	<!-- 실명인증 -->
+	<div class="cmt-write">
+		<textarea id="inputComment" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="따뜻한 댓글은 글쓴이에게 큰 힘이 됩니다. 욕설/비방이 담긴 댓글은 삭제될 수 있습니다."></textarea>
+		
+		<p class="text-byte">0/1000 byte</p>
+		<div class="support-button">
+			<span class="insert"><a href="javascript:addComment(this);" class="btn-s gray">등록</a></span>
+		</div> 
+		</div>
+	<!-- //cmt-write -->
+	
+	<div class="cmt-list" id="cmt-list" style="">
+		<p>
+			댓글 보기 <span id="commentCnt">1</span>
+			<strong>
+				<input type="radio" id="orderby1" name="orderby3" checked="checked" onclick="changeOrder();"><label for="orderby1">최신순</label>
+				<input type="radio" id="orderby2" name="orderby3" onclick="changeOrder('popular');"><label for="orderby2">인기순</label>
+			</strong>
+		</p>
+		<ul id="replyArea"><script src="//image.paxnet.co.kr/rpan/common/js/md5.js"></script>
+<script src="//image.paxnet.co.kr/rpan/my/js/my-home.js?update=20191127"></script>
+
+<style>
+.comment-cont .cmt-list div.list .share-more a span{background:url("//image.paxnet.co.kr/rpan/common/images/ico_sub.png") no-repeat 0 -370px;}
+.comment-cont .cmt-list div.list .share-more a:last-child{background:none;}
+.comment-cont .cmt-write-preview .url{padding-bottom:5px;}
+.comment-cont .cmt-list .list div.text .url{padding-bottom:5px;}
+.comment-cont .cmt-write-preview .url .delete {background-position:6px -498px;}
+
+.comment-cont .cmt-list li{border-top:#eaeaea 1px solid;}
+.comment-cont .cmt-list li{border-bottom:none;}
+.comment-cont .cmt-list > p{border-bottom:none;}
+#replyArea {border-bottom:#eaeaea 1px solid;}
+</style>
+
+<style>
+		@media only screen and (min-width: 979px) {
+		    .comment-cont.anonymity .cmt-list li.list > div {padding-left:45px;}
+		}
+		.comment-cont.anonymity  .cmt-list div.list > div {padding-left:60px;}
+</style>
+<div class="commentAttach_45219165" style="display:none;"></div>
+
+				<li class="list">
+						<p class="img"><img class="pax_f2_proimg" cust_id="angelina0416" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>
+						<div>
+							<div class="text" id="text_45219165">
+								<p class="writer">
+									<span id="writer_45219165" onclick="javascript:viewProfile('angelina0416')" style="cursor:pointer;">안녕하세용용</span>
+									<span class="data-date-format" data-date-format="Thu Jun 11 13:11:12 KST 2020">06.11</span>
+								</p>
+
+								<p id="cont_45219165" style="display:none;">저는 고기를 많이 사먹음ㅋㅋ</p>
+								<input type="hidden" id="comt_reg_date_45219165" value="Thu Jun 11 13:11:12 KST 2020">
+								<p class="cont">저는 고기를 많이 사먹음ㅋㅋ</p>
+
+								<span>
+									<button type="button" class="btn-s" onclick="javascript:replyAddForm('45219165', this, '0');">답글달기</button>
+									<button type="button" class="btn-s like" onclick="javascript:addRecommendComment('45219165');"><i>추천</i><span class="_cnt" id="recommend_45219165">0</span></button>
+								</span>
+							</div>
+
+							<!-- //text -->
+							<div class="share-more">
+								<a class="notify e-login e-report-comt-popup" href="javascript:bbsComment_report('45219165', '안녕하세용용');"><span>신고</span></a>
+											</div>
+						</div>
+					</li>
+</ul>
+	</div>
+	<!-- //cmt-list -->
+</div>
+		
 		<div class="comment">
 		<h2 id='commentBody' class='comment-title'>댓글</h2>
 		
@@ -709,7 +912,7 @@ button, input, optgroup, select, textarea {
 						
 						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
 						comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
-						comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdataTime)+"<br> <br>"
+						comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdateTime)+"<br> <br>"
 						comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>"
 						
 						// 내 댓글에 수정/삭제 버튼 띄우기
