@@ -11,16 +11,12 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<!-- CSS파일 -->
 <link href="/resources/css/free-board-detail.css" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="jpaginate/style.css"/> -->
-
 <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
-
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 
@@ -46,11 +42,29 @@
 		}, 50);
 		
 		$("#btnDelete").click(function() {
-			if (confirm("정말로 삭제하시겠습니까?")) {
+			/* sweetAlert */
+			swal({
+				  text: "정말삭제하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("성공적으로 삭제되었습니다.", {
+				      icon: "success",
+				    }).then(function(){
+					  location.href = '/board/free/delete?pno=${boardDetail.pno}';
+				    });
+				  } else {
+				    swal("삭제가 취소되었습니다.");
+				  }
+				});
+			/* if (confirm("정말로 삭제하시겠습니까?")) {
 				location.href = '/board/free/delete?pno=${boardDetail.pno}';
 			} else {
 				alert("취소하셨습니다.");
-			}
+			} */
 		})
 	});
 </script>
