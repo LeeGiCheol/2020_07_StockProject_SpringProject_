@@ -108,8 +108,13 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			}
 		}); 
 	});
-	
-	
+	$('#frm').keypress(function(event){
+	     if ( event.which == 13 ) {
+	         $('#submit').click();
+	         return false;
+	     }
+	});
+
 	
 	function passwordCheck(){
 		$.ajax({ 
@@ -120,18 +125,16 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			success: function(data){ 
 				console.log(data)
 					if(data == 1){
-						swal("굿", "success").then(function(){
+						swal({text:"성공적으로 비밀번호를 변경하였습니다.", icon:"success"}).then(function(){
 							location.href = '/logOut'
 						});
 						
 					}else if(data == 0){
-						alert("현재비밀번호가 일치하지않습니다.")
-						location.href = "/mypageUpdatePassword";
+						swal({text:"현재비밀번호가 일치하지않습니다.", icon:"error"}).then(function(){
+							location.href = '/mypageUpdatePassword'
+						});
 						$('#nowPassword').empty();
 				 	}
-				
-
-						
 			},
 			error: function(){
 				alert("에러");

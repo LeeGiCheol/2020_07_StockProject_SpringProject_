@@ -11,9 +11,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
@@ -28,32 +31,34 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	
+
 </head>
 
 <style>
-tr td button{
+tr td button {
 	background: transparent;
 	border: none;
 	margin: 0;
 	padding: 0;
-} 
+}
+
 .refresh, .fa-redo {
-    margin-left: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    padding-top: 5px;
-    color: #333;
+	margin-left: 5px;
+	font-size: 12px;
+	font-weight: 600;
+	padding-top: 5px;
+	color: #333;
 }
 </style>
 
 <body>
 
-	<%@include file="mainheader.jsp" %> 
+	<%@include file="mainheader.jsp"%>
 
 	<!-- 전체메뉴 백그라운드-->
 	<div class="all-dim"></div>
@@ -61,41 +66,167 @@ tr td button{
 		<div class="stock-deal">
 			<div class="stock-deal-nav">거래</div>
 			<div class="row">
-			<div class="chartdata-nav">
-							<form action="/trade" id="searchForm"
-								class="form-inline chartdata-form" method="GET">
-								<input class="form-control mr-sm-2 stock-search-input"
-									type="search" placeholder="종목 검색" id="stockSearch"
-									aria-label="Search" name="stockName">
-								<button
-									class="btn btn-outline-secondary stock-search-btn"
-									id="stockBtn" type="submit">
-									<i class="fas fa-search"></i>
-								</button>
-								<h3 class="btnOverInfo" id="h3_stockName">${stockName}</h3>
-								<span id="nowStock"> </span>
-								<a href="#" class="refresh"><i class="fas fa-redo"></i>새로고침</a>
-						<div class="stock-deal-button">
-								<button type="button"
-									class="btn btn-secondary companydata-btn stock-btn"
-									onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
-								</button>
-								<button type="button"
-									class="btn btn-secondary companydata-btn stock-btn" id="minute">
-									분차트보기</button>
-								<button type="button"
-									class="btn btn-secondary companydata-btn stock-btn" id="day">
-									일차트보기</button>
-								<button type="button"
-									class="btn btn-secondary companydata-btn stock-btn" onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
-									거래 기록</button>
-								<button type="button"
-									class="btn btn-secondary companydata-btn stock-btn" onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
-									보유 종목</button>
-								</div>
-							</form>
+				<div class="chartdata-nav">
+					<form action="/trade" id="searchForm"
+						class="form-inline chartdata-form" method="GET">
+						<input class="form-control mr-sm-2 stock-search-input"
+							type="search" placeholder="종목 검색" id="stockSearch"
+							aria-label="Search" name="stockName">
+						<button class="btn btn-outline-secondary stock-search-btn"
+							id="stockBtn" type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+						<h3 class="btnOverInfo" id="h3_stockName">${stockName}</h3>
+						<span id="nowStock"> </span> <a href="#" class="refresh"><i
+							class="fas fa-redo"></i></a>
 
+						<script type="text/javascript">
+								$(".refresh").click(function(){
+									var obj = new Object();
+									var jsonData = JSON.stringify(obj);
+									console.log("asdasd");
+										$.ajax({
+											type : "GET",
+											url : '${pageContext.request.contextPath}/trade/refresh?stockName=${stockName}',
+											datatype : "JSON",
+											success : function(data) {
+												var day_d = data.day_d
+												var day_startprice = data.day_startprice
+												var day_highprice = data.day_highprice
+												var day_lowprice = data.day_lowprice
+												var day_lastprice = data.day_lastprice
+													
+												$("#chartcontainer").empty();
+													
+													var dayData = [];
+													for (var i = 0; i < 60; i++) {
+														dayData.push({
+													         x: new Date(
+													        		 parseInt(day_d[i]/10000),
+													                  parseInt(day_d[i]%10000/100)-1,
+													                  day_d[i]%100+1
+													                  ),
+													         y:  [ parseFloat(day_startprice[i]), parseFloat(day_highprice[i]),
+												                 parseFloat(day_lowprice[i]),
+												                 parseFloat(day_lastprice[i]) ]
+													     });
+													 }
+												     
+												     var options = {
+												    		
+												         series: [{
+												             data: dayData
+												         }],
+												         chart: {
+												             type: 'candlestick',
+												             redrawOnParentResize: true,
+												             zoom: {
+												                 enabled: false}
+												         },
+												         xaxis: {
+												             type: 'datetime',
+												             labels: {
+												                 datetimeFormatter: {
+												                     year: 'yyyy',
+												                     month: 'MM/dd',
+												                     day: 'dd',
+												                     hour: 'HH:mm'
+												                 }
+												             },
+												             tooltip: {
+												                 formatter: function(val, opts) {
+												                   var st = new Date(val);
+												                   var mon = st.getMonth()+1;
+												                   var day = st.getDate()-1;
+												                   if(day == 0 ){
+												                	   day = 31;
+												                	   mon = mon-1;
+												                   }
+												                   var text = mon + "/" +day;
+												                   return text
+												                 }
+												               }
+												         },
+												         yaxis: {labels: {
+											     		    formatter: function (value) {
+											     		    	value = parseInt(value);
+											     		    	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+											      		    }
+											      		  },
+												             tooltip: {
+												                 enabled: true
+												             }
+												         },
+												         
+												         plotOptions: {
+												        	 candlestick: {
+												        	        colors: {
+												        	          upward: '#FF0000',
+												        	          downward: '#5B5AFF'
+												        	        },
+												        	        wick: {
+												        	          useFillColor: true
+												        	        }
+												        	      }, 
+												        	 bar: { //일차트 클릭
+														          horizontal: false,
+														          startingShape: 'flat',
+														          endingShape: 'flat',
+														          columnWidth: '11%',
+														          barHeight: '80%',
+														          distributed: false,
+														          rangeBarOverlap: true,
+														          colors: {
+														              ranges: [{
+														                  from: 0,
+														                  to: 0,
+														                  color: undefined
+														              }],
+														              backgroundBarColors: [],
+														              backgroundBarOpacity: 1,
+														              backgroundBarRadius: 0,
+														          }
+														      }
+														  },
+
+														  tooltip: {
+															  custom: function({series, seriesIndex, dataPointIndex, w}) {
+												               
+															    return '<DIV style="height: auto; width: auto; padding:15px; /* background-color: rgba(249, 249, 249, 0.85); */ font-size: 16px;"><p>● 시가: '+mainData[dataPointIndex].y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p><p>● 종가: ' + mainData[dataPointIndex].y[3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #5B5AFF;">▼ 저가: ' + mainData[dataPointIndex].y[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p><p style="color: #FF0000;">▲ 고가: ' + mainData[dataPointIndex].y[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ '</p></DIV>'
+															  }
+															}
+												     };
+
+												     var daychart = new ApexCharts(document.querySelector("#chartcontainer"), options);
+												     daychart.render();
+											}	
+											}); 
+								})
+								
+								</script>
+						<div class="stock-deal-button">
+							<button type="button"
+								class="btn btn-secondary companydata-btn stock-btn"
+								onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
+							</button>
+							<button type="button"
+								class="btn btn-secondary companydata-btn stock-btn" id="minute">
+								분차트보기</button>
+							<button type="button"
+								class="btn btn-secondary companydata-btn stock-btn" id="day">
+								일차트보기</button>
+							<button type="button"
+								class="btn btn-secondary companydata-btn stock-btn"
+								onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
+								거래 기록</button>
+							<button type="button"
+								class="btn btn-secondary companydata-btn stock-btn"
+								onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
+								보유 종목</button>
 						</div>
+					</form>
+
+				</div>
 				<div class="col-md-9">
 					<div class="chartdata">
 						<div class="chartdata-body">
@@ -109,7 +240,7 @@ tr td button{
 								<col width="30%">
 								<col width="45%">
 							</colgroup>
-<%-- 							<thead>
+							<%-- 							<thead>
 								<tr>
 									<th scope="col" colspan="3" id="stockName">${stockName}</th>
 								</tr>
@@ -122,7 +253,7 @@ tr td button{
 								</tr>
 								<tr>
 									<td scope="col" class="upper-text">상한가</td>
-									<td scope="col"  class="upper-text" id="m-maximum"></td>
+									<td scope="col" class="upper-text" id="m-maximum"></td>
 									<td scope="col"></td>
 								</tr>
 							</tbody>
@@ -134,7 +265,9 @@ tr td button{
 							<tbody>
 								<tr id="m-upDownColor">
 									<td scope="col" class="now-text">현재가</td>
-									<td scope="col" class="now-text"> <button id="m-price"></button></td>
+									<td scope="col" class="now-text">
+										<button id="m-price"></button>
+									</td>
 									<td scope="col" class="now-text" id="m-beforeAndUpdown"></td>
 								</tr>
 							</tbody>
@@ -152,57 +285,57 @@ tr td button{
 						</table>
 					</div>
 					<div class="aside_area aside_popular">
-					
+
 						<h3 class="h_popular-left">
 							<span>TOP 종목</span>
 						</h3>
 						<h3 class="h_popular-right">
 							<span>인기 검색 종목</span>
 						</h3>
-					
-					<div class="table-body-left">
-						<table class="tbl_home_left">
-							<caption>
-								인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
-							</caption>
-							<colgroup>
-								<col width="40%">
-								<col width="20%">
-								<col width="20%">
-							</colgroup>
-							<thead>
-								<tr>
-									<th scope="col">구분</th>
-									<th scope="col">현재가</th>
-									<th scope="col">전일대비</th>
-								</tr>
-							</thead>
-							<tbody id="topRank">
-								
-							</tbody>
-						</table>
+
+						<div class="table-body-left">
+							<table class="tbl_home_left">
+								<caption>
+									인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
+								</caption>
+								<colgroup>
+									<col width="40%">
+									<col width="20%">
+									<col width="20%">
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">구분</th>
+										<th scope="col">현재가</th>
+										<th scope="col">전일대비</th>
+									</tr>
+								</thead>
+								<tbody id="topRank">
+
+								</tbody>
+							</table>
 						</div>
 						<div class="table-body-rigth">
-						<table class="tbl_home_right">
-							<caption>
-								인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
-							</caption>
-							<colgroup>
-								<col width="40%">
-								<col width="20%">
-								<col width="20%">
-							</colgroup>
-							<thead>
-								<tr>
-									<th scope="col">구분</th>
-									<th scope="col">현재가</th>
-									<th scope="col">전일대비</th>
-								</tr>
-							</thead>
-							<tbody class="rank-table" id="searchRank">
-								
-							</tbody>
-						</table>
+							<table class="tbl_home_right">
+								<caption>
+									인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
+								</caption>
+								<colgroup>
+									<col width="40%">
+									<col width="20%">
+									<col width="20%">
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">구분</th>
+										<th scope="col">현재가</th>
+										<th scope="col">전일대비</th>
+									</tr>
+								</thead>
+								<tbody class="rank-table" id="searchRank">
+
+								</tbody>
+							</table>
 						</div>
 						<a href="/sise/lastsearch2.nhn" class="btn_more"
 							onclick="clickcr(this, 'boa.more', '', '', event);"><em
@@ -233,9 +366,11 @@ tr td button{
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input type="text"
-													class="alignR" id="buying_price" name="buyingPrice"
-													readOnly></span> 원 <span class="buying-check"> <a
+												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span
+													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
+													type="text" class="alignR" id="buying_price"
+													name="buyingPrice" readOnly></span> 원 <span
+													class="buying-check"> <a
 													class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
 													<script>
 												$(document).ready(function() {
@@ -326,8 +461,8 @@ tr td button{
 													<a onclick="sumplus(10);"
 													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
 													onclick="sumplus(100);"
-													class="buying-check-btn btnStyle btnS btnSum">100주</a> 
-													<a id= "buy_max" class="buying-check-btn btnStyle btnS btnSum">최대</a>
+													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
+													id="buy_max" class="buying-check-btn btnStyle btnS btnSum">최대</a>
 												</span>
 											</div>
 											<script>
@@ -390,12 +525,15 @@ tr td button{
 										<div class="input-area">
 											<div class="detail unit-price">
 
-												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input type="text"
-													class="alignR" id="selling_price" name="sellingPrice" readOnly></span> 원 
-													<span class="buying-check"> <a onclick="#" class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
+												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span
+													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
+													type="text" class="alignR" id="selling_price"
+													name="sellingPrice" readOnly></span> 원 <span
+													class="buying-check"> <a onclick="#"
+													class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
 
 													<div class="layerPopup">
-														<div class="layerBox layerStock"  id="poplayer_possible"
+														<div class="layerBox layerStock" id="poplayer_possible"
 															style="display: block;">
 															<h1>매도가능</h1>
 															<!-- conSection -->
@@ -540,10 +678,12 @@ tr td button{
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 39px;"
-													class="btn-cc">단가</label><span data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input type="text" class="alignA"
-													id="mySelect" name="modifyPrice" readonly></span> <input
-													type="text" class="alignB" id="mySelect" value="0"
-													style="display: none;" disabled> 원
+													class="btn-cc">단가</label><span
+													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
+													type="text" class="alignA" id="mySelect" name="modifyPrice"
+													readonly></span> <input type="text" class="alignB"
+													id="mySelect" value="0" style="display: none;" disabled>
+												원
 											</div>
 											<div class="detail unit-price">
 												<label for="nOrdUnpr" style="margin-right: 34px;">수량</label>
@@ -559,8 +699,7 @@ tr td button{
 											</span>
 										</div>
 									</div>
-									<button class="btn-modify"
-										type="submit">정정주문</button>
+									<button class="btn-modify" type="submit">정정주문</button>
 									<button style="width: 100%; height: auto; display: none;"
 										class="btn-cancel" type="submit">취소주문</button>
 								</form>
@@ -568,7 +707,7 @@ tr td button{
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-md-3">
 					<div class="stock-price-chart">
 						<table class="stock-chart-table	">
@@ -577,7 +716,7 @@ tr td button{
 								<col width="30%">
 								<col width="45%">
 							</colgroup>
-<%-- 							<thead>
+							<%-- 							<thead>
 								<tr>
 									<th scope="col" colspan="3" id="stockName">${stockName}</th>
 								</tr>
@@ -590,7 +729,7 @@ tr td button{
 								</tr>
 								<tr>
 									<td scope="col" class="upper-text">상한가</td>
-									<td scope="col"  class="upper-text" id="maximum"></td>
+									<td scope="col" class="upper-text" id="maximum"></td>
 									<td scope="col"></td>
 								</tr>
 							</tbody>
@@ -633,11 +772,11 @@ tr td button{
 
 	</div>
 
-	<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter.jsp"%>
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
 	<!-- 검색 자동완성용 js -->
-	<script src="/resources/js/stockAutoComplete.js" type="text/javascript"></script>	
- 
+	<script src="/resources/js/stockAutoComplete.js" type="text/javascript"></script>
+
 	<script>
 	var stockName = "${stockName}";
 	if(stockName === ''){

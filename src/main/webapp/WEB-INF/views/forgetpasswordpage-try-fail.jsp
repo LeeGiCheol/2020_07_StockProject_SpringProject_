@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 <script>
 function ok(){
-    alert('인증번호가 일치하지 않습니다.')
+	swal({text:"인증번호가 일치하지않습니다.", icon:"error"}); 
+	window.location.href="/forgetPasswordTry";
   }
   ok();
-  window.location.href="/forgetPasswordTry";
 </script>
 </head>
 <body>

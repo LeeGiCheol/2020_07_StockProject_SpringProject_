@@ -11,16 +11,12 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<!-- CSS파일 -->
 <link href="/resources/css/free-board-detail.css" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="jpaginate/style.css"/> -->
-
 <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
@@ -47,11 +43,29 @@
 		}, 50);
 		
 		$("#btnDelete").click(function() {
-			if (confirm("정말로 삭제하시겠습니까?")) {
+			/* sweetAlert */
+			swal({
+				  text: "정말삭제하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("성공적으로 삭제되었습니다.", {
+				      icon: "success",
+				    }).then(function(){
+					  location.href = '/board/free/delete?pno=${boardDetail.pno}';
+				    });
+				  } else {
+				    swal("삭제가 취소되었습니다.");
+				  }
+				});
+			/* if (confirm("정말로 삭제하시겠습니까?")) {
 				location.href = '/board/free/delete?pno=${boardDetail.pno}';
 			} else {
 				alert("취소하셨습니다.");
-			}
+			} */
 		})
 	});
 </script>
@@ -494,7 +508,248 @@ button, input, optgroup, select, textarea {
     text-indent: -9999em;
     margin-right: 5px;
 }
+.comment-cont {
+    position: relative;
+    margin-top: 30px;
+}
+.comment-cont .cmt-write {
+    border: #eaeaea 1px solid;
+    box-sizing: border-box;
+    position: relative;
+    clear: both;
+}
+.comment-cont .cmt-write textarea {
+    border: none;
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 18px;
+}
+textarea {
+    padding: 1%;
+    width: 100%;
+    border: 1px solid #ccc;
+    color: #4d4d4d;
+    resize: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+textarea {
+    overflow: auto;
+}
+.comment-cont .cmt-write .text-byte {
+    background: #fff;
+    text-align: right;
+    color: #888;
+    font-size: 13px;
+}
+.comment-cont .cmt-write > p {
+    padding: 10px;
+    background-color: #f9f9f9;
+    position: relative;
+}
+.comment-cont .cmt-write > div.support-button {
+    padding: 10px;
+    background-color: #f9f9f9;
+    position: relative;
+    height: 40px;
+}
+.comment-cont .cmt-write .insert {
+    padding: 0;
+    position: absolute;
+    bottom: 6px;
+    right: 7px;
+}
+.comment-cont .cmt-write .insert .btn-s.gray {
+    border: #444 1px solid;
+    color: #fff;
+}
+[class*="btn-"].gray {
+    background: #444;
+    border: 1px solid #444;
+    color: #fff;
+}
+.comment-cont .cmt-list {
+    padding-top: 20px;
+}
+.comment-cont .cmt-list > p {
+    border-bottom: none;
+}
+.comment-cont .cmt-list > p {
+    position: relative;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    border-bottom: #eaeaea 1px solid;
+    padding-bottom: 10px;
+}
+.comment-cont .cmt-list > p span {
+    color: #ff545b;
+}
+.comment-cont .cmt-list > p strong {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    font-size: 13px;
+    font-weight: normal;
+}
+input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
+    opacity: 0;
+    outline: 0;
+    margin-left: 0;
+    position: absolute;
+    z-index: -1;
+}
+.comment-cont .cmt-list > p strong input[type="radio"]:not(old):checked + label {
+    color: #ff545b;
+}
+.comment-cont .cmt-list > p strong input[type="radio"] + label {
+    margin-left: 10px;
+    color: #666;
+}
+.comment-cont:after {
+    content: "";
+    position: absolute;
+    left: -30px;
+    right: -30px;
+    top: -30px;
+    border-top: #000 1px solid;
+}
+input[type="radio"]:not(old):checked + label {
+    background-image: url(/resources/img/bg_radio_on.png);
+}
+input[type="radio"]:not(old) + label {
+    display: inline-block;
+    height: 18px;
+    padding: 0 0 0 18px;
+    background-image: url(/resources/img/bg_radio.png);
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+    cursor: pointer;
+    line-height: 18px;
+}
+.comment-cont .cmt-list li.list {
+    padding: 20px 10px;
+    position: relative;
+}
+.comment-cont .cmt-list li.list > .img {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+.comment-cont .cmt-list li.list > .img > img {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: #eaeaea;
+}
+fieldset, img, abbr, acronym {
+    border: 0;
+}
 
+.comment-cont.anonymity .cmt-list li.list > div {
+    padding-left: 0;
+}
+.comment-cont .cmt-list .list div.text .writer {
+    font-size: 13px;
+    color: #888;
+    vertical-align: top;
+    padding-bottom: 3px;
+    padding-right: 70px;
+}
+.comment-cont .cmt-list .list div.text .writer span:first-child {
+    background: url(/resources/img/bg_line.png) no-repeat right 50%;
+    padding-right: 10px;
+    margin-right: 5px;
+}
+.comment-cont .cmt-list .list div.text .writer {
+    font-size: 13px;
+    color: #888;
+    vertical-align: top;
+    padding-bottom: 3px;
+    padding-right: 70px;
+}
+.comment-cont .cmt-list .list div.text .cont {
+    padding-bottom: 10px;
+    color: #222222;
+    line-height: 1.4;
+    word-break: break-word;
+}
+.comment-cont .cmt-list li.list .share-more {
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+.comment-cont .cmt-list li.list .share-more a:last-child {
+    background: none;
+}
+.comment-cont .cmt-list li.list .share-more a {
+    display: inline-block;
+    color: #a7753a;
+    font-size: 13px;
+    padding: 0 3px 0 4px;
+}
+.comment-cont .cmt-list li.list .share-more a.notify span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -370px;
+}
+.comment-cont .cmt-list li.list .share-more a span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-indent: -9999em;
+}
+.comment-cont .cmt-list li.list > div {
+    padding-left: 45px;
+}
+@media only screen and (min-width: 979px){
+.comment-cont.anonymity .cmt-list li.list > div {
+    padding-left: 45px;
+}
+}
+.bt-area {
+    overflow: hidden;
+    padding: 20px 0 40px;
+}
+.bt-area span {
+    display: block;
+    float: right;
+}
+[class*="btn-s"].bodrb {
+    border: 1px solid #444;
+    color: #000;
+}
+#replyArea {
+    border-bottom: #eaeaea 1px solid;
+}
+[class*="btn-"].red {
+    background: #ff545b;
+    border: 1px solid #ff545b;
+    color: #fff;
+}
+.prev-next {
+    width: 100%;
+    overflow: hidden;
+    border-top: #444444 1px solid;
+    margin-bottom: 30px;
+}
+.prev-next > div {
+    border: #eaeaea 1px solid;
+}
+.prev-next > div dl {
+    padding: 10px 20px;
+    overflow: hidden;
+}
+.prev-next > div dl dt {
+    color: #444;
+    float: left;
+    width: 80px;
+}
 </style>
 </head>
 
@@ -532,6 +787,78 @@ button, input, optgroup, select, textarea {
 		</div>
 		<div class="board-view">
 		</div>	
+		
+		<div class="comment-cont anonymity">
+
+	<!-- 실명인증 -->
+	<div class="cmt-write">
+		<textarea id="inputComment" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="따뜻한 댓글은 글쓴이에게 큰 힘이 됩니다. 욕설/비방이 담긴 댓글은 삭제될 수 있습니다."></textarea>
+		
+		<p class="text-byte">0/1000 byte</p>
+		<div class="support-button">
+			<span class="insert"><a href="javascript:addComment(this);" class="btn-s gray">등록</a></span>
+		</div> 
+		</div>
+	<!-- //cmt-write -->
+	
+	<div class="cmt-list" id="cmt-list" style="">
+		<p>
+			댓글 보기 <span id="commentCnt">1</span>
+			<strong>
+				<input type="radio" id="orderby1" name="orderby3" checked="checked" onclick="changeOrder();"><label for="orderby1">최신순</label>
+				<input type="radio" id="orderby2" name="orderby3" onclick="changeOrder('popular');"><label for="orderby2">인기순</label>
+			</strong>
+		</p>
+		<ul id="replyArea">
+		
+				<li class="list">
+						<p class="img"><img class="pax_f2_proimg" cust_id="angelina0416" src="/resources/img/pi_08.png"></p>
+						<div>
+							<div class="text" id="text_45219165">
+								<p class="writer">
+									<span id="writer_45219165" onclick="javascript:viewProfile('angelina0416')" style="cursor:pointer;">안녕하세용용</span>
+									<span class="data-date-format" data-date-format="Thu Jun 11 13:11:12 KST 2020">06.11</span>
+								</p>
+
+								<p class="cont">저는 고기를 많이 사먹음ㅋㅋ</p>
+
+							</div>
+
+							<!-- //text -->
+							<div class="share-more">
+								<a class="notify e-login e-report-comt-popup" href="javascript:bbsComment_report('45219165', '안녕하세용용');"><span>신고</span></a>
+											</div>
+						</div>
+					</li>
+</ul>
+	</div>
+</div>
+		
+		<p class="bt-area view-bt-area">
+
+        <span>
+            <a href="javascript:goList();" class="btn-s bodrb">목록</a>
+			<a href="javascript:goEdit();" class="btn-s red">글쓰기</a>
+		</span>
+    	</p>
+    	<div class="prev-next">
+	        <div class="prev">
+	            <dl>
+	                <dt>이전글</dt>
+	                <dd>
+	                    <a href="javascript:goNextPreView('150357583535303','N10841','');">현충원 최고의 명당자리에 묻혀있는 일본군 장교 56명</a>
+	                        </dd>
+	            </dl>
+	        </div>
+	        <div class="next">
+	            <dl>
+	                <dt>다음글</dt>
+	                <dd>
+	                    <a href="javascript:goNextPreView('150357583551308','N10841','');">저는 여자를 좋아하지 않습니다</a>
+	                        </dd>
+	            </dl>
+	        </div>
+	    </div>
 		<div class="comment">
 		<h2 id='commentBody' class='comment-title'>댓글</h2>
 		

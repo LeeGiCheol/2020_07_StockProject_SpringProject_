@@ -379,6 +379,58 @@ public class TradeController {
 
 	}
 
+	@RequestMapping(value = "/trade/refresh")
+	public @ResponseBody Map chartRefresh(@RequestParam(value = "stockName") String stockName)
+			throws InterruptedException {
+
+		if (stockName == null)
+			stockName = "삼성전자";
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		stockName = stockName.toUpperCase();
+
+//		RequestChart rc = new RequestChart();
+//		rc.connection(stockName);
+
+		Map<String, Object> minChart = tradeService.minuteChart(stockName);
+		Map<String, Object> dayChart = tradeService.dayChart(stockName);
+
+		Integer[][] minChartData = new Integer[6][60];
+		Integer[][] dayChartData = new Integer[6][60];
+//
+		for (int i = 0; i < 60; i++) {
+			minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
+			minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
+			minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
+			minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
+			minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
+			minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
+
+			dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
+			dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
+			dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
+			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
+			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+		}
+
+		map.put("min_d", minChartData[0]);
+		map.put("min_hr", minChartData[1]);
+		map.put("min_startprice", minChartData[2]);
+		map.put("min_highprice", minChartData[3]);
+		map.put("min_lowprice", minChartData[4]);
+		map.put("min_lastprice", minChartData[5]);
+
+		map.put("day_d", dayChartData[0]);
+		map.put("day_startprice", dayChartData[2]);
+		map.put("day_highprice", dayChartData[3]);
+		map.put("day_lowprice", dayChartData[4]);
+		map.put("day_lastprice", dayChartData[5]);
+
+		map.put("stockName", stockName);
+		return map;
+	}
+
 	@RequestMapping(value = "/trade/search")
 	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
 		String stockName = vo.getStockName();
@@ -454,9 +506,9 @@ public class TradeController {
 		String[] searchUpDown = topStock.getSearchUpDown();
 		String[] searchSangHa = topStock.getSearchSangHa();
 
-		System.out.println("----------"+Arrays.toString(topUpDown));
-		System.out.println("++++++++++"+Arrays.toString(searchUpDown));
-		
+		System.out.println("----------" + Arrays.toString(topUpDown));
+		System.out.println("++++++++++" + Arrays.toString(searchUpDown));
+
 		for (int i = 0; i < topName.length; i++) {
 			map.put("topName", topName);
 			map.put("topCurrentPrice", topCurrentPrice);

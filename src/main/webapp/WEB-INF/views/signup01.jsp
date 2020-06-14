@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
-
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 
@@ -53,7 +52,7 @@ body {margin: 0px;}
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
-	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		function CheckForm(Join){
 			
@@ -61,7 +60,7 @@ body {margin: 0px;}
 			var termsChk2 = $("input:checkbox[name='terms2']").is(":checked");
 			
 			if(!termsChk || !termsChk2){
-				alert("약관을 확인해주세요.");
+				swal({text:"확인하지않은 약관이 있습니다.", icon:"error"});
 				return false;
 			}
 		}

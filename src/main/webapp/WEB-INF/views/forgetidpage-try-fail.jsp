@@ -5,15 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function ok(){
-    alert('인증번호가 일치하지 않습니다.')
+	alert("인증번호가 일치하지않습니다.")
   }
   ok();
-  window.location.href="/forgetIdTry";
+	window.location.href="/forgetIdTry";
 </script>
 </head>
 <body>
-
 </body>
 </html>
