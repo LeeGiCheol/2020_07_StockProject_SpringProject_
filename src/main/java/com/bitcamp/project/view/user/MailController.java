@@ -25,8 +25,8 @@ public class MailController {
         Random rand = new Random();
 	    for(int i=0;i<4;i++) {
 	        //0~9 까지 난수 생성
-	        String ran = Integer.toString(rand.nextInt(10));
-	        EmailNumStr += ran;
+	        String ran = Integer.toString(rand.nextInt(10000));
+	        EmailNumStr = ran;
 	    }
         try {
             message.setSubject("FanstayStock입니다. 비밀번호찾기이메일입니다.");
