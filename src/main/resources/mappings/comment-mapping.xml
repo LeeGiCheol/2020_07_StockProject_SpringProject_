@@ -45,6 +45,16 @@
 		WHERE pno = #{pno}
 	</insert>
 	
+	<select id="getMyComment" parameterType="page" resultType="comment">
+		select *
+		from commentList
+		where id=#{util.id}
+		<if test='!util.commentKeyword.equals("")'>
+		and ccontent like CONCAT('%', #{util.commentKeyword}, '%')
+		</if>
+		limit #{start}, #{cntPerPage}
+	</select>
+	
 	<!-- <select id="commentList" resultType="comment">
 		SELECT * FROM commentList
 		WHERE pno = #{pno} 

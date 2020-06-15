@@ -65,15 +65,7 @@
 		limit #{start}, #{cntPerPage}
 	</select>
 	
-	<select id="getMyComment" parameterType="page" resultType="comment">
-		select *
-		from commentList
-		where id=#{util.id}
-		<if test='!util.commentKeyword.equals("")'>
-		and ccontent like CONCAT('%', #{util.commentKeyword}, '%')
-		</if>
-		limit #{start}, #{cntPerPage}
-	</select>
+
 	
 	<delete id="deleteMyPost" parameterType="map">
 		delete

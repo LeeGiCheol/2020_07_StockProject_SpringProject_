@@ -156,31 +156,131 @@ $(document).ready(function(){
             </tr>
           </thead>
           <tbody>
-            <tr> 
-              <td>1033</td>
-              <td>세틀뱅크</td>
-              <td>25,920</td>
-              <td>27,130</td>
-              <td>3</td>
-              <td>28,300</td>
-              <td>+ 7,300</td>
-            </tr>
+	          <c:forEach items="${holdingStockList}" var="stock">
+	            <tr> 
+	              <td>${stock.stockCode}</td>
+	              <td>${stock.stockName}</td>
+	              <td>${stock.avgPrice}</td>
+	              <td>27,130</td>
+	              <td>${stock.quantity}</td>
+	              <td>${stock.quantity*10}</td>
+	              <td>+ 7,300</td>
+	            </tr>
+	          </c:forEach>
           </tbody>
         </table>
-          <form class="form-inline my-2 my-lg-0 underSearchForm">
+          <form class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage02">
             <div>
               <div class="search-box">
-                <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" name="accountSearch" placeholder="search" aria-label="Search" value="${accountSearch}">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i></button>
               </div>   
             </div>      
           </form>
+          
+          <div class="paging">	
+			<div class="paging-body">				
+			<nav aria-label="..." class="pagination">
+			    <ul class="pagination">
+			
+			<c:if test="${pv1.nowPage != 1}">
+			      <!-- << 버튼 -->
+			      <li>
+			        <a class="page-link"
+			          href="/myPage02?nowPage1=1&accountSearch=${accountSearch}"
+			          tabindex="-1" aria-disabled="true">
+			          <i class="fas fa-angle-double-left"></i>
+			        </a>
+			      </li>
+			      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
+			      <c:if test="${pv1.nowPage == 1}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage1=${pv1.nowPage}&accountSearch=${accountSearch}"
+			            tabindex="-1" aria-disabled="true">
+			            <i class="fas fa-angle-left"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			</c:if>
+			      
+			      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+			      <c:if test="${pv1.nowPage != 1}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage1=${pv1.nowPage-1}&accountSearch=${accountSearch}"
+			            tabindex="-1" aria-disabled="true">
+			            <i class="fas fa-angle-left"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			      
+			      <!-- 한번에 5개 페이지 보여줌 -->
+			       <c:forEach begin="${pv1.startPage }"
+			        end="${pv1.endPage }" var="p">
+			        <c:choose>
+			          <c:when test="${p == pv1.nowPage}">
+			            <li class="page-item active" aria-current="page">
+			              <a class="page-link" href="#">${p}
+			                <span class="sr-only">(current)</span>
+			              </a>
+			            </li>
+			          </c:when>
+			          <c:when test="${p != pv1.nowPage}">
+			            <li class="page-item">
+			              <a class="page-link" href="/myPage02?nowPage1=${p}&accountSearch=${accountSearch}">${p}</a>
+			            </li>
+			          </c:when>
+			        </c:choose>
+			      </c:forEach> 
+			      
+			      
+			      
+			 	 <c:if test="${pv1.nowPage != pv1.lastPage}">    
+			      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+			      <c:if test="${pv1.nowPage == pv1.lastPage}">
+			        <li>
+			          <a class="page-link"
+			            href="myPage02?nowPage1=${pv1.nowPage}&accountSearch=${accountSearch}"
+			            tabindex="+1" aria-disabled="true">
+			            <i class="fas fa-angle-right"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			      
+			      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+			      <c:if test="${pv1.nowPage != pv1.lastPage}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage1=${pv1.nowPage+1}&accountSearch=${accountSearch}"
+			            tabindex="+1" aria-disabled="true" data-ajax="false">
+			            <i class="fas fa-angle-right"></i>
+			          </a>
+			        </li>
+			      </c:if> 
+			
+			      <!-- >> 버튼 -->
+			      <li>
+			        <a class="page-link"
+			        href="/myPage02?nowPage1=${pv1.lastPage}&accountSearch=${accountSearch}"
+			        tabindex="-1" aria-disabled="true">
+			          <i class="fas fa-angle-double-right"></i>
+			        </a>
+			      </li>
+			      
+			      </c:if>
+			    </ul>
+			  </nav>
+			 </div>
+			<!-- 
    			<div class="paging">
 				<div class="paging-body">
 					<ul class="pagination" id="pagination"></ul>
 				</div>
 			</div>
+			 -->
+      </div>
       </div>
       <!-- 계좌 끝 -->
       <!-- 거래내역 시작 -->
@@ -200,6 +300,7 @@ $(document).ready(function(){
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-date" role="second-tabpanel" aria-labelledby="pills-dete-tab">
               <!-- 날짜별 검색 시작 -->
+              <form action="/myPage02">
               <table class="table table-date-bordered">
                 <thead>
                   <!-- 달력 시작 -->
@@ -208,7 +309,7 @@ $(document).ready(function(){
                       <div class='col-md-3 col-xs-4'>
                         <div class="form-group">
                             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                  <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="05/25/2020">
+                                  <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" name="startDate" value="${startDate}">
                                 <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -218,7 +319,7 @@ $(document).ready(function(){
                     <div class='col-md-3 col-xs-4'>
                         <div class="form-group">
                             <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                                  <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="05/30/2020">
+                                  <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" name="endDate" value="${endDate}">
                                 <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -238,41 +339,124 @@ $(document).ready(function(){
                     <th class="date-search-date5" scope="col">단가</th>
                     <th class="date-search-date6" scope="col">세금</th>
                   </tr>
+                  <c:forEach items="${stockHistoryListByDate}" var="stock">
                   <tr>
-                    <td>2020.05.25</td>
-                    <td>1030</td>
-                    <td>3</td>
-                    <td>3,000</td>
-                    <td>1,000</td>
-                    <td>50</td>
+                    <td>${stock.tdatetime}</td>
+                    <td>${stock.stockName}</td>
+                    <td>${stock.quantity}</td>
+                    <td>${stock.tprice*stock.quantity}</td>
+                    <td>${stock.tprice}</td>
+                    <td>${stock.tprice*stock.quantity*0.0025}</td>
                   </tr>
-                  <tr>
-                    <td>2020.05.25</td>
-                    <td>1030</td>
-                    <td>3</td>
-                    <td>3,000</td>
-                    <td>1,000</td>
-                    <td>50</td>
-                  </tr>
-                  <tr>
-                    <td>2020.05.25</td>
-                    <td>1030</td>
-                    <td>3</td>
-                    <td>3,000</td>
-                    <td>1,000</td>
-                    <td>50</td>
-                  </tr>
+                  </c:forEach>
                 </thead>
               </table>
+              </form>
+              <div class="paging">	
+			<div class="paging-body">				
+			<nav aria-label="..." class="pagination">
+			    <ul class="pagination">
+			
+			<c:if test="${pv2.nowPage != 1}">
+			      <!-- << 버튼 -->
+			      <li>
+			        <a class="page-link"
+			          href="/myPage02?nowPage2=1&startDate=${startDate}&endDate=${endDate}"
+			          tabindex="-1" aria-disabled="true">
+			          <i class="fas fa-angle-double-left"></i>
+			        </a>
+			      </li>
+			      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
+			      <c:if test="${pv2.nowPage == 1}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage2=${pv2.nowPage}&startDate=${startDate}&endDate=${endDate}"
+			            tabindex="-1" aria-disabled="true">
+			            <i class="fas fa-angle-left"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			</c:if>
+			      
+			      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+			      <c:if test="${pv2.nowPage != 1}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage2=${pv2.nowPage-1}&startDate=${startDate}&endDate=${endDate}"
+			            tabindex="-1" aria-disabled="true">
+			            <i class="fas fa-angle-left"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			      
+			      <!-- 한번에 5개 페이지 보여줌 -->
+			       <c:forEach begin="${pv2.startPage }"
+			        end="${pv2.endPage }" var="p">
+			        <c:choose>
+			          <c:when test="${p == pv2.nowPage}">
+			            <li class="page-item active" aria-current="page">
+			              <a class="page-link" href="#">${p}
+			                <span class="sr-only">(current)</span>
+			              </a>
+			            </li>
+			          </c:when>
+			          <c:when test="${p != pv2.nowPage}">
+			            <li class="page-item">
+			              <a class="page-link" href="/myPage02?nowPage2=${p}&startDate=${startDate}&endDate=${endDate}">${p}</a>
+			            </li>
+			          </c:when>
+			        </c:choose>
+			      </c:forEach> 
+			      
+			      
+			      
+			 	 <c:if test="${pv2.nowPage != pv2.lastPage}">    
+			      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+			      <c:if test="${pv2.nowPage == pv2.lastPage}">
+			        <li>
+			          <a class="page-link"
+			            href="myPage02?nowPage2=${pv2.nowPage}&startDate=${startDate}&endDate=${endDate}"
+			            tabindex="+1" aria-disabled="true">
+			            <i class="fas fa-angle-right"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			      
+			      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+			      <c:if test="${pv2.nowPage != pv2.lastPage}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage2=${pv2.nowPage+1}&startDate=${startDate}&endDate=${endDate}"
+			            tabindex="+1" aria-disabled="true" data-ajax="false">
+			            <i class="fas fa-angle-right"></i>
+			          </a>
+			        </li>
+			      </c:if> 
+			
+			      <!-- >> 버튼 -->
+			      <li>
+			        <a class="page-link"
+			        href="/myPage02?nowPage2=${pv2.lastPage}&startDate=${startDate}&endDate=${endDate}"
+			        tabindex="-1" aria-disabled="true">
+			          <i class="fas fa-angle-double-right"></i>
+			        </a>
+			      </li>
+			      
+			      </c:if>
+			    </ul>
+			  </nav>
+			 </div>
+			 </div>
             </div>
               <!-- 날짜별 검색 끝 -->
               <!-- 종목별 검색 시작 -->
             <div class="tab-pane fade show" id="pills-category" role="second-tabpane2" aria-labelledby="pills-category-tab">
+               <form action="/myPage02">
                 <table class="table table-date-bordered">
                   <thead>
                     <tr class="category-search-article">
                       <div class="category-search">
-                      <input class="form-control mr-sm-2 category-search-box" type="search" placeholder="종목검색" aria-label="Search">
+                      <input class="form-control mr-sm-2 category-search-box" type="search" placeholder="종목검색" name="tradeSearch" aria-label="Search" value="${tradeSearch}">
                         <button class="btn btn-outline-secondary my-2 my-sm-0 " type="submit"><i class="fas fa-search"></i></button>
                       </div> 
                     </tr>
@@ -285,38 +469,120 @@ $(document).ready(function(){
                       <th class="date-search-category5" scope="col">단가</th>
                       <th class="date-search-category6" scope="col">세금</th>
                     </tr>
-                    <tr>
-                      <td>2020.05.25</td>
-                      <td>1030</td>
-                      <td>3</td>
-                      <td>3,000</td>
-                      <td>1,000</td>
-                      <td>50</td>
-                    </tr>
-                    <tr>
-                      <td>2020.05.25</td>
-                      <td>1030</td>
-                      <td>3</td>
-                      <td>3,000</td>
-                      <td>1,000</td>
-                      <td>50</td>
-                    </tr>
-                    <tr>
-                      <td>2020.05.25</td>
-                      <td>1030</td>
-                      <td>3</td>
-                      <td>3,000</td>
-                      <td>1,000</td>
-                      <td>50</td>
-                    </tr>
+                  <c:forEach items="${stockHistoryListByStock}" var="stock">
+   		            <tr>
+        	            <td>${stock.tdatetime}</td>
+            	        <td>${stock.stockName}</td>
+                	    <td>${stock.quantity}</td>
+                    	<td>${stock.tprice*stock.quantity}</td>
+                    	<td>${stock.tprice}</td>
+                    	<td>${stock.tprice*stock.quantity*0.0025}</td>
+                  	</tr>
+                  </c:forEach>
                   </thead>
                 </table>
+                </form>
+           <div class="paging">	
+			<div class="paging-body">				
+			<nav aria-label="..." class="pagination">
+			    <ul class="pagination">
+			
+			<c:if test="${pv3.nowPage != 1}">
+			      <!-- << 버튼 -->
+			      <li>
+			        <a class="page-link"
+			          href="/myPage02?nowPage3=1&tradeSearch=${tradeSearch}"
+			          tabindex="-1" aria-disabled="true">
+			          <i class="fas fa-angle-double-left"></i>
+			        </a>
+			      </li>
+			      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
+			      <c:if test="${pv3.nowPage == 1}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage3=${pv3.nowPage}&tradeSearch=${tradeSearch}"
+			            tabindex="-1" aria-disabled="true">
+			            <i class="fas fa-angle-left"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			</c:if>
+			      
+			      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+			      <c:if test="${pv3.nowPage != 1}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage3=${pv3.nowPage-1}&tradeSearch=${tradeSearch}"
+			            tabindex="-1" aria-disabled="true">
+			            <i class="fas fa-angle-left"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			      
+			      <!-- 한번에 5개 페이지 보여줌 -->
+			       <c:forEach begin="${pv3.startPage }"
+			        end="${pv3.endPage }" var="p">
+			        <c:choose>
+			          <c:when test="${p == pv3.nowPage}">
+			            <li class="page-item active" aria-current="page">
+			              <a class="page-link" href="#">${p}
+			                <span class="sr-only">(current)</span>
+			              </a>
+			            </li>
+			          </c:when>
+			          <c:when test="${p != pv3.nowPage}">
+			            <li class="page-item">
+			              <a class="page-link" href="/myPage02?nowPage3=${p}&tradeSearch=${tradeSearch}">${p}</a>
+			            </li>
+			          </c:when>
+			        </c:choose>
+			      </c:forEach> 
+			      
+			      
+			      
+			 	 <c:if test="${pv3.nowPage != pv3.lastPage}">    
+			      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+			      <c:if test="${pv3.nowPage == pv3.lastPage}">
+			        <li>
+			          <a class="page-link"
+			            href="myPage02?nowPage3=${pv3.nowPage}&tradeSearch=${tradeSearch}"
+			            tabindex="+1" aria-disabled="true">
+			            <i class="fas fa-angle-right"></i>
+			          </a>
+			        </li>
+			      </c:if>
+			      
+			      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+			      <c:if test="${pv3.nowPage != pv3.lastPage}">
+			        <li>
+			          <a class="page-link"
+			            href="/myPage02?nowPage3=${pv3.nowPage+1}&tradeSearch=${tradeSearch}"
+			            tabindex="+1" aria-disabled="true" data-ajax="false">
+			            <i class="fas fa-angle-right"></i>
+			          </a>
+			        </li>
+			      </c:if> 
+			
+			      <!-- >> 버튼 -->
+			      <li>
+			        <a class="page-link"
+			        href="/myPage02?nowPage3=${pv3.lastPage}&tradeSearch=${tradeSearch}"
+			        tabindex="-1" aria-disabled="true">
+			          <i class="fas fa-angle-double-right"></i>
+			        </a>
+			      </li>
+			      
+			      </c:if>
+			    </ul>
+			  </nav>
+			 </div>
+			 </div>
             </div>
             <!-- 종목별 검색 끝 -->
           </div>
       </div>
       <!-- 거래내역 끝 -->
-    </div>  
+    </div> 
   </article>
 <!-- article end -->
 

@@ -1,11 +1,18 @@
 package com.bitcamp.project.vo;
 
-public class holdingStockVO {
+public class HoldingStockVO {
+	String id;
 	String stockCode;
 	String stockName;
 	String quantity;
 	String avgPrice;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getStockCode() {
 		return stockCode;
 	}
@@ -30,6 +37,9 @@ public class holdingStockVO {
 	public void setAvgPrice(String avgPrice) {
 		this.avgPrice = avgPrice;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "HoldingStockVO [id=" + id + ", stockCode=" + stockCode + ", stockName=" + stockName + ", quantity="
+				+ quantity + ", avgPrice=" + avgPrice + "]";
+	}
 }
