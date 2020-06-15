@@ -278,7 +278,7 @@ position:relative;
 			<div class="col-md-3">
 
 				<c:choose>
-					<c:when test="${loginUser eq null}">
+					<c:when test="${loginUser eq null and naverLoginUser eq null}">
 						<div class="login-box">
 							<div class="div-login-box">
 								<form method='post' action="/signIn">
@@ -301,7 +301,7 @@ position:relative;
 									<span><a href="/forgetId" class="idforgot">아이디 찾기</a>
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
-								    <a href="#" class="social-type naver">네이버 로그인</a>
+								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
 									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									<a href="#" class="social-type facebook">페이스북 로그인</a>
 									<a href="#" class="social-type google">구글 로그인</a>
@@ -322,7 +322,10 @@ position:relative;
 								</p>
 								<dl>
 									<dt>
-										<strong>${loginUser.nickname}</strong>님
+										<c:choose>
+										<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
+										<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
+										</c:choose>
 										<button type="button" class="logout"
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>

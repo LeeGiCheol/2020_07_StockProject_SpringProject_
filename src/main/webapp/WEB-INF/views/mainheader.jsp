@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <title>mainheader</title>
 </head>
 <body>
@@ -14,7 +15,7 @@
 	<div class="top-nav">
 		<!-- 상단  nav -->
 		<c:choose>
-			<c:when test="${loginUser eq null}">
+			<c:when test="${loginUser eq null and naverLoginUser eq null}">
 				<ul class="nav justify-content-end top-nav">
 					<li class="breadcrumb-item"><a id="top-nav-font"
 						href="/signInPage">로그인</a></li>
@@ -28,7 +29,10 @@
 						src="/resources/img/pi_08.png"></a>
 					<dl>
 						<dt>
-							<strong>${loginUser.nickname}</strong> 님
+							<c:choose>
+							<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
+							<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
+							</c:choose>
 						</dt>
 					</dl>
 					<li class="breadcrumb-item"><a id="top-nav-font"
