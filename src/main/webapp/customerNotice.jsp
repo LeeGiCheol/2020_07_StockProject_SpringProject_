@@ -24,28 +24,6 @@
 
 	</style>
 
-	<script>
-		$(document).ready(function () {
-			$("#jb-checkboxAll-best").click(function () {
-				if ($("#jb-checkboxAll-best").prop("checked")) {
-					$(".check-best").prop("checked", true);
-				} else {
-					$(".check-best").prop("checked", false);
-				}
-			})
-			$("#jb-checkboxAll").click(function () {
-				if ($("#jb-checkboxAll").prop("checked")) {
-					$(".check").prop("checked", true);
-				} else {
-					$(".check").prop("checked", false);
-				}
-			})
-			$("input:radio[name='orderby']").click(function () {
-
-				$("#form").submit()
-			})
-		});
-	</script>
 </head>
 
 <body>
