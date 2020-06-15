@@ -13,6 +13,7 @@
 		<typeAlias type="com.bitcamp.project.vo.BoardVO" alias="board"></typeAlias>
 		<typeAlias type="com.bitcamp.project.vo.PagingVO" alias="page"></typeAlias>
 		<typeAlias type="com.bitcamp.project.vo.CommentVO" alias="comment"></typeAlias>
+		<typeAlias type="com.bitcamp.project.vo.HoldingStockVO" alias="holdingStock"></typeAlias>
 	</typeAliases>
 	
 	<mappers>
