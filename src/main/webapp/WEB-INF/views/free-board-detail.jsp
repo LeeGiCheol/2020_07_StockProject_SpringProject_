@@ -41,32 +41,6 @@
 			 $(".image").children().height(h);
 			
 		}, 50);
-		
-		$("#btnDelete").click(function() {
-			/* sweetAlert */
-			swal({
-				  text: "정말삭제하시겠습니까?",
-				  icon: "warning",
-				  buttons: true,
-				  dangerMode: true,
-				})
-				.then((willDelete) => {
-				  if (willDelete) {
-				    swal("성공적으로 삭제되었습니다.", {
-				      icon: "success",
-				    }).then(function(){
-					  location.href = '/board/free/delete?pno=${boardDetail.pno}';
-				    });
-				  } else {
-				    swal("삭제가 취소되었습니다.");
-				  }
-				});
-			/* if (confirm("정말로 삭제하시겠습니까?")) {
-				location.href = '/board/free/delete?pno=${boardDetail.pno}';
-			} else {
-				alert("취소하셨습니다.");
-			} */
-		})
 	});
 </script>
 <style>
@@ -915,12 +889,11 @@ li.list > .img {
 
 	<!-- 실명인증 -->
 	
-	
 	<form action="/board/writeComment" method="POST" id="commentForm">
 	<div class="cmt-write">
 	<input type="hidden" name="pno" value="${boardDetail.pno}">
 	<c:if test="${loginUser != null}">
-		<textarea name="ccontent" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="따뜻한 댓글은 글쓴이에게 큰 힘이 됩니다. 욕설/비방이 담긴 댓글은 삭제될 수 있습니다."></textarea>
+		<textarea id="commentContent" name="ccontent" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="따뜻한 댓글은 글쓴이에게 큰 힘이 됩니다. 욕설/비방이 담긴 댓글은 삭제될 수 있습니다."></textarea>
 	</c:if>
 	<c:if test="${loginUser == null}">
 		<textarea name="ccon
@@ -1005,7 +978,9 @@ li.list > .img {
 				  });
 		</script>
 		<div class="support-button">
-			<span class="insert"><a href="javascript:writeComment('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
+
+			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
+			<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
 		</div> 
 		</div>
 	</form>
@@ -1013,7 +988,7 @@ li.list > .img {
 	
 	<div class="cmt-list" id="cmt-list" style="">
 		<p>
-			댓글 보기 <span id="commentCnt">1</span>
+			댓글 보기 <span id="commentCnt"></span>
 <!-- 			<strong>
 				<input type="radio" id="orderby1" name="orderby3" checked="checked" onclick="changeOrder();"><label for="orderby1">최신순</label>
 				<input type="radio" id="orderby2" name="orderby3" onclick="changeOrder('popular');"><label for="orderby2">인기순</label>
@@ -1182,13 +1157,13 @@ li.list > .img {
 					board +=			'<p class="text">'
 					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;">'+boardNickname+'</span>'
 					board +=			'<span class="time">'+changeDate(boardDatetime)+'</span>'
-					board +=			'<span class="viewer"><i>조회</i>64</span>'
+					board +=			'<span class="viewer"><i>조회</i>'+data.boardDetail.views+'</span>'
 					board +=			'</p>'
 					board +=		'</div>'
 					board +=		'<c:if test="${loginUser.nickname eq boardDetail.nickname}">'
 					board +=			'<div id="" class="share-more">'
 					board +=				'<a href="/board/free/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
-					board +=				'<a href="javascript:void(0)" id="btnDelete" class="del"><span>삭제</span></a>'
+					board +=				'<a href="javascript:void(0)" onclick="delBoard()" id="btnDelete" class="del"><span>삭제</span></a>'
 					board +=			'</div>'
 					board +=		'</c:if>'
 					board +=	'</div>'
@@ -1205,11 +1180,17 @@ li.list > .img {
 					
 					$(".board-view").html(board)
 	
-
+					var commentCount = "";
+					commentCount += data.boardDetail.commentCount
+					$("#commentCnt").text(commentCount)
+					
+					
+					
 					// 댓글
 					var comment= "";
 					
 					
+				if(data.commentList.length != 0){
 					for(var i=0; i<data.commentList.length; i++){
 						
 						
@@ -1252,93 +1233,120 @@ li.list > .img {
 							comment += 		   'id="btnDelete" onclick="deleteComment(' + data.commentList[i].cno + ')">삭제</button>'  */
 						}
 							comment += '</li>'
+
 							
-	 
-						
-						$("#commentList").empty().html(comment)
-					}	
-					
-					
-					// 페이징처리
-					var commentPaging = "";
-					
-					// 댓글이 4개 이상일 때 띄우기
-	 				if(data.commentPage.total >= 4) {
-	 					commentPaging += '<nav aria-label="..." class="pagination">' 
-						commentPaging += '<ul class="pagination">' 
-						
-						
-						// 1페이지가 아니면
-	 					if(data.commentPage.nowPage != 1){
-	 						
-	 						// << 버튼 
-	 						commentPaging +=	'<li>'
-	 						commentPaging +=		'<a class="page-link"'
-	 						commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=1"'
-	 						commentPaging +=			'tabindex="-1" aria-disabled="true">'
-	 						commentPaging +=			'<i class="fas fa-angle-double-left"></i>'
-	 						commentPaging +=		'</a>'
-	 						commentPaging +=	'</li>'
-	 						
-	 						// < 버튼
-			 				commentPaging +=	'<li>'
-		 					commentPaging +=		'<a class="page-link"'
-							commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"'
-							commentPaging +=			'tabindex="-1" aria-disabled="true">'
-							commentPaging +=			'<i class="fas fa-angle-left"></i>'
-							commentPaging +=		'</a>'
-							commentPaging +=	'</li>'
-	 					}
-						
-						// 한번에 5개 페이지 보여줌
-						for(var i=data.commentPage.startPage; i<=data.commentPage.endPage; i++){
-							if(i == data.commentPage.nowPage){
-								commentPaging +=	'<li class="page-item active" aria-current="page">'
-								commentPaging +=			'<a class="page-link" href="#">'+i
-								commentPaging +=				'<span class="sr-only">(current)</span>'
-								commentPaging +=				'</a>'
-								commentPaging +=		'</li>'
+	/*  						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
+							comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
+							comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdateTime)+"<br> <br>"
+							comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>" */
+							
+							// 내 댓글에 수정/삭제 버튼 띄우기
+							if("${loginUser.nickname}" == data.commentList[i].nickname){
+								var test = data.commentList[i].ccontent
+								console.log("${loginUser.nickname}")
+								//console.log(data.commentList.nickname)
+								$("#showhide-btn").hide()
+	 							comment +=  	   '<div class="share-more">'
+								comment += 		   '<a href="javascript:updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ');" class="modify"><span>수정</span></a>'
+								comment += 	       '<a href="javascript:commentDelConfirm(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].pno + "'" + ');" class="del" id="commentDel"><span>삭제</span></a>'
+								comment += 		   '</div>'
+	
+	/* 							comment +=  	   '<button type="button" class="btn btn-sm btn-primary"'
+								comment += 		   'id="btnUpdate'+data.commentList[i].cno+'" onclick="updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ')">수정</button>'
+								comment += 	       '<button type="button" class="btn btn-sm btn-primary"'
+								comment += 		   'id="btnDelete" onclick="deleteComment(' + data.commentList[i].cno + ')">삭제</button>'  */
 							}
-							if(i != data.commentPage.nowPage){
-								commentPaging +=	'<li class="page-item">'
+								comment += '</li>'
 								
-								commentPaging +=	"<a class='page-link' href='/board/free/detail?pno="+data.boardDetail.pno+"&bnowPage="+i+"'>"+i+"</a>"
+		 
 							
+							$("#commentList").empty().html(comment)
+						}	
+						
+						
+						
+						// 페이징처리
+						var commentPaging = "";
+						
+						// 댓글이 4개 이상일 때 띄우기
+		 				if(data.commentPage.total >= 4) {
+		 					commentPaging += '<nav aria-label="..." class="pagination">' 
+							commentPaging += '<ul class="pagination">' 
+							
+							
+							// 1페이지가 아니면
+		 					if(data.commentPage.nowPage != 1){
+		 						
+		 						// << 버튼 
+		 						commentPaging +=	'<li>'
+		 						commentPaging +=		'<a class="page-link"'
+		 						commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=1"'
+		 						commentPaging +=			'tabindex="-1" aria-disabled="true">'
+		 						commentPaging +=			'<i class="fas fa-angle-double-left"></i>'
+		 						commentPaging +=		'</a>'
+		 						commentPaging +=	'</li>'
+		 						
+		 						// < 버튼
+				 				commentPaging +=	'<li>'
+			 					commentPaging +=		'<a class="page-link"'
+								commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"'
+								commentPaging +=			'tabindex="-1" aria-disabled="true">'
+								commentPaging +=			'<i class="fas fa-angle-left"></i>'
+								commentPaging +=		'</a>'
 								commentPaging +=	'</li>'
-							}
-						}
-						
-						
-						// 마지막페이지아닐때
-						if(data.commentPage.nowPage != data.commentPage.lastPage){
-							commentPaging += '<li>'
-							commentPaging += 	'<a class="page-link"'
-							commentPaging += 		"href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}'"
-							commentPaging += 		'tabindex="+1" aria-disabled="true" data-ajax="false">'
-							commentPaging += 			'<i class="fas fa-angle-right"></i>'
-							commentPaging += 	'</a>'
-							commentPaging += '</li>'
+		 					}
 							
-							// >> 버튼
-							commentPaging += '<li>'
-							commentPaging += '<a class="page-link"'
-							commentPaging += "href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}'"						
-							commentPaging += 'tabindex="-1" aria-disabled="true">'
-							commentPaging += 		'<i class="fas fa-angle-double-right"></i>'
-							commentPaging += 	'</a>'
-							commentPaging += '</li>'
-						}
+							// 한번에 5개 페이지 보여줌
+							for(var i=data.commentPage.startPage; i<=data.commentPage.endPage; i++){
+								if(i == data.commentPage.nowPage){
+									commentPaging +=	'<li class="page-item active" aria-current="page">'
+									commentPaging +=			'<a class="page-link" href="#">'+i
+									commentPaging +=				'<span class="sr-only">(current)</span>'
+									commentPaging +=				'</a>'
+									commentPaging +=		'</li>'
+								}
+								if(i != data.commentPage.nowPage){
+									commentPaging +=	'<li class="page-item">'
+									
+									commentPaging +=	"<a class='page-link' href='/board/free/detail?pno="+data.boardDetail.pno+"&bnowPage="+i+"'>"+i+"</a>"
+								
+									commentPaging +=	'</li>'
+								}
+							}
+							
+							
+							// 마지막페이지아닐때
+							if(data.commentPage.nowPage != data.commentPage.lastPage){
+								commentPaging += '<li>'
+								commentPaging += 	'<a class="page-link"'
+								commentPaging += 		"href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}'"
+								commentPaging += 		'tabindex="+1" aria-disabled="true" data-ajax="false">'
+								commentPaging += 			'<i class="fas fa-angle-right"></i>'
+								commentPaging += 	'</a>'
+								commentPaging += '</li>'
+								
+								// >> 버튼
+								commentPaging += '<li>'
+								commentPaging += '<a class="page-link"'
+								commentPaging += "href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}'"						
+								commentPaging += 'tabindex="-1" aria-disabled="true">'
+								commentPaging += 		'<i class="fas fa-angle-double-right"></i>'
+								commentPaging += 	'</a>'
+								commentPaging += '</li>'
+							}
+							
+		 					$("#commentPaging").empty().html(commentPaging)
+		 					
+		 					
+		 					
+		 					
+		 					
+		 				
+	 					} 
 						
-	 					$("#commentPaging").empty().html(commentPaging)
-	 					
-	 					
-	 					
-	 					
-	 					
-	 				
- 					} 
-					
-					
+					}else{
+						$("#commentList").empty()
+					}
 					
 					
 	 				var prev_next = "";
@@ -1383,7 +1391,7 @@ li.list > .img {
 						
 						}
 						
-						// 글이 하나밖에 없을 때
+						// 글이 하나밖에 없을 때	
 						catch(e){
 							prev_next += 	'<div class="prev">'
 							prev_next +=    	 '<dl>이전글이 존재하지 않습니다'
@@ -1417,9 +1425,31 @@ li.list > .img {
 				}
 			});
 	    }
-			
+		
+		// 등록할건지 alert
+		function commentInsertConfirm(pno){
+			swal({
+				  text: "정말 등록하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willInsert) => {
+				  if (willInsert) {
+				    swal("성공적으로 등록되었습니다.", {
+				      icon: "success",
+				    }).then(function(){
+				    	writeComment(pno);
+				    });
+				  } else {
+				    swal("등록이 취소되었습니다.");
+				  }		        		
+	    	})
+		}
+	    
+	    
 
-	   // 댓글등록
+	    // 댓글등록
 		function writeComment(pno){
 		    
 		    $.ajax({
@@ -1429,6 +1459,7 @@ li.list > .img {
 		        success : function(data){
 		        	console.log(data);
 		            if(data=="success"){
+		            	$("#commentContent").val("")
 		                list();
 		            }
 		        },
@@ -1482,21 +1513,45 @@ li.list > .img {
 		        }
 		    });
 		}
+		
+		// 삭제할건지 alert
+		function commentDelConfirm(cno, pno){
+			swal({
+				  text: "정말삭제하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("성공적으로 삭제되었습니다.", {
+				      icon: "success",
+				    }).then(function(){
+				    	deleteComment(cno, pno);
+				    });
+				  } else {
+				    swal("삭제가 취소되었습니다.");
+				  }		        		
+	    	})
+		}
+		
+		
 		 
 		// 댓글 삭제
-		function deleteComment(cno){
+		function deleteComment(cno, pno){
 			 $.ajax({
 		        url : "${pageContext.request.contextPath}/board/deleteComment",
 		        type : 'POST',
-		        data : { 'cno' : cno },
+		        data : { 'cno' : cno, 'pno' : pno },
 		        success : function(data){
-		        	console.log(data)
-		        	if(data=="success") 
-		            	list(); 
-		        }
-			 })
+		        	if(data=="success"){
 		        
+		  				    	list(); 
+					}
+			    }
+			})
 		}
+		        
 		
 		
 	    // datetime 변환
@@ -1567,7 +1622,30 @@ li.list > .img {
 					alert('error!!'); 
 			    }
 		    })
-		}			
+		}
+	    
+	    
+	    // 글삭제
+		function delBoard() {
+			/* sweetAlert */
+			swal({
+				  text: "정말삭제하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("성공적으로 삭제되었습니다.", {
+				      icon: "success",
+				    }).then(function(){
+					  location.href = '/board/free/delete?pno=${boardDetail.pno}';
+				    });
+				  } else {
+				    swal("삭제가 취소되었습니다.");
+				  }
+			});
+		}
 	    
 	    
 	    

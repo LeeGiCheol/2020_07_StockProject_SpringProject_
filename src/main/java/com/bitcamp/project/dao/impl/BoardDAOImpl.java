@@ -83,5 +83,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return mybatis.selectList("board.prev_next", vo);
 	}
 	
+	public int deleteBoardComment(BoardVO vo) {
+		return mybatis.update("board.deleteBoardComment", vo);
+	}
+	
 	
 }
