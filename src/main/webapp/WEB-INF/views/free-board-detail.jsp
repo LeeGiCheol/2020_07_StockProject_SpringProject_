@@ -530,13 +530,14 @@ textarea {
     padding: 10px;
     background-color: #f9f9f9;
     position: relative;
-    height: 40px;
+    height: 48px;
 }
 .comment-cont .cmt-write .insert {
     padding: 0;
-    position: absolute;
-    bottom: 6px;
-    right: 7px;
+    position: relative;
+    float: right;
+/*     bottom: 6px;
+    right: 7px; */
 }
 .comment-cont .cmt-write .insert .btn-s.gray {
     border: #444 1px solid;
@@ -813,6 +814,20 @@ fieldset, img, abbr, acronym {
 .comment-cont .cmt-list li {
     border-top: #eaeaea 1px solid;
 }
+.comment-cont .cmt-list .list div.text .btn-s {
+    min-width: 78px;
+	margin-right: 5px;
+}
+.comment-cont .cmt-write .insert .btn-s {
+    color: #000;
+}
+.comment-cont .btn-s {
+    border: #ccc 1px solid;
+    color: #888;
+}
+.comment-cont a {
+    color: #000;
+}
 @media only screen and (max-width: 979px){
 .containerNew {
     padding: 0;
@@ -980,7 +995,7 @@ li.list > .img {
 		<div class="support-button">
 
 			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
-			<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
+
 		</div> 
 		</div>
 	</form>
@@ -1458,13 +1473,17 @@ li.list > .img {
 		    comment += 		'<input type="text" name="ccontent'+cno+'" value="'+ccontent+'"/>';
 		    comment += 		'<button class="btn btn-primary" type="button" onclick="updateComment('+cno+');">확인</button>';
 		    comment += '</div>'; */
-		    
+		  
+		    comment +='<p class="cont">'+ccontent+'</p>';
  		    comment +='<div class="commentDiv">';
 		    comment += 	'<div class="cmt-write">'; 
 		    comment += 		'<textarea name="ccontent'+cno+'" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10">'+ccontent+'</textarea>';
 		    comment += 		'<p class="text-byte">0/1000 byte</p>';
 		    comment += 		'<div class="support-button">';
-		    comment += 			'<span class="insert"><a href="javascript:updateComment('+cno+');" class="btn-s gray">등록</a></span>';
+		    comment += 			'<span class="insert">';
+		    comment +=				'<a href="#" class="btn-s" style="min-width:60px;">취소</a>'
+		    comment +=				'<a href="javascript:updateComment('+cno+');" class="btn-s gray">수정</a>'
+		    comment += 			'</span>';
 		    comment += 		'</div>';
 		    comment += 	'</div>';
 		    comment +='</div>'; 
