@@ -58,7 +58,6 @@ public class MyAccountServiceImpl implements MyAccountService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("id", loginUser.getId());
 		map.put("tradeSearch", tradeSearch);
-		System.out.println("ttttt" + tradeSearch);
 		int count = myAccountDAO.countMyStockHistory(map);
 		PagingVO pv3 = new PagingVO(count,nowPage,2);
 		pv3.getUtil().put("id", loginUser.getId());

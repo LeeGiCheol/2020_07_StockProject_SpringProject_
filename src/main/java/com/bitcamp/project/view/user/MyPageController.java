@@ -29,6 +29,8 @@ import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.StockParsing;
+
 @Controller
 public class MyPageController {
 
@@ -47,7 +49,28 @@ public class MyPageController {
    @GetMapping(value="/myPage02")
    public String myPage02(HttpSession session, @ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
          @ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
-         @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate) {
+         @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
+         @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
+	   
+	   UserVO user = new UserVO();
+	   user.setId("user@naver.com");
+	   session.setAttribute("loginUser", user);
+	   System.out.println("startDate" + startDate);
+	   System.out.println("endDate" + endDate);
+	   String sDate = "";
+	   String eDate = "";
+	   if(startDate.length() > 9) {
+		   sDate = startDate.substring(0, 10);
+		   sDate = sDate.split("/")[2] + "-" + sDate.split("/")[1] + "-" + sDate.split("/")[0];
+	   }
+	   if(endDate.length() > 9) {
+		   eDate = endDate.substring(0, 10);
+		   eDate = eDate.split("/")[2] + "-" + eDate.split("/")[1] + "-" + eDate.split("/")[0];
+	   }
+	   System.out.println("sDate" + sDate);
+	   System.out.println("eDate" + eDate);
+	   if(type1.equals(""))
+		   type1 = "rate";
 	   if(nowPage1.equals(""))
 		   nowPage1 = "1";
 	   if(nowPage2.equals(""))
@@ -58,12 +81,13 @@ public class MyPageController {
 	   HashMap<String, Object> hm1 = myAccountService.getMyStockList(loginUser, Integer.parseInt(nowPage1), accountSearch);
 	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate);
 	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
-	   PagingVO pv1 = (PagingVO)hm1.get("pv1");
-	   System.out.println(pv1.getLastPage());
-	   System.out.println(pv1.getTotal());
-	   System.out.println(pv1.getCntPerPage());
+	   List<HoldingStockVO> hList = (List<HoldingStockVO>)hm1.get("holdingStockList");
+	   StockParsing sp = new StockParsing();
+	   for (int i = 0; i < hList.size(); i++) {
+		   hList.get(i).setCurrentPrice(sp.parse(hList.get(i).getStockCode()).getCurrentPrice());
+	   }
 	   session.setAttribute("pv1", (PagingVO)hm1.get("pv1"));
-	   session.setAttribute("holdingStockList", (List<HoldingStockVO>)hm1.get("holdingStockList"));
+	   session.setAttribute("holdingStockList", hList);
 	   session.setAttribute("pv2", (PagingVO)hm2.get("pv2"));
 	   session.setAttribute("stockHistoryListByDate", (List<StockVO>)hm2.get("stockHistoryListByDate"));
 	   session.setAttribute("pv3", (PagingVO)hm3.get("pv3"));
@@ -72,6 +96,8 @@ public class MyPageController {
 	   session.setAttribute("tradeSearch", tradeSearch);
 	   session.setAttribute("startDate", startDate);
 	   session.setAttribute("endDate", endDate);
+	   session.setAttribute("type1", type1);
+	   session.setAttribute("type2", type2);
 	   return "mypage02";
    }   
 
