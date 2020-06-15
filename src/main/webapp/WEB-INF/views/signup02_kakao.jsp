@@ -21,11 +21,14 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 </head>
 <body>
 	<%@include file="mainheader.jsp" %>
-	<form action="/signUp" name="form" method="POST">
+	<form action="/signUp/kakao" name="form" method="POST">
 		<div class="container">
 			<div class="allBody">
-				<label for="inputEmail">가입을 위해 추가 정보 입력이 필요합니다</</label> 
-				
+				<label for="inputEmail">가입을 위해 추가 정보 입력이 필요합니다</label> 
+				<div class="form-group col-md-6" style="display: -webkit-box;">
+					<input type="email"	class="form-control" id="inputEmail" name="id" value="${kakaoID}" readonly style="display:none">
+					<ul><li style="list-style:none;" id="idResult"></li></ul>
+				</div>
             </div>
 				<label for="inputnickname col-md-6">닉네임</label>
 				<div class="form-group" style="display: -webkit-box;">
@@ -123,16 +126,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		var checkflag = 0;
 	
 		$("#submit").on("click", function(){
-			if($("#inputEmail").val()==""){
-				swal({text:"이메일을 입력해주세요.", icon:"error"})
-				$("#inputEmail").focus();
-				return false;
-			}
-			if($("#inputPassword").val()==""){
-				swal({text:"패스워드를 입력해주세요.", icon:"error"})
-				$("#inputPassword").focus();
-				return false;
-			}
 			if($("#inputNickname").val()==""){
 				swal({text:"닉네임을 입력해주세요.", icon:"error"})
 				$("#inputNickname").focus();
@@ -152,51 +145,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			
 			var checked =  $('#passwordCheck').val();
 			// 비밀번호 확인 체크가 안되면 value는 undefiend 되면 value에 값이 들어와 로그인 된다  
-			if(checked == undefined){
-				swal({text:"비밀번호를 확인해주세요.", icon:"error"})
-				return false;
-			}
 		});
-		
-		$('#idCheck').on('click', function(){ 
-			$.ajax({ 
-				type: 'GET', 
-				url: '${pageContext.request.contextPath}/idCheck', 
-				data: { "id" : $('#inputEmail').val() }, 
-				success: function(data){ 
-					var atSign = $.trim($('#inputEmail').val().indexOf("@"));
-					var com = $.trim($('#inputEmail').val().indexOf("."));
-					// @ 와 .이 없으면 이메일 형식이 안맞는다고 띄우기 
-					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
-						idx= true;
-						$('#inputEmail').attr("readonly", true);
-						
- 						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
-						$('#idResult').empty();
-						$('#idResult').append(html);
-						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
-					}else if(atSign == -1 || com == -1){
-						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요.</td></tr>";
-						
-						$('#idResult').empty();
-						$('#idResult').append(html);
-						document.getElementById("inputEmail").value="";
-						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-					}
-					else{
-						var html="<tr><td colspan='3' style='color: red'>중복된 이메일입니다.</td></tr>";
-						
-						$('#idResult').empty();
-						$('#idResult').append(html);
-						document.getElementById("inputEmail").value="";
-						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-					}
-				},
-				error: function(){
-					alert("에러");
-				}
-			});  
-		});  
 		
 		
 		// 휴대폰 중복확인
@@ -339,38 +288,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			});  
 		});  
 	});
-	
 		
-	function checkPw() {
-		var password = $('#inputPassword').val();
-		var passwordLength = $('#inputPassword');
-		var passwordAgain = $('#inputPasswordAgain').val();
-	    // 비밀번호, 비밀번호 확인이 다른 경우
-		if (password != passwordAgain) {
-			$("#inputPasswordAgain").css("background-color", "#FFCECE");
-			
-			$('#pwResult').empty();
-			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요.</td></tr>"; 
-			$('#pwResult').append(html);
-			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-		}
-		// 비밀번호 길이 제한
-		else if($('#inputPassword').val().length < 8 || $('#inputPassword').val().length > 13){
-		
-			var html="<tr><td colspan='3' style='color: red'>비밀번호는 8자리 이상 \n13자리 이하만 가능합니다.</td></tr>"; 
-			$('#pwResult').empty();
-			$('#pwResult').append(html);
-			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-		} 
-	    // 맞는 경우
-		else if(password == passwordAgain){
-			$("#inputPasswordAgain").css("background-color", "#B0F6AC");
-			var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>사용 가능합니다.</td></tr>"; 
-			$('#pwResult').empty();
-			$('#pwResult').append(html);
-			$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
-		}
-	}
 </script>
 </body>
 </html>
