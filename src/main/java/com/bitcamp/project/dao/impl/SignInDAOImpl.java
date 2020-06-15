@@ -13,6 +13,14 @@ public class SignInDAOImpl implements SignInDAO{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
+	
+	
+	
+	@Override
+	public String existenceID(String id) {
+		return mybatis.selectOne("existenceID", id);
+	}
+
 	@Override
 	public UserVO logIn(UserVO vo) {
 		return mybatis.selectOne("signInCheck", vo);

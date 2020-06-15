@@ -1160,7 +1160,7 @@ tr td button {
 		          horizontal: false,
 		          startingShape: 'flat',
 		          endingShape: 'flat',
-		          columnWidth: '12%',
+		          columnWidth: '11%',
 		          barHeight: '80%',
 		          distributed: false,
 		          rangeBarOverlap: true,

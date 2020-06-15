@@ -39,7 +39,7 @@ function deleteBoard(){
 	});
 	for(i=0; i < deleted.length; i++){
 		boardID = boardID + deleted[i];
-		boardID = boardID + ","
+		boardID = boardID + ",";
 	}
 	if(boardID === ""){
 		swal({text:"삭제할 글을 체크해주세요.", icon:"error"});

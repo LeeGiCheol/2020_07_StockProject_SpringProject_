@@ -46,7 +46,7 @@ public class MyPostDAOImpl implements MyPostDAO {
 	
 	@Override
 	public List<CommentVO> myCommentList(PagingVO page) {
-		return mybatis.selectList("board.getMyComment", page);
+		return mybatis.selectList("comment.getMyComment", page);
 	}
 
 	@Override

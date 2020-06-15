@@ -1,12 +1,19 @@
 package com.bitcamp.project.vo;
 
-import lombok.Data;
-
-public class holdingStockVO {
+public class HoldingStockVO {
+	String id;
 	String stockCode;
 	String stockName;
 	String quantity;
 	String avgPrice;
+	int currentPrice;
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getStockCode() {
 		return stockCode;
 	}
@@ -31,12 +38,15 @@ public class holdingStockVO {
 	public void setAvgPrice(String avgPrice) {
 		this.avgPrice = avgPrice;
 	}
+	public int getCurrentPrice() {
+		return currentPrice;
+	}
+	public void setCurrentPrice(int currentPrice) {
+		this.currentPrice = currentPrice;
+	}
 	@Override
 	public String toString() {
-		return "holdingStockVO [stockCode=" + stockCode + ", stockName=" + stockName + ", quantity=" + quantity
-				+ ", avgPrice=" + avgPrice + "]";
+		return "HoldingStockVO [id=" + id + ", stockCode=" + stockCode + ", stockName=" + stockName + ", quantity="
+				+ quantity + ", avgPrice=" + avgPrice + "]";
 	}
-	
-	
-	
 }

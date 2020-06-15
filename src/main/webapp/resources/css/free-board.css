@@ -65,6 +65,10 @@ position: relative;
 .row {
    margin: 0;
 }
+.col-md-10, .col-md-2{
+    padding-right: 5px;
+    padding-left: 5px;
+}
 .free-board {
     padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
     margin-bottom: /*70px*/40px;
@@ -74,15 +78,6 @@ position: relative;
 }
 .last{
 	border-bottom: 1px solid #eaeaea;
-}
-.m-drop-tit-title{
-    margin: 0 -30px 30px;
-    border-bottom: 1px solid #eaeaea;
-    padding: 0 30px 20px;
-    font-size: 20px;
-    margin-bottom: 30px;
-    font-weight: bold;
-    line-height: 100%;
 }
 .tit-h1, .m-drop-tit-title {
     margin: 0 -30px 30px;
@@ -109,18 +104,7 @@ position: relative;
     font-weight: bold;
     line-height: 100%;
 }
-/* .tit-h1 {
-    font-size: 20px;
-    margin-bottom: 30px;
-    font-weight: bold;
-    line-height: 100%;
-}
- */
-/* [class*="-btn"].red {
-    background: #ff545b;
-    border: 1px solid #ff545b;
-    color: #fff;
-} */
+
 [class*="board-write-btn"] {
 	position: relative;
     background: #c8c8c8;
@@ -370,10 +354,6 @@ display: none;
   width: auto;
   border: 1px solid #dddddd;
   padding: 10px
-}
-.col-md-10, .col-md-2{
-    padding-right: 5px;
-    padding-left: 5px;
 }
 @media only screen and (max-width: 1599px)
 .board-page {

@@ -70,7 +70,16 @@ public class SignUpController {
 		
 		return "signup03";
 	}
-	
+	@PostMapping(value="/signUp/kakao")
+	public String signUpKakao(UserVO vo, @RequestParam("friend") String friend) {
+		if(friend != null) {
+			vo.setFriend(friend);
+		}
+		System.out.println("vo su : " + vo.toString());
+		signUpService.signUp(vo);
+		
+		return "signup03";
+	}
 	
 
 	@ResponseBody 
