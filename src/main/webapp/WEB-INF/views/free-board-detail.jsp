@@ -1048,7 +1048,7 @@ li.list > .img {
 		<p class="bt-area view-bt-area">
         <span>
             <a href="/board/free" class="btn-s bodrb">목록</a>
-			<a href="javascript:goEdit();" class="btn-s red">글쓰기</a>
+			<a href="/board/free/write" class="btn-s red">글쓰기</a>
 		</span>
     	</p>
     	<div class="prev-next" id="prev-next">
