@@ -1006,7 +1006,6 @@ li.list > .img {
 		</script>
 		<div class="support-button">
 			<span class="insert"><a href="javascript:writeComment('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
-			<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
 		</div> 
 		</div>
 	</form>
@@ -1216,7 +1215,6 @@ li.list > .img {
 						
  						comment += 	"<li class='list' id= 'comment"+ data.commentList[i].cno + "'>"
 						comment += 	"<p class='img'><img class='pax_f2_proimg' cust_id='angelina0416' src='/resources/img/pi_08.png'></p>"
-						comment += 	"<div>"
 						comment += 	"<div class='text'>"
 						comment += 	"<p class='writer'>"
 						comment +=	"<span id='writer_45219165' onclick='#' style='cursor:pointer;'>"+data.commentList[i].nickname+"</span>"
@@ -1244,8 +1242,8 @@ li.list > .img {
 							//console.log(data.commentList.nickname)
 							$("#showhide-btn").hide()
  							comment +=  	   '<div class="share-more">'
-							comment += 		   '<a href="javascript:updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ');" class="modify"><span>수정</span></a>'
-							comment += 	       '<a href="javascript:deleteComment(' + data.commentList[i].cno + ');" class="del"><span>삭제</span></a>'
+							comment += 		   '<a href="javascript:updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ');" class="modify" id="btnUpdate'+data.commentList[i].cno+'" ><span>수정</span></a>'
+							comment += 	       '<a href="javascript:deleteComment(' + data.commentList[i].cno + ');" class="del" id="btnDelete"><span>삭제</span></a>'
 							comment += 		   '</div>'
 
 /* 							comment +=  	   '<button type="button" class="btn btn-sm btn-primary"'
@@ -1448,11 +1446,20 @@ li.list > .img {
 		function updateCommentView(cno, ccontent){
 		    var comment ='';
 		    
-		    comment += '<div class="input-group">';
+/* 		    comment += '<div class="input-group">';
 		    comment += 		'<input type="text" name="ccontent'+cno+'" value="'+ccontent+'"/>';
 		    comment += 		'<button class="btn btn-primary" type="button" onclick="updateComment('+cno+');">확인</button>';
-		    comment += '</div>';
+		    comment += '</div>'; */
 		    
+ 		    comment +='<div class="commentDiv">';
+		    comment += 	'<div class="cmt-write">'; 
+		    comment += 		'<textarea name="ccontent'+cno+'" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10">'+ccontent+'</textarea>';
+		    comment += 		'<p class="text-byte">0/1000 byte</p>';
+		    comment += 		'<div class="support-button">';
+		    comment += 			'<span class="insert"><a href="javascript:updateComment('+cno+');" class="btn-s gray">등록</a></span>';
+		    comment += 		'</div>';
+		    comment += 	'</div>';
+		    comment +='</div>'; 
 		    
 		    $("#btnUpdate"+cno+"").hide()
 		    
