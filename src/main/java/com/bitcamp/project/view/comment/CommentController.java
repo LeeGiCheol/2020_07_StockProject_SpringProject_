@@ -62,11 +62,11 @@ public class CommentController {
     
     @RequestMapping(value="/board/deleteComment")
     @ResponseBody
-    public String deleteCommentAjax(CommentVO vo, @RequestParam("cno")int cno) {
+    public String deleteCommentAjax(BoardVO bVo, CommentVO vo, @RequestParam("cno")int cno, @RequestParam("pno")int pno) {
     	
     	vo.setCno(cno);
-    	
-    	commentService.deleteComment(vo);
+    	bVo.setPno(pno);
+    	commentService.deleteComment(vo, bVo);
     	
     	return "success";
     }

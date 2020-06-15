@@ -14,9 +14,10 @@
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script> 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
-function msg(){alert("인증번호를 이미 전송하였습니다.")}
+function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:"error"});}
 </script>
 </head>
 <body class="member">

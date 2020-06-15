@@ -12,6 +12,7 @@
 <link href="resources/css/mainheader.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 $(document).ready(function(){
 	$("#jb-checkboxAll-comment").click(function(){
@@ -38,10 +39,10 @@ function deleteBoard(){
 	});
 	for(i=0; i < deleted.length; i++){
 		boardID = boardID + deleted[i];
-		boardID = boardID + ","
+		boardID = boardID + ",";
 	}
 	if(boardID === ""){
-		alert("삭제할 글을 체크해 주세요");
+		swal({text:"삭제할 글을 체크해주세요.", icon:"error"});
 		return;
 	}
 	$('#delBoardList').val(boardID);
@@ -61,7 +62,7 @@ function deleteComment(){
 		commentID = commentID + ","
 	}
 	if(commentID === ""){
-		alert("삭제할 글을 체크해 주세요");
+		swal({text:"삭제할 글을 체크해주세요.", icon:"error"});
 		return;
 	}
 	$('#delCommentList').val(commentID);

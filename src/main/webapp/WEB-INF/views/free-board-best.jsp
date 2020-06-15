@@ -32,17 +32,6 @@
 				$(".check").prop("checked", false);
 			}
 		})
-		$(".remove").click(function() {
-			if (confirm("정말로 삭제하시겠습니까?")) {
-				alert('JS구성하기');
-			} else {
-				alert("취소하셨습니다.");
-			}
-		})
-		
-		
-		
-		
 	    $("input:radio[name='orderby']").click(function(){
 
 	    	$("#form").submit()
@@ -66,7 +55,7 @@
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li><a href="#"><span>포트폴리오</span></a></li>
+							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
 							<li class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>

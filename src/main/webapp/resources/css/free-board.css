@@ -65,6 +65,10 @@ position: relative;
 .row {
    margin: 0;
 }
+.col-md-10, .col-md-2{
+    padding-right: 5px;
+    padding-left: 5px;
+}
 .free-board {
     padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
     margin-bottom: /*70px*/40px;
@@ -74,15 +78,6 @@ position: relative;
 }
 .last{
 	border-bottom: 1px solid #eaeaea;
-}
-.m-drop-tit-title{
-    margin: 0 -30px 30px;
-    border-bottom: 1px solid #eaeaea;
-    padding: 0 30px 20px;
-    font-size: 20px;
-    margin-bottom: 30px;
-    font-weight: bold;
-    line-height: 100%;
 }
 .tit-h1, .m-drop-tit-title {
     margin: 0 -30px 30px;
@@ -109,18 +104,7 @@ position: relative;
     font-weight: bold;
     line-height: 100%;
 }
-/* .tit-h1 {
-    font-size: 20px;
-    margin-bottom: 30px;
-    font-weight: bold;
-    line-height: 100%;
-}
- */
-/* [class*="-btn"].red {
-    background: #ff545b;
-    border: 1px solid #ff545b;
-    color: #fff;
-} */
+
 [class*="board-write-btn"] {
 	position: relative;
     background: #c8c8c8;
@@ -289,7 +273,7 @@ input[type='radio']:checked:before {
 .free-board {
 	border: none;
     min-height: auto;
-    margin-right: 0;
+    margin: 0;
     padding: 20px 0 120px;
     max-width: none !important;
     width: 100% !important;
@@ -370,10 +354,6 @@ display: none;
   width: auto;
   border: 1px solid #dddddd;
   padding: 10px
-}
-.col-md-10, .col-md-2{
-    padding-right: 5px;
-    padding-left: 5px;
 }
 @media only screen and (max-width: 1599px)
 .board-page {
@@ -535,4 +515,8 @@ padding: 25px 10px;
     z-index: -1;
     background: #eff3f6;
     text-indent: -9999px;
+}
+#cssmenu > ul > .mid {
+	border-bottom: 1px solid #d7d8da;
+	border-top: 1px solid #d7d8da;
 }

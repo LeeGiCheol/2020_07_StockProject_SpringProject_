@@ -9,4 +9,5 @@ public interface SignInDAO {
 	public void tryId();
 	public UserVO findPw(UserVO vo);
 	public UserVO updatePw(UserVO vo);
+	public String existenceID(String id);
 }

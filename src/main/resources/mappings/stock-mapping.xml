@@ -132,18 +132,54 @@
   	select * from tradinghistory where id = #{id} order by tno desc;
   </select>
 	
-	<select id="stockCount" resultType="int">
+	<select id="stockCount" parameterType="map" resultType="int">
 		select count(*)
-		from hodingstock
+		from holdingstock
+		natural join stocklist
 		where id=#{id}
+		<if test='!accountSearch.equals("")'>
+		and stockname like CONCAT('%', #{accountSearch}, '%')
+		</if>
 	</select>
-
- 	<!-- 종목랭킹 파싱에 필요할 수 있어서 만듬
-	<select id="stockNameSearch" resultType="String">
-		SELECT stockName FROM stocklist
-		WHERE stockname LIKE CONCAT(#{stockName}, '%');
+	
+	<select id="holdingStockList" parameterType="page" resultType="holdingStock">
+		select *
+		from holdingstock
+		natural join stocklist
+		where id=#{util.id}
+		<if test='!util.accountSearch.equals("")'>
+		and stockname like CONCAT('%', #{util.accountSearch}, '%')
+		</if>
+		limit #{start}, #{cntPerPage}
 	</select>
- -->
+	
+	<select id="stockHistoryCount" parameterType="map" resultType="int">
+		select count(*)
+		from tradinghistory
+		where id=#{id}
+		<if test='tradeSearch != null and !tradeSearch.equals("")'>
+		and stockname like CONCAT('%', #{tradeSearch}, '%')
+		</if>
+	</select>
+	
+	<select id="stockHistoryListByDate" parameterType="page" resultType="stock">
+		select *
+		from tradinghistory
+		where id=#{util.id}
+		limit #{start}, #{cntPerPage}
+	</select>
+	
+	<select id="stockHistoryListByStock" parameterType="page" resultType="stock">
+		select *
+		from tradinghistory
+		where id=#{util.id}
+		<if test='!util.tradeSearch.equals("")'>
+		and stockname like CONCAT('%', #{util.tradeSearch}, '%')
+		</if>
+		order by stockname
+		limit #{start}, #{cntPerPage}
+	</select>
+	
 </mapper>
 
   

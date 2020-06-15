@@ -281,7 +281,7 @@ position:relative;
 					<c:when test="${loginUser eq null}">
 						<div class="login-box">
 							<div class="div-login-box">
-								<form method='post' action="#">
+								<form method='post' action="/signIn">
 									<fieldset>
 										<div class="chk">
 											<input type="checkbox" name="sID" id="check-id">
@@ -290,19 +290,19 @@ position:relative;
 											<label for="check-log">자동로그인</label>
 										</div>
 										<p>
-											<input type="text" name="custId" value="" id="user_id" title="아이디 입력" placeholder="아이디">
-											<input type="password" name="passwd" value="" id="user_pw" title="비밀번호 입력" placeholder="비밀번호"> 
+											<input type="text" name="id" value="" id="user_id" title="아이디 입력" placeholder="아이디">
+											<input type="password" name="pw" value="" id="user_pw" title="비밀번호 입력" placeholder="비밀번호"> 
 											<input type="submit" value="로그인" onclick="">	
 										</p>
 									</fieldset>
 								</form>
 								<p>
-									<a href="/signUpPage">회원가입</a>
+									<a href="/signUpPage/1">회원가입</a>
 									<span><a href="/forgetId" class="idforgot">아이디 찾기</a>
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="#" class="social-type naver">네이버 로그인</a>
-									<a href="#" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									<a href="#" class="social-type facebook">페이스북 로그인</a>
 									<a href="#" class="social-type google">구글 로그인</a>
 									</span>
@@ -443,7 +443,8 @@ position:relative;
 							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
 							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
 								topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-								topRank += 	'<span class="tah p11 red02">'+data.topBefore[i]+'</span></td>'
+								topRank += 	'<span>'+data.topBefore[i]+'</span></td>'
+								topRank += 	'<td><span class="tah p11 red02">'+'+'+data.topUpDown[i].substring(1)+'</span></td>'
 								topRank += '</tr>'
 							a++
 						}
@@ -474,15 +475,18 @@ position:relative;
 					       
 					     if(data.searchSangHa[i]=="up"){
 					       searchRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-					       searchRank += 	'<span class="tah p11 red02">'+data.searchUpDown[i]+'</span></td>'
+					       searchRank += 	'<span>'+data.topBefore[i]+'</span></td>'
+					       searchRank += 	'<td><span class="tah p11 red02">'+'+'+data.searchUpDown[i].substring(1)+'</span></td>'
 					     }
 					             
 					     else if(data.searchSangHa[i]=="down"){
 					       searchRank +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
-					       searchRank +=     '<span class="tah p11 nv01">'+data.searchUpDown[i]+'</span></td>'
+					       searchRank += 	'<span>'+data.topBefore[i]+'</span></td>'
+					       searchRank +=     '<td><span class="tah p11 nv01">'+'-'+data.searchUpDown[i].substring(1)+'</span></td>'
 					     }
 					     else if(data.searchSangHa[i]=='0'){
 					       searchRank += '<td><span class="tah p11"> 0 </span></td>'
+					       searchRank += 	'<td><span>'+data.topBefore[i]+'</span></td>'
 					     }
 							searchRank += '</tr>'
 						a++

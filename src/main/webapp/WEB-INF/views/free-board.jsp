@@ -32,17 +32,6 @@
 				$(".check").prop("checked", false);
 			}
 		})
-		$(".remove").click(function() {
-			if (confirm("정말로 삭제하시겠습니까?")) {
-				alert('JS구성하기');
-			} else {
-				alert("취소하셨습니다.");
-			}
-		})
-		
-		
-		
-		
 	    $("input:radio[name='orderby']").click(function(){
 
 	    	$("#form").submit()
@@ -56,14 +45,13 @@
 	<%@include file="mainheader.jsp" %> 
 	<div class="all-dim"></div>
 	<div class="containerNew">
-	<div class="board-page">
-	<!-- article start -->
-	<div class="row">
-	<div class="col-md-2">
+		<div class="board-page">
+			<div class="row">
+				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li><a href="#"><span>포트폴리오</span></a></li>
+							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
 							<li class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>
@@ -312,7 +300,41 @@
 	  $(".m-drop-nav").click(function(){
 		    $(".m-drop-down").slideToggle("slow");
 		  });
-	});
+  });
+  
+		// datetime 변환
+		function changeDate(date){
+			console.log("???? "+date)
+		    var date = new Date(date);
+		    year = date.getFullYear();
+		    month = date.getMonth() + 1;
+		    if(month < 10) {
+		    	month = "0" + month
+		    }
+		    day = date.getDate();
+		    hour = date.getHours() + 15;
+		    if(hour < 10) {
+		    	hour = "0"+hour;
+		    }
+		    if(hour > 24) {
+		    	hour -= 24;
+		    	if(hour < 10) {
+		    	hour = "0"+hour
+		    	}
+		    }
+		    if(hour == 24){
+		    	hour = "00";
+		    }
+		    minute = date.getMinutes();
+		    if(minute < 10) {
+		    	minute = "0" + minute;
+		    }
+		    second = date.getSeconds();
+		    strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
+		    return strDate;
+		}
+
+ 
   </script>
 	</div>
 

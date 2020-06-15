@@ -32,7 +32,6 @@ public class MainPageController {
 		Map<String, Object> kospiChart = tradeService.dayChart("종합주가지수");
 		Map<String, Object> kosdaqChart = tradeService.dayChart("(코스닥)종합");
 		
-		System.out.println("vo? "+vo);
 		Integer[][] kospiData = new Integer[6][60];
 		Integer[][] kosdaqData = new Integer[6][60];
 //

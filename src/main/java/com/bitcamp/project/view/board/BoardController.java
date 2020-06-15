@@ -50,8 +50,8 @@ public class BoardController {
 		if(orderby.equals("")) {
 			orderby = "new";
 		}
-		
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby);
+		System.out.println("abd "+boardList);
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
@@ -82,7 +82,6 @@ public class BoardController {
 		
 		vo.setId(loginUser.getId());
 		vo.setBno(1); // 자유게시판
-		System.out.println("bovo "+vo);
 		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
 	}
@@ -99,26 +98,30 @@ public class BoardController {
 		mav.addObject("boardDetail", boardDetail);
 		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
-
+		
+		
 		mav.setViewName("free-board-detail");
 		
 		return mav;
 	}
 	
 	@GetMapping("/board/free/detail/ajax")
-	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage) {
+	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
+		vo.setPno(pno);
 		BoardVO boardDetail = boardService.getBoard(vo);
-
-		
+		System.out.println(vo);
+		List<BoardVO> boardPrevNext = boardService.boardPrevNext(vo);
+		System.out.println(vo);
 		// 댓글리스트
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("boardDetail", boardDetail);
 		map.put("commentList", (List<CommentVO>)commentList.get("commentList"));
 		map.put("commentPage", (PagingVO)commentList.get("commentPage"));
+		map.put("boardPrevNext", boardPrevNext);
 		
 		return map;
 	}
@@ -130,7 +133,7 @@ public class BoardController {
 		try {
 			vo.setId(uVo.getId());
 		}catch(Exception e) {
-			System.out.println("로그인해주ㅠ세요 페이지 만들기");
+			return 2;
 		}
 		
 		vo.setPno(pno);

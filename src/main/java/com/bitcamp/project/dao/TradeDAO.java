@@ -38,6 +38,4 @@ public interface TradeDAO {
 	
 	public List getHistory(String id);
 	
-////	 종목 랭킹 파싱에 필요할 수 있어서 만듬
-//	public String stockNameSearch(String stockName);
 }
