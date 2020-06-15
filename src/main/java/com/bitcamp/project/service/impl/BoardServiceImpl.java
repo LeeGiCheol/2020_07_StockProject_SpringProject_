@@ -60,12 +60,19 @@ public class BoardServiceImpl implements BoardService{
 //		boardPage.getUtil().put("",vo.get)
 //		boardPage.setId(vo.getId());
 		List<BoardVO> boardList = boardDAO.getBoardList(boardPage);
+		
+		
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("boardList", boardList);
 		postMap.put("boardPage", boardPage);
-		
 		return postMap;
 	}
+	
+	public List<BoardVO> boardPrevNext(BoardVO vo){
+		
+		return boardDAO.boardPrevNext(vo);
+	}
+	
 
 	
 	public int updateViews(BoardVO vo) {

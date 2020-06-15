@@ -7,7 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>회원가입</title>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script> 
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
@@ -86,7 +87,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
                   <label class="custom-control-label" id="ask-radio-1-answer" for="ask-radio-1">예</label>
                   </div>
                   <div class="custom-control custom-radio">
-                  <input type="radio" name="showEsetSetting" id="ask-radio-2" class="custom-control-input" value="0">
+                  <input type="radio" name="showEsetSetting" id="ask-radio-2" class="custom-control-input" value="0" checked="checked">
                   <label class="custom-control-label" for="ask-radio-2">아니오</label>
                   </div>
                </div>
@@ -132,49 +133,42 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 	}
 
 
-
+	
 	$(document).ready(function(e){ 
 		var checkflag = 0;
 	
 		$("#submit").on("click", function(){
 			if($("#inputEmail").val()==""){
-				alert("아이디를 입력해주세요.");
+				swal({text:"이메일을 입력해주세요.", icon:"error"})
 				$("#inputEmail").focus();
 				return false;
 			}
 			if($("#inputPassword").val()==""){
-				alert("비밀번호를 입력해주세요.");
+				swal({text:"패스워드를 입력해주세요.", icon:"error"})
 				$("#inputPassword").focus();
 				return false;
 			}
 			if($("#inputNickname").val()==""){
-				alert("닉네임을 입력해주세요.");
+				swal({text:"닉네임을 입력해주세요.", icon:"error"})
 				$("#inputNickname").focus();
 				return false;
 			}
 			if($("#inputPhone").val()==""){
-				alert("휴대폰번호를 입력해주세요.");
+				swal({text:"휴대폰번호를 입력해주세요.", icon:"error"})
 				$("#inputPhone").focus();
 				return false;
 			}
 			if($("#cTel").val()==""){
-				alert("휴대폰번호 인증번호를 입력해주세요.");
+				swal({text:"휴대폰번호 인증번호를 입력해주세요.", icon:"error"})
 				$("#cTel").focus();
 				return false;
 			}
 
 			
 			var checked =  $('#passwordCheck').val();
-			
-			// 중복확인 성공 시 checkflag가 1씩 증가 id, nickname용 (두개 다 성공할 시 checkflag는 2가 된다)
-			if(checkflag != 2){
-				alert("중복확인을 해주세요");
-				return false;
-			}
-			
 			// 비밀번호 확인 체크가 안되면 value는 undefiend 되면 value에 값이 들어와 로그인 된다  
 			if(checked == undefined){
-				alert("비밀번호를 확인해주세요");
+				swal({text:"비밀번호를 확인해주세요.", icon:"error"})
 				return false;
 			}
 		});
@@ -195,7 +189,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
  						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
 						$('#idResult').empty();
 						$('#idResult').append(html);
-						checkflag +=1;
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else if(atSign == -1 || com == -1){
 						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요.</td></tr>";
@@ -236,7 +229,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						$('#telResult').empty();
 						$('#telResult').append(html);
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-						checkflag +=1;
 					}else if(data == 2 || $.trim($('#inputPhone').val()) == ""){
 						var html="<tr><td colspan='3' style='color: red'>11자리를 입력해주세요.[ ex)01012345678 ]</td></tr>";
 						$('#telResult').empty();
@@ -273,7 +265,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
  						var html="<tr><td colspan='3' style='color: green'>인증성공</td></tr>"; 
 						$('#cTelResult').empty();
 						$('#cTelResult').append(html);
-						/* checkflag +=1; */
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
 						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요.)</td></tr>";
@@ -312,7 +303,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
  						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
-						checkflag +=1;
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
 						var html="<tr><td colspan='3' style='color: red'>중복된 닉네임입니다.</td></tr>";

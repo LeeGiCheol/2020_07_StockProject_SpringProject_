@@ -15,7 +15,7 @@
 <link href="/resources/css/writeForm.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 
@@ -37,14 +37,14 @@
 		console.log(content)
 		
 		if(content.trim() == '<br data-cke-filler="true">' && title == ""){
-			alert('제목과 내용을 입력해주세요')
+			swal({text:"제목과 내용을 입력해주세요.", icon:"error"});
 			$("#title").focus();
 		}
 		else if(content == '<br data-cke-filler="true">' || content.trim() == ""){
-			alert('내용을 입력해주세요')
+			swal({text:"내용을 입력해주세요.", icon:"error"});
 		}
 		else if(title.trim() == ""){
-			alert('제목을 입력해주세요')			
+			swal({text:"제목을 입력해주세요.", icon:"error"});			
 			$("#title").focus();
 		}
 		else{
@@ -80,7 +80,8 @@
 					<textarea class="form-control" rows="5" name="bcontent" id="content" placeholder="내용을 입력해 주세요"></textarea>
 			   </div>
 			<div>
-				<button type="button" class="btn btn-sm btn-primary" onclick="btnSave()">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick="btnSave()" 
+				style="width: 66px; height: 35px; margin-bottom: 59px;">저장</button>
                 <button type="button" class="btn btn-sm btn-primary" id="btnCancle" onclick="window.location.href='/board/free'">취소</button>
 			</div>
 			</form>

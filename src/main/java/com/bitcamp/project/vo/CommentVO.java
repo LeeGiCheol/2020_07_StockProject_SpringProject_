@@ -1,6 +1,6 @@
 package com.bitcamp.project.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class CommentVO {
 	private int cno;
@@ -39,17 +39,17 @@ public class CommentVO {
 	public void setCcontent(String ccontent) {
 		this.ccontent = ccontent;
 	}
-	public Date getCdataTime() {
+	public Date getCdateTime() {
 		return cdateTime;
 	}
-	public void setCdataTime(Date cdataTime) {
-		this.cdateTime = cdataTime;
+	public void setCdateTime(Date cdateTime) {
+		this.cdateTime = cdateTime;
 	}
 	@Override
 	public String toString() {
 		return "CommentVO [cno=" + cno + ", pno=" + pno + ", id=" + id + ", nickname=" + nickname + ", ccontent="
 				+ ccontent + ", cdateTime=" + cdateTime + "]";
 	}
-
+	
 	
 }

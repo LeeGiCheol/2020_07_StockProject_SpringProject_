@@ -45,7 +45,7 @@ $(document).ready(function(){
 		}).on('page', function(event, page) {
 			console.info(page + ' (from event listening)');
 		});
-		});     
+	});     
     
 });
 </script>

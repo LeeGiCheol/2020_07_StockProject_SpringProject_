@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.TradeService;
+import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.Info;
 
 import stockCode.TopStock;
@@ -19,27 +22,52 @@ public class MainPageController {
 	
 	@Autowired
 	TradeService tradeService;
+	
+	@Autowired
+	BoardService boardService;
 
 	@GetMapping(value = "/mainPage")
-	public ModelAndView mainPage() {
+	public ModelAndView mainPage(BoardVO vo) {
 		ModelAndView mav = new ModelAndView();
-		Map<String, Object> dayChart = tradeService.dayChart("종합주가지수");
-
-		Integer[][] dayChartData = new Integer[6][60];
+		Map<String, Object> kospiChart = tradeService.dayChart("종합주가지수");
+		Map<String, Object> kosdaqChart = tradeService.dayChart("(코스닥)종합");
+		
+		Integer[][] kospiData = new Integer[6][60];
+		Integer[][] kosdaqData = new Integer[6][60];
 //
 		for (int i = 0; i < 60; i++) {
-			dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
-			dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
-			dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
-			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
-			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+			kospiData[0][i] = (Integer) ((HashMap) kospiChart.get(i)).get("d");
+			kospiData[2][i] = (Integer) ((HashMap) kospiChart.get(i)).get("startprice");
+			kospiData[3][i] = (Integer) ((HashMap) kospiChart.get(i)).get("highprice");
+			kospiData[4][i] = (Integer) ((HashMap) kospiChart.get(i)).get("lowprice");
+			kospiData[5][i] = (Integer) ((HashMap) kospiChart.get(i)).get("lastprice");
+			
+			kosdaqData[0][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("d");
+			kosdaqData[2][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("startprice");
+			kosdaqData[3][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("highprice");
+			kosdaqData[4][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("lowprice");
+			kosdaqData[5][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("lastprice");
 		}
-		mav.addObject("current", ((HashMap) dayChart.get(0)).get("lastprice"));
-		mav.addObject("day_d", dayChartData[0]);
-		mav.addObject("day_startprice", dayChartData[2]);
-		mav.addObject("day_highprice", dayChartData[3]);
-		mav.addObject("day_lowprice", dayChartData[4]);
-		mav.addObject("day_lastprice", dayChartData[5]);
+		
+		Map<String, Object> bestBoardList = boardService.boardList(vo, 0, "", "", "mainNew");
+		Map<String, Object> newBoardList = boardService.boardList(vo, 0, "", "", "mainBest");
+		mav.addObject("bestBoardList", (List<BoardVO>)bestBoardList.get("boardList"));
+		mav.addObject("newBoardList", (List<BoardVO>)newBoardList.get("boardList"));
+		
+		mav.addObject("current_kospi", ((HashMap) kospiChart.get(0)).get("lastprice"));
+		mav.addObject("current_kosdaq", ((HashMap) kosdaqChart.get(0)).get("lastprice"));
+		
+		mav.addObject("kosdaq_d", kosdaqData[0]);
+		mav.addObject("kosdaq_startprice", kosdaqData[2]);
+		mav.addObject("kosdaq_highprice", kosdaqData[3]);
+		mav.addObject("kosdaq_lowprice", kosdaqData[4]);
+		mav.addObject("kosdaq_lastprice", kosdaqData[5]);
+		
+		mav.addObject("kospi_d", kospiData[0]);
+		mav.addObject("kospi_startprice", kospiData[2]);
+		mav.addObject("kospi_highprice", kospiData[3]);
+		mav.addObject("kospi_lowprice", kospiData[4]);
+		mav.addObject("kospi_lastprice", kospiData[5]);
 
 		mav.setViewName("mainpage");
 		return mav;

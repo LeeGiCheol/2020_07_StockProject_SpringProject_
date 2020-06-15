@@ -102,9 +102,9 @@ public class TradeDAOImpl implements TradeDAO {
 
 	@Override
 	public int getStockQuantity(StockVO vo) {
-		if (mybatis.selectOne("stock.getStockQuantity", vo) == null)
+		if ((Map)mybatis.selectOne("stock.getStockQuantity", vo) == null)
 			return 0;
-		return mybatis.selectOne("stock.getStockQuantity", vo);
+		return (int) ((Map) mybatis.selectOne("stock.getStockQuantity", vo)).get("quantity");
 	}
 
 	@Override
@@ -122,5 +122,4 @@ public class TradeDAOImpl implements TradeDAO {
 		return mybatis.selectList("stock.getHistory", id);
 	}
 	
-
 }

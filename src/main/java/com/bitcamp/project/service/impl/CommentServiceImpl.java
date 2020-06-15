@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitcamp.project.dao.BoardDAO;
 import com.bitcamp.project.dao.CommentDAO;
 import com.bitcamp.project.service.CommentService;
 import com.bitcamp.project.vo.BoardVO;
@@ -18,6 +19,8 @@ public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	private CommentDAO commentDAO;
+	@Autowired
+	private BoardDAO boardDAO;
 	
 	@Override
 	public int writeComment(CommentVO vo) {
@@ -30,7 +33,9 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public int deleteComment(CommentVO vo) {
+	public int deleteComment(CommentVO vo, BoardVO bVo) {
+		System.out.println("서비스 " + bVo);
+		boardDAO.deleteBoardComment(bVo);
 		return commentDAO.deleteComment(vo);
 	}
 

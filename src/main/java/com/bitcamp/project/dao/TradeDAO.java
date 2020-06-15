@@ -37,4 +37,5 @@ public interface TradeDAO {
 	public int getStockQuantity(StockVO vo);
 	
 	public List getHistory(String id);
+	
 }

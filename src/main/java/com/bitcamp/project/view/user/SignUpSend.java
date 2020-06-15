@@ -18,8 +18,8 @@ public class SignUpSend {
 	  Random rand = new Random();
 	    for(int i=0;i<4;i++) {
 	        //0~9 까지 난수 생성
-	        String ran = Integer.toString(rand.nextInt(10));
-	        	signUpNumStr += ran;
+	        String ran = Integer.toString(rand.nextInt(10000));
+	        	signUpNumStr = ran;
 	    }
 	    System.out.println("생성된 난수(인증번호) : " + signUpNumStr);
     String api_key = "NCSWBLOT0NJDJV6L";

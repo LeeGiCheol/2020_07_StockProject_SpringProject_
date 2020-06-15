@@ -1,12 +1,14 @@
 package com.bitcamp.project.view.user;
 
+import static com.bitcamp.project.view.user.SignUpSend.signUpNumStr;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.sound.midi.Soundbank;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,10 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.project.service.SignUpService;
 import com.bitcamp.project.vo.UserVO;
-import static com.bitcamp.project.view.user.SignUpSend.signUpNumStr;
 @Controller
 public class SignUpController {
 	
+	@Autowired
+    PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private SignUpService signUpService;
@@ -53,6 +56,12 @@ public class SignUpController {
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
+		
+		
+		String encPassword = passwordEncoder.encode(vo.getPw());
+		System.out.println("암호화 "+encPassword);
+        vo.setPw(encPassword);
+		
 		
 		System.out.println("vo su : " + vo.toString());
 		

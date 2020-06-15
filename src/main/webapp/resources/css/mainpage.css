@@ -57,14 +57,19 @@ strong {
 dt {
     font-weight: normal;
 }
-
+.row {
+    margin: 0;
+}
 .container {
 	padding: 20px 0 30px 0;
 }
 
-.container>.row .col-md-9 .chartdata {
-	padding: 10px;
+.containerNew>.row .col-md-9 .chartdata {
+	padding: 30px;
 }
+/* .chartdata{
+	height: 300px !important;
+} */
 
 .col-md-9, .col-md-3 {
 	padding-right: 5px;
@@ -303,7 +308,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 
 .login-box .social-login {
 	margin-top: 7px;
-	margin-left: 9px;
+	/* margin-left: 9px */;
 	padding: 0;
 	border: none;
 }
@@ -385,33 +390,33 @@ input[type="text"], input[type="password"], input[type="tel"] {
     background-color: #eaeaea;
 }
 
-.container>.row .col-md-3 .ranking-body ul {
+.containerNew>.row .col-md-3 .ranking-body ul {
 	position: relative;
 	font-style: normal;
 	padding: 0;
 	margin: 0;
 }
 
-.container>.row .col-md-3 .ranking-body ul a {
+.containerNew>.row .col-md-3 .ranking-body ul a {
 	display: block;
 	clear: both;
 }
 
-.container>.row .col-md-3 .ranking-body ul li {
+.containerNew>.row .col-md-3 .ranking-body ul li {
 	position: relative;
 	overflow: hidden;
 	line-height: 23px;
 	padding: 5px;
 }
 
-.container>.row .col-md-3 .ranking-body ul li a span {
+.containerNew>.row .col-md-3 .ranking-body ul li a span {
 	position: relative;
 	display: block;
 	float: left;
 	margin-left: 30px;
 }
 
-.container>.row .col-md-3 .ranking-body ul li a i {
+.containerNew>.row .col-md-3 .ranking-body ul li a i {
 	display: block;
 	float: left;
 	width: 20px;
@@ -419,7 +424,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	color: #000;
 }
 
-.container>.row .col-md-3 .ranking-body ul li a p {
+.containerNew>.row .col-md-3 .ranking-body ul li a p {
 	float: right;
 	position: relative;
 	display: block;
@@ -438,9 +443,9 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	overflow: auto;
 }
 
-#chartContainer {
+/* #chartContainer {
 	height: 300px;
-}
+} */
 
 .color-red {
 	color: #ff545b !important;
@@ -458,17 +463,17 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	overflow: auto;
 }
 
-.container>.row .col-md-9 .stock-ranking nav .nav a {
+.containerNew>.row .col-md-9 .stock-ranking nav .nav a {
 	display: block;
 	float: left;
 	width: 50%;
 	line-height: 28px;
 	margin-right: -2px;
-	padding: 5px;
+	padding: 10px;
 	color: #495057 !important;
 }
 
-.container>.row .col-md-9 .stock-ranking .tab-content #tab1 {
+.containerNew>.row .col-md-9 .stock-ranking .tab-content #tab1 {
 	display: block;
 	float: left;
 	width: 50%;
@@ -476,46 +481,46 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	padding: 10px;
 }
 
-.container>.row .col-md-9 .stock-ranking .tab-content #tab2 {
+.containerNew>.row .col-md-9 .stock-ranking .tab-content #tab2 {
 	display: block;
 	float: right;
 	width: 50%;
 	padding: 10px;
 }
 
-.container>.row .col-md-9 .stock-ranking .tab-content div ul li {
+.containerNew>.row .col-md-9 .stock-ranking .tab-content div ul li {
 	position: relative;
 	overflow: hidden;
 	line-height: 23px;
 }
 
-.container>.row .col-md-9 .stock-ranking .tab-content div ul li a {
+.containerNew>.row .col-md-9 .stock-ranking .tab-content div ul li a {
 	display: block;
 	clear: both;
 }
 
-.container>.row .col-md-9 .stock-ranking .tab-content div ul li a span {
+.containerNew>.row .col-md-9 .stock-ranking .tab-content div ul li a span {
 	position: relative;
 	display: block;
 	float: left;
 	margin-left: 30px;
 }
 
-.container>.row .col-md-9 .stock-ranking .tab-content div ul li a i {
+.containerNew>.row .col-md-9 .stock-ranking .tab-content div ul li a i {
 	display: inline-block;
 	float: left;
 	width: 16px;
 	text-align: left;
 }
 
-.container>.row .col-md-9 .stock-ranking .tab-content div ul li a p {
+.containerNew>.row .col-md-9 .stock-ranking .tab-content div ul li a p {
 	float: right;
 	position: relative;
 	display: block;
 	text-align: right;
 }
 
-.container>.row .col-md-9 .community .nav-tabs .nav-item {
+.containerNew>.row .col-md-9 .community .nav-tabs .nav-item {
 	display: block;
 	float: left;
 	width: 85%;
@@ -525,7 +530,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	color: #495057 !important;
 }
 
-.container>.row .col-md-9 .community .community-best {
+.containerNew>.row .col-md-9 .community .community-best {
 	display: block;
 	float: left;
 	width: 50%;
@@ -533,7 +538,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	position: relative;
 }
 
-.container>.row .col-md-9 .community .community-new {
+.containerNew>.row .col-md-9 .community .community-new {
 	display: block;
 	float: right;
 	width: 50%;
@@ -541,14 +546,14 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	position: relative;
 }
 
-.container>.row .col-md-9 .community .tab-content li {
+.containerNew>.row .col-md-9 .community .tab-content li {
 	position: relative;
 	overflow: hidden;
 	line-height: 23px;
 	padding: 3px;
 }
 
-.container>.row .col-md-9 .community .tab-content a {
+.containerNew>.row .col-md-9 .community .tab-content a {
 	width: 180px;
 	display: inline-block;
 	float: left;
@@ -573,7 +578,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	margin: 5px;
 }
 
-.container>.row .col-md-3 .faq .nav-tabs .nav-item {
+.containerNew>.row .col-md-3 .faq .nav-tabs .nav-item {
 	display: block;
 	float: left;
 	width: 75%;
@@ -583,11 +588,14 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	color: #495057 !important;
 }
 
-.container>.row .col-md-3 .faq .tab-content li {
+.containerNew>.row .col-md-3 .faq .tab-content li {
 	position: relative;
 	overflow: hidden;
 	line-height: 23px;
 	padding: 3px;
+}
+.faq, .ranking{
+	padding: 10px;
 }
 .news-nav {
 	border-bottom: 1px solid gray;
@@ -758,13 +766,13 @@ input[type="text"], input[type="password"], input[type="tel"] {
 }
 [class*="tbl_home_"]  #topRank th {
     height: 22px;
-     padding: 5px 0 5px 5px;
+    padding: 5px 0 5px 0;
     font-weight: normal;
     text-align: left;
 }
 [class*="tbl_home_"]  .rank-table th {
     height: 22px;
-    padding: 5px 0 5px 10px;
+    padding: 5px 0 5px 0;
     font-weight: normal;
     text-align: left;
 }
@@ -823,4 +831,14 @@ input[type="text"], input[type="password"], input[type="tel"] {
     height: 6px !important;
     background-position: 0 -80px;
 }
-
+.tbl_home_left, .tbl_home_right{
+	width: 100%;
+}
+@media only screen and (max-width: 979px){
+	
+.col-md-9,.col-md-3 {
+    max-width: 100% !important;
+    flex: none !important;
+    padding: 0 !important;
+}
+}

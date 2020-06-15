@@ -13,13 +13,23 @@
   <link href="/resources/css/alarm-detail.css" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script>
-     $(document).ready(function(){
+   $(document).ready(function(){
     $("#btnDelete").click(function(){
-          if(confirm("정말로 삭제하시겠습니까?")){
-            alert("jS구성하기");
-          }else{
-            alert("취소하셨습니다.");
-          }
+    	swal({
+    		  text: "정말 삭제하시겠습니까?",
+    		  icon: "warning",
+    		  buttons: true,
+    		  dangerMode: true,
+    		})
+    		.then((willDelete) => {
+    		  if (willDelete) {
+    		    swal("성공적으로 삭제되었습니다.", {
+    		      icon: "success",
+    		    });
+    		  } else {
+    		    swal("삭제를 취소하였습니다.");
+    		  }
+    		}); 
         })
   });
   </script>
@@ -90,8 +100,6 @@
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>

@@ -289,7 +289,7 @@ input[type='radio']:checked:before {
 .free-board {
 	border: none;
     min-height: auto;
-    margin-right: 0;
+    margin: 0;
     padding: 20px 0 120px;
     max-width: none !important;
     width: 100% !important;
@@ -360,7 +360,7 @@ display: none;
 }
 .comment-num{
 	display: inline-block;
-    margin: -1px 0 0 3px;
+    margin: -1px 0 0 10px;
     font-size: 13px;
     font-weight: normal;
    /*  color: #ff545b; */
@@ -444,7 +444,6 @@ display: none;
 }
 /* Custom CSS Styles */
 #cssmenu {
-  font-family: 'Lato', sans-serif;
   font-size: 18px;
   width: 200px;
   background: white;
@@ -536,4 +535,8 @@ padding: 25px 10px;
     z-index: -1;
     background: #eff3f6;
     text-indent: -9999px;
+}
+#cssmenu > ul > .mid {
+	border-bottom: 1px solid #d7d8da;
+	border-top: 1px solid #d7d8da;
 }

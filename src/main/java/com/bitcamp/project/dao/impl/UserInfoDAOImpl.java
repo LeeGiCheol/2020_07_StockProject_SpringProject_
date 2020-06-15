@@ -56,6 +56,8 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	
 	@Override
 	public int mypageUpdatePasswordCheck(Map<String, String> map) {
+		System.out.println(map.get("id"));
+		System.out.println(map.get("pw"));
 		int result = mybatis.selectOne("user.mypageUpdatePasswordCheck", map); 
 		return result;
 	}

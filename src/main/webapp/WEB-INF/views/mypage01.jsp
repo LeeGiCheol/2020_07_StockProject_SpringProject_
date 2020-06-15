@@ -63,26 +63,9 @@
             <div class="mb-3">
               <label for="userNickname">닉네임</label>
               <div>
-                <input type="text" class="form-control" id="usern=Nickname" name="nickname" value="${loginUser.nickname}"></input>
+                <input type="text" class="form-control" id="userNickname" name="nickname" value="${loginUser.nickname}"></input>
               </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="password">비밀번호</label>
-                  <input type="password" class="form-control" name="pw" id="userPassword">
-                </div>
-
-                <div class="col-md-6 mb-3">
-                  <label for="passwordCheck">비밀번호확인</label>
-                  <input type="password" class="form-control" id="userPasswordCheck" placeholder="비밀번호를 한 번 더 입력하세요" required>
-                </div>
-            </div>
-            <div style="text-align: center;">
-					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
-					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
-					<div class="alert alert-danger" id="alert-length">최소 8자 , 최대 13자로 입력해주세요.</div>
-					<div class="alert alert-info" id="alert-empty" style="color:white; background-color: #007BFF">현재 비밀번호를 입력해주세요.  비밀번호를 변경하실려면 새 비밀번호를 입력하세요.</div>
-		    </div> -->
     		<br>
             <div class="mb-3">
               <label for="address">주소</label>
@@ -157,42 +140,6 @@ function goPopup(){
 }
 //}
 /** API 서비스 제공항목 확대 (2017.02) **/
-
-//비밀번호 변경 사이트 위치가 옮겨저 주석처리
-/* $(document).ready(function(){
-	$("#alert-empty").show();
-	$("#formsave").attr("disabled", "disabled");$("#formsave").attr("style", "opacity:20%");
-	$(function(){ 
-			$("#alert-success").hide(); 
-			$("#alert-danger").hide();
-			$("#alert-length").hide();
-			$("input").keyup(function(){ 
-				var pwd1=$("#userPassword").val(); 
-				var pwd2=$("#userPasswordCheck").val(); 
-				if(pwd1 != "" || pwd2 != "" ){ 
-					if(pwd1 != pwd2){
-						$("#alert-danger").show();
-						$("#alert-success").hide(); 
-						$("#alert-length").hide();
-						$("#alert-empty").hide();
-						$("#formsave").attr("disabled", "disabled");$("#formsave").attr("style", "opacity:20%"); 
-					}else if($('#userPassword').val().length < 8 || $('#userPassword').val().length > 13){ 
-						$("#alert-length").show();
-						$("#alert-success").hide(); 
-						$("#alert-danger").hide();
-						$("#alert-empty").hide();
-						$("#formsave").attr("disabled", "disabled");$("#formsave").attr("style", "opacity:20%");  	
-					}else if(pwd1 == pwd2){ 
-						$("#alert-success").show(); 
-						$("#alert-danger").hide();
-						$("#alert-length").hide();
-						$("#alert-empty").hide();
-						$("#formsave").removeAttr("disabled");$("#formsave").removeAttr("style");  	
-					}
-				}
-			}); 
-		});
-	}); */
 
 function jusoCallBack(roadFullAddr){
 	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.

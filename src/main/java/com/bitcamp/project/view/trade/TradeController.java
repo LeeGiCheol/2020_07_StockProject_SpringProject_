@@ -119,17 +119,16 @@ public class TradeController {
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
 			@RequestParam(value = "cancleModify") String modify) {
-		String id = null;
+		String id = ((UserVO) session.getAttribute("loginUser")).getId();
+//		String id = "test"; // test 용 아이디
 		ModelAndView mav = new ModelAndView();
-		try {
-			id = ((UserVO) session.getAttribute("loginUser")).getId();
-		} catch (Exception e) {
+
+		if (id == null) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/signInPage");
 			mav.setViewName("notice");
 			return mav;
 		}
-//		String id = "test"; // test 용 아이디
 
 		StockVO vo = new StockVO();
 
@@ -353,10 +352,10 @@ public class TradeController {
 				dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
 			}
 		} catch (Exception e) {
-//			mav.addObject("msg", "정확한 종목명을 입력해주세요");
-//			mav.addObject("location", "/trade");
-//			mav.setViewName("notice");
-//			return mav;
+			mav.addObject("msg", "정확한 종목명을 입력해주세요");
+			mav.addObject("location", "/trade");
+			mav.setViewName("notice");
+			return mav;
 		}
 
 		mav.addObject("min_d", minChartData[0]);
@@ -380,6 +379,58 @@ public class TradeController {
 
 	}
 
+	@RequestMapping(value = "/trade/refresh")
+	public @ResponseBody Map chartRefresh(@RequestParam(value = "stockName") String stockName)
+			throws InterruptedException {
+
+		if (stockName == null)
+			stockName = "삼성전자";
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		stockName = stockName.toUpperCase();
+
+		RequestChart rc = new RequestChart();
+		rc.connection(stockName);
+
+		Map<String, Object> minChart = tradeService.minuteChart(stockName);
+		Map<String, Object> dayChart = tradeService.dayChart(stockName);
+
+		Integer[][] minChartData = new Integer[6][60];
+		Integer[][] dayChartData = new Integer[6][60];
+//
+		for (int i = 0; i < 60; i++) {
+			minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
+			minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
+			minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
+			minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
+			minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
+			minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
+
+			dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
+			dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
+			dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
+			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
+			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
+		}
+
+		map.put("min_d", minChartData[0]);
+		map.put("min_hr", minChartData[1]);
+		map.put("min_startprice", minChartData[2]);
+		map.put("min_highprice", minChartData[3]);
+		map.put("min_lowprice", minChartData[4]);
+		map.put("min_lastprice", minChartData[5]);
+
+		map.put("day_d", dayChartData[0]);
+		map.put("day_startprice", dayChartData[2]);
+		map.put("day_highprice", dayChartData[3]);
+		map.put("day_lowprice", dayChartData[4]);
+		map.put("day_lastprice", dayChartData[5]);
+
+		map.put("stockName", stockName);
+		return map;
+	}
+
 	@RequestMapping(value = "/trade/search")
 	public @ResponseBody Map tradeSearch(Info vo) throws InterruptedException {
 		String stockName = vo.getStockName();
@@ -387,8 +438,6 @@ public class TradeController {
 		StockParsing st = new StockParsing();
 
 		String stockCode = tradeService.stockSearch(stockName);
-//		System.out.println("stockName "+stockName);
-		
 		Info trade = st.parse(stockCode);
 //		System.out.println(trade.toString());
 
@@ -412,7 +461,7 @@ public class TradeController {
 		String[] up = new String[6];
 		String[] down = new String[6];
 		String currentPrice = null;
-		
+
 		for (int i = 0; i < up_.length; i++) {
 
 			up[i] = formatter.format(up_[i]);
@@ -425,8 +474,8 @@ public class TradeController {
 
 		// 배열을 json화 시켜서 보낸다 (호가)
 		JSONObject obj = new JSONObject();
-		JSONArray jArray = new JSONArray();
 
+		JSONArray jArray = new JSONArray();
 		for (int i = 0; i < up.length; i++) {
 			JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
 			sObject.put("up", up[i]);
@@ -453,8 +502,12 @@ public class TradeController {
 		String[] topUpDown = topStock.getTopUpDown();
 		String[] searchName = topStock.getSearchName();
 		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
+		String[] searchBefore = topStock.getSearchBefore();
 		String[] searchUpDown = topStock.getSearchUpDown();
 		String[] searchSangHa = topStock.getSearchSangHa();
+
+		System.out.println("----------" + Arrays.toString(topUpDown));
+		System.out.println("++++++++++" + Arrays.toString(searchUpDown));
 
 		for (int i = 0; i < topName.length; i++) {
 			map.put("topName", topName);
@@ -466,6 +519,7 @@ public class TradeController {
 		for (int i = 0; i < searchUpDown.length; i++) {
 			map.put("searchName", searchName);
 			map.put("searchCurrentPrice", searchCurrentPrice);
+			map.put("searchBefore", searchBefore);
 			map.put("searchUpDown", searchUpDown);
 			map.put("searchSangHa", searchSangHa);
 		}

@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
 <style>
 .gray{width: 172px; height:44px; margin-left: 214px; margin-top: 30px;}
 </style>
@@ -34,7 +35,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						<p class="txt">새로운 비밀번호를 등록해 주세요.</p>
 					</div>
 					<div class="form-table pass-reset">
-					<form action="/mypageUpdatePasswordCheck" method="post" id="frm" name="frm">
+					<form action="/mypageUpdatePasswordCheck" method="get" id="frm" name="frm">
 						<table>
 							<tbody>
 								<tr>
@@ -66,7 +67,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</tr>
 							</tbody>
 						</table>
-						<button id="submit" type="submit" class="btn-t gray">비밀번호 저장</button>
+						<button id="submit" type="button" class="btn-t gray" onclick="passwordCheck()">비밀번호 저장</button>
 					</form>
 				</div>
 				</div>
@@ -107,35 +108,39 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			}
 		}); 
 	});
+	$('#frm').keypress(function(event){
+	     if ( event.which == 13 ) {
+	         $('#submit').click();
+	         return false;
+	     }
+	});
+
 	
-	$('#submit').on('click', function(){ 
+	function passwordCheck(){
 		$.ajax({ 
 			type: 'GET', 
 			url: '${pageContext.request.contextPath}/mypageUpdatePasswordCheck', 
-			data: { "nowPassword" : $('#nowPassword').val() }, 
+			data: { "nowPassword" : $('#nowPassword').val(),
+					"password" : $('#password').val()}, 
 			success: function(data){ 
-				 if(data == 1){
-					 alert("비밀번호가 일치합니다.")
-					 $.ajax({ 
-							type: 'GET', 
-							url: '${pageContext.request.contextPath}/mypageUpdatePasswordEnd', 
-							data: { "password" : $('#password').val() }, 
-							success:location.href = "/myPage01"
-							,
-							error: function(){
-							}
-						});  
-				 }else{
-					 alert("현재비밀번호가 불일치합니다.")
-					 location.href = "/mypageUpdatePassword";
-					 $('#nowPassword').empty();
-				 }
+				console.log(data)
+					if(data == 1){
+						swal({text:"성공적으로 비밀번호를 변경하였습니다.", icon:"success"}).then(function(){
+							location.href = '/logOut'
+						});
+						
+					}else if(data == 0){
+						swal({text:"현재비밀번호가 일치하지않습니다.", icon:"error"}).then(function(){
+							location.href = '/mypageUpdatePassword'
+						});
+						$('#nowPassword').empty();
+				 	}
 			},
 			error: function(){
 				alert("에러");
 			}
 		});  
-	});  
+	};  
 	
 	</script>
 </body>

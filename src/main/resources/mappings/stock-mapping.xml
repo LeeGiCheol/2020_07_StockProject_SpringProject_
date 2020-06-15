@@ -59,8 +59,8 @@
 		where uno=#{uno}
 	</select>
 	
-	<select id="getStockQuantity" resultType="int">
-		select quantity from holdingstock where id = #{id} and stockName = #{stockName}
+	<select id="getStockQuantity" resultType="map">
+		select quantity, avgprice from holdingstock where id = #{id} and stockName = #{stockName}
 	</select>
 	
 	<insert id="buying">
@@ -90,11 +90,15 @@
 	</insert>
 	
 	<insert id="insertHoldingstock">
-		insert into holdingstock(id , stockName, quantity) values (#{id}, #{stockName},#{quantity})
+		insert into holdingstock(id , stockName, quantity, avgprice) values (#{id}, #{stockName},#{quantity}, #{rPrice})
 	</insert>
 	
 	<update id="updateHoldingstock">
 		update holdingstock set quantity = quantity + #{quantity} * #{buysell} where id = #{id} and stockName = #{stockName}
+	</update>
+	
+	<update id="updateAVG">
+	update holdingstock set avgprice = #{avgprice} where id = #{id} and stockName = #{stockName}
 	</update>
 	
 	
