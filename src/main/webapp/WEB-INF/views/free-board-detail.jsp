@@ -1209,30 +1209,7 @@ li.list > .img {
 
 						
 						
-						
-						
-/*  						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
-						comment += "<i class='fa fa-user-circle'></i> <b>"+data.commentList[i].nickname+"</b><br>"
-						comment += "<i class='far fa-clock'></i>"+changeDate(data.commentList[i].cdateTime)+"<br> <br>"
-						comment += "<div id='com" + data.commentList[i].cno + "'>" + data.commentList[i].ccontent + "</div>" */
-						
-						// 내 댓글에 수정/삭제 버튼 띄우기
-						if("${loginUser.nickname}" == data.commentList[i].nickname){
-							var test = data.commentList[i].ccontent
-							console.log("${loginUser.nickname}")
-							//console.log(data.commentList.nickname)
-							$("#showhide-btn").hide()
- 							comment +=  	   '<div class="share-more">'
-							comment += 		   '<a href="javascript:updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ');" class="modify" id="btnUpdate'+data.commentList[i].cno+'" ><span>수정</span></a>'
-							comment += 	       '<a href="javascript:deleteComment(' + data.commentList[i].cno + ');" class="del" id="btnDelete"><span>삭제</span></a>'
-							comment += 		   '</div>'
-
-/* 							comment +=  	   '<button type="button" class="btn btn-sm btn-primary"'
-							comment += 		   'id="btnUpdate'+data.commentList[i].cno+'" onclick="updateCommentView(' + data.commentList[i].cno + ', ' + "'" + data.commentList[i].ccontent + "'" + ')">수정</button>'
-							comment += 	       '<button type="button" class="btn btn-sm btn-primary"'
-							comment += 		   'id="btnDelete" onclick="deleteComment(' + data.commentList[i].cno + ')">삭제</button>'  */
-						}
-							comment += '</li>'
+				
 
 							
 	/*  						comment += "<div class='commentBody' id= 'comment" + data.commentList[i].cno + "'>"
