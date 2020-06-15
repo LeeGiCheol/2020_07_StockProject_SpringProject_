@@ -6,6 +6,7 @@ public class HoldingStockVO {
 	String stockName;
 	String quantity;
 	String avgPrice;
+	int currentPrice;
 	
 	public String getId() {
 		return id;
@@ -36,6 +37,12 @@ public class HoldingStockVO {
 	}
 	public void setAvgPrice(String avgPrice) {
 		this.avgPrice = avgPrice;
+	}
+	public int getCurrentPrice() {
+		return currentPrice;
+	}
+	public void setCurrentPrice(int currentPrice) {
+		this.currentPrice = currentPrice;
 	}
 	@Override
 	public String toString() {
