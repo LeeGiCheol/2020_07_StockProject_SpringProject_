@@ -83,6 +83,10 @@
 		FROM user
 		WHERE tel=#{tel}
 	</select>
+	<select id="existenceID">
+		SELECT id from user where id = #{id};
+	</select>
+	
 	
 	<!-- 비밀번호 찾기 -->
 	<select id="findPassword" parameterType="user" resultType="user">
