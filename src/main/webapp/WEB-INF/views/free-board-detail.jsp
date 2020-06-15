@@ -1226,7 +1226,7 @@ li.list > .img {
 						comment += 	"<div class='share-more'>"
 						comment += 	"<a class='notify e-login e-report-comt-popup' href='#'><span>신고</span></a>"	
 						comment += 	"</div>"
-						comment += 	"</div>"
+
 						
 						
 						
