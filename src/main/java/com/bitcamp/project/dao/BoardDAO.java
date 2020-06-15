@@ -18,4 +18,5 @@ public interface BoardDAO {
 	public int boardLikes(BoardVO vo);
 	public List<BoardVO> boardPrevNext(BoardVO vo);
 	public int deleteBoardComment(BoardVO vo);
+	public int reportBoard(BoardVO vo);
 }

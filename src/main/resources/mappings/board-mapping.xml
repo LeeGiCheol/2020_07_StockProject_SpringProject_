@@ -213,4 +213,9 @@
 		WHERE pno=#{pno}
 	</update>
 	
+	<insert id="reportBoard">
+		INSERT INTO reportBoard(pno, rcontent, rdatetime)
+		VALUES (#{pno}, #{rcontent}, now())
+	</insert>
+	
 </mapper>

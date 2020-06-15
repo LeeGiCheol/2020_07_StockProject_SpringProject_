@@ -84,7 +84,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	
-	
+	public int reportBoard(BoardVO vo) {
+		return boardDAO.reportBoard(vo);
+	}
 	
 	
 }
