@@ -12,7 +12,6 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/free-board-detail.css" rel="stylesheet">
-<!-- <link rel="stylesheet" type="text/css" href="jpaginate/style.css"/> -->
 <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
@@ -20,485 +19,304 @@
 
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
-
-<script>
-	$(document).ready(function() {
-		
-		setTimeout(function() {
-			var w = $(".image").children().width();
-			var h = $(".image").children().height();
-			
-			if(w > 1024){
-				var ri = 1024/w;
-				w = w * ri;
-				h = h * ri;
-			}
-			var a_h = $(".article").children().height();
-			var a_w = $(".article").children().width();
-			
-			console.log(w+" / "+h+" && "+ a_w+" / "+ a_h);
-			$(".image").children().width(w);
-			 $(".image").children().height(h);
-			
-		}, 50);
-	});
-</script>
-<style>
-
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
-    font-family: 'Noto Sans KR', sans-serif;
+<style type="text/css">
+td, th {
+    word-break: break-all;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    box-sizing: border-box;
 }
-
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
-   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
-   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
-   figure, footer, header, hgroup, menu, nav, section, summary, time,
-   audio, video {
-   margin: 0;
-   padding: 0;
-   border: 0;
-   vertical-align: baseline;
-   font-size: 14px;
-   background: transparent;
-   list-style: none;
-   box-sizing: border-box;
-   word-break: break-all;
+legend, caption {
+    font-size: 0;
+    overflow: hidden;
+    text-indent: -9999999px;
+    height: 0;
+    width: 0;
+    line-height: 0;
 }
-
-span, em, mark, strong, b, label {
-   margin: 0;
-   padding: 0;
-   border: 0;
-   vertical-align: baseline;
-   background: transparent;
-   list-style: none;
-   box-sizing: border-box;
-}
-
-em, i {
-   font-style: normal;
-}
-
-a, a:link, a:visited, a:active, a:hover {
-   text-decoration: none;
-}
-
-p {
-    line-height: 160%;
-}
-
-.table td, .table th {
-    padding: 6px;
-}
-tr td button{
-	background: transparent;
-	border: none;
-	margin: 0;
-	padding: 0;
-} 
-.table{
-	margin-bottom: 0;
-}
-.all-dim {
-    content: "";
+.pop-layer {
+    display: table;
     position: fixed;
     left: 0;
-    right: 0;
     top: 0;
     bottom: 0;
-    z-index: -1;
-    background: #eff3f6;
-    text-indent: -9999px;
-}
-.containerNew{
-position: relative;
-    max-width: 1260px;
     height: 100%;
-    padding: 20px 0 0 0;
-    margin: 0 auto;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0,0,0, 0.3);
+    z-index: 999;
+    table-layout: fixed;
 }
-.row {
-   margin: 0;
-}
-.board-views span, .board-likes span {
-    display: none;
-}
-.m-drop-nav, .m-drop-down{
-	display: none;
-}
-.free-board {
-    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
-    margin-bottom: /*70px*/40px;
-    background: #fff;
-    position: relative;
-    border: 1px solid #dddddd;
-}
-.last{
-	border-bottom: 1px solid #eaeaea;
-}
-.m-drop-tit-title{
-    margin: 0 -30px 30px;
-    border-bottom: 1px solid #eaeaea;
-    padding: 0 30px 20px;
-    font-size: 20px;
-    margin-bottom: 30px;
-    font-weight: bold;
-    line-height: 100%;
-}
-.tit-h1, .m-drop-tit-title {
-    margin: 0 -30px 30px;
-    border-bottom: 1px solid #eaeaea;
-    padding: 0 30px 20px;
-    font-size: 20px;
-    margin-bottom: 30px;
-    font-weight: bold;
-    line-height: 100%;
-}
-.m-drop-tit-body a{
-	color: #848889;
-}
-.m-drop-tit-body:hover > a {
-  color: #000000;
-  font-weight: 600;
-}
-.m-drop-tit-body{
-    margin: 0 -30px 30px;
-    padding: 0 30px 20px;
-    font-size: 20px;
-    margin-bottom: 30px;
-    color: #888888;
-    font-weight: bold;
-    line-height: 100%;
-}
-@media (max-width: 979px)
-.containerNew {
-    padding-top: 104px;
-}
-@media only screen and (max-width: 979px)
-.containerNew {
-    padding: 0;
-    padding-bottom: 170px;
-}
-
-
-.sidebar {
-  float: left;
-  width: auto;
-  border: 1px solid #dddddd;
-  padding: 10px
-}
-.col-md-10, .col-md-2{
-    padding-right: 5px;
-    padding-left: 5px;
-}
-@media only screen and (max-width: 1599px)
-.board-page {
-    margin: 0 auto 100px;
-}
-/*start 사이드 바 css */
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-#cssmenu ul {
-  position: relative;
-  z-index: 597;
-  float: left;
-}
-#cssmenu ul li {
-  float: left;
-  min-height: 1px;
-  line-height: 1em;
-  vertical-align: middle;
-}
-#cssmenu ul li.hover,
-#cssmenu ul li:hover {
-  position: relative;
-  z-index: 599;
-  cursor: default;
-}
-#cssmenu ul ul {
-  margin-top: 1px;
-  visibility: hidden;
-  position: absolute;
-  top: 1px;
-  left: 99%;
-  z-index: 598;
-  width: 100%;
-}
-#cssmenu ul ul li {
-  float: none;
-}
-#cssmenu ul ul ul {
-  top: 1px;
-  left: 99%;
-}
-#cssmenu ul li:hover > ul {
-  visibility: visible;
-}
-#cssmenu ul li {
-  float: none;
-}
-#cssmenu ul ul li {
-  font-weight: normal;
-}
-/* Custom CSS Styles */
-#cssmenu {
-  font-size: 18px;
-  width: 200px;
-  background: white;
-  /* border: 1px solid #848889; */
-  border-bottom: 1px solid #d7d8da;
-  border-top: 1px solid #d7d8da;
-  border-right: 1px solid #d7d8da;
-}
-#cssmenu ul a,
-#cssmenu ul a:link,
-#cssmenu ul a:visited {
-	display: block;
-    color: #848889;
-    text-decoration: none;
-    font-weight: 300;
-    font-size: 16px;
-}
-#cssmenu > ul {
-  float: none;
-}
-#cssmenu ul {
-  background: #fff;
-}
-#cssmenu > ul > li {
-  border-left: 3px solid #d7d8da;
-}
-#cssmenu > ul > li > a {
-padding: 25px 10px;
-}
-#cssmenu > ul > li:hover {
-  border-left: 3px solid #000000;
-}
-#cssmenu ul li:hover > a {
-  color: #000000;
-  font-weight: 600;
-}
-#cssmenu > ul > li:hover {
-  background: #f6f6f6;
-}
-/* Sub Menu */
-#cssmenu ul ul a:link,
-#cssmenu ul ul a:visited {
-  font-weight: 400;
-  font-size: 14px;
-}
-#cssmenu ul ul {
-  width: 180px;
-  background: none;
-  border-left: 20px solid transparent;
-}
-#cssmenu ul ul a {
-  padding: 8px 0;
-  border-bottom: 1px solid #eeeeee;
-}
-#cssmenu ul ul li {
-  padding: 0 20px;
-  background: #fff;
-}
-#cssmenu ul ul li:last-child {
-  border-bottom: 3px solid #d7d8da;
-  padding-bottom: 10px;
-}
-#cssmenu ul ul li:first-child {
-  padding-top: 10px;
-}
-#cssmenu ul ul li:last-child > a {
-  border-bottom: none;
-}
-#cssmenu ul ul li:first-child:after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  left: -20px;
-  top: 13px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid #fff;
-  border-bottom: 10px solid transparent;
-  border-top: 10px solid transparent;
-}
-#cssmenu > ul > .mid {
-	border-bottom: 1px solid #d7d8da;
-	border-top: 1px solid #d7d8da;
-}
-/*end 사이드 바 css */
-.board-view {
-    padding: 0 0 30px;
-}
-.board-view .board-view-tit {
-    position: relative;
-    border-bottom: #eaeaea 1px solid;
-    padding: 0 0 20px;
-}
-.board-view .board-view-tit h1 {
-    font-size: 28px;
-    color: #000;
-    line-height: 1.2;
-    padding-right: 130px;
-    word-break: break-all;
-}
-.board-view .board-view-tit .writer {
-    min-height: 35px;
-    line-height: 35px;
-    margin-top: 10px;
-    color: #888888;
-    font-size: 13px;
-}
-.board-view .board-view-tit .writer .img, .board-view .board-view-tit .writer .text {
-    display: inline;
-}
-.board-view .board-view-tit .writer img {
+.pop-layer .pop-inner {
+    display: table-cell;
     vertical-align: middle;
-    display: inline-block;
-    margin-right: 5px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background-color: #eaeaea;
 }
-.board-view .board-view-tit .writer span {
-    background: url(/resources/img/bg_line.png) no-repeat right 50%;
-    padding-right: 10px;
-    margin-right: 5px;
-}
-.board-view .board-view-tit .writer span:last-child {
-    background: none;
-}
-.board-view .board-view-cont {
-    border-bottom: #eaeaea 1px solid;
-    padding: 40px 0;
-    line-height: 1.6;
-    min-height: 250px;
-}
-.board-view .board-view-cont p {
-    font-size: 16px;
-}
-.sns-area.board-sns {
-    margin-top: 0;
-    padding-top: 20px;
-}
-.sns-area {
-    min-height: 36px;
-    margin-top: 15px;
+.pop-layer .popup-wrap {
     position: relative;
-    text-align: center;
-    clear: both;
-    z-index: 100;
-    margin-bottom: 60px;
+    top: 50%;
+    left: 50%;
+    width: 624px;
+    padding-bottom: 35px;
+    margin-left: -312px;
+    box-shadow: 1px 2px 3px 2px rgba(0,0,0,0.1);
 }
-.sns-area .notify-box {
-    float: left;
-}
-.sns-area .notify-box .notify {
-    height: 28px;
-    line-height: 25px;
-    padding: 0px 15px 0 10px;
-    box-sizing: border-box;
-}
-
-[class*="btn-"] {
+.popup-wrap {
     position: relative;
+    width: 100%;
     background: #fff;
-    border: 1px solid #444;
-    line-height: 100%;
-    display: inline-block;
-    color: #000;
-    vertical-align: middle;
-    box-sizing: border-box;
-    text-align: center;
 }
-[class*="btn-s"] {
-    padding: 6px 10px;
-    min-width: 60px;
-    font-size: 14px;
-    border: 1px solid #ccc;
+.pop-layer .popup-wrap:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 36px;
+    background: #f9f9f9 url(/rpan/common/images/logo.png?update=20180329) no-repeat 15px 10px;
+    background-size: 60px 18px;
+}
+.popup-wrap .pop-tit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    height: 50px;
+    line-height: 50px;
+    background: #ff545c url(/rpan/common/images/bg_pop.png?update=20180329) no-repeat 0 0;
+    background-size: 122px 50px;
+    text-indent: 10px;
+}
+.popup-wrap .pop-tit span {
+    font-size: 16px;
+    color: #fff;
+}
+.pop-layer .popup-wrap .pop-cont {
+    padding: 70px 20px 20px 20px;
+}
+.pop-clean {
+    padding-bottom: 5px;
+}
+.pop-clean table {
+    border-top: #444 1px solid;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.pop-clean table th {
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: #eaeaea 1px solid;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.pop-clean table td {
+    padding: 10px;
+    border-bottom: #eaeaea 1px solid;
+}
+.tit-h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.pop-clean .notify {
+    margin-bottom: 20px;
+}
+.select-style {
+    position: relative;
+}
+.pop-clean .notify .select-style .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 240px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 220px;
+    min-width: 80px;
+}
+.bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"] {
+    float: none;
+    display: inline-block;
+    margin-left: 0;
+}
+[class*="select-style"] .btn-group {
+    border: #ccc 1px solid;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
     color: #888;
 }
-input[type="button"], button {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    cursor: pointer;
-    background: none;
+.btn-group > .btn:first-child {
+    margin-left: 0;
 }
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
-    -webkit-appearance: button;
-    cursor: pointer;
-}
-button, select {
-    text-transform: none;
-}
-button {
-    overflow: visible;
-}
-button, input, optgroup, select, textarea {
-    margin: 0;
-    font: inherit;
-    color: inherit;
-}
-.sns-area .notify-box .notify span {
+[class*="select-style"] button.btn {
+    color: #888;
     display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    background: url(/resources/img/ico_sub.png) no-repeat 0 -100px;
-    color: #888888;
-    padding-left: 24px;
-}
-.sns-area .like-box {
-    float: right;
-}
-.sns-area .like-box .like {
-    height: 36px;
-    line-height: 36px;
-    padding: 0px;
-    box-sizing: border-box;
-    color: #a7753a;
-}
-[class*="btn-m"] {
-    padding: /*10px 14px*/7px 14px;
-    min-width: 70px;
+    margin-bottom: 0;
     font-size: 14px;
-}
-.sns-area .like-box .like i {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    background: url(/resources/img/ico_board.png) no-repeat 0 -60px;
-    text-indent: -9999em;
-    margin-right: 5px;
-}
-.comment-cont {
-    position: relative;
-    margin-top: 30px;
-}
-.comment-cont .cmt-write {
-    border: #eaeaea 1px solid;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    min-width: 60px;
+    height: 26px;
     box-sizing: border-box;
-    position: relative;
-    clear: both;
+    background: #fff;
+    border-radius: 0;
+    padding-left: 10px;
 }
-.comment-cont .cmt-write textarea {
-    border: none;
+.bootstrap-select > .dropdown-toggle {
     width: 100%;
-    height: 60px;
+    padding-right: 25px;
+    z-index: 1;
+}
+.btn-group > .btn, .btn-group-vertical > .btn {
+    position: relative;
+    float: left;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+}
+.pull-left {
+    float: left !important;
+}
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    margin-top: -2px;
+    vertical-align: middle;
+}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
     font-size: 14px;
-    line-height: 18px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 0;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.bootstrap-select.btn-group .dropdown-menu.inner {
+    position: static;
+    float: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.bootstrap-select.btn-group .dropdown-menu li {
+    position: relative;
+}
+.bootstrap-select.btn-group .dropdown-menu li a {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+    display: inline-block;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.check-mark {
+    display: none;
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bootstrap-select > select {
+    position: absolute !important;
+    bottom: 0;
+    left: 50%;
+    display: block !important;
+    width: 0.5px !important;
+    height: 100% !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    border: none;
+}
+select {
+    min-width: 60px;
+    height: 28px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 0;
+}
+.pop-clean .notify textarea {
+    display: block;
+    margin-top: 5px;
+    border: #ccc 1px solid;
 }
 textarea {
     padding: 1%;
@@ -512,359 +330,15 @@ textarea {
     appearance: none;
     border-radius: 0;
 }
-textarea {
-    overflow: auto;
-}
-.comment-cont .cmt-write .text-byte {
-    background: #fff;
-    text-align: right;
-    color: #888;
-    font-size: 13px;
-}
-.comment-cont .cmt-write > p {
-    padding: 10px;
+.pop-clean .pop-clean-info {
     background-color: #f9f9f9;
-    position: relative;
-}
-.comment-cont .cmt-write > div.support-button {
-    padding: 10px;
-    background-color: #f9f9f9;
-    position: relative;
-    height: 48px;
-}
-.comment-cont .cmt-write .insert {
-    padding: 0;
-    position: relative;
-    float: right;
-/*     bottom: 6px;
-    right: 7px; */
-}
-.comment-cont .cmt-write .insert .btn-s.gray {
-    border: #444 1px solid;
-    color: #fff;
-}
-[class*="btn-"].gray {
-    background: #444;
-    border: 1px solid #444;
-    color: #fff;
-}
-.comment-cont .cmt-list {
-    padding-top: 20px;
-}
-
-.comment-cont .cmt-list > p {
-    position: relative;
-    font-size: 16px;
-    color: #000;
-    font-weight: bold;
-    border-bottom: #eaeaea 1px solid;
-    padding-bottom: 10px;
-}
-.comment-cont .cmt-list > p {
-    border-bottom: none;
-}
-.comment-cont .cmt-list > p span {
-    color: #ff545b;
-}
-.comment-cont .cmt-list > p strong {
-    position: absolute;
-    top: 6px;
-    right: 0;
-    font-size: 13px;
-    font-weight: normal;
-}
-input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
-    opacity: 0;
-    outline: 0;
-    margin-left: 0;
-    position: absolute;
-    z-index: -1;
-}
-.comment-cont .cmt-list > p strong input[type="radio"]:not(old):checked + label {
-    color: #ff545b;
-}
-.comment-cont .cmt-list > p strong input[type="radio"] + label {
-    margin-left: 10px;
-    color: #666;
-}
-.comment-cont:after {
-    content: "";
-    position: absolute;
-    left: -30px;
-    right: -30px;
-    top: -30px;
-    border-top: #000 1px solid;
-}
-input[type="radio"]:not(old):checked + label {
-    background-image: url(/resources/img/bg_radio_on.png);
-}
-input[type="radio"]:not(old) + label {
-    display: inline-block;
-    height: 18px;
-    padding: 0 0 0 18px;
-    background-image: url(/resources/img/bg_radio.png);
-    background-position: 0 2px;
-    background-repeat: no-repeat;
-    background-size: 13px 13px;
-    cursor: pointer;
-    line-height: 18px;
-}
-.comment-cont .cmt-list li.list {
-    padding: 20px 10px;
-    position: relative;
-}
-.comment-cont .cmt-list li.list > .img {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-}
-.comment-cont .cmt-list li.list > .img > img {
-    width: 35px;
-    height: 35px;
-    border-radius: 20px;
-    background-color: #eaeaea;
-}
-fieldset, img, abbr, acronym {
-    border: 0;
-}
-
-.comment-cont.anonymity .cmt-list li.list > div {
-    padding-left: 0;
-}
-.comment-cont .cmt-list .list div.text .writer {
-    font-size: 13px;
     color: #888;
-    vertical-align: top;
-    padding-bottom: 3px;
-    padding-right: 70px;
-}
-.comment-cont .cmt-list .list div.text .writer span:first-child {
-    background: url(/resources/img/bg_line.png) no-repeat right 50%;
-    padding-right: 10px;
-    margin-right: 5px;
-}
-.comment-cont .cmt-list .list div.text .writer {
-    font-size: 13px;
-    color: #888;
-    vertical-align: top;
-    padding-bottom: 3px;
-    padding-right: 70px;
-}
-.comment-cont .cmt-list .list div.text .cont {
-    padding-bottom: 10px;
-    color: #222222;
-    line-height: 1.4;
-    word-break: break-word;
-}
-.comment-cont .cmt-list li.list .share-more {
-    position: absolute;
-    top: 20px;
-    right: 0;
-}
-.comment-cont .cmt-list li.list .share-more a:last-child {
-    background: none;
-}
-.comment-cont .cmt-list li.list .share-more a {
-    display: inline-block;
-    color: #a7753a;
-    font-size: 13px;
-    padding: 0 3px 0 4px;
-}
-.comment-cont .cmt-list li.list .share-more a.notify span {
-    background: url(/resources/img/ico_sub.png) no-repeat 0 -370px;
-}
-.comment-cont .cmt-list li.list .share-more a span {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    text-indent: -9999em;
-}
-.comment-cont .cmt-list li.list > div {
-    padding-left: 45px;
-}
-@media only screen and (min-width: 979px){
-.comment-cont.anonymity .cmt-list li.list > div {
-    padding-left: 45px;
-}
-}
-.bt-area {
+    padding: 20px;
     overflow: hidden;
-    padding: 20px 0 40px;
-}
-.bt-area span {
-    display: block;
-    float: right;
-}
-[class*="btn-s"].bodrb {
-    border: 1px solid #444;
-    color: #000;
-}
-.replyArea {
-    border-bottom: #eaeaea 1px solid;
-}
-[class*="btn-"].red {
-    background: #444;
-    border: 1px solid #444;
-    color: #fff;
-}
-.prev-next {
-    width: 100%;
-    overflow: hidden;
-    border-top: #444444 1px solid;
-    margin-bottom: 30px;
-}
-.prev-next > div {
-    border: #eaeaea 1px solid;
-}
-.prev-next > div dl {
-    padding: 10px 20px;
-    overflow: hidden;
-}
-.prev-next > div dl dt {
-    color: #444;
-    float: left;
-    width: 80px;
-}
-.prev-next > div dl dt {
-    color: #444;
-    float: left;
-    width: 80px;
-}
-.prev-next > div.prev dl dt:before {
-    content: "▲";
-    font-size: 9px;
-    padding-right: 7px;
-}
-.prev-next > div dl dd a {
-    display: block;
-    color: #000;
-    line-height: 1.4;
-    overflow: hidden;
-    padding-top: 3px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    float: left;
-    width: 60%;
-}
-.prev-next > div.next {
-    border-top: 0;
-}
-.prev-next > div dl {
-    padding: 10px 20px;
-    overflow: hidden;
-}
-.prev-next > div.next dl dt:before {
-    content: "▼";
-    font-size: 9px;
-    padding-right: 7px;
-}
-.comment-cont .cmt-list li.list .share-more a.modify span {
-    background: url(/resources/img/ico_sub.png) no-repeat 0 -260px;
-}
-.comment-cont .cmt-list li.list .share-more a.del span {
-    background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
-}
-.paging {
-    clear: both;
-    text-align: center;
-    position: relative;
-   	margin-top: 20px;
-}
-#commentPaging {
-    display: inline-block;
-    padding-left: 0;
-}
-.page-link {
-    color: #888888 !important;
-}
-.page-item.active .page-link {
-    z-index: 3;
-    color: #fff;
-    background-color: white;
-    border: 1.5px solid #888888 !important;
-}
-.board-view .board-view-tit .share-more {
-    position: absolute;
-    top: 12px;
-    right: -10px;
-}
-.board-view .board-view-tit .share-more a {
-    display: inline-block;
-    color: #a7753a;
-    font-size: 13px;
-    padding: 0 10px 0 5px;
-    background: url(/resources/img/bg_line.png) no-repeat right 50%;
-}
-.board-view .board-view-tit .share-more a.modify span {
-    background: url(/resources/img/ico_sub.png) no-repeat 0 -260px;
-}
-.board-view .board-view-tit .share-more a span {
-    display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    padding-left: 24px;
-}
-.board-view .board-view-tit .share-more a.del {
-    background: none;
-}
-.board-view .board-view-tit .share-more a.del span {
-    background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
-}
-.comment-cont .cmt-list li {
-    border-top: #eaeaea 1px solid;
-}
-.comment-cont .cmt-list .list div.text .btn-s {
-    min-width: 78px;
-	margin-right: 5px;
-}
-.comment-cont .cmt-write .insert .btn-s {
-    color: #000;
-}
-.comment-cont .btn-s {
-    border: #ccc 1px solid;
-    color: #888;
-}
-.comment-cont a {
-    color: #000;
-}
-@media only screen and (max-width: 979px){
-.containerNew {
-    padding: 0;
-}
-.col-md-10 {
-    max-width: 100% !important;
-    flex: none !important;
-    padding: 0 !important;
-}
-.col-md-2, .drop-nav {
-    display: none !important;
-}
-.free-board {
-	margin: 0;
-	border: none;
-	min-height: auto;
-	padding-bottom:120px;
-    max-width: none !important;
-    width: 100% !important;
-}
-.m-drop-nav {
-    display: block;
-}
-li.list {
-    padding: 20px 0;
-}
-li.list > .img {
-    left: 0;
-}
-.comment-cont .cmt-list li.list > div .text {
-    padding-left: 45px;
-}
-
+    margin-bottom: 10px;
 }
 </style>
 </head>
-
 <body>
 
 <%@include file="mainheader.jsp" %> 
@@ -1004,37 +478,9 @@ li.list > .img {
 	<div class="cmt-list" id="cmt-list" style="">
 		<p>
 			댓글 보기 <span id="commentCnt"></span>
-<!-- 			<strong>
-				<input type="radio" id="orderby1" name="orderby3" checked="checked" onclick="changeOrder();"><label for="orderby1">최신순</label>
-				<input type="radio" id="orderby2" name="orderby3" onclick="changeOrder('popular');"><label for="orderby2">인기순</label>
-			</strong> -->
 		</p>
 		
 		<ul id="commentList" class="replyArea">
-		
-<!-- 				 <li class="list">
-						<p class="img"><img class="pax_f2_proimg" cust_id="angelina0416" src="/resources/img/pi_08.png"></p>
-						<div>
-							<div class="text" id="text_45219165">
-								<p class="writer">
-									<span id="writer_45219165" onclick="#" style="cursor:pointer;">안녕하세용용</span>
-									<span class="data-date-format" data-date-format="Thu Jun 11 13:11:12 KST 2020">06.11</span>
-								</p>
-
-								<p class="cont">저는 고기를 많이 사먹음ㅋㅋ</p>
-
-							</div>
-
-							
-							<div class="share-more">
-								<a href="javascript:replyModifyForm('45226441');" class="modify"><span>수정</span></a>
-								<a href="javascript:deleteComment('45226441');" class="del"><span>삭제</span></a>
-							</div>
-						<div class="share-more" id="showhide-btn">
-								<a class="notify e-login e-report-comt-popup" href="javascript:bbsComment_report('45219165', '안녕하세용용');"><span>신고</span></a>
-							</div>
-						</div>
-					</li> -->
 		</ul>
 	
 	</div>
@@ -1054,78 +500,75 @@ li.list > .img {
     	<div class="prev-next" id="prev-next">
 	      
 	    </div>
-	    
-<!-- 	    
- 		<div class="comment">
-		<h2 id='commentBody' class='comment-title'>댓글</h2>
-		
-		댓글
-		<div id="commentList">
-		</div>
-		
-		댓글 페이징
-		<div id="commentPaging">
-		</div> 
-			<div class="comment-wrap">
-				<div>
-				
-					<div class="comment-form">
-						<form action="/board/writeComment" method="POST" id="commentForm">
-							<fieldset>
-								<dl class="comment-write">
-									<dt>
-										<label for="[##_comment_input_comment_##]">내용</label>
-									</dt>
-									<dd>
-										<input type="hidden" name="pno" value="${boardDetail.pno}">
-
-									<c:if test="${loginUser != null}">
-											<textarea name="ccontent" id="[##_comment_input_comment_##]"
-												placeholder="여러분의 소중한 댓글을 입력해주세요"></textarea>
-									</c:if>
-	
-									<c:if test="${loginUser == null}">
-											<textarea name="ccontent" id="[##_comment_input_comment_##]"
-												placeholder="댓글을 작성하시려면 로그인을 해주세요" onclick="location.href='/signInPage'"></textarea>
-									</c:if>
-
-									</dd>
-								</dl>
-									<button type="button" class="reply-btn" onclick="writeComment('${boardDetail.pno }')">댓글 남기기</button>
-							</fieldset>
-						</form>
-
-
-
-
-					</div>-->
-				<!-- </div> -->
-				
-<%-- 				<div class="buttons">
-					<button type="button" class="btn btn-sm btn-primary" id="btnList"
-						onclick="window.location.href='/board/free'">목록</button>
-					<button type="button" class="btn btn-sm btn-primary" id="btnMyList"
-						onclick="window.location.href='/myPage03'">내가 쓴글</button>
-
-					<c:if test="${loginUser.nickname eq boardDetail.nickname}">
-						<button type="button" class="btn btn-sm btn-primary"
-							id="btnUpdate"
-							onclick="location.href='/board/free/update?pno=${boardDetail.pno}'">수정</button>
-						<button type="button" class="btn btn-sm btn-primary"
-							id="btnDelete">삭제</button>
-					</c:if>
-				</div> 
-			</div>--%>
-	
 		</div>
 		</div>
 		</div>
 		</div>
 	</div>
-	
 
+<div id="reportPopup" class="pop-layer" style="display: none;">
+		<div class="pop-inner">
+			<div class="popup-wrap">
+				<div class="pop-tit"><span>게시물 신고하기</span></div>
+				<div class="pop-cont">
+					<div class="pop-clean">
+						<table>
+							<caption>게시물 신고하기</caption>
+							<colgroup>
+								<col style="width: 100px;">
+								<col style="">
+							</colgroup>
+							<tbody>
+							<tr>
+								<th scope="col">제목</th>
+								<td>치타 초근접 짤.gif</td>
+							</tr>
+							<tr>
+								<th scope="col">작성자</th>
+								<td>안녕하세용용</td>
+							</tr>
+							</tbody>
+						</table>
 
-	<!-- article end -->
+						<h2 class="tit-h2">신고사항</h2>
+						<p class="notify">
+					<span class="select-style">
+						<div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" data-id="rprtCode" title="신고항목선택"><span class="filter-option pull-left">신고항목선택</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">선택</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">광고</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">욕설</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">허위루머</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">타종목추천</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">도배</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">명예훼손</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="8"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">주제무관</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="9"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">위조/변조</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="10"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">음란</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="11"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">지역감정</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="12"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">기타</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select title="신고항목선택" id="rprtCode" name="rprtCode" class="selectpicker" tabindex="-98"><option class="bs-title-option" value="">신고항목선택</option>
+							<option value="">선택</option>
+							<option value="RP001">광고</option>
+							<option value="RP002">욕설</option>
+							<option value="RP003">허위루머</option>
+							<option value="RP004">타종목추천</option>
+							<option value="RP005">도배</option>
+							<option value="RP006">명예훼손</option>
+							<option value="RP007">주제무관</option>
+							<option value="RP008">위조/변조</option>
+							<option value="RP009">음란</option>
+							<option value="RP010">지역감정</option>
+							<option value="RP011">기타</option>
+						</select></div>
+					</span>
+							<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rprtResn" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
+						</p>
+						<dl class="pop-clean-info">
+							<dt>이용안내</dt>
+							<dd>
+								신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
+								<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
+							</dd>
+						</dl>
+						<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
+
+					</div>
+					<div class="pop-btn">
+						<button type="button" class="btn-m e-reportPopupClose">취소</button>
+						<button type="button" id="submitReport" class="btn-m red">신고하기</button>
+					</div>
+				</div>
+				<button class="cla-close e-reportPopupClose">닫기</button>
+			</div>
+		</div>
+	</div>
 
 <%@include file="mainfooter.jsp" %>
 
