@@ -41,17 +41,6 @@
 			 $(".image").children().height(h);
 			
 		}, 50);
-		
-
-		
-		
-		
-
-			/* if (confirm("정말로 삭제하시겠습니까?")) {
-				location.href = '/board/free/delete?pno=${boardDetail.pno}';
-			} else {
-				alert("취소하셨습니다.");
-			} */
 	});
 </script>
 <style>
