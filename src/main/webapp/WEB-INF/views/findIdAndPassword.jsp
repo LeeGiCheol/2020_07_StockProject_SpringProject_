@@ -4,16 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>★</title>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script>
-function ok(){
-	alert("인증번호가 일치하지않습니다.")
-  }
-  ok();
-	window.location.href="/forgetIdTry";
+	window.onload  = function() {
+		swal({text:'${msg}', icon:'${icon}'}).then(function(){
+			window.location.href="${location}";
+		}); 
+	}
 </script>
 </head>
 <body>
+
 </body>
 </html>

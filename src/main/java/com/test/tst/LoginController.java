@@ -69,21 +69,12 @@ public class LoginController {
 		} else {
 			session.setAttribute("loginUser", vo);
 			session.setAttribute("naverLoginUser", nickname);
-			System.out.println("세션 저장이 되었나? :" + session.getAttribute("loginUser"));
 			model.addAttribute("result", apiResult);
 			return "redirect:/mainPage";
 		}
-		
-		/*
-		 * session.setAttribute("naverLoginUser", nickname); // 세션 생성
-		 		return "redirect:/mainPage";
- 		*/
 	}
-
-//로그아웃
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
 	public String logout(HttpSession session) throws IOException {
-		System.out.println("여기는 logout");
 		session.invalidate();
 		return "redirect:index.jsp";
 	}

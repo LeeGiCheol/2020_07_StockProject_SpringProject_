@@ -197,7 +197,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
 						idx= true;
 						$('#inputEmail').attr("readonly", true);
- 						var html="<tr><td colspan='3' style='color: green'>이메일을 확인해주세요.</td></tr>"; 
+ 						var html="<tr><td colspan='3' style='color: green'>이메일에 인증 번호를 확인해주세요.</td></tr>"; 
 						$('#idResult').empty();
 						$('#cEmailResult').empty();
 						$('#idResult').append(html);
