@@ -478,6 +478,33 @@ max-width: 100%;
 			}
 		}
 		  $( document ).ready(function() {
+					/* 여기부분 잘 안되는데 뭔지 모르겠음
+					setTimeout(function() {
+						var w = $(".image").children().width();
+						var h = $(".image").children().height();
+						
+						if(w > 1024){
+							var ri = 1024/w;
+							w = w * ri;
+							h = h * ri;
+						}
+						var a_h = $(".article").children().height();
+						var a_w = $(".article").children().width();
+						
+						console.log(w+" / "+h+" && "+ a_w+" / "+ a_h);
+						$(".image").children().width(w);
+						 $(".image").children().height(h);
+						
+					}, 50);
+					*/
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
 			  console.log( "document ready!" );
 
 			  var $sticky = $('.sticky');

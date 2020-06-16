@@ -96,7 +96,7 @@ $(document).on('click', '#btnSave', function(e) {
 								<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
 								<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 							</div>
-							<form name="form" id="form" role="form" method="POST" action="/board/free/write">
+							<form name="form" id="form" role="form" method="POST" action="/board/free/update">
 								<div class="form-table">
 									<table>
 										<tbody>
