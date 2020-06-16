@@ -137,6 +137,7 @@
 		from holdingstock
 		natural join stocklist
 		where id=#{id}
+		and quantity!=0
 		<if test='!accountSearch.equals("")'>
 		and stockname like CONCAT('%', #{accountSearch}, '%')
 		</if>
@@ -147,6 +148,7 @@
 		from holdingstock
 		natural join stocklist
 		where id=#{util.id}
+		and quantity!=0
 		<if test='!util.accountSearch.equals("")'>
 		and stockname like CONCAT('%', #{util.accountSearch}, '%')
 		</if>
@@ -166,6 +168,9 @@
 		select *
 		from tradinghistory
 		where id=#{util.id}
+		<if test='!util.startDate.equals("") and !util.endDate.equals("")'>
+		and date_format(tdatetime, '%Y-%m-%d') between #{util.startDate} and #{util.endDate}
+		</if>
 		limit #{start}, #{cntPerPage}
 	</select>
 	

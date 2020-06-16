@@ -15,7 +15,7 @@ import com.bitcamp.project.vo.UserVO;
 
 @Service
 public class MyAccountServiceImpl implements MyAccountService {
-	
+
 	@Autowired
 	MyAccountDAO myAccountDAO;
 
@@ -25,7 +25,7 @@ public class MyAccountServiceImpl implements MyAccountService {
 		map.put("id", loginUser.getId());
 		map.put("accountSearch", accountSearch);
 		int count = myAccountDAO.countMyStock(map);
-		PagingVO pv1 = new PagingVO(count,nowPage,3);
+		PagingVO pv1 = new PagingVO(count, nowPage, 3);
 		pv1.getUtil().put("id", loginUser.getId());
 		pv1.getUtil().put("accountSearch", accountSearch);
 		List<HoldingStockVO> holdingStockList = myAccountDAO.myStockList(pv1);
@@ -36,30 +36,42 @@ public class MyAccountServiceImpl implements MyAccountService {
 	}
 
 	@Override
-	public HashMap<String, Object> getMyTradeHistoryListByDate(UserVO loginUser, int nowPage, String startDate, String endDate) {
+	public HashMap<String, Object> getMyTradeHistoryListByDate(UserVO loginUser, int nowPage, String startDate,
+			String endDate) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		String sDate = "";
+		String eDate = "";
+		if (startDate.length() > 9) {
+			sDate = startDate.substring(0, 10);
+			sDate = sDate.split("/")[2] + "-" + sDate.split("/")[1] + "-" + sDate.split("/")[0];
+		}
+		if (endDate.length() > 9) {
+			eDate = endDate.substring(0, 10);
+			eDate = eDate.split("/")[2] + "-" + eDate.split("/")[1] + "-" + eDate.split("/")[0];
+		}
 		map.put("id", loginUser.getId());
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
+		map.put("startDate", sDate);
+		map.put("endDate", eDate);
 		int count = myAccountDAO.countMyStockHistory(map);
-		PagingVO pv2 = new PagingVO(count,nowPage,1);
+		PagingVO pv2 = new PagingVO(count, nowPage, 1);
 		pv2.getUtil().put("id", loginUser.getId());
-		pv2.getUtil().put("startDate", startDate);
-		pv2.getUtil().put("endDate", endDate);
+		pv2.getUtil().put("startDate", sDate);
+		pv2.getUtil().put("endDate", eDate);
 		List<StockVO> stockHistoryListByDate = myAccountDAO.myStockHistoryListByDate(pv2);
+		
 		HashMap<String, Object> hm1 = new HashMap<String, Object>();
 		hm1.put("pv2", pv2);
 		hm1.put("stockHistoryListByDate", stockHistoryListByDate);
 		return hm1;
 	}
-	
+
 	@Override
 	public HashMap<String, Object> getMyTradeHistoryListByStock(UserVO loginUser, int nowPage, String tradeSearch) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("id", loginUser.getId());
 		map.put("tradeSearch", tradeSearch);
 		int count = myAccountDAO.countMyStockHistory(map);
-		PagingVO pv3 = new PagingVO(count,nowPage,2);
+		PagingVO pv3 = new PagingVO(count, nowPage, 2);
 		pv3.getUtil().put("id", loginUser.getId());
 		pv3.getUtil().put("tradeSearch", tradeSearch);
 		List<StockVO> stockHistoryListByStock = myAccountDAO.myStockHistoryListByStock(pv3);

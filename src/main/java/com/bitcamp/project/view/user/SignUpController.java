@@ -1,7 +1,7 @@
 package com.bitcamp.project.view.user;
 
 import static com.bitcamp.project.view.user.SignUpSend.signUpNumStr;
-
+import static com.bitcamp.project.view.user.SignUpMailController.signUpEmailNumStr;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,8 +83,8 @@ public class SignUpController {
 	
 
 	@ResponseBody 
-	@GetMapping(value= {"/idCheck", "/nickCheck", "/friendCheck", "/telCheck", "/cTelCheck"})
-	public String duplicateCheck(@ModelAttribute("id") String id, @ModelAttribute("tel") String tel, @ModelAttribute("cTel") String cTel,
+	@GetMapping(value= {"/idCheck", "/cEmailCheck", "/nickCheck", "/friendCheck", "/telCheck", "/cTelCheck"})
+	public String duplicateCheck(@ModelAttribute("id") String id, @ModelAttribute("cMail") String cMail,@ModelAttribute("tel") String tel, @ModelAttribute("cTel") String cTel,
 								@ModelAttribute("nickname") String nickname, HttpServletRequest request) {
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -92,11 +92,16 @@ public class SignUpController {
 		// 아이디 중복확인
 		if(request.getServletPath().equals("/idCheck")) {
 			map.put("id", id);
-			
-			
 			int result=signUpService.duplicateCheck(map);
-			System.out.println("id"+result);
 			return Integer.toString(result);
+		}
+		// 이메일 인증번호 확인
+		else if(request.getServletPath().equals("/cEmailCheck")) {
+			if(signUpEmailNumStr.equals(cMail)) {
+				return Integer.toString(0);
+			}else {
+				return Integer.toString(1);
+			}
 		}
 		
 		// 닉네임 중복확인

@@ -3,6 +3,8 @@ package com.bitcamp.project.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 public class BoardVO {
 	private int pno; // 글번호
@@ -12,7 +14,10 @@ public class BoardVO {
 	private String bcontent; // 내용
 	private int views; // 조회수
 	private int likes; // 조아용
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date bdateTime; // 작성일
+	
 	private int bno; // 게시판번호(종류)
 	private int commentCount;
 	
