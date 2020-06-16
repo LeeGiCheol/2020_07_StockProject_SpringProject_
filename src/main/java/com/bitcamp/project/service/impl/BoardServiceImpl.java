@@ -89,7 +89,12 @@ public class BoardServiceImpl implements BoardService{
 
 	
 	public int reportBoard(BoardVO vo) {
-		return boardDAO.reportBoard(vo);
+		int count = boardDAO.reportBoardCount(vo);
+		if(count == 0) {
+			return boardDAO.reportBoard(vo);
+		}
+		else
+			return -1;
 	}
 	
 	

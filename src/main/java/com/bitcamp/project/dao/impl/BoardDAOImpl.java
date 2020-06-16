@@ -90,5 +90,8 @@ public class BoardDAOImpl implements BoardDAO {
 	public int reportBoard(BoardVO vo) {
 		return mybatis.insert("board.reportBoard", vo);
 	}
+	public int reportBoardCount(BoardVO vo) {
+		return mybatis.selectOne("board.reportBoardCount", vo);
+	}
 	
 }

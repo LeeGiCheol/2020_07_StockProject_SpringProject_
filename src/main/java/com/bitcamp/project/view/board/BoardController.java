@@ -165,10 +165,34 @@ public class BoardController {
 	
 	
 	@PostMapping("/reportBoard")
-	public String reportBoard(BoardVO vo, @RequestParam("title") String title) {
+	public ModelAndView reportBoard(BoardVO vo, @RequestParam("title") String title, @RequestParam("rtype") String rtype, @RequestParam("rcontent") String rcontent, HttpSession session, Model model) {
+		System.out.println("title "+title);
+		System.out.println("rtype "+rtype);
 		vo.setTitle(title);
-		boardService.reportBoard(vo);
-		return "redirect:/board/free";
+		vo.setRtype(rtype);
+		vo.setRcontent(rcontent);
+		UserVO user = (UserVO)session.getAttribute("loginUser");
+		vo.setNickname(user.getNickname());
+		
+		int report = boardService.reportBoard(vo);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		if(report == 1) {
+			mav.addObject("msg", "해당 게시물이 신고 완료되었습니다.");
+			mav.addObject("location", "/board/free/detail?pno="+vo.getPno());
+			mav.addObject("icon", "success");
+			mav.setViewName("msg");
+			return mav;
+		}
+		else {
+			mav.addObject("msg", "신고는 1회만 가능합니다.");
+			mav.addObject("location", "/board/free/detail?pno="+vo.getPno());
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
+		}
+		
 	}
 	
 }

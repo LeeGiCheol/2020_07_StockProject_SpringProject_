@@ -550,7 +550,7 @@ textarea {
 <div id="reportPopup" class="pop-layer" style="display:none">
 		<div class="pop-inner">
 			<div class="popup-wrap">
-				<!-- <form action="/reportBoard" method="POST"> -->
+				<form id="reportBoard" action="/reportBoard" method="POST"> 
 					<div class="pop-tit"><span>게시물 신고하기</span></div>
 					<div class="pop-cont">
 						<div class="pop-clean">
@@ -611,18 +611,7 @@ textarea {
                 }                
                 
                 if(confirm("신고하시겠습니까?")){
-                	$.ajax({
-                        type : "POST"
-                        ,url : "report"
-                        ,data : bbsWrtRprtVO
-                    }).done(function(data) {
-                        alert('신고 하셨습니다.');
-                        $(".wrap").show();
-                        $('#reportPopup').hide();
-                        initInput();
-                    }).fail(function(data) {
-                        alert('이미 신고 하셨습니다.');
-                    });                	
+                	
                 }                
             }
             Module.vaildateSubmitReport = function (bbsWrtRprtVO) {
@@ -634,7 +623,7 @@ textarea {
             var bbsWrtVO = {"seq":150357583578728,"id":"N10841","regDate":"2020-06-16 09:29:16.0","regmnId":"tsbaki22","regmnNicknm":"콰지콰지","regmnIp":"192.168.112.102","regmnImgPath":"//www.paxnet.co.kr/my/files/badge/like4S.png","title":"펌)첫 출근 후 울었습니다. ","wrtCntnSmry":null,"itemCode":null,"tabInfo":null,"hdwr":null,"wrtGrad":null,"wrtStat":null,"pstn":null,"ottpTarget":null,"wrtePath":"web","fileAttaYn":"N","recmUseYn":"Y","comtUseYn":"Y","orgnId":null,"pswd":null,"uusrId":null,"updtDate":null,"blidYn":"N","suveYn":"N","applyBbsName":null,"hitsNum":0,"recmNum":0,"comtNum":0,"totalCnt":0,"nextKey":null,"wrtNo":395965,"popYn":null,"bestYn":null,"bbsTypeId":null,"itemName":null,"orignBbsName":null,"realNmChk":"N","preSeq":0,"nextSeq":0,"preTitle":null,"nextTitle":null,"specWrtNo":null,"specRegDate":null,"keyId":null,"specId":null,"orgnSpecBbsId":null,"movebbsTypeId":null,"movePstn":null,"notices":[],"bbsVO":{"id":"N10841","ooId":null,"bbsName":null,"bbsTypeId":null,"bbsPstn":null,"expl":null,"mngrCode":null,"delYn":null,"note":null,"pstnName":null,"wrtRegCode":null,"bbsFunction":null,"viewType":null,"areas":null,"bbsInfos":null,"view":null,"bbsContentFunctionDetailMap":null,"paging":null,"bbsWrts":null,"bbsList":null,"fn002Yn":false,"fn003Yn":false,"fn004Yn":false,"fn005Yn":false,"fn006Yn":false,"fn011Yn":false,"fn012Yn":false,"fn015Yn":false,"fn018Yn":false,"fn021Yn":false,"fn022Yn":false,"fn023Yn":false,"fn024Yn":false,"fn025Yn":false,"fn028Yn":false,"fn029Yn":false,"fn030Yn":false,"fn031Yn":false,"fn032Yn":false,"fn033Yn":false,"fn034Yn":false,"fn035Yn":false,"fn036Yn":false,"fn037Yn":false,"fn038Yn":false,"fn039Yn":false,"fn040Yn":false,"fn041Yn":false,"fn042Yn":false,"adminFlag":null,"level":0,"wrtFlag":null,"listLabelList":null,"sortLabelList":null,"pageLabelList":null,"searchLabelList":null,"contheadLabelList":null,"classLabelList":null,"pstnLabelList":null,"adminLabelList":null,"viewLabelList":null,"wrtLabelList":null,"uptLabelList":null,"bbsWrtVO":null,"jsonBbsWrtVO":null,"preNextBbsWrtVOs":null,"bbsWrtRecentInfoVO":null,"loginCustVO":null,"bbsTypeAndViewKey":"null_null"},"orignBbsVO":null,"bbsWrtRecentInfoVO":{"seq":150357583578728,"id":null,"seeCount":24,"recommendCount":0,"commentCount":0},"bbsWrtCntnVO":{"seq":150357583578728,"cntn":"<p><img class=\"lazy\" style=\"max-width: 100%;\" alt=\"88dc1af2-62a1-423a-a20e-21fdd1c9ffa1.png\" src=\"http://www.paxnet.co.kr/tbbs/files/N10841/20200616/88dc1af2-62a1-423a-a20e-21fdd1c9ffa1.png\"><br></p>","regDate":null},"bbsSuveInfoVO":null,"bbsWrtAttaFileVOs":[],"bbsWrtBlidVO":null,"specBbsWrtVO":{"id":null,"seq":null,"orgnId":null,"regDate":null,"updtDate":null,"uusrId":null,"delYn":null,"delResnCode":null,"delDate":null,"dusrId":null,"wrtNo":0,"regmnId":"tsbaki22","regmnNicknm":"콰지콰지"},"editorPickBbsWrtVO":null,"fileList":null,"delFileList":null,"notiList":null,"delNotiList":null,"pageNo":0,"rn":0,"dealAmt":0,"ddSeq":0,"earnRate":0.0,"dealDt":null};
             var custId = "${loginUser.nickname}";
             
-            var bbsTitle = '자유게시판';;
+            var bbsTitle = '자유게시판';
 
             jQuery('.e-reportPopupClose').on('click',function(){
             	$(".wrap").show();
@@ -662,33 +651,6 @@ textarea {
                 		alert("본인의 글은 신고 할 수 없습니다.");
                 	}
                 	
-                });
-                jQuery(document).on('click', '#submitReport', function () {
-                	
-                	if( $('#rtype').val() == "" ){
-                    	alert("신고항목을 선택하세요.");
-                    	return false;                	
-                    } else if( $.trim($('#rprtResn').val()) == "" ){
-                    	alert("내용을 입력해주세요.");
-                    	return false;                	
-                    } else{
-                    	var bbsWrtRprtVO = {};
-                        bbsWrtRprtVO.wrtSeq = bbsWrtVO.seq;
-                        bbsWrtRprtVO.rprtCode = jQuery('#rtype').val();
-                        bbsWrtRprtVO.rprtResn = jQuery('#rprtResn').val();
-                        bbsWrtRprtVO.rprtBbsId = bbsWrtVO.id;
-                        bbsWrtRprtVO.rprtBbsName = bbsTitle;
-                        bbsWrtRprtVO.rprtWrtTitle = bbsWrtVO.title;
-                        bbsWrtRprtVO.rprtWrtRegmnId = bbsWrtVO.regmnId;
-                        bbsWrtRprtVO.rprtWrtRegmnNicknm = bbsWrtVO.regmnNicknm;
-                        bbsWrtRprtVO.rprtWrtRegDate = bbsWrtVO.regDate;
-
-                        Report.ajaxSubmitReport(bbsWrtRprtVO);
-
-                        $(".wrap").show();
-                        jQuery('#reportPopup').hide();
-                        initInput();
-                    }
                 });
 
             }
@@ -806,7 +768,7 @@ function submitReportComt(){
 						</div>
 					</div>
 					<button class="cla-close e-reportPopupClose">닫기</button>
-				<!-- </form> -->
+				</form> 
 			</div>
 		</div>
 	</div>
