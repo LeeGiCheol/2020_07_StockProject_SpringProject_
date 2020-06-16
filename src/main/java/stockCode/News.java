@@ -16,7 +16,7 @@ public class News {
 				doc = Jsoup.connect(url).get();
 				
 //				for (int j = 1; j <= 10; j++) {
-					String news = doc.select("#contentarea_left > ul > li.newsList.top > dl").html();
+					String news = doc.select("#contentarea_left > ul").html();
 //				}			
 			
 			Info inf = new Info();

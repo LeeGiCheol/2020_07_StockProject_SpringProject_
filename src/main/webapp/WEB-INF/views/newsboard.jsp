@@ -198,8 +198,8 @@
 					<!-- //week -->
 				</div>
 				<!-- //board-calendar -->
-<ul class="realtimeNewsList">
-<li class="newsList top" id="newsnewsnews">
+<ul class="realtimeNewsList" id="newsnewsnews">
+<li class="newsList top">
 
 </ul>
 
@@ -947,10 +947,9 @@
 		  });
 	  
 	  $("#newsnewsnews").html(`${news}`);
-	  
-	  var a = $("#newsnewsnews > a").attr("href")
-	  console.log(a)
-	  $("li a").attr("href", "naver.com"+a)
+	  var a = $("#newsnewsnews a").attr("href")
+	  console.log("asd"+a)
+	  $("#newsnewsnews a").attr("href", "https://finance.naver.com"+a)
 	});
   </script>
 	<script src="resources/jpaginate/jquery.twbsPagination.js"></script>
