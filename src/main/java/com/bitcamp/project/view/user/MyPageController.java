@@ -193,8 +193,8 @@ public class MyPageController {
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")
 	@ResponseBody
-	public String mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session,
-			HttpServletRequest request) {
+	public String mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session, HttpServletRequest request) {
+			
 		Map<String, String> map = new HashMap<String, String>();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		map.put("pw", nowPassword);
