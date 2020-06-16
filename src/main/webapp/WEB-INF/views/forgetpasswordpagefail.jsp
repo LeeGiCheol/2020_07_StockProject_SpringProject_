@@ -27,7 +27,7 @@
 						<p class="big-text">입력하신 인증번호는 <span class="color-red">일치하지 않습니다</span><br>다시 시도해주세요.</p>
 					</div>
 
-					<div class="bt-area"><a href=/forgetPasswordTry	class="btn-b gray">다시 시도하기</a></div>
+					<div class="bt-area"><a href="/forgetPassword" class="btn-b gray">다시 시도하기</a></div>
 					<div class="find-info">
 						<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> 
 						<span class="bt-area"> 

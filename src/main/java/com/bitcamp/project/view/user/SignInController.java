@@ -146,7 +146,7 @@ public class SignInController {
 			if(email_answer.equals(EmailNumStr)) { // 대답과 인증번호가 같다면
 				return "/forgetpasswordpagereset"; 
 			}else {
-				return "/forgetpasswordpagefail"; // 대답과 인증번호가 다르면
+				return "/forgetpasswordpage-try-fail"; // 대답과 인증번호가 다르면
 			} 
 		}
 		return null;
