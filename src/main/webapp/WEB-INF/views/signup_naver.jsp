@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>회원가입</title>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
@@ -17,6 +18,10 @@
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
+
+	$(document).ready(function(){
+		swal({text:"가입을 위해 추가 정보 입력이 필요합니다", icon:"warning"})
+	});
 </script>
 </head>
 <body>
@@ -24,7 +29,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 	<form action="/signUp/kakao" name="form" method="POST">
 		<div class="container">
 			<div class="allBody">
-				<b><label style="margin-left: 45px;" for="inputEmail">가입을 위해 추가 정보 입력이 필요합니다</label></b>
 				<div class="form-group col-md-6" style="display: -webkit-box;">
 					<input type="email"	class="form-control" id="inputEmail" name="id" value="${naverId}" readonly style="display:none">
 					<ul><li style="list-style:none;" id="idResult"></li></ul>
@@ -32,13 +36,13 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
             
 				<label for="inputnickname col-md-6">닉네임</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputNickname" name="nickname" value="${naverNickname}" onKeyPress="return spaceCheck(event)">
+					 <input type="text"	class="form-control" id="inputNickname" name="nickname" placeholder="추천 닉네임 : ${naverNickname}" onKeyPress="return spaceCheck(event)">
 					 <button type="button" class="btn btn-secondary" id="nickCheck">　중복확인　</button>	
 					 <ul><li style="list-style:none;" id="nickNameResult"></li></ul>
 				</div>
 				<label for="inputAddress col-md-6">추천인</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="" onKeyPress="return spaceCheck(event)">
+					 <input type="text"	class="form-control" id="inputFriend" name="friend" onKeyPress="return spaceCheck(event)">
 					 <button type="button" class="btn btn-secondary" id="friendCheck">　추천하기　</button>	
 					 <ul><li style="list-style:none;" id="friendResult"></li></ul>
 				</div>

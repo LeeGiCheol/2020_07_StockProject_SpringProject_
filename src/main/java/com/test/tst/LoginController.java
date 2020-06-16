@@ -44,7 +44,6 @@ public class LoginController {
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
-		ModelAndView mav = new ModelAndView();
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
@@ -64,14 +63,14 @@ public class LoginController {
 		vo = signInService.logIn(vo);
 		
 		if (vo == null) { 
-		  mav.addObject("naverId", id);
-		  mav.addObject("naverNickname", nickname);
-		  mav.setViewName("signup_naver"); 
+		  session.setAttribute("naverId", id);
+		  session.setAttribute("naverNickname", nickname);
 		  return "signup_naver";
 		} else {
 			session.setAttribute("loginUser", vo);
+			session.setAttribute("naverLoginUser", nickname);
+			System.out.println("세션 저장이 되었나? :" + session.getAttribute("loginUser"));
 			model.addAttribute("result", apiResult);
-			/* mav.setViewName("redirect:/mainPage"); */
 			return "redirect:/mainPage";
 		}
 		
