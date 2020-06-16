@@ -721,28 +721,17 @@ function submitReportComt(){
         //console.log("comtRprtRe " + $("#comtRprtRe").val());
 
         //console.log("jsonData : " + $("#rtrpFrm").serialize());
-        
-        if(confirm("신고하시겠습니까?")){
-        	$.ajax({
-                type : "POST",
-                url : "reportComment.json",
-                dataType : "json",
-                data : $("#rtrpFrm").serialize(),
-               	success: function (data) {
-               		alert(data.resultMsg);
-               		$('#reportComtPopup').remove();
-               	},
-               	beforeSend: function(){
-        		},
-        		complete: function(){
-        		},
-        		error:function(xhr,textStatus,error) {
-        			alert(error);
-        		}
-            });
-        }
     }
 }
+
+
+		// 취소버튼 눌렀을 때 내용 초기화, 팝업 hide
+		function hidePopup(){
+        /* 	$(".wrap").show(); */
+            jQuery('#reportPopup').hide();
+            initInput()
+		}
+
 </script>
 								</span>
 								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
@@ -763,11 +752,11 @@ function submitReportComt(){
 						
 						<div class="pop-btn">
 
-							<button type="button" class="btn-m e-reportPopupClose">취소</button>
+							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
 							<button type="submit" id="submitReport" class="btn-m red">신고하기</button>
 						</div>
 					</div>
-					<button class="cla-close e-reportPopupClose">닫기</button>
+					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
 				</form> 
 			</div>
 		</div>

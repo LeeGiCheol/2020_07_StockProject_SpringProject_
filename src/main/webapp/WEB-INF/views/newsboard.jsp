@@ -947,9 +947,9 @@
 		  });
 	  
 	  $("#newsnewsnews").html(`${news}`);
-	  var a = $("#newsnewsnews a").attr("href")
-	  console.log("asd"+a)
-	  $("#newsnewsnews a").attr("href", "https://finance.naver.com"+a)
+	  var naverNewsLink = $("#newsnewsnews a").attr("href")
+	  $("#newsnewsnews a").attr("href", "https://finance.naver.com"+naverNewsLink)
+	  $("#newsnewsnews a").attr("target", "_blank")
 	});
   </script>
 	<script src="resources/jpaginate/jquery.twbsPagination.js"></script>
