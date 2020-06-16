@@ -7,7 +7,7 @@
 
 	<insert id="writeFreeBoard">
 		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
-		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, 1, 0)	
+		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, #{bno}, 0)	
 	</insert>
 	
 	
