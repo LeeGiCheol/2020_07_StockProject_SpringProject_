@@ -221,11 +221,7 @@ function deleteComment(){
                  <td><div class="custom-control custom-checkbox">
                    <input type="checkbox" id="jb-checkbox${comment.cno}-comment" class="custom-control-input comment" name="check" data-on="${comment.cno},${comment.pno}"><label class="custom-control-label" for="jb-checkbox${comment.cno}-comment"></label></div></td>
                  <th scope="row">${comment.cno}</th>
-<<<<<<< HEAD
-                <td> <a href="/board/free/detail?pno=${comment.pno}"> ${comment.ccontent}</a></td>
-=======
                  <td><a href="/board/free/detail?pno=${comment.pno}">${comment.ccontent}</a></td>
->>>>>>> 484820397226b7ab97b25e3c36e973b253c0177e
                  <td>${comment.nickname}</td>
            		 <fmt:formatDate value="${comment.cdateTime}" var="time" pattern="yyyy/MM/dd HH:mm"/>
 				 <td class="comment-date">${time}</td>

@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <link rel="stylesheet" href="resources/css/newboard.css">
+<link rel="stylesheet" href="resources/css/newsA.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -197,9 +198,12 @@
 					<!-- //week -->
 				</div>
 				<!-- //board-calendar -->
+<ul class="realtimeNewsList">
+<li class="newsList top" id="newsnewsnews">
 
+</ul>
 
-				<div class="tab-content" id="pills-tabContent">
+				<!-- <div class="tab-content" id="pills-tabContent">
 					<div class="tab-pane fade show active" id="pills-home"
 						role="tabpanel" aria-labelledby="pills-home-tab">
 						<ul class="newslist">
@@ -782,7 +786,7 @@
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 				
 				<!-- 페이징 -->
 				<div class="paging">	
@@ -941,6 +945,12 @@
 	  $(".m-drop-nav").click(function(){
 		    $(".m-drop-down").slideToggle("slow");
 		  });
+	  
+	  $("#newsnewsnews").html(`${news}`);
+	  
+	  var a = $("#newsnewsnews > a").attr("href")
+	  console.log(a)
+	  $("li a").attr("href", "naver.com"+a)
 	});
   </script>
 	<script src="resources/jpaginate/jquery.twbsPagination.js"></script>
