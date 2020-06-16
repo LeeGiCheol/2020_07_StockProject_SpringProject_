@@ -15,6 +15,7 @@
 
 </head>
 <body>
+<div class="wrap">
 <%@include file="mainheader.jsp" %>
 <div class="containerNew"> 
 
@@ -26,61 +27,43 @@
 			<div class="logo-log">
 				<a href="http://www.paxnet.co.kr"><img src="/resources/img/logo.png" alt="PAXNet"></a>
 			</div>
-			<form id="loginCustVo" action="https://member.paxnet.co.kr/rpan/member/loginAuth" method="post" onsubmit="return formCheck();">
+			 <form action="/signIn" class="form-signin" method="post">
 				<input type="hidden" name="returnURL" id="returnURL" value="http://www.paxnet.co.kr/tbbs/list?tbbsType=L&amp;id=N10982">
 				<input type="hidden" name="adminType" value="">
 				<input type="hidden" name="majority" id="majority" value="">
 				
 				<div class="on-area clearfix">
 					<span class="stu">
-					<input type="checkbox" name="sID" id="sID" class="big" onclick="isAutoLogin();"><label for="sID">아이디 저장</label>
+					<input type="checkbox" id="idSaveCheck" class="big" value="remember-me"><label for="sID">아이디 저장</label>
 					</span>
 				</div>
 				<fieldset class="login">
 					<legend>로그인</legend> 
 					<div>
 						<span class="input-style">
-							<input id="custId" name="custId" title="아이디 입력" placeholder="아이디 입력" type="text" value="">
-							<button type="button" onclick="initForm('custId');" class="delete" tabindex="-1">삭제</button>
+							<input id="inputEmail" name="id" title="아이디 입력" placeholder="아이디 입력" type="email" value="" required autofocus>
+
 						</span> 
 						<span class="input-style">
-							<input id="passwd" name="passwd" title="비밀번호 입력" placeholder="비밀번호 입력" type="password" value="" autocomplete="OFF">
-							<button type="button" onclick="initForm('passwd');" class="delete" tabindex="-1">삭제</button>
+							<input id="inputPassword" name="pw" title="비밀번호 입력" placeholder="비밀번호 입력" type="password" value="" autocomplete="OFF" required>
+	
 						</span>
 					</div>
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					<button class="btn-b red" type="submit" value="Submit">로그인</button>
 				</fieldset>
 			</form>
 			<div class="bt-login">
-				<a href="https://member.paxnet.co.kr/rpan/member/searchUserId">아이디 찾기</a>
-				<a href="https://member.paxnet.co.kr/rpan/member/searchPwd">비밀번호 찾기</a>
-				<a href="https://member.paxnet.co.kr/rpan/member/join/step1">회원가입</a>
+				<a href="/forgetId">아이디 찾기</a>
+				<a href="/forgetPassword">비밀번호 찾기</a>
+				<a href="/signUpPage/1">회원가입</a>
 			</div>
 			
 			<!-- 소셜 로그인 타입 추가 -->
 			<div class="social-login">
-				<button type="button" class="btn-b naver" onclick="javascript:snsLogin('n');">네이버 아이디로 로그인</button>
-				<button type="button" class="btn-b kakaotalk" onclick="javascript:snsLogin('k');">카카오톡 아이디로 로그인</button>
-				<button type="button" class="btn-b google" onclick="javascript:snsLogin('g');">구글 아이디로 로그인</button>
+				<button type="button" class="naverlogin btn-b naver" onclick="location.href='/naverLogin'">네이버 아이디로 로그인</button>
+				<button type="button" class="kakaologin btn-b kakaotalk" >카카오톡 아이디로 로그인</button>
+				<button type="button" class="btn-b google">구글 아이디로 로그인</button>
 			</div>
-
-			<script>
-			var adUrl = "//nad.moneta.co.kr/RealMedia/ads/adstream_jx.ads/paxnet.moneta.co.kr/login@x02";
-			if($('html').hasClass('desktop')){
-				document.write('<div class="ad-area">')
-				document.write(unescape("%3Cscript src='" + adUrl + "'%3E%3C/script%3E"));
-				document.write('</div>')
-			}
-			</script><div class="ad-area"><script src="//nad.moneta.co.kr/RealMedia/ads/adstream_jx.ads/paxnet.moneta.co.kr/login@x02"></script></div>
 		</div>
 	</div><!-- //cont-area -->	 
 </div><!-- //contents -->  
@@ -125,6 +108,7 @@
 	     </form>
 	</article> -->
 <%@include file="mainfooter.jsp" %>
+</div>
 <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" ></script>
 <script src="form-validation.js"></script>
