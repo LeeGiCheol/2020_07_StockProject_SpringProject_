@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <script>
-function ok(){
-	swal({text:"인증번호가 일치하지않습니다.", icon:"error"}); 
-	window.location.href="/forgetPasswordTry";
-  }
-  ok();
+	window.onload  = function() {
+		swal({text:"인증번호가 일치하지않습니다.", icon:"error"}).then(function(){
+			window.location.href="/forgetPasswordTry";
+		}); 
+	}
 </script>
 </head>
 <body>
