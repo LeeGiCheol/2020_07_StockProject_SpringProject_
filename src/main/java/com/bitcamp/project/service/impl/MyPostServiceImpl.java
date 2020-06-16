@@ -55,6 +55,19 @@ public class MyPostServiceImpl implements MyPostService {
 	public void deleteMyPost(String deleted[], String type) {
 		Map<String, String> myMap = new HashMap<String, String>();
 		myMap.put("type", type);
+		String deleted2[] = new String[deleted.length/2]; //삭제 될 comment의 pno배열
+		String deletedCno[] = new String[deleted.length/2];
+		if(type.equals("comment")) {
+			for (int i = 0; i < deleted.length; i++) {
+				if(i % 2 == 1)
+					deleted2[i/2] = deleted[i];
+				else
+					deletedCno[i/2] = deleted[i];
+			}
+		}
+		
+		deleted = deletedCno;
+		
 		for (int i = 0; i < deleted.length; i++) {
 			myMap.put("no", deleted[i]);
 			myPostDAO.deleteMyPost(myMap);
