@@ -14,6 +14,7 @@ import org.springframework.mail.MailException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -92,13 +93,18 @@ public class SignInController {
 	
 	@SuppressWarnings("unused")
 	@PostMapping(value= {"/forgetId", "/forgetIdTry"})
-	public String findId(String[] args, UserVO vo, @ModelAttribute("tel") String tel, @ModelAttribute("answer") String answer, HttpSession session, HttpServletRequest request) {
+	public String findId(Model model, String[] args, UserVO vo, @ModelAttribute("tel") String tel, @ModelAttribute("answer") String answer, HttpSession session, HttpServletRequest request) {
 			
 		if(request.getServletPath().equals("/forgetId")) {
 			vo.setTel(tel);
 			vo = signInService.findId(vo);
 			session.setAttribute("findUser", vo);
-			if(vo==null || vo.getTel().equals("") ) { // 없는 전화번호
+			if(vo.getPw().equals("naver")) { // 비밀번호가 "naver"이라면? (네이버 회원이라면?)
+				model.addAttribute("msg", "회원님은 네이버 회원이십니다. 네이버로 이동합니다");
+				model.addAttribute("icon", "success");
+				model.addAttribute("location", "https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry");
+				return "/msg";	
+			}else if(vo==null || vo.getTel().equals("") ) { // 없는 전화번호
 				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
 			}else { //있는 전화번호라면?
 				ExampleSend es = new ExampleSend(); // 문자보내는 클래스 
@@ -111,7 +117,10 @@ public class SignInController {
 			if(answer.equals(numStr)) { // 대답과 인증번호가 같다면
 				return "/forgetidpagesuccess";
 			}else {
-				return "/forgetidpage-try-fail"; // alert창 띄우고 다시 인증화면으로
+				model.addAttribute("msg", "인증번호가 일치하지않습니다.");
+				model.addAttribute("icon", "error");
+				model.addAttribute("location", "/forgetIdTry");
+				return "/msg";
 			} 
 		}
 		return null;
@@ -128,13 +137,18 @@ public class SignInController {
 	}
 
 	@PostMapping(value= {"/forgetPassword", "forgetPasswordTry"})
-	public String findPw(UserVO vo, @ModelAttribute("id") String id, @ModelAttribute("email_answer") String email_answer, 
+	public String findPw(Model model, UserVO vo, @ModelAttribute("id") String id, @ModelAttribute("email_answer") String email_answer, 
 			HttpSession session, HttpServletRequest request) throws MailException, UnsupportedEncodingException, MessagingException {
 		if(request.getServletPath().equals("/forgetPassword")) {
 			vo.setId(id);
 			vo = signInService.findPw(vo);
 			session.setAttribute("findUser", vo);
-			if(vo==null || vo.getId().equals("") ) {
+			if(vo.getPw().equals("naver")) { // 비밀번호가 "naver"이면? (네이버 회원으로 가입했으면)
+				model.addAttribute("msg", "회원님은 네이버 회원이십니다. 네이버로 이동합니다");
+				model.addAttribute("icon", "success");
+				model.addAttribute("location", "https://nid.naver.com/user2/help/pwInquiry.nhn?menu=pwinquiry");
+				return "/msg";	
+			}else if(vo==null || vo.getId().equals("") ) {
 				return "/forgetpasswordpagefail";
 			}
 			else {
@@ -146,7 +160,10 @@ public class SignInController {
 			if(email_answer.equals(EmailNumStr)) { // 대답과 인증번호가 같다면
 				return "/forgetpasswordpagereset"; 
 			}else {
-				return "/forgetpasswordpage-try-fail"; // 대답과 인증번호가 다르면
+				model.addAttribute("msg", "인증번호가 일치하지않습니다.");
+				model.addAttribute("icon", "error");
+				model.addAttribute("location", "/forgetPasswordTry");
+				return "/msg"; // 대답과 인증번호가 다르면
 			} 
 		}
 		return null;
@@ -160,9 +177,12 @@ public class SignInController {
 	@PostMapping(value="/updatePassword")	
 	public String updatePassword(UserVO vo, @ModelAttribute("password") String password, 
 			@ModelAttribute("passwordAgain") String passwordAgain, HttpSession session) {
-		if(password.equals(passwordAgain)) {
+		
+		String encPassword = passwordEncoder.encode(password);
+		
+		if(bPasswordEncoder.matches(passwordAgain, encPassword)) {
 			UserVO finduserVO = (UserVO) session.getAttribute("findUser");
-			finduserVO.setPw(password);
+			finduserVO.setPw(encPassword);
 			vo = signInService.updatePw(finduserVO);
 			return "/forgetpasswordpagesuccess";
 		}else{ // 비밀번호랑 비밀번호 확인이 같지않으면 어처피 클릭이 되지 않아 else는 구현 안함

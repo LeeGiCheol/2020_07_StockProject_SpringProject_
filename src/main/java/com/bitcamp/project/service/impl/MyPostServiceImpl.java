@@ -70,7 +70,7 @@ public class MyPostServiceImpl implements MyPostService {
 		
 		for (int i = 0; i < deleted.length; i++) {
 			myMap.put("no", deleted[i]);
-			int a = myPostDAO.deleteMyPost(myMap);
+			myPostDAO.deleteMyPost(myMap, deleted2[i]);
 			
 		}
 	}

@@ -33,7 +33,9 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					<input type="email"	class="form-control" id="inputEmail" name="id" value="${naverId}" readonly style="display:none">
 					<ul><li style="list-style:none;" id="idResult"></li></ul>
 				</div>
-            
+				<div class="form-group col-md-6" >
+					 <input style="display:none" type="password" class="form-control" id="inputPassword" name="pw" value="naver">
+				</div>
 				<label for="inputnickname col-md-6">닉네임</label>
 				<div class="form-group" style="display: -webkit-box;">
 					 <input type="text"	class="form-control" id="inputNickname" name="nickname" placeholder="추천 닉네임 : ${naverNickname}" onKeyPress="return spaceCheck(event)">
@@ -90,7 +92,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
                 
             </div>
             <div style="text-align:center">
-                <div><button type="submit" class="nextButton" data-text-content="true" id="submit" >회원가입</button></div> <!--disabled="disabled"  -->
+                <div><button type="submit" class="nextButton" data-text-content="true" id="submit" >회원가입</button></div>
             </div>
 	</form>
 		<%@include file="mainfooter.jsp" %>
