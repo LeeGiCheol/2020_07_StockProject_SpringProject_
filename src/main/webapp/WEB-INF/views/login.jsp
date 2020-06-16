@@ -31,8 +31,8 @@
 	        </div>
 	        <button class="signup btn btn-lg btn-primary btn-block" onclick="location.href='/signUpPage/1'" type="button">회원가입</button>
 	        <div class="otherbutton">
-		        <a href="${url}"><button class="naverlogin btn btn-lg btn-primary btn-block "type="button">네이버로그인</button></a>
-		        <button class="kakaologin btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">카카오톡로그인</button>
+		        <a href="/naverLogin"><button class="naverlogin btn btn-lg btn-primary btn-block "type="button">네이버로그인</button></a>
+		        <button style="margin-top: 8px;" class="kakaologin btn btn-lg btn-primary btn-block " onclick="location.href='#'" type="button">카카오톡로그인</button>
 	        </div>
 	        <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
 	     </form>
