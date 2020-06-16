@@ -23,7 +23,7 @@
 </head>
 
 <body>
-	<div id="header"></div>
+	<%@include file="mainheader.jsp" %>
 
 
 	<!-- 전체메뉴 백그라운드-->
@@ -46,15 +46,23 @@
 
 
 
+
+							
+
+
+
+
+
 			<div class="col-md-10">
 
 
 
+				<div class="community"  role="main">
 
-				<!-- 현재 코스피 주가지수 -->
-
-
-				<div class="community">
+				
+				
+				
+								
 
 					<!-- 검색 -->
 					<div id="searchArea" class="sectionBox">
@@ -66,7 +74,7 @@
 									<button type="button" onclick="javascript:search();" class="search">검색</button>
 								</div>
 								<div class="inquiry-box">
-									<span class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</span>
+									<p class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</p>
 									<a href="/rpan/help/serviceInqry" class="link">1:1 문의</a>
 									<a href="/rpan/help/serviceInqryInsertNoLogin" class="link">비회원 문의</a>
 								</div>
@@ -79,7 +87,7 @@
 						<div class="sectionWrapper">
 							<dl>
 								<h2 class="main-tit">공지사항</h2>
-								<a class="moreBttn" href="#">더보기</a>
+								<a class="moreBttn right blue" href="#">더보기</a>
 
 								<dd>
 									<div class="noticeList">
@@ -130,10 +138,9 @@
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-												회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+											<p>회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
 												고객센터에서 확인이 불가능합니다.
-
-												로그인 영역> 비밀번호 찾기 를 통해 확인 부탁 드립니다.
+												로그인 영역> 비밀번호 찾기 를 통해 확인 부탁 드립니다.</p>
 											</div>
 										</div>
 									</div>
@@ -151,19 +158,13 @@
 									<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-												회원가입 상태에서는 아이디를 변경하실 수가 없습니다.
-
-												단, 아이디를 제외한 나머지 정보들(필명,이메일,주소,전화번호,비밀번호 등)
-
-												은 변경이 가능합니다.
-
+											<p>회원가입 상태에서는 아이디를 변경하실 수가 없습니다.
+												단, 아이디를 제외한 나머지 정보들(필명,이메일,주소,전화번호,비밀번호 등)은 변경이 가능합니다.
 												아이디를 변경하시기 위해서는 회원 탈퇴 후 다시 재가입 을 하셔야 합니다.
-
+												
 												회원탈퇴를 하시기전에 사용하셨던
-
 												아이디, 유료서비스 등의 사용이 불가능 하므로
-
-												탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.
+												탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.</p>
 											</div>
 										</div>
 									</div>
@@ -175,8 +176,7 @@
 										<h2 class="mb-0">
 											<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
 												data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-												[팍스넷 신규 회원 무료쿠폰]은 어떤 서비스
-												인가요?
+												[팍스넷 신규 회원 무료쿠폰]은 어떤 서비스인가요?
 											</button>
 										</h2>
 									</div>
@@ -184,9 +184,7 @@
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-												]
-
-												탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.
+											<p>탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.</p>
 											</div>
 
 										</div>
@@ -207,8 +205,7 @@
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-
-												탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.
+											<p>탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.</p>
 											</div>
 										</div>
 									</div>
@@ -228,11 +225,8 @@
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-												회원가입 상태에서는 아이디를 변경하실 수가 없습니다.
-
-												단, 아이디를 제외한 나머지 정보들(필명,이메일,주소,전화번호,비밀번호 등)
-
-
+											<p>회원가입 상태에서는 아이디를 변경하실 수가 없습니다.
+												단, 아이디를 제외한 나머지 정보들(필명,이메일,주소,전화번호,비밀번호 등)</p>
 											</div>
 										</div>
 									</div>
@@ -297,8 +291,51 @@
 		</div>
 	</div>
 
-	<div id="footer"></div>
+		<%@include file="mainfooter.jsp" %>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				console.log("document ready!");
 
+				var $sticky = $('.sticky');
+				var $stickyrStopper = $('.footer_info');
+				if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+					var generalSidebarHeight = $sticky.innerHeight();
+					var stickyTop = $sticky.offset().top;
+					var stickOffset = 0;
+					var stickyStopperPosition = $stickyrStopper.offset().top;
+					var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+					var diff = stopPoint + stickOffset;
+
+					$(window).scroll(function () { // scroll event
+						var windowTop = $(window).scrollTop(); // returns number
+
+						if (stopPoint < windowTop) {
+							$sticky.css({
+								position: 'relative',
+								top: diff
+							});
+						} else if (stickyTop < windowTop + stickOffset) {
+							$sticky.css({
+								position: 'fixed',
+								top: stickOffset
+							});
+						} else {
+							$sticky.css({
+								position: 'relative',
+								top: 'initial'
+							});
+						}
+					});
+
+				}
+				$(".m-drop-nav").click(function () {
+					$(".m-drop-down").slideToggle("slow");
+				});
+			});
+
+			
+		</script>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
