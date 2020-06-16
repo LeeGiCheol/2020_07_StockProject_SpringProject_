@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,11 +162,11 @@ $(document).ready(function(){
 	            <tr> 
 	              <td>${stock.stockCode}</td>
 	              <td>${stock.stockName}</td>
-	              <td>${stock.avgPrice}</td>
-	              <td>${stock.currentPrice}</td>
+	              <td><fmt:formatNumber value="${stock.avgPrice}" type="number"/></td>
+	              <td><fmt:formatNumber value="${stock.currentPrice}" type="number"/></td>
 	              <td>${stock.quantity}</td>
-	              <td>${stock.quantity*stock.currentPrice}</td>
-	              <td>${(stock.currentPrice-stock.avgPrice)*stock.quantity}</td>
+	              <td><fmt:formatNumber value="${stock.quantity*stock.currentPrice}" type="number"/></td>
+	              <td><fmt:formatNumber value="${(stock.currentPrice-stock.avgPrice)*stock.quantity}" type="number"/></td>
 	            </tr>
 	          </c:forEach>
           </tbody>

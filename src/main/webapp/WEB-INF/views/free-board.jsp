@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,7 +132,8 @@
 										<!-- 조회수 -->
 										<td class="board-likes"><span>추천 </span>${board.likes}</td>
 										<!-- 추천수 -->
-										<td class="board-date">${board.bdateTime}</td>
+										<fmt:formatDate value="${board.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
+										<td class="board-date">${time}</td>
 										<!-- 날짜 -->
 									</tr>
 								</c:if>
@@ -302,37 +305,7 @@
 		  });
   });
   
-		// datetime 변환
-		function changeDate(date){
-			console.log("???? "+date)
-		    var date = new Date(date);
-		    year = date.getFullYear();
-		    month = date.getMonth() + 1;
-		    if(month < 10) {
-		    	month = "0" + month
-		    }
-		    day = date.getDate();
-		    hour = date.getHours() + 15;
-		    if(hour < 10) {
-		    	hour = "0"+hour;
-		    }
-		    if(hour > 24) {
-		    	hour -= 24;
-		    	if(hour < 10) {
-		    	hour = "0"+hour
-		    	}
-		    }
-		    if(hour == 24){
-		    	hour = "00";
-		    }
-		    minute = date.getMinutes();
-		    if(minute < 10) {
-		    	minute = "0" + minute;
-		    }
-		    second = date.getSeconds();
-		    strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
-		    return strDate;
-		}
+
 
  
   </script>

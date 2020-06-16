@@ -53,22 +53,9 @@ public class MyPageController {
          @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
 	   
 	   UserVO user = new UserVO();
-	   user.setId("user@naver.com");
+	   user.setId("test@test.com");
 	   session.setAttribute("loginUser", user);
-	   System.out.println("startDate" + startDate);
-	   System.out.println("endDate" + endDate);
-	   String sDate = "";
-	   String eDate = "";
-	   if(startDate.length() > 9) {
-		   sDate = startDate.substring(0, 10);
-		   sDate = sDate.split("/")[2] + "-" + sDate.split("/")[1] + "-" + sDate.split("/")[0];
-	   }
-	   if(endDate.length() > 9) {
-		   eDate = endDate.substring(0, 10);
-		   eDate = eDate.split("/")[2] + "-" + eDate.split("/")[1] + "-" + eDate.split("/")[0];
-	   }
-	   System.out.println("sDate" + sDate);
-	   System.out.println("eDate" + eDate);
+	   
 	   if(type1.equals(""))
 		   type1 = "rate";
 	   if(nowPage1.equals(""))
@@ -83,8 +70,10 @@ public class MyPageController {
 	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
 	   List<HoldingStockVO> hList = (List<HoldingStockVO>)hm1.get("holdingStockList");
 	   StockParsing sp = new StockParsing();
-	   for (int i = 0; i < hList.size(); i++) {
+	   System.out.println("hsizezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" + hList.size());
+	   for(int i = 0; i < hList.size(); ++i) {
 		   hList.get(i).setCurrentPrice(sp.parse(hList.get(i).getStockCode()).getCurrentPrice());
+		   System.out.println("cp" + hList.get(i).getCurrentPrice());
 	   }
 	   session.setAttribute("pv1", (PagingVO)hm1.get("pv1"));
 	   session.setAttribute("holdingStockList", hList);
