@@ -73,7 +73,6 @@ legend, caption {
     left: 0;
     width: 100%;
     height: 36px;
-    background: #f9f9f9 url(/rpan/common/images/logo.png?update=20180329) no-repeat 15px 10px;
     background-size: 60px 18px;
 }
 .popup-wrap .pop-tit {
@@ -84,7 +83,7 @@ legend, caption {
     z-index: 2;
     height: 50px;
     line-height: 50px;
-    background: #ff545c url(/rpan/common/images/bg_pop.png?update=20180329) no-repeat 0 0;
+    background: #ff545c url(/resources/img/bg_pop.png) no-repeat 0 0;
     background-size: 122px 50px;
     text-indent: 10px;
 }
@@ -381,7 +380,7 @@ textarea {
 </style>
 </head>
 <body>
-
+<div class="wrap">
 <%@include file="mainheader.jsp" %> 
 	<div class="all-dim"></div>
 	<div class="containerNew">
@@ -546,11 +545,12 @@ textarea {
 		</div>
 		</div>
 	</div>
-
+	<%@include file="mainfooter.jsp" %>
+</div>
 <div id="reportPopup" class="pop-layer" style="display:none">
 		<div class="pop-inner">
 			<div class="popup-wrap">
-				<form action="/reportBoard" method="POST">
+				<!-- <form action="/reportBoard" method="POST"> -->
 					<div class="pop-tit"><span>게시물 신고하기</span></div>
 					<div class="pop-cont">
 						<div class="pop-clean">
@@ -567,7 +567,7 @@ textarea {
 								</tr>
 								<tr>
 									<th scope="col">작성자</th>
-									<td>${loginUser.nickname}</td>
+									<td>${boardDetail.nickname}</td>
 								</tr>
 								</tbody>
 							</table>
@@ -575,7 +575,7 @@ textarea {
 							<h2 class="tit-h2">신고사항</h2>
 							<p class="notify">
 								<span class="select-style">
-									<select title="신고항목선택" id="rtype" name="rtype" class="selectpicker" tabindex="-98" >
+									<select title="신고항목선택" id="rtype" name="rtype" class="selectpicker" tabindex="-98">
 										<option class="bs-title-option" value="">신고항목선택</option>
 										<option value="">선택</option>
 										<option value="RP001">광고</option>
@@ -733,6 +733,55 @@ textarea {
     		$("#zoom_layer").css("display", "none");
     	}
 	</script>
+	<script>
+$('.e-reportComtPopupClose').on('click',function(){	
+	$(".wrap").show();
+    $('#reportComtPopup').remove();
+});
+
+function submitReportComt(){
+	if( $('#comtRprtCode').val() == "" ){
+    	alert("신고항목을 선택하세요.");
+    	return false;                	
+    	
+    } else if( $.trim($('#comtRprtResn').val()) == "" ){
+    	alert("내용을 입력해주세요.");
+    	return false;                	
+    	
+    } else{
+        $("#rprtCode").val($('#comtRprtCode').val());
+        $("#rprtResn").val($('#comtRprtResn').val());
+        
+        $("#comtRprtCd").val($('#comtRprtCode').val());
+        $("#comtRprtRe").val($('#comtRprtResn').val());
+        
+        //console.log("comtRprtCd " + $("#comtRprtCd").val());
+        //console.log("comtRprtRe " + $("#comtRprtRe").val());
+
+        //console.log("jsonData : " + $("#rtrpFrm").serialize());
+        
+        if(confirm("신고하시겠습니까?")){
+        	$.ajax({
+                type : "POST",
+                url : "reportComment.json",
+                dataType : "json",
+                data : $("#rtrpFrm").serialize(),
+               	success: function (data) {
+               		alert(data.resultMsg);
+               		$('#reportComtPopup').remove();
+               	},
+               	beforeSend: function(){
+        		},
+        		complete: function(){
+        		},
+        		error:function(xhr,textStatus,error) {
+        			alert(error);
+        		}
+            });
+        }
+    }
+}
+</script>
 								</span>
 								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
 							</p>
@@ -757,13 +806,10 @@ textarea {
 						</div>
 					</div>
 					<button class="cla-close e-reportPopupClose">닫기</button>
-				</form>
+				<!-- </form> -->
 			</div>
 		</div>
 	</div>
-
-<%@include file="mainfooter.jsp" %>
-
 
 <script>
 
@@ -806,7 +852,7 @@ textarea {
 					board +=			'<p class="img"><img class="pax_f2_proimg" cust_id="ciaws94" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>'
 					board +=			'<p class="text">'
 					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;">'+boardNickname+'</span>'
-					board +=			'<span class="time">'+boardDatetime+'</span>'
+					board +=			'<span class="time">'+changeDate(boardDatetime)+'</span>'
 					board +=			'<span class="viewer"><i>조회</i>'+data.boardDetail.views+'</span>'
 					board +=			'</p>'
 					board +=		'</div>'
@@ -849,7 +895,7 @@ textarea {
 						comment += 	"<div class='text'>"
 						comment += 	"<p class='writer'>"
 						comment +=	"<span id='writer_45219165' onclick='#' style='cursor:pointer;'>"+data.commentList[i].nickname+"</span>"
-						comment +=	"<span class='data-date-format'>"+data.commentList[i].cdateTime+"</span>"
+						comment +=	"<span class='data-date-format'>"+changeDate(data.commentList[i].cdateTime)+"</span>"
 						comment += 	"</p>"
 						comment += 	"<p class='cont' id='com" + data.commentList[i].cno + "'>" +data.commentList[i].ccontent+"</p>"
 						comment += 	"</div>"
@@ -1185,7 +1231,37 @@ textarea {
 		        
 		
 		
-	
+	    // datetime 변환
+	    function changeDate(date){
+	        var date = new Date(date);
+	        year = date.getFullYear();
+	        month = date.getMonth() + 1;
+	        if(month < 10) {
+	        	month = "0" + month
+	        }
+	        day = date.getDate();
+	        hour = date.getHours() + 15;
+	        if(hour < 10) {
+	        	hour = "0"+hour;
+	        }
+	        if(hour > 24) {
+	        	hour -= 24;
+	        	if(hour < 10) {
+	        	hour = "0"+hour
+	        	}
+	        }
+	        if(hour == 24){
+	        	hour = "00";
+	        }
+	        minute = date.getMinutes();
+	        if(minute < 10) {
+	        	minute = "0" + minute;
+	        }
+	        second = date.getSeconds();
+	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
+	        return strDate;
+	    }
+		
 	    
 	    function updateLikes(pno){
 		    $.ajax({
@@ -1276,7 +1352,6 @@ textarea {
 -->
 
 </body>
-<!-- <script src="/resources/js/vender.js"></script> -->
 <script>
 /*!
  * Bootstrap-select v1.12.2 (http://silviomoreto.github.io/bootstrap-select)

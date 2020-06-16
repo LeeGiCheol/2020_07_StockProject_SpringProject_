@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <title>mainheader</title>
 </head>
 <body>
@@ -96,7 +95,7 @@
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="/board/free">자유게시판</a> <a
-								class="dropdown-item" href="#">포트폴리오</a>
+								class="dropdown-item" href="/portfolio">포트폴리오</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="/news">뉴스</a>
 						</div></li>
