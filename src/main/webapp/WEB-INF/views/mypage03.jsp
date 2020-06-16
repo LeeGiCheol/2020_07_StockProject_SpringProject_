@@ -62,7 +62,7 @@ function deleteComment(){
 		commentID = commentID + ","
 	}
 	if(commentID === ""){
-		swal({text:"삭제할 글을 체크해주세요.", icon:"error"});
+		swal({text:"삭제할 댓글을 체크해주세요.", icon:"error"});
 		return;
 	}
 	$('#delCommentList').val(commentID);
@@ -143,7 +143,7 @@ function deleteComment(){
                  <td><div class="custom-control custom-checkbox">
                    <input type="checkbox" id="jb-checkbox${board.pno}" class="custom-control-input board" name="check" data-on="${board.pno}"><label class="custom-control-label" for="jb-checkbox${board.pno}"></label></div></td>
                  <th scope="row">${board.pno}</th>
-                 <td>${board.title}</td>
+                 <td><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
                  <td>${board.nickname}</td>
                  <td>${board.bdateTime}</td>
                  <td>${board.views}</td>
@@ -217,9 +217,9 @@ function deleteComment(){
             <c:forEach items="${myComment}" var="comment">
                <tr> 
                  <td><div class="custom-control custom-checkbox">
-                   <input type="checkbox" id="jb-checkbox${comment.cno}-comment" class="custom-control-input comment" name="check" data-on="${comment.cno}"><label class="custom-control-label" for="jb-checkbox${comment.cno}-comment"></label></div></td>
+                   <input type="checkbox" id="jb-checkbox${comment.cno}-comment" class="custom-control-input comment" name="check" data-on="${comment.cno},${comment.pno}"><label class="custom-control-label" for="jb-checkbox${comment.cno}-comment"></label></div></td>
                  <th scope="row">${comment.cno}</th>
-                 <td>${comment.ccontent}</td>
+                 <td><a href="/board/free/detail?pno=${comment.pno}">${comment.ccontent}</a></td>
                  <td>${comment.nickname}</td>
                  <td><%-- <td>${comment.cdateTime}</td> --%></td>
                </tr>
