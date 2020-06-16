@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +31,16 @@ public class MyPostServiceImpl implements MyPostService {
 		boardPage.getUtil().put("boardKeyword", boardKeyword);
 		commentPage.getUtil().put("id", loginUser.getId());
 		commentPage.getUtil().put("commentKeyword", commentKeyword);
+
 		List<BoardVO> myBoard = myPostDAO.myBoardList(boardPage);
+		for (int i = 0; i < myBoard.size(); i++) {
+			myBoard.get(i).setBdateTime(new Date(myBoard.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		}
+		
 		List<CommentVO> myComment = myPostDAO.myCommentList(commentPage);
+		for (int i = 0; i < myComment.size(); i++) {
+			myComment.get(i).setCdateTime(new Date(myComment.get(i).getCdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		}
 		
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("myBoard", myBoard);

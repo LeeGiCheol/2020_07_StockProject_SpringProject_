@@ -25,9 +25,12 @@
 	
 	
 	<select id="getBoard" parameterType = "board" resultType="board">
-		SELECT * 
-		FROM board
-		WHERE pno = #{pno}
+		<![CDATA[
+			SELECT *
+		    FROM board
+			WHERE pno = #{pno}        
+		]]>
+		
 	</select>
 	
 	

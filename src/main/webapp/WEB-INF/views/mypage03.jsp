@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,7 +146,8 @@ function deleteComment(){
                  <th scope="row">${board.pno}</th>
                  <td>${board.title}</td>
                  <td>${board.nickname}</td>
-                 <td>${board.bdateTime}</td>
+                 <fmt:formatDate value="${board.bdateTime}" var="time" pattern="yyyy/MM/dd HH:mm"/>
+				 <td class="board-date">${time}</td>
                  <td>${board.views}</td>
                  <td>${board.likes}</td>
                </tr>
@@ -221,7 +223,8 @@ function deleteComment(){
                  <th scope="row">${comment.cno}</th>
                  <td>${comment.ccontent}</td>
                  <td>${comment.nickname}</td>
-                 <td><%-- <td>${comment.cdateTime}</td> --%></td>
+           		 <fmt:formatDate value="${comment.cdateTime}" var="time" pattern="yyyy/MM/dd HH:mm"/>
+				 <td class="comment-date">${time}</td>
                </tr>
          	</c:forEach>
           </tbody>
