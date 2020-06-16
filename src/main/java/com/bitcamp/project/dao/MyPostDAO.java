@@ -15,6 +15,6 @@ public interface MyPostDAO {
 	public int countComment(UserVO loginUser);
 	public List<BoardVO> myBoardList(PagingVO page);
 	public List<CommentVO> myCommentList(PagingVO page);
-	public void deleteMyPost(Map<String, String> myMap);
+	public int deleteMyPost(Map<String, String> myMap);
 	
 }
