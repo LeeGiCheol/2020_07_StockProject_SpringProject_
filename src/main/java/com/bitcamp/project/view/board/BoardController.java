@@ -163,4 +163,12 @@ public class BoardController {
 		return "redirect:/board/free";
 	}
 	
+	
+	@PostMapping("/reportBoard")
+	public String reportBoard(BoardVO vo, @RequestParam("title") String title) {
+		vo.setTitle(title);
+		boardService.reportBoard(vo);
+		return "redirect:/board/free";
+	}
+	
 }

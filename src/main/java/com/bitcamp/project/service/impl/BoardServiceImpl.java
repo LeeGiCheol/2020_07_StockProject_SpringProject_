@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public BoardVO getBoard(BoardVO vo) {
+		
 		return boardDAO.getBoard(vo);
 	}
 
@@ -60,7 +62,9 @@ public class BoardServiceImpl implements BoardService{
 //		boardPage.getUtil().put("",vo.get)
 //		boardPage.setId(vo.getId());
 		List<BoardVO> boardList = boardDAO.getBoardList(boardPage);
-		
+		for (int i = 0; i < boardList.size(); i++) {
+			boardList.get(i).setBdateTime(new Date(boardList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		}
 		
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("boardList", boardList);
@@ -84,7 +88,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	
-	
+	public int reportBoard(BoardVO vo) {
+		return boardDAO.reportBoard(vo);
+	}
 	
 	
 }

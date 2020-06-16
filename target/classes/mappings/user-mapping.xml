@@ -83,7 +83,8 @@
 		FROM user
 		WHERE tel=#{tel}
 	</select>
-	<select id="existenceID">
+	
+	<select id="existenceID" resultType="String">
 		SELECT id from user where id = #{id};
 	</select>
 	

@@ -2,12 +2,16 @@ package com.bitcamp.project.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CommentVO {
 	private int cno;
 	private int pno;
 	private String id;
 	private String nickname;
 	private String ccontent;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date cdateTime;
 	public int getCno() {
 		return cno;
