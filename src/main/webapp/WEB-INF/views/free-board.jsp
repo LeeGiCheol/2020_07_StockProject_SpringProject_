@@ -53,7 +53,7 @@
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
+							<li class="mid"><a href="/portfolio"><span>포트폴리오</span></a></li>
 							<li class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>
@@ -68,7 +68,7 @@
 	</div>
 	<div class="m-drop-down">
 		<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
-		<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
+		<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/portfolio">포트폴리오</a></h1>
 		<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 	</div>
 		<div class="board-type">
@@ -311,7 +311,7 @@
   </script>
 	</div>
 
-	<!-- article end -->
+
 	<%@include file="mainfooter.jsp" %>	
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

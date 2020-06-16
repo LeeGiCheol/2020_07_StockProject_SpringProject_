@@ -11,25 +11,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bitcamp.project.service.MyAccountService;
 import com.bitcamp.project.service.MyPostService;
 import com.bitcamp.project.service.UserInfoService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
-import com.bitcamp.project.vo.HoldingStockVO;
 import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
-
-import stockCode.StockParsing;
 
 @Controller
 public class MyPageController {
@@ -39,56 +37,32 @@ public class MyPageController {
 	@Autowired
 	private MyPostService myPostService;
 	@Autowired
-	private MyAccountService myAccountService;
+    PasswordEncoder passwordEncoder;
+	@Autowired
+	BCryptPasswordEncoder bPasswordEncoder;
 
-	@GetMapping(value = "/myPage01")
-	public String myPage01() {
-		return "mypage01";
-	}
-	
-   @GetMapping(value="/myPage02")
-   public String myPage02(HttpSession session, @ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
+
+   @GetMapping(value="/myPage01")
+   public String myPage01(@ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
          @ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
-         @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
-         @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
+         @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate) {
+      if(nowPage1.equals(""))
+         nowPage1 = "1";
+      if(nowPage2.equals(""))
+         nowPage2 = "1";
+      if(nowPage3.equals(""))
+         nowPage3 = "1";
+      PagingVO pv1 = new PagingVO();
+      PagingVO pv2 = new PagingVO();
+      PagingVO pv3 = new PagingVO();
+      
+      return "mypage01";
+   }
 	   
-	   UserVO user = new UserVO();
-	   user.setId("test@test.com");
-	   session.setAttribute("loginUser", user);
-	   
-	   if(type1.equals(""))
-		   type1 = "rate";
-	   if(nowPage1.equals(""))
-		   nowPage1 = "1";
-	   if(nowPage2.equals(""))
-		   nowPage2 = "1";
-	   if(nowPage3.equals(""))
-		   nowPage3 = "1";
-	   UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-	   HashMap<String, Object> hm1 = myAccountService.getMyStockList(loginUser, Integer.parseInt(nowPage1), accountSearch);
-	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate);
-	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
-	   List<HoldingStockVO> hList = (List<HoldingStockVO>)hm1.get("holdingStockList");
-	   StockParsing sp = new StockParsing();
-	   System.out.println("hsizezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" + hList.size());
-	   for(int i = 0; i < hList.size(); ++i) {
-		   hList.get(i).setCurrentPrice(sp.parse(hList.get(i).getStockCode()).getCurrentPrice());
-		   System.out.println("cp" + hList.get(i).getCurrentPrice());
-	   }
-	   session.setAttribute("pv1", (PagingVO)hm1.get("pv1"));
-	   session.setAttribute("holdingStockList", hList);
-	   session.setAttribute("pv2", (PagingVO)hm2.get("pv2"));
-	   session.setAttribute("stockHistoryListByDate", (List<StockVO>)hm2.get("stockHistoryListByDate"));
-	   session.setAttribute("pv3", (PagingVO)hm3.get("pv3"));
-	   session.setAttribute("stockHistoryListByStock", (List<StockVO>)hm3.get("stockHistoryListByStock"));
-	   session.setAttribute("accuntSearch", accountSearch);
-	   session.setAttribute("tradeSearch", tradeSearch);
-	   session.setAttribute("startDate", startDate);
-	   session.setAttribute("endDate", endDate);
-	   session.setAttribute("type1", type1);
-	   session.setAttribute("type2", type2);
-	   return "mypage02";
-   }   
+	@GetMapping(value = "/myPage02")
+	public String myPage02() {
+		return "mypage02";
+	}
 
 	@GetMapping(value = "/myPage03")
 	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage,
@@ -164,9 +138,10 @@ public class MyPageController {
 	}
 
 	@PostMapping(value = "/updateUser")
-	public String updateUser(@ModelAttribute("address") String address,
+	public String updateUser(@ModelAttribute("nickname") String nickname, @ModelAttribute("address") String address,
 			@ModelAttribute("showEsetSetting") String showEset, HttpSession session) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		loginUser.setNickname(nickname);
 		loginUser.setAddress(address);
 		loginUser.setShowEsetSetting(Integer.parseInt(showEset));
 		userInfoService.memberInfoUpdate(loginUser);
@@ -182,27 +157,34 @@ public class MyPageController {
 	return "mypage-update-password"; 
 	}
 	 
-	@GetMapping(value = "/mypageUpdatePasswordEnd")
-	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
-		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		loginUser.setPw(password);
-		userInfoService.updatePassword(loginUser);
-		session.setAttribute("loginUser", loginUser);
-		return "myPage01";
-	}
+//	@GetMapping(value = "/mypageUpdatePasswordEnd")
+//	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
+//		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+//		String encPassword = passwordEncoder.encode(password);
+//		System.out.println(loginUser);
+//		loginUser.setPw(encPassword);
+//		userInfoService.updatePassword(loginUser);
+//		session.setAttribute("loginUser", loginUser);
+//		return "myPage01";
+//	}
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")
 	@ResponseBody
-	public String mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session,
-			HttpServletRequest request) {
+	public int mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session, HttpServletRequest request, @ModelAttribute("password") String password) {
+			
 		Map<String, String> map = new HashMap<String, String>();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		map.put("pw", nowPassword);
-		map.put("id", loginUser.getId());
-		loginUser.setPw(nowPassword);
-		int result = userInfoService.mypageUpdatePasswordCheck(map);
-		session.setAttribute("loginUser", loginUser);
-		return Integer.toString(result);
+      
+		if(bPasswordEncoder.matches(nowPassword, loginUser.getPw())) {
+			String encPassword = passwordEncoder.encode(password);
+			loginUser.setPw(encPassword);
+			userInfoService.updatePassword(loginUser);
+
+			session.setAttribute("loginUser", loginUser);
+			return 1;
+        }else {
+        	return 0;
+        }
 	}
 
 	@GetMapping(value = "/delete/*")
@@ -240,6 +222,6 @@ public class MyPageController {
 			return "NONE";
 		else
 			return "NOTICE";
-	}	
+	}
 
 }

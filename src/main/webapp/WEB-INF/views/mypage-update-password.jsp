@@ -35,7 +35,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						<p class="txt">새로운 비밀번호를 등록해 주세요.</p>
 					</div>
 					<div class="form-table pass-reset">
-					<form action="/mypageUpdatePasswordCheck" method="get" id="frm" name="frm">
+					<form action="/mypageUpdatePasswordCheck" method="post" id="frm" name="frm">
 						<table>
 							<tbody>
 								<tr>
