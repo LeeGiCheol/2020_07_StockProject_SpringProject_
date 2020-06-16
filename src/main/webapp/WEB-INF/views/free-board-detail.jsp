@@ -506,66 +506,75 @@ textarea {
 		</div>
 	</div>
 
-<div id="reportPopup" class="pop-layer" style="display: none;">
+<div id="reportPopup" class="pop-layer" style="display:none">
 		<div class="pop-inner">
 			<div class="popup-wrap">
-				<div class="pop-tit"><span>게시물 신고하기</span></div>
-				<div class="pop-cont">
-					<div class="pop-clean">
-						<table>
-							<caption>게시물 신고하기</caption>
-							<colgroup>
-								<col style="width: 100px;">
-								<col style="">
-							</colgroup>
-							<tbody>
-							<tr>
-								<th scope="col">제목</th>
-								<td>치타 초근접 짤.gif</td>
-							</tr>
-							<tr>
-								<th scope="col">작성자</th>
-								<td>안녕하세용용</td>
-							</tr>
-							</tbody>
-						</table>
+				<form action="/reportBoard" method="POST">
+					<div class="pop-tit"><span>게시물 신고하기</span></div>
+					<div class="pop-cont">
+						<div class="pop-clean">
+							<table>
+								<caption>게시물 신고하기</caption>
+								<colgroup>
+									<col style="width: 100px;">
+									<col style="">
+								</colgroup>
+								<tbody>
+								<tr>
+									<th scope="col">제목</th>
+									<td>${boardDetail.title}</td>
+								</tr>
+								<tr>
+									<th scope="col">작성자</th>
+									<td>${loginUser.nickname}</td>
+								</tr>
+								</tbody>
+							</table>
+	
+							<h2 class="tit-h2">신고사항</h2>
+							<p class="notify">
+						<span class="select-style">
+							<div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" data-id="rprtCode" title="신고항목선택"><span class="filter-option pull-left">신고항목선택</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">선택</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">광고</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">욕설</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">허위루머</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">타종목추천</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">도배</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">명예훼손</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="8"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">주제무관</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="9"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">위조/변조</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="10"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">음란</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="11"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">지역감정</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="12"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">기타</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div>
+							<select title="신고항목선택" id="rprtCode" name="rtype" class="selectpicker" tabindex="-98">
+								
+								<option value="">선택</option>
+								<option value="RP001">광고</option>
+								<option value="RP002">욕설</option>
+								<option value="RP003">허위루머</option>
+								<option value="RP004">타종목추천</option>
+								<option value="RP005">도배</option>
+								<option value="RP006">명예훼손</option>
+								<option value="RP007">주제무관</option>
+								<option value="RP008">위조/변조</option>
+								<option value="RP009">음란</option>
+								<option value="RP010">지역감정</option>
+								<option value="RP011">기타</option>
+							</select></div>
+						</span>
+								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
+							</p>
+							<dl class="pop-clean-info">
+								<dt>이용안내</dt>
+								<dd>
+									신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
+									<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
+								</dd>
+							</dl>
+							<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
+						
+						</div>
+						
+							<input type="hidden" name="pno" value="${boardDetail.pno}">
+							<input type="hidden" name="title" value="${boardDetail.title}">
+						
+						<div class="pop-btn">
 
-						<h2 class="tit-h2">신고사항</h2>
-						<p class="notify">
-					<span class="select-style">
-						<div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" data-id="rprtCode" title="신고항목선택"><span class="filter-option pull-left">신고항목선택</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">선택</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">광고</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">욕설</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">허위루머</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">타종목추천</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">도배</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">명예훼손</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="8"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">주제무관</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="9"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">위조/변조</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="10"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">음란</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="11"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">지역감정</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="12"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">기타</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select title="신고항목선택" id="rprtCode" name="rprtCode" class="selectpicker" tabindex="-98"><option class="bs-title-option" value="">신고항목선택</option>
-							<option value="">선택</option>
-							<option value="RP001">광고</option>
-							<option value="RP002">욕설</option>
-							<option value="RP003">허위루머</option>
-							<option value="RP004">타종목추천</option>
-							<option value="RP005">도배</option>
-							<option value="RP006">명예훼손</option>
-							<option value="RP007">주제무관</option>
-							<option value="RP008">위조/변조</option>
-							<option value="RP009">음란</option>
-							<option value="RP010">지역감정</option>
-							<option value="RP011">기타</option>
-						</select></div>
-					</span>
-							<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rprtResn" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
-						</p>
-						<dl class="pop-clean-info">
-							<dt>이용안내</dt>
-							<dd>
-								신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
-								<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
-							</dd>
-						</dl>
-						<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
-
+							<button type="button" class="btn-m e-reportPopupClose">취소</button>
+							<button type="submit" id="submitReport" class="btn-m red">신고하기</button>
+						</div>
 					</div>
-					<div class="pop-btn">
-						<button type="button" class="btn-m e-reportPopupClose">취소</button>
-						<button type="button" id="submitReport" class="btn-m red">신고하기</button>
-					</div>
-				</div>
-				<button class="cla-close e-reportPopupClose">닫기</button>
+					<button class="cla-close e-reportPopupClose">닫기</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -614,7 +623,7 @@ textarea {
 					board +=			'<p class="img"><img class="pax_f2_proimg" cust_id="ciaws94" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>'
 					board +=			'<p class="text">'
 					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;">'+boardNickname+'</span>'
-					board +=			'<span class="time">'+changeDate(boardDatetime)+'</span>'
+					board +=			'<span class="time">'+boardDatetime+'</span>'
 					board +=			'<span class="viewer"><i>조회</i>'+data.boardDetail.views+'</span>'
 					board +=			'</p>'
 					board +=		'</div>'
@@ -657,7 +666,7 @@ textarea {
 						comment += 	"<div class='text'>"
 						comment += 	"<p class='writer'>"
 						comment +=	"<span id='writer_45219165' onclick='#' style='cursor:pointer;'>"+data.commentList[i].nickname+"</span>"
-						comment +=	"<span class='data-date-format'>"+changeDate(data.commentList[i].cdateTime)+"</span>"
+						comment +=	"<span class='data-date-format'>"+data.commentList[i].cdateTime+"</span>"
 						comment += 	"</p>"
 						comment += 	"<p class='cont' id='com" + data.commentList[i].cno + "'>" +data.commentList[i].ccontent+"</p>"
 						comment += 	"</div>"
@@ -993,37 +1002,7 @@ textarea {
 		        
 		
 		
-	    // datetime 변환
-	    function changeDate(date){
-	        var date = new Date(date);
-	        year = date.getFullYear();
-	        month = date.getMonth() + 1;
-	        if(month < 10) {
-	        	month = "0" + month
-	        }
-	        day = date.getDate();
-	        hour = date.getHours() + 15;
-	        if(hour < 10) {
-	        	hour = "0"+hour;
-	        }
-	        if(hour > 24) {
-	        	hour -= 24;
-	        	if(hour < 10) {
-	        	hour = "0"+hour
-	        	}
-	        }
-	        if(hour == 24){
-	        	hour = "00";
-	        }
-	        minute = date.getMinutes();
-	        if(minute < 10) {
-	        	minute = "0" + minute;
-	        }
-	        second = date.getSeconds();
-	        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
-	        return strDate;
-	    }
-		
+	
 	    
 	    function updateLikes(pno){
 		    $.ajax({

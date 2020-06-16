@@ -87,5 +87,8 @@ public class BoardDAOImpl implements BoardDAO {
 		return mybatis.update("board.deleteBoardComment", vo);
 	}
 	
+	public int reportBoard(BoardVO vo) {
+		return mybatis.insert("board.reportBoard", vo);
+	}
 	
 }
