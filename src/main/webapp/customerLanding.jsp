@@ -97,7 +97,7 @@
 											<li class="list-group-item"><a href="#">* 공지 : 문ㅔ[][ㅔ]의사항은 서비스문의로 접수
 													주시면 빠른 답변을 받아보실 수 있습니다.(평일 08:30~17:30)</a></li>
 
-											<li class="list-group-item"><a href="#">* 공지 : 문의사항은 1:1 상담실로 접수
+											<li class="list-group-item"><a href="#">* 공지 :문의사항은 1:1 상담실로 접수
 													주시면 빠른 답변을 받아보실 수 있습니다.</a></li>
 
 											<li class="list-group-item"><a href="#">* 공지 : 문의사항은 1:1 상담실로 접수

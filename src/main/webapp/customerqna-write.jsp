@@ -27,7 +27,7 @@
 
 		var $sticky = $('.sticky');
 		var $stickyrStopper = $('.footer_info');
-		if (!!$sticky.offset()) { // make sure ".sticky" element exists
+		if (!!$sticky.offset()) { // make sure ".sticky" element exist
 
 			var generalSidebarHeight = $sticky.innerHeight();
 			var stickyTop = $sticky.offset().top;

@@ -39,7 +39,7 @@
 				var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
 				var diff = stopPoint + stickOffset;
 
-				$(window).scroll(function () { // scroll event
+				$(window).scroll(function () { // scroll even
 					var windowTop = $(window).scrollTop(); // returns number
 
 					if (stopPoint < windowTop) {
