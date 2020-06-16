@@ -331,7 +331,15 @@ position:relative;
 									</dt>
 									<dd>
 										<a href="/myPage01">내정보</a>
-										<a href="mypageUpdatePassword">비밀번호 변경</a>
+									<c:choose>
+										<c:when test="${naverLoginUser ne null}">
+											<a onclick="notLocal();">비밀번호 변경</a>
+										</c:when>
+										<c:otherwise>
+											<a href="mypageUpdatePassword">비밀번호 변경</a>
+										</c:otherwise>
+									</c:choose>
+										
 									</dd>
 								</dl>
 								<ul class="dot-list02 color-rightgray">
@@ -423,6 +431,7 @@ position:relative;
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<script>
 	$(document).ready(function(){
@@ -732,7 +741,9 @@ position:relative;
    		
 		})
 		
-		
+		function notLocal(){
+			swal({text:"접속하신 해당 홈페이지에서 변경가능합니다.", icon:"warning"})
+		}
 		
 
 </script>
