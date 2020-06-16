@@ -170,16 +170,10 @@ public class MyPageController {
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")
 	@ResponseBody
-<<<<<<< HEAD
-	public String mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session, HttpServletRequest request) {
+	public int mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session, HttpServletRequest request, @ModelAttribute("password") String password) {
 			
-=======
-	public int mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session,
-			HttpServletRequest request, @ModelAttribute("password") String password) {
->>>>>>> 09b9877a220c76a474b6a1d8235cfc74347a21ac
 		Map<String, String> map = new HashMap<String, String>();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		
       
 		if(bPasswordEncoder.matches(nowPassword, loginUser.getPw())) {
 			String encPassword = passwordEncoder.encode(password);
