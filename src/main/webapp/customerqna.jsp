@@ -128,7 +128,7 @@
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-												회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+												회원가입시 설정하신 비밀dfsfd번호는 모두 암호화되어 저장되므로,
 												고객센터에서 확인이 불가능합니다.
 
 												로그인 영역> 비밀번호 찾기 를 통해 확인 부탁 드립니다.
