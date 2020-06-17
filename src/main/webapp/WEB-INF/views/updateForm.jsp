@@ -8,69 +8,75 @@
 <title>글수정페이지</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link href="/resources/css/writeForm.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
 <!-- CSS파일 -->
 <style>
 .ck-blurred, .ck-focused{height: 500px;}
 </style>
-
+<link href="/resources/css/writeForm.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
-<script type="text/javascript">
-  $( document ).ready(function() {
-	  console.log( "document ready!" );
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-	  var $sticky = $('.sticky');
-	  var $stickyrStopper = $('.footer_info');
-	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+<script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
 
-	    var generalSidebarHeight = $sticky.innerHeight();
-	    var stickyTop = $sticky.offset().top;
-	    var stickOffset = 0;
-	    var stickyStopperPosition = $stickyrStopper.offset().top;
-	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-	    var diff = stopPoint + stickOffset;
 
-	    $(window).scroll(function(){ // scroll event
-	      var windowTop = $(window).scrollTop(); // returns number
 
-	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
-	      } else if (stickyTop < windowTop+stickOffset) {
-	          $sticky.css({ position: 'fixed', top: stickOffset });
-	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
-	      }
-	    });
 
-	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
-  });
-</script>
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/mainheader.css">
 <script>
-$(document).on('click', '#btnSave', function(e) {
-		e.preventDefault();
-		$("#form").submit();
-	});
-	
-	$(document).on(
-		'click',
-		'#btnList',
-		function(e) {
-		e.preventDefault();
-		location.href = "${pageContext.request.contextPath}/board/getBoardList";
-});
-      
-</script>
+	function btnSave(){
+		// bcontent에 내용 삽입
+		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
+		// 글제목
+		var title = $("#title").val();
+		// 글내용 있는지 확인용 
+		var content = document.getElementsByTagName('p');
+		
+
+
+				var contentValue = $('#bcontent').val();
+				
+/* 				console.log(content)
+				console.log(contentValue)
+				contentValue = contentValue.substring(3)
+				console.log(contentValue) */
+			/* 	if(contentValue.trim().length < 4){
+
+					alert("4글자 이상 입력하세요.");
+
+					$('#bcontent').focus();
+
+					}  */
+				
+				/* if(content == "" || content == null){
+					swal({text:"내용을 입력해주세요.", icon:"error"});			
+					$("#bcontent").focus();
+					
+				}	 */
+					
+					
+				if(title.trim() == ""){
+					swal({text:"제목을 입력해주세요.", icon:"error"});			
+					$("#title").focus();
+				}
+				
+				else{ 
+					$("#form").submit();
+				} 
+		
+		
+		
+		
+	};
+
+
+</script> 
 </head>
 <body>
-    <%@include file="mainheader.jsp" %>
-    
-    <div class="all-dim"></div>
+
+	<%@include file="mainheader.jsp" %> 
+	
+	<div class="all-dim"></div>
 		<div class="containerNew">
 			<div class="board-page">
 				<div class="row">
@@ -104,14 +110,11 @@ $(document).on('click', '#btnSave', function(e) {
 												<th scope="row"><label for="title">제목</label></th>
 												<td>
 													<span class="input-style-case02">
-														<input type="hidden" value="${boardUpdate.pno}" name="pno">
+                                                        <input type="hidden" value="${boardUpdate.pno}" name="pno">
 														<input type="text" id="title" name="title" placeholder="제목을 입력하세요" value="${boardUpdate.title}" maxlength="250">
 														<!-- <button type="button" class="delete">삭제</button> -->
 													</span>
 												</td>
-												
-												
-												
 												
 <!-- 								               <div class="mb-3 title">
 								                    <label for="title"><b>제목</b></label>
@@ -128,7 +131,7 @@ $(document).on('click', '#btnSave', function(e) {
 								            <tr>
 												<th scope="row">내용</th>
 												<td>
-													<textarea class="form-control" rows="5" name="bcontent" id="content" placeholder="내용을 입력해 주세요">${boardUpdate.bcontent}</textarea>
+													<textarea class="form-control" rows="5" name="bcontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;">${boardUpdate.bcontent}</textarea>
 												</td>
 											</tr>
 <%-- 							               <div class="mb-3 title">
@@ -150,7 +153,7 @@ $(document).on('click', '#btnSave', function(e) {
 								</div>
 								<div class="bt-area">
 									<a href="/board/free" class="btn-m">취소</a>
-									<span><a href="javascript:btnSave();" class="btn-m red" id="btnSave">수정</a></span>
+									<span><a href="javascript:btnSave();" class="btn-m red" id="addBtn">수정</a></span>
 								</div>
 							</form>
 						</div>
@@ -158,15 +161,16 @@ $(document).on('click', '#btnSave', function(e) {
 				</div>
 			</div>
 		</div>
+	
 <%--   <article>
 		<div class="container" role="main">
-			<h2 class="main">글수정</h2>
+			<h2 class="main">글작성</h2>
 			<br>
 			<br>
 			<br>
-			<form name="form" id="form" role="form" method="POST" action="/board/free/update">
+			<form name="form" id="form" role="form" method="POST" action="/board/free/write">
                <div class="mb-3 title">
-               		<input type="hidden" value="${boardUpdate.pno}" name="pno">
+                    <input type="hidden" value="${boardUpdate.pno}" name="pno">
                     <label for="title"><b>제목</b></label>
                     <input type="text" class="form-control" name="title" id="title" value="${boardUpdate.title}"> 
                </div>
@@ -180,16 +184,29 @@ $(document).on('click', '#btnSave', function(e) {
 					<textarea class="form-control" rows="5" name="bcontent" id="content">${boardUpdate.bcontent}</textarea>
 			   </div>
 			<div>
-				<button type="submit" class="btn btn-sm btn-primary" id="btnSave" >저장</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick="btnSave()" 
+				style="width: 66px; height: 35px; margin-bottom: 59px;">저장</button>
                 <button type="button" class="btn btn-sm btn-primary" id="btnCancle" onclick="window.location.href='/board/free'">취소</button>
 			</div>
 			</form>
 		</div>
 	</article>   --%>
-<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter.jsp" %>
+	
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+ oAppRef: oEditors,
+ elPlaceHolder: "bcontent",
+ sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+ fCreator: "createSEditor2"
+});
+
+
+</script>	
+	
 </body>
-<script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script> <!-- 글쓰기 메뉴들 -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </html>
