@@ -374,30 +374,16 @@ position:relative;
 
 
 				<div class="ranking">
-					<span class="ranking-nav">주간 랭킹</span>
+					<span class="ranking-nav">일간 랭킹</span>
 					<div class="ranking-body">
 						<ul>
-							<li id="test_1"><a><i>1</i> <span>soccer</span>
-									<p class="color-red">21%</p></a></li>
-							<li id="test_2"><a><i>2</i> <span>rose</span>
-									<p class="color-red">19%</p></a></a></li>
-							<li id="test_3"><a><i>3</i> <span>김선달</span>
-									<p class="color-red">17%</p></a></li>
-							<li id="test_4"><a><i>4</i> <span>칠성부대</span>
-									<p class="color-red">14%</p></a></li>
-							<li id="test_5"><a><i>5</i> <span>강태공</span>
-									<p class="color-red">13%</p></a></li>
-							<li id="test_6"><a><i>6</i> <span>황금돼지</span>
-									<p class="color-red">11%</p></a></li>
-							<li id="test_7"><a><i>7</i> <span>사오정</span>
-									<p class="color-red">10%</p></a></li>
-							<li id="test_8"><a><i>8</i> <span>개미왕</span>
-									<p class="color-red">7%</p></a></li>
-							<li id="test_9"><a><i>9</i> <span>답없다</span>
-									<p class="color-red">5%</p></a></li>
-							<li id="test_10"><a><i>10</i> <span>어부</span>
-									<p class="color-red">4%</p></a></li>
-						</ul>
+							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
+								<li class="first"><a><i> <c:out value="${vs.count}"/></i> <span><c:out
+												value="${list.nickname}" /></span>
+										<p class="color-red">
+											<c:out value="${list.revenue}%" />
+										</p></a></li>
+							</c:forEach>
 					</div>
 				</div>
 
