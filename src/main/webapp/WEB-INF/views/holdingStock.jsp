@@ -13,11 +13,13 @@
 		<tr>
 			<td>종목명</td>
 			<td>수량</td>
+			<td>평균 단가</td>
 		</tr>
 		<c:forEach items="${pageHoldingStock}" var="list">
 			<tr>
 				<td class="first" title="종목명"><c:out value="${list.stockName}" /></td>
 				<td title="수량"><c:out value="${list.quantity}" /></td>
+				<td title="평균 단가"><c:out value="${list.avgprice}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
