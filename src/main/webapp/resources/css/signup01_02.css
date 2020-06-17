@@ -502,11 +502,14 @@ p.error-text {
 .member li .byte b {
     color: #444;
 }
-.member .men-step [class*="input-style-mail"],.member .men-step [class*="input-style-nick"],.member .men-step [class*="input-style-phone"], .member .men-step [class*="input-style-mail2"]{
+.member .men-step [class*="input-style-mail"],.member .men-step [class*="input-style-phone"], .member .men-step [class*="input-style-mail2"]{
     width: 84%;
 }
 .member .men-step [class*="input-style-address"]{
     width: 78%;	
+}
+.member .men-step [class*="input-style-nick"], .member .men-step [class*="input-style-name"], .member .men-step [class*="input-style-certif"] {
+    width: 70%;
 }
 
 

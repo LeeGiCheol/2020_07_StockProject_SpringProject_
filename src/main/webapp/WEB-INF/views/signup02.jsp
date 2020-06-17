@@ -23,10 +23,10 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 </script>
 </head>
 <body>
-<%-- <div class="wrap">
-<%@include file="mainheader.jsp" %> --%>
+<div class="wrap">
+<%@include file="mainheader.jsp" %>
 	
-<!-- <div class="containerNew"> 
+<%-- <div class="containerNew"> 
 
 		contents
 		<div class="contents member" id="contents">
@@ -68,31 +68,23 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<input type="password" name="pswd" id="pswd" maxlength="14" autocomplete="OFF">
 										<button type="button" class="delete" onclick="initBeforInput();">삭제</button>
 									</span>
-									<p id="pswd-error" class="error-text" style="display: none;">최소 6글자이상이어야 합니다</p>
-									<p id="pswd-error" class="error-text" style="display: none;">필수 항목입니다.</p>
-									<p id="pswd-error" class="error-text" style="display: none;">영문, 숫자 조합 6~14자 이내로 입력해주세요.</p>
 								</li>
 								<li>
 									<span class="input-style-pass01">
 										<label for="pswdc">한번 더 입력해주세요</label>
 										<input type="password" name="pswdc" id="pswdc" onkeyup="SameCheck(this);" maxlength="14" autocomplete="OFF">
 										<button type="button" class="delete">삭제</button>
-									</span>
-									<p id="pswd-error" class="error-text" style="display: none;">최소 6글자이상이어야 합니다</p>
-									<p id="pswdc-error" class="error-text">비밀번호가 일치하지 않습니다.</p>
+									</span>>
 								</li>
 							</ul> 
 							<ul>
 
-	기업, 일반회원
 								<li>
 									<span class="input-style-mail">
 										<label for="email">이메일을 입력해주세요</label>
 										<input type="text" name="email" id="email">
 										<button type="button" class="delete">삭제</button>
 									</span>
-									<p id="email-error" class="error-text">필수 항목입니다.</p>
-									<p id="email-error" class="error-text">메일규칙에 어긋납니다.</p>
 								</li>
 								<li>
 									<span class="input-style-phone">
@@ -100,8 +92,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<input type="text" name="mobile_no" id="mobile_no" class="_onlyNumber" maxlength="11" onkeyup="initMobileNo();">
 										<button type="button" class="delete">삭제</button>
 									</span>
-									<p id="mobile_no-error" class="error-text">형식에 맞춰 입력해주세요.</p>
-									<p id="err_mobile_limit" class="error-text" style="display: none;">문자 발송 가능 건수를 초과했습니다. 잠시 후 다시 시도해 주십시오.</p>
 									<button type="button" class="btn-s" onclick="checkUserPhone();">인증받기</button>
 								</li>
 								<li id="_liPhoneNum" style="display: none;">
@@ -109,7 +99,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<label for="chk_Phone">인증번호를 입력해주세요</label>
 										<input type="text" name="chk_Phone" id="chk_Phone">
 									</span>
-									<p id="err_mobile_no" class="ok-text" style="display: none;">인증이 완료되었습니다.</p>
 									<mark id="markTm">15:00</mark>
 									<button type="button" class="btn-s" onclick="authPhone();">인증확인</button>
 								</li>
@@ -124,7 +113,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<input type="text" name="nick_nm" id="nick_nm" maxlength="24" onkeyup="initNickNm();">
 										<button type="button" class="delete">삭제</button> 
 									</span>  
-									<p class="error-text" style="display: none	;" id="err_nick_nm">이미 사용중인 닉네임입니다.</p>
 									<span class="byte"><b id="maxText">0</b>/12byte</span>
 									<button type="button" class="btn-s gray" onclick="checkNickName();">중복확인</button>
 								</li> 
@@ -157,8 +145,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				</div> 
 			</div>
 		</div>
-	</div> -->
-<%-- 	<div class="containerNew"> 
+	</div> --%>
+<div class="containerNew"> 
 
 		<!-- contents -->
 		<div class="contents member" id="contents">
@@ -175,7 +163,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				<div class="pad-area men-step">
 					<h1>기본정보입력</h1>
 					<!-- <form action="./step3Prc" method="post" name="frm" id="frm" novalidate="novalidate"> -->
-					<form action="/signUp" name="form" method="POST">
+					<form action="/signUp" name="form" id="form" method="POST">
 						<input type="hidden" name="cust_type" id="cust_type" value="P">
 						<input type="hidden" name="outside_agree_fg" value="">
 						<input type="hidden" name="receipt_fg_sms" value="Y">
@@ -188,20 +176,20 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							<ul>
 								<li>
 									<span class="input-style-mail">
-										<label for="email">이메일을 입력해주세요</label>
-										<input type="text" name="email" id="email">
+										<label for="inputEmail">이메일을 입력해주세요</label>
+										<input type="text" id="inputEmail" name="id">
 										<button type="button" class="delete">삭제</button>
 									</span>
 									<button type="button" class="btn-s" id="idCheck">인증받기</button>
 								</li>
 								<li id="_liPhoneNum" style="display: none;">
 									<span class="input-style-certif">
-										<label for="chk_Phone">인증번호를 입력해주세요</label>
-										<input type="text" name="chk_Phone" id="chk_Phone">
+										<label for="inputEmail">인증번호를 입력해주세요</label>
+										<input type="text" id="inputCemail" name="cEmail">
 									</span>
 									<p id="err_mobile_no" class="ok-text" style="display: none;">인증이 완료되었습니다.</p>
 									<mark id="markTm">15:00</mark>
-									<button type="button" class="btn-s" onclick="authPhone();">인증확인</button>
+									<button type="button" class="btn-s" id="cEmailCheck">인증확인</button>
 								</li>
 								<li>
 									<span class="input-style-pass">
@@ -310,8 +298,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		</div>
 	</div>
 		<%@include file="mainfooter.jsp" %>
-</div> --%>
-<!-- <script language="javascript">
+</div>
+<script language="javascript">
 $(document).ready(function(){
 	/* setInputEvent({onlyNumber:true,deleteBtn:true}); */
 	//글자수 체크
@@ -339,7 +327,7 @@ function scriptValidation(){
 		return true;
 	}, "허용된 문자가 아닙니다. 다시 입력해 주십시오");
 	
-	$.validator.addMethod('chkAge14', function (value) {
+/* 	$.validator.addMethod('chkAge14', function (value) {
 		
 		var now = new Date();
 		var year = now.getFullYear();
@@ -356,18 +344,18 @@ function scriptValidation(){
 		}else{
 			return true;
 		}
-	}, "만 14세 이상 가입할 수 있습니다.");
+	}, "만 14세 이상 가입할 수 있습니다."); */
 	
-	$.validator.addMethod('paxId', function (value){
+/* 	$.validator.addMethod('paxId', function (value){
 		var len = value.length;
 		if(!(len > 4 && len < 13)){
 			return false;
 		}
 
 		return true;
-	}, "아이디는 영문자 또는 숫자 5~12자 이어야 합니다.");
+	}, "아이디는 영문자 또는 숫자 5~12자 이어야 합니다."); */
 	
-	$.validator.addMethod('paxIdSmall', function (value){
+/* 	$.validator.addMethod('paxIdSmall', function (value){
 		var len = value.length;
 
 		for(i=0;i<len;i++){
@@ -377,7 +365,7 @@ function scriptValidation(){
 		}
 
 		return true;
-	}, "아이디는 소문자 영문만 입력 가능합니다.");
+	}, "아이디는 소문자 영문만 입력 가능합니다."); */
 	
 	
 	$.validator.addMethod('pwdChkNumChar', function (value) {
@@ -404,7 +392,7 @@ function scriptValidation(){
 	}, "영문, 숫자 조합 6~14자 이내로 입력해주세요.");
 
 
-	$.validator.addMethod('checkDate', function (value) {
+/* 	$.validator.addMethod('checkDate', function (value) {
 		return checkDate(value);
 	}, "날짜를 확인하세요.");
 	
@@ -418,11 +406,11 @@ function scriptValidation(){
 	
 	$.validator.addMethod('checkName', function (value) {
 		return checkNicknameNonChar(value);
-	}, "이름은 한글이나 영문, 숫자만 가능 합니다.");
+	}, "이름은 한글이나 영문, 숫자만 가능 합니다."); */
 	
 	
 
-	jQuery.validator.addMethod('remoteCheckId', function(value) {
+/* 	jQuery.validator.addMethod('remoteCheckId', function(value) {
 		var result = false;
 		if(value == "admin" || value=="pax"
 				|| value=="paxnet" || value=="moneta"
@@ -454,7 +442,7 @@ function scriptValidation(){
 			}
 		});
 		return AUTH_CUST_ID;
-	}, '이미 사용중이거나 탈퇴한 아이디입니다.');
+	}, '이미 사용중이거나 탈퇴한 아이디입니다.'); */
 
 
 	
@@ -462,7 +450,7 @@ function scriptValidation(){
 // 		return AUTH_NICK_NAME_YN;
 // 	}, "필명 중복확인을 해주세요.");
 	
-	$('#frm').validate({
+	$('#form').validate({
 		//validation이 끝난 이후의 submit 직전 추가 작업할 부분
 		submitHandler: function() {
 			memberJoin();
@@ -633,7 +621,7 @@ function initCustId(){
 }
 
 //이름저장
-function checkNicknameNonChar(id_text){
+/* function checkNicknameNonChar(id_text){
 	var nonchar = '~`!@#$%^&*()-_=+\|<>?,./;:"\'\\';
 
 	var i ;
@@ -647,10 +635,10 @@ function checkNicknameNonChar(id_text){
 	}else{
 		return true ;
 	}
-}
+} */
 
 //사용자 아이디 체크
-var AUTH_CUST_ID = false;
+/* var AUTH_CUST_ID = false;
 
 function checkId(){
 	AUTH_CUST_ID = false;
@@ -688,11 +676,12 @@ function checkId(){
 			alert('접근 오류가 발생했습니다 관리자에게 문의하세요.');
 		}
 	});
-}
+} */
 
 
 function initNickNm(){
 	AUTH_NICK_NAME_YN = false;
+	
 	var msgEl = $("#err_nick_nm");
 	msgEl.css('display',"none");
 }
@@ -1157,10 +1146,10 @@ function memberJoin(){
 		}
 	}
 	
-	if(!NullCheck(frm.mobile_no, '휴대전화번호')) {
-		if(frm.mobile_no.value.length < 10){
+	if(!NullCheck(form.mobile_no, '휴대전화번호')) {
+		if(form.mobile_no.value.length < 10){
 			alert("휴대전화번호가 잘못되었습니다.");
-			frm.mobile_no.focus();
+			form.mobile_no.focus();
 			return;
 		}
 	} else {
@@ -1233,7 +1222,7 @@ function memberJoin(){
 		type: "POST",
 		url: "./step3Prc",
 		dataType: "json",
-		data: $("#frm").serialize(),
+		data: $("#form").serialize(),
 		success: function(json){
 			processYn = false;
 			if('0000' == json.resultCode){
@@ -1768,8 +1757,8 @@ function fCheckUserAuthReqCnt(value) {
 }
 
 
-</script> -->
-<%@include file="mainheader.jsp" %>
+</script>
+<%-- <%@include file="mainheader.jsp" %>
  	<form action="/signUp" name="form" method="POST">
 		<div class="container">
 			<div class="allBody">
@@ -1855,7 +1844,7 @@ function fCheckUserAuthReqCnt(value) {
                 <div><button type="submit" class="nextButton" data-text-content="true" id="submit" >회원가입</button></div> disabled="disabled" 
             </div>
 	</form>
-<%@include file="mainfooter.jsp" %>
+<%@include file="mainfooter.jsp" %> --%>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
@@ -1944,6 +1933,7 @@ function fCheckUserAuthReqCnt(value) {
 					var com = $.trim($('#inputEmail').val().indexOf("."));
 					// @ 와 .이 없으면 이메일 형식이 안맞는다고 띄우기 
 					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
+						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputEmail').attr("readonly", true);
  						var html="<tr><td colspan='3' style='color: green'>이메일에 인증 번호를 확인해주세요.</td></tr>"; 
