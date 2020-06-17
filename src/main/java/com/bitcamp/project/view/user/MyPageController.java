@@ -156,17 +156,6 @@ public class MyPageController {
 	public String mypageUpdatePasswordView() { 
 	return "mypage-update-password"; 
 	}
-	 
-//	@GetMapping(value = "/mypageUpdatePasswordEnd")
-//	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
-//		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-//		String encPassword = passwordEncoder.encode(password);
-//		System.out.println(loginUser);
-//		loginUser.setPw(encPassword);
-//		userInfoService.updatePassword(loginUser);
-//		session.setAttribute("loginUser", loginUser);
-//		return "myPage01";
-//	}
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")
 	@ResponseBody

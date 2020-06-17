@@ -12,6 +12,89 @@
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
+<style>
+.social-login {
+    padding: 30px 0 14px 0;
+    border-top: 1px solid #eaeaea;
+}
+.social-login .btn-b.naver {
+    background-color: #00c73c;
+    background-position: 0 -104px;
+}
+.social-login .btn-b {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+    line-height: 100%;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    border: none;
+    background: url(/resources/img/social_type.png) no-repeat;
+}
+.social-login * {
+    display: block;
+}
+.social-login .btn-b.kakaotalk {
+    color: #3c1e1e;
+    background-color: #ffeb00;
+    background-position: 0 -166px;
+}
+.social-login .btn-b {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+    line-height: 100%;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    border: none;
+    background: url(/resources/img/social_type.png) no-repeat;
+}
+.social-login .btn-b.google {
+    background-color: #4285f4;
+    background-position: 0 -290px;
+}
+.social-login .btn-b {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+    line-height: 100%;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    border: none;
+    background: url(/resources/img/social_type.png) no-repeat;
+}
+.social-login .btn-b.naver {
+    background-color: #00c73c;
+    background-position: 0 -388px;
+}
+.social-login .btn-b {
+    height: 54px;
+    background-size: 250px 700px;
+}
+.social-login .btn-b.kakaotalk {
+    color: #3c1e1e;
+    background-color: #ffeb00;
+    background-position: 0 -443px;
+}
+.social-login .btn-b.google {
+    background-color: #4285f4;
+    background-position: 0 -553px;
+}
+.social-login .btn-b {
+    height: 54px;
+    background-size: 250px 700px;
+}
+}
+@media only screen and (max-width: 480px){
+.social-login .btn-b {
+    padding-left: 23%;
+    font-size: 15px;
+}
+}
+</style>
 </head>
 <body class="member">
 
@@ -27,6 +110,10 @@
 						<p class="big-text">입력하신 인증번호는 <span class="color-red">일치하지 않습니다</span><br>다시 시도해주세요.</p>
 					</div>
 
+					<div class="social-login">
+						<button type="button" class="naverlogin btn-b naver" onclick="location.href='/naverLogin'">네이버 아이디로 로그인</button>
+						<button type="button" class="kakaologin btn-b kakaotalk" >카카오톡 아이디로 로그인</button>
+					</div>
 					<div class="bt-area"><a href="/forgetPassword" class="btn-b gray">다시 시도하기</a></div>
 					<div class="find-info">
 						<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> 

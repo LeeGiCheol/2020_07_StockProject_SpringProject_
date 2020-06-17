@@ -64,7 +64,6 @@ public class SignInController {
 					mav.setViewName("notice");
 					return mav;
 	            }
-			
             }
 			else {
 				mav.addObject("msg", "로그인 실패!");
@@ -99,13 +98,19 @@ public class SignInController {
 			vo.setTel(tel);
 			vo = signInService.findId(vo);
 			session.setAttribute("findUser", vo);
-			if(vo.getPw().equals("naver")) { // 비밀번호가 "naver"이라면? (네이버 회원이라면?)
-				model.addAttribute("msg", "회원님은 네이버 회원이십니다. 네이버로 이동합니다");
+			System.out.println("@@@@ : " + vo);
+			if(vo==null || vo.getTel().equals("") ) { // 없는 전화번호
+				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
+			}else if(vo.getId().contains("_naver_"))  {
+				model.addAttribute("msg", "회원님은 네이버회원이십니다. 네이버로 이동합니다");
 				model.addAttribute("icon", "success");
 				model.addAttribute("location", "https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry");
 				return "/msg";	
-			}else if(vo==null || vo.getTel().equals("") ) { // 없는 전화번호
-				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
+			}else if(vo.getId().contains("_kakao")){
+				model.addAttribute("msg", "회원님은 카카오톡회원이십니다. 네이버로 이동합니다");
+				model.addAttribute("icon", "success");
+				model.addAttribute("location", "https://accounts.kakao.com/weblogin/find_account?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount#pageFindAccountSelect");
+				return "/msg";	
 			}else { //있는 전화번호라면?
 				ExampleSend es = new ExampleSend(); // 문자보내는 클래스 
 				ExampleSend.main(args, tel);  // 문자보내는 메서드
@@ -143,15 +148,10 @@ public class SignInController {
 			vo.setId(id);
 			vo = signInService.findPw(vo);
 			session.setAttribute("findUser", vo);
-			if(vo.getPw().equals("naver")) { // 비밀번호가 "naver"이면? (네이버 회원으로 가입했으면)
-				model.addAttribute("msg", "회원님은 네이버 회원이십니다. 네이버로 이동합니다");
-				model.addAttribute("icon", "success");
-				model.addAttribute("location", "https://nid.naver.com/user2/help/pwInquiry.nhn?menu=pwinquiry");
-				return "/msg";	
-			}else if(vo==null || vo.getId().equals("") ) {
+			System.out.println("@@@@: " + vo);
+			if(vo==null || vo.getId().equals("") ) {
 				return "/forgetpasswordpagefail";
-			}
-			else {
+			}else {
 				return "redirect:/user/mail";
 				
 			}

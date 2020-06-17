@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +27,9 @@
                 <h6 class="my-0">내정보</h6>
               </div>
             </li>
-            <c:choose>
-				<c:when test="${naverLoginUser ne null}">
+            <c:set var="socialId" value="${loginUser.id}"/>
+			<c:choose>
+				<c:when test="${fn:contains(socialId,'_')}">
 					<li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="notLocal();" >
 		              <div>
 		                <h6 class="my-0">비밀번호변경</h6>

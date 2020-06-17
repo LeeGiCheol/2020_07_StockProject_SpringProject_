@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +17,17 @@
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
-
 	$(document).ready(function(){
 		swal({text:"가입을 위해 추가 정보 입력이 필요합니다", icon:"warning"})
+		var keyValue = event.keyCode; 
+		if( (keyValue > 115) && (keyValue < 117) ) 
+			return false; 
+		else 
+			return true;
 	});
 </script>
 </head>
-<body>
+<body onKeyPress="return reFresh(event)">
 	<%@include file="mainheader.jsp" %>
 	<form action="/signUp/kakao" name="form" method="POST">
 		<div class="container">
@@ -32,9 +35,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				<div class="form-group col-md-6" style="display: -webkit-box;">
 					<input type="email"	class="form-control" id="inputEmail" name="id" value="${naverId}" readonly style="display:none">
 					<ul><li style="list-style:none;" id="idResult"></li></ul>
-				</div>
-				<div class="form-group col-md-6" >
-					 <input style="display:none" type="password" class="form-control" id="inputPassword" name="pw" value="naver">
 				</div>
 				<label for="inputnickname col-md-6">닉네임</label>
 				<div class="form-group" style="display: -webkit-box;">

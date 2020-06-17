@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -278,7 +279,7 @@ position:relative;
 			<div class="col-md-3">
 
 				<c:choose>
-					<c:when test="${loginUser eq null and naverLoginUser eq null}">
+					<c:when test="${loginUser eq null}">
 						<div class="login-box">
 							<div class="div-login-box">
 								<form method='post' action="/signIn">
@@ -322,17 +323,15 @@ position:relative;
 								</p>
 								<dl>
 									<dt>
-										<c:choose>
-										<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
-										<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
-										</c:choose>
+										<strong>${loginUser.nickname}</strong>　님
 										<button type="button" class="logout"
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
 										<a href="/myPage01">내정보</a>
+									<c:set var="socialId" value="${loginUser.id}"/>
 									<c:choose>
-										<c:when test="${naverLoginUser ne null}">
+										<c:when test="${fn:contains(socialId,'_')}">
 											<a onclick="notLocal();">비밀번호 변경</a>
 										</c:when>
 										<c:otherwise>
