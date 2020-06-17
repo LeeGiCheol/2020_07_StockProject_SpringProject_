@@ -13,4 +13,8 @@ public interface UserInfoDAO {
 	public void deleteNotice(String id);
 	public void updatePassword(UserVO vo);
 	public int mypageUpdatePasswordCheck(Map<String, String> map);
+	public int getChargingCount(String id);
+	public void consumpCharge(String id);
+	public long getAccumAsset(String id);
+	public int getRanking(String id);
 }

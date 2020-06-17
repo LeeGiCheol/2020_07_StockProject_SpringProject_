@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,16 +24,32 @@
 <script>
 $(document).ready(function(){
     $(".refresh").click(function(){
-    	if(confirm("하루 2회 무료로 100만원 머니 재지급 가능합니다. \n재지급 받으시겠습니까?(남은횟수 2/2회)")){
-            alert("JS구성하기");
-          }else{
+    	if(confirm("하루 2회 무료로 1000만원으로 초기화 가능합니다. \n초기화 하시겠습니까?")){
+    		$.ajax({ url :'checkCharging', 
+    				 type : 'GET', 
+    				 success: function(result){ 
+    					 		console.log(result);
+    					 		if(result > 0)
+    					 			alert("초기화 완료! 남은 횟수("+(result-1)+"회)");
+    					 		else
+    					 			alert("초기화를 다 사용하셨습니다.")
+    					 			
+    					 	},
+    				 error: function(jqXHR, textStatus, errorThrown){
+    			            alert("에러 발생 \n" + textStatus + " : " + errorThrown);
+    			            self.close();
+    			        	}
+    		});
+        }
+    	else{
             alert("취소하셨습니다.");
-          }
+        }
+    	
+    });/*
       $('#datetimepicker1').datetimepicker({ format: 'L'});
       $('#datetimepicker2').datetimepicker({ format: 'L', useCurrent: false});
       $("#datetimepicker1").on("change.datetimepicker", function (e) {$('#datetimepicker2').datetimepicker('minDate', e.date);});
       $("#datetimepicker2").on("change.datetimepicker", function (e) {$('#datetimepicker1').datetimepicker('maxDate', e.date);});
-    });
 
     // pagination 추가  
 	$(function() {
@@ -48,7 +63,7 @@ $(document).ready(function(){
 			console.info(page + ' (from event listening)');
 		});
 	});     
-    
+    */
 });
 </script>
 <style>
@@ -93,7 +108,7 @@ $(document).ready(function(){
             <div class="sideBar col-md-4 order-md-2 mb-4">
               <div class="col-md-8 order-md-1"></div>
                <h4 class="mb-3">계좌정보</h4>
-                <div>보유금액 : 97,000원 <button type="button" class="btn btn-primary refresh">머니 재지급</button></div>
+                <div>보유금액 : <fmt:formatNumber value="${loginUser.money}" type="number"/>원 <button type="button" class="btn btn-primary refresh">머니 재지급</button></div>
             </div>
           </div>
         </div>
@@ -112,7 +127,7 @@ $(document).ready(function(){
     <div class="tab-content" id="pills-tabContent">
       <!-- 수익률 시작-->
       <div class="tab-pane fade <c:if test="${type1 eq 'rate'}">show active</c:if>" id="pills-rate" role="tabpanel" aria-labelledby="pills-rate-tab">
-        <b>user.Nickname</b> 님의 수익률
+        <b>${loginUser.nickname}</b> 님의 수익률
         <br>
         <br>
         <br>
@@ -120,15 +135,15 @@ $(document).ready(function(){
           <tbody>
             <tr class=tr-class>
               <th scope="row">누적순위</th>
-              <td scope="row">13등</td>
+              <td scope="row">${ranking}등</td>
             </tr>
             <tr class=tr-class>
               <th scope="row">누적수익률</th>
-              <td scope="row">11.93%</td>
+              <td scope="row"><fmt:formatNumber value="${(accumAsset - 10000000)/100000}" type="number"/>%</td>
             </tr>
             <tr class=tr-class>
               <th scope="row">손익금액</th>
-              <td scope="row">+ 1,300,000원</td>
+              <td scope="row"><fmt:formatNumber value="${accumAsset - 10000000}" type="number"/>원</td>
             </tr>
             <tr class=tr-class>
               <th scope="row">투자원금</th>
@@ -140,7 +155,7 @@ $(document).ready(function(){
       <!-- 수익률 끝 -->
       <!-- 계좌 시작-->
       <div class="tab-pane fade <c:if test="${type1 eq 'account'}">show active</c:if>" id="pills-account" role="tabpane1" aria-labelledby="pills-account-tab">
-        <b>user.Nickname</b> 님의 계좌
+        <b>${loginUser.nickname}</b> 님의 계좌
         <br>
         <br>
         <br>
@@ -288,7 +303,7 @@ $(document).ready(function(){
       <!-- 계좌 끝 -->
       <!-- 거래내역 시작 -->
       <div class="tab-pane fade <c:if test="${type1 eq 'tradeHistory'}">show active</c:if>" id="pills-trade-history" role="tabpane" aria-labelledby="pills-trade-history-tab">
-        <b>user.Nickname</b> 님의 거래내역
+        <b>${loginUser.nickname}</b> 님의 거래내역
         <br>
         <br>
         <br>
@@ -349,9 +364,9 @@ $(document).ready(function(){
                     <td>${stock.tdatetime}</td>
                     <td>${stock.stockName}</td>
                     <td>${stock.quantity}</td>
-                    <td>${stock.tprice*stock.quantity}</td>
-                    <td>${stock.tprice}</td>
-                    <td>${stock.tprice*stock.quantity*0.0025}</td>
+                    <td><fmt:formatNumber value="${stock.tprice*stock.quantity}" type="number"/></td>
+                    <td><fmt:formatNumber value="${stock.tprice}" type="number"/></td>
+                    <td><fmt:formatNumber value="${stock.tprice*stock.quantity*0.0025}" type="number"/></td>
                   </tr>
                   </c:forEach>
                 </thead>
@@ -481,9 +496,9 @@ $(document).ready(function(){
         	            <td>${stock.tdatetime}</td>
             	        <td>${stock.stockName}</td>
                 	    <td>${stock.quantity}</td>
-                    	<td>${stock.tprice*stock.quantity}</td>
-                    	<td>${stock.tprice}</td>
-                    	<td>${stock.tprice*stock.quantity*0.0025}</td>
+                    	<td><fmt:formatNumber value="${stock.tprice*stock.quantity}" type="number"/></td>
+                    	<td><fmt:formatNumber value="${stock.tprice}" type="number"/></td>
+                    	<td><fmt:formatNumber value="${stock.tprice*stock.quantity*0.0025}" type="number"/></td>
                   	</tr>
                   </c:forEach>
                   </thead>

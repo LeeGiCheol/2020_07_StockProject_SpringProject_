@@ -4,7 +4,7 @@ public class HoldingStockVO {
 	String id;
 	String stockCode;
 	String stockName;
-	String quantity;
+	int quantity;
 	String avgPrice;
 	int currentPrice;
 	
@@ -26,10 +26,10 @@ public class HoldingStockVO {
 	public void setStockName(String stockName) {
 		this.stockName = stockName;
 	}
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	public String getAvgPrice() {

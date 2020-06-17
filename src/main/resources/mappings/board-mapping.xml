@@ -10,8 +10,6 @@
 		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, #{bno}, 0)	
 	</insert>
 	
-	
-	
 	<update id="updateBoard">
 		UPDATE board 
 		SET title = #{title}, bcontent = #{bcontent}
