@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.Ranking;
-import com.bitcamp.project.dao.UserInfoDAO;
 import com.bitcamp.project.service.MyAccountService;
 import com.bitcamp.project.service.MyPostService;
 import com.bitcamp.project.service.UserInfoService;
@@ -108,6 +109,33 @@ public class MyPageController {
 	   return "mypage02";
    }   
 
+    PasswordEncoder passwordEncoder;
+	@Autowired
+	BCryptPasswordEncoder bPasswordEncoder;
+
+
+   @GetMapping(value="/myPage01")
+   public String myPage01(@ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
+         @ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
+         @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate) {
+      if(nowPage1.equals(""))
+         nowPage1 = "1";
+      if(nowPage2.equals(""))
+         nowPage2 = "1";
+      if(nowPage3.equals(""))
+         nowPage3 = "1";
+      PagingVO pv1 = new PagingVO();
+      PagingVO pv2 = new PagingVO();
+      PagingVO pv3 = new PagingVO();
+      
+      return "mypage01";
+   }
+	   
+	@GetMapping(value = "/myPage02")
+	public String myPage02() {
+		return "mypage02";
+	}
+
 	@GetMapping(value = "/myPage03")
 	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage,
 			@ModelAttribute("cnowPage") String cnowPage, @ModelAttribute("bSearchStyle") String bSearchStyle,
@@ -182,9 +210,10 @@ public class MyPageController {
 	}
 
 	@PostMapping(value = "/updateUser")
-	public String updateUser(@ModelAttribute("address") String address,
+	public String updateUser(@ModelAttribute("nickname") String nickname, @ModelAttribute("address") String address,
 			@ModelAttribute("showEsetSetting") String showEset, HttpSession session) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		loginUser.setNickname(nickname);
 		loginUser.setAddress(address);
 		loginUser.setShowEsetSetting(Integer.parseInt(showEset));
 		userInfoService.memberInfoUpdate(loginUser);
@@ -200,27 +229,34 @@ public class MyPageController {
 	return "mypage-update-password"; 
 	}
 	 
-	@GetMapping(value = "/mypageUpdatePasswordEnd")
-	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
-		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		loginUser.setPw(password);
-		userInfoService.updatePassword(loginUser);
-		session.setAttribute("loginUser", loginUser);
-		return "myPage01";
-	}
+//	@GetMapping(value = "/mypageUpdatePasswordEnd")
+//	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
+//		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+//		String encPassword = passwordEncoder.encode(password);
+//		System.out.println(loginUser);
+//		loginUser.setPw(encPassword);
+//		userInfoService.updatePassword(loginUser);
+//		session.setAttribute("loginUser", loginUser);
+//		return "myPage01";
+//	}
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")
 	@ResponseBody
-	public String mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session,
-			HttpServletRequest request) {
+	public int mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session, HttpServletRequest request, @ModelAttribute("password") String password) {
+			
 		Map<String, String> map = new HashMap<String, String>();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		map.put("pw", nowPassword);
-		map.put("id", loginUser.getId());
-		loginUser.setPw(nowPassword);
-		int result = userInfoService.mypageUpdatePasswordCheck(map);
-		session.setAttribute("loginUser", loginUser);
-		return Integer.toString(result);
+      
+		if(bPasswordEncoder.matches(nowPassword, loginUser.getPw())) {
+			String encPassword = passwordEncoder.encode(password);
+			loginUser.setPw(encPassword);
+			userInfoService.updatePassword(loginUser);
+
+			session.setAttribute("loginUser", loginUser);
+			return 1;
+        }else {
+        	return 0;
+        }
 	}
 
 	@GetMapping(value = "/delete/*")
@@ -258,6 +294,6 @@ public class MyPageController {
 			return "NONE";
 		else
 			return "NOTICE";
-	}	
+	}
 
 }
