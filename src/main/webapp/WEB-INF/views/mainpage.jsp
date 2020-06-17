@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -278,7 +279,7 @@ position:relative;
 			<div class="col-md-3">
 
 				<c:choose>
-					<c:when test="${loginUser eq null and naverLoginUser eq null}">
+					<c:when test="${loginUser eq null}">
 						<div class="login-box">
 							<div class="div-login-box">
 								<form method='post' action="/signIn">
@@ -302,9 +303,9 @@ position:relative;
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
-									<a href="#" class="social-type facebook">페이스북 로그인</a>
-									<a href="#" class="social-type google">구글 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<!-- <a href="#" class="social-type facebook">페이스북 로그인</a>
+									<a href="#" class="social-type google">구글 로그인</a> -->
 									</span>
 								</p>
 							</div>
@@ -322,17 +323,15 @@ position:relative;
 								</p>
 								<dl>
 									<dt>
-										<c:choose>
-										<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
-										<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
-										</c:choose>
+										<strong>${loginUser.nickname}</strong>　님
 										<button type="button" class="logout"
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
 										<a href="/myPage01">내정보</a>
+									<c:set var="socialId" value="${loginUser.id}"/>
 									<c:choose>
-										<c:when test="${naverLoginUser ne null}">
+										<c:when test="${fn:contains(socialId,'_')}">
 											<a onclick="notLocal();">비밀번호 변경</a>
 										</c:when>
 										<c:otherwise>

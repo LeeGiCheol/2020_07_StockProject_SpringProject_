@@ -3,6 +3,7 @@ package com.bitcamp.project;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
@@ -14,12 +15,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.bitcamp.project.vo.HoldingStockVO;
 import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.StockVO;
+import com.bitcamp.project.vo.UserVO;
+
+import stockCode.StockParsing;
 
 @Component
 public class TradingCheck {
-
+	int trriger = 0;
+	
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
@@ -74,6 +80,23 @@ public class TradingCheck {
 
 	@Scheduled(fixedDelay = 500)
 	public void TestScheduler() {
+		if(trriger++ %5 == 1) {
+			StockParsing sp = new StockParsing();
+			System.out.println(mybatis);
+			List<UserVO> users = mybatis.selectList("user.getAllUser");
+			for(int i = 0; i < users.size(); ++i) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				UserVO user = users.get(i);
+				List<HoldingStockVO> hList = mybatis.selectList("stock.holdingStockList2", user.getId());
+				long asset = user.getMoney();
+				for(int j = 0; j < hList.size(); ++j) {
+					asset += hList.get(j).getQuantity() * sp.parse(hList.get(j).getStockCode()).getCurrentPrice();
+				}
+				map.put("id", user.getId());
+				map.put("asset", asset);
+				mybatis.update("user.updateRanking",map);
+			}
+		}
 		Map<String, Info> info = stockToMap();
 
 		// unsettledcheck테이블에서 모두 가져와서 map에 주입

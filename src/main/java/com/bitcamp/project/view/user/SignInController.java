@@ -22,6 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.SignInService;
 import com.bitcamp.project.vo.UserVO;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
+import edu.emory.mathcs.backport.java.util.Arrays;
 
 @Controller
 public class SignInController {
@@ -64,7 +67,6 @@ public class SignInController {
 					mav.setViewName("notice");
 					return mav;
 	            }
-			
             }
 			else {
 				mav.addObject("msg", "로그인 실패!");
@@ -72,10 +74,36 @@ public class SignInController {
 				mav.setViewName("notice");
 				return mav;
 			}
+            
 	}
 	
 	@GetMapping(value="/logOut")
 	public String logout(HttpSession session) {
+		System.out.println("#####: " + session.getAttribute("loginUser"));
+		if(((UserVO)session.getAttribute("loginUser")).getId().substring(((UserVO)session.getAttribute("loginUser")).getId().length()-1).equals("_")) { //끝글자 확인
+			String ID = ((UserVO)session.getAttribute("loginUser")).getId();
+			String[] ID_s = ID.split("_");
+			
+			switch (ID_s[ID_s.length-1]) {
+			case "kakao":
+				System.out.println("카카오 로그아웃");
+				session.invalidate();
+				return "redirect:Https://kauth.kakao.com/oauth/logout?client_id=68ded79fcd9705764c35c87e4e593e4c&logout_redirect_uri=http://106.240.16.163:8080/mainPage";
+				
+			case "naver":
+				System.out.println("네이버 로그아웃");
+				session.invalidate();
+				return "redirect:/mainPage";
+				
+			case "google":
+				System.out.println("구글 로그아웃");
+				break;
+				
+			default:
+				break;
+			}
+			
+		}
 		session.invalidate();
 		return "redirect:/mainPage";
 	}
@@ -99,14 +127,19 @@ public class SignInController {
 			vo.setTel(tel);
 			vo = signInService.findId(vo);
 			session.setAttribute("findUser", vo);
-			if(vo.getPw().equals("naver")) { // 비밀번호가 "naver"이라면? (네이버 회원이라면?)
-				model.addAttribute("msg", "회원님은 네이버 회원이십니다. 네이버로 이동합니다");
+			if(vo == null) { // 없는 전화번호
+				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
+			}else if(vo.getId().contains("_naver_"))  {
+				model.addAttribute("msg", "회원님은 네이버회원이십니다. 네이버로 이동합니다");
 				model.addAttribute("icon", "success");
 				model.addAttribute("location", "https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry");
 				return "/msg";	
-			}else if(vo==null || vo.getTel().equals("") ) { // 없는 전화번호
-				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
-			}else { //있는 전화번호라면?
+			}else if(vo.getId().contains("_kakao_")){
+				model.addAttribute("msg", "회원님은 카카오톡회원이십니다. 카카오톡으로 이동합니다");
+				model.addAttribute("icon", "success");
+				model.addAttribute("location", "https://accounts.kakao.com/weblogin/find_account?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount#pageFindAccountSelect");
+				return "/msg";
+			}else {
 				ExampleSend es = new ExampleSend(); // 문자보내는 클래스 
 				ExampleSend.main(args, tel);  // 문자보내는 메서드
 				return "/forgetidpage-try-success";
@@ -143,15 +176,9 @@ public class SignInController {
 			vo.setId(id);
 			vo = signInService.findPw(vo);
 			session.setAttribute("findUser", vo);
-			if(vo.getPw().equals("naver")) { // 비밀번호가 "naver"이면? (네이버 회원으로 가입했으면)
-				model.addAttribute("msg", "회원님은 네이버 회원이십니다. 네이버로 이동합니다");
-				model.addAttribute("icon", "success");
-				model.addAttribute("location", "https://nid.naver.com/user2/help/pwInquiry.nhn?menu=pwinquiry");
-				return "/msg";	
-			}else if(vo==null || vo.getId().equals("") ) {
+			if(vo==null || vo.getId().equals("") ) {
 				return "/forgetpasswordpagefail";
-			}
-			else {
+			}else {
 				return "redirect:/user/mail";
 				
 			}

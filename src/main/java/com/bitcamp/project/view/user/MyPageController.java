@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bitcamp.project.Ranking;
 import com.bitcamp.project.service.MyAccountService;
 import com.bitcamp.project.service.MyPostService;
 import com.bitcamp.project.service.UserInfoService;
@@ -58,25 +57,20 @@ public class MyPageController {
 		return userInfoService.checkCharging(loginUser.getId());
 	}
 	
-	//랭킹 시험용
-	@GetMapping(value="/testranking")
-	public void test() {
-		System.out.println("testtesttest");
-		Ranking r = new Ranking(mybatis);
-		r.computeAsset();
-	}
-	
+//	//랭킹 시험용
+//	@GetMapping(value="/testranking")
+//	public void test() {
+//		System.out.println("testtesttest");
+//		Ranking r = new Ranking(mybatis);
+//		r.computeAsset();
+//	}
+//	
    @GetMapping(value="/myPage02")
    public String myPage02(HttpSession session, @ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
          @ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
          @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
          @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
 	   
-	   UserVO user = new UserVO();
-	   user.setNickname("user");
-	   user.setId("test@test.com");
-	   user.setMoney(1000000);
-	   session.setAttribute("loginUser", user);
 	   
 	   if(type1.equals(""))
 		   type1 = "rate";
@@ -221,17 +215,6 @@ public class MyPageController {
 	public String mypageUpdatePasswordView() { 
 	return "mypage-update-password"; 
 	}
-	 
-//	@GetMapping(value = "/mypageUpdatePasswordEnd")
-//	public String mypageUpdatePassword(@ModelAttribute("password") String password, HttpSession session) {
-//		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-//		String encPassword = passwordEncoder.encode(password);
-//		System.out.println(loginUser);
-//		loginUser.setPw(encPassword);
-//		userInfoService.updatePassword(loginUser);
-//		session.setAttribute("loginUser", loginUser);
-//		return "myPage01";
-//	}
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")
 	@ResponseBody

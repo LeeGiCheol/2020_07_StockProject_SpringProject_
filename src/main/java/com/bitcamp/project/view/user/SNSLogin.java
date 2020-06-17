@@ -24,7 +24,7 @@ public class SNSLogin {
 		String access_Token = signInService.kakao_GetToken(code);
 		System.out.println("controller access_token : " + access_Token);
 
-		String userId = signInService.getKakaoId(access_Token);
+		String userId = signInService.getKakaoId(access_Token)+"_kakao_";
 		System.out.println("KaKaoID : " + userId); // 이후 DB에서 ID 확인후 , 있으면 로그인 진행 , 없으면 추가정보 입력 회원가입 진행
 		UserVO vo = new UserVO();
 		vo.setId(userId);
