@@ -73,9 +73,13 @@ public class MainPageController {
 		mav.addObject("kospi_lowprice", kospiData[4]);
 		mav.addObject("kospi_lastprice", kospiData[5]);
 		
-		List list = userInfoService.getCurrentRevenue();
+		List<Map> list = userInfoService.getCurrentRevenue();
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).put("revenue", Math.round((double)list.get(i).get("revenue")*100)/100.0);
+		}
 		System.out.println(list);
 		mav.addObject("currentRevenue", list);
+		
 		mav.setViewName("mainpage");
 		return mav;
 	}
