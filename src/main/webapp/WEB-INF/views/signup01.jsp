@@ -434,17 +434,17 @@ function btnCheck(){
 function nextStep(){
 	var birthCheckYn = "Y";
 	if(birthCheckYn == "N" && !$("#check08").is(":checked")){
-		alert("만 14세 이상에 대한 동의는 필수 항목입니다.");
+		swal({text:"만 14세 이상에 대한 동의는 필수 항목입니다.", icon:"error"})
 		$("#check08").focus();
 		return;
 	}
 	if(!document.frm.check02.checked){
-		alert("이용약관 동의는 필수 항목입니다.");
+		swal({text:"이용약관 동의는 필수 항목입니다.", icon:"error"})
 		$("#check02").focus();
 		return;
 	}
 	if(!document.frm.check03.checked){
-		alert("개인정보 수집 및 이용에 대한 동의는 필수 항목입니다.");
+		swal({text:"개인정보 수집 및 이용에 대한 동의는 필수 항목입니다.", icon:"error"})
 		$("#check03").focus();
 		return;
 	}
@@ -459,7 +459,7 @@ function nextStep(){
 }
 
 function goMain() {
-	alert("이용약관 및 개인정보 수집 및 이용에 관한 사항에 대해 동의를 거부할 수 있으나, 동의를 거부할 경우 판타지스탁 회원가입을 할 수 없음을 알려드립니다.");
+	swal({text:"이용약관 및 개인정보 수집 및 이용에 관한 사항에 대해 동의를 거부할 수 있으나, 동의를 거부할 경우 판타지스탁 회원가입을 할 수 없음을 알려드립니다.", icon:"error"})
 	location.href='/mainPage';
 }
 
