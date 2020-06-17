@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 </head>
 <body>
-	
+<div class="wrap">
 <%@include file="mainheader.jsp" %> 
 <div class="containerNew"> 
 		<!-- contents -->
@@ -29,7 +29,8 @@
 				</div>
 				<div class="pad-area men-step">
 					<h1>약관동의</h1>
-					<form action="./step2" method="post" name="frm" id="frm">
+					<form action="/signUpPage/2" method="GET"  onSubmit="return CheckForm(this)" name="frm" id="frm">
+
 						<input type="hidden" name="birthCheckYn" value="Y">
 					
 						
@@ -42,7 +43,7 @@
 						<div class="clause">
 							<span>
 								<input type="checkbox" id="check02" name="check02" onclick="btnCheck();"><label for="check02">이용약관 동의 <em class="choice">(필수)</em></label>
-								<button class="cla-view">내용보기</button>
+								<button type="button" class="cla-view">내용보기</button>
 							</span>
 							<div class="clause-in">
 								<div class="pop-tit">이용약관 동의  <button class="cla-close" onclick="scrollHide(); return false;">닫기</button></div>
@@ -301,7 +302,7 @@
 						<div class="clause">
 							<span>
 								<input type="checkbox" id="check03" name="check03" onclick="btnCheck();"><label for="check03">개인정보 수집 및 이용에 <mark>대한 동의 <em class="choice">(필수)</em></mark></label>
-								<button class="cla-view">내용보기</button>
+								<button type="button" class="cla-view">내용보기</button>
 							</span>
 							<div class="clause-in">
 								<div class="pop-tit">개인정보 수집 및 이용에 대한 동의 <button class="cla-close" onclick="scrollHide(); return false;">닫기</button></div>
@@ -372,58 +373,21 @@
 								</div>
 							</div>
 						</div>
-						
-						<div class="clause"><!-- [D] : 수신 동의 항목 구조 수정 및 신규 추가 -->
-							<span>
-								이벤트 등 프로모션 알림 <mark>수신 동의<em class="choice">(선택)</em></mark>
-								<ul class="check-list">
-									<li>
-										<input type="checkbox" id="check05" name="receipt_fg_sms" value="Y" onclick="btnCheck();">
-										<label for="check05">SMS</label>
-									</li>
-									<li>
-										<input type="checkbox" id="check06" name="receipt_fg_mail" value="Y" onclick="btnCheck();">
-										<label for="check06">이메일</label>
-									</li>
-									<li>
-										<input type="checkbox" id="check07" name="app_push_fg" value="Y" onclick="btnCheck();">
-										<label for="check07">앱푸시</label>
-									</li>
-								</ul>
-							</span>
-						</div>
-					</form>
-					
-			
-				
-				
-				
+					</form>		
 					<div class="bt-area"> 
-						<button class="btn-b" onclick="goMain();">비동의</button>
+						<button class="btn-b" onclick="location.href='/mainPage'">비동의</button>
 						<button class="btn-b red" onclick="nextStep();">동의</button>
-						<p>사업자 및 단체회원은 법인 회원으로 가입해 주세요. <span><a href="./step1?cust_type=C" class="link-btn tyb">법인 회원 가입</a></span></p>
-						<p>해외사용자는 해외 회원으로 가입해 주세요. <span><a href="./step1?cust_type=F" class="link-btn tyb">해외 회원 가입</a></span></p>
 					</div>  
-					<p class="guide-text03">
-						<strong>회원가입 유의사항</strong>
-						만 14세 이상 일반 개인 회원 가입이 가능하며 서비스 이용 시 본인인증이 필요 할 수 있습니다.
-					</p> 
-				
-			
-					<div class="join-benefit"><!-- [D] : 신규 추가 -->
-						<a href="https://member.paxnet.co.kr/rpan/help/joinBenefit">
-							<img src="//image.paxnet.co.kr/rpan/banner/202004/pc/joinEvent_b2_200421.jpg" alt="신규 고객에게 드리는 큰 돈 되는 혜택. 팍스넷 대표 아카데미 강좌, 유료 서비스 10만원 할인쿠폰, 전문가 상담 3일 체험권." class="p-type">
-							<img src="//image.paxnet.co.kr/rpan/banner/202004/mobile/m_joinEvent_b2_200421.jpg" alt="신규 고객에게 드리는 큰 돈 되는 혜택. 팍스넷 대표 아카데미 강좌, 유료 서비스 10만원 할인쿠폰, 전문가 상담 3일 체험권." class="m-type">
-						</a>
-					</div>
 				</div> 
 			</div><!-- //cont-area -->
 		</div><!-- //contents -->  
   
 <script language="javascript">
+
 function scrollHide() {
 	$(".clause-in").hide();
 }
+
 function checkAll(){
     $(".clause input[type=checkbox]").prop("checked", $('#check01').prop('checked'));
 	/*var chkYn = false;
@@ -495,7 +459,7 @@ function nextStep(){
 
 function goMain() {
 	alert("이용약관 및 개인정보 수집 및 이용에 관한 사항에 대해 동의를 거부할 수 있으나, 동의를 거부할 경우 팍스넷/모네타 회원가입을 할 수 없음을 알려드립니다.");
-	location.href='http://www.paxnet.co.kr';
+	location.href='/mainPage';
 }
 
 </script>
@@ -528,11 +492,12 @@ function goMain() {
 		</div>
 	</form>-->
 <%@include file="mainfooter.jsp" %>
+</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script type="text/javascript">
+<!-- 	<script type="text/javascript">
 		function CheckForm(Join){
 			
 			var termsChk = $("input:checkbox[name='terms']").is(":checked");
@@ -543,7 +508,7 @@ function goMain() {
 				return false;
 			}
 		}
-	</script>
+	</script> -->
 	
 </body>
 </html>
