@@ -17,7 +17,7 @@
 <body>
 	<%@include file="mainheader.jsp" %>
     <!-- article start -->
-<article class="bg-light container">
+<%-- <article class="bg-light container">
         <div class="allBody">
       <div class="row">
         <div class="sideBar col-md-4 order-md-2 mb-4">
@@ -126,17 +126,40 @@
        </div>
      </div>
    </div>
-    </article>
+    </article> --%>
     <div class="containerNew"> 
 
-<script src="https://member.paxnet.co.kr/image/auth/common/js/auth_ck.js?ver=20180220"></script>
-	
 		<!-- contents -->
 		<div class="contents member" id="contents">
-		
+			<div class="row">
+				<div class="col-md-2">
+					<div class="sidebar sticky" id="cssmenu" style="position: relative; top: initial;">
+						<ul>
+							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
+							<li class="last"><a href="/myPage02"><span>계좌정보</span></a></li>
+							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
+							<li class="last"><a href="/myPage04"><span>알림</span></a></li>
+						</ul>
+					</div>
+				</div>
+			
+				<div class="col-md-10">
 			<!-- cont-area -->	
-			<div class="cont-area"> 
-				<h1 class="tit-h1 line">내정보관리</h1>   
+					<div class="cont-area"> 
+						<div class="drop-nav">
+							<h1 class="tit-h1 line">내 정보 관리</h1>
+						</div>
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor:pointer;">내 정보 관리 ▼</h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/myPage01">내 정보 관리</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/myPage02">계좌정보</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/myPage03">작성 글 | 댓글</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/myPage04">알림</a></h1>
+						</div>
+				  
 				<div class="modify-mem">   
 					<form action="./updateUserInfo" method="post" name="frm" id="frm">
 						<input type="hidden" name="ar_concern" id="ar_concern" value="">
@@ -162,37 +185,6 @@
 												<p class="td-text color-red">소셜로그인 자동부여 아이디는 로그인 및 이용이 불가 합니다.</p>
 											</div>
 											
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="cust_nm">성명</label></th>
-										<td> 
-											<span class="input-style-case02">
-												<input type="text" id="cust_nm" name="cust_nm" placeholder="홍길동" readonly="" value="이형균"> 
-											</span>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="user-b">생년월일</label></th>
-										<td> 
-											<span class="input-style-case02">
-											
-											
-												<input type="text" id="user-b" placeholder="1992년 02월 14일 " readonly="" value="1992년 02월 14일 "> 
-											
-											</span>	
-											
-									
-										
-										
-											<div class="text-wrap">
-												<p class="td-text color-red">회원님은 아직 본인확인을 하지 않았습니다.</p>
-												<p class="td-text">본인확인을 하시면 아이디 찾기/비밀번호 찾기 시 도움을 받을 수 있습니다.<br>본인확인 후 해당 본인확인 정보로 회원정보가 갱신됩니다.</p>
-												<button type="button" class="btn-s" onclick="showRealNmPopup();">본인확인하기</button>
-											</div>
-										
-									
-
 										</td>
 									</tr>
 									<tr>
@@ -257,82 +249,6 @@
 								<caption>선택정보 : 관심분야,지역,유선전화,주소 정보입력</caption> 
 								<tbody> 
 									<tr>
-										<th scope="row"><label for="telNo1">유선전화</label></th>
-										<td class="phone">   
-											<p class="tit-mob">유선전화</p> 
-											<div>
-												<span class="select-style">
-													<div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" data-id="tel_no1" title="선택"><span class="filter-option pull-left">선택</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">선택</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">02</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">031</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">032</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">033</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">041</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">042</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">043</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="8"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">051</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="9"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">052</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="10"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">053</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="11"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">054</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="12"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">055</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="13"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">061</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="14"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">062</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="15"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">063</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="16"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">064</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="17"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">0502</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="18"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">0505</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="19"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">0506</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="20"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">070</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="21"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">010</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="22"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">011</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="23"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">017</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="24"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">016</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="25"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">018</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="26"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">019</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select id="tel_no1" name="tel_no1" class="" tabindex="-98">
-														<option value="">선택</option>
-													
-														<option value="02">02</option>
-													
-														<option value="031">031</option>
-													
-														<option value="032">032</option>
-													
-														<option value="033">033</option>
-													
-														<option value="041">041</option>
-													
-														<option value="042">042</option>
-													
-														<option value="043">043</option>
-													
-														<option value="051">051</option>
-													
-														<option value="052">052</option>
-													
-														<option value="053">053</option>
-													
-														<option value="054">054</option>
-													
-														<option value="055">055</option>
-													
-														<option value="061">061</option>
-													
-														<option value="062">062</option>
-													
-														<option value="063">063</option>
-													
-														<option value="064">064</option>
-													
-														<option value="0502">0502</option>
-													
-														<option value="0505">0505</option>
-													
-														<option value="0506">0506</option>
-													
-														<option value="070">070</option>
-													
-														<option value="010">010</option>
-													
-														<option value="011">011</option>
-													
-														<option value="017">017</option>
-													
-														<option value="016">016</option>
-													
-														<option value="018">018</option>
-													
-														<option value="019">019</option>
-													
-													</select></div>
-												</span>
-												<div>
-													<span class="input-style">
-														<input type="text" title="전화번호 가운데 자리" maxlength="4" class="_onlyNumber" name="tel_no2" id="tel_no2" value="">
-														<button type="button" class="delete">삭제</button> 
-													</span>
-													<span class="input-style">
-														<input type="text" title="전화번호 마지막 자리" maxlength="4" class="_onlyNumber" name="tel_no3" id="tel_no3" value="">
-														<button type="button" class="delete">삭제</button> 
-													</span> 
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
 										<th scope="row"><label for="addr_post_no">주소</label></th>
 										<td class="address">
 											<p class="tit-mob">주소</p>
@@ -362,17 +278,7 @@
 				</div>  
 			</div><!-- //cont-area -->
 		</div><!-- //contents -->  
-		
-<form name="snsReqForm" id="snsReqForm" method="POST" target="popupChk">
-	<input type="hidden" name="reqType" id="reqType" value="">
-	<input type="hidden" name="sslReqYn" id="sslReqYn" value="Y">
-</form>
-
-<form name="snsResForm" id="snsResForm" method="POST">
-	<input type="hidden" name="sns_link_id" id="sns_link_id" value="">
-</form>
-
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+	</div>
 <script language="javascript">
 
 $(document).ready(function(){
@@ -1012,8 +918,8 @@ function goCancel() {
 }
 
 </script>
-	</div>
-    
+</div>
+</div>
     <%@include file="mainfooter.jsp" %>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
 <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
@@ -1023,6 +929,35 @@ function goCancel() {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+$( document ).ready(function() {
+	  var $sticky = $('.sticky');
+	  var $stickyrStopper = $('.footer_info');
+	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+	    var generalSidebarHeight = $sticky.innerHeight();
+	    var stickyTop = $sticky.offset().top;
+	    var stickOffset = 0;
+	    var stickyStopperPosition = $stickyrStopper.offset().top;
+	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+	    var diff = stopPoint + stickOffset;
+
+	    $(window).scroll(function(){ // scroll event
+	      var windowTop = $(window).scrollTop(); // returns number
+
+	      if (stopPoint < windowTop) {
+	          $sticky.css({ position: 'relative', top: diff });
+	      } else if (stickyTop < windowTop+stickOffset) {
+	          $sticky.css({ position: 'fixed', top: stickOffset });
+	      } else {
+	          $sticky.css({position: 'relative', top: 'initial'});
+	      }
+	    });
+
+	  }
+  });
+	  $(".m-drop-nav").click(function(){
+		    $(".m-drop-down").slideToggle("slow");
+		  });
 function goPopup(){
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
 	

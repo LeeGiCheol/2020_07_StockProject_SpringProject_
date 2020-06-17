@@ -274,6 +274,62 @@ function deleteComment(){
     </div>
     </article>
 <!-- article end -->
+<div class="board-type">
+				
+				
+				
+				<ul class="comm-list opt-list" id="comm-list">
+							
+						<li class="board-col">
+							<div class="type" style="width:15%;">게시판</div>
+							<div class="title"><p class="tit">제목</p></div>
+							<div class="write">작성자</div>
+							<div class="viewer">조회</div>
+							<div class="like">추천</div>
+							<div class="date">작성일</div>
+						</li>
+						
+						
+							<li><!--  class="ntc" -->
+								<div class="type type_" data-seq="150357583591268" style="width:15%;">
+									<strong class="company-name">[<a href="http://www.paxnet.co.kr/tbbs/list?tbbsType=L&amp;id=N10841">자유게시판</a>]
+								</strong></div><strong class="company-name">
+								</strong><div class="title" style="padding:12px 0 10px 0;"><strong class="company-name">
+									</strong><p class="tit" id="tit_111111"><strong class="company-name">
+										</strong> <a href="http://www.paxnet.co.kr/tbbs/view?id=N10841&amp;seq=150357583591268">dddd</a>
+										
+										
+									</p>
+								</div>
+							
+								<div class="write">
+									<span class="nick-badge-small">
+											나다이시키야
+									</span>
+								</div>
+							
+								<div class="viewer" id="hitsNum_150357583591268"><span>조회 </span>0</div>
+								<div class="like" id="recmNum_150357583591268"><span>추천 </span>0</div>											
+									<div class="date"><span class="data-date-format">06.18</span></div>
+							</li>
+							
+							
+							
+							
+							
+						
+					</ul>
+					<!-- //comm-list -->
+
+					<div class="paging">
+						<a href="#" class="prev" onclick="linkPage(1); return false;">맨 처음 페이지</a>&nbsp;<a href="#" class="before" onclick="linkPage(1); return false;">[이전]</a>&nbsp;<ul><li class="on"><a href="#">1</a>&nbsp;</li></ul><a href="#" class="after" onclick="linkPage(1); return false;">[다음]</a>&nbsp;<a href="#" class="next" onclick="linkPage(1); return false;">맨 마지막 페이지</a>
+
+					</div>
+					<form id="paginationInfo" name="searchForm" action="/my/article?type=my&amp;userId=ekek3002" method="get">
+						<input type="hidden" name="type" id="type" value="my"><input type="hidden" name="userId" id="userId" value="ekek3002"><input type="hidden" name="currentPageNo" id="currentPageNo" value="1">
+					</form>
+					<!-- //paging -->
+				</div>
 <%@include file="mainfooter.jsp" %>
 </body>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script> -->
