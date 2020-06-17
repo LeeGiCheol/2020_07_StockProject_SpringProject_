@@ -278,7 +278,7 @@ position:relative;
 			<div class="col-md-3">
 
 				<c:choose>
-					<c:when test="${loginUser eq null}">
+					<c:when test="${loginUser eq null and naverLoginUser eq null}">
 						<div class="login-box">
 							<div class="div-login-box">
 								<form method='post' action="/signIn">
@@ -301,8 +301,8 @@ position:relative;
 									<span><a href="/forgetId" class="idforgot">아이디 찾기</a>
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
-								    <a href="#" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									<a href="#" class="social-type facebook">페이스북 로그인</a>
 									<a href="#" class="social-type google">구글 로그인</a>
 									</span>
@@ -322,13 +322,24 @@ position:relative;
 								</p>
 								<dl>
 									<dt>
-										<strong>${loginUser.nickname}</strong>님
+										<c:choose>
+										<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
+										<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
+										</c:choose>
 										<button type="button" class="logout"
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
 										<a href="/myPage01">내정보</a>
-										<a href="mypageUpdatePassword">비밀번호 변경</a>
+									<c:choose>
+										<c:when test="${naverLoginUser ne null}">
+											<a onclick="notLocal();">비밀번호 변경</a>
+										</c:when>
+										<c:otherwise>
+											<a href="mypageUpdatePassword">비밀번호 변경</a>
+										</c:otherwise>
+									</c:choose>
+										
 									</dd>
 								</dl>
 								<ul class="dot-list02 color-rightgray">
@@ -420,6 +431,7 @@ position:relative;
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<script>
 	$(document).ready(function(){
@@ -729,7 +741,9 @@ position:relative;
    		
 		})
 		
-		
+		function notLocal(){
+			swal({text:"접속하신 해당 홈페이지에서 변경가능합니다.", icon:"warning"})
+		}
 		
 
 </script>

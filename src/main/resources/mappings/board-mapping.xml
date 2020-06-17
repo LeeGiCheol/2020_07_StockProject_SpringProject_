@@ -7,10 +7,8 @@
 
 	<insert id="writeFreeBoard">
 		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
-		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, 1, 0)	
+		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, #{bno}, 0)	
 	</insert>
-	
-	
 	
 	<update id="updateBoard">
 		UPDATE board 
@@ -25,9 +23,12 @@
 	
 	
 	<select id="getBoard" parameterType = "board" resultType="board">
-		SELECT * 
-		FROM board
-		WHERE pno = #{pno}
+		<![CDATA[
+			SELECT *
+		    FROM board
+			WHERE pno = #{pno}        
+		]]>
+		
 	</select>
 	
 	
@@ -212,5 +213,17 @@
 		commentCount= commentCount-1
 		WHERE pno=#{pno}
 	</update>
+	
+	<insert id="reportBoard">
+		INSERT INTO reportBoard(pno, title, rtype, rcontent, rdatetime, nickname)
+		VALUES (#{pno}, #{title}, #{rtype}, #{rcontent}, now(), #{nickname})
+	</insert>
+
+	<select id="reportBoardCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM reportBoard
+		WHERE pno = #{pno}
+		AND nickname = #{nickname}
+	</select>
 	
 </mapper>

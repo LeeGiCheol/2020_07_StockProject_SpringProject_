@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +53,7 @@
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
+							<li class="mid"><a href="/portfolio"><span>포트폴리오</span></a></li>
 							<li class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>
@@ -66,7 +68,7 @@
 	</div>
 	<div class="m-drop-down">
 		<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
-		<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
+		<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/portfolio">포트폴리오</a></h1>
 		<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 	</div>
 		<div class="board-type">
@@ -130,7 +132,8 @@
 										<!-- 조회수 -->
 										<td class="board-likes"><span>추천 </span>${board.likes}</td>
 										<!-- 추천수 -->
-										<td class="board-date">${board.bdateTime}</td>
+										<fmt:formatDate value="${board.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
+										<td class="board-date">${time}</td>
 										<!-- 날짜 -->
 									</tr>
 								</c:if>
@@ -302,43 +305,13 @@
 		  });
   });
   
-		// datetime 변환
-		function changeDate(date){
-			console.log("???? "+date)
-		    var date = new Date(date);
-		    year = date.getFullYear();
-		    month = date.getMonth() + 1;
-		    if(month < 10) {
-		    	month = "0" + month
-		    }
-		    day = date.getDate();
-		    hour = date.getHours() + 15;
-		    if(hour < 10) {
-		    	hour = "0"+hour;
-		    }
-		    if(hour > 24) {
-		    	hour -= 24;
-		    	if(hour < 10) {
-		    	hour = "0"+hour
-		    	}
-		    }
-		    if(hour == 24){
-		    	hour = "00";
-		    }
-		    minute = date.getMinutes();
-		    if(minute < 10) {
-		    	minute = "0" + minute;
-		    }
-		    second = date.getSeconds();
-		    strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
-		    return strDate;
-		}
+
 
  
   </script>
 	</div>
 
-	<!-- article end -->
+
 	<%@include file="mainfooter.jsp" %>	
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

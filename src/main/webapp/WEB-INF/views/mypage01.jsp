@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
+    
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/mypage01.css" rel="stylesheet">
@@ -24,11 +26,22 @@
                 <h6 class="my-0">내정보</h6>
               </div>
             </li>
-            <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='/mypageUpdatePassword'" >
-              <div>
-                <h6 class="my-0">비밀번호변경</h6>
-              </div>
-            </li>
+            <c:choose>
+				<c:when test="${naverLoginUser ne null}">
+					<li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="notLocal();" >
+		              <div>
+		                <h6 class="my-0">비밀번호변경</h6>
+		              </div>
+		            </li>
+				</c:when>
+				<c:otherwise>
+					<li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='/mypageUpdatePassword'">
+		              <div>
+		                <h6 class="my-0">비밀번호변경</h6>
+		              </div>
+		            </li>
+				</c:otherwise>
+			</c:choose>
             <li class="sideBarMenuNonSelect list-group-item d-flex justify-content-between lh-condensed" onclick="location.href='/myPage02'">
               <div>
                 <h6 class="my-0">계좌정보</h6>
@@ -119,6 +132,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function goPopup(){
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
@@ -140,7 +154,9 @@ function goPopup(){
 }
 //}
 /** API 서비스 제공항목 확대 (2017.02) **/
-
+function notLocal(){
+	swal({text:"접속하신 해당 홈페이지에서 변경가능합니다.", icon:"warning"})
+}
 function jusoCallBack(roadFullAddr){
 	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
 	console.log(roadFullAddr);

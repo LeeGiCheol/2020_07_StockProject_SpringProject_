@@ -1,5 +1,6 @@
 package com.bitcamp.project.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,4 +14,6 @@ public interface UserInfoService {
 	public void deleteNotice(String id);
 	public void updatePassword(UserVO vo);
 	public int mypageUpdatePasswordCheck(Map<String, String> map);
+	public int checkCharging(String id);
+	public HashMap<String, Object> getRate(String id);
 }

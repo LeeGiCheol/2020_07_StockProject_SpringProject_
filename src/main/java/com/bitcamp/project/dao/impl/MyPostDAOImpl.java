@@ -50,7 +50,11 @@ public class MyPostDAOImpl implements MyPostDAO {
 	}
 
 	@Override
-	public void deleteMyPost(Map<String, String> myMap) {
-		mybatis.delete("board.deleteMyPost", myMap);
+	public void deleteMyPost(Map<String, String> myMap, String pno) {
+		int myPostDelCheck = mybatis.delete("board.deleteMyPost", myMap);
+		
+		if(myPostDelCheck == 1) {
+			mybatis.update("board.deleteBoardComment", pno);
+		}
 	}
 }

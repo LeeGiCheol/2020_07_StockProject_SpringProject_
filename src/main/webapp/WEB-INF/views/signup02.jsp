@@ -26,9 +26,15 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			<div class="allBody">
 				<label for="inputEmail">이메일</</label> 
 				<div class="form-group col-md-6" style="display: -webkit-box;">
-					<input type="email"	class="form-control" id="inputEmail" name="id" onKeyPress="return spaceCheck(event)">
-					<button type="button" class="btn btn-secondary" id="idCheck">　중복확인　</button>
+					<input type="email"	class="form-control" id="inputEmail" name="id" placeholder="인증받을 이메일을 입력해주세요." onKeyPress="return spaceCheck(event)">
+					<button type="button" class="btn btn-secondary" id="idCheck">인증번호전송</button>
 					<ul><li style="list-style:none;" id="idResult"></li></ul>
+				</div>
+				<label for="inputEmail col-md-6">인증번호확인</label>
+				<div class="form-group" style="display: -webkit-box;">
+					 <input type="text" class="form-control" id="inputCemail" name="cEmail" placeholder="인증번호를 입력해주세요." onKeyPress="return numkeyCheck(event)"> 
+                	 <button type="button" class="btn btn-secondary" id="cEmailCheck">인증번호확인</button>
+              		 <ul><li style="list-style:none;" id="cEmailResult"></li></ul>	 
 				</div>
 			<div class="password">
 				<label for="inputPassword">비밀번호</label>
@@ -64,7 +70,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				<label for="inputPhone col-md-6" >휴대폰</label>
 				<div class="form-group" style="display: -webkit-box;">
 					<input placeholder="휴대폰번호롤 입력해주세요." type="text"	class="form-control" id="inputPhone" name="tel" onKeyPress="return numkeyCheck(event)" maxlength="11">
-					<button type="button" class="btn btn-secondary" id="telCheck">인증번호받기</button>
+					<button type="button" class="btn btn-secondary" id="telCheck">인증번호전송</button>
 					<ul><li style="list-style:none;" id="telResult"></li></ul>		
 				</div>
 				
@@ -143,6 +149,11 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				$("#inputEmail").focus();
 				return false;
 			}
+			if($("#inputCemail").val()==""){
+				swal({text:"이메일 인증번호를 입력해주세요.", icon:"error"})
+				$("#inputCemail").focus();
+				return false;
+			}
 			if($("#inputPassword").val()==""){
 				swal({text:"패스워드를 입력해주세요.", icon:"error"})
 				$("#inputPassword").focus();
@@ -173,6 +184,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			}
 		});
 		
+		// 이메일 형식검사 및 이메일 전송
 		$('#idCheck').on('click', function(){ 
 			$.ajax({ 
 				type: 'GET', 
@@ -185,11 +197,16 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
 						idx= true;
 						$('#inputEmail').attr("readonly", true);
-						
- 						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
+ 						var html="<tr><td colspan='3' style='color: green'>이메일에 인증 번호를 확인해주세요.</td></tr>"; 
 						$('#idResult').empty();
+						$('#cEmailResult').empty();
 						$('#idResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+							$.ajax({ 
+								type: 'GET', 
+								url: '${pageContext.request.contextPath}/user/signUp/mail', 
+								data: { "id" : $('#inputEmail').val() } 
+							});  
 					}else if(atSign == -1 || com == -1){
 						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요.</td></tr>";
 						
@@ -212,7 +229,41 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				}
 			});  
 		});  
-		
+		//이메일 인증번호 확인
+		$('#cEmailCheck').on('click', function(){ 
+			$.ajax({ 
+					type: 'GET', 
+					url: '${pageContext.request.contextPath}/cEmailCheck', 
+					data: { "cMail" : $('#inputCemail').val() }, 
+					success: function(data){ 
+						if(data == 0 && $('#inputCemail').val() != ''){
+							$('#inputCemail').attr("readonly", true);
+								var html="<tr><td colspan='3' style='color: green'>인증성공</td></tr>"; 
+							$('#cEmailResult').empty();
+							$('#cEmailResult').append(html);
+							$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+						}
+						/* else if($('#inputEmail').val() == ''){
+							var html="<tr><td colspan='3' style='color: red'>이메일 전송을해주세요</td></tr>";
+							$('#cEmailResult').empty();
+							$('#cEmailResult').append(html);
+							document.getElementById("inputCemail").value="";
+							$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+							$("#inputEmail").focus();
+						} */
+						else{
+							var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요)</td></tr>";
+							$('#cEmailResult').empty();
+							$('#cEmailResult').append(html);
+							document.getElementById("inputCemail").value="";
+							$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+						}
+					},
+					error: function(){
+						alert("에러");
+					}
+			});
+		});
 		
 		// 휴대폰 중복확인
 		$('#telCheck').on('click', function(){ 
@@ -267,7 +318,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						$('#cTelResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
-						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요.)</td></tr>";
+						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요)</td></tr>";
 						$('#cTelResult').empty();
 						$('#cTelResult').append(html);
 						document.getElementById("inputCtel").value="";

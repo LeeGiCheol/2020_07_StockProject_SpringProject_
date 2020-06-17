@@ -14,7 +14,7 @@
 	<div class="top-nav">
 		<!-- 상단  nav -->
 		<c:choose>
-			<c:when test="${loginUser eq null}">
+			<c:when test="${loginUser eq null and naverLoginUser eq null}">
 				<ul class="nav justify-content-end top-nav">
 					<li class="breadcrumb-item"><a id="top-nav-font"
 						href="/signInPage">로그인</a></li>
@@ -28,7 +28,10 @@
 						src="/resources/img/pi_08.png"></a>
 					<dl>
 						<dt>
-							<strong>${loginUser.nickname}</strong> 님
+							<c:choose>
+							<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
+							<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
+							</c:choose>
 						</dt>
 					</dl>
 					<li class="breadcrumb-item"><a id="top-nav-font"
@@ -92,7 +95,7 @@
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="/board/free">자유게시판</a> <a
-								class="dropdown-item" href="#">포트폴리오</a>
+								class="dropdown-item" href="/portfolio">포트폴리오</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="/news">뉴스</a>
 						</div></li>

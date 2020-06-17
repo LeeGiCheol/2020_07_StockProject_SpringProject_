@@ -28,9 +28,17 @@ public class Info {
 	private String[] searchUpDown; // 검색 TOP 인기등락률
 	private String[] searchSangHa; // 검색 TOP 전날대비 상승 하락
 	
+	private String news;
 	
 	
 	
+	
+	public String getNews() {
+		return news;
+	}
+	public void setNews(String news) {
+		this.news = news;
+	}
 	public String getStockName() {
 		return stockName;
 	}

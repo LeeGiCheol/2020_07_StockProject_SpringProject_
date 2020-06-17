@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +31,16 @@ public class MyPostServiceImpl implements MyPostService {
 		boardPage.getUtil().put("boardKeyword", boardKeyword);
 		commentPage.getUtil().put("id", loginUser.getId());
 		commentPage.getUtil().put("commentKeyword", commentKeyword);
+
 		List<BoardVO> myBoard = myPostDAO.myBoardList(boardPage);
+		for (int i = 0; i < myBoard.size(); i++) {
+			myBoard.get(i).setBdateTime(new Date(myBoard.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		}
+		
 		List<CommentVO> myComment = myPostDAO.myCommentList(commentPage);
+		for (int i = 0; i < myComment.size(); i++) {
+			myComment.get(i).setCdateTime(new Date(myComment.get(i).getCdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		}
 		
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("myBoard", myBoard);
@@ -46,9 +55,23 @@ public class MyPostServiceImpl implements MyPostService {
 	public void deleteMyPost(String deleted[], String type) {
 		Map<String, String> myMap = new HashMap<String, String>();
 		myMap.put("type", type);
+		String deleted2[] = new String[deleted.length/2]; //삭제 될 comment의 pno배열
+		String deletedCno[] = new String[deleted.length/2];
+		if(type.equals("comment")) {
+			for (int i = 0; i < deleted.length; i++) {
+				if(i % 2 == 1)
+					deleted2[i/2] = deleted[i];
+				else
+					deletedCno[i/2] = deleted[i];
+			}
+		}
+		
+		deleted = deletedCno;
+		
 		for (int i = 0; i < deleted.length; i++) {
 			myMap.put("no", deleted[i]);
-			myPostDAO.deleteMyPost(myMap);
+			myPostDAO.deleteMyPost(myMap, deleted2[i]);
+			
 		}
 	}
 

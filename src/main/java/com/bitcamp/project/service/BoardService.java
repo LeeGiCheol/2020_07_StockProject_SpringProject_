@@ -19,4 +19,5 @@ public interface BoardService {
 	public int updateViews(BoardVO vo);
 	public int boardLikes(BoardVO vo);
 	public List<BoardVO> boardPrevNext(BoardVO vo);
+	public int reportBoard(BoardVO vo);
 }

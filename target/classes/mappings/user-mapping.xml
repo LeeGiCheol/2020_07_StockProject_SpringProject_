@@ -75,6 +75,7 @@
 	<select id="signInCheck" parameterType="user" resultType="user">
 		SELECT *
 		FROM user
+		natural join usermoney
 		WHERE id = #{id}
 	</select>
 	<!-- 아이디찾기 -->
@@ -120,7 +121,49 @@
 		set NICKNAME=#{nickname}, ADDRESS=#{address}, showEsetSetting=#{showEsetSetting}
 		where ID=#{id}
 	</update>
+	
+	<select id="getChargingCount" parameterType="String" resultType="int">
+		select charge
+		from user
+		where id=#{id}
+	</select>
+	
+	<update id="consumpCharge" parameterType="String">
+		update user
+		natural join usermoney
+		set charge=charge-1, money=10000000
+		where id=#{id}
+	</update>
+	
+	<select id="getAllUser" resultType="user">
+		select *
+		from user
+		natural join usermoney
+	</select>
+	
+	<update id="updateRanking" parameterType="map">
+		update userranking
+		set accumasset=#{asset}
+		where id=#{id}
+	</update>
+	
+	<select id="getRanking" parameterType="String" resultType="int">
+		select count(*)
+		from userranking 
+		where accumasset >= (select accumasset 
+							from userranking 
+                    		where id=#{id});
+	</select>
+	
+	<select id="getAccumAsset" parameterType="String" resultType="long">
+		select accumasset
+		from userranking
+		where id=#{id}
+	</select>
 	<!-- <insert id="nickname">
+		
+
+		
 	</insert> -->
 	
 	<!-- <update id="updateBoard">
