@@ -72,7 +72,7 @@
 	</update>
 	
 	<select id="getCurrentRevenue" resultType="map">
-		SELECT nickname, ifnull((accumasset-resetpoint)/resetpoint*100, 0) as revenue FROM userranking as uk join usernickname as un on un.id = uk.id Limit 10;
+		SELECT nickname, ifnull((accumasset-resetpoint)/resetpoint*100, 0) as revenue FROM userranking as uk join usernickname as un on un.id = uk.id order by revenue desc Limit 10 ;
 	</select>
 	
 	<!-- 로그인시 id and pw틀렸는지 체크 SignInDAO.login -->
