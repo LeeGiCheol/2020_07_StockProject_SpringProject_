@@ -378,6 +378,10 @@ textarea {
     padding: 20px 20px 40px;
 }
 
+.board-view-cont p img{
+max-width: 100%;
+}
+
 </style>
 </head>
 <body>
