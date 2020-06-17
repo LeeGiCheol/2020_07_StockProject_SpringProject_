@@ -227,7 +227,7 @@ input[type="checkbox"]:not(old) + label {
     height: 18px;
     line-height: 18px;
     padding: 0 0 2px 20px;
-    background-image: url(//resources/img/bg_check_m.png);
+    background-image: url(/resources/img/bg_check_m.png);
     background-position: 0 2px;
     background-repeat: no-repeat;
     background-size: 14px 14px;
@@ -343,9 +343,171 @@ input[type="button"], button {
     border: 1px solid #ff545b;
     color: #fff;
 }
-
-
-
+/* start 회원가입 기본정보 입력 */
+.member .men-step fieldset ul {
+    border: 1px solid #ccc;
+}
+.member .men-step fieldset ul li:first-child {
+    border: 0;
+}
+.member .men-step fieldset ul li {
+    position: relative;
+    border-top: 1px solid #eaeaea;
+    padding: 10px 0;
+}
+.member .men-step [class*="input-style-id"] {
+    width: 85%;
+}
+.member .men-step [class*="input-style"] {
+    display: inline-block;
+    width: 100%;
+}	
+[class*="input-style"] {
+    display: inline-block;
+    position: relative;
+}
+.member .men-step [class*="input-style"] label {
+    left: 32px;
+}
+[class*="input-style"] label {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    line-height: 27px;
+    color: #888;
+}
+.member .men-step [class*="input-style"] input {
+    border: 0;
+    font-size: 14px;
+    padding: 0 0 0 35px;
+    height: 27px;
+    background: url(/resources/img/ico_member.png) no-repeat 0 0;
+    background-size: 36px 750px;
+}
+input[type="text"], input[type="password"], input[type="tel"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: 1;
+    width: 100%;
+    padding: 5px 35px 6px 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+.member [class*="input-style"] button {
+    top: 0;
+    margin-top: 0;
+}
+[class*="input-style"] .delete {
+    background-position: 10px -500px;
+    display: none;
+}
+[class*="input-style"] button {
+    position: absolute;
+    right: 1px;
+    top: 50%;
+    margin-top: -13px;
+    width: 30px;
+    height: 27px;
+    text-indent: -9999px;
+    background-image: url(/resources/img/bg_form.png);
+    background-repeat: no-repeat;
+}
+.member .men-step fieldset ul li p {
+    padding-left: 37px;
+    margin: 0;
+}
+p.error-text {
+    margin-top: 8px !important;
+}
+.error-text {
+    font-size: 13px;
+    color: #ff545b;
+    /* margin-top: 8px; */
+}
+.ok-text {
+    font-size: 13px;
+    color: #1ea3fe;
+    margin-top: 8px;
+}
+.member .men-step fieldset ul li .btn-s, .member .men-step fieldset ul li .search-period {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+[class*="btn-"].gray {
+    background: #444;
+    border: 1px solid #444;
+    color: #fff;
+}
+[class*="btn-s"] {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    color: #888;
+}
+.member .men-step [class*="input-style-pass"] input {
+    background-position: 0 -50px;
+}
+.member .men-step [class*="input-style-mail"] input, .member .men-step [class*="input-style-mail2"] input {
+    background-position: 0 -209px;
+}
+.member .men-step [class*="input-style-phone"] input, .member .men-step [class*="input-style-phone2"] input {
+    background-position: 0 -261px;
+}
+.guide-text03 {
+    background: #f9f9f9;
+    padding: 20px;
+    font-size: 13px;
+    color: #888;
+    line-height: 150%;
+}
+.guide-text03 dt {
+    font-weight: bold;
+}
+.guide-text03 strong, .guide-text03 dt {
+    font-size: 14px;
+    display: block;
+    line-height: 20px;
+    margin-bottom: 10px;
+    background: url(/resources/img/btn_etc.png) no-repeat 0 -75px;
+    background-size: 20px 95px;
+    padding-left: 25px;
+}
+.guide-text03 dd {
+    padding-left: 9px;
+    font-size: 13px;
+}
+.guide-text03 dd li {
+    line-height: 1.6;
+    background: url(/resources/img/bul_dot2.png) no-repeat left 8px;
+    padding-left: 6px;
+    font-size: 13px;
+    color: #888;
+    letter-spacing: -0.01em;
+}
+.member li .byte {
+    position: absolute;
+    right: 100px;
+    top: 17px;
+    font-size: 13px;
+    color: #888;
+}
+.member li .byte b {
+    color: #444;
+}
+.member .men-step [class*="input-style-mail"],.member .men-step [class*="input-style-nick"],.member .men-step [class*="input-style-phone"], .member .men-step [class*="input-style-mail2"]{
+    width: 84%;
+}
+.member .men-step [class*="input-style-address"]{
+    width: 78%;	
+}
 
 
 
@@ -399,6 +561,10 @@ body.member .containerNew {
     width: 32.3%;
     height: 64px;
 }
+.step-mem li:nth-of-type(1) div:after {
+    background: url(/resources/img/step_mem.png) no-repeat 0 0;
+    background-size: 25px 260px;
+}
 .step-mem li.selected:after {
     height: 2px;
 }	
@@ -427,6 +593,9 @@ body.member .containerNew {
     margin-left: -3px;
     height: 25px;
     width: 25px;
+}
+.step-mem li div > span i {
+    display: none;
 }
 .step-mem li div > em {
     font-size: 13px;
@@ -595,6 +764,51 @@ input[type="checkbox"]:not(old) + label {
     clear: both;
     overflow: hidden;
     padding: 0 15px 40px;
+}
+/* start 회원가입 기본정보 입력 */
+.member .men-step fieldset ul {
+    border: 0;
+}
+.member .men-step [class*="input-style"] {
+    display: inline-block;
+    width: 100%;
+}
+.member .men-step [class*="input-style-id"],.member .men-step [class*="input-style-mail"], .member .men-step [class*="input-style-nick"], .member .men-step [class*="input-style-mail2"], .member .men-step [class*="input-style-certif"] {
+    width: 75%;
+}
+.member .men-step [class*="input-style-phone"] {
+    width: 75%;
+}
+[class*="input-style"] label {
+    line-height: 36px;
+}
+input[type="text"], input[type="password"], input[type="tel"] {
+    padding: 9px 35px 10px 10px;
+    height: 36px;
+}
+.member .men-step fieldset ul li [class*="input-style"] button {
+    height: 27px;
+    background-position: 10px -300px;
+}
+[class*="input-style"] .delete {
+    background-position: 10px -295px;
+    background-size: 20px 450px;
+}
+.member .men-step .error-text {
+    padding: 0 10px;
+}
+.member .men-step fieldset ul li .btn-s {
+    padding-left: 3px;
+    padding-right: 3px;
+    letter-spacing: -0.05em;
+    width: 20%;
+    height: 27px;
+}
+.guide-text03 {
+    padding: 15px;
+}
+.member .men-step fieldset ul li .byte, .member .men-step fieldset ul li mark {
+    display: none;
 }
 }
 
