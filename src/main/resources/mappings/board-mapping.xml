@@ -215,8 +215,15 @@
 	</update>
 	
 	<insert id="reportBoard">
-		INSERT INTO reportBoard(pno, rcontent, rdatetime)
-		VALUES (#{pno}, #{rcontent}, now())
+		INSERT INTO reportBoard(pno, title, rtype, rcontent, rdatetime, nickname)
+		VALUES (#{pno}, #{title}, #{rtype}, #{rcontent}, now(), #{nickname})
 	</insert>
+
+	<select id="reportBoardCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM reportBoard
+		WHERE pno = #{pno}
+		AND nickname = #{nickname}
+	</select>
 	
 </mapper>

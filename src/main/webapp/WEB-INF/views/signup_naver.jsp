@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>회원가입</title>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
@@ -17,46 +18,33 @@
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
+
+	$(document).ready(function(){
+		swal({text:"가입을 위해 추가 정보 입력이 필요합니다", icon:"warning"})
+	});
 </script>
 </head>
 <body>
 	<%@include file="mainheader.jsp" %>
-	<form action="/signUp" name="form" method="POST">
+	<form action="/signUp/kakao" name="form" method="POST">
 		<div class="container">
 			<div class="allBody">
-				<label for="inputEmail">이메일</</label> 
 				<div class="form-group col-md-6" style="display: -webkit-box;">
-					<input type="email"	class="form-control" id="inputEmail" name="id" placeholder="인증받을 이메일을 입력해주세요." onKeyPress="return spaceCheck(event)">
-					<button type="button" class="btn btn-secondary" id="idCheck">인증번호전송</button>
+					<input type="email"	class="form-control" id="inputEmail" name="id" value="${naverId}" readonly style="display:none">
 					<ul><li style="list-style:none;" id="idResult"></li></ul>
 				</div>
-				<label for="inputEmail col-md-6">인증번호확인</label>
-				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text" class="form-control" id="inputCemail" name="cEmail" placeholder="인증번호를 입력해주세요." onKeyPress="return numkeyCheck(event)"> 
-                	 <button type="button" class="btn btn-secondary" id="cEmailCheck">인증번호확인</button>
-              		 <ul><li style="list-style:none;" id="cEmailResult"></li></ul>	 
-				</div>
-			<div class="password">
-				<label for="inputPassword">비밀번호</label>
 				<div class="form-group col-md-6" >
-					 <input type="password" class="form-control" id="inputPassword" placeholder="8자 ~ 13자 입력해주세요." name="pw" oninput="checkPw()" onKeyPress="return spaceCheck(event)">
+					 <input style="display:none" type="password" class="form-control" id="inputPassword" name="pw" value="naver">
 				</div>
-				<label for="inputPasswordAgain">비밀번호확인</label>
-				<div class="form-group col-md-6" style="display: -webkit-box;">
-					 <input	type="password" class="form-control" id="inputPasswordAgain" placeholder="한 번 더 입력해주세요. " oninput="checkPw()" onKeyPress="return spaceCheck(event)">
-					 <ul><li style="list-style:none;" id="pwResult"></li></ul>
-				</div>
-				
-            </div>
 				<label for="inputnickname col-md-6">닉네임</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputNickname" name="nickname" onKeyPress="return spaceCheck(event)">
+					 <input type="text"	class="form-control" id="inputNickname" name="nickname" placeholder="추천 닉네임 : ${naverNickname}" onKeyPress="return spaceCheck(event)">
 					 <button type="button" class="btn btn-secondary" id="nickCheck">　중복확인　</button>	
 					 <ul><li style="list-style:none;" id="nickNameResult"></li></ul>
 				</div>
 				<label for="inputAddress col-md-6">추천인</label>
 				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="" onKeyPress="return spaceCheck(event)">
+					 <input type="text"	class="form-control" id="inputFriend" name="friend" onKeyPress="return spaceCheck(event)">
 					 <button type="button" class="btn btn-secondary" id="friendCheck">　추천하기　</button>	
 					 <ul><li style="list-style:none;" id="friendResult"></li></ul>
 				</div>
@@ -69,8 +57,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				
 				<label for="inputPhone col-md-6" >휴대폰</label>
 				<div class="form-group" style="display: -webkit-box;">
-					<input placeholder="휴대폰번호롤 입력해주세요." type="text"	class="form-control" id="inputPhone" name="tel" onKeyPress="return numkeyCheck(event)" maxlength="11">
-					<button type="button" class="btn btn-secondary" id="telCheck">인증번호전송</button>
+					<input placeholder="휴대폰번호를 입력해주세요." type="text"	class="form-control" id="inputPhone" name="tel" onKeyPress="return numkeyCheck(event)" maxlength="11">
+					<button type="button" class="btn btn-secondary" id="telCheck">인증번호받기</button>
 					<ul><li style="list-style:none;" id="telResult"></li></ul>		
 				</div>
 				
@@ -81,6 +69,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
               		 <ul><li style="list-style:none;" id="cTelResult"></li></ul>	 
 				</div>
            </div>
+           
                 
                 <!-- 노출 수정 -->
             <div style="margin-left:294px; margin-top: 30px; margin-bottom: 10px; display: -webkit-box;">
@@ -103,7 +92,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
                 
             </div>
             <div style="text-align:center">
-                <div><button type="submit" class="nextButton" data-text-content="true" id="submit" >회원가입</button></div> <!--disabled="disabled"  -->
+                <div><button type="submit" class="nextButton" data-text-content="true" id="submit" >회원가입</button></div>
             </div>
 	</form>
 		<%@include file="mainfooter.jsp" %>
@@ -144,21 +133,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		var checkflag = 0;
 	
 		$("#submit").on("click", function(){
-			if($("#inputEmail").val()==""){
-				swal({text:"이메일을 입력해주세요.", icon:"error"})
-				$("#inputEmail").focus();
-				return false;
-			}
-			if($("#inputCemail").val()==""){
-				swal({text:"이메일 인증번호를 입력해주세요.", icon:"error"})
-				$("#inputCemail").focus();
-				return false;
-			}
-			if($("#inputPassword").val()==""){
-				swal({text:"패스워드를 입력해주세요.", icon:"error"})
-				$("#inputPassword").focus();
-				return false;
-			}
 			if($("#inputNickname").val()==""){
 				swal({text:"닉네임을 입력해주세요.", icon:"error"})
 				$("#inputNickname").focus();
@@ -178,92 +152,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			
 			var checked =  $('#passwordCheck').val();
 			// 비밀번호 확인 체크가 안되면 value는 undefiend 되면 value에 값이 들어와 로그인 된다  
-			if(checked == undefined){
-				swal({text:"비밀번호를 확인해주세요.", icon:"error"})
-				return false;
-			}
 		});
 		
-		// 이메일 형식검사 및 이메일 전송
-		$('#idCheck').on('click', function(){ 
-			$.ajax({ 
-				type: 'GET', 
-				url: '${pageContext.request.contextPath}/idCheck', 
-				data: { "id" : $('#inputEmail').val() }, 
-				success: function(data){ 
-					var atSign = $.trim($('#inputEmail').val().indexOf("@"));
-					var com = $.trim($('#inputEmail').val().indexOf("."));
-					// @ 와 .이 없으면 이메일 형식이 안맞는다고 띄우기 
-					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
-						idx= true;
-						$('#inputEmail').attr("readonly", true);
- 						var html="<tr><td colspan='3' style='color: green'>이메일에 인증 번호를 확인해주세요.</td></tr>"; 
-						$('#idResult').empty();
-						$('#cEmailResult').empty();
-						$('#idResult').append(html);
-						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
-							$.ajax({ 
-								type: 'GET', 
-								url: '${pageContext.request.contextPath}/user/signUp/mail', 
-								data: { "id" : $('#inputEmail').val() } 
-							});  
-					}else if(atSign == -1 || com == -1){
-						var html="<tr><td colspan='3' style='color: red'>이메일 형식을 맞춰주세요.</td></tr>";
-						
-						$('#idResult').empty();
-						$('#idResult').append(html);
-						document.getElementById("inputEmail").value="";
-						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-					}
-					else{
-						var html="<tr><td colspan='3' style='color: red'>중복된 이메일입니다.</td></tr>";
-						
-						$('#idResult').empty();
-						$('#idResult').append(html);
-						document.getElementById("inputEmail").value="";
-						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-					}
-				},
-				error: function(){
-					alert("에러");
-				}
-			});  
-		});  
-		//이메일 인증번호 확인
-		$('#cEmailCheck').on('click', function(){ 
-			$.ajax({ 
-					type: 'GET', 
-					url: '${pageContext.request.contextPath}/cEmailCheck', 
-					data: { "cMail" : $('#inputCemail').val() }, 
-					success: function(data){ 
-						if(data == 0 && $('#inputCemail').val() != ''){
-							$('#inputCemail').attr("readonly", true);
-								var html="<tr><td colspan='3' style='color: green'>인증성공</td></tr>"; 
-							$('#cEmailResult').empty();
-							$('#cEmailResult').append(html);
-							$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
-						}
-						/* else if($('#inputEmail').val() == ''){
-							var html="<tr><td colspan='3' style='color: red'>이메일 전송을해주세요</td></tr>";
-							$('#cEmailResult').empty();
-							$('#cEmailResult').append(html);
-							document.getElementById("inputCemail").value="";
-							$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-							$("#inputEmail").focus();
-						} */
-						else{
-							var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요)</td></tr>";
-							$('#cEmailResult').empty();
-							$('#cEmailResult').append(html);
-							document.getElementById("inputCemail").value="";
-							$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-						}
-					},
-					error: function(){
-						alert("에러");
-					}
-			});
-		});
 		
 		// 휴대폰 중복확인
 		$('#telCheck').on('click', function(){ 
@@ -318,7 +208,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						$('#cTelResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
-						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요)</td></tr>";
+						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요.)</td></tr>";
 						$('#cTelResult').empty();
 						$('#cTelResult').append(html);
 						document.getElementById("inputCtel").value="";
@@ -405,38 +295,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			});  
 		});  
 	});
-	
 		
-	function checkPw() {
-		var password = $('#inputPassword').val();
-		var passwordLength = $('#inputPassword');
-		var passwordAgain = $('#inputPasswordAgain').val();
-	    // 비밀번호, 비밀번호 확인이 다른 경우
-		if (password != passwordAgain) {
-			$("#inputPasswordAgain").css("background-color", "#FFCECE");
-			
-			$('#pwResult').empty();
-			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요.</td></tr>"; 
-			$('#pwResult').append(html);
-			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-		}
-		// 비밀번호 길이 제한
-		else if($('#inputPassword').val().length < 8 || $('#inputPassword').val().length > 13){
-		
-			var html="<tr><td colspan='3' style='color: red'>비밀번호는 8자리 이상 \n13자리 이하만 가능합니다.</td></tr>"; 
-			$('#pwResult').empty();
-			$('#pwResult').append(html);
-			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
-		} 
-	    // 맞는 경우
-		else if(password == passwordAgain){
-			$("#inputPasswordAgain").css("background-color", "#B0F6AC");
-			var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>사용 가능합니다.</td></tr>"; 
-			$('#pwResult').empty();
-			$('#pwResult').append(html);
-			$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
-		}
-	}
 </script>
 </body>
 </html>
