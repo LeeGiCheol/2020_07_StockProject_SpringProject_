@@ -17,4 +17,5 @@ public interface UserInfoDAO {
 	public void consumpCharge(String id);
 	public long getAccumAsset(String id);
 	public int getRanking(String id);
+	public List getCurrentRevenue();
 }

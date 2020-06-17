@@ -20,6 +20,11 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	
 	
 	@Override
+	public List getCurrentRevenue() {
+		return mybatis.selectList("user.getCurrentRevenue");
+	}
+
+	@Override
 	public void deleteNotice(String id) {
 		mybatis.delete("user.deleteNotice", id);
 	}

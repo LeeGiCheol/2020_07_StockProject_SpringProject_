@@ -96,6 +96,9 @@ public class TradingCheck {
 				map.put("asset", asset);
 				mybatis.update("user.updateRanking",map);
 			}
+			if(trriger==2) {
+				mybatis.update("user.setResetPoint");
+			}
 		}
 		Map<String, Info> info = stockToMap();
 

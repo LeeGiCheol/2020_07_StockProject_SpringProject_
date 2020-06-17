@@ -20,6 +20,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	
 	@Override
+	public List getCurrentRevenue() {
+		return userInfoDAO.getCurrentRevenue();
+	}
+
+	@Override
 	public void deleteNotice(String id) {
 		userInfoDAO.deleteNotice(id);
 	}

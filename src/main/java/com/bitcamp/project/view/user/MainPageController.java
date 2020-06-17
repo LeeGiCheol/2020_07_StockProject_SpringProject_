@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.TradeService;
+import com.bitcamp.project.service.UserInfoService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.Info;
 
@@ -25,6 +26,9 @@ public class MainPageController {
 	
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	UserInfoService userInfoService;
 
 	@GetMapping(value = "/mainPage")
 	public ModelAndView mainPage(BoardVO vo) {
@@ -68,7 +72,10 @@ public class MainPageController {
 		mav.addObject("kospi_highprice", kospiData[3]);
 		mav.addObject("kospi_lowprice", kospiData[4]);
 		mav.addObject("kospi_lastprice", kospiData[5]);
-
+		
+		List list = userInfoService.getCurrentRevenue();
+		System.out.println(list);
+		mav.addObject("currentRevenue", list);
 		mav.setViewName("mainpage");
 		return mav;
 	}
@@ -104,4 +111,13 @@ public class MainPageController {
 		}
 		return map;
 	}
+	
+//	@GetMapping(value = "/mainPage/userRank")
+//	@ResponseBody
+//	public List userRank() {
+//		List list = userInfoService.getCurrentRevenue();
+//		System.out.println(list);
+//		return list;
+//	}
+	
 }

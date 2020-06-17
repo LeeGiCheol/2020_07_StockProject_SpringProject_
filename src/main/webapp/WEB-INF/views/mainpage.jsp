@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -10,48 +10,54 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>mainpage</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainpage.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 .containerNew {
-    position: relative;
-    max-width: 1260px;
-    height: 100%;
-    padding: 20px 0 0 0;
-    margin: 0 auto;
+	position: relative;
+	max-width: 1260px;
+	height: 100%;
+	padding: 20px 0 0 0;
+	margin: 0 auto;
 }
+
 .btnOverInfo {
-float:left;
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 28px;
-    color: #333;
+	float: left;
+	font-size: 28px;
+	font-weight: 500;
+	line-height: 28px;
+	color: #333;
 }
+
 #nowStock {
-    margin-left: 10px;
-    padding: 0;
-        font-size: 25px;
-    color: #1a64d2 !important;
+	margin-left: 10px;
+	padding: 0;
+	font-size: 25px;
+	color: #1a64d2 !important;
 }
-@media only screen and (max-width: 979px){
-.containerNew {
-    padding: 0;
+
+@media only screen and (max-width: 979px) {
+	.containerNew {
+		padding: 0;
+	}
 }
-}
+
 .refresh {
-position:relative;
-    float: left;
-    margin-left: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    padding-top: 5px;
-    color: #333;
-    top: 7px;
+	position: relative;
+	float: left;
+	margin-left: 5px;
+	font-size: 12px;
+	font-weight: 600;
+	padding-top: 5px;
+	color: #333;
+	top: 7px;
 }
 </style>
 </head>
@@ -61,28 +67,36 @@ position:relative;
 	<div class="all-dim"></div>
 
 	<div class="containerNew">
-		
+
 		<div class="row">
 			<div class="col-md-9">
-			<!-- 현재 코스피 주가지수 -->
-					<div class="chartdata-1">
-						<div class="chartdata-body">
+				<!-- 현재 코스피 주가지수 -->
+				<div class="chartdata-1">
+					<div class="chartdata-body">
 						<div class="chartdate-nav">
-							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current_kospi/100 } ${(kospi_lastprice[0]-kospi_lastprice[1])/100} ${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></h3>
-							
+							<h3 class="btnOverInfo" id="h3_stockName">
+								KOSPI<span id="nowStock">${current_kospi/100 }
+									${(kospi_lastprice[0]-kospi_lastprice[1])/100}
+									${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span>
+							</h3>
+
 						</div>
 						<div id="chartcontainer"></div>
-						</div>
 					</div>
-					<div class="chartdata-2">
-						<div class="chartdata-body">
+				</div>
+				<div class="chartdata-2">
+					<div class="chartdata-body">
 						<div class="chartdate-nav">
-							<h3 class="btnOverInfo" id="h3_stockName">KOSDAQ<span id="nowStock">${current_kosdaq/100 } ${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100} ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></h3>
-							
+							<h3 class="btnOverInfo" id="h3_stockName">
+								KOSDAQ<span id="nowStock">${current_kosdaq/100 }
+									${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}
+									${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span>
+							</h3>
+
 						</div>
 						<div id="chartcontainer2"></div>
-						</div>
 					</div>
+				</div>
 
 				<div class="stock-ranking">
 					<nav>
@@ -135,14 +149,16 @@ position:relative;
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
-								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
+								<button type="button" class="btn btn-secondary btn-sm plus"
+									onclick="location.href='/board/free?orderby=best'">더보기</button>
 							</div>
 						</nav>
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
 									<c:forEach var="bestBoardList" items="${bestBoardList}">
-										<li id="test_1"><a href="/board/free/detail?pno=${bestBoardList.pno}">${bestBoardList.title}</a>
+										<li id="test_1"><a
+											href="/board/free/detail?pno=${bestBoardList.pno}">${bestBoardList.title}</a>
 											<p class="nickname">${bestBoardList.nickname}</p></li>
 									</c:forEach>
 								</ul>
@@ -155,14 +171,16 @@ position:relative;
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">신규 글</a>
-								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free'">더보기</button>
+								<button type="button" class="btn btn-secondary btn-sm plus"
+									onclick="location.href='/board/free'">더보기</button>
 							</div>
 						</nav>
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
 									<c:forEach var="newBoardList" items="${newBoardList}">
-										<li id="test_1"><a href="/board/free/detail?pno=${newBoardList.pno}">${newBoardList.title}</a>
+										<li id="test_1"><a
+											href="/board/free/detail?pno=${newBoardList.pno}">${newBoardList.title}</a>
 											<p class="nickname">${newBoardList.nickname}</p></li>
 									</c:forEach>
 								</ul>
@@ -286,27 +304,29 @@ position:relative;
 								<form method='post' action="/signIn">
 									<fieldset>
 										<div class="chk">
-											<input type="checkbox" name="sID" id="check-id">
-											<label for="check-id">아이디 저장</label>
-											<input type="checkbox" name="autoLogin" onClick="" id="check-log">
-											<label for="check-log">자동로그인</label>
+											<input type="checkbox" name="sID" id="check-id"> <label
+												for="check-id">아이디 저장</label> <input type="checkbox"
+												name="autoLogin" onClick="" id="check-log"> <label
+												for="check-log">자동로그인</label>
 										</div>
 										<p>
-											<input type="text" name="id" value="" id="user_id" title="아이디 입력" placeholder="아이디">
-											<input type="password" name="pw" value="" id="user_pw" title="비밀번호 입력" placeholder="비밀번호"> 
-											<input type="submit" value="로그인" onclick="">	
+											<input type="text" name="id" value="" id="user_id"
+												title="아이디 입력" placeholder="아이디"> <input
+												type="password" name="pw" value="" id="user_pw"
+												title="비밀번호 입력" placeholder="비밀번호"> <input
+												type="submit" value="로그인" onclick="">
 										</p>
 									</fieldset>
 								</form>
 								<p>
-									<a href="/signUpPage/1">회원가입</a>
-									<span><a href="/forgetId" class="idforgot">아이디 찾기</a>
-									<a href="/forgetPassword">비밀번호 찾기</a></span>
-								    <span class="social-login"> 
-								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href='https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code' class="social-type kakaotalk">카카오톡 로그인</a>
-									<a href="#" class="social-type facebook">페이스북 로그인</a>
-									<a href="#" class="social-type google">구글 로그인</a>
+									<a href="/signUpPage/1">회원가입</a> <span><a
+										href="/forgetId" class="idforgot">아이디 찾기</a> <a
+										href="/forgetPassword">비밀번호 찾기</a></span> <span class="social-login">
+										<a href="/naverLogin" class="social-type naver">네이버 로그인</a> <a
+										href='https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code'
+										class="social-type kakaotalk">카카오톡 로그인</a> <a href="#"
+										class="social-type facebook">페이스북 로그인</a> <a href="#"
+										class="social-type google">구글 로그인</a>
 									</span>
 								</p>
 							</div>
@@ -325,37 +345,41 @@ position:relative;
 								<dl>
 									<dt>
 										<c:choose>
-										<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
-										<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
+											<c:when test="${loginUser.nickname ne null}">
+												<strong>${loginUser.nickname}</strong>　님 </c:when>
+											<c:when test="${naverLoginUser ne null}">
+												<strong>${naverLoginUser}</strong>　님</c:when>
 										</c:choose>
 										<button type="button" class="logout"
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
 										<a href="/myPage01">내정보</a>
-									<c:choose>
-										<c:when test="${naverLoginUser ne null}">
-											<a onclick="notLocal();">비밀번호 변경</a>
-										</c:when>
-										<c:otherwise>
-											<a href="mypageUpdatePassword">비밀번호 변경</a>
-										</c:otherwise>
-									</c:choose>
-										
+										<c:choose>
+											<c:when test="${naverLoginUser ne null}">
+												<a onclick="notLocal();">비밀번호 변경</a>
+											</c:when>
+											<c:otherwise>
+												<a href="mypageUpdatePassword">비밀번호 변경</a>
+											</c:otherwise>
+										</c:choose>
+
 									</dd>
 								</dl>
 								<ul class="dot-list02 color-rightgray">
-									<li id="_liBall">자산 <a href="/myPage02">0</a> 원</li>
+									<li id="_liBall">자산 <a href="/myPage02">0</a> 원
+									</li>
 									<li id="_liCyber">포인트 <a href="/myPage01">${loginUser.point}점</a></li>
 								</ul>
 							</div>
 							<div class="login-after-btn">
-								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span
+									id="noticeMain"></span></a>
 							</div>
 						</div>
 					</c:otherwise>
 				</c:choose>
-					<script type="text/javascript">
+				<script type="text/javascript">
 		$(function() {
 		var obj = new Object();
 		var jsonData = JSON.stringify(obj);
@@ -377,29 +401,16 @@ position:relative;
 
 
 				<div class="ranking">
-					<span class="ranking-nav">주간 랭킹</span>
+					<span class="ranking-nav">일간 랭킹</span>
 					<div class="ranking-body">
 						<ul>
-							<li id="test_1"><a><i>1</i> <span>soccer</span>
-									<p class="color-red">21%</p></a></li>
-							<li id="test_2"><a><i>2</i> <span>rose</span>
-									<p class="color-red">19%</p></a></a></li>
-							<li id="test_3"><a><i>3</i> <span>김선달</span>
-									<p class="color-red">17%</p></a></li>
-							<li id="test_4"><a><i>4</i> <span>칠성부대</span>
-									<p class="color-red">14%</p></a></li>
-							<li id="test_5"><a><i>5</i> <span>강태공</span>
-									<p class="color-red">13%</p></a></li>
-							<li id="test_6"><a><i>6</i> <span>황금돼지</span>
-									<p class="color-red">11%</p></a></li>
-							<li id="test_7"><a><i>7</i> <span>사오정</span>
-									<p class="color-red">10%</p></a></li>
-							<li id="test_8"><a><i>8</i> <span>개미왕</span>
-									<p class="color-red">7%</p></a></li>
-							<li id="test_9"><a><i>9</i> <span>답없다</span>
-									<p class="color-red">5%</p></a></li>
-							<li id="test_10"><a><i>10</i> <span>어부</span>
-									<p class="color-red">4%</p></a></li>
+							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
+								<li class="first"><a><i> <c:out value="${vs.count}"/></i> <span><c:out
+												value="${list.nickname}" /></span>
+										<p class="color-red">
+											<c:out value="${list.revenue}%" />
+										</p></a></li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
@@ -431,10 +442,12 @@ position:relative;
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	
+
 	<script>
 	$(document).ready(function(){
 		

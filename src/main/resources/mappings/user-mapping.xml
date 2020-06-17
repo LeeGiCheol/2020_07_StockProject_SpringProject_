@@ -71,6 +71,10 @@
 		WHERE id IN (#{friend}, #{id})
 	</update>
 	
+	<select id="getCurrentRevenue" resultType="map">
+		SELECT nickname, ifnull((accumasset-resetpoint)/resetpoint*100, 0) as revenue FROM userranking as uk join usernickname as un on un.id = uk.id Limit 10;
+	</select>
+	
 	<!-- 로그인시 id and pw틀렸는지 체크 SignInDAO.login -->
 	<select id="signInCheck" parameterType="user" resultType="user">
 		SELECT *
@@ -145,6 +149,10 @@
 		update userranking
 		set accumasset=#{asset}
 		where id=#{id}
+	</update>
+	
+	<update id="setResetPoint">
+		update userranking as us set us.resetpoint = us.accumasset;
 	</update>
 	
 	<select id="getRanking" parameterType="String" resultType="int">
