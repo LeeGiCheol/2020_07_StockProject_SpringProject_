@@ -165,12 +165,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					<!-- <form action="./step3Prc" method="post" name="frm" id="frm" novalidate="novalidate"> -->
 					<form action="/signUp" name="form" id="form" method="POST">
 					
-						<input type="hidden" name="cust_type" id="cust_type" value="P">
-						<input type="hidden" name="outside_agree_fg" value="">
-						<input type="hidden" name="receipt_fg_sms" value="Y">
-						<input type="hidden" name="receipt_fg_mail" value="Y">
-						<input type="hidden" name="app_push_fg" value="Y">
-						<input type="hidden" name="birthCheckYn" value="Y">
+						
 						
 						<fieldset>
 							<legend>기본정보입력</legend>  
@@ -178,97 +173,98 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								<li>
 									<span class="input-style-mail">
 										<label for="inputEmail">이메일을 입력해주세요</label>
-										<input type="text" id="inputEmail" name="id">
-										<button type="button" class="delete">삭제</button>
+										<input type="text" id="inputEmail" name="id" onKeyPress="return spaceCheck(event)">
+										<!-- <button type="button" class="delete">삭제</button> -->
 									</span>
-									<div id="error-txt"></div>
+									<div id="idResult"></div>
 									<button type="button" class="btn-s" id="idCheck">인증받기</button>
 								</li>
-								<li id="_liPhoneNum" style="display: none;">
+								<li id="_liEmailNum" style="display: none;">
 									<span class="input-style-certif">
-										<label for="inputEmail">인증번호를 입력해주세요</label>
-										<input type="text" id="inputCemail" name="cEmail">
+										<label for="inputCemail">인증번호를 입력해주세요</label>
+										<input type="text" id="inputCemail" name="cEmail" onKeyPress="return numkeyCheck(event)">
 									</span>
-									<div id="success-txt"></div>
+									<div id="cEmailResult"></div>
 									<button type="button" class="btn-s" id="cEmailCheck">인증확인</button>
 								</li>
 								<li>
 									<span class="input-style-pass">
-										<label for="pswd">비밀번호를 입력해주세요</label>
-										<input type="password" name="pswd" id="pswd" maxlength="14" autocomplete="OFF">
-										<button type="button" class="delete" onclick="initBeforInput();">삭제</button>
+										<label for="inputPassword">비밀번호를 입력해주세요</label>
+										<input type="password" name="pw" id="inputPassword" maxlength="14" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
+										<button type="button" class="delete">삭제</button>
 									</span>
 								</li>
 								<li>
 									<span class="input-style-pass01">
-										<label for="pswdc">한번 더 입력해주세요</label>
-										<input type="password" name="pswdc" id="pswdc" onkeyup="SameCheck(this);" maxlength="14" autocomplete="OFF">
+										<label for="inputPasswordAgain">한번 더 입력해주세요</label>
+										<input type="password" name="pswdc"  id="inputPasswordAgain" onkeyup="SameCheck(this);" maxlength="14" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
 										<button type="button" class="delete">삭제</button>
 									</span>
+									<div id=pwResult></div>
 								</li>
 							</ul> 
 							<ul>
 								<li>
 									<span class="input-style-nick">
-										<label for="nick_nm">닉네임을 입력해주세요</label>
-										<input type="text" name="nick_nm" id="nick_nm" maxlength="24" onkeyup="initNickNm();">
-										<button type="button" class="delete">삭제</button> 
+										<label for="inputNickname">닉네임을 입력해주세요</label>
+										<input type="text"  name="nickname" id="inputNickname" maxlength="24" onKeyPress="return spaceCheck(event)">
+										<!-- <button type="button" class="delete">삭제</button>  -->
 									</span>  
-									<p class="error-text" style="display: none	;" id="err_nick_nm">이미 사용중인 닉네임입니다.</p>
+									<div id="nickNameResult"></div>
 									<span class="byte"><b id="maxText">0</b>/12byte</span>
-									<button type="button" class="btn-s gray" onclick="checkNickName();">중복확인</button>
+									<button type="button" class="btn-s gray" id="nickCheck">중복확인</button>
 								</li> 
 								<li>
 									<span class="input-style-nick">
-										<label for="nick_nm">추천인을 입력해주세요</label>
-										<input type="text" name="nick_nm" id="nick_nm" maxlength="24" onkeyup="initNickNm();">
-										<button type="button" class="delete">삭제</button> 
+										<label for="inputFriend">추천인을 입력해주세요</label>
+										<input type="text" name="friend" id="inputFriend"  maxlength="24" onKeyPress="return spaceCheck(event)">
+										<!-- <button type="button" class="delete">삭제</button>  -->
 									</span>  
-									<p class="error-text" style="display: none	;" id="err_nick_nm">이미 사용중인 닉네임입니다.</p>
+									<div id="friendResult"></div>
 									<span class="byte"><b id="maxText">0</b>/12byte</span>
-									<button type="button" class="btn-s gray" onclick="checkNickName();">추천하기</button>
+									<button type="button" class="btn-s gray" id="friendCheck">추천하기</button>
 								</li> 
 							</ul>
 							<ul>
 								<li>
 									<span class="input-style-address">
-										<label for="mobile_no">주소를 입력해주세요</label>
-										<input type="text" name="address" id="inputAddress" class="_onlyNumber" maxlength="11" onkeyup="initMobileNo();">
-										<button type="button" class="delete">삭제</button>
+										<input type="text" name="address" id="inputAddress" class="_onlyNumber" placeholder="우편번호"  required="true" readonly>
+										<!-- <button type="button" class="delete">삭제</button> -->
 									</span>
 									<button type="button" class="btn-s" onclick="goPopup();">우편번호 찾기</button>
 								</li>
-								<li id="_liPhoneNum" style="display: none;">
-									<span class="input-style-certif">
-										<label for="chk_Phone">인증번호를 입력해주세요</label>
-										<input type="text" name="chk_Phone" id="chk_Phone">
-									</span>
-									<p id="err_mobile_no" class="ok-text" style="display: none;">인증이 완료되었습니다.</p>
-									<mark id="markTm">15:00</mark>
-									<button type="button" class="btn-s" onclick="authPhone();">인증확인</button>
-								</li>
 								<li>
 									<span class="input-style-phone">
-										<label for="mobile_no">휴대폰번호('-'없이)</label>
-										<input type="text" name="mobile_no" id="mobile_no" class="_onlyNumber" maxlength="11" onkeyup="initMobileNo();">
-										<button type="button" class="delete">삭제</button>
+										<label for="inputPhone">휴대폰번호('-'없이)</label>
+										<input type="text" name="tel" id="inputPhone" class="_onlyNumber" maxlength="11" onKeyPress="return numkeyCheck(event)">
+										<!-- <button type="button" class="delete">삭제</button> -->
 									</span>
-									<button type="button" class="btn-s" onclick="checkUserPhone();">인증받기</button>
+									<div id=telResult></div>
+									<button type="button" class="btn-s" id="telCheck">인증받기</button>
 								</li>
 								<li id="_liPhoneNum" style="display: none;">
 									<span class="input-style-certif">
-										<label for="chk_Phone">인증번호를 입력해주세요</label>
-										<input type="text" name="chk_Phone" id="chk_Phone">
+										<label for="inputCtel">인증번호를 입력해주세요</label>
+										<input type="text" name="cTel" id="inputCtel" onKeyPress="return numkeyCheck(event)">
 									</span>
-									<p id="err_mobile_no" class="ok-text" style="display: none;">인증이 완료되었습니다.</p>
-									<mark id="markTm">15:00</mark>
-									<button type="button" class="btn-s" onclick="authPhone();">인증확인</button>
+									<div id=cTelResult></div>
+									<button type="button" class="btn-s" id="cTelCheck">인증확인</button>
 								</li>
-	
-
-
 							</ul> 
-
+							<ul>
+								<li>
+									<span class="radio-style-dormant">거래내역 공개 설정</span>
+						               <div class="ask-form">
+						               	  <p class="guide-text"><span>다른 사용자에게 보유 자산 및 수익률과 거래내역을 공개 하시겠습니까?</span></p>
+						                  <div class="dormant-radio">
+						                  <input type="radio" name="showEsetSetting" id="ask-radio-1"  value="1">
+						                  <label  id="ask-radio-1-answer" for="ask-radio-1">예</label>
+						                  <input type="radio" name="showEsetSetting" id="ask-radio-2"  value="0" checked="checked">
+						                  <label  for="ask-radio-2">아니오</label>
+						                  </div>
+						               </div>															
+								</li> 							
+							</ul>
 						
 						
 
@@ -276,9 +272,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						</fieldset>
 					</form>
 					<div class="bt-area"> 
-						
-						<button class="btn-b" onclick="location.href='http://www.paxnet.co.kr';">취소</button>
-						<button class="btn-b red" onclick="$('#frm').submit();">가입하기</button> 
+						<button class="btn-b" onclick="location.href='/mainPage';">취소</button>
+						<button type="submit" class="btn-b red" data-text-content="true" id="submit"  onclick="$('#form').submit();">가입하기</button> 
 					</div>
 				
 				
@@ -421,7 +416,9 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 
 
 	
-	$(document).ready(function(e){ 
+	$(document).ready(function(e){
+		textLenCheck("inputNickname","닉네임",{max:12,currentLenId:"maxText"});
+		textLenCheck("inputFriend","추천인",{max:12,currentLenId:"maxText"});
 		var checkflag = 0;
 	
 		$("#submit").on("click", function(){
@@ -476,14 +473,15 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					var com = $.trim($('#inputEmail').val().indexOf("."));
 					// @ 와 .이 없으면 이메일 형식이 안맞는다고 띄우기 
 					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
-						$("#_liPhoneNum").css('display',"block");
+						$("#_liEmailNum").css('display',"block");
 						idx= true;
 						$('#inputEmail').attr("readonly", true);
  						/* var html="<tr><td colspan='3' style='color: green'>이메일에 인증 번호를 확인해주세요.</td></tr>";  */
- 						var html="<p id='cust_id-error' class='error-text'>이메일에 인증 번호를 확인해주세요.</p>";
-						$('#error-txt').empty();
+ 						var html="<p id='err_cust_id' class='ok-text'>이메일에 인증 번호를 확인해주세요.</p>";
+ 						
+						$('#idResult').empty();
 						$('#cEmailResult').empty();
-						$('#error-txt').append(html);
+						$('#idResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 							$.ajax({ 
 								type: 'GET', 
@@ -499,7 +497,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 					else{
-						var html="p id='cust_id-error' class='error-text'>중복된 이메일입니다.</p>";
+						var html="<p id='cust_id-error' class='error-text'>중복된 이메일입니다.</p>";
 						
 						$('#idResult').empty();
 						$('#idResult').append(html);
@@ -521,7 +519,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					success: function(data){ 
 						if(data == 0 && $('#inputCemail').val() != ''){
 							$('#inputCemail').attr("readonly", true);
-								var html="<tr><td colspan='3' style='color: green'>인증성공</td></tr>"; 
+								var html="<p id='err_cust_id' class='ok-text'>인증성공</p>"; 
 							$('#cEmailResult').empty();
 							$('#cEmailResult').append(html);
 							$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
@@ -535,7 +533,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							$("#inputEmail").focus();
 						} */
 						else{
-							var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요)</td></tr>";
+							var html="<p id='cust_id-error' class='error-text'>인증실패(인증번호를 확인해주세요)</p>";
 							$('#cEmailResult').empty();
 							$('#cEmailResult').append(html);
 							document.getElementById("inputCemail").value="";
@@ -556,22 +554,23 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				data: { "tel" : $('#inputPhone').val() }, 
 				success: function(data){ 
 					if(data == 0 && $.trim($('#inputPhone').val()) != ''){
+						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputPhone').attr("readonly", true);
 						
- 						var html="<tr><td colspan='3' style='color: green'>문자메세지를 확인해주세요.</td></tr>"; 
+ 						var html="<p id='err_cust_id' class='ok-text'>문자메세지를 확인해주세요.</p>"; 
 						$('#telResult').empty();
 						$('#telResult').append(html);
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}else if(data == 2 || $.trim($('#inputPhone').val()) == ""){
-						var html="<tr><td colspan='3' style='color: red'>11자리를 입력해주세요.[ ex)01012345678 ]</td></tr>";
+						var html="<p id='cust_id-error' class='error-text'>11자리를 입력해주세요.[ ex)01012345678 ]</td></tr>";
 						$('#telResult').empty();
 						$('#telResult').append(html);
 						document.getElementById("inputPhone").value="";
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 					else{
-						var html="<tr><td colspan='3' style='color: red'>이미 등록된 번호입니다.</td></tr>";
+						var html="<p id='cust_id-error' class='error-text'>이미 등록된 번호입니다.</p>";
 						$('#telResult').empty();
 						$('#telResult').append(html);
 						document.getElementById("inputPhone").value="";
@@ -596,12 +595,12 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						idx= true;
 						$('#inputCtel').attr("readonly", true);
 						
- 						var html="<tr><td colspan='3' style='color: green'>인증성공</td></tr>"; 
+ 						var html="<p id='err_cust_id' class='ok-text'>인증성공</p>"; 
 						$('#cTelResult').empty();
 						$('#cTelResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
-						var html="<tr><td colspan='3' style='color: red'>인증실패(인증번호를 확인해주세요)</td></tr>";
+						var html="<p id='cust_id-error' class='error-text'>인증실패(인증번호를 확인해주세요)</p>";
 						$('#cTelResult').empty();
 						$('#cTelResult').append(html);
 						document.getElementById("inputCtel").value="";
@@ -624,7 +623,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				data: { "nickname" : $('#inputNickname').val() }, 
 				success: function(data){ 
 					if($.trim($('#inputNickname').val()) == ""){
-						var html="<tr><td colspan='3' style='color: red'>공백은 불가능합니다.</td></tr>";
+						var html="<p id='cust_id-error' class='error-text'>공백은 불가능합니다.</p>";
 						
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
@@ -634,12 +633,12 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					}else if(data == 0 && $.trim($('#inputNickname').val()) != ""){
 						idx= true;
 						$('#inputNickname').attr("readonly", true);
- 						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
+ 						var html="<p id='err_cust_id' class='ok-text'>사용 가능합니다.</p>"; 
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 					}else{
-						var html="<tr><td colspan='3' style='color: red'>중복된 닉네임입니다.</td></tr>";
+						var html="<p id='cust_id-error' class='error-text'>중복된 닉네임입니다.</p>";
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
 						document.getElementById("inputNickname").value="";
@@ -663,12 +662,12 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				data: { "nickname" : $('#inputFriend').val() }, 
 				success: function(data){
 					if($.trim($('#inputFriend').val()) == ""){
-						var html="<tr><td colspan='3' style='color: blue'>공백은 불가능합니다.</td></tr>";
+						var html="<p id='cust_id-error' class='error-text'>공백은 불가능합니다.</p>";
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
 						document.getElementById("inputFriend").value="";
 					}else if(data == 0 && $.trim($('#inputFriend').val()) != ''){
-						var html="<tr><td colspan='3' style='color: blue'>존재하지않은 닉네임입니다.</td></tr>";
+						var html="<p id='cust_id-error' class='error-text'>존재하지않은 닉네임입니다.</p>";
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
 						document.getElementById("inputFriend").value="";
@@ -676,7 +675,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					}else{
 						idx= true;
 						$('#inputFriend').attr("readonly", true);
-						var html="<tr><td colspan='3' style='color: green'>사용 가능합니다.</td></tr>"; 
+						var html="<p id='err_cust_id' class='ok-text'>사용 가능합니다.</p>"; 
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
@@ -696,32 +695,32 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		var passwordAgain = $('#inputPasswordAgain').val();
 	    // 비밀번호, 비밀번호 확인이 다른 경우
 		if (password != passwordAgain) {
-			$("#inputPasswordAgain").css("background-color", "#FFCECE");
+			/* $("#inputPasswordAgain").css("background-color", "#FFCECE"); */
 			
 			$('#pwResult').empty();
-			var html="<tr><td colspan='3' style='color: red'>비밀번호를 확인해주세요.</td></tr>"; 
+			var html="<p id='cust_id-error' class='error-text'>비밀번호를 확인해주세요.</p>"; 
 			$('#pwResult').append(html);
 			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 		}
 		// 비밀번호 길이 제한
 		else if($('#inputPassword').val().length < 8 || $('#inputPassword').val().length > 13){
 		
-			var html="<tr><td colspan='3' style='color: red'>비밀번호는 8자리 이상 \n13자리 이하만 가능합니다.</td></tr>"; 
+			var html="<p id='cust_id-error' class='error-text'>비밀번호는 8자리 이상 \n13자리 이하만 가능합니다.</p>"; 
 			$('#pwResult').empty();
 			$('#pwResult').append(html);
 			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 		} 
 	    // 맞는 경우
 		else if(password == passwordAgain){
-			$("#inputPasswordAgain").css("background-color", "#B0F6AC");
-			var html="<tr><td colspan='3' style='color: green' id='passwordCheck'>사용 가능합니다.</td></tr>"; 
+			/* $("#inputPasswordAgain").css("background-color", "#B0F6AC"); */
+			var html="<p id='passwordCheck' class='ok-text'>사용 가능합니다.</p>"; 
 			$('#pwResult').empty();
 			$('#pwResult').append(html);
 			$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
 		}
 	}
 	
-	$(document).on('focusin focusout', 'input[type=text], input[type=password]', function (e) {
+	$(document).on('focusin focusout', 'input[type=text],input[type=email], input[type=password]', function (e) {
 		var _this = $(this);
 		var lb = _this.prev('label');
 		var btnDel = _this.parent().find('.delete');
@@ -743,7 +742,59 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		var ipt = _this.parent().find('input');
 		ipt.val('').focus();
 		_this.hide();
+		ipt.attr("readonly", false);
 	});
+	function textLenCheck(id,label,condObj){
+
+		var trueYn = true;
+		var id = "#"+id;
+		var idObj = $(id);
+
+		idObj.keyup(function(event){
+			var keyCode = event.keyCode;
+			if(keyCode != 38 && keyCode != 37 && keyCode != 39 &&keyCode != 40 )
+
+			if(condObj.max != undefined && getTextLength(idObj.val()) > condObj.max){
+				alert(label + "은" + condObj.max + "byte 이하이여야 합니다.");
+
+				var cnt_byte = 0;
+				var sub_cnt = 0;
+				var chk_letter = "";
+				for (var i=0; i<idObj.val().length; i++)
+				{
+					chk_letter = idObj.val().charAt(i);
+					if (escape(chk_letter).length > 4) {
+						cnt_byte += 2;
+					}else{
+						cnt_byte++;
+					}
+					if (cnt_byte <= condObj.max) {
+						sub_cnt = i + 1;
+					}
+				}
+				idObj.val(idObj.val().substr(0, sub_cnt));
+				idObj.focus();
+				return ;
+			}
+			$("#"+condObj.currentLenId).html(getTextLength(idObj.val()));
+		});
+		$("#"+condObj.currentLenId).html(getTextLength(idObj.val()));
+	}
+	/**
+	 * 한글포함 문자열 길이를 구한다
+	 */
+	function getTextLength(str) {
+		var str = str+"";
+		var len = 0;
+		for (var i = 0; i < str.length; i++) {
+			if (escape(str.charAt(i)).length == 6) {
+				len++;
+			}
+			len++;
+		}
+		return len;
+	}
+
 </script>
 </body>
 </html>
