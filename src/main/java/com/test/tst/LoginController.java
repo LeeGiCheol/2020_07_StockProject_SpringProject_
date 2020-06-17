@@ -72,9 +72,4 @@ public class LoginController {
 			return "redirect:/mainPage";
 		}
 	}
-    @RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
-    public String logout(HttpSession session) throws IOException {
-        session.invalidate();
-        return "redirect:index.jsp";
-    }
 }

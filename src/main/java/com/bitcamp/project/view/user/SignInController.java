@@ -74,10 +74,12 @@ public class SignInController {
 				mav.setViewName("notice");
 				return mav;
 			}
+            
 	}
 	
 	@GetMapping(value="/logOut")
 	public String logout(HttpSession session) {
+		System.out.println("#####: " + session.getAttribute("loginUser"));
 		if(((UserVO)session.getAttribute("loginUser")).getId().substring(((UserVO)session.getAttribute("loginUser")).getId().length()-1).equals("_")) { //끝글자 확인
 			String ID = ((UserVO)session.getAttribute("loginUser")).getId();
 			String[] ID_s = ID.split("_");
@@ -90,7 +92,8 @@ public class SignInController {
 				
 			case "naver":
 				System.out.println("네이버 로그아웃");
-				break;
+				session.invalidate();
+				return "redirect:/mainPage";
 				
 			case "google":
 				System.out.println("구글 로그아웃");
@@ -124,20 +127,19 @@ public class SignInController {
 			vo.setTel(tel);
 			vo = signInService.findId(vo);
 			session.setAttribute("findUser", vo);
-			System.out.println("@@@@ : " + vo);
-			if(vo==null || vo.getTel().equals("") ) { // 없는 전화번호
+			if(vo == null) { // 없는 전화번호
 				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
 			}else if(vo.getId().contains("_naver_"))  {
 				model.addAttribute("msg", "회원님은 네이버회원이십니다. 네이버로 이동합니다");
 				model.addAttribute("icon", "success");
 				model.addAttribute("location", "https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry");
 				return "/msg";	
-			}else if(vo.getId().contains("_kakao")){
-				model.addAttribute("msg", "회원님은 카카오톡회원이십니다. 네이버로 이동합니다");
+			}else if(vo.getId().contains("_kakao_")){
+				model.addAttribute("msg", "회원님은 카카오톡회원이십니다. 카카오톡으로 이동합니다");
 				model.addAttribute("icon", "success");
 				model.addAttribute("location", "https://accounts.kakao.com/weblogin/find_account?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount#pageFindAccountSelect");
-				return "/msg";	
-			}else { //있는 전화번호라면?
+				return "/msg";
+			}else {
 				ExampleSend es = new ExampleSend(); // 문자보내는 클래스 
 				ExampleSend.main(args, tel);  // 문자보내는 메서드
 				return "/forgetidpage-try-success";
@@ -174,7 +176,6 @@ public class SignInController {
 			vo.setId(id);
 			vo = signInService.findPw(vo);
 			session.setAttribute("findUser", vo);
-			System.out.println("@@@@: " + vo);
 			if(vo==null || vo.getId().equals("") ) {
 				return "/forgetpasswordpagefail";
 			}else {
