@@ -144,7 +144,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 
 			
 			var checked =  $('#passwordCheck').val();
-			// 비밀번호 확인 체크가 안되면 value는 undefiend 되면 value에 값이 들어와 로그인 된다  
+			// 비밀번호 확인 체크가, 안되면 value는 undefiend ,되면 value에 값이 들어와 로그인 된다  
 		});
 		
 		
