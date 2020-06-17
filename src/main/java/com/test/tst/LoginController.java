@@ -59,23 +59,17 @@ public class LoginController {
 		String nickname = (String) response_obj.get("nickname");
 		String id = ((String) response_obj.get("email"));
 		UserVO vo = new UserVO();
-		vo.setId(id);
+		vo.setId(id+"_naver_");
 		vo = signInService.logIn(vo);
 		
 		if (vo == null) { 
-		  session.setAttribute("naverId", id);
+		  session.setAttribute("naverId", id+"_naver_");
 		  session.setAttribute("naverNickname", nickname);
 		  return "signup_naver";
 		} else {
 			session.setAttribute("loginUser", vo);
-			session.setAttribute("naverLoginUser", nickname);
 			model.addAttribute("result", apiResult);
 			return "redirect:/mainPage";
 		}
-	}
-	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
-	public String logout(HttpSession session) throws IOException {
-		session.invalidate();
-		return "redirect:index.jsp";
 	}
 }

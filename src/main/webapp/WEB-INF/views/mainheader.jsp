@@ -14,7 +14,7 @@
 	<div class="top-nav">
 		<!-- 상단  nav -->
 		<c:choose>
-			<c:when test="${loginUser eq null and naverLoginUser eq null}">
+			<c:when test="${loginUser eq null}">
 				<ul class="nav justify-content-end top-nav">
 					<li class="breadcrumb-item"><a id="top-nav-font"
 						href="/signInPage">로그인</a></li>
@@ -28,10 +28,7 @@
 						src="/resources/img/pi_08.png"></a>
 					<dl>
 						<dt>
-							<c:choose>
-							<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
-							<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
-							</c:choose>
+							<strong>${loginUser.nickname}</strong>　님
 						</dt>
 					</dl>
 					<li class="breadcrumb-item"><a id="top-nav-font"
