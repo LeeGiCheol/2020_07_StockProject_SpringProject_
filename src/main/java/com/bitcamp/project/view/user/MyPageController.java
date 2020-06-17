@@ -42,16 +42,15 @@ public class MyPageController {
 	private MyPostService myPostService;
 	@Autowired
 	private MyAccountService myAccountService;
+	@Autowired
+    PasswordEncoder passwordEncoder;
+	@Autowired
+	BCryptPasswordEncoder bPasswordEncoder;
 	
 	//ranking 시험용
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-	@GetMapping(value = "/myPage01")
-	public String myPage01() {
-		return "mypage01";
-	}
-	
 	@GetMapping(value="/checkCharging")
 	@ResponseBody
 	public int checkCharging(HttpSession session) {
@@ -109,9 +108,7 @@ public class MyPageController {
 	   return "mypage02";
    }   
 
-    PasswordEncoder passwordEncoder;
-	@Autowired
-	BCryptPasswordEncoder bPasswordEncoder;
+
 
 
    @GetMapping(value="/myPage01")
@@ -131,10 +128,6 @@ public class MyPageController {
       return "mypage01";
    }
 	   
-	@GetMapping(value = "/myPage02")
-	public String myPage02() {
-		return "mypage02";
-	}
 
 	@GetMapping(value = "/myPage03")
 	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage,

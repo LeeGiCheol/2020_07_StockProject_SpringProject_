@@ -110,6 +110,9 @@ $(document).on('click', '#btnSave', function(e) {
 													</span>
 												</td>
 												
+												
+												
+												
 <!-- 								               <div class="mb-3 title">
 								                    <label for="title"><b>제목</b></label>
 								                    <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" required>
