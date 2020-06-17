@@ -72,11 +72,6 @@ public class MyPageController {
          @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
          @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
 	   
-	   UserVO user = new UserVO();
-	   user.setNickname("user");
-	   user.setId("test@test.com");
-	   user.setMoney(1000000);
-	   session.setAttribute("loginUser", user);
 	   
 	   if(type1.equals(""))
 		   type1 = "rate";
