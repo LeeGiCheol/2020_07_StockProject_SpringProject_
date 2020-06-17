@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -302,7 +304,7 @@ position:relative;
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href='https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code' class="social-type kakaotalk">카카오톡 로그인</a>
 									<a href="#" class="social-type facebook">페이스북 로그인</a>
 									<a href="#" class="social-type google">구글 로그인</a>
 									</span>
