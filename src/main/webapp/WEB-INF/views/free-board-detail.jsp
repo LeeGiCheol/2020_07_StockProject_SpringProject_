@@ -377,6 +377,9 @@ textarea {
     text-align: center;
     padding: 20px 20px 40px;
 }
+img{
+max-width: 100%;
+}
 </style>
 </head>
 <body>
@@ -475,6 +478,33 @@ textarea {
 			}
 		}
 		  $( document ).ready(function() {
+					/* 여기부분 잘 안되는데 뭔지 모르겠음
+					setTimeout(function() {
+						var w = $(".image").children().width();
+						var h = $(".image").children().height();
+						
+						if(w > 1024){
+							var ri = 1024/w;
+							w = w * ri;
+							h = h * ri;
+						}
+						var a_h = $(".article").children().height();
+						var a_w = $(".article").children().width();
+						
+						console.log(w+" / "+h+" && "+ a_w+" / "+ a_h);
+						$(".image").children().width(w);
+						 $(".image").children().height(h);
+						
+					}, 50);
+					*/
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
 			  console.log( "document ready!" );
 
 			  var $sticky = $('.sticky');
@@ -3210,7 +3240,28 @@ function submitReportComt(){
 
 }));
 </script>
-
+<script>
+	$(document).ready(function() {
+		
+		setTimeout(function() {
+			var w = $(".image").children().width();
+			var h = $(".image").children().height();
+			
+			if(w > 1024){
+				var ri = 1024/w;
+				w = w * ri;
+				h = h * ri;
+			}
+			var a_h = $(".board-view-cont").children().height();
+			var a_w = $(".board-view-cont").children().width();
+			
+			console.log(w+" / "+h+" && "+ a_w+" / "+ a_h);
+			$(".image").children().width(w);
+			 $(".image").children().height(h);
+			
+		}, 50);
+	});
+</script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script

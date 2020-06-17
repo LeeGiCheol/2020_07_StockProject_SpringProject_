@@ -61,7 +61,7 @@
 			<!-- 소셜 로그인 타입 추가 -->
 			<div class="social-login">
 				<button type="button" class="naverlogin btn-b naver" onclick="location.href='/naverLogin'">네이버 아이디로 로그인</button>
-				<button type="button" class="kakaologin btn-b kakaotalk" >카카오톡 아이디로 로그인</button>
+				<button type="button" class="kakaologin btn-b kakaotalk" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code'">카카오톡 아이디로 로그인</button>
 				<button type="button" class="btn-b google">구글 아이디로 로그인</button>
 			</div>
 		</div>
