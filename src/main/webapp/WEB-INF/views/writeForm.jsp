@@ -14,78 +14,63 @@
 </style>
 <link href="/resources/css/writeForm.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
+
+
+
+
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
-<script type="text/javascript">
-  $( document ).ready(function() {
-	  console.log( "document ready!" );
-
-	  var $sticky = $('.sticky');
-	  var $stickyrStopper = $('.footer_info');
-	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
-
-	    var generalSidebarHeight = $sticky.innerHeight();
-	    var stickyTop = $sticky.offset().top;
-	    var stickOffset = 0;
-	    var stickyStopperPosition = $stickyrStopper.offset().top;
-	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-	    var diff = stopPoint + stickOffset;
-
-	    $(window).scroll(function(){ // scroll event
-	      var windowTop = $(window).scrollTop(); // returns number
-
-	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
-	      } else if (stickyTop < windowTop+stickOffset) {
-	          $sticky.css({ position: 'fixed', top: stickOffset });
-	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
-	      }
-	    });
-
-	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
-  });
-</script>
 <script>
 	function btnSave(){
+		// bcontent에 내용 삽입
+		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
 		// 글제목
 		var title = $("#title").val();
-		// 글내용 -> 
-		var content = $("p").html();
+		// 글내용 있는지 확인용 
+		var content = document.getElementsByTagName('p');
 		
-		if(content == '<br data-cke-filler="true">'){
-			content = content.replace('<br data-cke-filler="true">', " ")
-		}
+
+
+				var contentValue = $('#bcontent').val();
+				
+/* 				console.log(content)
+				console.log(contentValue)
+				contentValue = contentValue.substring(3)
+				console.log(contentValue) */
+			/* 	if(contentValue.trim().length < 4){
+
+					alert("4글자 이상 입력하세요.");
+
+					$('#bcontent').focus();
+
+					}  */
+				
+				/* if(content == "" || content == null){
+					swal({text:"내용을 입력해주세요.", icon:"error"});			
+					$("#bcontent").focus();
+					
+				}	 */
+					
+					
+				if(title.trim() == ""){
+					swal({text:"제목을 입력해주세요.", icon:"error"});			
+					$("#title").focus();
+				}
+				
+				else{ 
+					$("#form").submit();
+				} 
 		
-		if(content.indexOf("&nbsp;") != -1){
-			console.log("????")
-			content = content.replace("&nbsp;", " ")
-		}
-		console.log(content)
 		
-		if(content.trim() == '<br data-cke-filler="true">' && title == ""){
-			swal({text:"제목과 내용을 입력해주세요.", icon:"error"});
-			$("#title").focus();
-		}
-		else if(content == '<br data-cke-filler="true">' || content.trim() == ""){
-			swal({text:"내용을 입력해주세요.", icon:"error"});
-		}
-		else if(title.trim() == ""){
-			swal({text:"제목을 입력해주세요.", icon:"error"});			
-			$("#title").focus();
-		}
-		else{
-			$("#form").submit();
-		}
+		
+		
 	};
 
 
-</script>
+</script> 
 </head>
 <body>
 
@@ -145,7 +130,7 @@
 								            <tr>
 												<th scope="row">내용</th>
 												<td>
-													<textarea class="form-control" rows="5" name="bcontent" id="content" placeholder="내용을 입력해 주세요"></textarea>
+													<textarea class="form-control" rows="5" name="bcontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>
 												</td>
 											</tr>
 <%-- 							               <div class="mb-3 title">
@@ -205,8 +190,20 @@
 		</div>
 	</article>   --%>
 	<%@include file="mainfooter.jsp" %>
+	
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+ oAppRef: oEditors,
+ elPlaceHolder: "bcontent",
+ sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+ fCreator: "createSEditor2"
+});
+
+
+</script>	
+	
 </body>
-<script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script> <!-- 글쓰기 메뉴들 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
