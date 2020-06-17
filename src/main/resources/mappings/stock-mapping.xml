@@ -8,7 +8,7 @@
 <resultMap type="stock" id="st"></resultMap>
 
 	<select id="getHoldingStock" resultType="map">
-		select stockName, quantity from holdingstock where id = #{id} and quantity > 0;
+		select stockName, quantity, avgprice from holdingstock where id = #{id} and quantity > 0;
 	</select>
 	
 	<update id="modify">
