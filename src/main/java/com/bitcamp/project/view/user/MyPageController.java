@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bitcamp.project.Ranking;
+import com.bitcamp.project.dao.UserInfoDAO;
 import com.bitcamp.project.service.MyAccountService;
 import com.bitcamp.project.service.MyPostService;
 import com.bitcamp.project.service.UserInfoService;
@@ -29,8 +32,6 @@ import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
-import stockCode.StockParsing;
-
 @Controller
 public class MyPageController {
 
@@ -40,10 +41,29 @@ public class MyPageController {
 	private MyPostService myPostService;
 	@Autowired
 	private MyAccountService myAccountService;
+	
+	//ranking 시험용
+	@Autowired
+	private SqlSessionTemplate mybatis;
 
 	@GetMapping(value = "/myPage01")
 	public String myPage01() {
 		return "mypage01";
+	}
+	
+	@GetMapping(value="/checkCharging")
+	@ResponseBody
+	public int checkCharging(HttpSession session) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		return userInfoService.checkCharging(loginUser.getId());
+	}
+	
+	//랭킹 시험용
+	@GetMapping(value="/testranking")
+	public void test() {
+		System.out.println("testtesttest");
+		Ranking r = new Ranking(mybatis);
+		r.computeAsset();
 	}
 	
    @GetMapping(value="/myPage02")
@@ -53,7 +73,9 @@ public class MyPageController {
          @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
 	   
 	   UserVO user = new UserVO();
+	   user.setNickname("user");
 	   user.setId("test@test.com");
+	   user.setMoney(1000000);
 	   session.setAttribute("loginUser", user);
 	   
 	   if(type1.equals(""))
@@ -68,15 +90,9 @@ public class MyPageController {
 	   HashMap<String, Object> hm1 = myAccountService.getMyStockList(loginUser, Integer.parseInt(nowPage1), accountSearch);
 	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate);
 	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
-	   List<HoldingStockVO> hList = (List<HoldingStockVO>)hm1.get("holdingStockList");
-	   StockParsing sp = new StockParsing();
-	   System.out.println("hsizezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" + hList.size());
-	   for(int i = 0; i < hList.size(); ++i) {
-		   hList.get(i).setCurrentPrice(sp.parse(hList.get(i).getStockCode()).getCurrentPrice());
-		   System.out.println("cp" + hList.get(i).getCurrentPrice());
-	   }
+	   HashMap<String, Object> hm4 = userInfoService.getRate(loginUser.getId());
 	   session.setAttribute("pv1", (PagingVO)hm1.get("pv1"));
-	   session.setAttribute("holdingStockList", hList);
+	   session.setAttribute("holdingStockList", (List<HoldingStockVO>)hm1.get("holdingStockList"));
 	   session.setAttribute("pv2", (PagingVO)hm2.get("pv2"));
 	   session.setAttribute("stockHistoryListByDate", (List<StockVO>)hm2.get("stockHistoryListByDate"));
 	   session.setAttribute("pv3", (PagingVO)hm3.get("pv3"));
@@ -87,6 +103,8 @@ public class MyPageController {
 	   session.setAttribute("endDate", endDate);
 	   session.setAttribute("type1", type1);
 	   session.setAttribute("type2", type2);
+	   session.setAttribute("accumAsset", hm4.get("accumAsset"));
+	   session.setAttribute("ranking", hm4.get("ranking"));
 	   return "mypage02";
    }   
 

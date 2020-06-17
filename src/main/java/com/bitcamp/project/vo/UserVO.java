@@ -11,6 +11,7 @@ public class UserVO {
 	private int showEsetSetting; // 보유 자산 공개여부 // 0이면 비공개 1이면 공개
 	private String address;
 	private int charge; // 재지급 횟수
+	private long money;
 	
 	private String friend;
 
@@ -84,6 +85,14 @@ public class UserVO {
 
 	public void setFriend(String friend) {
 		this.friend = friend;
+	}
+
+	public long getMoney() {
+		return money;
+	}
+
+	public void setMoney(long money) {
+		this.money = money;
 	}
 
 	@Override

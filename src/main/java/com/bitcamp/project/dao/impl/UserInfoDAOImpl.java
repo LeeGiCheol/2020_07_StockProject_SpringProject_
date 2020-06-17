@@ -61,5 +61,26 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		int result = mybatis.selectOne("user.mypageUpdatePasswordCheck", map); 
 		return result;
 	}
+
+	@Override
+	public int getChargingCount(String id) {
+		return mybatis.selectOne("user.getChargingCount", id);
+	}
+
+	@Override
+	public void consumpCharge(String id) {
+		mybatis.update("user.consumpCharge", id);
+	}
+
+	@Override
+	public long getAccumAsset(String id) {
+		return mybatis.selectOne("user.getAccumAsset", id);
+	}
+
+	@Override
+	public int getRanking(String id) {
+		return mybatis.selectOne("user.getRanking", id);
+	}
+	
 	
 }

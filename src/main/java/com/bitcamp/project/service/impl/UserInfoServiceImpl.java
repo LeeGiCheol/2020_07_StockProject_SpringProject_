@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,7 +55,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public int mypageUpdatePasswordCheck(Map<String, String> map) {
 		return userInfoDAO.mypageUpdatePasswordCheck(map);
 	}
+	
+	public int checkCharging(String id) {
+		int chargeCount = userInfoDAO.getChargingCount(id);
+		if(chargeCount > 0)
+			userInfoDAO.consumpCharge(id);
+		return chargeCount;
+	}
 
+	@Override
+	public HashMap<String, Object> getRate(String id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("accumAsset", userInfoDAO.getAccumAsset(id));
+		map.put("ranking", userInfoDAO.getRanking(id));
+		return map;
+	}
+	
 	
 
 }

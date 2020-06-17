@@ -13,6 +13,8 @@ import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.StockParsing;
+
 @Service
 public class MyAccountServiceImpl implements MyAccountService {
 
@@ -29,6 +31,10 @@ public class MyAccountServiceImpl implements MyAccountService {
 		pv1.getUtil().put("id", loginUser.getId());
 		pv1.getUtil().put("accountSearch", accountSearch);
 		List<HoldingStockVO> holdingStockList = myAccountDAO.myStockList(pv1);
+		StockParsing sp = new StockParsing();
+	   for(int i = 0; i < holdingStockList.size(); ++i) {
+		   holdingStockList.get(i).setCurrentPrice(sp.parse(holdingStockList.get(i).getStockCode()).getCurrentPrice());
+	   }
 		HashMap<String, Object> hm1 = new HashMap<String, Object>();
 		hm1.put("pv1", pv1);
 		hm1.put("holdingStockList", holdingStockList);
