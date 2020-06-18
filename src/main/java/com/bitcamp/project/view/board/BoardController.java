@@ -1,15 +1,11 @@
 package com.bitcamp.project.view.board;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,6 +42,12 @@ public class BoardController {
 	@Autowired
 	CommentService commentService;
 	
+	@Autowired
+	HttpServletRequest request;
+	
+	static List<String> uploadedFileName = new ArrayList<String>();
+
+	
 	
 	@GetMapping(value= {"/board/free", "/board/free/popularity"})
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
@@ -62,7 +64,6 @@ public class BoardController {
 			orderby = "new";
 		}
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby);
-		System.out.println("abd "+boardList);
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
@@ -89,13 +90,80 @@ public class BoardController {
 	
 	@PostMapping("/board/free/write")
 	public String boardWrite(BoardVO vo) {
-		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
+		List<String> uploadThumbnail = new ArrayList<String>();
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		vo.setId(loginUser.getId());
 		vo.setBno(1); // 자유게시판
 		
-		System.out.println("BV " + vo);
-		boardService.writeFreeBoard(vo);
+		
+		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+
+		
+		for (int i = 1; i < img.length; i++) {
+			
+			int start = img[i].indexOf("Photo");
+			int end = img[i].indexOf("\" title=\"");
+			img[i] = img[i].substring(start, end);
+		}
+		
+
+		String thumbnail = null;
+		
+		try {
+			for (int i = 0; i < uploadedFileName.size(); i++) {
+				int a = 0;
+				for (int j = 1; j < img.length; j++) {
+					if(uploadedFileName.get(i).equals(img[j])) {
+						uploadThumbnail.add(uploadedFileName.get(i));
+						a++;
+					}
+				}
+				// 파일이 존재하지 않을 경우 삭제
+				if(a != 1) {
+					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
+					File originDelete = new File(origin);
+					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/THUMB_" + uploadedFileName.get(i);
+					File thumbnailDelete = new File(thumbnail);
+					
+					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+					if(originDelete.exists()) {
+					    // 파일을 삭제합니다.
+						originDelete.delete();
+						thumbnailDelete.delete();
+					}
+					    
+				}
+			}
+			
+			for (int i = 1; i < uploadThumbnail.size(); i++) {
+				thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/THUMB_" + uploadThumbnail.get(i);
+				File thumbnailDelete = new File(thumbnail);
+				if(thumbnailDelete.exists()) {
+					thumbnailDelete.delete(); 
+				}
+			}
+			
+			
+			
+					
+	//		for (int i = 0; i < uploadedFileName.size(); i++) {
+	//			vo.setUploadedFileName(uploadedFileName.get(i));
+	//			vo.setUploadedFileUrl(uploadedFileUrl.get(i));
+	//		}
+			vo.setThumbnailName("resources/se2/upload/"+uploadThumbnail.get(0));
+			uploadedFileName.clear();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		// vo에 저장 후 리셋
+		
+		
+		finally {
+			System.out.println("BV " + vo);
+			boardService.writeFreeBoard(vo);
+		}
+		
 		return "redirect:/board/free";
 	}
 	
@@ -212,11 +280,10 @@ public class BoardController {
 	
 	@RequestMapping("/fileUpload")
 
-	 public void multiplePhotoUpload(HttpServletRequest request, HttpServletResponse response){
+	 public static void multiplePhotoUpload(HttpServletRequest request, HttpServletResponse response){
 		FileUpload file = new FileUpload();
-		file.file(request, response);
-	    
-	
+		BoardVO vo = file.file(request, response);
+		uploadedFileName.add(vo.getThumbnailName());
 	}
 
 
