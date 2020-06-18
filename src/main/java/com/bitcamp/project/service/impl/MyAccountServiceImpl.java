@@ -27,7 +27,7 @@ public class MyAccountServiceImpl implements MyAccountService {
 		map.put("id", loginUser.getId());
 		map.put("accountSearch", accountSearch);
 		int count = myAccountDAO.countMyStock(map);
-		PagingVO pv1 = new PagingVO(count, nowPage, 3);
+		PagingVO pv1 = new PagingVO(count, nowPage, 1);
 		pv1.getUtil().put("id", loginUser.getId());
 		pv1.getUtil().put("accountSearch", accountSearch);
 		List<HoldingStockVO> holdingStockList = myAccountDAO.myStockList(pv1);
@@ -43,7 +43,7 @@ public class MyAccountServiceImpl implements MyAccountService {
 
 	@Override
 	public HashMap<String, Object> getMyTradeHistoryListByDate(UserVO loginUser, int nowPage, String startDate,
-			String endDate) {
+			String endDate, String tradeSearch) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String sDate = "";
 		String eDate = "";
