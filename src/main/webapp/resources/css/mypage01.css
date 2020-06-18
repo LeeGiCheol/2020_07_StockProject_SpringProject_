@@ -157,7 +157,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 }
 .contents.member .cont-area {
     margin: 0 auto 0;
-    max-width: 630px;
+   /*  max-width: 630px; */
+   max-width: 800px;
 }	
 .cont-area {
     margin-right: 310px;
@@ -515,6 +516,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
   border-bottom: 1px solid #d7d8da;
   border-top: 1px solid #d7d8da;
   border-right: 1px solid #d7d8da;
+  margin-top: 100px;
 }
 #cssmenu ul a,
 #cssmenu ul a:link,
