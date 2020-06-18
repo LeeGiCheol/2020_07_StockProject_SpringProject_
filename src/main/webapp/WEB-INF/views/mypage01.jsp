@@ -13,8 +13,12 @@
 <link href="resources/css/mainheader.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script>
+function notLocal(){swal({text:"접속하신 해당 홈페이지에서 변경가능합니다.", icon:"warning"})}
+</script>
 <style>
 #addr_post_no{width:521px;}
+A:link, A:visited, A:hover, A:active{cursor: pointer;}
 </style>
 </head>
 <body>
@@ -29,7 +33,15 @@
 						style="position: relative; top: initial;">
 						<ul>
 							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<c:set var="socialId" value="${loginUser.id}"/>
+									<c:choose>
+										<c:when test="${fn:contains(socialId,'_')}">
+							<li class="mid"><a onclick="notLocal();"><span>비밀번호 변경</span></a></li>
+										</c:when>
+										<c:otherwise>
 							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
+										</c:otherwise>
+									</c:choose>
 							<li class="last"><a href="/myPage02"><span>계좌정보</span></a></li>
 							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
 							<li class="last"><a href="/myPage04"><span>알림</span></a></li>

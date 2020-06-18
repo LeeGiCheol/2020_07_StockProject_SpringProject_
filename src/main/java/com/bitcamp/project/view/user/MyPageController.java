@@ -80,15 +80,15 @@ public class MyPageController {
 	   UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 	   HashMap<String, Object> hm1 = myAccountService.getMyStockList(loginUser, Integer.parseInt(nowPage1), accountSearch);
 	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
-	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
+//	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
 	   HashMap<String, Object> hm4 = userInfoService.getRate(loginUser.getId());
-	   System.out.println((PagingVO)hm1.get("pv1"));
+	   System.out.println((PagingVO)hm2.get("pv2"));
 	   session.setAttribute("pv1", (PagingVO)hm1.get("pv1"));
 	   session.setAttribute("holdingStockList", (List<HoldingStockVO>)hm1.get("holdingStockList"));
 	   session.setAttribute("pv2", (PagingVO)hm2.get("pv2"));
-	   session.setAttribute("stockHistoryListByDate", (List<StockVO>)hm2.get("stockHistoryListByDate"));
-	   session.setAttribute("pv3", (PagingVO)hm3.get("pv3"));
-	   session.setAttribute("stockHistoryListByStock", (List<StockVO>)hm3.get("stockHistoryListByStock"));
+	   session.setAttribute("stockHistoryList", (List<StockVO>)hm2.get("stockHistoryList"));
+//	   session.setAttribute("pv3", (PagingVO)hm3.get("pv3"));
+//	   session.setAttribute("stockHistoryListByStock", (List<StockVO>)hm3.get("stockHistoryListByStock"));
 	   session.setAttribute("accuntSearch", accountSearch);
 	   session.setAttribute("tradeSearch", tradeSearch);
 	   session.setAttribute("startDate", startDate);
@@ -96,7 +96,6 @@ public class MyPageController {
 	   model.addAttribute("type", type);
 	   session.setAttribute("accumAsset", hm4.get("accumAsset"));
 	   session.setAttribute("ranking", hm4.get("ranking"));
-	   System.out.println("type : " + type);
 	   return "mypage02";
    }   
 
