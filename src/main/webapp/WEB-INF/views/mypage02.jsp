@@ -203,7 +203,7 @@ $(document).ready(function(){
 										<td>
 										<div class="sell-wrap">
 											<span class="input-style-case02"><fmt:formatNumber value="${loginUser.money}" type="number"/>원</span>
-											<button type="button" class="btn-t gray">머니 재지급</button>
+											<button type="button" class="btn-t gray refresh">머니 초기화</button>
 										</div>	
 										</td>
 									</tr>													
@@ -350,6 +350,7 @@ $(document).ready(function(){
 							<div class="search-area-body">
 								<form class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage02">
 									<input class="form-control mr-sm-2 board-search" type="search" placeholder="검색어 입력" name="accountSearch" value="${accountSearch}" aria-label="Search">
+									<input type="hidden" name="type" value="account">
 									<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
 										<i class="fas fa-search"></i>
 									</button>
@@ -404,7 +405,7 @@ $(document).ready(function(){
 									<thead>
 										<tr>
 											<th scope="col" style="width: 150px;"class="a-right">거래일자</th>
-											<th scope="col" style="width: 300px;">종목번호</th>
+											<th scope="col" style="width: 300px;">종목</th>
 											<th scope="col" class="a-center">수량</th>
 											<th scope="col" class="a-right">거래금액</th>
 											<th scope="col" class="a-center">단가</th>
@@ -417,14 +418,14 @@ $(document).ready(function(){
 									<!--     <tr>
 									        <td colspan="7" style="text-align: center;">:::::데이터가 없습니다.::::::</td>
 									    </tr> -->
-									    <c:forEach items="${holdingStockList}" var="stock">
+									    <c:forEach items="${stockHistoryList}" var="stock">
 											<tr>
-												<td scope="col" style="width: 150px;" class="a-right">${stock.stockCode}</td>
+												<td scope="col" style="width: 150px;" class="a-right">${stock.tdatetime}</td>
 												<td scope="col" style="width: 300px;">${stock.stockName}</td>
-												<td scope="col" class="a-center"><fmt:formatNumber value="${stock.avgPrice}" type="number"/></td>
-												<td scope="col" class="a-right"><fmt:formatNumber value="${stock.currentPrice}" type="number"/></td>
-												<td scope="col" class="a-center">${stock.quantity}</td>
-												<td scope="col" class="a-center"><fmt:formatNumber value="${stock.quantity*stock.currentPrice}" type="number"/></td>
+												<td scope="col" class="a-center"><fmt:formatNumber value="${stock.quantity}" type="number"/></td>
+												<td scope="col" class="a-right"><fmt:formatNumber value="${stock.tprice*stock.quantity}" type="number"/></td>
+												<td scope="col" class="a-center">${stock.tprice}</td>
+												<td scope="col" class="a-center"><fmt:formatNumber value="${stock.tprice*stock.quantity*0.0025}" type="number"/></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -530,8 +531,9 @@ $(document).ready(function(){
 
 						<div class="search-area">
 							<div class="search-area-body">
-								<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+								<form class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage02">
 									<input class="form-control mr-sm-2 board-search" type="search" name="tradeSearch" value="${tradeSearch}" placeholder="검색어 입력" aria-label="Search">
+									<input type="hidden" name="type" value="trade">
 									<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
 										<i class="fas fa-search"></i>
 									</button>
