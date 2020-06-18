@@ -13,6 +13,9 @@
 <link href="resources/css/mainheader.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<style>
+#addr_post_no{width:521px;}
+</style>
 </head>
 <body>
 	<%@include file="mainheader.jsp"%>
@@ -26,11 +29,9 @@
 						style="position: relative; top: initial;">
 						<ul>
 							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
-							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호
-										변경</span></a></li>
+							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
 							<li class="last"><a href="/myPage02"><span>계좌정보</span></a></li>
-							<li class="mid"><a href="/myPage03"><span>작성 글 |
-										댓글</span></a></li>
+							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
 							<li class="last"><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
 					</div>
@@ -205,6 +206,10 @@
             });
 
         }
+        $("input[name=showEsetSetting]").click(function(){
+        	$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+        });
+        
     });
     function textLenCheck(id,label,condObj){
 
@@ -295,6 +300,8 @@
 			  }		        		
   		})
     });
+    
+    
     $('#nickCheck').on('click', function(){
     	
 		$.ajax({ 
@@ -361,6 +368,7 @@
         document.getElementById("addr_post_no").value = roadFullAddr;
         $("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
     }
+    
     if (${ loginUser.showEsetSetting } === 0)
     $("#ask-radio-2").prop("checked", true);
 	else
