@@ -594,7 +594,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	line-height: 23px;
 	padding: 3px;
 }
-.faq, .ranking{
+.faq{
 	padding: 10px;
 }
 .news-nav {
@@ -834,6 +834,47 @@ input[type="text"], input[type="password"], input[type="tel"] {
 .tbl_home_left, .tbl_home_right{
 	width: 100%;
 }
+.ranking .ranking-tab {
+    position: relative;
+    display: block;
+    padding-left: 20px;
+}
+.ranking .ranking-tab:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid #eaeaea;
+    z-index: 1;
+}
+.ranking .ranking-tab a.selected {
+    color: #ff545b;
+    border-bottom: 1px solid #ff545b;
+}
+ .ranking .ranking-tab a {
+    color: #000;
+    letter-spacing: -1px;
+}
+ .ranking .ranking-tab a {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    color: #000;
+    height: 48px;
+    line-height: 48px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 979px){
 	
 .col-md-9,.col-md-3 {

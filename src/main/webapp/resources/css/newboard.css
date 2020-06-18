@@ -191,11 +191,6 @@ ul i {
 	border-bottom: 2px solid #5a6268;
 }
 
-/* [class*="newsboard-nav-tab"] li.selected a:after, li:active>a, li.active>a
-	{
-	border-bottom: 2px solid #5a6268;
-} */
-
 [class*="newsboard-nav-tab"] li:after {
 	content: "";
 	position: absolute;
