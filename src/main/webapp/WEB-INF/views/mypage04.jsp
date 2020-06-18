@@ -54,24 +54,55 @@
 
 				<!-- article start -->
 				<div class="col-md-10">
-					<div class="row">
-						<div class="sideBar col-md-4 order-md-2 mb-4">
-							<div class="col-md-8 order-md-1"></div>
-							<h4 class="mb-3">알림</h4>
-							<h6>(확인시 자동 삭제)</h6>
+					<div class="newsboard-area">
+						<div class="drop-nav">
+							<h1 class="tit-h1 line">알림</h1>
 						</div>
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">알림 ▼</h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+								<a href="/news">내 정보 관리</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">비밀번호 변경</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">나의 계좌정보</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">작성 글 | 댓글</a>
+							</h1>
+							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+								<a href="#">알림</a>
+							</h1>
+						</div>
+					<div class="row">
+						<div class="my-list-scrap">
+				<input type="checkbox" class="check_all" id="check-all">
+				<label for="check-all">총 <i>0</i>개
+				</label>
+				<p>
+					<button type="button" class="btn-s adhere del selectAlarmDelete">삭제</button>
+					<button type="button" class="btn-s adhere readAlarmDelete">읽은 알림 삭제</button>
+				</p>
+			</div>
 					</div>
 					<!-- 게시판 -->
-					<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-						<li class="nav-item" role="presentation">
+				<div class="newsboard-nav">
+					
+					<ul class="nav newsboard-nav-tab" id="pills-tab" role="tablist">
+						<li class="newsboard-nav-item" role="presentation">
 							<a class="nav-link active" id="pills-trade-tab" data-toggle="pill" href="#pills-trade" role="tab"
 								aria-controls="pills-trade" aria-selected="true">거래체결</a>
 						</li>
-						<li class="nav-item" role="presentation">
+						<li class="newsboard-nav-item" role="presentation">
 							<a class="nav-link" id="pills-board-tab" data-toggle="pill" href="#pills-board" role="tab"
 								aria-controls="pills-board" aria-selected="false">게시판 알림</a>
 						</li>
 					</ul>
+					</div>
 					<div class="tab-content" id="pills-tabContent">
 						<!-- 게래체결 -->
 						<div class="tab-pane fade show active" id="pills-trade" role="tabpanel" aria-labelledby="pills-trade-tab"
@@ -141,6 +172,8 @@
 			</div>
 		</div>
 	</div>
+	</div>
+
 
 	<!-- article end -->
 	<%@include file="mainfooter.jsp"%>
