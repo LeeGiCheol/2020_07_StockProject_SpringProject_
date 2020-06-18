@@ -92,7 +92,7 @@
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="/board/free">자유게시판</a> <a
-								class="dropdown-item" href="/portfolio">포트폴리오</a>
+								class="dropdown-item" href="/board/portfolio">포트폴리오</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="/news">뉴스</a>
 						</div></li>

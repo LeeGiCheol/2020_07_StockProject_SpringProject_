@@ -9,7 +9,7 @@
 		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
 		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, #{bno}, 0);
 		
-		<if test='thumbnailName neq null'>
+		<if test='thumbnailName neq null and bno eq 2'>
 			INSERT INTO filelist
 			( pno, thumbnailName )
 			SELECT pno, #{thumbnailName}
@@ -99,8 +99,8 @@
 		
 	<select id="boardList" parameterType="page" resultType="board">
 		SELECT *
-		FROM board
-		WHERE bno=1
+		FROM board as b
+		WHERE 1=1
 		<choose>
 			<!-- 제목검색 -->
 			<when test='util.searchStyle.equals("search_title")'>
@@ -147,6 +147,66 @@
 				ORDER BY pno DESC
 				LIMIT 5;
 			</when>
+			
+		
+		</choose>	
+		
+		
+	</select>
+	
+	<select id="portfolioList" parameterType="page" resultType="board">
+		SELECT *
+		FROM board as b
+		JOIN filelist as f
+		ON b.pno = f.pno
+		<choose>
+			<!-- 제목검색 -->
+			<when test='util.searchStyle.equals("search_title")'>
+				AND title LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY f.pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 내용검색 -->
+			<when test='util.searchStyle.equals("search_content")'>
+				AND p.bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY f.pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 제목 + 내용검색 -->
+			<when test='util.searchStyle.equals("search_title_content")'>
+				AND p.title LIKE CONCAT('%', #{util.keyword}, '%')
+				OR p.bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY f.pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 닉네임 검색 -->
+			<when test='util.searchStyle.equals("search_nick")'>
+				AND p.nickname LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY f.pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 최신순 -->
+			<when test='util.orderby.equals("new")'>
+				ORDER BY f.pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 인기순 -->
+			<when test='util.orderby.equals("best")'>
+				ORDER BY p.likes DESC, f.pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 메인페이지 인기글 -->
+			<when test='util.orderby.equals("mainNew")'>
+				ORDER BY p.likes DESC
+				LIMIT 5;
+			</when>
+			<!-- 메인페이지 신규글 -->
+			<when test='util.orderby.equals("mainBest")'>
+				ORDER BY f.pno DESC
+				LIMIT 5;
+			</when>
+			
+		
 		</choose>	
 		
 		

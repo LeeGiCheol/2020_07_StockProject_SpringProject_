@@ -2,7 +2,6 @@ package com.bitcamp.project.view.board;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +52,7 @@ public class BoardController {
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
-		
+		int bno = 1;
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
@@ -63,7 +62,7 @@ public class BoardController {
 		if(orderby.equals("")) {
 			orderby = "new";
 		}
-		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby);
+		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno);
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
@@ -279,17 +278,13 @@ public class BoardController {
 	
 	
 	@RequestMapping("/fileUpload")
-
-	 public static void multiplePhotoUpload(HttpServletRequest request, HttpServletResponse response){
+	public void multiplePhotoUpload(HttpServletRequest request, HttpServletResponse response){
 		FileUpload file = new FileUpload();
 		BoardVO vo = file.file(request, response);
 		uploadedFileName.add(vo.getThumbnailName());
 	}
 
 
-
-	
-	
 	
 	
 	
