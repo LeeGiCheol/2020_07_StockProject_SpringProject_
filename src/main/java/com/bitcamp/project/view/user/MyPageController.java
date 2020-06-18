@@ -71,7 +71,6 @@ public class MyPageController {
          @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
          @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
 	   
-	   
 	   if(type1.equals(""))
 		   type1 = "rate";
 	   if(nowPage1.equals(""))
