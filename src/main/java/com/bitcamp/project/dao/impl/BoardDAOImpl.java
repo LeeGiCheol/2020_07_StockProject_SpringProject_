@@ -94,6 +94,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return mybatis.selectOne("board.reportBoardCount", vo);
 	}
 	
-
+	@Override
+	public List<BoardVO> portfolioList(PagingVO vo) {
+		return mybatis.selectList("board.portfolioList", vo);
+	}
 	
 }
