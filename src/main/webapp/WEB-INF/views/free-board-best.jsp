@@ -71,7 +71,7 @@
 	</div>
 	<div class="m-drop-down">
 	<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
-	<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
+	<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portflio">포트폴리오</a></h1>
 	<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 	</div>
 		<div class="board-type">

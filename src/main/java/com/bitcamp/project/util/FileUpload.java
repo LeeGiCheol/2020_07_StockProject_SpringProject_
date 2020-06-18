@@ -35,10 +35,16 @@ public class FileUpload {
 	         String filename_ext = filename.substring(filename.lastIndexOf(".")+1);
 	         //확장자를소문자로 변경
 	         filename_ext = filename_ext.toLowerCase();
+	         
+	         //날짜
+	         SimpleDateFormat fileNameFormatter = new SimpleDateFormat("yyyyMMddHHmmss");
+	         SimpleDateFormat folderNameFormatter = new SimpleDateFormat("yyyyMMdd");
+	         String fileNameToday= fileNameFormatter.format(new java.util.Date());
+	         String folderNameToday= folderNameFormatter.format(new java.util.Date());
 	         //파일 기본경로
 	         String dftFilePath = request.getSession().getServletContext().getRealPath("/");
 	         //파일 기본경로 _ 상세경로
-	         String filePath = dftFilePath + "resources" + File.separator + "se2/upload" + File.separator;
+	         String filePath = dftFilePath + "resources" + File.separator + "se2/upload/" + File.separator + folderNameToday + "/" + File.separator;
 	         
 	         File file = new File(filePath);
 	         
@@ -47,10 +53,8 @@ public class FileUpload {
 	         }
 	
 	         String realFileNm = "";
-	         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-	         String today= formatter.format(new java.util.Date());
 	
-	         realFileNm = "Photo"+today+UUID.randomUUID().toString() + filename.substring(filename.lastIndexOf("."));
+	         realFileNm = "Photo"+fileNameToday+UUID.randomUUID().toString() + filename.substring(filename.lastIndexOf("."));
 	         String rlFileNm = filePath + realFileNm;
 	         ///////////////// 서버에 파일쓰기 ///////////////// 
 	         InputStream is = request.getInputStream();
@@ -77,9 +81,11 @@ public class FileUpload {
 	
 	         // img 태그의 title 속성을 원본파일명으로 적용시켜주기 위함
 	         sFileInfo += "&sFileName="+ filename;
-	         sFileInfo += "&sFileURL="+"/resources/se2/upload/"+realFileNm;
+	         sFileInfo += "&sFileURL="+"/resources/se2/upload/"+folderNameToday+"/"+realFileNm;
+	         System.out.println("sFileInfo "+sFileInfo);
+	         System.out.println(folderNameToday);
 	         thumbnail(realFileNm, filePath, filename_ext);
-	         vo.setThumbnailName(realFileNm);
+	         vo.setThumbnailName(folderNameToday + "/" + realFileNm);
 	         
 	         
 	         PrintWriter print = response.getWriter();

@@ -100,7 +100,7 @@
 	<select id="boardList" parameterType="page" resultType="board">
 		SELECT *
 		FROM board as b
-		WHERE 1=1
+		WHERE bno=#{util.bno}
 		<choose>
 			<!-- 제목검색 -->
 			<when test='util.searchStyle.equals("search_title")'>
@@ -192,18 +192,16 @@
 			</when>
 			<!-- 인기순 -->
 			<when test='util.orderby.equals("best")'>
-				ORDER BY p.likes DESC, f.pno DESC
+				ORDER BY b.likes DESC, f.pno DESC
 				LIMIT #{start}, #{cntPerPage}
 			</when>
 			<!-- 메인페이지 인기글 -->
 			<when test='util.orderby.equals("mainNew")'>
-				ORDER BY p.likes DESC
-				LIMIT 5;
+				ORDER BY b.likes DESC
 			</when>
 			<!-- 메인페이지 신규글 -->
 			<when test='util.orderby.equals("mainBest")'>
 				ORDER BY f.pno DESC
-				LIMIT 5;
 			</when>
 			
 		

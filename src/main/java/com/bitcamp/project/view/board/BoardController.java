@@ -62,7 +62,7 @@ public class BoardController {
 		if(orderby.equals("")) {
 			orderby = "new";
 		}
-		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno);
+		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno, 30);
 		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
@@ -98,12 +98,11 @@ public class BoardController {
 		
 		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
 
-		
 		for (int i = 1; i < img.length; i++) {
 			
-			int start = img[i].indexOf("Photo");
+			int start = img[i].indexOf("/Photo");
 			int end = img[i].indexOf("\" title=\"");
-			img[i] = img[i].substring(start, end);
+			img[i] = img[i].substring(start-8, end);
 		}
 		
 
@@ -122,26 +121,26 @@ public class BoardController {
 				if(a != 1) {
 					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
 					File originDelete = new File(origin);
-					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/THUMB_" + uploadedFileName.get(i);
-					File thumbnailDelete = new File(thumbnail);
 					
 					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
 					if(originDelete.exists()) {
 					    // 파일을 삭제합니다.
 						originDelete.delete();
-						thumbnailDelete.delete();
 					}
 					    
 				}
-			}
-			
-			for (int i = 1; i < uploadThumbnail.size(); i++) {
-				thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/THUMB_" + uploadThumbnail.get(i);
+				
+				thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
 				File thumbnailDelete = new File(thumbnail);
 				if(thumbnailDelete.exists()) {
-					thumbnailDelete.delete(); 
+				    // 파일을 삭제합니다.
+					thumbnailDelete.delete();
+					thumbnailDelete.delete();
 				}
 			}
+			
+//			List<String> upload = multiplePhotoUpload(request, response);
+			
 			
 			
 			
@@ -150,7 +149,7 @@ public class BoardController {
 	//			vo.setUploadedFileName(uploadedFileName.get(i));
 	//			vo.setUploadedFileUrl(uploadedFileUrl.get(i));
 	//		}
-			vo.setThumbnailName("resources/se2/upload/"+uploadThumbnail.get(0));
+			vo.setThumbnailName("/resources/se2/upload/"+uploadThumbnail.get(0));
 			uploadedFileName.clear();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -206,7 +205,7 @@ public class BoardController {
 		return map;
 	}
 	
-	@GetMapping("/board/free/detail/likes/ajax")
+	@GetMapping("/board/detail/likes/ajax")
 	@ResponseBody
 	public int boardLikes(BoardVO vo, @RequestParam("pno") int pno) {
 		UserVO uVo = (UserVO)session.getAttribute("loginUser");
@@ -282,6 +281,7 @@ public class BoardController {
 		FileUpload file = new FileUpload();
 		BoardVO vo = file.file(request, response);
 		uploadedFileName.add(vo.getThumbnailName());
+		System.out.println(uploadedFileName);
 	}
 
 
