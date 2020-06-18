@@ -342,12 +342,12 @@ position:relative;
 									</dd>
 								</dl>
 								<ul class="dot-list02 color-rightgray">
-									<li id="_liBall">자산 <a href="/myPage02">0</a> 원</li>
+									<li id="_liBall">자산 <a href="/myPage02"></a>${money}원</li>
 									<li id="_liCyber">포인트 <a href="/myPage01">${loginUser.point}점</a></li>
 								</ul>
 							</div>
 							<div class="login-after-btn">
-								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								<a href="/myPagePwCheck">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
 							</div>
 						</div>
 					</c:otherwise>

@@ -167,8 +167,8 @@
 									</table>
 								</div>
 								<div class="bt-area">
-									<a href="/board/free" class="btn-m">취소</a>
-									<span><a href="javascript:btnSave();" class="btn-m red" id="addBtn">작성</a></span>
+									<a href="/board/free"  class="moreBttn left norm"">취소</a>
+									<span><a href="javascript:btnSave();"  class="moreBttn right norm" id="addBtn">작성</a></span>
 								</div>
 							</form>
 						</div>
