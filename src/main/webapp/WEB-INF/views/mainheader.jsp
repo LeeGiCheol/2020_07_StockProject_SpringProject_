@@ -33,7 +33,7 @@
 					</dl>
 					<li class="breadcrumb-item"><a id="top-nav-font"
 						href="/logOut">로그아웃</a></li>
-					<li class="breadcrumb-item"><a id="top-nav-font" href="/myPage01">마이페이지</a></li>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/myPagePwCheck">마이페이지</a></li>
 					<li class="breadcrumb-item"><a id="top-nav-font"
 						href="/myPage04">알림<span id="notice"></span></a></li>
 				</ul>

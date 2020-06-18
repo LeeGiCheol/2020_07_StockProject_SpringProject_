@@ -10,11 +10,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.MyAccountService;
 import com.bitcamp.project.service.MyPostService;
+import com.bitcamp.project.service.SignInService;
 import com.bitcamp.project.service.UserInfoService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
@@ -45,6 +46,10 @@ public class MyPageController {
     PasswordEncoder passwordEncoder;
 	@Autowired
 	BCryptPasswordEncoder bPasswordEncoder;
+	
+	//ㅇㅇㅇㅇㅇㅇㅇ
+	@Autowired
+	SignInService signInService;
 
 	@GetMapping(value="/checkCharging")
 	@ResponseBody
@@ -54,17 +59,18 @@ public class MyPageController {
 	}
 	
    @GetMapping(value="/myPage02")
-   public String myPage02(HttpSession session, @ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
+   public String myPage02(HttpSession session, Model model, @ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
          @ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
          @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
-         @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
+         @ModelAttribute("type") String type) {
 	   
 	   UserVO user = new UserVO();
-	   user.setId("user@naver.com");
+	   user.setId("test@test.com");
+	   user = signInService.logIn(user);
 	   session.setAttribute("loginUser", user);
 	   
-	   if(type1.equals(""))
-		   type1 = "rate";
+	   if(type.equals(""))
+		   type = "rate";
 	   if(nowPage1.equals(""))
 		   nowPage1 = "1";
 	   if(nowPage2.equals(""))
@@ -73,9 +79,10 @@ public class MyPageController {
 		   nowPage3 = "1";
 	   UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 	   HashMap<String, Object> hm1 = myAccountService.getMyStockList(loginUser, Integer.parseInt(nowPage1), accountSearch);
-	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate);
+	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
 	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
 	   HashMap<String, Object> hm4 = userInfoService.getRate(loginUser.getId());
+	   System.out.println((PagingVO)hm1.get("pv1"));
 	   session.setAttribute("pv1", (PagingVO)hm1.get("pv1"));
 	   session.setAttribute("holdingStockList", (List<HoldingStockVO>)hm1.get("holdingStockList"));
 	   session.setAttribute("pv2", (PagingVO)hm2.get("pv2"));
@@ -86,13 +93,32 @@ public class MyPageController {
 	   session.setAttribute("tradeSearch", tradeSearch);
 	   session.setAttribute("startDate", startDate);
 	   session.setAttribute("endDate", endDate);
-	   session.setAttribute("type1", type1);
-	   session.setAttribute("type2", type2);
+	   model.addAttribute("type", type);
 	   session.setAttribute("accumAsset", hm4.get("accumAsset"));
 	   session.setAttribute("ranking", hm4.get("ranking"));
+	   System.out.println("type : " + type);
 	   return "mypage02";
    }   
 
+	
+   @GetMapping(value="/myPagePwCheck") 
+   public String myPageCheck(HttpSession session) {
+	   if(((UserVO)session.getAttribute("loginUser")).getId().substring(((UserVO)session.getAttribute("loginUser")).getId().length()-1).equals("_")) {
+			return "redirect:/myPage01";
+	   }else {
+     		return "myPageCheckPw"; 
+	   }
+   }
+   @ResponseBody
+   @PostMapping(value="/myPagePwCheck")
+   public String myPageCheckPost(@ModelAttribute("password") String password, HttpSession session) {
+	   UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+	   if(bPasswordEncoder.matches(password, loginUser.getPw())){
+		   return Integer.toString(1);
+	   }else {
+		   return Integer.toString(0);
+	   }
+   }
 
 
 
