@@ -52,6 +52,7 @@ position:relative;
     color: #333;
     top: 7px;
 }
+A:link, A:visited, A:hover, A:active{cursor: pointer;}
 </style>
 </head>
 <body>
@@ -347,7 +348,7 @@ position:relative;
 								</ul>
 							</div>
 							<div class="login-after-btn">
-								<a href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								<a href="/myPagePwCheck">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
 							</div>
 						</div>
 					</c:otherwise>
