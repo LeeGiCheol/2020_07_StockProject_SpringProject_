@@ -16,4 +16,5 @@ public interface UserInfoService {
 	public int mypageUpdatePasswordCheck(Map<String, String> map);
 	public int checkCharging(String id);
 	public HashMap<String, Object> getRate(String id);
+	public List getCurrentRevenue();
 }

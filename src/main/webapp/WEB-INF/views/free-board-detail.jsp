@@ -377,9 +377,11 @@ textarea {
     text-align: center;
     padding: 20px 20px 40px;
 }
-img{
+
+.board-view-cont p img{
 max-width: 100%;
 }
+
 </style>
 </head>
 <body>
@@ -3246,11 +3248,12 @@ function submitReportComt(){
 		setTimeout(function() {
 			var w = $(".image").children().width();
 			var h = $(".image").children().height();
-			
-			if(w > 1024){
-				var ri = 1024/w;
+			console.log(w);
+			if(w >800){
+				var ri = 800/w;
 				w = w * ri;
 				h = h * ri;
+				console.log(ri);
 			}
 			var a_h = $(".board-view-cont").children().height();
 			var a_w = $(".board-view-cont").children().width();

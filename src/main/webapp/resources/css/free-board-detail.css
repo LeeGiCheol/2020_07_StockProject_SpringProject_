@@ -131,15 +131,6 @@ position: relative;
     font-weight: bold;
     line-height: 100%;
 }
-@media (max-width: 979px)
-.containerNew {
-    padding-top: 104px;
-}
-@media only screen and (max-width: 979px)
-.containerNew {
-    padding: 0;
-    padding-bottom: 170px;
-}
 
 
 .sidebar {

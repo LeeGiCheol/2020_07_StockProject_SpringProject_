@@ -29,7 +29,7 @@
 				</div>
 				<div class="pad-area men-step">
 					<h1>약관동의</h1>
-					<form action="/signUpPage/2" method="GET"  onSubmit="return CheckForm(this)" name="frm" id="frm">
+					<form action="/signUpPage/2" method="GET"  name="frm" id="frm">
 
 						<input type="hidden" name="birthCheckYn" value="Y">
 					
@@ -38,7 +38,7 @@
 						
 						
 							
-						<p class="all-check"><input type="checkbox" id="check01" onclick="checkAll();" class="big"><label for="check01">이용약관, 개인정보 수집 및 이용, 프로모션 알림 SMS/메일/앱푸시 수신에  <strong class="color-red">모두 동의 합니다.</strong></label></p>
+						<p class="all-check"><input type="checkbox" id="check01" onclick="checkAll();" class="big"><label for="check01">이용약관, 개인정보 수집 및 이용에  <strong class="color-red">모두 동의 합니다.</strong></label></p>
 					
 						<div class="clause">
 							<span>
@@ -52,7 +52,7 @@
 
 									<p>
 									제 1 조  (목적)<br>
-									이 약관은 주식회사 팍스넷("회사" 또는 “팍스넷”)이 제공하는 팍스넷 및 팍스넷 관련 제반 서비스의 이용과 관련하여 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
+									이 약관은 주식회사 판타지스탁("회사" 또는 “판타지스탁”)이 제공하는 판타지스탁 및 판타지스탁 관련 제반 서비스의 이용과 관련하여 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
 									</p>
 
 									<p>
@@ -72,7 +72,7 @@
 									<p>
 									제 4 조 (용어의 정의)<br>
 									이 약관에서 사용하는 용어의 정의는 다음과 같습니다.<br>
-									① "서비스"라 함은 구현되는 단말기(PC, TV, 휴대형단말기 등의 각종 유무선 장치를 포함)와 상관없이 "회원"이 이용할 수 있는 팍스넷 및 팍스넷 관련 제반 서비스를 의미합니다.<br>
+									① "서비스"라 함은 구현되는 단말기(PC, TV, 휴대형단말기 등의 각종 유무선 장치를 포함)와 상관없이 "회원"이 이용할 수 있는 판타지스탁 및 판타지스탁 관련 제반 서비스를 의미합니다.<br>
 									② "회원"이라 함은 회사의 "서비스"에 접속하여 이 약관에 따라 "회사"와 이용계약을 체결하고 "회사"가 제공하는 "서비스"를 이용하는 고객을 말합니다. <br>
 									③ "아이디(ID)"라 함은 "회원"의 식별과 "서비스" 이용을 위하여 "회원"이 정하고 "회사"가 승인하는 문자와 숫자의 조합을 의미합니다. <br>
 									④ "비밀번호"라 함은 "회원"이 부여 받은 "아이디와 일치되는 "회원"임을 확인하고 비밀보호를 위해 "회원" 자신이 정한 문자 또는 숫자의 조합을 의미합니다.<br> 
@@ -434,17 +434,17 @@ function btnCheck(){
 function nextStep(){
 	var birthCheckYn = "Y";
 	if(birthCheckYn == "N" && !$("#check08").is(":checked")){
-		alert("만 14세 이상에 대한 동의는 필수 항목입니다.");
+		swal({text:"만 14세 이상에 대한 동의는 필수 항목입니다.", icon:"error"})
 		$("#check08").focus();
 		return;
 	}
 	if(!document.frm.check02.checked){
-		alert("이용약관 동의는 필수 항목입니다.");
+		swal({text:"이용약관 동의는 필수 항목입니다.", icon:"error"})
 		$("#check02").focus();
 		return;
 	}
 	if(!document.frm.check03.checked){
-		alert("개인정보 수집 및 이용에 대한 동의는 필수 항목입니다.");
+		swal({text:"개인정보 수집 및 이용에 대한 동의는 필수 항목입니다.", icon:"error"})
 		$("#check03").focus();
 		return;
 	}
@@ -455,10 +455,11 @@ function nextStep(){
 // 	}
 	
 	$("#frm").submit();
+
 }
 
 function goMain() {
-	alert("이용약관 및 개인정보 수집 및 이용에 관한 사항에 대해 동의를 거부할 수 있으나, 동의를 거부할 경우 팍스넷/모네타 회원가입을 할 수 없음을 알려드립니다.");
+	swal({text:"이용약관 및 개인정보 수집 및 이용에 관한 사항에 대해 동의를 거부할 수 있으나, 동의를 거부할 경우 판타지스탁 회원가입을 할 수 없음을 알려드립니다.", icon:"error"})
 	location.href='/mainPage';
 }
 

@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -280,7 +279,7 @@ position:relative;
 			<div class="col-md-3">
 
 				<c:choose>
-					<c:when test="${loginUser eq null and naverLoginUser eq null}">
+					<c:when test="${loginUser eq null}">
 						<div class="login-box">
 							<div class="div-login-box">
 								<form method='post' action="/signIn">
@@ -304,9 +303,9 @@ position:relative;
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href='https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code' class="social-type kakaotalk">카카오톡 로그인</a>
-									<a href="#" class="social-type facebook">페이스북 로그인</a>
-									<a href="#" class="social-type google">구글 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<!-- <a href="#" class="social-type facebook">페이스북 로그인</a>
+									<a href="#" class="social-type google">구글 로그인</a> -->
 									</span>
 								</p>
 							</div>
@@ -324,17 +323,15 @@ position:relative;
 								</p>
 								<dl>
 									<dt>
-										<c:choose>
-										<c:when test="${loginUser.nickname ne null}"><strong>${loginUser.nickname}</strong>　님 </c:when>
-										<c:when test="${naverLoginUser ne null}"><strong>${naverLoginUser}</strong>　님</c:when>
-										</c:choose>
+										<strong>${loginUser.nickname}</strong>　님
 										<button type="button" class="logout"
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
 										<a href="/myPage01">내정보</a>
+									<c:set var="socialId" value="${loginUser.id}"/>
 									<c:choose>
-										<c:when test="${naverLoginUser ne null}">
+										<c:when test="${fn:contains(socialId,'_')}">
 											<a onclick="notLocal();">비밀번호 변경</a>
 										</c:when>
 										<c:otherwise>
@@ -377,30 +374,16 @@ position:relative;
 
 
 				<div class="ranking">
-					<span class="ranking-nav">주간 랭킹</span>
+					<span class="ranking-nav">일간 랭킹</span>
 					<div class="ranking-body">
 						<ul>
-							<li id="test_1"><a><i>1</i> <span>soccer</span>
-									<p class="color-red">21%</p></a></li>
-							<li id="test_2"><a><i>2</i> <span>rose</span>
-									<p class="color-red">19%</p></a></a></li>
-							<li id="test_3"><a><i>3</i> <span>김선달</span>
-									<p class="color-red">17%</p></a></li>
-							<li id="test_4"><a><i>4</i> <span>칠성부대</span>
-									<p class="color-red">14%</p></a></li>
-							<li id="test_5"><a><i>5</i> <span>강태공</span>
-									<p class="color-red">13%</p></a></li>
-							<li id="test_6"><a><i>6</i> <span>황금돼지</span>
-									<p class="color-red">11%</p></a></li>
-							<li id="test_7"><a><i>7</i> <span>사오정</span>
-									<p class="color-red">10%</p></a></li>
-							<li id="test_8"><a><i>8</i> <span>개미왕</span>
-									<p class="color-red">7%</p></a></li>
-							<li id="test_9"><a><i>9</i> <span>답없다</span>
-									<p class="color-red">5%</p></a></li>
-							<li id="test_10"><a><i>10</i> <span>어부</span>
-									<p class="color-red">4%</p></a></li>
-						</ul>
+							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
+								<li class="first"><a><i> <c:out value="${vs.count}"/></i> <span><c:out
+												value="${list.nickname}" /></span>
+										<p class="color-red">
+											<c:out value="${list.revenue}%" />
+										</p></a></li>
+							</c:forEach>
 					</div>
 				</div>
 

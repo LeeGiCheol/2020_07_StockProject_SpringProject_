@@ -50,6 +50,7 @@ public class TradeController {
 //	}
 	@GetMapping(value = "/myStock")
 	public ModelAndView myStock(@RequestParam(value = "page") int page) {
+		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		ModelAndView mav = new ModelAndView();
 		String id = null;
 		try {
@@ -65,6 +66,7 @@ public class TradeController {
 
 		try {
 			for (int i = (page - 1) * 15; i < page * 15; i++) {
+				holdingStock.get(i).put("avgprice", formatter.format(holdingStock.get(i).get("avgprice")));
 				pageHoldingStock.add(holdingStock.get(i));
 			}
 		} catch (Exception e) {

@@ -1,9 +1,18 @@
 package com.bitcamp.project.view.board;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +21,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
+import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
@@ -82,6 +93,8 @@ public class BoardController {
 		
 		vo.setId(loginUser.getId());
 		vo.setBno(1); // 자유게시판
+		
+		System.out.println("BV " + vo);
 		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
 	}
@@ -194,5 +207,25 @@ public class BoardController {
 		}
 		
 	}
+	
+	
+	
+	@RequestMapping("/fileUpload")
+
+	 public void multiplePhotoUpload(HttpServletRequest request, HttpServletResponse response){
+		FileUpload file = new FileUpload();
+		file.file(request, response);
+	    
+	
+	}
+
+
+
+	
+	
+	
+	
+	
+	
 	
 }
