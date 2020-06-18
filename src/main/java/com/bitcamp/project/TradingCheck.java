@@ -93,7 +93,8 @@ public class TradingCheck {
 					asset += hList.get(j).getQuantity() * sp.parse(hList.get(j).getStockCode()).getCurrentPrice();
 				}
 				List<Map> list = mybatis.selectList("stock.getUnsettled_Code", user.getId());
-				for (int j = 0; j < list.size(); j++) {
+				
+				for (int j = 0; j < list.size(); j++) { // 잔여 미채결 평가금액 반영 
 					if (list.get(j).get("category").equals("buy")) {
 						asset += new Long((int) list.get(j).get("quantity"))
 								* new Long((int) list.get(j).get("rPrice"));
