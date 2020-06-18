@@ -20,7 +20,34 @@
 
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".newsboard-nav-item").each(function() {
+			$(this).click(function() {
+				$(this).addClass("selected"); //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+				$(this).siblings().removeClass("selected"); //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+			});
+		});
+/* 		$(function() {
+			var sBtn = $("ul > li"); //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
+			sBtn.find("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
+				sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
+				$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+			})
+		}) */
+		$(function() {
+			window.pagObj = $('#pagination').twbsPagination({
+				totalPages : 35,
+				visiblePages : 5,
+				onPageClick : function(event, page) {
+					console.info(page + ' (from options)');
+				}
+			}).on('page', function(event, page) {
+				console.info(page + ' (from event listening)');
+			});
+		});
+	});
+</script>
 <script>
 $(document).ready(function(){
     $(".refresh").click(function(){
@@ -74,7 +101,7 @@ $(document).ready(function(){
 
 	<%@include file="mainheader.jsp" %> 	
 	
-    <!-- section start -->
+ <!-- section start -->
     <div class="sideBar col-md-4 order-md-2 mb-4" id="menu-bar">
       <ul class="list-group mb-3">
         <!-- java에서 온클릭 위치 바꾸기!!!!!!!!!!!!!!!!!!!-->
@@ -607,6 +634,214 @@ $(document).ready(function(){
     </div> 
   </article>
 <!-- article end -->
+
+	<div class="containerNew">
+		<div class="contents">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="sidebar sticky" id="cssmenu">
+						<ul>
+							<li><a href="/board/free"><span>자유게시판</span></a></li>
+							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
+							<li class="last"><a href="/news"><span>뉴스</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-10">
+
+					<div class="newsboard-area">
+						<div class="drop-nav">
+							<h1 class="tit-h1 line">뉴스</h1>
+						</div>
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">뉴스
+								▼</h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+								<a href="/news">뉴스</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">자유게시판</a>
+							</h1>
+							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+								<a href="#">포트폴리오</a>
+							</h1>
+						</div>
+						<div class="newsboard-nav">
+							<ul class="nav newsboard-nav-tab" id="pills-tab" role="tablist">
+								<li class="newsboard-nav-item selected" role="presentation"><a
+									class="nav-link" id="top-nav-font" data-toggle="pill"
+									href="#pills-home" role="tab" aria-controls="pills-home"
+									aria-selected="true">종합</a></li>
+								<li class="newsboard-nav-item" role="presentation"><a
+									class="nav-link" id="top-nav-font" data-toggle="pill"
+									href="#pills-profile" role="tab" aria-controls="pills-profile"
+									aria-selected="false">증권</a></li>
+								<li class="newsboard-nav-item" role="presentation"><a
+									class="nav-link" id="top-nav-font" data-toggle="pill"
+									href="#pills-contact" role="tab" aria-controls="pills-contact"
+									aria-selected="false" style="border-right: none;">정치/사회</a></li>
+							</ul>
+						</div>
+
+						<div class="board-calendar">
+
+							<div class="week ">
+								<p class="date">
+									<button onclick="setYesterday();" class="prev-week">어제</button>
+									<strong id="test-date" value="setToday();">2020.06.18</strong>
+									<span class="input-group-addon">
+										<button type="button" class="calendar add-on">달력보기</button>
+									</span>
+									<button type="button" onclick="setToday();" class="btn-s">오늘</button>
+									<button onclick="setTomorrow();" class="next-week"
+										id="btn-tomorrow" style="display: none;">내일</button>
+								</p>
+							</div>
+							<!-- //week -->
+						</div>
+						<!-- //board-calendar -->
+
+				<div class="tab-content" id="pills-tabContent">
+					<div class="tab-pane fade show active" id="pills-home"
+						role="tabpanel" aria-labelledby="pills-home-tab">
+								<tbody> 
+									<tr>
+										<th scope="row"><label for="email">이메일</label></th>
+										<td>
+											<span class="input-style-case02">
+												<input type="text" id="email" name="email" value="ekek3002@naver.com" readonly="">
+												<button type="button" class="delete">삭제</button>
+											</span>	 
+										</td>
+									</tr> 
+									<tr>
+										<th scope="row"><label for="mobile_no">휴대전화</label></th>
+										<td>
+											<span class="input-style-case02">
+												<input type="text" id="mobile_no" name="mobile_no" placeholder="휴대폰 번호는 대시(-)없이 숫자만 입력해주세요." value="01031429485" class="_onlyNumber" maxlength="11" readonly="">
+												<button type="button" class="delete">삭제</button> 
+											</span> 
+											<div class="text-wrap">
+												<p class="td-text color-black">이메일과 휴대폰은 아이디/비밀번호찾기 시 본인확인을 위해 사용됩니다.</p>
+												<p class="td-text">본인의 정보가 타인에게 전달되지 않도록 정확하게 입력 해 주시기 바랍니다.</p> 
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="nick_nm">필명</label></th>
+										<td>  
+											<div class="sell-wrap">
+										
+											
+												<span class="input-style-nick">
+													<input type="text" id="nick_nm" placeholder="필명을 입력하세요" title="필명을 입력하세요" name="nick_nm" value="나다이시키야">
+													<button type="button" class="delete">삭제</button>
+													<span class="byte"><b id="maxText">12</b>/12byte</span>
+												</span>
+												<button type="button" class="btn-t gray" onclick="checkNickName();">중복확인</button>
+											
+											
+										
+
+											</div>
+											<div class="text-wrap">
+												<p class="td-text">최종변경일자 <span class="color-red">
+													
+														
+														
+														2020.06.04
+														
+													
+													</span></p>
+												<p class="td-text">필명은 게시판 등 사이트 내에서 실명 대신 사용하는 이름으로 <span class="color-black">180일</span>에 <span class="break">한 번만 변경가능합니다.</span></p> 
+											</div>
+										</td>
+									</tr> 
+								</tbody>
+					</div>
+					<div class="tab-pane fade" id="pills-profile" role="tabpanel"
+						aria-labelledby="pills-profile-tab">
+						2
+					</div>
+					<div class="tab-pane fade" id="pills-contact" role="tabpanel"
+						aria-labelledby="pills-contact-tab">
+						3
+					</div>
+				</div>
+
+						<!-- 페이징 -->
+						<div class="paging">
+							<div class="paging-body">
+								<nav aria-label="..." class="pagination">
+									<ul class="pagination">
+
+
+
+										<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+
+
+										<!-- 한번에 5개 페이지 보여줌 -->
+
+
+
+
+
+										<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+
+
+										<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
+
+										<li><a class="page-link" href="/board/free?bnowPage=2"
+											tabindex="+1" aria-disabled="true" data-ajax="false"> <i
+												class="fas fa-angle-right"></i>
+										</a></li>
+
+
+										<!-- >> 버튼 -->
+										<li><a class="page-link" href="/board/free?bnowPage=0"
+											tabindex="-1" aria-disabled="true"> <i
+												class="fas fa-angle-double-right"></i>
+										</a></li>
+
+
+									</ul>
+								</nav>
+							</div>
+						</div>
+
+						<div class="search-area">
+							<div class="search-area-body">
+								<form class="form-inline my-2 my-lg-0 underSearchForm"
+									action="/board/free">
+									<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
+									<select class="dropdown-toggle-board" name="searchStyle">
+										<option class="nav-link dropdown-toggle board-item"
+											id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false" value="">전체</option>
+										<option class="dropdown-item board-item" value="search_title">제목</option>
+										<option class="dropdown-item board-item"
+											value="search_content">내용</option>
+										<option class="dropdown-item board-item"
+											value="search_title_content">제목 + 내용</option>
+										<option class="dropdown-item board-item" value="search_nick">글쓴이</option>
+									</select> <input class="form-control mr-sm-2 board-search" type="search"
+										placeholder="검색어 입력" aria-label="Search">
+									<button
+										class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
+										type="submit">
+										<i class="fas fa-search"></i>
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<%@include file="mainfooter.jsp" %>
 

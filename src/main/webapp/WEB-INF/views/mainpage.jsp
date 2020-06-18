@@ -374,9 +374,13 @@ position:relative;
 
 
 				<div class="ranking">
-					<span class="ranking-nav">일간 랭킹</span>
-					<div class="ranking-body">
+					<span class="ranking-tab">
+						<a class="selected" id="srchRanking" style="cursor:pointer;">주간 랭킹</a>
+						<a id="toronRanking" style="cursor:pointer;">누적 랭킹</a>
+					</span>
+					<div class="ranking-body" id="searchHtml" style="cursor:pointer;">
 						<ul>
+						
 							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
 								<li class="first"><a><i> <c:out value="${vs.count}"/></i> <span><c:out
 												value="${list.nickname}" /></span>
@@ -384,9 +388,23 @@ position:relative;
 											<c:out value="${list.revenue}%" />
 										</p></a></li>
 							</c:forEach>
+						</ul>
+					</div>
+					<div class="ranking-body" id="discHtml" style="display:none;">
+						<ul>
+						
+							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
+								<li class="first"><a><i> <c:out value="${vs.count}"/></i> <span><c:out
+												value="${list.nickname}" /></span>
+										<p class="color-red">
+											<c:out value="${list.revenue}%" />
+										</p></a></li>
+							</c:forEach>
+						</ul>
 					</div>
 				</div>
-
+				
+				
 				<div class="faq">
 					<nav>
 						<div class="nav nav-tabs" role="tablist">
@@ -732,5 +750,31 @@ position:relative;
 		
 
 </script>
+
+<script>
+
+
+	$(document).ready(function(){
+		initDefaultFunc();
+	});
+
+	function initDefaultFunc(){
+		$("#srchRanking").click(function(){
+			$(this).addClass("selected");
+			$("#toronRanking").removeClass("selected");
+			$("#searchHtml").show();
+			$("#discHtml").hide();
+		});
+
+		$("#toronRanking").click(function(){
+			$(this).addClass("selected");
+			$("#srchRanking").removeClass("selected");
+			$("#searchHtml").hide();
+			$("#discHtml").show();
+		});
+	}
+
+</script>
+
 </body>
 </html>
