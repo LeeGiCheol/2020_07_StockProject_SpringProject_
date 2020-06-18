@@ -45,10 +45,6 @@ public class MyPageController {
     PasswordEncoder passwordEncoder;
 	@Autowired
 	BCryptPasswordEncoder bPasswordEncoder;
-	
-	//ranking 시험용
-	@Autowired
-	private SqlSessionTemplate mybatis;
 
 	@GetMapping(value="/checkCharging")
 	@ResponseBody
@@ -57,19 +53,15 @@ public class MyPageController {
 		return userInfoService.checkCharging(loginUser.getId());
 	}
 	
-//	//랭킹 시험용
-//	@GetMapping(value="/testranking")
-//	public void test() {
-//		System.out.println("testtesttest");
-//		Ranking r = new Ranking(mybatis);
-//		r.computeAsset();
-//	}
-//	
    @GetMapping(value="/myPage02")
    public String myPage02(HttpSession session, @ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
          @ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
          @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
          @ModelAttribute("type1") String type1, @ModelAttribute("type2") String type2) {
+	   
+	   UserVO user = new UserVO();
+	   user.setId("user@naver.com");
+	   session.setAttribute("loginUser", user);
 	   
 	   if(type1.equals(""))
 		   type1 = "rate";

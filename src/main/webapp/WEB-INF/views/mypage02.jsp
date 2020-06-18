@@ -663,10 +663,10 @@ $(document).ready(function(){
 						</div>
 						<div class="newsboard-nav">
 							<ul class="nav newsboard-nav-tab" id="pills-tab" role="tablist">
-								<li class="newsboard-nav-item selected" role="presentation"><a
-									class="nav-link" id="top-nav-font" data-toggle="pill"
+								<li class="newsboard-nav-item <c:if test="">selected</c:if>" role="presentation"><a
+									class="nav-link <c:if test="">active</c:if>" id="top-nav-font" data-toggle="pill"
 									href="#pills-home" role="tab" aria-controls="pills-home"
-									aria-selected="true">수익률</a></li>
+									aria-selected="false">수익률</a></li>
 								<li class="newsboard-nav-item" role="presentation"><a
 									class="nav-link" id="top-nav-font" data-toggle="pill"
 									href="#pills-profile" role="tab" aria-controls="pills-profile"
@@ -674,7 +674,7 @@ $(document).ready(function(){
 								<li class="newsboard-nav-item" role="presentation"><a
 									class="nav-link" id="top-nav-font" data-toggle="pill"
 									href="#pills-contact" role="tab" aria-controls="pills-contact"
-									aria-selected="false" style="border-right: none;">거래내역</a></li>
+									aria-selected="true" style="border-right: none;">거래내역</a></li>
 							</ul>
 						</div>
 
@@ -913,34 +913,90 @@ $(document).ready(function(){
 									<ul class="pagination">
 
 
-
+										<c:if test="${pv1.nowPage != 1}">
+											<!-- << 버튼 -->
+											<li>
+												<a class="page-link"
+													href="/myPage02?nowPage1=1&accountSearch=${accountSearch}&type1=account"
+													tabindex="-1" aria-disabled="true">
+													<i class="fas fa-angle-double-left"></i>
+												</a>
+											</li>
+											<!-- 1페이지에서 < 버튼 눌렀을 때 -->
+											<c:if test="${pv1.nowPage == 1}">
+												<li>
+													<a class="page-link"
+														href="/myPage02?nowPage1=${pv1.nowPage}&accountSearch=${accountSearch}&type1=account"
+														tabindex="-1" aria-disabled="true">
+														<i class="fas fa-angle-left"></i>
+													</a>
+												</li>
+											</c:if>
+										</c:if>
 										<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-
-
+										<c:if test="${pv1.nowPage != 1}">
+											<li>
+												<a class="page-link"
+													href="/myPage02?nowPage1=${pv1.nowPage-1}&accountSearch=${accountSearch}&type1=account"
+													tabindex="-1" aria-disabled="true">
+													<i class="fas fa-angle-left"></i>
+												</a>
+											</li>
+										</c:if>
+										
 										<!-- 한번에 5개 페이지 보여줌 -->
-
-
-
-
-
+										<c:forEach begin="${pv1.startPage }" end="${pv1.endPage }" var="p">
+											<c:choose>
+												<c:when test="${p == pv1.nowPage}">
+													<li class="page-item active" aria-current="page">
+													<a class="page-link" href="#">${p}
+														<span class="sr-only">(current)</span>
+													</a>
+													</li>
+												</c:when>
+												<c:when test="${p != pv1.nowPage}">
+													<li class="page-item">
+													<a class="page-link" href="/myPage02?nowPage1=${p}&accountSearch=${accountSearch}&type1=account">${p}</a>
+													</li>
+												</c:when>
+											</c:choose>
+										</c:forEach> 
+										
+										
+										
+										<c:if test="${pv1.nowPage != pv1.lastPage}">    
 										<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-
-
-										<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
-
-										<li><a class="page-link" href="/board/free?bnowPage=2"
-											tabindex="+1" aria-disabled="true" data-ajax="false"> <i
-												class="fas fa-angle-right"></i>
-										</a></li>
-
-
+										<c:if test="${pv1.nowPage == pv1.lastPage}">
+										<li>
+										<a class="page-link"
+										href="myPage02?nowPage1=${pv1.nowPage}&accountSearch=${accountSearch}&type1=account"
+										tabindex="+1" aria-disabled="true">
+										<i class="fas fa-angle-right"></i>
+										</a>
+										</li>
+										</c:if>
+										
+										<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+										<c:if test="${pv1.nowPage != pv1.lastPage}">
+										<li>
+										<a class="page-link"
+										href="/myPage02?nowPage1=${pv1.nowPage+1}&accountSearch=${accountSearch}&type1=account"
+										tabindex="+1" aria-disabled="true" data-ajax="false">
+										<i class="fas fa-angle-right"></i>
+										</a>
+										</li>
+										</c:if> 
+										
 										<!-- >> 버튼 -->
-										<li><a class="page-link" href="/board/free?bnowPage=0"
-											tabindex="-1" aria-disabled="true"> <i
-												class="fas fa-angle-double-right"></i>
-										</a></li>
-
-
+										<li>
+										<a class="page-link"
+										href="/myPage02?nowPage1=${pv1.lastPage}&accountSearch=${accountSearch}&type1=account"
+										tabindex="-1" aria-disabled="true">
+										<i class="fas fa-angle-double-right"></i>
+										</a>
+										</li>
+										
+										</c:if>
 									</ul>
 								</nav>
 							</div>
