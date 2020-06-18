@@ -198,20 +198,7 @@
 							</ul>
 						</div>
 
-						<div class="board-calendar">
 
-							<div class="week ">
-								<p class="date">
-									<button onclick="setYesterday();" class="prev-week">어제</button>
-									<strong id="test-date" value="setToday();"></strong>
-									<span class="input-group-addon"> <button type="button" class="calendar add-on">달력보기</button></span>
-									<button type="button" onclick="setToday();" class="btn-s">오늘</button>
-									<button onclick="setTomorrow();" class="next-week" id="btn-tomorrow">내일</button>
-								</p>
-							</div>
-							<!-- //week -->
-						</div>
-						<!-- //board-calendar -->
 
 
 						<div class="tab-content" id="pills-tabContent">
@@ -276,7 +263,6 @@
 
 
 								</div>
-								<a class="moreBttn right blue" href="#">글쓰기</a>
 
 
 							</div>
@@ -309,7 +295,6 @@
 									</div>
 									<!-- 반복끝 -->
 								</div>
-								<a class="moreBttn right blue" href="#">글쓰기</a>
 							</div>
 
 
@@ -341,7 +326,6 @@
 									</div>
 									<!-- 반복끝 -->
 								</div>
-								<a class="moreBttn right blue" href="#">글쓰기</a>
 
 
 
@@ -349,7 +333,8 @@
 
 
 							</div>
-
+		
+								<a class="moreBttn right norm" href="#">글쓰기</a>
 
 						</div>
 

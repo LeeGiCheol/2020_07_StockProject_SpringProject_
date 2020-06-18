@@ -63,8 +63,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	public int checkCharging(String id) {
 		int chargeCount = userInfoDAO.getChargingCount(id);
-		if(chargeCount > 0)
+		if(chargeCount > 0) {
+			List<Integer> uList = userInfoDAO.getUnoList(id);
+			for (int i = 0; i < uList.size(); i++) {
+				userInfoDAO.deleteUnsettledCheck(uList.get(i));
+			}
 			userInfoDAO.consumpCharge(id);
+		}
 		return chargeCount;
 	}
 

@@ -132,57 +132,23 @@
 				<div class="community">
 
 
-
-					<div id="qnaCategory" class="sectionBox">
-						<div class="blueBox">
-							<div class="qnaGroup">
-								<div class="qnaTitle">
-									QnA
-								</div>
-
-
-								<div class="qnabox">
-
-									<svg class="bi bi-person-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-										xmlns="http://www.w3.org/2000/svg">
-										<path
-											d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-										<path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-										<path fill-rule="evenodd"
-											d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
-									</svg>
-
-									<a href="#">회원계정</a>
-								</div>
-								<div class="qnabox">
-									<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-										xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd"
-											d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-									</svg>
-									<a href="#">커뮤니티</a>
-								</div>
-								<div class="qnabox">
-									<svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-										xmlns="http://www.w3.org/2000/svg">
-										<path
-											d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-										<path fill-rule="evenodd"
-											d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-									</svg>
-									<a href="#">거래</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-
 					<div class="sectionBox">
 
 						<div class="sectionWrapper">
-							<h2 class="main-tit">도움말추가</h2>
+							
+							<div class="drop-nav">
+							<h1 class="tit-h1 line">도움말추가</h1>
+						</div>
+
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor:pointer;">도움말 ▼</h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">고객센터</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">공지사항</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">도움말</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">1:1문의</a></h1>
+						</div>
 
 
 

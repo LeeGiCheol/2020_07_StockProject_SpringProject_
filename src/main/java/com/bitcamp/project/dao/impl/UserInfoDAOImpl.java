@@ -86,6 +86,13 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	public int getRanking(String id) {
 		return mybatis.selectOne("user.getRanking", id);
 	}
+
+	@Override
+	public List<Integer> getUnoList(String id) {
+		return mybatis.selectList("user.getUnoList", id);
+	}
 	
-	
+	public void deleteUnsettledCheck(int uno) {
+		mybatis.delete("user.deleteUnsettledCheck");
+	}
 }
