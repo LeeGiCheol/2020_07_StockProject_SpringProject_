@@ -174,18 +174,24 @@
 		<if test='tradeSearch != null and !tradeSearch.equals("")'>
 		and stockname like CONCAT('%', #{tradeSearch}, '%')
 		</if>
+		<if test='!startDate.equals("") and !endDate.equals("")'>
+		and date_format(tdatetime, '%Y-%m-%d') between #{util.startDate} and #{util.endDate}
+		</if>
 	</select>
 	
-	<select id="stockHistoryListByDate" parameterType="page" resultType="stock">
+	<select id="stockHistoryList" parameterType="page" resultType="stock">
 		select *
 		from tradinghistory
 		where id=#{util.id}
 		<if test='!util.startDate.equals("") and !util.endDate.equals("")'>
 		and date_format(tdatetime, '%Y-%m-%d') between #{util.startDate} and #{util.endDate}
 		</if>
+		<if test='!util.tradeSearch.equals("")'>
+		and stockname like CONCAT('%', #{util.tradeSearch}, '%')
+		</if>
 		limit #{start}, #{cntPerPage}
 	</select>
-	
+	<!-- 
 	<select id="stockHistoryListByStock" parameterType="page" resultType="stock">
 		select *
 		from tradinghistory
@@ -196,7 +202,7 @@
 		order by stockname
 		limit #{start}, #{cntPerPage}
 	</select>
-	
+	 -->
 </mapper>
 
   

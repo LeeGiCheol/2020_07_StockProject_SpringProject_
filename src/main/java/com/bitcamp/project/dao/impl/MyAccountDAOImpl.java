@@ -37,14 +37,14 @@ public class MyAccountDAOImpl implements MyAccountDAO {
 	}
 	
 	@Override
-	public List<StockVO> myStockHistoryListByDate(PagingVO pv) {
-		return mybatis.selectList("stock.stockHistoryListByDate", pv);
+	public List<StockVO> myStockHistoryList(PagingVO pv) {
+		return mybatis.selectList("stock.stockHistoryList", pv);
 	}
 	
-	@Override
-	public List<StockVO> myStockHistoryListByStock(PagingVO pv) {
-		return mybatis.selectList("stock.stockHistoryListByStock", pv);
-	}
+//	@Override
+//	public List<StockVO> myStockHistoryListByStock(PagingVO pv) {
+//		return mybatis.selectList("stock.stockHistoryListByStock", pv);
+//	}
 
 	@Override
 	public void myStockSearch() {

@@ -13,8 +13,8 @@ public interface MyAccountDAO {
 	public void stockReturnsList();
 	
 	public List<HoldingStockVO> myStockList(PagingVO pv);
-	public List<StockVO> myStockHistoryListByDate(PagingVO pv);
-	public List<StockVO> myStockHistoryListByStock(PagingVO pv);
+	public List<StockVO> myStockHistoryList(PagingVO pv);
+//	public List<StockVO> myStockHistoryListByStock(PagingVO pv);
 	public void myStockSearch();
 	
 	public void tradeList();
