@@ -94,4 +94,6 @@ public class BoardDAOImpl implements BoardDAO {
 		return mybatis.selectOne("board.reportBoardCount", vo);
 	}
 	
+
+	
 }
