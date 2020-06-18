@@ -334,11 +334,23 @@ font-size: 16px;} */
 .moreBttn:link,
 .moreBttn:visited {
   padding: 10px 20px;
-  background: #1e78ff;
-  color: white;
-  float: right;
+
 }
 
+.norm{
+	border: 1px solid;
+}
+.blue,.blue:visited,.blue:link{
+	  background: #1e78ff;  color: white;
+	  
+	
+}
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
 
 .phe-inquiry-top .faq-list {
   margin: 0 20px;

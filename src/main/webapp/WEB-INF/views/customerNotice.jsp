@@ -27,6 +27,7 @@
 		<div class="board-page">
 			<div class="row">
 				<div class="col-md-2">
+				
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li id="sideTitle"><a href="#"><span>고객센터</span></a></li>
@@ -35,6 +36,9 @@
 							<li><a href="#"><span>1:1문의</span></a></li>
 						</ul>
 					</div>
+					
+					
+					
 				</div>
 				<div class="col-md-10">
 					<div class="free-board">
