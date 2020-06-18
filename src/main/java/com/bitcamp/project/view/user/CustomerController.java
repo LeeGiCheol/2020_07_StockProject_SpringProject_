@@ -10,4 +10,30 @@ public class CustomerController {
 	public String customerLanding() {
 		return "customerLanding";
 	}
+	
+	@GetMapping(value="/customerNotice")
+	public String customerNotice() {
+		return "customerNotice";
+	}	
+	
+	@GetMapping(value="/customerNoticeDetail")
+	public String customerNoticeDetail() {
+		return "customerNoticeDetail";
+	}	
+	
+	@GetMapping(value="/customerqna")
+	public String customerqna() {
+		return "customerqna";
+	}	
+	
+	@GetMapping(value="/customNoticeWrite")
+	public String customNoticeWrite() {
+		return "customNoticeWrite";
+	}	
+	
+	@GetMapping(value="/customClaimWrite")
+	public String customClaimWrite() {
+		return "customClaimWrite";
+	}
+	
 }

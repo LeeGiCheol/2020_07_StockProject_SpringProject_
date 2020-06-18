@@ -18,6 +18,8 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
+	<link rel="stylesheet" href="/resources/css/customers.css">
+
 <style type="text/css">
 td, th {
     word-break: break-all;

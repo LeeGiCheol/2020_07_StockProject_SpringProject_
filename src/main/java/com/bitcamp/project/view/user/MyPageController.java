@@ -100,6 +100,25 @@ public class MyPageController {
 	   return "mypage02";
    }   
 
+	
+   @GetMapping(value="/myPagePwCheck") 
+   public String myPageCheck(HttpSession session) {
+	   if(((UserVO)session.getAttribute("loginUser")).getId().substring(((UserVO)session.getAttribute("loginUser")).getId().length()-1).equals("_")) {
+			return "redirect:/myPage01";
+	   }else {
+     		return "myPageCheckPw"; 
+	   }
+   }
+   @ResponseBody
+   @PostMapping(value="/myPagePwCheck")
+   public String myPageCheckPost(@ModelAttribute("password") String password, HttpSession session) {
+	   UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+	   if(bPasswordEncoder.matches(password, loginUser.getPw())){
+		   return Integer.toString(1);
+	   }else {
+		   return Integer.toString(0);
+	   }
+   }
 
 
 

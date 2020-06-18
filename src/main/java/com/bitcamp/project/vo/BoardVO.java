@@ -2,6 +2,7 @@ package com.bitcamp.project.vo;
 
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -24,6 +25,10 @@ public class BoardVO {
 	private String rtype;
 	private String rcontent;
 	private String rdateTime;
+	
+	
+	private String thumbnailName;
+	
 	
 	
 	
@@ -109,15 +114,22 @@ public class BoardVO {
 	public void setRdateTime(String rdateTime) {
 		this.rdateTime = rdateTime;
 	}
+	public String getThumbnailName() {
+		return thumbnailName;
+	}
+	public void setThumbnailName(String thumbnailName) {
+		this.thumbnailName = thumbnailName;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [pno=" + pno + ", id=" + id + ", nickname=" + nickname + ", title=" + title + ", bcontent="
 				+ bcontent + ", views=" + views + ", likes=" + likes + ", bdateTime=" + bdateTime + ", bno=" + bno
-				+ ", commentCount=" + commentCount + "]";
+				+ ", commentCount=" + commentCount + ", rtype=" + rtype + ", rcontent=" + rcontent + ", rdateTime="
+				+ rdateTime + ", thumbnailName=" + thumbnailName + "]";
 	}
 	
 	
-
+	
 	
 
 	
