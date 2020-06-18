@@ -47,7 +47,88 @@
 	</script>
 
 	<script type="text/javascript">
-	0
+		var date = new Date();
+		date.setDate(date.getDate());
+		//var todayCnt = 0;
+		var $datepick;
+		$(document).ready(function () {
+				$('.calendar').datepicker({
+					format: 'yyyy.mm.dd',
+					clearBtn: true,
+					language: "ko",
+					orientation: "bottom auto",
+					autoclose: true,
+					todayBtn: "linked",
+					endDate: date,
+				}).on('changeDate', function (ev) {
+					//alert(ev)
+					//console.log(ev.format())
+					_year = ev.date.getFullYear()
+					_month = ev.date.getMonth()
+					_day = ev.date.getDate()
+					_date = ev.format()
+					console.log("changeDate() _date : " + _date)
+					//console.log("test _date : " + endDate)
+					//console.log(ev.format())
+					$('#test-date').html(_date)
+
+					showHideTomorrowBtn(ev.date, new Date());
+				});
+
+				setToday();
+			}
+
+		);
+
+		function showHideTomorrowBtn(checkDate, nowDate) {
+			if (nowDate.getFullYear() > checkDate.getFullYear()) {
+				$("#btn-tomorrow").show();
+			} else {
+				if (nowDate.getMonth() > checkDate.getMonth()) {
+					$("#btn-tomorrow").show();
+				} else {
+					if (nowDate.getDate() > checkDate.getDate()) {
+						$("#btn-tomorrow").show();
+					} else {
+						$("#btn-tomorrow").hide();
+					}
+				}
+			}
+
+		}
+
+		function setToday() {
+			console.log("setToday()")
+			$('.calendar').datepicker('setDate', 'today');
+			//$("#btn-tomorrow").hide();
+			//todayCnt = 0;
+			//showHideTomorrow();
+			var nowDate = $(".calendar").datepicker('getDate');
+			showHideTomorrowBtn(nowDate, nowDate);
+		}
+
+		function setTomorrow() {
+			var nowDate = $(".calendar").datepicker('getDate');
+			console.log("nowDate: " + nowDate)
+			var tomorrowDate = new Date(nowDate.getFullYear(), nowDate.getMonth(),
+				nowDate.getDate() + 1);
+			$(".calendar").datepicker('setDate', tomorrowDate)
+			//todayCnt++;
+			//showHideTomorrow();
+			showHideTomorrowBtn(tomorrowDate, new Date());
+		}
+
+		function setYesterday() {
+			var nowDate = $(".calendar").datepicker('getDate');
+			console.log("nowDate: " + nowDate)
+			var yesterdayDate = new Date(nowDate.getFullYear(), nowDate.getMonth(),
+				nowDate.getDate() - 1);
+			$(".calendar").datepicker('setDate', yesterdayDate)
+			//todayCnt--;
+
+			//showHideTomorrow();
+			showHideTomorrowBtn(yesterdayDate, new Date());
+		}
 	</script>
 
 </head>
@@ -253,6 +334,7 @@
 
 							</div>
 		
+								<a class="moreBttn right norm" href="#">글쓰기</a>
 
 						</div>
 

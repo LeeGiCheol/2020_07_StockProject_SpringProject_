@@ -136,8 +136,34 @@
 		update user
 		natural join usermoney
 		set charge=charge-1, money=10000000
-		where id=#{id}
+		where id=#{id};
+		
+		delete 
+		from unsettled 
+		where id=#{id};
+	
+
+	
+		update holdingstock
+		set quantity=0, avgprice=0
+		where id=#{id};
+		
+		update userranking
+		set accumasset=10000000
+		where id=#{id};
 	</update>
+	
+	<select id="getUnoList" resultType="int">
+		select uno
+		from unsettled
+		where id=#{id}
+	</select>
+
+	<delete id="deleteUnsettledCheck">
+		delete 
+		from unsettled
+		where uno=#{uno};
+	</delete>
 	
 	<select id="getAllUser" resultType="user">
 		select *

@@ -81,6 +81,19 @@ input[type="text"], input[type="password"], input[type="tel"] {
     box-sizing: border-box;
     border-radius: 0;
 }
+p.error-text {
+    margin-top: 8px !important;
+}
+.error-text {
+    font-size: 13px;
+    color: #ff545b;
+    /* margin-top: 8px; */
+}
+.ok-text {
+    font-size: 13px;
+    color: #1ea3fe;
+    margin-top: 8px;
+}
 .wrap {
     position: relative;
     height: 100%;
@@ -718,6 +731,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
     font-size: 14px;
     height: 36px;
 }
+
 .break {
     display: inline;
 }
@@ -769,4 +783,5 @@ input[type="text"], input[type="password"], input[type="tel"] {
     margin: 0 !important;
     padding: 0 10px 20px;
 }
+
 }

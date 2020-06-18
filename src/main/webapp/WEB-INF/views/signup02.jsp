@@ -44,31 +44,31 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								<ul>
 									<li>
 										<span class="input-style-mail">
-											<label for="inputEmail">인증받으실 이메일을 입력해주세요</label>
-											<input type="text" id="inputEmail" name="id" onKeyPress="return spaceCheck(event)">
+											<label for="inputCemail"></label>
+											<input placeholder="인증받으실 이메일을 입력해주세요" type="text" id="inputEmail" name="id" onKeyPress="return spaceCheck(event)">
 										</span>
 										<div id="idResult"></div>
 										<button type="button" class="btn-s" id="idCheck">인증받기</button>
 									</li>
 									<li id="_liEmailNum" style="display: none;">
 										<span class="input-style-certif">
-											<label for="inputCemail">인증번호를 입력해주세요</label>
-											<input type="text" id="inputCemail" name="cEmail" onKeyPress="return numkeyCheck(event)">
+											<label for="inputCemail"></label>
+											<input placeholder="인증번호를 입력해주세요" type="text" id="inputCemail" name="cEmail" onKeyPress="return numkeyCheck(event)">
 										</span>
 										<div id="cEmailResult"></div>
 										<button type="button" class="btn-s" id="cEmailCheck">인증확인</button>
 									</li>
 									<li>
 										<span class="input-style-pass">
-											<label for="inputPassword">비밀번호를 입력해주세요</label>
-											<input type="password" name="pw" id="inputPassword" maxlength="13" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
+											<label for="inputPassword"></label>
+											<input placeholder="비밀번호를 입력해주세요" type="password" name="pw" id="inputPassword" maxlength="13" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
 											<button type="button" class="delete">삭제</button>
 										</span>
 									</li>
 									<li>
 										<span class="input-style-pass01">
-											<label for="inputPasswordAgain">한번 더 입력해주세요</label>
-											<input type="password" name="pswdc"  id="inputPasswordAgain" onkeyup="SameCheck(this);" maxlength="13" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
+											<label for="inputPasswordAgain"></label>
+											<input placeholder="한 번 더 입력해주세요" type="password" name="pswdc"  id="inputPasswordAgain" onkeyup="SameCheck(this);" maxlength="13" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
 											<button type="button" class="delete">삭제</button>
 										</span>
 										<div id=pwResult></div>
@@ -77,8 +77,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								<ul>
 									<li>
 										<span class="input-style-nick">
-											<label for="inputNickname">닉네임을 입력해주세요</label>
-											<input type="text"  name="nickname" id="inputNickname" maxlength="24" onKeyPress="return spaceCheck(event)">
+											<label for="inputNickname"></label>
+											<input placeholder="닉네임을 입력해주세요" type="text"  name="nickname" id="inputNickname" maxlength="24" onKeyPress="return spaceCheck(event)">
 										</span>  
 										<div id="nickNameResult"></div>
 										<span class="byte"><b id="maxText">0</b>/12byte</span>
@@ -86,9 +86,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 									</li> 
 									<li>
 										<span class="input-style-nick">
-											<label for="inputFriend">추천인을 입력해주세요</label>
-											<input type="text" name="friend" id="inputFriend"  maxlength="24" onKeyPress="return spaceCheck(event)">
-											<!-- <button type="button" class="delete">삭제</button>  -->
+											<label for="inputFriend"></label>
+											<input placeholder="추천인을 입력해주세요" type="text" name="friend" id="inputFriend"  maxlength="24" onKeyPress="return spaceCheck(event)">
 										</span>  
 										<div id="friendResult"></div>
 										<span class="byte"><b id="maxText1">0</b>/12byte</span>
@@ -99,14 +98,13 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 									<li>
 										<span class="input-style-address">
 											<input type="text" name="address" id="inputAddress" class="_onlyNumber" placeholder="우편번호"  required="true" readonly>
-											<!-- <button type="button" class="delete">삭제</button> -->
 										</span>
 										<button type="button" class="btn-s" onclick="goPopup();">우편번호 찾기</button>
 									</li>
 									<li>
 										<span class="input-style-phone">
-											<label for="inputPhone">휴대폰번호('-'없이)</label>
-											<input type="text" name="tel" id="inputPhone" class="_onlyNumber" maxlength="11" onKeyPress="return numkeyCheck(event)">
+											<label for="inputPhone"></label>
+											<input placeholder="휴대폰번호('-'없이)" type="text" name="tel" id="inputPhone" class="_onlyNumber" maxlength="11" onKeyPress="return numkeyCheck(event)">
 											<!-- <button type="button" class="delete">삭제</button> -->
 										</span>
 										<div id=telResult></div>
@@ -114,8 +112,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 									</li>
 									<li id="_liPhoneNum" style="display: none;">
 										<span class="input-style-certif">
-											<label for="inputCtel">인증번호를 입력해주세요</label>
-											<input type="text" name="cTel" id="inputCtel" onKeyPress="return numkeyCheck(event)">
+											<label for="inputCtel"></label>
+											<input placeholder="인증번호를 입력해주세요" type="text" name="cTel" id="inputCtel" onKeyPress="return numkeyCheck(event)">
 										</span>
 										<div id=cTelResult></div>
 										<button type="button" class="btn-s" id="cTelCheck">인증확인</button>
@@ -137,8 +135,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</ul>
 							</fieldset>
 							<div class="bt-area"> 
-								<button class="btn-b" onclick="location.href='/mainPage';">취소</button>
 								<button type="submit" class="btn-b red" data-text-content="true" id="submit">가입하기</button> 
+								<button class="btn-b" onclick="location.href='/mainPage';">취소</button>
 							</div>
 						</form>
 						<dl class="guide-text03">

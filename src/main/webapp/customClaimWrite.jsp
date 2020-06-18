@@ -140,11 +140,11 @@
 
 
 						<div class="drop-nav">
-							<h1 class="tit-h1 line">공지사항</h1>
+							<h1 class="tit-h1 line">1:1문의</h1>
 						</div>
 
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;">공지사항 ▼</h1>
+							<h1 class="m-drop-tit-title line" style="cursor:pointer;">1:1문의 ▼</h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">고객센터</a></h1>
@@ -172,6 +172,8 @@
 											</td>
 
 										</tr>
+										
+										
 										<tr class="writer-nickname" style="display: none;">
 											<td>
 												<label for="writer"><b>작성자</b></label>
@@ -180,6 +182,9 @@
 												<input type="hidden" name="id" value="${loginUser.id}">
 											</td>
 										</tr>
+										
+										
+										
 										<tr>
 											<th scope="row">내용</th>
 											<td>
@@ -193,7 +198,7 @@
 							</div>
 							<div class="bt-area">
 								<a href="/board/free" class="moreBttn left norm">취소</a>
-								<span><a href="javascript:btnSave();" class="moreBttn right blue" id="addBtn">작성</a></span>
+								<span><a href="javascript:btnSave();" class="moreBttn right norm" id="addBtn">작성</a></span>
 							</div>
 						</form>
 

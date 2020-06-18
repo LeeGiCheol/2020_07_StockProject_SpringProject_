@@ -18,4 +18,6 @@ public interface UserInfoDAO {
 	public long getAccumAsset(String id);
 	public int getRanking(String id);
 	public List getCurrentRevenue();
+	public List<Integer> getUnoList(String id);
+	public void deleteUnsettledCheck(int uno);
 }
