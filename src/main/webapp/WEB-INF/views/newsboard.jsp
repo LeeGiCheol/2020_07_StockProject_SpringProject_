@@ -74,9 +74,7 @@
 		});
 
 		setToday();
-	}
-
-	);
+	});
 
 	function showHideTomorrowBtn(checkDate, nowDate) {
 		if (nowDate.getFullYear() > checkDate.getFullYear()) {
