@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -33,14 +35,19 @@
 
 		<div class="row">
 			<div class="col-md-2">
+
+
 				<div class="sidebar sticky" id="cssmenu">
 					<ul>
-						<li id="sideTitle"><a href="#"><span>고객센터</span></a></li>
+						<li id="sideTitle"><a  href="#"><span>고객센터</span></a></li>
 						<li><a href="#"><span>공지사항</span></a></li>
 						<li><a href="#"><span>도움말</span></a></li>
 						<li><a href="#"><span>1:1문의</span></a></li>
 					</ul>
 				</div>
+
+
+
 			</div>
 
 
@@ -54,10 +61,21 @@
 
 
 			<div class="col-md-10">
-
-
-
+<div class="m-menu">
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor:pointer;">고객센터 ▼</h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">고객센터</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">공지사항</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">도움말</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">1:1문의</a></h1>
+					
+						</div>
+</div>
 				<div class="community" role="main">
+
+
 
 
 
@@ -76,7 +94,7 @@
 								<div class="inquiry-box">
 									<p class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</p>
 									<a href="/rpan/help/serviceInqry" class="link">1:1 문의</a>
-									<a href="/rpan/help/serviceInqryInsertNoLogin" class="link">비회원 문의</a>
+				
 								</div>
 							</fieldset>
 						</div>
@@ -88,27 +106,25 @@
 							<dl>
 								<h2 class="main-tit">공지사항</h2>
 								<a class="moreBttn right blue" href="#">더보기</a>
-
 								<dd>
+
+								
+								
 									<div class="noticeList">
+										<c:forEach items="${boardList}" var="board">
+									
 										<ul class="list-group">
 											<!-- 현재 고객센터 공지사항 -> 일반 공지사항으로 변경 요청 -->
+								<c:if test="${ not empty board}">
 
-											<li class="list-group-item"><a href="#">* 공지 : 문ㅔ[][ㅔ]의사항은 서비스문의로 접수
-													주시면 빠른 답변을 받아보실 수 있습니다.(평일 08:30~17:30)</a></li>
+											<li class="list-group-item"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a> </li>
 
-											<li class="list-group-item"><a href="#">* 공지 :문의사항은 1:1 상담실로 접수
-													주시면 빠른 답변을 받아보실 수 있습니다.</a></li>
+								</c:if>
 
-											<li class="list-group-item"><a href="#">* 공지 : 문의사항은 1:1 상담실로 접수
-													주시면 빠른 답변을 받아보실 수 있습니다.</a></li>
-
-											<li class="list-group-item"><a href="#">* 공지 : 문의사항은 1:1 상담실로 접수
-													주시면 빠른 답변을 받아보실 수 있습니다.</a></li>
-											<li class="list-group-item"><a href="#">* 공지 : 문의사항은 1:1 상담실로 접수
-													주시면 빠른 답변을 받아보실 수 있습니다.</a></li>
 
 										</ul>
+										</c:forEach>
+										
 									</div>
 								</dd>
 							</dl>
@@ -251,7 +267,9 @@
 				<!-- 도움말과 1:1문의 -->
 				<div class="sectionBox">
 
-					<div id="cBoxa" class="cBox">
+
+
+					<a href="#" id="cBoxa" class="cBox">
 						<p class="cBoxTitle">도움말</p>
 						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
@@ -260,17 +278,22 @@
 							<path
 								d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
 						</svg>
-					</div>
+					</a>
 
 
-					<div id="cBoxb" class="cBox">
+
+
+
+
+					<a href="#" id="cBoxb" class="cBox">
 						<p class="cBoxTitle">1:1 문의</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd"
 								d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
 						</svg>
-					</div>
+					</a>
+
 
 
 

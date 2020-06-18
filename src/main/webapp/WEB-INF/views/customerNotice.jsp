@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="/resources/css/mainfooter.css">
 	<link rel="stylesheet" href="/resources/css/mainheader.css">
 	<link rel="stylesheet" href="/resources/css/free-board.css">
+		<link rel="stylesheet" href="/resources/css/customers.css">
+	
 </head>
 
 <body>

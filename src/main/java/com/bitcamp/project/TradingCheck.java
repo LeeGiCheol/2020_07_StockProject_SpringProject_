@@ -25,7 +25,7 @@ import stockCode.StockParsing;
 @Component
 public class TradingCheck {
 	int trriger = 0;
-	
+
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
@@ -80,23 +80,34 @@ public class TradingCheck {
 
 	@Scheduled(fixedDelay = 500)
 	public void TestScheduler() {
-		if(trriger++ %5 == 1) {
+		if (trriger++ % 3 == 1) {
 			StockParsing sp = new StockParsing();
 			System.out.println("평가금액 업데이트");
 			List<UserVO> users = mybatis.selectList("user.getAllUser");
-			for(int i = 0; i < users.size(); ++i) {
+			for (int i = 0; i < users.size(); ++i) {
 				Map<String, Object> map = new HashMap<String, Object>();
 				UserVO user = users.get(i);
 				List<HoldingStockVO> hList = mybatis.selectList("stock.holdingStockList2", user.getId());
 				long asset = user.getMoney();
-				for(int j = 0; j < hList.size(); ++j) {
+				for (int j = 0; j < hList.size(); ++j) {
 					asset += hList.get(j).getQuantity() * sp.parse(hList.get(j).getStockCode()).getCurrentPrice();
+				}
+				List<Map> list = mybatis.selectList("stock.getUnsettled_Code", user.getId());
+				
+				for (int j = 0; j < list.size(); j++) { // 잔여 미채결 평가금액 반영 
+					if (list.get(j).get("category").equals("buy")) {
+						asset += new Long((int) list.get(j).get("quantity"))
+								* new Long((int) list.get(j).get("rPrice"));
+					} else {
+						asset += new Long((int) list.get(j).get("quantity"))
+								* sp.parse((String) list.get(j).get("stockCode")).getCurrentPrice();
+					}
 				}
 				map.put("id", user.getId());
 				map.put("asset", asset);
-				mybatis.update("user.updateRanking",map);
+				mybatis.update("user.updateRanking", map);
 			}
-			if(trriger==2) {
+			if (trriger == 2) {
 				mybatis.update("user.setResetPoint");
 			}
 		}
@@ -128,7 +139,8 @@ public class TradingCheck {
 						int oldAVG = (int) ((Map) mybatis.selectOne("stock.getStockQuantity", sv)).get("avgprice");
 						int oldQu = (int) ((Map) mybatis.selectOne("stock.getStockQuantity", sv)).get("quantity");
 						System.out.println(oldAVG + "  /  " + oldQu);
-						sv.setAvgprice((oldAVG*oldQu+sv.getQuantity()*sv.getrPrice())/(oldQu+sv.getQuantity()));
+						sv.setAvgprice(
+								(oldAVG * oldQu + sv.getQuantity() * sv.getrPrice()) / (oldQu + sv.getQuantity()));
 						mybatis.update("stock.updateHoldingstock", sv);
 						mybatis.update("stock.updateAVG", sv);
 					}

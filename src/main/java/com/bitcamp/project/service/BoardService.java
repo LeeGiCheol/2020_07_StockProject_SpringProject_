@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.bitcamp.project.vo.BoardVO;
-import com.bitcamp.project.vo.PagingVO;
 
 
 public interface BoardService {
@@ -20,4 +19,5 @@ public interface BoardService {
 	public int boardLikes(BoardVO vo);
 	public List<BoardVO> boardPrevNext(BoardVO vo);
 	public int reportBoard(BoardVO vo);
+
 }

@@ -47,88 +47,6 @@
 	</script>
 
 	<script type="text/javascript">
-		var date = new Date();
-		date.setDate(date.getDate());
-		//var todayCnt = 0;
-		var $datepick;
-		$(document).ready(function () {
-				$('.calendar').datepicker({
-					format: 'yyyy.mm.dd',
-					clearBtn: true,
-					language: "ko",
-					orientation: "bottom auto",
-					autoclose: true,
-					todayBtn: "linked",
-					endDate: date,
-				}).on('changeDate', function (ev) {
-					//alert(ev)
-					//console.log(ev.format())
-					_year = ev.date.getFullYear()
-					_month = ev.date.getMonth()
-					_day = ev.date.getDate()
-					_date = ev.format()
-					console.log("changeDate() _date : " + _date)
-					//console.log("test _date : " + endDate)
-					//console.log(ev.format())
-					$('#test-date').html(_date)
-
-					showHideTomorrowBtn(ev.date, new Date());
-				});
-
-				setToday();
-			}
-
-		);
-
-		function showHideTomorrowBtn(checkDate, nowDate) {
-			if (nowDate.getFullYear() > checkDate.getFullYear()) {
-				$("#btn-tomorrow").show();
-			} else {
-				if (nowDate.getMonth() > checkDate.getMonth()) {
-					$("#btn-tomorrow").show();
-				} else {
-					if (nowDate.getDate() > checkDate.getDate()) {
-						$("#btn-tomorrow").show();
-					} else {
-						$("#btn-tomorrow").hide();
-					}
-				}
-			}
-
-		}
-
-		function setToday() {
-			console.log("setToday()")
-			$('.calendar').datepicker('setDate', 'today');
-			//$("#btn-tomorrow").hide();
-			//todayCnt = 0;
-			//showHideTomorrow();
-			var nowDate = $(".calendar").datepicker('getDate');
-			showHideTomorrowBtn(nowDate, nowDate);
-		}
-
-		function setTomorrow() {
-			var nowDate = $(".calendar").datepicker('getDate');
-			console.log("nowDate: " + nowDate)
-			var tomorrowDate = new Date(nowDate.getFullYear(), nowDate.getMonth(),
-				nowDate.getDate() + 1);
-			$(".calendar").datepicker('setDate', tomorrowDate)
-			//todayCnt++;
-			//showHideTomorrow();
-			showHideTomorrowBtn(tomorrowDate, new Date());
-		}
-
-		function setYesterday() {
-			var nowDate = $(".calendar").datepicker('getDate');
-			console.log("nowDate: " + nowDate)
-			var yesterdayDate = new Date(nowDate.getFullYear(), nowDate.getMonth(),
-				nowDate.getDate() - 1);
-			$(".calendar").datepicker('setDate', yesterdayDate)
-			//todayCnt--;
-
-			//showHideTomorrow();
-			showHideTomorrowBtn(yesterdayDate, new Date());
-		}
 	</script>
 
 </head>
@@ -225,10 +143,9 @@
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p>회원가입시 설정하신 비밀dfsfd번호는 모두 암호화되어 저장되므로,
-														고객센터에서 확인이 불가능합니다.
-
-														로그인 영역> 비밀번호 찾기 를 통해 확인 부탁 드립니다.</p>
+													<p>회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+고객센터에서 확인이 불가능합니다.
+<span>로그인 영역> 비밀번호 찾기</span> 를 통해 확인 부탁 드립니다.</p>
 												</div>
 											</div>
 										</div>
@@ -236,25 +153,22 @@
 									<!-- 반복끝 -->
 
 									<div class="card">
-										<div class="card-header" id="headingTwo">
+										<div class="card-header" id="headingOne-1">
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-													data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+													data-target="#collapseOne-1" aria-expanded="false" aria-controls="collapseOne-1">
 													[아이디/비밀번호]아이디 변경은 어떻게 하나요?
 												</button>
 											</h2>
 										</div>
-										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+										<div id="collapseOne-1" class="collapse" aria-labelledby="headingOne-1" data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p>회원가입 상태에서는 아이디를 변경하실 수가 없습니다.
-														단, 아이디를 제외한 나머지 정보들(필명,이메일,주소,전화번호,비밀번호 등)
-														은 변경이 가능합니다.
-														아이디를 변경하시기 위해서는 회원 탈퇴 후 다시 재가입 을 하셔야 합니다.
-
-														회원탈퇴를 하시기전에 사용하셨던
-														아이디, 유료서비스 등의 사용이 불가능 하므로
-														탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.</p>
+													<p><span>로그인영역>아이디찾기 </span>에서 ID를 확인 하실 수 있습니다.
+아이디 확인이 불가한 경우
+회원님의 성함,  필명, 생년월일, 성별, 휴대폰번호, 이메일주소(회원가입시 작성하셨던 계정)
+기재하셔서 <span> (webmaster@unistock.kr)</span>로 보내주시면
+확인후 답변 드리겠습니다.</p>
 												</div>
 											</div>
 										</div>
@@ -269,190 +183,114 @@
 
 
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+							
 								<div class="accordion" id="accordionExample">
+
+
+
 									<!-- 반복시작 -->
 									<div class="card">
-										<div class="card-header" id="headingOne">
+										<div class="card-header" id="headingtwo">
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-													data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-													[아이디/비밀번호]비밀번호를 잊어버렸습니다.
+													data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+													내가 받을 수 있는 알림의 종류는 무엇이 있나요?
 												</button>
 											</h2>
 										</div>
 
-										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+										<div id="collapsetwo" class="collapse show" aria-labelledby="headingtwo"
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p>회원가입시 설정하신 비밀dfsfd번호는 모두 암호화되어 저장되므로,
-														고객센터에서 확인이 불가능합니다.
-
-														로그인 영역> 비밀번호 찾기 를 통해 확인 부탁 드립니다.</p>
+													<p>내가 받을 수 있는 알림은 아래 사항과 같습니다.
+- 내가 작성한 글에 대한 댓글알림
+- 내가 작성한 방명록글에 대한 댓글알림
+- 내가 작성한 글이 인기글로 선정되었을 시 알림
+- 내가 작성한 글이 베스트글로 선정되었을 시 알림
+- 신규 선호회원이 등록된 경우 제공되는 알림
+- 방명록에 새글이 등록된 경우 제공되는 알림
+- 내글이 300건이상 조회수를 초과했을 시 제공되는 조회수 달성알림
+- 내글이 10건이상의 조회수를 초과했을 시 제공되는 추천수 달성알림
+- 내가 작성한 글이 신고접수 되었을 시 제공되는 신고 알림
+- 나의 선호회원중 프로필이 변경된 회원이 발생한 경우 제공되는 프로필변경알림
+- 나를 차단한 회원이 발생하였을 시 제공되는 차단알림</p>
 												</div>
 											</div>
 										</div>
 									</div>
 									<!-- 반복끝 -->
+
+									<div class="card">
+										<div class="card-header" id="headingtwo2">
+											<h2 class="mb-0">
+												<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+													data-target="#collapsetwo1" aria-expanded="false" aria-controls="collapsetwo1">
+													[게시판]베스트글 선정기준이 무엇인가요?
+												</button>
+											</h2>
+										</div>
+										<div id="collapsetwo1" class="collapse" aria-labelledby="headingtwo2" data-parent="#accordionExample">
+											<div class="card-body">
+												<div class="qAnswer">
+													<p><span>베스트글은 인기글중 추천수 15개 이상의 베스트추천수를 받았을 경우 </span>
+베스트글로 선정되며, 토론실 최상단에 특별 배치됩니다.
+<span>신규 베스트글이 나타났을 경우 익일 교체되며, 베스트글 유지기간은 최대 2일입니다. </span>
+인기글과 베스트글은 자동으로 선정이 되기 때문에 종목별로 차이를 두고 있지 않습니다.
+다만 인기글로 선정된 글이라도 운영원칙에 위반되는 글 등 선정 기준에 부합하지 않은 경우 
+해지가 될 수 있습니다</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
 								</div>
+
 							</div>
+
+
 
 
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-
 								<div class="accordion" id="accordionExample">
+
+
+
 									<!-- 반복시작 -->
 									<div class="card">
-										<div class="card-header" id="headingOne">
+										<div class="card-header" id="headingthree">
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-													data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-													[아이디/비밀번호]비밀번호를 잊어버렸습니다.
+													data-target="#collapsethree" aria-expanded="true" aria-controls="collapsethree">
+													[관심종목]관심종목 등록은 어떻게 하나요?
 												</button>
 											</h2>
 										</div>
 
-										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+										<div id="collapsethree" class="collapse show" aria-labelledby="headingthree"
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p>회원가입시 설정하신 비밀dfsfd번호는 모두 암호화되어 저장되므로,
-														고객센터에서 확인이 불가능합니다.
-
-														로그인 영역> 비밀번호 찾기 를 통해 확인 부탁 드립니다.</p>
+													<p>팍스넷 상단의 관심종목을 클릭하면 관심종목 등록 페이지로 이동 합니다.
+해당 페이지에서 <span>"괸심종목 등록/변경"</span>버튼을 통해 종목을 등록할 수 있습니다.</p>
 												</div>
 											</div>
 										</div>
 									</div>
 									<!-- 반복끝 -->
+
+
+
 								</div>
-
-
-
-
-
 
 							</div>
 		
-								<a class="moreBttn right norm" href="#">글쓰기</a>
+						
 
 						</div>
 
-						<!-- 페이징 -->
-						<div class="paging">
-							<div class="paging-body">
-								<nav aria-label="..." class="pagination">
-									<ul class="pagination">
-
-										<c:if test="${boardPage.nowPage != 1}">
-											<!-- << 버튼 -->
-											<li>
-												<a class="page-link" href="/board/free?bnowPage=1" tabindex="-1" aria-disabled="true">
-													<i class="fas fa-angle-double-left"></i>
-												</a>
-											</li>
-											<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-											<c:if test="${boardPage.nowPage == 1}">
-												<li>
-													<a class="page-link" href="/board/free?bnowPage=${boardPage.nowPage}" tabindex="-1"
-														aria-disabled="true">
-														<i class="fas fa-angle-left"></i>
-													</a>
-												</li>
-											</c:if>
-										</c:if>
-
-										<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-										<c:if test="${boardPage.nowPage != 1}">
-											<li>
-												<a class="page-link" href="/board/free?bnowPage=${boardPage.nowPage-1}" tabindex="-1"
-													aria-disabled="true">
-													<i class="fas fa-angle-left"></i>
-												</a>
-											</li>
-										</c:if>
-
-										<!-- 한번에 5개 페이지 보여줌 -->
-										<c:forEach begin="${boardPage.startPage }" end="${boardPage.endPage }" var="p">
-											<c:choose>
-												<c:when test="${p == boardPage.nowPage}">
-													<li class="page-item active" aria-current="page">
-														<a class="page-link" href="#">${p}
-															<span class="sr-only">(current)</span>
-														</a>
-													</li>
-												</c:when>
-												<c:when test="${p != boardPage.nowPage}">
-													<li class="page-item">
-														<a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
-													</li>
-												</c:when>
-											</c:choose>
-										</c:forEach>
-
-
-
-										<c:if test="${boardPage.nowPage != boardPage.lastPage}">
-											<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-											<c:if test="${boardPage.nowPage == boardPage.lastPage}">
-												<li>
-													<a class="page-link" href="/board/free?bnowPage=${boardPage.nowPage}" tabindex="+1"
-														aria-disabled="true">
-														<i class="fas fa-angle-right"></i>
-													</a>
-												</li>
-											</c:if>
-
-											<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
-											<c:if test="${boardPage.nowPage != boardPage.lastPage}">
-												<li>
-													<a class="page-link" href="/board/free?bnowPage=${boardPage.nowPage+1}" tabindex="+1"
-														aria-disabled="true" data-ajax="false">
-														<i class="fas fa-angle-right"></i>
-													</a>
-												</li>
-											</c:if>
-
-											<!-- >> 버튼 -->
-											<li>
-												<a class="page-link" href="/board/free?bnowPage=${boardPage.lastPage}" tabindex="-1"
-													aria-disabled="true">
-													<i class="fas fa-angle-double-right"></i>
-												</a>
-											</li>
-
-										</c:if>
-									</ul>
-								</nav>
-							</div>
-						</div>
-
-						<div class="search-area">
-							<div class="search-area-body">
-								<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
-									<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
-									<select class="dropdown-toggle-board" name="searchStyle">
-										<option class="nav-link dropdown-toggle board-item" id="dropdown01" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected
-											</c:if>>전체</option>
-										<option class="dropdown-item board-item" value="search_title" <c:if
-											test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option>
-										<option class="dropdown-item board-item" value="search_content" <c:if
-											test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option>
-										<option class="dropdown-item board-item" value="search_title_content" <c:if
-											test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option>
-										<option class="dropdown-item board-item" value="search_nick" <c:if
-											test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
-									</select>
-									<input class="form-control mr-sm-2 board-search" type="search" placeholder="검색어 입력"
-										aria-label="Search">
-									<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
-										<i class="fas fa-search"></i>
-									</button>
-								</form>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

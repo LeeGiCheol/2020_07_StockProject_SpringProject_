@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.project.dao.BoardDAO;
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.vo.BoardVO;
-import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.UserVO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -96,6 +94,7 @@ public class BoardServiceImpl implements BoardService{
 		else
 			return -1;
 	}
+	
 	
 	
 }

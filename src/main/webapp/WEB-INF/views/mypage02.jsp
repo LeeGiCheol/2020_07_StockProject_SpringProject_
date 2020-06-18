@@ -28,24 +28,6 @@
 				$(this).siblings().removeClass("selected"); //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
 			});
 		});
-/* 		$(function() {
-			var sBtn = $("ul > li"); //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
-			sBtn.find("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
-				sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
-				$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
-			})
-		}) */
-		$(function() {
-			window.pagObj = $('#pagination').twbsPagination({
-				totalPages : 35,
-				visiblePages : 5,
-				onPageClick : function(event, page) {
-					console.info(page + ' (from options)');
-				}
-			}).on('page', function(event, page) {
-				console.info(page + ' (from event listening)');
-			});
-		});
 	});
 </script>
 <script>
@@ -93,9 +75,6 @@ $(document).ready(function(){
     */
 });
 </script>
-<style>
-.paging-body{margin-left:355px; margin-bottom: 300px;}
-</style>
 </head>
 <body>
 
@@ -153,7 +132,7 @@ $(document).ready(function(){
     </ul>
     <div class="tab-content" id="pills-tabContent">
       <!-- 수익률 시작-->
-      <div class="tab-pane fade <c:if test="${type1 eq 'rate'}">show active</c:if>" id="pills-rate" role="tabpanel" aria-labelledby="pills-rate-tab">
+      <div class="tab-pane fade 1<c:if test="${type1 eq 'rate'}">show active</c:if>" id="pills-rate" role="tabpanel" aria-labelledby="pills-rate-tab">
         <b>${loginUser.nickname}</b> 님의 수익률
         <br>
         <br>
@@ -635,15 +614,24 @@ $(document).ready(function(){
   </article>
 <!-- article end -->
 
+
+
+
+
+
+
+
 	<div class="containerNew">
 		<div class="contents">
 			<div class="row">
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
-							<li class="last"><a href="/news"><span>뉴스</span></a></li>
+							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
+							<li class="last"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
+							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
+							<li class="last"><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -651,41 +639,46 @@ $(document).ready(function(){
 
 					<div class="newsboard-area">
 						<div class="drop-nav">
-							<h1 class="tit-h1 line">뉴스</h1>
+							<h1 class="tit-h1 line">나의 계좌정보</h1>
 						</div>
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">뉴스
-								▼</h1>
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">나의 계좌정보 ▼</h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-								<a href="/news">뉴스</a>
+								<a href="/news">내 정보 관리</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">자유게시판</a>
+								<a href="/board/free">비밀번호 변경</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">나의 계좌정보</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">작성 글 | 댓글</a>
 							</h1>
 							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
-								<a href="#">포트폴리오</a>
+								<a href="#">알림</a>
 							</h1>
 						</div>
 						<div class="newsboard-nav">
 							<ul class="nav newsboard-nav-tab" id="pills-tab" role="tablist">
-								<li class="newsboard-nav-item selected" role="presentation"><a
-									class="nav-link" id="top-nav-font" data-toggle="pill"
+								<li class="newsboard-nav-item <c:if test="">selected</c:if>" role="presentation"><a
+									class="nav-link <c:if test="">active</c:if>" id="top-nav-font" data-toggle="pill"
 									href="#pills-home" role="tab" aria-controls="pills-home"
-									aria-selected="true">종합</a></li>
+									aria-selected="false">수익률</a></li>
 								<li class="newsboard-nav-item" role="presentation"><a
 									class="nav-link" id="top-nav-font" data-toggle="pill"
 									href="#pills-profile" role="tab" aria-controls="pills-profile"
-									aria-selected="false">증권</a></li>
+									aria-selected="false">계좌</a></li>
 								<li class="newsboard-nav-item" role="presentation"><a
 									class="nav-link" id="top-nav-font" data-toggle="pill"
 									href="#pills-contact" role="tab" aria-controls="pills-contact"
-									aria-selected="false" style="border-right: none;">정치/사회</a></li>
+									aria-selected="true" style="border-right: none;">거래내역</a></li>
 							</ul>
 						</div>
 
-						<div class="board-calendar">
+<!-- 						<div class="board-calendar">
 
 							<div class="week ">
 								<p class="date">
@@ -699,80 +692,111 @@ $(document).ready(function(){
 										id="btn-tomorrow" style="display: none;">내일</button>
 								</p>
 							</div>
-							<!-- //week -->
+							//week
 						</div>
-						<!-- //board-calendar -->
+						//board-calendar -->
 
 				<div class="tab-content" id="pills-tabContent">
 					<div class="tab-pane fade show active" id="pills-home"
 						role="tabpanel" aria-labelledby="pills-home-tab">
-								<tbody> 
+						<div class="noticeBox">
+							<p class="notice">
+								<em>${loginUser.nickname}</em>님의 수익률
+							</p>
+						</div>
+						<div class="form-table">					
+							<table>
+								<caption>수익률 : 누적 순위, 누적 수익률, 손익금액, 투자원금</caption>
+								<tbody>
 									<tr>
-										<th scope="row"><label for="email">이메일</label></th>
+										<th scope="row">
+											<label for="ranking">누적 순위</label>
+										</th>
 										<td>
-											<span class="input-style-case02">
-												<input type="text" id="email" name="email" value="ekek3002@naver.com" readonly="">
-												<button type="button" class="delete">삭제</button>
-											</span>	 
-										</td>
-									</tr> 
-									<tr>
-										<th scope="row"><label for="mobile_no">휴대전화</label></th>
-										<td>
-											<span class="input-style-case02">
-												<input type="text" id="mobile_no" name="mobile_no" placeholder="휴대폰 번호는 대시(-)없이 숫자만 입력해주세요." value="01031429485" class="_onlyNumber" maxlength="11" readonly="">
-												<button type="button" class="delete">삭제</button> 
-											</span> 
-											<div class="text-wrap">
-												<p class="td-text color-black">이메일과 휴대폰은 아이디/비밀번호찾기 시 본인확인을 위해 사용됩니다.</p>
-												<p class="td-text">본인의 정보가 타인에게 전달되지 않도록 정확하게 입력 해 주시기 바랍니다.</p> 
-											</div>
+											<span class="input-style-case02">${ranking}등</span>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="nick_nm">필명</label></th>
-										<td>  
-											<div class="sell-wrap">
-										
-											
-												<span class="input-style-nick">
-													<input type="text" id="nick_nm" placeholder="필명을 입력하세요" title="필명을 입력하세요" name="nick_nm" value="나다이시키야">
-													<button type="button" class="delete">삭제</button>
-													<span class="byte"><b id="maxText">12</b>/12byte</span>
-												</span>
-												<button type="button" class="btn-t gray" onclick="checkNickName();">중복확인</button>
-											
-											
-										
-
-											</div>
-											<div class="text-wrap">
-												<p class="td-text">최종변경일자 <span class="color-red">
-													
-														
-														
-														2020.06.04
-														
-													
-													</span></p>
-												<p class="td-text">필명은 게시판 등 사이트 내에서 실명 대신 사용하는 이름으로 <span class="color-black">180일</span>에 <span class="break">한 번만 변경가능합니다.</span></p> 
-											</div>
+										<th scope="row">
+											<label for="revenue">누적수익률</label>
+										</th>
+										<td>
+											<span class="input-style-case02"><fmt:formatNumber value="${(accumAsset - 10000000)/100000}" type="number"/>%</span>
 										</td>
-									</tr> 
+									</tr>
+									<tr>
+										<th scope="row">
+											<label for="profitloss">손익금액</label>
+										</th>
+										<td>
+											<span class="input-style-case02"><fmt:formatNumber value="${accumAsset - 10000000}" type="number"/>원</span>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">
+											<label for="profitloss">투자원금</label>
+										</th>
+										<td>
+											<span class="input-style-case02">10,000,000원</span>
+										</td>
+									</tr>
+									<tr>	
+										<th scope="row">
+											<label for="total-amount">보유금액</label>
+										</th>
+										<td>
+										<div class="sell-wrap">
+											<span class="input-style-case02"><fmt:formatNumber value="${loginUser.money}" type="number"/>원</span>
+											<button type="button" class="btn-t gray">머니 재지급</button>
+										</div>	
+										</td>
+									</tr>													
 								</tbody>
+							</table>
+						</div>
 					</div>
 					<div class="tab-pane fade" id="pills-profile" role="tabpanel"
 						aria-labelledby="pills-profile-tab">
-						2
-					</div>
-					<div class="tab-pane fade" id="pills-contact" role="tabpanel"
-						aria-labelledby="pills-contact-tab">
-						3
-					</div>
-				</div>
-
+						<div class="form-table">
+							<div class="table-scroll">
+								<table class="table-col">
+									<caption>계좌정보</caption>
+									<thead>
+										<tr>
+											<th scope="col" class="a-center">종목코드</th>
+											<th scope="col" style="width: 300px;">종목명</th>
+											<th scope="col" style="width: 150px;">평균매입가</th>
+											<th scope="col" class="a-right">현재가</th>
+											<th scope="col" class="a-center">보유주</th>
+											<th scope="col" class="a-center">평가금액</th>
+											<th scope="col" class="a-center">평가손익</th>
+										</tr>
+									</thead>
+									<tbody>
+									
+									
+									<!--     <tr>
+									        <td colspan="7" style="text-align: center;">:::::데이터가 없습니다.::::::</td>
+									    </tr> -->
+									    <c:forEach items="${holdingStockList}" var="stock">
+											<tr>
+												<td scope="col" class="a-center">${stock.stockCode}</td>
+												<td scope="col" style="width: 300px;">${stock.stockName}</td>
+												<td scope="col" style="width: 150px;"><fmt:formatNumber value="${stock.avgPrice}" type="number"/></td>
+												<td scope="col" class="a-right"><fmt:formatNumber value="${stock.currentPrice}" type="number"/></td>
+												<td scope="col" class="a-center">${stock.quantity}</td>
+												<td scope="col" class="a-center"><fmt:formatNumber value="${stock.quantity*stock.currentPrice}" type="number"/></td>
+												<td scope="col" class="a-center"><fmt:formatNumber value="${(stock.currentPrice-stock.avgPrice)*stock.quantity}" type="number"/></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								<!-- //table-col -->
+							</div>
+						</div>						
 						<!-- 페이징 -->
 						<div class="paging">
+						
 							<div class="paging-body">
 								<nav aria-label="..." class="pagination">
 									<ul class="pagination">
@@ -813,25 +837,176 @@ $(document).ready(function(){
 
 						<div class="search-area">
 							<div class="search-area-body">
-								<form class="form-inline my-2 my-lg-0 underSearchForm"
-									action="/board/free">
-									<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
-									<select class="dropdown-toggle-board" name="searchStyle">
-										<option class="nav-link dropdown-toggle board-item"
-											id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false" value="">전체</option>
-										<option class="dropdown-item board-item" value="search_title">제목</option>
-										<option class="dropdown-item board-item"
-											value="search_content">내용</option>
-										<option class="dropdown-item board-item"
-											value="search_title_content">제목 + 내용</option>
-										<option class="dropdown-item board-item" value="search_nick">글쓴이</option>
-									</select> <input class="form-control mr-sm-2 board-search" type="search"
-										placeholder="검색어 입력" aria-label="Search">
-									<button
-										class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
-										type="submit">
+								<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+									<input class="form-control mr-sm-2 board-search" type="search" placeholder="검색어 입력" aria-label="Search">
+									<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
+										<i class="fas fa-search"></i>
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="pills-contact" role="tabpanel"
+						aria-labelledby="pills-contact-tab">
+<!-- 						<div class="board-free-nav">
+							<form id="form" class="board-list-top policy-in" action="/board/free">
+								<p class="pc-only">
+									<input type="radio" class="ordeby" id="orderby1" name="orderby" value="new" checked=""><label for="orderby1" class="new-board">날짜순</label>
+									<input type="radio" class="ordeby" id="orderby2" name="orderby" value="best"><label for="orderby2" class="hot-board">종목별</label>
+								</p>
+							</form>			 
+						</div> -->
+						<div class="balance-h2">
+							<p>
+								<span class="input-style-cal start">
+									<input type="text" name="startDate" class="startDate" placeholder="날짜선택" value="2019.06.18">
+									<button type="button" id="btnStartDate" class="calendar">검색</button>
+								</span>
+								<i>~</i>
+								<span class="input-style-cal end">
+									<input type="text" name="endDate" class="endDate" placeholder="날짜선택" value="2020.06.18">
+									<button type="button" id="btnEndDate" class="calendar">검색</button>
+								</span>
+								<span class="submit-button"><button type="submit" class="btn-s gray">검색</button></span>
+							</p>
+						</div>
+						<div class="form-table">
+							<div class="table-scroll">
+								<table class="table-col">
+									<caption>거래 내역</caption>
+									<thead>
+										<tr>
+											<th scope="col" style="width: 150px;"class="a-right">거래일자</th>
+											<th scope="col" style="width: 300px;">종목번호</th>
+											<th scope="col" class="a-center">수량</th>
+											<th scope="col" class="a-right">거래금액</th>
+											<th scope="col" class="a-center">단가</th>
+											<th scope="col" class="a-center">세금</th>
+										</tr>
+									</thead>
+									<tbody>
+									
+									
+									<!--     <tr>
+									        <td colspan="7" style="text-align: center;">:::::데이터가 없습니다.::::::</td>
+									    </tr> -->
+									    <c:forEach items="${holdingStockList}" var="stock">
+											<tr>
+												<td scope="col" style="width: 150px;" class="a-right">${stock.stockCode}</td>
+												<td scope="col" style="width: 300px;">${stock.stockName}</td>
+												<td scope="col" class="a-center"><fmt:formatNumber value="${stock.avgPrice}" type="number"/></td>
+												<td scope="col" class="a-right"><fmt:formatNumber value="${stock.currentPrice}" type="number"/></td>
+												<td scope="col" class="a-center">${stock.quantity}</td>
+												<td scope="col" class="a-center"><fmt:formatNumber value="${stock.quantity*stock.currentPrice}" type="number"/></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								<!-- //table-col -->
+							</div>
+						</div>						
+						<!-- 페이징 -->
+						<div class="paging">
+						
+							<div class="paging-body">
+								<nav aria-label="..." class="pagination">
+									<ul class="pagination">
+
+
+										<c:if test="${pv1.nowPage != 1}">
+											<!-- << 버튼 -->
+											<li>
+												<a class="page-link"
+													href="/myPage02?nowPage1=1&accountSearch=${accountSearch}&type1=account"
+													tabindex="-1" aria-disabled="true">
+													<i class="fas fa-angle-double-left"></i>
+												</a>
+											</li>
+											<!-- 1페이지에서 < 버튼 눌렀을 때 -->
+											<c:if test="${pv1.nowPage == 1}">
+												<li>
+													<a class="page-link"
+														href="/myPage02?nowPage1=${pv1.nowPage}&accountSearch=${accountSearch}&type1=account"
+														tabindex="-1" aria-disabled="true">
+														<i class="fas fa-angle-left"></i>
+													</a>
+												</li>
+											</c:if>
+										</c:if>
+										<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+										<c:if test="${pv1.nowPage != 1}">
+											<li>
+												<a class="page-link"
+													href="/myPage02?nowPage1=${pv1.nowPage-1}&accountSearch=${accountSearch}&type1=account"
+													tabindex="-1" aria-disabled="true">
+													<i class="fas fa-angle-left"></i>
+												</a>
+											</li>
+										</c:if>
+										
+										<!-- 한번에 5개 페이지 보여줌 -->
+										<c:forEach begin="${pv1.startPage }" end="${pv1.endPage }" var="p">
+											<c:choose>
+												<c:when test="${p == pv1.nowPage}">
+													<li class="page-item active" aria-current="page">
+													<a class="page-link" href="#">${p}
+														<span class="sr-only">(current)</span>
+													</a>
+													</li>
+												</c:when>
+												<c:when test="${p != pv1.nowPage}">
+													<li class="page-item">
+													<a class="page-link" href="/myPage02?nowPage1=${p}&accountSearch=${accountSearch}&type1=account">${p}</a>
+													</li>
+												</c:when>
+											</c:choose>
+										</c:forEach> 
+										
+										
+										
+										<c:if test="${pv1.nowPage != pv1.lastPage}">    
+										<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+										<c:if test="${pv1.nowPage == pv1.lastPage}">
+										<li>
+										<a class="page-link"
+										href="myPage02?nowPage1=${pv1.nowPage}&accountSearch=${accountSearch}&type1=account"
+										tabindex="+1" aria-disabled="true">
+										<i class="fas fa-angle-right"></i>
+										</a>
+										</li>
+										</c:if>
+										
+										<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+										<c:if test="${pv1.nowPage != pv1.lastPage}">
+										<li>
+										<a class="page-link"
+										href="/myPage02?nowPage1=${pv1.nowPage+1}&accountSearch=${accountSearch}&type1=account"
+										tabindex="+1" aria-disabled="true" data-ajax="false">
+										<i class="fas fa-angle-right"></i>
+										</a>
+										</li>
+										</c:if> 
+										
+										<!-- >> 버튼 -->
+										<li>
+										<a class="page-link"
+										href="/myPage02?nowPage1=${pv1.lastPage}&accountSearch=${accountSearch}&type1=account"
+										tabindex="-1" aria-disabled="true">
+										<i class="fas fa-angle-double-right"></i>
+										</a>
+										</li>
+										
+										</c:if>
+									</ul>
+								</nav>
+							</div>
+						</div>
+
+						<div class="search-area">
+							<div class="search-area-body">
+								<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+									<input class="form-control mr-sm-2 board-search" type="search" placeholder="검색어 입력" aria-label="Search">
+									<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
 										<i class="fas fa-search"></i>
 									</button>
 								</form>
@@ -839,9 +1014,11 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 	<%@include file="mainfooter.jsp" %>
 
