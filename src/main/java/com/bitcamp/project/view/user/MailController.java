@@ -22,12 +22,9 @@ public class MailController {
     @RequestMapping(value="/user/mail")
     public String sendMail(UserVO vo){
         MimeMessage message = mailSender.createMimeMessage();
-        Random rand = new Random();
-	    for(int i=0;i<4;i++) {
-	        //0~9 까지 난수 생성
-	        String ran = Integer.toString(rand.nextInt(10000));
-	        EmailNumStr = ran;
-	    }
+        String ran = Integer.toString((int)(Math.random()*9000)+1000);
+        EmailNumStr = ran;
+        System.out.println("생성된 난수 : " + EmailNumStr);
         try {
             message.setSubject("FanstayStock입니다. 비밀번호찾기이메일입니다.");
             message.setText("안녕하세요.\n인증번호는 ["+EmailNumStr+"] 입니다.\n인증번호입력창에 입력해주세요.");
