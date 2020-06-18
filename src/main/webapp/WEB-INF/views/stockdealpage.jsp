@@ -844,6 +844,7 @@ tr td button {
 	$('#price,#m-price').click( function(){
 		$('#buying_price').val($(this).text());
 		$('#selling_price').val($(this).text());
+		$('#mySelect').val($(this).text());
 		var buy_result = parseInt($('#buying_price').val().replace(/,/g, '')) * $('#buying_qu').val()
 		$('#buying_result').text(buy_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 		var sell_result = parseInt($('#selling_price').val().replace(/,/g,'')) * $('#selling_qu').val()

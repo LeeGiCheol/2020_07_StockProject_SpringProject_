@@ -45,6 +45,10 @@
 		SELECT stockName , u.uno , category , rPrice, quantity  FROM unsettled u join unsettledcheck c on c.uno = u.uno where id = #{id} order by u.uno desc;
 	</select>
 	
+	<select id="getUnsettled_Code" resultType="map">
+	select category, quantity, rPrice, stockCode from unsettled as un join unsettledcheck as unc on un.uno = unc.uno join stocklist as sl on sl.stockName = unc.stockName where id =#{id}
+	</select>
+	
 	<select id="dayChart" resultType="map">
 		SELECT * from daychart where stockname = #{stockname};
 	</select>
