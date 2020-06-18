@@ -1,30 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마이페이지</title>
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/mypage01.css" rel="stylesheet">
 <link href="resources/css/mainheader.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 </head>
-
 <body>
 	<%@include file="mainheader.jsp"%>
 	<!-- article start -->
-
 	<div class="containerNew">
-
 		<!-- contents -->
 		<div class="contents member" id="contents">
 			<div class="row">
@@ -50,8 +43,7 @@
 							<h1 class="tit-h1 line">내 정보 관리</h1>
 						</div>
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">내
-								정보 관리 ▼</h1>
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">내 정보 관리 ▼</h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
@@ -69,59 +61,38 @@
 						</div>
 						<form action="/updateUser" name="frm" id="frm" method="POST" novalidate>
 							<div class="modify-mem">
-
 								<input type="hidden" name="ar_concern" id="ar_concern" value="">
 								<input type="hidden" name="sns_cust" id="sns_cust" value="">
 								<input type="hidden" name="sns_id" id="sns_id" value="">
 								<input type="hidden" name="naver_link" id="naver_link" value="">
-								<input type="hidden" name="facebook_link" id="facebook_link"
-									value=""> <input type="hidden" name="google_link"
-									id="google_link" value=""> <input type="hidden"
-									name="kakao_link" id="kakao_link" value=""> <input
-									type="hidden" name="linkUrl" value="">
+								<input type="hidden" name="facebook_link" id="facebook_link" value="">
+								<input type="hidden" name="google_link" id="google_link" value="">
+								<input type="hidden" name="kakao_link" id="kakao_link" value="">
+								<input type="hidden" name="linkUrl" value="">
 								<h2 class="tit-h2">기본정보</h2>
 								<div class="form-table">
 									<table>
 										<caption>기본정보 : 아이디,성명,생년월일,이메일,휴대폰인증,필명 정보 입력 및 선택</caption>
 										<tbody>
-											<!-- 									<tr>
-										<th scope="row"><label for="cust_Id">아이디</label></th>
-										<td>
-											<span class="input-style-case02">
-												<input type="text" id="cust_Id" placeholder="ekek3002" readonly="" name="custId" value="ekek3002"> 
-											</span>	
-											<div class="text-wrap" id="sIdGuide" style="display: none;">
-												<p class="td-text color-red">소셜로그인 자동부여 아이디는 로그인 및 이용이 불가 합니다.</p>
-											</div>
-											
-										</td>
-									</tr> -->
-											<form action="/updateUser" class="needs-validation"
-												method="POST" novalidate>
 												<tr>
 													<th scope="row"><label for="userEmail">이메일</label></th>
-													<td><span class="input-style-case02"> <input
-															type="text" id="userEmail" value="${loginUser.id}"
-															readonly="">
+													<td>
+													<span class="input-style-case02"> 
+														<input type="text" id="userEmail" value="${loginUser.id}" readonly>
 															<button type="button" class="delete">삭제</button>
 													</span></td>
 												</tr>
 												<tr>
 													<th scope="row"><label for="cc-name">휴대전화</label></th>
 													<td>
-														<!-- 2017.04.13 국가번호 삭제--> <span
-														class="input-style-case02"> <input type="text"
-															id="mobile_no" name="mobile_no"
-															placeholder="휴대폰 번호는 대시(-)없이 숫자만 입력해주세요."
-															value="${loginUser.tel}" class="_onlyNumber"
-															maxlength="11" readonly="">
-															<button type="button" class="delete">삭제</button>
+														<span class="input-style-case02">
+														<input type="text" id="mobile_no" name="mobile_no" placeholder="휴대폰 번호는 대시(-)없이 숫자만 입력해주세요."
+															   value="${loginUser.tel}" class="_onlyNumber" maxlength="11" readonly>
+														<button type="button" class="delete">삭제</button>
 													</span>
 														<div class="text-wrap">
-															<p class="td-text color-black">이메일과 휴대폰은 아이디/비밀번호찾기 시
-																본인확인을 위해 사용됩니다.</p>
-															<p class="td-text">본인의 정보가 타인에게 전달되지 않도록 정확하게 입력 해
-																주시기 바랍니다.</p>
+															<p class="td-text color-black">이메일과 휴대폰은 아이디/비밀번호찾기시 본인확인을 위해 사용됩니다.</p>
+															<p class="td-text">본인의 정보가 타인에게 전달되지 않도록 정확하게 입력 해주시기 바랍니다.</p>
 														</div>
 													</td>
 												</tr>
@@ -129,8 +100,6 @@
 													<th scope="row"><label for="userNickname">닉네임</label></th>
 													<td>
 														<div class="sell-wrap">
-
-
 															<span class="input-style-nick"> <input type="text"
 																id="userNickname" placeholder="닉네임을 입력하세요"
 																title="닉네임을 입력하세요" name="nickname"
@@ -138,12 +107,8 @@
 																<button type="button" class="delete">삭제</button> <span
 																class="byte"><b id="maxText">12</b>/12byte</span>
 															</span>
-															<button type="button" class="btn-t gray"
-																onclick="checkNickName();">중복확인</button>
-
-
-
-
+															<div id="nickNameResult"></div>
+															<button type="button"  class="btn-t gray" id="nickCheck">중복확인</button>
 														</div>
 													</td>
 												</tr>
@@ -161,47 +126,42 @@
 												<td class="address">
 													<p class="tit-mob">주소</p>
 													<div class="sell-wrap">
-														<span class="input-style-address"> <input
-															type="text" id="addr_post_no" name="address"
-															value="${loginUser.address}" placeholder="우편번호" readonly>
+														<span class="input-style-address"> 
+															<input type="text" id="addr_post_no" name="address"
+																value="${loginUser.address}" placeholder="우편번호" readonly>
 															<button type="button" class="delete">삭제</button>
 														</span>
-														<button type="button" class="btn-t gray"
-															onclick="goPopup();">우편번호찾기</button>
+														<button type="button" class="btn-t gray" onclick="goPopup();">주소번경</button>
+															
 													</div>
 												</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
-								<small class="text-muted">다른 사용자에게 보유 자산 및 수익률과 거래내역을 노출
-									하시겠습니까?</small> <br>
+								<small class="text-muted">다른 사용자에게 보유 자산 및 수익률과 거래내역을 노출 하시겠습니까?</small> <br>
 								<div class="ask-form">
 									<div class="custom-control custom-radio">
-										<input type="radio" name="showEsetSetting" id="ask-radio-1"
-											class="custom-control-input" value="1"> <label
-											class="custom-control-label" id="ask-radio-1-answer"
-											for="ask-radio-1">예</label>
+										<input type="radio" name="showEsetSetting" id="ask-radio-1" class="custom-control-input" value="1">
+										<label class="custom-control-label" id="ask-radio-1-answer" for="ask-radio-1">예</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" name="showEsetSetting" id="ask-radio-2"
-											class="custom-control-input" value="0"> <label
-											class="custom-control-label" for="ask-radio-2">아니오</label>
+										<input type="radio" name="showEsetSetting" id="ask-radio-2"class="custom-control-input" value="0">
+										<label class="custom-control-label" for="ask-radio-2">아니오</label>
 									</div>
 								</div>
 								<br>
 							</div>
 							<div class="bt-area">
-
-								<button class="btn-b type="submit">확인</button>
+								<button class="btn-b" type="button" id="submit">정보수정</button>
 							</div>
+						</form>
 							<div class="find-info1">
 								<span class="txt">판타지스탁 서비스 이용을 더 이상 원치 않으시면 클릭해주세요.</span> <span
 									class="bt-area"> <a href="/rpan/member/withdrawal"
 									class="btn-s bodrb">회원탈퇴</a>
 								</span>
 							</div>
-						</form>
 					</div>
 					<!-- //cont-area -->
 				</div>
@@ -210,17 +170,17 @@
 		</div>
 	</div>
 	<%@include file="mainfooter.jsp"%>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
 	<script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function () {
+    	$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+    	textLenCheck("userNickname","닉네임",{max:12,currentLenId:"maxText"});
         var $sticky = $('.sticky');
         var $stickyrStopper = $('.footer_info');
         if (!!$sticky.offset()) { // make sure ".sticky" element exists
@@ -246,9 +206,131 @@
 
         }
     });
+    function textLenCheck(id,label,condObj){
+
+		var trueYn = true;
+		var id = "#"+id;
+		var idObj = $(id);
+
+		idObj.keyup(function(event){
+			var keyCode = event.keyCode;
+			if(keyCode != 38 && keyCode != 37 && keyCode != 39 &&keyCode != 40 )
+
+			if(condObj.max != undefined && getTextLength(idObj.val()) > condObj.max){
+				swal({text:label + "은 " + condObj.max + "byte 이하만가능합니다.", icon:"error"});
+				var cnt_byte = 0;
+				var sub_cnt = 0;
+				var chk_letter = "";
+				for (var i=0; i<idObj.val().length; i++)
+				{
+					chk_letter = idObj.val().charAt(i);
+					if (escape(chk_letter).length > 4) {
+						cnt_byte += 2;
+					}else{
+						cnt_byte++;
+					}
+					if (cnt_byte <= condObj.max) {
+						sub_cnt = i + 1;
+					}
+				}
+				idObj.val(idObj.val().substr(0, sub_cnt));
+				idObj.focus();
+				return ;
+			}
+			$("#"+condObj.currentLenId).html(getTextLength(idObj.val()));
+		});
+		$("#"+condObj.currentLenId).html(getTextLength(idObj.val()));
+	}
+	/**
+	 * 한글포함 문자열 길이를 구한다
+	 */
+	function getTextLength(str) {
+		var str = str+"";
+		var len = 0;
+		for (var i = 0; i < str.length; i++) {
+			if (escape(str.charAt(i)).length == 6) {
+				len++;
+			}
+			len++;
+		}
+		return len;
+	}
+    
     $(".m-drop-nav").click(function () {
         $(".m-drop-down").slideToggle("slow");
     });
+    
+    function submitDoit(){
+    	$.ajax({
+	        type:'POST',
+	        url : "${pageContext.request.contextPath}/updateUser",
+	        data:{ "nickname" : $('#userNickname').val(), 
+	        		"address" : $('#addr_post_no').val(),
+	        		"showEsetSetting" : $('input[name="showEsetSetting"]:checked').val() }
+	        ,
+	        success : function(data){
+	        	console.log(data)
+	        },
+	        error:function(){
+				alert("서버에러");
+	       }
+    	});
+    }
+    $('#submit').on('click', function(){
+    	swal({
+			  text: "정말 수정하시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willUpdate) => {
+			  if (willUpdate) {
+			    swal("성공적으로 수정되었습니다.", {
+			      icon: "success",
+			    }).then(function(){
+			    	submitDoit();
+			    });
+			  } else {
+			    swal("수정이 취소되었습니다.");
+			  }		        		
+  		})
+    });
+    $('#nickCheck').on('click', function(){
+    	
+		$.ajax({ 
+			type: 'GET', 
+			url: '${pageContext.request.contextPath}/nickCheck', 
+			data: { "nickname" : $('#userNickname').val() }, 
+			success: function(data){
+				console.log(data)
+				if($.trim($('#userNickname').val()) == ""){
+					var html="<p id='cust_id-error' class='error-text'>공백은 불가능합니다.</p>";
+					$('#nickNameResult').empty();
+					$('#nickNameResult').append(html);
+					document.getElementById("userNickname").value="";
+					$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+				}else if(data == 0 && $.trim($('#userNickname').val()) != ""){
+					idx= true;
+					var html="<p id='err_cust_id' class='ok-text'>사용 가능합니다.</p>"; 
+					$('#nickNameResult').empty();
+					$('#nickNameResult').append(html);
+					$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+				}else{
+					var html="<p id='cust_id-error' class='error-text'>중복된 닉네임입니다.</p>";
+					$('#nickNameResult').empty();
+					$('#nickNameResult').append(html);
+					document.getElementById("userNickname").value="";
+					// 중복체크 실패 시 회원가입 버튼 비활성화
+					$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+				}
+			},
+			error: function(){
+				alert("서버에러");
+			}
+			
+		});  
+	});
+    
     function goPopup() {
         // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
 
@@ -277,10 +359,11 @@
         console.log(roadFullAddr);
         document.getElementById("addr_post_no").value = null;
         document.getElementById("addr_post_no").value = roadFullAddr;
+        $("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
     }
     if (${ loginUser.showEsetSetting } === 0)
     $("#ask-radio-2").prop("checked", true);
-else
+	else
     $("#ask-radio-1").prop("checked", true);
 </script>
 
