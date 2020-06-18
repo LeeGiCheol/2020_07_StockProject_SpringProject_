@@ -23,366 +23,141 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 </script>
 </head>
 <body>
-<div class="wrap">
+	<div class="wrap">
 <%@include file="mainheader.jsp" %>
-	
-<%-- <div class="containerNew"> 
-
-		contents
-		<div class="contents member" id="contents">
-		
-			cont-area	
-			<div class="cont-area">  
-				<div class="step-mem">
-					<ul>
-						<li><div><span><i>Step1</i></span><em>약관동의</em></div></li> 
-						<li class="selected"><div><span><i>Step2</i></span><em>기본정보입력</em></div></li>
-						<li><div><span><i>Step3</i></span><em>가입완료</em></div></li>
-					</ul>
-				</div> 
-				<div class="pad-area men-step">
-					<h1>기본정보입력</h1>
-					<form action="./step3Prc" method="post" name="frm" id="frm" novalidate="novalidate">
-						<input type="hidden" name="cust_type" id="cust_type" value="P">
-						<input type="hidden" name="outside_agree_fg" value="">
-						<input type="hidden" name="receipt_fg_sms" value="Y">
-						<input type="hidden" name="receipt_fg_mail" value="Y">
-						<input type="hidden" name="app_push_fg" value="Y">
-						<input type="hidden" name="birthCheckYn" value="Y">
-
-						<fieldset>
-							<legend>기본정보입력</legend>  
-							<ul>
-								<li>
-									<span class="input-style-id">
-										<label for="cust_id">아이디를 입력해주세요</label>
-										<input type="text" id="cust_id" name="cust_id" maxlength="12" onkeyup="initCustId();">
-										<button type="button" class="delete">삭제</button> 
-									</span>
-									<p id="err_cust_id" class="ok-text" style="display: none;">사용가능한 아이디입니다.</p>
-									<button type="button" class="btn-s gray" onclick="checkId();">중복확인</button>
-								</li>
-								<li>
-									<span class="input-style-pass">
-										<label for="pswd">비밀번호를 입력해주세요</label>
-										<input type="password" name="pswd" id="pswd" maxlength="14" autocomplete="OFF">
-										<button type="button" class="delete" onclick="initBeforInput();">삭제</button>
-									</span>
-								</li>
-								<li>
-									<span class="input-style-pass01">
-										<label for="pswdc">한번 더 입력해주세요</label>
-										<input type="password" name="pswdc" id="pswdc" onkeyup="SameCheck(this);" maxlength="14" autocomplete="OFF">
-										<button type="button" class="delete">삭제</button>
-									</span>>
-								</li>
-							</ul> 
-							<ul>
-
-								<li>
-									<span class="input-style-mail">
-										<label for="email">이메일을 입력해주세요</label>
-										<input type="text" name="email" id="email">
-										<button type="button" class="delete">삭제</button>
-									</span>
-								</li>
-								<li>
-									<span class="input-style-phone">
-										<label for="mobile_no">휴대폰번호('-'없이)</label>
-										<input type="text" name="mobile_no" id="mobile_no" class="_onlyNumber" maxlength="11" onkeyup="initMobileNo();">
-										<button type="button" class="delete">삭제</button>
-									</span>
-									<button type="button" class="btn-s" onclick="checkUserPhone();">인증받기</button>
-								</li>
-								<li id="_liPhoneNum" style="display: none;">
-									<span class="input-style-certif">
-										<label for="chk_Phone">인증번호를 입력해주세요</label>
-										<input type="text" name="chk_Phone" id="chk_Phone">
-									</span>
-									<mark id="markTm">15:00</mark>
-									<button type="button" class="btn-s" onclick="authPhone();">인증확인</button>
-								</li>
-	
-
-
-							</ul> 
-							<ul>
-								<li>
-									<span class="input-style-nick">
-										<label for="nick_nm">닉네임을 입력해주세요</label>
-										<input type="text" name="nick_nm" id="nick_nm" maxlength="24" onkeyup="initNickNm();">
-										<button type="button" class="delete">삭제</button> 
-									</span>  
-									<span class="byte"><b id="maxText">0</b>/12byte</span>
-									<button type="button" class="btn-s gray" onclick="checkNickName();">중복확인</button>
-								</li> 
-							</ul>
-						
-						
-
-													
-						</fieldset>
-					</form>
-					<div class="bt-area"> 
-						
-						<button class="btn-b" onclick="location.href='http://www.paxnet.co.kr';">취소</button>
-						<button class="btn-b red" onclick="$('#frm').submit();">가입하기</button> 
-					</div>
-				
-				
-				
-					<dl class="guide-text03">
-						<dt>이용안내</dt>
-						<dd>
-							<ul>
-								<li>성명, 성별, 생년월일은 아이디찾기, 비밀번호찾기 , 휴면계정 본인확인 등 가입자 정보 확인 시 본인확인을 위한 정보로 사용합니다.</li>
-								<li>입력된 내용은 내정보 관리에서 변경 할 수 있습니다.</li>
-								<li>허위정보는 본인확인에 대한 도움을 드릴 수 없습니다.</li>
-							</ul>
-						</dd>
-					</dl> 
-				
-				</div> 
-			</div>
-		</div>
-	</div> --%>
-<div class="containerNew"> 
-
-		<!-- contents -->
-		<div class="contents member" id="contents">
-		
-			<!-- cont-area -->	
-			<div class="cont-area">  
-				<div class="step-mem">
-					<ul>
-						<li><div><span><i>Step1</i></span><em>약관동의</em></div></li> 
-						<li class="selected"><div><span><i>Step2</i></span><em>기본정보입력</em></div></li>
-						<li><div><span><i>Step3</i></span><em>가입완료</em></div></li>
-					</ul>
-				</div> 
-				<div class="pad-area men-step">
-					<h1>기본정보입력</h1>
-					<!-- <form action="./step3Prc" method="post" name="frm" id="frm" novalidate="novalidate"> -->
-					<form action="/signUp" name="form" id="form" method="POST">
+	<div class="containerNew"> 
+			<!-- contents -->
+			<div class="contents member" id="contents">
+				<div class="cont-area">  
+					<div class="step-mem">
+						<ul>
+							<li><div><span><i>Step1</i></span><em>약관동의</em></div></li> 
+							<li class="selected"><div><span><i>Step2</i></span><em>기본정보입력</em></div></li>
+							<li><div><span><i>Step3</i></span><em>가입완료</em></div></li>
+						</ul>
+					</div> 
+					<div class="pad-area men-step">
+						<h1>기본정보입력</h1>
+						<form action="/signUp" name="form" id="form" method="POST">
+							<fieldset>
+								<legend>기본정보입력</legend>  
+								<ul>
+									<li>
+										<span class="input-style-mail">
+											<label for="inputEmail">인증받으실 이메일을 입력해주세요</label>
+											<input type="text" id="inputEmail" name="id" onKeyPress="return spaceCheck(event)">
+										</span>
+										<div id="idResult"></div>
+										<button type="button" class="btn-s" id="idCheck">인증받기</button>
+									</li>
+									<li id="_liEmailNum" style="display: none;">
+										<span class="input-style-certif">
+											<label for="inputCemail">인증번호를 입력해주세요</label>
+											<input type="text" id="inputCemail" name="cEmail" onKeyPress="return numkeyCheck(event)">
+										</span>
+										<div id="cEmailResult"></div>
+										<button type="button" class="btn-s" id="cEmailCheck">인증확인</button>
+									</li>
+									<li>
+										<span class="input-style-pass">
+											<label for="inputPassword">비밀번호를 입력해주세요</label>
+											<input type="password" name="pw" id="inputPassword" maxlength="13" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
+											<button type="button" class="delete">삭제</button>
+										</span>
+									</li>
+									<li>
+										<span class="input-style-pass01">
+											<label for="inputPasswordAgain">한번 더 입력해주세요</label>
+											<input type="password" name="pswdc"  id="inputPasswordAgain" onkeyup="SameCheck(this);" maxlength="13" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
+											<button type="button" class="delete">삭제</button>
+										</span>
+										<div id=pwResult></div>
+									</li>
+								</ul> 
+								<ul>
+									<li>
+										<span class="input-style-nick">
+											<label for="inputNickname">닉네임을 입력해주세요</label>
+											<input type="text"  name="nickname" id="inputNickname" maxlength="24" onKeyPress="return spaceCheck(event)">
+										</span>  
+										<div id="nickNameResult"></div>
+										<span class="byte"><b id="maxText">0</b>/12byte</span>
+										<button type="button" class="btn-s gray" id="nickCheck">중복확인</button>
+									</li> 
+									<li>
+										<span class="input-style-nick">
+											<label for="inputFriend">추천인을 입력해주세요</label>
+											<input type="text" name="friend" id="inputFriend"  maxlength="24" onKeyPress="return spaceCheck(event)">
+											<!-- <button type="button" class="delete">삭제</button>  -->
+										</span>  
+										<div id="friendResult"></div>
+										<span class="byte"><b id="maxText1">0</b>/12byte</span>
+										<button type="button" class="btn-s gray" id="friendCheck">추천하기</button>
+									</li> 
+								</ul>
+								<ul>
+									<li>
+										<span class="input-style-address">
+											<input type="text" name="address" id="inputAddress" class="_onlyNumber" placeholder="우편번호"  required="true" readonly>
+											<!-- <button type="button" class="delete">삭제</button> -->
+										</span>
+										<button type="button" class="btn-s" onclick="goPopup();">우편번호 찾기</button>
+									</li>
+									<li>
+										<span class="input-style-phone">
+											<label for="inputPhone">휴대폰번호('-'없이)</label>
+											<input type="text" name="tel" id="inputPhone" class="_onlyNumber" maxlength="11" onKeyPress="return numkeyCheck(event)">
+											<!-- <button type="button" class="delete">삭제</button> -->
+										</span>
+										<div id=telResult></div>
+										<button type="button" class="btn-s" id="telCheck">인증받기</button>
+									</li>
+									<li id="_liPhoneNum" style="display: none;">
+										<span class="input-style-certif">
+											<label for="inputCtel">인증번호를 입력해주세요</label>
+											<input type="text" name="cTel" id="inputCtel" onKeyPress="return numkeyCheck(event)">
+										</span>
+										<div id=cTelResult></div>
+										<button type="button" class="btn-s" id="cTelCheck">인증확인</button>
+									</li>
+								</ul> 
+								<ul>
+									<li>
+										<span class="radio-style-dormant">거래내역 공개 설정</span>
+							               <div class="ask-form">
+							               	  <p class="guide-text"><span>다른 사용자에게 보유 자산 및 수익률과 거래내역을 공개 하시겠습니까?</span></p>
+							                  <div class="dormant-radio">
+							                  <input type="radio" name="showEsetSetting" id="ask-radio-1"  value="1">
+							                  <label  id="ask-radio-1-answer" for="ask-radio-1">예</label>
+							                  <input type="radio" name="showEsetSetting" id="ask-radio-2"  value="0" checked="checked">
+							                  <label  for="ask-radio-2">아니오</label>
+							                  </div>
+							               </div>															
+									</li> 							
+								</ul>
+							</fieldset>
+							<div class="bt-area"> 
+								<button class="btn-b" onclick="location.href='/mainPage';">취소</button>
+								<button type="submit" class="btn-b red" data-text-content="true" id="submit">가입하기</button> 
+							</div>
+						</form>
+						<dl class="guide-text03">
+							<dt>이용안내</dt>
+							<dd>
+								<ul>
+									<li>성명, 성별, 생년월일은 아이디찾기, 비밀번호찾기 , 휴면계정 본인확인 등 가입자 정보 확인 시 본인확인을 위한 정보로 사용합니다.</li>
+									<li>입력된 내용은 내정보 관리에서 변경 할 수 있습니다.</li>
+									<li>허위정보는 본인확인에 대한 도움을 드릴 수 없습니다.</li>
+								</ul>
+							</dd>
+						</dl> 
 					
-						
-						
-						<fieldset>
-							<legend>기본정보입력</legend>  
-							<ul>
-								<li>
-									<span class="input-style-mail">
-										<label for="inputEmail">이메일을 입력해주세요</label>
-										<input type="text" id="inputEmail" name="id" onKeyPress="return spaceCheck(event)">
-										<!-- <button type="button" class="delete">삭제</button> -->
-									</span>
-									<div id="idResult"></div>
-									<button type="button" class="btn-s" id="idCheck">인증받기</button>
-								</li>
-								<li id="_liEmailNum" style="display: none;">
-									<span class="input-style-certif">
-										<label for="inputCemail">인증번호를 입력해주세요</label>
-										<input type="text" id="inputCemail" name="cEmail" onKeyPress="return numkeyCheck(event)">
-									</span>
-									<div id="cEmailResult"></div>
-									<button type="button" class="btn-s" id="cEmailCheck">인증확인</button>
-								</li>
-								<li>
-									<span class="input-style-pass">
-										<label for="inputPassword">비밀번호를 입력해주세요</label>
-										<input type="password" name="pw" id="inputPassword" maxlength="14" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
-										<button type="button" class="delete">삭제</button>
-									</span>
-								</li>
-								<li>
-									<span class="input-style-pass01">
-										<label for="inputPasswordAgain">한번 더 입력해주세요</label>
-										<input type="password" name="pswdc"  id="inputPasswordAgain" onkeyup="SameCheck(this);" maxlength="14" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
-										<button type="button" class="delete">삭제</button>
-									</span>
-									<div id=pwResult></div>
-								</li>
-							</ul> 
-							<ul>
-								<li>
-									<span class="input-style-nick">
-										<label for="inputNickname">닉네임을 입력해주세요</label>
-										<input type="text"  name="nickname" id="inputNickname" maxlength="24" onKeyPress="return spaceCheck(event)">
-										<!-- <button type="button" class="delete">삭제</button>  -->
-									</span>  
-									<div id="nickNameResult"></div>
-									<span class="byte"><b id="maxText">0</b>/12byte</span>
-									<button type="button" class="btn-s gray" id="nickCheck">중복확인</button>
-								</li> 
-								<li>
-									<span class="input-style-nick">
-										<label for="inputFriend">추천인을 입력해주세요</label>
-										<input type="text" name="friend" id="inputFriend"  maxlength="24" onKeyPress="return spaceCheck(event)">
-										<!-- <button type="button" class="delete">삭제</button>  -->
-									</span>  
-									<div id="friendResult"></div>
-									<span class="byte"><b id="maxText">0</b>/12byte</span>
-									<button type="button" class="btn-s gray" id="friendCheck">추천하기</button>
-								</li> 
-							</ul>
-							<ul>
-								<li>
-									<span class="input-style-address">
-										<input type="text" name="address" id="inputAddress" class="_onlyNumber" placeholder="우편번호"  required="true" readonly>
-										<!-- <button type="button" class="delete">삭제</button> -->
-									</span>
-									<button type="button" class="btn-s" onclick="goPopup();">우편번호 찾기</button>
-								</li>
-								<li>
-									<span class="input-style-phone">
-										<label for="inputPhone">휴대폰번호('-'없이)</label>
-										<input type="text" name="tel" id="inputPhone" class="_onlyNumber" maxlength="11" onKeyPress="return numkeyCheck(event)">
-										<!-- <button type="button" class="delete">삭제</button> -->
-									</span>
-									<div id=telResult></div>
-									<button type="button" class="btn-s" id="telCheck">인증받기</button>
-								</li>
-								<li id="_liPhoneNum" style="display: none;">
-									<span class="input-style-certif">
-										<label for="inputCtel">인증번호를 입력해주세요</label>
-										<input type="text" name="cTel" id="inputCtel" onKeyPress="return numkeyCheck(event)">
-									</span>
-									<div id=cTelResult></div>
-									<button type="button" class="btn-s" id="cTelCheck">인증확인</button>
-								</li>
-							</ul> 
-							<ul>
-								<li>
-									<span class="radio-style-dormant">거래내역 공개 설정</span>
-						               <div class="ask-form">
-						               	  <p class="guide-text"><span>다른 사용자에게 보유 자산 및 수익률과 거래내역을 공개 하시겠습니까?</span></p>
-						                  <div class="dormant-radio">
-						                  <input type="radio" name="showEsetSetting" id="ask-radio-1"  value="1">
-						                  <label  id="ask-radio-1-answer" for="ask-radio-1">예</label>
-						                  <input type="radio" name="showEsetSetting" id="ask-radio-2"  value="0" checked="checked">
-						                  <label  for="ask-radio-2">아니오</label>
-						                  </div>
-						               </div>															
-								</li> 							
-							</ul>
-						
-						
-
-													
-						</fieldset>
-					</form>
-					<div class="bt-area"> 
-						<button class="btn-b" onclick="location.href='/mainPage';">취소</button>
-						<button type="submit" class="btn-b red" data-text-content="true" id="submit"  onclick="$('#form').submit();">가입하기</button> 
-					</div>
-				
-				
-				
-					<dl class="guide-text03">
-						<dt>이용안내</dt>
-						<dd>
-							<ul>
-								<li>성명, 성별, 생년월일은 아이디찾기, 비밀번호찾기 , 휴면계정 본인확인 등 가입자 정보 확인 시 본인확인을 위한 정보로 사용합니다.</li>
-								<li>입력된 내용은 내정보 관리에서 변경 할 수 있습니다.</li>
-								<li>허위정보는 본인확인에 대한 도움을 드릴 수 없습니다.</li>
-							</ul>
-						</dd>
-					</dl> 
-				
-				</div> 
+					</div> 
+				</div>
 			</div>
 		</div>
+			<%@include file="mainfooter.jsp" %>
 	</div>
-		<%@include file="mainfooter.jsp" %>
-</div>
-
-<%-- <%@include file="mainheader.jsp" %>
- 	<form action="/signUp" name="form" method="POST">
-		<div class="container">
-			<div class="allBody">
-				<label for="inputEmail">이메일</</label> 
-				<div class="form-group col-md-6" style="display: -webkit-box;">
-					<input type="email"	class="form-control" id="inputEmail" name="id" placeholder="인증받을 이메일을 입력해주세요." onKeyPress="return spaceCheck(event)">
-					<button type="button" class="btn btn-secondary" id="idCheck">인증번호전송</button>
-					<ul><li style="list-style:none;" id="idResult"></li></ul>
-				</div>
-				<label for="inputEmail col-md-6">인증번호확인</label>
-				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text" class="form-control" id="inputCemail" name="cEmail" placeholder="인증번호를 입력해주세요." onKeyPress="return numkeyCheck(event)"> 
-                	 <button type="button" class="btn btn-secondary" id="cEmailCheck">인증번호확인</button>
-              		 <ul><li style="list-style:none;" id="cEmailResult"></li></ul>	 
-				</div>
-			<div class="password">
-				<label for="inputPassword">비밀번호</label>
-				<div class="form-group col-md-6" >
-					 <input type="password" class="form-control" id="inputPassword" placeholder="8자 ~ 13자 입력해주세요." name="pw" oninput="checkPw()" onKeyPress="return spaceCheck(event)">
-				</div>
-				<label for="inputPasswordAgain">비밀번호확인</label>
-				<div class="form-group col-md-6" style="display: -webkit-box;">
-					 <input	type="password" class="form-control" id="inputPasswordAgain" placeholder="한 번 더 입력해주세요. " oninput="checkPw()" onKeyPress="return spaceCheck(event)">
-					 <ul><li style="list-style:none;" id="pwResult"></li></ul>
-				</div>
-				
-            </div>
-				<label for="inputnickname col-md-6">닉네임</label>
-				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputNickname" name="nickname" onKeyPress="return spaceCheck(event)">
-					 <button type="button" class="btn btn-secondary" id="nickCheck">　중복확인　</button>	
-					 <ul><li style="list-style:none;" id="nickNameResult"></li></ul>
-				</div>
-				<label for="inputAddress col-md-6">추천인</label>
-				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputFriend" name="friend" placeholder="" onKeyPress="return spaceCheck(event)">
-					 <button type="button" class="btn btn-secondary" id="friendCheck">　추천하기　</button>	
-					 <ul><li style="list-style:none;" id="friendResult"></li></ul>
-				</div>
-				
-				<label for="inputAddress col-md-6">주소</label>
-				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text"	class="form-control" id="inputAddress" name="address" required="true" readonly>
-					 <button type="button" class="btn btn-secondary" onclick="goPopup();">우편번호찾기</button>		
-				</div>
-				
-				<label for="inputPhone col-md-6" >휴대폰</label>
-				<div class="form-group" style="display: -webkit-box;">
-					<input placeholder="휴대폰번호롤 입력해주세요." type="text"	class="form-control" id="inputPhone" name="tel" onKeyPress="return numkeyCheck(event)" maxlength="11">
-					<button type="button" class="btn btn-secondary" id="telCheck">인증번호전송</button>
-					<ul><li style="list-style:none;" id="telResult"></li></ul>		
-				</div>
-				
-				<label for="inputPhone col-md-6">인증번호확인</label>
-				<div class="form-group" style="display: -webkit-box;">
-					 <input type="text" class="form-control" id="inputCtel" name="cTel" placeholder="인증번호를 입력해주세요." onKeyPress="return numkeyCheck(event)"> 
-                	 <button type="button" class="btn btn-secondary" id="cTelCheck">인증번호확인</button>
-              		 <ul><li style="list-style:none;" id="cTelResult"></li></ul>	 
-				</div>
-           </div>
-                
-                노출 수정
-            <div style="margin-left:294px; margin-top: 30px; margin-bottom: 10px; display: -webkit-box;">
-               <small class="text-muted">다른 사용자에게 보유 자산 및 수익률과 거래내역을 노출 하시겠습니까?</small>
-               <br>
-               <br>
-               <div class="ask-form">
-                  <div class="custom-control custom-radio">
-                  <input type="radio" name="showEsetSetting" id="ask-radio-1" class="custom-control-input" value="1">
-                  <label class="custom-control-label" id="ask-radio-1-answer" for="ask-radio-1">예</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                  <input type="radio" name="showEsetSetting" id="ask-radio-2" class="custom-control-input" value="0" checked="checked">
-                  <label class="custom-control-label" for="ask-radio-2">아니오</label>
-                  </div>
-               </div>
-               <br>
-            </div>
-            노출 수정
-                
-            </div>
-            <div style="text-align:center">
-                <div><button type="submit" class="nextButton" data-text-content="true" id="submit" >회원가입</button></div> disabled="disabled" 
-            </div>
-	</form>
-<%@include file="mainfooter.jsp" %> --%>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
@@ -418,7 +193,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 	
 	$(document).ready(function(e){
 		textLenCheck("inputNickname","닉네임",{max:12,currentLenId:"maxText"});
-		textLenCheck("inputFriend","추천인",{max:12,currentLenId:"maxText"});
+		textLenCheck("inputFriend","추천인",{max:12,currentLenId:"maxText1"});
 		var checkflag = 0;
 	
 		$("#submit").on("click", function(){
@@ -489,7 +264,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								data: { "id" : $('#inputEmail').val() } 
 							});  
 					}else if(atSign == -1 || com == -1){
-						var html="<p id='cust_id-error' class='error-text'>이메일 형식을 맞춰주세요.</p>";
+						var html="<p id='cust_id-error' class='error-text'>이메일 형식을 맞춰주세요('@', ' . '을 포함하여야합니다).</p>";
 						
 						$('#idResult').empty();
 						$('#idResult').append(html);
@@ -623,7 +398,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				data: { "nickname" : $('#inputNickname').val() }, 
 				success: function(data){ 
 					if($.trim($('#inputNickname').val()) == ""){
-						var html="<p id='cust_id-error' class='error-text'>공백은 불가능합니다.</p>";
+						var html="<p id='cust_id-error' class='error-text'>공백은 불가능합니다(필수 입력사항은 아닙니다).</p>";
 						
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
@@ -755,8 +530,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 			if(keyCode != 38 && keyCode != 37 && keyCode != 39 &&keyCode != 40 )
 
 			if(condObj.max != undefined && getTextLength(idObj.val()) > condObj.max){
-				alert(label + "은" + condObj.max + "byte 이하이여야 합니다.");
-
+				swal({text:label + "은 " + condObj.max + "byte 이하만가능합니다.", icon:"error"});
 				var cnt_byte = 0;
 				var sub_cnt = 0;
 				var chk_letter = "";
