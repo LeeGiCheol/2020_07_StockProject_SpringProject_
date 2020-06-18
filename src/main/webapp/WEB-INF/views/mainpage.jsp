@@ -52,6 +52,7 @@ position:relative;
     color: #333;
     top: 7px;
 }
+A:link, A:visited, A:hover, A:active{cursor: pointer;}
 </style>
 </head>
 <body>
