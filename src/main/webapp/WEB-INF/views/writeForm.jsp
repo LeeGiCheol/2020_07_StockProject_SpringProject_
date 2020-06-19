@@ -133,7 +133,7 @@
 
 
  
-  </script>							
+  </script>								
 							<form name="form" id="form" role="form" method="POST" action="/board/free/write">
 								<div class="form-table">
 									<table>
