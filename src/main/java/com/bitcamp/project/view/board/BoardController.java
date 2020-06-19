@@ -53,11 +53,15 @@ public class BoardController {
 							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
 		int bno = 1;
+		
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
 		if(searchStyle.equals("")) {
 			keyword = "";
+		}
+		if(request.getServletPath().equals("/board/free/popularity")) {
+			orderby = "best";
 		}
 		if(orderby.equals("")) {
 			orderby = "new";
@@ -161,11 +165,13 @@ public class BoardController {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
+		
 		ModelAndView mav = new ModelAndView();
 		BoardVO boardDetail = boardService.getBoard(vo);
 		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
+		System.out.println("boardDetail " + boardDetail);
 		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
 		

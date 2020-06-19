@@ -53,25 +53,32 @@ public class PortfolioController {
 							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
 		int bno = 2;
+		
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
 		if(searchStyle.equals("")) {
 			keyword = "";
 		}
+		if(request.getServletPath().equals("/board/portfolio/popularity")) {
+			orderby = "best";
+		}
 		if(orderby.equals("")) {
 			orderby = "new";
 		}
+		
         String FilePath = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/";
-        System.out.println("13212 "+FilePath);
+        
         vo.setThumbnailName(FilePath+vo.getThumbnailName());
-        System.out.println("list " + vo);
+        
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno, 12);
 		model.addAttribute("portfolioList", (List<BoardVO>)boardList.get("portfolioList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("path", FilePath);
+		System.out.println("searchStyle "+searchStyle);
+		System.out.println("keyword "+keyword);
 		
 		if(orderby.equals("new")) {
 			return "portfolio-board";

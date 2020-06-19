@@ -76,7 +76,7 @@
 	</div>
 		<div class="board-type">
 			<div class="board-free-nav">
-					<form id="form" class="board-list-top policy-in" action='/board/free'>
+					<form id="form" class="board-list-top policy-in" action='/board/free/popularity'>
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
 								value="new"><label for="orderby1"  class="new-board">최신순</label>
@@ -155,7 +155,7 @@
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
-					          href="/board/free?bnowPage=1"
+					          href="/board/free/popularity?bnowPage=1"
 					          tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
@@ -164,7 +164,7 @@
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            href="/board/free/popularity?bnowPage=${boardPage.nowPage}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -176,7 +176,7 @@
 					      <c:if test="${boardPage.nowPage != 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage-1}"
+					            href="/board/free/popularity?bnowPage=${boardPage.nowPage-1}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -196,7 +196,7 @@
 					          </c:when>
 					          <c:when test="${p != boardPage.nowPage}">
 					            <li class="page-item">
-					              <a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
+					              <a class="page-link" href="/board/free/popularity?bnowPage=${p}">${p}</a>
 					            </li>
 					          </c:when>
 					        </c:choose>
@@ -209,7 +209,7 @@
 					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            href="/board/free/popularity?bnowPage=${boardPage.nowPage}"
 					            tabindex="+1" aria-disabled="true">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -220,7 +220,7 @@
 					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage+1}"
+					            href="/board/free/popularity?bnowPage=${boardPage.nowPage+1}"
 					            tabindex="+1" aria-disabled="true" data-ajax="false">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -230,7 +230,7 @@
 					      <!-- >> 버튼 -->
 					      <li>
 					        <a class="page-link"
-					        href="/board/free?bnowPage=${boardPage.lastPage}"
+					        href="/board/free/popularity?bnowPage=${boardPage.lastPage}"
 					        tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
@@ -249,7 +249,7 @@
 				
 				<div class="search-area">
 					<div  class="search-area-body">
-					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free/popularity">
 						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 						<select class="dropdown-toggle-board" name="searchStyle">

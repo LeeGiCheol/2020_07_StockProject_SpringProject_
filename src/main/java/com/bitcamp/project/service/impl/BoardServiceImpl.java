@@ -52,21 +52,24 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword, String orderby, int bno, int page) {
-		PagingVO boardPage = new PagingVO(boardDAO.count(vo), nowPage, page);
-		boardPage.getUtil().put("searchStyle", searchStyle);
-		boardPage.getUtil().put("keyword", keyword);
-		boardPage.getUtil().put("orderby", orderby);
-		boardPage.getUtil().put("bno", bno);
+		PagingVO boardPage = null;
+
 		
 //		boardPage.getUtil().put("",vo.get)
 //		boardPage.setId(vo.getId());
 		List<BoardVO> boardList = null;
 		List<BoardVO> portfolioList = null;
 		Map<String, Object> postMap = new HashMap<String, Object>();
+		vo.setBno(bno);
 
 		// 자유게시판
 		if(bno == 1) {
-
+			boardPage = new PagingVO(boardDAO.count(vo), nowPage, page);
+			boardPage.getUtil().put("searchStyle", searchStyle);
+			boardPage.getUtil().put("keyword", keyword);
+			boardPage.getUtil().put("orderby", orderby);
+			boardPage.getUtil().put("bno", bno);
+			
 			boardList = boardDAO.getBoardList(boardPage);
 			for (int i = 0; i < boardList.size(); i++) {
 				boardList.get(i).setBdateTime(new Date(boardList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
@@ -75,6 +78,13 @@ public class BoardServiceImpl implements BoardService{
 		}
 		// 포트폴리오 게시판
 		else if(bno == 2) {
+			boardPage = new PagingVO(boardDAO.count(vo), nowPage, page);
+
+			boardPage.getUtil().put("searchStyle", searchStyle);
+			boardPage.getUtil().put("keyword", keyword);
+			boardPage.getUtil().put("orderby", orderby);
+			boardPage.getUtil().put("bno", bno);
+			
 			portfolioList = boardDAO.portfolioList(boardPage);
 			System.out.println("portfolioList "+portfolioList);
 			for (int i = 0; i < portfolioList.size(); i++) {
@@ -85,7 +95,7 @@ public class BoardServiceImpl implements BoardService{
 		
 	
 		
-		
+		System.out.println("page " + boardPage);
 		
 		postMap.put("boardPage", boardPage);
 		return postMap;
