@@ -487,13 +487,22 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<form method='post' action="/signIn">
 									<fieldset>
 										<div class="chk">
-											<input type="checkbox" name="sID" id="check-id">
-											<label for="check-id">아이디 저장</label>
-											<input type="checkbox" name="autoLogin" onClick="" id="check-log">
-											<label for="check-log">자동로그인</label>
+										<%
+										    Cookie[] c = request.getCookies();
+										    String cookieVal="";
+										    if(c!=null){
+										        for(Cookie i:c){
+										            if(i.getName().equals("saveId")){
+										                cookieVal=i.getValue();
+										            }
+										        }
+										    }
+										%>
+											<input type="checkbox" id="idSaveCheck" class="big" name="saveId" <%=cookieVal!=""?"checked" : ""%>/>
+											<label for="idSaveCheck">아이디 저장</label>
 										</div>
 										<p>
-											<input type="text" name="id" value="" id="user_id" title="아이디 입력" placeholder="아이디">
+											<input type="text" name="id" value="<%=cookieVal !="" ? cookieVal : "" %>" id="user_id" title="아이디 입력" placeholder="아이디">
 											<input type="password" name="pw" value="" id="user_pw" title="비밀번호 입력" placeholder="비밀번호"> 
 											<input type="submit" value="로그인" onclick="">	
 										</p>

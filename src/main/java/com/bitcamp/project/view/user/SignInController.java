@@ -6,7 +6,9 @@ import static com.bitcamp.project.view.user.MailController.EmailNumStr;
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.SignInService;
 import com.bitcamp.project.vo.UserVO;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
-
-import edu.emory.mathcs.backport.java.util.Arrays;
 
 @Controller
 public class SignInController {
@@ -42,7 +41,19 @@ public class SignInController {
 	}
 	
 	@PostMapping(value="/signIn")
-	public ModelAndView signIn(@ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpSession session) {
+	public ModelAndView signIn(@ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		String saveId = request.getParameter("saveId");
+		 //아이디 저장 여부를 보고 쿠키로 아이디값 저장
+        if(saveId!=null) {
+            Cookie c = new Cookie("saveId",id);
+            //쿠키값 저장 시간을 지정함, 숫자당 1초로 계산
+            c.setMaxAge(60*60*24*7); //7일간 저장
+            response.addCookie(c);
+        }else {
+            Cookie c = new Cookie("saveId",id);
+            c.setMaxAge(0);
+            response.addCookie(c);
+        } 
 		ModelAndView mav = new ModelAndView();
 		UserVO vo = new UserVO();
 		vo.setId(id);
