@@ -174,9 +174,9 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				$("#inputPhone").focus();
 				return false;
 			}
-			if($("#cTel").val()==""){
+			if($("#inputCtel").val()==""){
 				swal({text:"휴대폰번호 인증번호를 입력해주세요.", icon:"error"})
-				$("#cTel").focus();
+				$("#inputCtel").focus();
 				return false;
 			}
 			
