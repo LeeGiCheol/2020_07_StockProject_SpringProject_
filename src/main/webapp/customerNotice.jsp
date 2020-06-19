@@ -101,9 +101,6 @@ border-left: 4px solid #1e78ff !important;
 
 
 						<div class="board-type">
-							<div class="board-free-nav">
-
-							</div>
 							<div class="tab-content" id="pills-tabContent">
 								<!-- 전체글 -->
 								<table class="board-free-table">
