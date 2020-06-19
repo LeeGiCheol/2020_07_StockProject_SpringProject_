@@ -23,7 +23,12 @@
 
 	</style>
 </head>
-
+<style>
+.list-group,#accordionExample{
+border-top: 1px solid #1e78ff !important;
+border-radius: .25rem;
+}
+</style>
 <body>
 	<%@include file="mainheader.jsp" %>
 
@@ -38,12 +43,12 @@
 
 
 				<div class="sidebar sticky" id="cssmenu">
-					<ul>
-						<li id="sideTitle"><a  href="#"><span>고객센터</span></a></li>
-						<li><a href="#"><span>공지사항</span></a></li>
-						<li><a href="#"><span>도움말</span></a></li>
-						<li><a href="#"><span>1:1문의</span></a></li>
-					</ul>
+						<ul>
+							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
+							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
+							<li id="claimTitle"><a href="/customerClaimWrite"><span>1:1문의</span></a></li>
+						</ul>
 				</div>
 
 
@@ -61,16 +66,15 @@
 
 
 			<div class="col-md-10">
-<div class="m-menu">
+             <div class="m-menu">
 						<div class="m-drop-nav">
 							<h1 class="m-drop-tit-title line" style="cursor:pointer;">고객센터 ▼</h1>
 						</div>
 						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">1:1문의</a></h1>
-					
+							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaimWrite">1:1문의</a></h1>
 						</div>
 </div>
 				<div class="community" role="main">
@@ -111,19 +115,24 @@
 								
 								
 									<div class="noticeList">
-										<c:forEach items="${boardList}" var="board">
+							
 									
 										<ul class="list-group">
 											<!-- 현재 고객센터 공지사항 -> 일반 공지사항으로 변경 요청 -->
-								<c:if test="${ not empty board}">
+							
 
-											<li class="list-group-item"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a> </li>
+											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+													고객센터에서 확인이 불가능합니다.</a> </li>
+											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+													고객센터에서 확인이 불가능합니다.</a> </li>
+											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+													고객센터에서 확인이 불가능합니다.</a> </li>
 
-								</c:if>
+							
 
 
 										</ul>
-										</c:forEach>
+									
 										
 									</div>
 								</dd>
@@ -265,7 +274,7 @@
 				</div>
 
 				<!-- 도움말과 1:1문의 -->
-				<div class="sectionBox">
+				<div class="sectionBox2">
 
 
 
