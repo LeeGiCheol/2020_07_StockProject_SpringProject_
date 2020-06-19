@@ -115,7 +115,7 @@ $(document).ready(function(){
 						<div class="board-type">
 							<div class="board-free-nav">
 								<form id="form" class="board-list-top policy-in"
-									action='/board/portfolio/popularity'>
+									action='/board/portfolio'>
 									<p class="pc-only">
 										<input type="radio" class="ordeby" id="orderby1"
 											name="orderby" value="new"><label
@@ -162,6 +162,7 @@ $(document).ready(function(){
 																		<fmt:formatDate value="${portfolioList.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
 																		<span class="data-date-format">${time}</span> <span
 																class="comment" id="countNum150357583575745"><i>댓글</i>${portfolioList.commentCount}</span>
+																<span class="btn-m like" id="recmBtn"><i>추천</i>${portfolioList.likes}</span>
 															</span>
 														</dd>
 													</dl>
@@ -178,14 +179,14 @@ $(document).ready(function(){
 													<ul class="pagination">
 														<c:if test="${boardPage.nowPage != 1}">
 															<!-- << 버튼 -->
-															<li><a class="page-link" href="/board/portfolio/popularity?bnowPage=1"
+															<li><a class="page-link" href="/board/portfolio/best?bnowPage=1"
 																tabindex="-1" aria-disabled="true"> <i
 																	class="fas fa-angle-double-left"></i>
 															</a></li>
 															<!-- 1페이지에서 < 버튼 눌렀을 때 -->
 															<c:if test="${boardPage.nowPage == 1}">
 																<li><a class="page-link"
-																	href="/board/portfolio/popularity?bnowPage=${boardPage.nowPage}"
+																	href="/board/portfolio/best?bnowPage=${boardPage.nowPage}"
 																	tabindex="-1" aria-disabled="true"> <i
 																		class="fas fa-angle-left"></i>
 																</a></li>
@@ -195,7 +196,7 @@ $(document).ready(function(){
 														<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
 														<c:if test="${boardPage.nowPage != 1}">
 															<li><a class="page-link"
-																href="/board/portfolio/popularity?bnowPage=${boardPage.nowPage-1}"
+																href="/board/portfolio/best?bnowPage=${boardPage.nowPage-1}"
 																tabindex="-1" aria-disabled="true"> <i
 																	class="fas fa-angle-left"></i>
 															</a></li>
@@ -213,7 +214,7 @@ $(document).ready(function(){
 																</c:when>
 																<c:when test="${p != boardPage.nowPage}">
 																	<li class="page-item" ><a class="page-link"
-																		href="/board/portfolio/popularity?bnowPage=${p}" >${p}</a></li>
+																		href="/board/portfolio/best?bnowPage=${p}" >${p}</a></li>
 																</c:when>	  
 															</c:choose>
 														</c:forEach>
@@ -224,7 +225,7 @@ $(document).ready(function(){
 															<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
 															<c:if test="${boardPage.nowPage == boardPage.lastPage}">
 																<li><a class="page-link"
-																	href="/board/portfolio/popularity?bnowPage=${boardPage.nowPage}"
+																	href="/board/portfolio/best?bnowPage=${boardPage.nowPage}"
 																	tabindex="+1" aria-disabled="true"> <i
 																		class="fas fa-angle-right"></i>
 																</a></li>
@@ -233,7 +234,7 @@ $(document).ready(function(){
 															<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
 															<c:if test="${boardPage.nowPage != boardPage.lastPage}">
 																<li><a class="page-link"
-																	href="/board/portfolio/popularity?bnowPage=${boardPage.nowPage+1}"
+																	href="/board/portfolio/best?bnowPage=${boardPage.nowPage+1}"
 																	tabindex="+1" aria-disabled="true" data-ajax="false">
 																		<i class="fas fa-angle-right"></i>
 																</a></li>
@@ -241,7 +242,7 @@ $(document).ready(function(){
 		
 															<!-- >> 버튼 -->
 															<li><a class="page-link"
-																href="/board/portfolio/popularity?bnowPage=${boardPage.lastPage}"
+																href="/board/portfolio/best?bnowPage=${boardPage.lastPage}"
 																tabindex="-1" aria-disabled="true"> <i
 																	class="fas fa-angle-double-right"></i>
 															</a></li>

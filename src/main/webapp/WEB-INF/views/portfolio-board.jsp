@@ -115,7 +115,7 @@ $(document).ready(function(){
 						<div class="board-type">
 							<div class="board-free-nav">
 								<form id="form" class="board-list-top policy-in"
-									action='/board/portfolio'>
+									action='/board/portfolio/best'>
 									<p class="pc-only">
 										<input type="radio" class="ordeby" id="orderby1"
 											name="orderby" value="new" checked=""><label
@@ -162,7 +162,7 @@ $(document).ready(function(){
 																		<fmt:formatDate value="${portfolioList.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
 																		<span class="data-date-format">${time}</span> <span
 																class="comment" id="countNum150357583575745"><i>댓글</i>${portfolioList.commentCount}</span>
-																<span class="btn-m like" id="recmBtn"><i>추천</i>${portfolioList.commentCount}</span>
+																<span class="btn-m like" id="recmBtn"><i>추천</i>${portfolioList.likes}</span>
 															</span>
 														</dd>
 													</dl>

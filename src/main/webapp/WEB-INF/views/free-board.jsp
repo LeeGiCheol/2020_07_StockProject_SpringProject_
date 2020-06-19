@@ -84,7 +84,7 @@
 						<div class="board-type">
 							<div class="board-free-nav">
 								<form id="form" class="board-list-top policy-in"
-									action='/board/free'>
+									action='/board/free/best'>
 									<p class="pc-only">
 										<input type="radio" class="ordeby" id="orderby1"
 											name="orderby" value="new" checked=""><label
