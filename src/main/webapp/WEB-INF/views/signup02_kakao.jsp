@@ -270,6 +270,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+					}else if(data == 2 && $.trim($('#inputNickname').val()) != ""){
 					}else{
 						var html="<p id='cust_id-error' class='error-text'>중복된 닉네임입니다.</p>";
 						$('#nickNameResult').empty();

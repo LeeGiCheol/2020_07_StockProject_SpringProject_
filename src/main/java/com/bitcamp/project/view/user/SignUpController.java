@@ -108,13 +108,14 @@ public class SignUpController {
 		// 닉네임 중복확인
 		else if(request.getServletPath().equals("/nickCheck")) {
 			UserVO user =(UserVO)session.getAttribute("loginUser");
-			System.out.println("@@@@ : " + user.getNickname());
-			if(user.getNickname().equals(nickname)) {
-				return Integer.toString(2);
-			}else {
+			if(user==null) {
 				map.put("nickname", nickname);
 				int result=signUpService.duplicateCheck(map);
 				return Integer.toString(result);
+			}else {
+				if(user.getNickname().equals(nickname)) {
+					return Integer.toString(2);
+				}
 			}
 		}
 		
