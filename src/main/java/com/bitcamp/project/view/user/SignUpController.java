@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -85,7 +86,7 @@ public class SignUpController {
 	@ResponseBody 
 	@GetMapping(value= {"/idCheck", "/cEmailCheck", "/nickCheck", "/friendCheck", "/telCheck", "/cTelCheck"})
 	public String duplicateCheck(@ModelAttribute("id") String id, @ModelAttribute("cMail") String cMail,@ModelAttribute("tel") String tel, @ModelAttribute("cTel") String cTel,
-								@ModelAttribute("nickname") String nickname, HttpServletRequest request) {
+								@ModelAttribute("nickname") String nickname, HttpServletRequest request, HttpSession session) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
@@ -106,12 +107,16 @@ public class SignUpController {
 		
 		// 닉네임 중복확인
 		else if(request.getServletPath().equals("/nickCheck")) {
-			map.put("nickname", nickname);
-			
-			
-			int result=signUpService.duplicateCheck(map);
-			System.out.println("nick"+result);
-			return Integer.toString(result);
+			UserVO user =(UserVO)session.getAttribute("loginUser");
+			if(user==null) {
+				map.put("nickname", nickname);
+				int result=signUpService.duplicateCheck(map);
+				return Integer.toString(result);
+			}else {
+				if(user.getNickname().equals(nickname)) {
+					return Integer.toString(2);
+				}
+			}
 		}
 		
 		// 추천인 중복확인

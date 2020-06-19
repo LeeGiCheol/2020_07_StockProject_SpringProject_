@@ -5,8 +5,14 @@
   padding: 20px 0 0 0;
   margin: 0 auto;
 }
+.list-group-item{
+	padding-left: 25px;
+}
 
 @media only screen and (max-width: 979px) {
+	.m-menu{
+	    padding-top: 20px;
+	}
   .containerNew {
     padding: 0;
   }
@@ -25,18 +31,43 @@
   width: 90%!important;
 
 }
+
 .m-drop-nav{
 	display: block !important;
 }
-.tit-h1,.m-drop-tit-title,.m-drop-tit-body{
+ .tit-h1,.m-drop-tit-title,.m-drop-tit-body{
 	font-size: 20px !important;
 	margin: 0 !important;
 	padding: 0 10px 20px !important;
-}
+} 
+
+/* .tit-h1, .m-drop-tit-title, .m-drop-tit-body {
+    font-size: 20px !important;
+    padding: 0 10px 20px !important;
+    margin: 0 -30px 30px !important;
+    } */
+    
+    
 .first{
 	padding-top: 20px !important;
 	border-top: 1px solid #eaeaea !important;
 }
+
+
+
+.sectionBox2{
+	    margin-bottom: 10px !important;
+}
+
+
+#cBoxa {
+ margin-right: 5px !important;
+
+}
+
+#cBoxb {}
+
+
 
 }
 
@@ -56,7 +87,10 @@ a:hover {
   border: 1px solid #dddddd;
   padding: 10px
 }
-
+.form-table {
+    border-top: 1px solid #d7d8da !important;
+   
+}
 .m-menu{
 	background:white;
 	width:100%;
@@ -66,6 +100,9 @@ a:hover {
     margin-bottom: 20px;
     font-weight: bold;
     line-height: 100%;
+        border-bottom: 1px solid #1e78ff !important;
+            margin: 0 -30px 30px;
+    padding: 0 30px 20px;
 }
 .m-drop-tit-body {
     margin: 0 -30px 30px;
@@ -94,7 +131,7 @@ a:hover {
   
 	
 }
-#sideTitle ul a, #sideTitle ul a:visited, #sideTitle ul a:link{
+#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
 	    color: black !important;
   font-weight: 600 !important;
  
@@ -277,6 +314,10 @@ a:hover {
   background-color: white;
 }
 
+ .sectionBox2{
+  margin-bottom: 20px;
+} 
+
 .card-header {
   background: white !important;
   border: 0 !important;
@@ -400,12 +441,12 @@ a:hover {
 .moreBttn,
 .moreBttn:link,
 .moreBttn:visited {
-  padding: 10px 20px;
+  padding: 10px 20px;    margin: 0 5px;    border-radius: 2px;
 
 }
 
 .norm {
-  border: 1px solid;
+  border: 1px solid;padding: 9px 20px !important;
 }
 .moreBttn:hover {
   border: 0;  background: #1e78ff;
@@ -442,6 +483,8 @@ width: 49%;
     display: inline-block;
     text-align: center;
     padding: 25px 20px;
+    background: white;
+    border-top: 5px solid #eff3f6;
 }
 
 .cBox:hover {
@@ -454,7 +497,7 @@ width: 49%;
 }
 
 #cBoxa {
-  border-right: 10px solid #eff3f6;
+  margin-right: 16px;
 
 }
 

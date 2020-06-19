@@ -202,8 +202,11 @@ $(document).ready(function(){
 										</th>
 										<td>
 										<div class="sell-wrap">
+											<div class="money-my">
 											<span class="input-style-case02"><fmt:formatNumber value="${loginUser.money}" type="number"/>원</span>
+											</div>
 											<button type="button" class="btn-t gray refresh">머니 초기화</button>
+											
 										</div>	
 										</td>
 									</tr>													
@@ -213,6 +216,11 @@ $(document).ready(function(){
 					</div>
 					<div class="tab-pane fade <c:if test='${type eq "account"}'>show active</c:if>" id="pills-profile" role="tabpanel"
 						aria-labelledby="pills-profile-tab">
+						<div class="noticeBox">
+							<p class="notice">
+								<em>${loginUser.nickname}</em>님의 계좌
+							</p>
+						</div>
 						<div class="form-table">
 							<div class="table-scroll">
 								<table class="table-col">
@@ -230,10 +238,11 @@ $(document).ready(function(){
 									</thead>
 									<tbody>
 									
-									
-									<!--     <tr>
-									        <td colspan="7" style="text-align: center;">:::::데이터가 없습니다.::::::</td>
-									    </tr> -->
+									<c:if test="${holdingStockList.size() == 0}">
+									    <tr>
+									        <td colspan="7" style="text-align: center;">:::::보유 주식이 없습니다.::::::</td>
+									    </tr>
+									</c:if>
 									    <c:forEach items="${holdingStockList}" var="stock">
 											<tr>
 												<td scope="col" class="a-center">${stock.stockCode}</td>
@@ -360,6 +369,11 @@ $(document).ready(function(){
 					</div>
 					<div class="tab-pane fade <c:if test='${type eq "trade"}'>show active</c:if>" id="pills-contact" role="tabpanel"
 						aria-labelledby="pills-contact-tab">
+						<div class="noticeBox">
+							<p class="notice">
+								<em>${loginUser.nickname}</em>님의 거래내역
+							</p>
+						</div>						
 <!-- 						<div class="board-free-nav">
 							<form id="form" class="board-list-top policy-in" action="/board/free">
 								<p class="pc-only">
@@ -369,35 +383,6 @@ $(document).ready(function(){
 							</form>			 
 						</div> -->
 						
-                  <div class="balance-h2" id="sandbox-container">
-                     <div class="input-daterange input-group" id="datepicker">
-                     <p>
-                        <span class="input-style-cal start">
-                           <input type="text" name="startDate" class="startDate" id="test-date" placeholder="날짜선택" >
-                           <button type="button" id="btnStartDate" class="calendar">검색</button>
-                        </span>
-                        <i class="input-group-addon">~</i>
-                        <span class="input-style-cal end">
-                           <input type="text" name="endDate" class="endDate" id="test-date" placeholder="날짜선택">
-                           <button type="button" id="btnEndDate" class="calendar">검색</button>
-                        </span>
-                        <span class="submit-button"><button type="submit" class="btn-s gray">검색</button></span>
-                     </p>
-                     </div>
-                  </div>
-
-        <script type="text/javascript">
-        $(document).ready(function() {
-        $('#sandbox-container .input-daterange').datepicker({
-           todayBtn : "linked",
-            clearBtn: true,
-            language: "ko",
-            autoclose: true,
-            toggleActive: true
-        });
-        });
-        </script>   
-        
 						<div class="form-table">
 							<div class="table-scroll">
 								<table class="table-col">
@@ -414,10 +399,11 @@ $(document).ready(function(){
 									</thead>
 									<tbody>
 									
-									
-									<!--     <tr>
-									        <td colspan="7" style="text-align: center;">:::::데이터가 없습니다.::::::</td>
-									    </tr> -->
+									<c:if test="${stockHistoryList.size() == 0}">
+									    <tr>
+									        <td colspan="7" style="text-align: center;">:::::거래 내역이 없습니다.::::::</td>
+									    </tr>
+									</c:if>
 									    <c:forEach items="${stockHistoryList}" var="stock">
 											<tr>
 												<td scope="col" style="width: 150px;" class="a-right">${stock.tdatetime}</td>
@@ -445,7 +431,7 @@ $(document).ready(function(){
 											<!-- << 버튼 -->
 											<li>
 												<a class="page-link"
-													href="/myPage02?nowPage2=1&tradeSearch=${tradeSearch}&type=trade"
+													href="/myPage02?nowPage2=1&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 													tabindex="-1" aria-disabled="true">
 													<i class="fas fa-angle-double-left"></i>
 												</a>
@@ -454,7 +440,7 @@ $(document).ready(function(){
 											<c:if test="${pv2.nowPage == 1}">
 												<li>
 													<a class="page-link"
-														href="/myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade"
+														href="/myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 														tabindex="-1" aria-disabled="true">
 														<i class="fas fa-angle-left"></i>
 													</a>
@@ -465,7 +451,7 @@ $(document).ready(function(){
 										<c:if test="${pv2.nowPage != 1}">
 											<li>
 												<a class="page-link"
-													href="/myPage02?nowPage2=${pv2.nowPage-1}&tradeSearch=${tradeSearch}&type=trade"
+													href="/myPage02?nowPage2=${pv2.nowPage-1}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 													tabindex="-1" aria-disabled="true">
 													<i class="fas fa-angle-left"></i>
 												</a>
@@ -484,7 +470,7 @@ $(document).ready(function(){
 												</c:when>
 												<c:when test="${p != pv2.nowPage}">
 													<li class="page-item">
-														<a class="page-link" href="/myPage02?nowPage2=${p}&tradeSearch=${tradeSearch}&type=trade">${p}</a>
+														<a class="page-link" href="/myPage02?nowPage2=${p}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}">${p}</a>
 													</li>
 												</c:when>
 											</c:choose>
@@ -497,7 +483,7 @@ $(document).ready(function(){
 											<c:if test="${pv2.nowPage == pv2.lastPage}">
 												<li>
 													<a class="page-link"
-														href="myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade"
+														href="myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 														tabindex="+1" aria-disabled="true">
 														<i class="fas fa-angle-right"></i>
 													</a>
@@ -508,7 +494,7 @@ $(document).ready(function(){
 											<c:if test="${pv2.nowPage != pv2.lastPage}">
 												<li>
 													<a class="page-link"
-														href="/myPage02?nowPage2=${pv2.nowPage+1}&tradeSearch=${tradeSearch}&type=trade"
+														href="/myPage02?nowPage2=${pv2.nowPage+1}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 														tabindex="+1" aria-disabled="true" data-ajax="false">
 														<i class="fas fa-angle-right"></i>
 													</a>
@@ -518,7 +504,7 @@ $(document).ready(function(){
 											<!-- >> 버튼 -->
 											<li>
 												<a class="page-link"
-													href="/myPage02?nowPage2=${pv2.lastPage}&tradeSearch=${tradeSearch}&type=trade"
+													href="/myPage02?nowPage2=${pv2.lastPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 													tabindex="-1" aria-disabled="true">
 													<i class="fas fa-angle-double-right"></i>
 												</a>
@@ -529,15 +515,53 @@ $(document).ready(function(){
 							</div>
 						</div>
 
-						<div class="search-area">
+						<div class="search-area"> 
 							<div class="search-area-body">
 								<form class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage02">
-									<input class="form-control mr-sm-2 board-search" type="search" name="tradeSearch" value="${tradeSearch}" placeholder="검색어 입력" aria-label="Search">
-									<input type="hidden" name="type" value="trade">
-									<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
-										<i class="fas fa-search"></i>
-									</button>
-								</form>
+									<div class="balance-h2" id="sandbox-container">
+					                     <div class="input-daterange input-group" id="datepicker">
+					                     <p>
+					                        <span class="input-style-cal start">
+					                           <input type="text" name="startDate" class="startDate" id="test-date" placeholder="날짜선택" value="${startDate}" readonly>
+					                           <button type="button" id="btnStartDate" class="calendar" onclick="$('.startDate').datepicker('show');">검색</button>
+					                        </span>
+					                        <i class="input-group-addon">~</i>
+					                        <span class="input-style-cal end">
+					                           <input type="text" name="endDate" class="endDate" id="test-date" placeholder="날짜선택" value="${endDate}" readonly>
+					                           <button type="button" id="btnEndDate" class="calendar" onclick="$('.endDate').datepicker('show');">검색</button>
+					                        </span>
+					                       <!--  <span class="submit-button"><button type="submit" class="btn-s gray">검색</button></span> -->
+					                    </p>
+					                    </div>
+					                </div>
+									<div class="search-box">
+										<input class="form-control mr-sm-2 board-search" type="search" name="tradeSearch" value="${tradeSearch}" placeholder="검색어 입력" aria-label="Search">
+										<input type="hidden" name="type" value="trade">
+										<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
+											<i class="fas fa-search"></i>
+										</button>
+									</div>
+			               		</form>
+			
+					        <script type="text/javascript">
+					        $(document).ready(function() {
+						        $('.startDate').datepicker({
+						            todayBtn : "linked",
+						            clearBtn: true,
+						            language: "ko",
+						            autoclose: true,
+						            toggleActive: true
+						        });
+						        
+						        $('.endDate').datepicker({
+						            todayBtn : "linked",
+						            clearBtn: true,
+						            language: "ko",
+						            autoclose: true,
+						            toggleActive: true
+						        });
+					        });
+					        </script>  
 							</div>
 						</div>
 					</div>

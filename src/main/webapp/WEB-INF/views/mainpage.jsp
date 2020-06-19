@@ -53,6 +53,14 @@ position:relative;
     top: 7px;
 }
 A:link, A:visited, A:hover, A:active{cursor: pointer;}
+
+.graph-area .g-box {
+    width: 100%;
+}
+.market-time.small .graph-area .g-box > div {
+    position: relative;
+    padding: 5px 15px;
+}
 </style>
 </head>
 <body>
@@ -65,6 +73,49 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 		<div class="row">
 			<div class="col-md-9">
 			<!-- 현재 코스피 주가지수 -->
+<!-- 			<div class="graph-area">
+					<div class="g-box">
+						<div class="graph-left graph_off" style="display:block;">
+							<div class="graph-title">
+								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">코스피</a></span>
+								<p id="KRI001000000_updownColor_n" class="color-blue">
+									<a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">
+										<span id="KRI001000000_close_n">2,127.42</span>
+										<mark id="KRI001000000_updownState_n" class="fall"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">6.06</em> <span id="KRI001000000_diffRate_n">-0.28%</span></mark>
+									</a>
+								</p>
+							</div>
+							<p class="g-detail" style="cursor:pointer" onclick="location.href='http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI'">
+								<span>외<span class="mb_no">국</span>인<i id="KRI001000000_frgnr" class="color-blue">-1,129<span class="mb_no">억</span></i></span>
+								<span>기관<i id="KRI001000000_organ" class="color-blue">-2,220<span class="mb_no">억</span></i></span>
+								<span>개인<i id="KRI001000000_indi" class="color-red"><span class="mb_no">+</span>3,369<span class="mb_no">억</span></i></span>
+							</p>
+						</div>
+						<div class="graph-right graph_off" style="display:block;">
+							<div class="graph-title">
+								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">코스닥</a></span>
+								<p id="KRI501000000_updownColor_n" class="color-red">
+									<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
+										<span id="KRI501000000_close_n">739.86</span>
+										<mark id="KRI501000000_updownState_n" class="rise"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">2.53</em> <span id="KRI501000000_diffRate_n">+0.34%</span></mark>
+									</a>
+								</p>
+							</div>
+							<p class="g-detail" style="cursor:pointer" onclick="location.href='http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ'">
+								<span>외<span class="mb_no">국</span>인<i id="KRI501000000_frgnr" class="color-blue">-717<span class="mb_no">억</span></i></span>
+								<span>기관<i id="KRI501000000_organ" class="color-blue">-308<span class="mb_no">억</span></i></span>
+								<span>개인<i id="KRI501000000_indi" class="color-red"><span class="mb_no">+</span>1,230<span class="mb_no">억</span></i></span>
+							</p>
+						</div>
+						차트
+						<div class="graph-left graph_on has-chart">
+							<p class="g-img"><a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI"><img src="//cichart.paxnet.co.kr/pax/chart/lineAreaChart/V201724/paxLineAreaChartV201724Min01.jsp?abbrSymbol=001" class="main_chart_kosdaq" alt="2020년 06월 19일 실시간 코스피 차트"></a></p>
+						</div>
+						<div class="graph-right graph_on has-chart">
+							<p class="g-img"><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ"><img src="//cichart.paxnet.co.kr/pax/chart/lineAreaChart/V201724/paxLineAreaChartV201724Min01.jsp?abbrSymbol=501" class="main_chart_kosdaq" alt="2020년 06월 19일 실시간 코스피 차트"></a></p>
+						</div>
+					</div>
+				</div> -->
 					<div class="chartdata-1">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">

@@ -43,99 +43,100 @@ public class MyPageController {
 	@Autowired
 	private MyAccountService myAccountService;
 	@Autowired
-    PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder;
 	@Autowired
 	BCryptPasswordEncoder bPasswordEncoder;
-	
-	//ㅇㅇㅇㅇㅇㅇㅇ
+
+	// ㅇㅇㅇㅇㅇㅇㅇ
 	@Autowired
 	SignInService signInService;
 
-	@GetMapping(value="/checkCharging")
+	@GetMapping(value = "/checkCharging")
 	@ResponseBody
 	public int checkCharging(HttpSession session) {
-		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		return userInfoService.checkCharging(loginUser.getId());
 	}
-	
-   @GetMapping(value="/myPage02")
-   public String myPage02(HttpSession session, Model model, @ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
-         @ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
-         @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
-         @ModelAttribute("type") String type) {
-	   
-	   UserVO user = (UserVO)session.getAttribute("loginUser");
-	   signInService.logIn(user);
-	   
-	   if(type.equals(""))
-		   type = "rate";
-	   if(nowPage1.equals(""))
-		   nowPage1 = "1";
-	   if(nowPage2.equals(""))
-		   nowPage2 = "1";
-	   if(nowPage3.equals(""))
-		   nowPage3 = "1";
-	   UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-	   HashMap<String, Object> hm1 = myAccountService.getMyStockList(loginUser, Integer.parseInt(nowPage1), accountSearch);
-	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
+
+	@GetMapping(value = "/myPage02")
+	public String myPage02(HttpSession session, Model model, @ModelAttribute("nowPage1") String nowPage1/* 계좌용 */,
+			@ModelAttribute("nowPage2") String nowPage2/* 날짜별 */, @ModelAttribute("nowPage3") String nowPage3/* 종류별 */,
+			@ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
+			@ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
+			@ModelAttribute("type") String type) {
+
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		loginUser = signInService.logIn(loginUser);
+		session.setAttribute("loginUser", loginUser);
+
+		if (type.equals(""))
+			type = "rate";
+		if (nowPage1.equals(""))
+			nowPage1 = "1";
+		if (nowPage2.equals(""))
+			nowPage2 = "1";
+		if (nowPage3.equals(""))
+			nowPage3 = "1";
+		HashMap<String, Object> hm1 = myAccountService.getMyStockList(loginUser, Integer.parseInt(nowPage1),
+				accountSearch);
+		HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser,
+				Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
 //	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
-	   HashMap<String, Object> hm4 = userInfoService.getRate(loginUser.getId());
-	   System.out.println((PagingVO)hm2.get("pv2"));
-	   session.setAttribute("pv1", (PagingVO)hm1.get("pv1"));
-	   session.setAttribute("holdingStockList", (List<HoldingStockVO>)hm1.get("holdingStockList"));
-	   session.setAttribute("pv2", (PagingVO)hm2.get("pv2"));
-	   session.setAttribute("stockHistoryList", (List<StockVO>)hm2.get("stockHistoryList"));
+		HashMap<String, Object> hm4 = userInfoService.getRate(loginUser.getId());
+		session.setAttribute("pv1", (PagingVO) hm1.get("pv1"));
+		session.setAttribute("holdingStockList", (List<HoldingStockVO>) hm1.get("holdingStockList"));
+		session.setAttribute("pv2", (PagingVO) hm2.get("pv2"));
+		session.setAttribute("stockHistoryList", (List<StockVO>) hm2.get("stockHistoryList"));
 //	   session.setAttribute("pv3", (PagingVO)hm3.get("pv3"));
 //	   session.setAttribute("stockHistoryListByStock", (List<StockVO>)hm3.get("stockHistoryListByStock"));
-	   session.setAttribute("accuntSearch", accountSearch);
-	   session.setAttribute("tradeSearch", tradeSearch);
-	   session.setAttribute("startDate", startDate);
-	   session.setAttribute("endDate", endDate);
-	   model.addAttribute("type", type);
-	   session.setAttribute("accumAsset", hm4.get("accumAsset"));
-	   session.setAttribute("ranking", hm4.get("ranking"));
-	   return "mypage02";
-   }   
+		session.setAttribute("accuntSearch", accountSearch);
+		session.setAttribute("tradeSearch", tradeSearch);
+		session.setAttribute("startDate", startDate);
+		session.setAttribute("endDate", endDate);
+		model.addAttribute("type", type);
+		session.setAttribute("accumAsset", hm4.get("accumAsset"));
+		session.setAttribute("ranking", hm4.get("ranking"));
+		return "mypage02";
+	}
 
-	
-   @GetMapping(value="/myPagePwCheck") 
-   public String myPageCheck(HttpSession session) {
-	   if(((UserVO)session.getAttribute("loginUser")).getId().substring(((UserVO)session.getAttribute("loginUser")).getId().length()-1).equals("_")) {
+	@GetMapping(value = "/myPagePwCheck")
+	public String myPageCheck(HttpSession session) {
+		if (((UserVO) session.getAttribute("loginUser")).getId()
+				.substring(((UserVO) session.getAttribute("loginUser")).getId().length() - 1).equals("_")) {
 			return "redirect:/myPage01";
-	   }else {
-     		return "myPageCheckPw"; 
-	   }
-   }
-   @ResponseBody
-   @PostMapping(value="/myPagePwCheck")
-   public String myPageCheckPost(@ModelAttribute("password") String password, HttpSession session) {
-	   UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-	   if(bPasswordEncoder.matches(password, loginUser.getPw())){
-		   return Integer.toString(1);
-	   }else {
-		   return Integer.toString(0);
-	   }
-   }
+		} else {
+			return "myPageCheckPw";
+		}
+	}
 
+	@ResponseBody
+	@PostMapping(value = "/myPagePwCheck")
+	public String myPageCheckPost(@ModelAttribute("password") String password, HttpSession session) {
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		if (bPasswordEncoder.matches(password, loginUser.getPw())) {
+			return Integer.toString(1);
+		} else {
+			return Integer.toString(0);
+		}
+	}
 
+	@GetMapping(value = "/myPage01")
+	public String myPage01(@ModelAttribute("nowPage1") String nowPage1/* 계좌용 */,
+			@ModelAttribute("nowPage2") String nowPage2/* 날짜별 */, @ModelAttribute("nowPage3") String nowPage3/* 종류별 */,
+			@ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
+			@ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate) {
+		if (nowPage1.equals(""))
+			nowPage1 = "1";
+		if (nowPage2.equals(""))
+			nowPage2 = "1";
+		if (nowPage3.equals(""))
+			nowPage3 = "1";
+		PagingVO pv1 = new PagingVO();
+		PagingVO pv2 = new PagingVO();
+		PagingVO pv3 = new PagingVO();
 
-   @GetMapping(value="/myPage01")
-   public String myPage01(@ModelAttribute("nowPage1") String nowPage1/*계좌용*/,@ModelAttribute("nowPage2") String nowPage2/*날짜별*/, @ModelAttribute("nowPage3") String nowPage3/*종류별*/,
-         @ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
-         @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate) {
-      if(nowPage1.equals(""))
-         nowPage1 = "1";
-      if(nowPage2.equals(""))
-         nowPage2 = "1";
-      if(nowPage3.equals(""))
-         nowPage3 = "1";
-      PagingVO pv1 = new PagingVO();
-      PagingVO pv2 = new PagingVO();
-      PagingVO pv3 = new PagingVO();
-      
-      return "mypage01";
-   }
-	   
+		return "mypage01";
+	}
 
 	@GetMapping(value = "/myPage03")
 	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage,
@@ -222,31 +223,29 @@ public class MyPageController {
 		return "redirect:/myPage01";
 	}
 
-	
-	
-	
-	@GetMapping(value = "/mypageUpdatePassword") 
-	public String mypageUpdatePasswordView() { 
-	return "mypage-update-password"; 
+	@GetMapping(value = "/mypageUpdatePassword")
+	public String mypageUpdatePasswordView() {
+		return "mypage-update-password";
 	}
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")
 	@ResponseBody
-	public int mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session, HttpServletRequest request, @ModelAttribute("password") String password) {
-			
+	public int mypageUpdatePasswordCheck(@ModelAttribute("nowPassword") String nowPassword, HttpSession session,
+			HttpServletRequest request, @ModelAttribute("password") String password) {
+
 		Map<String, String> map = new HashMap<String, String>();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-      
-		if(bPasswordEncoder.matches(nowPassword, loginUser.getPw())) {
+
+		if (bPasswordEncoder.matches(nowPassword, loginUser.getPw())) {
 			String encPassword = passwordEncoder.encode(password);
 			loginUser.setPw(encPassword);
 			userInfoService.updatePassword(loginUser);
 
 			session.setAttribute("loginUser", loginUser);
 			return 1;
-        }else {
-        	return 0;
-        }
+		} else {
+			return 0;
+		}
 	}
 
 	@GetMapping(value = "/delete/*")

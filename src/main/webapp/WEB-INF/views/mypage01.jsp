@@ -334,12 +334,19 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 					$('#nickNameResult').empty();
 					$('#nickNameResult').append(html);
 					$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
-				}else{
+				}else if(data == 2 && $.trim($('#userNickname').val()) != ""){
+					$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+					idx= true;
+					var html="<p id='err_cust_id' class='ok-text'>현재 닉네임입니다.</p>"; 
+					$('#nickNameResult').empty();
+					$('#nickNameResult').append(html);
+					document.getElementById("userNickname").value=${loginUser.nickname};
+				}
+				else{
 					var html="<p id='cust_id-error' class='error-text'>중복된 닉네임입니다.</p>";
 					$('#nickNameResult').empty();
 					$('#nickNameResult').append(html);
 					document.getElementById("userNickname").value="";
-					// 중복체크 실패 시 회원가입 버튼 비활성화
 					$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 				}
 			},

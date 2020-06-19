@@ -72,6 +72,30 @@
 
 </script> 
 </head>
+<style>
+#sideTitle {
+     border-left: 4px solid #d7d8da !important; 
+    color: #848889 !important;
+    font-weight: 300 !important;
+    background: white !important;
+}
+#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
+	    color: #848889!important;
+  font-weight: 300 !important;
+ 
+}
+#noticeTitle{
+border-left: 4px solid #1e78ff !important;
+    color: black !important;
+    font-weight: 600 !important;
+    background: #f6f6f6 !important;
+}
+#noticeTitle a, #noticeTitle a:visited, #noticeTitle a:link{
+	    color: black!important;
+  font-weight: 600 !important;
+ 
+}
+</style>
 <body>
 
 	<%@include file="mainheader.jsp" %> 
@@ -83,20 +107,20 @@
 					<div class="col-md-2">
 					
 					
-				<div class="sidebar sticky" id="cssmenu">
-					<ul>
-						<li id="sideTitle"><a  href="/customerLanding"><span>고객센터</span></a></li>
-						<li><a href="/customerNotice"><span>공지사항</span></a></li>
-						<li><a href="/customerqna"><span>도움말</span></a></li>
-						<li><a href="/customClaimWrite"><span>1:1문의</span></a></li>
-					</ul>
-				</div>
+					<div class="sidebar sticky" id="cssmenu">
+						<ul>
+							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
+							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
+							<li id="claimTitle"><a href="/customerClaimWrite"><span>1:1문의</span></a></li>
+						</ul>
+					</div>
 						
 						
 						
 					</div>
 					<div class="col-md-10">
-						<div class="free-board" role="main">
+						<div class="free-board" >
 						
 						
 
@@ -108,11 +132,11 @@
 							<h1 class="m-drop-tit-title line" style="cursor:pointer;">공지사항 ▼</h1>
 						</div>
 						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customerLanding">고객센터</a></h1>
+							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
-					</div>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaimWrite">1:1문의</a></h1>
+						</div>
 							
 							
 							
@@ -168,7 +192,7 @@
 								</div>
 								<div class="bt-area">
 									<a href="/board/free"  class="moreBttn left norm"">취소</a>
-									<span><a href="javascript:btnSave();"  class="moreBttn right norm" id="addBtn">작성</a></span>
+									<span><a href="javascript:btnSave();"  class="moreBttn right blue" id="addBtn">작성</a></span>
 								</div>
 							</form>
 						</div>
@@ -218,6 +242,43 @@ nhn.husky.EZCreator.createInIFrame({
 
 
 </script>	
+ <script type="text/javascript">
+  $( document ).ready(function() {
+     console.log( "document ready!" );
+
+     var $sticky = $('.sticky');
+     var $stickyrStopper = $('.footer_info');
+     if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+       var generalSidebarHeight = $sticky.innerHeight();
+       var stickyTop = $sticky.offset().top;
+       var stickOffset = 0;
+       var stickyStopperPosition = $stickyrStopper.offset().top;
+       var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+       var diff = stopPoint + stickOffset;
+
+       $(window).scroll(function(){ // scroll event
+         var windowTop = $(window).scrollTop(); // returns number
+
+         if (stopPoint < windowTop) {
+             $sticky.css({ position: 'relative', top: diff });
+         } else if (stickyTop < windowTop+stickOffset) {
+             $sticky.css({ position: 'fixed', top: stickOffset });
+         } else {
+             $sticky.css({position: 'relative', top: 'initial'});
+         }
+       });
+
+     }
+     $(".m-drop-nav").click(function(){
+          $(".m-drop-down").slideToggle("slow");
+        });
+  });
+  
+
+
+ 
+  </script>
 	
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>

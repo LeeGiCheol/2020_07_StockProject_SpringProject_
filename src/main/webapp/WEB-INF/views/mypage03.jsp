@@ -9,12 +9,11 @@
 <title>마이페이지</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<!-- <link href="resources/css/mypage03.css" rel="stylesheet"> -->
+<link href="resources/css/mypage03.css" rel="stylesheet">
 <link href="resources/css/mainheader.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="/resources/css/free-board.css">
 <script>
 $(document).ready(function(){
 	$("#jb-checkboxAll-comment").click(function(){
@@ -339,15 +338,22 @@ function deleteComment(){
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
-								<col width="8%">
-								<col width="55%">
+								<col width="5%">
 								<col width="10%">
-								<col width="6%">
-								<col width="6%">
+								<col width="50%">
 								<col width="10%">
+								<col width="5%">
+								<col width="5%">
+								<col width="15%">
 							</colgroup>
 							<thead>
 							<tr>
+								<th class="no" scope="col">
+									<p class="check">
+										<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
+										<label for="eventSeq_28900862">선택 삭제</label>
+									</p>
+								</th>
 								<th class="no" scope="col">N0</th>
 								<th class="title" scope="col">제목</th>
 								<th class="writer" scope="col">작성자</th>
@@ -361,6 +367,12 @@ function deleteComment(){
 							
 								<c:if test="${board.bno eq 1}">
 									<tr>
+										<td class="board-check">
+											<p class="check">
+												<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
+												<label for="eventSeq_28900862">선택 삭제</label>
+											</p>
+										</td>
 										<td class="board-no">${board.pno}</td>
 										<!-- 글번호 -->
 										
@@ -558,6 +570,7 @@ function deleteComment(){
  
   </script>
 	</div>
+	
 
 
 	<%@include file="mainfooter.jsp" %>	
