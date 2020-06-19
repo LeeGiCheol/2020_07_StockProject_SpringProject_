@@ -80,7 +80,6 @@ public class MyPageController {
 	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
 //	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
 	   HashMap<String, Object> hm4 = userInfoService.getRate(loginUser.getId());
-	   System.out.println((PagingVO)hm2.get("pv2"));
 	   session.setAttribute("pv1", (PagingVO)hm1.get("pv1"));
 	   session.setAttribute("holdingStockList", (List<HoldingStockVO>)hm1.get("holdingStockList"));
 	   session.setAttribute("pv2", (PagingVO)hm2.get("pv2"));

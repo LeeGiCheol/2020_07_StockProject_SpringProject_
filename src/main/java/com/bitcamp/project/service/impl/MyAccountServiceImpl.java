@@ -27,7 +27,7 @@ public class MyAccountServiceImpl implements MyAccountService {
 		map.put("id", loginUser.getId());
 		map.put("accountSearch", accountSearch);
 		int count = myAccountDAO.countMyStock(map);
-		PagingVO pv1 = new PagingVO(count, nowPage, 1);
+		PagingVO pv1 = new PagingVO(count, nowPage, 10);
 		pv1.getUtil().put("id", loginUser.getId());
 		pv1.getUtil().put("accountSearch", accountSearch);
 		List<HoldingStockVO> holdingStockList = myAccountDAO.myStockList(pv1);
@@ -60,7 +60,7 @@ public class MyAccountServiceImpl implements MyAccountService {
 		map.put("endDate", eDate);
 		map.put("tradeSearch", tradeSearch);
 		int count = myAccountDAO.countMyStockHistory(map);
-		PagingVO pv2 = new PagingVO(count, nowPage, 1);
+		PagingVO pv2 = new PagingVO(count, nowPage, 10);
 		pv2.getUtil().put("id", loginUser.getId());
 		pv2.getUtil().put("startDate", sDate);
 		pv2.getUtil().put("endDate", eDate);
