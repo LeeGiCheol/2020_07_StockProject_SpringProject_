@@ -50,7 +50,58 @@
 	</script>
 
 </head>
+<style>
+#sideTitle {
+     border-left: 4px solid #d7d8da !important; 
+    color: #848889 !important;
+    font-weight: 300 !important;
+    background: white !important;
+}
+#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
+	    color: #848889!important;
+  font-weight: 300 !important;
+ 
+}
 
+#qnaTitle{border-left: 4px solid #1e78ff !important;
+    color: black !important;
+    font-weight: 600 !important;
+    background: #f6f6f6 !important;
+}
+#qnaTitle a, #qnaTitle a:visited, #qnaTitle a:link{
+	    color: black!important;
+  font-weight: 600 !important;
+ 
+}
+
+#claimTitle{
+}
+#claimTitle a, #claimTitle a:visited, #claimTitle a:link{
+
+ 
+}
+
+.newsboard-nav-tab li.selected a {
+    z-index: 3;
+    background: #fff;
+    line-height: 50px;
+    color: #5a6268 !important;
+    border-bottom: 2px solid #1e78ff;
+    font-weight: 600;
+}
+.newsboard-nav-tab li {
+    width: 33.333%;
+    letter-spacing: 1px;
+}
+@media only screen and (max-width: 979px) {
+.newsboard-area {
+
+    margin-bottom: 0;
+
+}
+
+}
+</style>
 <body>
 
 	<%@include file="mainheader.jsp" %>
@@ -67,10 +118,10 @@
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-						<li id="sideTitle"><a  href="/customer"><span>고객센터</span></a></li>
-						<li><a href="/customerNotice"><span>공지사항</span></a></li>
-						<li><a href="/customerqna"><span>도움말</span></a></li>
-						<li><a href="/customClaimWrite"><span>1:1문의</span></a></li>
+							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
+							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
+							<li id="claimTitle"><a href="/customerClaimWrite"><span>1:1문의</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -98,8 +149,8 @@
 							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
-					</div>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaimWrite">1:1문의</a></h1>
+						</div>
 
 
 						<div class="newsboard-nav">
@@ -132,14 +183,14 @@
 									<div class="card">
 										<div class="card-header" id="headingOne">
 											<h2 class="mb-0">
-												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-													data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+												<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+													data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 													[아이디/비밀번호]비밀번호를 잊어버렸습니다.
 												</button>
 											</h2>
 										</div>
 
-										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+										<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
@@ -193,13 +244,13 @@
 										<div class="card-header" id="headingtwo">
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-													data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+													data-target="#collapsetwo" aria-expanded="false" aria-controls="collapsetwo">
 													내가 받을 수 있는 알림의 종류는 무엇이 있나요?
 												</button>
 											</h2>
 										</div>
 
-										<div id="collapsetwo" class="collapse show" aria-labelledby="headingtwo"
+										<div id="collapsetwo" class="collapse" aria-labelledby="headingtwo"
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
@@ -263,13 +314,13 @@
 										<div class="card-header" id="headingthree">
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-													data-target="#collapsethree" aria-expanded="true" aria-controls="collapsethree">
+													data-target="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
 													[관심종목]관심종목 등록은 어떻게 하나요?
 												</button>
 											</h2>
 										</div>
 
-										<div id="collapsethree" class="collapse show" aria-labelledby="headingthree"
+										<div id="collapsethree" class="collapse" aria-labelledby="headingthree"
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
@@ -298,48 +349,43 @@
 	</div>
 
 	<%@include file="mainfooter.jsp" %>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			console.log("document ready!");
+	 <script type="text/javascript">
+  $( document ).ready(function() {
+     console.log( "document ready!" );
 
-			var $sticky = $('.sticky');
-			var $stickyrStopper = $('.footer_info');
-			if (!!$sticky.offset()) { // make sure ".sticky" element exists
+     var $sticky = $('.sticky');
+     var $stickyrStopper = $('.footer_info');
+     if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
-				var generalSidebarHeight = $sticky.innerHeight();
-				var stickyTop = $sticky.offset().top;
-				var stickOffset = 0;
-				var stickyStopperPosition = $stickyrStopper.offset().top;
-				var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-				var diff = stopPoint + stickOffset;
+       var generalSidebarHeight = $sticky.innerHeight();
+       var stickyTop = $sticky.offset().top;
+       var stickOffset = 0;
+       var stickyStopperPosition = $stickyrStopper.offset().top;
+       var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+       var diff = stopPoint + stickOffset;
 
-				$(window).scroll(function () { // scroll event
-					var windowTop = $(window).scrollTop(); // returns number
+       $(window).scroll(function(){ // scroll event
+         var windowTop = $(window).scrollTop(); // returns number
 
-					if (stopPoint < windowTop) {
-						$sticky.css({
-							position: 'relative',
-							top: diff
-						});
-					} else if (stickyTop < windowTop + stickOffset) {
-						$sticky.css({
-							position: 'fixed',
-							top: stickOffset
-						});
-					} else {
-						$sticky.css({
-							position: 'relative',
-							top: 'initial'
-						});
-					}
-				});
+         if (stopPoint < windowTop) {
+             $sticky.css({ position: 'relative', top: diff });
+         } else if (stickyTop < windowTop+stickOffset) {
+             $sticky.css({ position: 'fixed', top: stickOffset });
+         } else {
+             $sticky.css({position: 'relative', top: 'initial'});
+         }
+       });
 
-			}
-			$(".m-drop-nav").click(function () {
-				$(".m-drop-down").slideToggle("slow");
-			});
-		});
-	</script>
+     }
+     $(".m-drop-nav").click(function(){
+          $(".m-drop-down").slideToggle("slow");
+        });
+  });
+  
+
+
+ 
+  </script>
 	<script src="resources/jpaginate/jquery.twbsPagination.js"></script>
 	<script src="http://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

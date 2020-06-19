@@ -20,6 +20,43 @@
 		<link rel="stylesheet" href="/resources/css/customers.css">
 	
 </head>
+<style>
+#sideTitle {
+     border-left: 4px solid #d7d8da !important; 
+    color: #848889 !important;
+    font-weight: 300 !important;
+    background: white !important;
+}
+#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
+	    color: #848889!important;
+  font-weight: 300 !important;
+ 
+}
+#noticeTitle{
+border-left: 4px solid #1e78ff !important;
+    color: black !important;
+    font-weight: 600 !important;
+    background: #f6f6f6 !important;
+}
+#noticeTitle a, #noticeTitle a:visited, #noticeTitle a:link{
+	    color: black!important;
+  font-weight: 600 !important;
+ 
+}
+#qnaTitle{
+}
+#qnaTitle a, #qnaTitle a:visited, #qnaTitle a:link{
+
+ 
+}
+
+#claimTitle{
+}
+#claimTitle a, #claimTitle a:visited, #claimTitle a:link{
+
+ 
+}
+</style>
 
 <body>
 
@@ -32,10 +69,10 @@
 				
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-						<li id="sideTitle"><a  href="/customer"><span>고객센터</span></a></li>
-						<li><a href="/customerNotice"><span>공지사항</span></a></li>
-						<li><a href="/customerqna"><span>도움말</span></a></li>
-						<li><a href="/customClaimWrite"><span>1:1문의</span></a></li>
+							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
+							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
+							<li id="claimTitle"><a href="/customerClaimWrite"><span>1:1문의</span></a></li>
 						</ul>
 					</div>
 					
@@ -58,8 +95,8 @@
 							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
-					</div>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaimWrite">1:1문의</a></h1>
+						</div>
 
 
 

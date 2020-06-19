@@ -21,6 +21,28 @@
 	<link rel="stylesheet" href="/resources/css/customers.css">
 
 <style type="text/css">
+#sideTitle {
+     border-left: 4px solid #d7d8da !important; 
+    color: #848889 !important;
+    font-weight: 300 !important;
+    background: white !important;
+}
+#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
+	    color: #848889!important;
+  font-weight: 300 !important;
+ 
+}
+#noticeTitle{
+border-left: 4px solid #1e78ff !important;
+    color: black !important;
+    font-weight: 600 !important;
+    background: #f6f6f6 !important;
+}
+#noticeTitle a, #noticeTitle a:visited, #noticeTitle a:link{
+	    color: black!important;
+  font-weight: 600 !important;
+ 
+}
 td, th {
     word-break: break-all;
     margin: 0;
@@ -384,6 +406,32 @@ textarea {
 max-width: 100%;
 }
 
+.free-board2 {
+    padding:20px 30px 0 30px;
+    margin-bottom: /*70px*/40px;
+    background: #fff;
+    position: relative;
+    border: 1px solid #dddddd;
+}
+@media only screen and (max-width: 979px){
+.free-board {
+    border: none;
+    min-height: auto;
+    margin: 0;
+    padding: 20px 0 120px !important;
+    max-width: none !important;
+    width: 100% !important;
+        background:white;overflow-x: hidden;
+        
+    
+}
+
+.comment-cont .cmt-list {
+
+    padding-left: 20px;
+}
+}
+
 </style>
 </head>
 <body>
@@ -398,10 +446,10 @@ max-width: 100%;
 				
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-							<li id="sideTitle"><a href="#"><span>고객센터</span></a></li>
-							<li><a href="#"><span>공지사항</span></a></li>
-							<li><a href="#"><span>도움말</span></a></li>
-							<li><a href="#"><span>1:1문의</span></a></li>
+							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
+							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
+							<li id="claimTitle"><a href="/customerClaimWrite"><span>1:1문의</span></a></li>
 						</ul>
 					</div>
 					
@@ -409,11 +457,14 @@ max-width: 100%;
 					
 				</div>
 	  <div class="col-md-10">
-		<div class="free-board">
+	 
+	  
+
 		
+
+		<div class="free-board "role="main">
 		
-		
-						<div class="drop-nav">
+								<div class="drop-nav">
 							<h1 class="tit-h1 line">공지사항</h1>
 						</div>
 
@@ -421,10 +472,10 @@ max-width: 100%;
 							<h1 class="m-drop-tit-title line" style="cursor:pointer;">공지사항 ▼</h1>
 						</div>
 						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">1:1문의</a></h1>
+							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaimWrite">1:1문의</a></h1>
 						</div>
 		
 		
@@ -557,7 +608,7 @@ max-width: 100%;
 		</script>
 		<div class="support-button">
 
-			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
+			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="moreBttn right blue">등록</a></span>
 
 		</div> 
 		</div>
@@ -582,8 +633,9 @@ max-width: 100%;
 	</div>
 		<p class="bt-area view-bt-area">
         <span>
-            <a href="/board/free" class="btn-s bodrb">목록</a>
-			<a href="/board/free/write" class="btn-s red">글쓰기</a>
+        	<a href="/board/free/write" class="moreBttn right blue">글쓰기</a>
+            <a href="/board/free" class="moreBttn right norm">목록</a>
+
 		</span>
     	</p>
     	<div class="prev-next" id="prev-next">
