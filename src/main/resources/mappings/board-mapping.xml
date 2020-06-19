@@ -23,8 +23,14 @@
 	<update id="updateBoard">
 		UPDATE board 
 		SET title = #{title}, bcontent = #{bcontent}
-		WHERE pno = #{pno}
+		WHERE pno = #{pno};
+		<if test='bno eq 2'>
+			UPDATE filelist
+			SET thumbnailName = #{thumbnailName}
+			WHERE pno = #{pno};
+		</if>
 	</update>
+	
 	
 	<delete id="deleteBoard">
 		DELETE FROM board

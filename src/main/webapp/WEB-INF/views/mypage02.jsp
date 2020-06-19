@@ -524,12 +524,12 @@ $(document).ready(function(){
 					                     <div class="input-daterange input-group" id="datepicker">
 					                     <p>
 					                        <span class="input-style-cal start">
-					                           <input type="text" name="startDate" class="startDate" id="test-date" placeholder="날짜선택" value="${startDate}">
+					                           <input type="text" name="startDate" class="startDate" id="test-date" placeholder="날짜선택" value="${startDate}" readonly>
 					                           <button type="button" id="btnStartDate" class="calendar" onclick="$('.startDate').datepicker('show');">검색</button>
 					                        </span>
 					                        <i class="input-group-addon">~</i>
 					                        <span class="input-style-cal end">
-					                           <input type="text" name="endDate" class="endDate" id="test-date" placeholder="날짜선택" value="${endDate}">
+					                           <input type="text" name="endDate" class="endDate" id="test-date" placeholder="날짜선택" value="${endDate}" readonly>
 					                           <button type="button" id="btnEndDate" class="calendar" onclick="$('.endDate').datepicker('show');">검색</button>
 					                        </span>
 					                       <!--  <span class="submit-button"><button type="submit" class="btn-s gray">검색</button></span> -->

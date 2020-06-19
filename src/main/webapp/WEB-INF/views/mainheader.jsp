@@ -66,7 +66,7 @@
 			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
 			<a href="#" class="navbar-logo"><img class="" id="logo"
 				src="/resources/img/logo.png"></a> <a class="navbar-brand"
-				href="/mainPage">Fanstay Stock</a>
+				href="/mainPage">Fantasy Stock</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"

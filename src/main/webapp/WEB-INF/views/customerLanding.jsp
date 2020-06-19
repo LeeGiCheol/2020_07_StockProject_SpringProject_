@@ -23,7 +23,12 @@
 
 	</style>
 </head>
-
+<style>
+.list-group,#accordionExample{
+border-top: 1px solid #1e78ff !important;
+border-radius: .25rem;
+}
+</style>
 <body>
 	<%@include file="mainheader.jsp" %>
 
@@ -38,12 +43,12 @@
 
 
 				<div class="sidebar sticky" id="cssmenu">
-					<ul>
-						<li id="sideTitle"><a  href="/customer"><span>고객센터</span></a></li>
-						<li><a href="/customerNotice"><span>공지사항</span></a></li>
-						<li><a href="/customerqna"><span>도움말</span></a></li>
-						<li><a href="/customClaimWrite"><span>1:1문의</span></a></li>
-					</ul>
+						<ul>
+							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
+							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
+							<li id="claimTitle"><a href="/customerClaimWrite"><span>1:1문의</span></a></li>
+						</ul>
 				</div>
 
 
@@ -61,7 +66,7 @@
 
 
 			<div class="col-md-10">
-<div class="m-menu">
+             <div class="m-menu">
 						<div class="m-drop-nav">
 							<h1 class="m-drop-tit-title line" style="cursor:pointer;">고객센터 ▼</h1>
 						</div>
@@ -69,8 +74,7 @@
 							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
-					
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaimWrite">1:1문의</a></h1>
 						</div>
 </div>
 				<div class="community" role="main">
@@ -93,7 +97,7 @@
 								</div>
 								<div class="inquiry-box">
 									<p class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</p>
-									<a href="/customClaimWrite" class="link">1:1 문의</a>
+									<a href="/rpan/help/serviceInqry" class="link">1:1 문의</a>
 				
 								</div>
 							</fieldset>
@@ -105,25 +109,30 @@
 						<div class="sectionWrapper">
 							<dl>
 								<h2 class="main-tit">공지사항</h2>
-								<a class="moreBttn right blue" href="/customerNotice">더보기</a>
+								<a class="moreBttn right blue" href="#">더보기</a>
 								<dd>
 
 								
 								
 									<div class="noticeList">
-										<c:forEach items="${boardList}" var="board">
+							
 									
 										<ul class="list-group">
 											<!-- 현재 고객센터 공지사항 -> 일반 공지사항으로 변경 요청 -->
-								<c:if test="${ not empty board}">
+							
 
-											<li class="list-group-item"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a> </li>
+											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+													고객센터에서 확인이 불가능합니다.</a> </li>
+											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+													고객센터에서 확인이 불가능합니다.</a> </li>
+											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
+													고객센터에서 확인이 불가능합니다.</a> </li>
 
-								</c:if>
+							
 
 
 										</ul>
-										</c:forEach>
+									
 										
 									</div>
 								</dd>
@@ -144,13 +153,13 @@
 									<div class="card-header" id="headingOne">
 										<h2 class="mb-0">
 											<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-												data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+												data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 												[아이디/비밀번호]비밀번호를 잊어버렸습니다.
 											</button>
 										</h2>
 									</div>
 
-									<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+									<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
@@ -265,11 +274,11 @@
 				</div>
 
 				<!-- 도움말과 1:1문의 -->
-				<div class="sectionBox">
+				<div class="sectionBox2">
 
 
 
-					<a href="/customerqna" id="cBoxa" class="cBox">
+					<a href="#" id="cBoxa" class="cBox">
 						<p class="cBoxTitle">도움말</p>
 						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
@@ -285,7 +294,7 @@
 
 
 
-					<a href="/customClaimWrite" id="cBoxb" class="cBox">
+					<a href="#" id="cBoxb" class="cBox">
 						<p class="cBoxTitle">1:1 문의</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
