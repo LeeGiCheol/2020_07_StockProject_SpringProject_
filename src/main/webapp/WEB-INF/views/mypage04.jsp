@@ -13,257 +13,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 	<link rel="stylesheet" href="/resources/css/mainfooter.css">
 	<link rel="stylesheet" href="/resources/css/mainheader.css">
-<!-- 	<link href="/resources/css/mypage04.css" rel="stylesheet"> -->
+	<link href="resources/css/mypage03.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<!-- 	<style>
-		.paging-body {
-			margin-left: 300px;
-			margin-bottom: 300px;
-		}
-
-		td>a {
-			cursor: pointer;
-		}
-
-		.no {
-			width: 76px;
-		}
-	</style> -->
-<style type="text/css">
-span, em, mark, strong, b, label {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-    background: transparent;
-    list-style: none;
-    box-sizing: border-box;
-}
-.my-list-scrap {
-    position: relative;
-    height: 28px;
-    line-height: 28px;
-    margin-bottom: 10px;
-    padding: 0 10px;
-}
-.alarm-area {
-    border-top: #444 1px solid;
-}
-input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
-    opacity: 0;
-    outline: 0;
-    margin-left: 0;
-    position: absolute;
-    z-index: -1;
-}
-input[type="checkbox"]:not(old):checked + label {
-    min-width: 18px;
-    background-image: url(/resources/img/bg_check_on_m.png);
-}
-input[type="checkbox"]:not(old) + label {
-    display: inline-block;
-    height: 18px;
-    line-height: 18px;
-    padding: 0 0 2px 20px;
-    background-image: url(/resources/img/bg_check.png);
-    background-position: 0 2px;
-    background-repeat: no-repeat;
-    background-size: 14px 14px;
-    cursor: pointer;
-}
-.my-list-scrap label i {
-    color: #ff545b;
-}
-.my-list-scrap p {
-    vertical-align: middle;
-    display: inline-block;
-    margin-left: 10px;
-}
-.my-list-scrap p .adhere {
-    float: left;
-    margin-right: -1px;
-}
-
-[class*="btn-"] {
-    position: relative;
-    background: #fff;
-    border: 1px solid #444;
-    line-height: 100%;
-    display: inline-block;
-    color: #000;
-    vertical-align: middle;
-    box-sizing: border-box;
-    text-align: center;
-}
-[class*="btn-s"] {
-    padding: 6px 10px;
-    min-width: 60px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    color: #888;
-}
-input[type="button"], button {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    cursor: pointer;
-    background: none;
-}
-.my-list-scrap p .del::before {
-    content: "";
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    vertical-align: top;
-    background: url(/resources/img/ico_sub2.png) no-repeat 0 -136px;
-    background-size: 40px 400px;
-    padding-right: 5px;
-}
-.alarm-area li {
-    border-bottom: #eaeaea 1px solid;
-    width: 100%;
-    display: table;
-    padding: 10px 0;
-    table-layout: fixed;
-}
-.alarm-area li p.check {
-    display: table-cell;
-    width: 40px;
-    vertical-align: middle;
-    text-align: center;
-}
-
-.alarm-area li p.check label {
-    width: 0;
-    text-indent: -9999em;
-}	
-.alarm-area li p.img {
-    display: table-cell;
-    width: 65px;
-    vertical-align: middle;
-    text-align: left;
-}
-.pro-badge {
-    display: inline-block;
-    position: relative;
-    width: 46px;
-    height: 46px;
-}
-.pro-badge > img {
-    width: 46px !important;
-    height: 46px !important;
-    border-radius: 50% !important;
-    /* background-color: #dc4e55; */
-    background-color: #eaeaea;
-    font-size: 13px;
-    display: inline-block;
-    color: #000;
-    text-align: center;
-}
-.alarm-area li dl {
-    display: table-cell;
-    width: 90%;
-    vertical-align: middle;
-    line-height: 1.6;
-}
-.alarm-area li dl dt a {
-    font-size: 14px;
-    color: #000;
-}
-.alarm-area li dl dd span {
-    font-size: 13px;
-    color: #888;
-    background: url(/resources/img/bg_line.png) no-repeat right 50%;
-    padding-right: 10px;
-    margin-right: 5px;
-}
-.alarm-area li dl dd span a {
-    color: #888;
-}
-.alarm-area li dl dd span:last-child {
-    background: none;
-    margin-right: 0;
-}
-input[type="checkbox"]:not(old):checked + label {
-    min-width: 18px;
-    background-image: url(/resources/img/bg_check_on_m.png);
-}
-
-
-
-
-
-
-
-
-@media only screen and (max-width: 979px){	
-.my-list-scrap {
-    padding: 0 15px;
-}
-input[type="checkbox"]:not(old):checked + label {
-    background-image: url(/resources/img/bg_check_on_m.png);
-}
-input[type="checkbox"]:not(old) + label {
-    background-image: url(/resources/img/bg_check_m.png);
-}
-.my-list-scrap p {
-    position: absolute;
-    top: 0;
-    right: 15px;
-}
-.alarm-area li {
-    padding-right: 10px;
-}
-.mobile-only-check.fixed {
-    position: fixed;
-    bottom: 0;
-}
-.mobile-only-check {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 11px 0;
-    background-color: #444444;
-    overflow: hidden;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-.mobile-only-check span {
-    display: block;
-    width: 33.33%;
-    float: left;
-    color: #fff;
-    vertical-align: top;
-    background: url(/resources/img/bg_line2.png) no-repeat right 50%;
-}
-.mobile-only-check span button.del {
-    background: url(/resources/img/ico_sub2.png) no-repeat 0 -317px;
-    background-size: 40px 400px;
-    padding-left: 20px;
-}
-.mobile-only-check span button {
-    color: #fff;
-    height: 14px;
-    line-height: 1;
-}
-.mobile-only-check span button.cancel {
-    background: url(/resources/img/ico_sub2.png) no-repeat 0 -335px;
-    background-size: 40px 400px;
-    padding-left: 20px;
-}
-}
-
-.comm-list {
-    border-top: #000 1px solid;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-
-
-</style>
 </head>
 
 <body>
@@ -376,7 +127,7 @@ input[type="checkbox"]:not(old) + label {
 		</div>
 	</div>
 
-<form name="alarmForm">
+<!-- <form name="alarmForm">
 			<input type="hidden" name="flag" id="flag" value="">
 
 			<div class="my-list-scrap">
@@ -390,13 +141,13 @@ input[type="checkbox"]:not(old) + label {
 			</div>
 			<div class="alarm-area">
 				<ul>
-					<!-- 2017.04.26 추가 -->
+					2017.04.26 추가
 					
 					
-					<!-- //2017.04.26 추가 -->
+					//2017.04.26 추가
 
-					<!-- //2017.04.28 추가 -->
-					<!-- 읽은 내용 <a> 태그 부모에 class="visited" 삽입 → a 텍스트 색 #888 처리됩니다.-->
+					//2017.04.28 추가
+					읽은 내용 <a> 태그 부모에 class="visited" 삽입 → a 텍스트 색 #888 처리됩니다.
 					
 						
 							
@@ -416,7 +167,7 @@ input[type="checkbox"]:not(old) + label {
 									
 									<dl>
 										<dt class="" id="visited_28900862">
-											<!-- 방문여부 : visited -->
+											방문여부 : visited
 											<span class="red">[댓글]</span> <strong>
 													
 														<a href="#" onclick="javascript:goView('28900862', 'http://www.paxnet.co.kr/tbbs/view?id=N10841&amp;seq=150357583596792');return false;" title="http://www.paxnet.co.kr/tbbs/view?id=N10841&amp;seq=150357583596792">내가 쓴 글의 댓글이 작성되었습니다.</a>
@@ -442,60 +193,296 @@ input[type="checkbox"]:not(old) + label {
 					
 				</ul>
 			</div>
-			<!-- //board-type -->
+			//board-type
 
 			<div class="mobile-only-check fixed">
-				<!-- fixed -->
+				fixed
 				<span><input type="checkbox" id="check_all_mo" class="check_all"><label for="check_all_mo">전체선택</label></span> <span><button type="button" class="del selectAlarmDelete">삭제</button></span> <span><button type="button" class="cancel">취소</button></span>
 			</div>
-		</form>
-		
-		
-		
-		
-		<ul class="comm-list opt-list" id="comm-list">
+		</form> -->
+	<div class="all-dim"></div>
+	<div class="containerNew">
+		<div class="board-page">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="sidebar sticky" id="cssmenu">
+						<ul>
+							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
+							<li class="last"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
+							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
+							<li class="last"><a href="/myPage04"><span>알림</span></a></li>
+						</ul>
+					</div>
+				</div>
+  <div class="col-md-10">
+	<div class="free-board">
+						<div class="drop-nav">
+							<h1 class="tit-h1 line">알림</h1>
 							
-						<li class="board-col">
-							<div class="type" style="width:15%;">게시판</div>
-							<div class="title"><p class="tit">제목</p></div>
-							<div class="write">작성자</div>
-							<div class="viewer">조회</div>
-							<div class="like">추천</div>
-							<div class="date">작성일</div>
-						</li>
-						
-						
-							<li><!--  class="ntc" -->
-								<div class="type type_" data-seq="150357583596792" style="width:15%;">
-									<strong class="company-name">[<a href="http://www.paxnet.co.kr/tbbs/list?tbbsType=L&amp;id=N10841">자유게시판</a>]
-								</strong></div><strong class="company-name">
-								</strong><div class="title" style="padding:12px 0 10px 0;"><strong class="company-name">
-									</strong><p class="tit" id="tit_111111"><strong class="company-name">
-										</strong> <a href="http://www.paxnet.co.kr/tbbs/view?id=N10841&amp;seq=150357583596792">dddddddddddd</a>
+						</div>
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">알림 ▼</h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+								<a href="/news">내 정보 관리</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">비밀번호 변경</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">나의 계좌정보</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/free">작성 글 | 댓글</a>
+							</h1>
+							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+								<a href="#">알림</a>
+							</h1>
+						</div>
+		<div class="board-type">
+			<div class="board-free-nav">
+					<form id="form" class="board-list-top policy-in" action='/board/free'>
+						<p class="pc-only">
+							<input type="radio" class="ordeby" id="orderby1" name="orderby"
+								value="new" checked=""><label for="orderby1"  class="new-board">거래 알림</label>
+							<input type="radio" class="ordeby" id="orderby2" name="orderby"
+								value="best"><label for="orderby2" class="hot-board" >커뮤니티 알림</label>
+						</p>
+					</form>
+		 			 
+		 			 <c:if test="${loginUser != null}">
+						<p class="right"><a href="/board/free/write" class="board-write-btn">삭제</a></p>
+					 </c:if>	
+					 		
+			</div>
+			<div class="tab-content" id="pills-tabContent">
+					<!-- 전체글 -->
+					<table class="board-free-table">
+ 							<colgroup>
+								<col width="10%">
+								<col width="35%">
+								<col width="15%">
+								<col width="10%">
+								<col width="15%">
+								<col width="10%">
+							</colgroup>
+							<thead>
+							<tr>
+								<th class="no" scope="col">N0</th>
+								<th class="title" scope="col">종목명</th>
+								<th class="writer" scope="col">단가</th>
+								<th class="views" scope="col">수량</th>
+								<th class="likes" scope="col">거래일시</th>
+								<th class="date" scope="col">상태	</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${boardList}" var="board">
+							
+								<c:if test="${board.bno eq 1}">
+									<tr>
+										<td class="board-no">${board.pno}</td>
+										<!-- 글번호 -->
 										
+										<c:choose>
+											<c:when test="${board.commentCount ne 0}">
+												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
+										<!-- 글 제목 -->
+											</c:when>
+											<c:otherwise>
+												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
+											</c:otherwise>
+										</c:choose>
 										
-											<span class="comment" id="countNum_150357583596792" style="">댓글</span><b class="comment-num" id="comment-num_150357583596792" style="">1</b>
-										
-									</p>
-								</div>
-							
-								<div class="write">
-									<span class="nick-badge-small">
-											나다이시키야
-									</span>
-								</div>
-							
-								<div class="viewer" id="hitsNum_150357583596792"><span>조회 </span>4</div>
-								<div class="like" id="recmNum_150357583596792"><span>추천 </span>0</div>											
-									<div class="date"><span class="data-date-format">06.18</span></div>
-							</li>
-							
-							
-							
-							
-							
-						
-					</ul>
+										<td class="board-writer">${board.nickname}</td>
+										<!-- 글쓴이 -->
+										<td class="board-views"><span>조회 </span>${board.views}</td>
+										<!-- 조회수 -->
+										<td class="board-likes"><span>추천 </span>${board.likes}</td>
+										<!-- 추천수 -->
+										<fmt:formatDate value="${board.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
+										<td class="board-date">${time}</td>
+										<!-- 날짜 -->
+									</tr>
+								</c:if>
+							</c:forEach>
+
+						</tbody>
+					</table>
+					
+					<!-- 페이징 -->
+					<div class="paging">	
+					<div class="paging-body">				
+					<nav aria-label="..." class="pagination">
+					    <ul class="pagination">
+					
+					<c:if test="${boardPage.nowPage != 1}">
+					      <!-- << 버튼 -->
+					      <li>
+					        <a class="page-link"
+					          href="/board/free?bnowPage=1"
+					          tabindex="-1" aria-disabled="true">
+					          <i class="fas fa-angle-double-left"></i>
+					        </a>
+					      </li>
+					      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage == 1}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            tabindex="-1" aria-disabled="true">
+					            <i class="fas fa-angle-left"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					</c:if>
+					      
+					      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage != 1}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage-1}"
+					            tabindex="-1" aria-disabled="true">
+					            <i class="fas fa-angle-left"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 한번에 5개 페이지 보여줌 -->
+					       <c:forEach begin="${boardPage.startPage }"
+					        end="${boardPage.endPage }" var="p">
+					        <c:choose>
+					          <c:when test="${p == boardPage.nowPage}">
+					            <li class="page-item active" aria-current="page">
+					              <a class="page-link" href="#">${p}
+					                <span class="sr-only">(current)</span>
+					              </a>
+					            </li>
+					          </c:when>
+					          <c:when test="${p != boardPage.nowPage}">
+					            <li class="page-item">
+					              <a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
+					            </li>
+					          </c:when>
+					        </c:choose>
+					      </c:forEach> 
+					      
+					      
+					      
+					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
+					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            tabindex="+1" aria-disabled="true">
+					            <i class="fas fa-angle-right"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
+					        <li>
+					          <a class="page-link"
+					            href="/board/free?bnowPage=${boardPage.nowPage+1}"
+					            tabindex="+1" aria-disabled="true" data-ajax="false">
+					            <i class="fas fa-angle-right"></i>
+					          </a>
+					        </li>
+					      </c:if> 
+					
+					      <!-- >> 버튼 -->
+					      <li>
+					        <a class="page-link"
+					        href="/board/free?bnowPage=${boardPage.lastPage}"
+					        tabindex="-1" aria-disabled="true">
+					          <i class="fas fa-angle-double-right"></i>
+					        </a>
+					      </li>
+					      
+					      </c:if>
+					    </ul>
+					  </nav>
+					 </div>
+
+
+					 <c:if test="${loginUser != null}">
+						<p class="right"><a href="/board/free/write" class="board-write-btn">삭제</a></p>
+					 </c:if>
+				</div>
+				
+				<div class="search-area">
+					<div  class="search-area-body">
+					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
+						<select class="dropdown-toggle-board" name="searchStyle">
+							<option class="nav-link dropdown-toggle board-item" id="dropdown01"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
+							<option class="dropdown-item board-item" value="search_title"<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option> 
+							<option class="dropdown-item board-item" value="search_content"<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option> 
+							<option class="dropdown-item board-item" value="search_title_content"<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option> 
+							<option class="dropdown-item board-item" value="search_nick"<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
+						</select>
+						<input class="form-control mr-sm-2 board-search" type="search"
+							placeholder="검색어 입력" aria-label="Search">
+						<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
+							type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+  <script type="text/javascript">
+  $( document ).ready(function() {
+	  console.log( "document ready!" );
+
+	  var $sticky = $('.sticky');
+	  var $stickyrStopper = $('.footer_info');
+	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+	    var generalSidebarHeight = $sticky.innerHeight();
+	    var stickyTop = $sticky.offset().top;
+	    var stickOffset = 0;
+	    var stickyStopperPosition = $stickyrStopper.offset().top;
+	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+	    var diff = stopPoint + stickOffset;
+
+	    $(window).scroll(function(){ // scroll event
+	      var windowTop = $(window).scrollTop(); // returns number
+
+	      if (stopPoint < windowTop) {
+	          $sticky.css({ position: 'relative', top: diff });
+	      } else if (stickyTop < windowTop+stickOffset) {
+	          $sticky.css({ position: 'fixed', top: stickOffset });
+	      } else {
+	          $sticky.css({position: 'relative', top: 'initial'});
+	      }
+	    });
+
+	  }
+	  $(".m-drop-nav").click(function(){
+		    $(".m-drop-down").slideToggle("slow");
+		  });
+  });
+  
+
+
+ 
+  </script>
+	</div>		
+		
+		
+	
 	<!-- article end -->
 	<%@include file="mainfooter.jsp"%>
 </body>
