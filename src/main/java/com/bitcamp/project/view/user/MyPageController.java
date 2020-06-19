@@ -64,10 +64,8 @@ public class MyPageController {
          @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
          @ModelAttribute("type") String type) {
 	   
-	   UserVO user = new UserVO();
-	   user.setId("test@test.com");
-	   user = signInService.logIn(user);
-	   session.setAttribute("loginUser", user);
+	   UserVO user = (UserVO)session.getAttribute("loginUser");
+	   signInService.logIn(user);
 	   
 	   if(type.equals(""))
 		   type = "rate";
