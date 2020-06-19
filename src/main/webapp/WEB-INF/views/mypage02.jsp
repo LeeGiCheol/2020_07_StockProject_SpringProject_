@@ -238,10 +238,11 @@ $(document).ready(function(){
 									</thead>
 									<tbody>
 									
-									
-									<!--     <tr>
-									        <td colspan="7" style="text-align: center;">:::::데이터가 없습니다.::::::</td>
-									    </tr> -->
+									<c:if test="${holdingStockList.size() == 0}">
+									    <tr>
+									        <td colspan="7" style="text-align: center;">:::::보유 주식이 없습니다.::::::</td>
+									    </tr>
+									</c:if>
 									    <c:forEach items="${holdingStockList}" var="stock">
 											<tr>
 												<td scope="col" class="a-center">${stock.stockCode}</td>
@@ -398,10 +399,11 @@ $(document).ready(function(){
 									</thead>
 									<tbody>
 									
-									
-									<!--     <tr>
-									        <td colspan="7" style="text-align: center;">:::::데이터가 없습니다.::::::</td>
-									    </tr> -->
+									<c:if test="${stockHistoryList.size() == 0}">
+									    <tr>
+									        <td colspan="7" style="text-align: center;">:::::거래 내역이 없습니다.::::::</td>
+									    </tr>
+									</c:if>
 									    <c:forEach items="${stockHistoryList}" var="stock">
 											<tr>
 												<td scope="col" style="width: 150px;" class="a-right">${stock.tdatetime}</td>
@@ -429,7 +431,7 @@ $(document).ready(function(){
 											<!-- << 버튼 -->
 											<li>
 												<a class="page-link"
-													href="/myPage02?nowPage2=1&tradeSearch=${tradeSearch}&type=trade"
+													href="/myPage02?nowPage2=1&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 													tabindex="-1" aria-disabled="true">
 													<i class="fas fa-angle-double-left"></i>
 												</a>
@@ -438,7 +440,7 @@ $(document).ready(function(){
 											<c:if test="${pv2.nowPage == 1}">
 												<li>
 													<a class="page-link"
-														href="/myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade"
+														href="/myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 														tabindex="-1" aria-disabled="true">
 														<i class="fas fa-angle-left"></i>
 													</a>
@@ -449,7 +451,7 @@ $(document).ready(function(){
 										<c:if test="${pv2.nowPage != 1}">
 											<li>
 												<a class="page-link"
-													href="/myPage02?nowPage2=${pv2.nowPage-1}&tradeSearch=${tradeSearch}&type=trade"
+													href="/myPage02?nowPage2=${pv2.nowPage-1}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 													tabindex="-1" aria-disabled="true">
 													<i class="fas fa-angle-left"></i>
 												</a>
@@ -468,7 +470,7 @@ $(document).ready(function(){
 												</c:when>
 												<c:when test="${p != pv2.nowPage}">
 													<li class="page-item">
-														<a class="page-link" href="/myPage02?nowPage2=${p}&tradeSearch=${tradeSearch}&type=trade">${p}</a>
+														<a class="page-link" href="/myPage02?nowPage2=${p}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}">${p}</a>
 													</li>
 												</c:when>
 											</c:choose>
@@ -481,7 +483,7 @@ $(document).ready(function(){
 											<c:if test="${pv2.nowPage == pv2.lastPage}">
 												<li>
 													<a class="page-link"
-														href="myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade"
+														href="myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 														tabindex="+1" aria-disabled="true">
 														<i class="fas fa-angle-right"></i>
 													</a>
@@ -492,7 +494,7 @@ $(document).ready(function(){
 											<c:if test="${pv2.nowPage != pv2.lastPage}">
 												<li>
 													<a class="page-link"
-														href="/myPage02?nowPage2=${pv2.nowPage+1}&tradeSearch=${tradeSearch}&type=trade"
+														href="/myPage02?nowPage2=${pv2.nowPage+1}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 														tabindex="+1" aria-disabled="true" data-ajax="false">
 														<i class="fas fa-angle-right"></i>
 													</a>
@@ -502,7 +504,7 @@ $(document).ready(function(){
 											<!-- >> 버튼 -->
 											<li>
 												<a class="page-link"
-													href="/myPage02?nowPage2=${pv2.lastPage}&tradeSearch=${tradeSearch}&type=trade"
+													href="/myPage02?nowPage2=${pv2.lastPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
 													tabindex="-1" aria-disabled="true">
 													<i class="fas fa-angle-double-right"></i>
 												</a>
@@ -520,13 +522,13 @@ $(document).ready(function(){
 					                     <div class="input-daterange input-group" id="datepicker">
 					                     <p>
 					                        <span class="input-style-cal start">
-					                           <input type="text" name="startDate" class="startDate" id="test-date" placeholder="날짜선택" >
-					                           <button type="button" id="btnStartDate" class="calendar">검색</button>
+					                           <input type="text" name="startDate" class="startDate" id="test-date" placeholder="날짜선택" value="${startDate}">
+					                           <button type="button" id="btnStartDate" class="calendar" onclick="$('.startDate').datepicker('show');">검색</button>
 					                        </span>
 					                        <i class="input-group-addon">~</i>
 					                        <span class="input-style-cal end">
-					                           <input type="text" name="endDate" class="endDate" id="test-date" placeholder="날짜선택">
-					                           <button type="button" id="btnEndDate" class="calendar">검색</button>
+					                           <input type="text" name="endDate" class="endDate" id="test-date" placeholder="날짜선택" value="${endDate}">
+					                           <button type="button" id="btnEndDate" class="calendar" onclick="$('.endDate').datepicker('show');">검색</button>
 					                        </span>
 					                       <!--  <span class="submit-button"><button type="submit" class="btn-s gray">검색</button></span> -->
 					                    </p>
@@ -543,14 +545,29 @@ $(document).ready(function(){
 			
 					        <script type="text/javascript">
 					        $(document).ready(function() {
-					        $('#sandbox-container .input-daterange').datepicker({
-					           todayBtn : "linked",
-					            clearBtn: true,
-					            language: "ko",
-					            autoclose: true,
-					            toggleActive: true
+						        $('.startDate').datepicker({
+						            todayBtn : "linked",
+						            clearBtn: true,
+						            language: "ko",
+						            autoclose: true,
+						            toggleActive: true
+						        });
+						        
+						        $('.endDate').datepicker({
+						            todayBtn : "linked",
+						            clearBtn: true,
+						            language: "ko",
+						            autoclose: true,
+						            toggleActive: true
+						        });
 					        });
-					        });
+					        
+					        function isDatetime(d)
+					        {
+					            var re = /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/;
+					            //         yyyy   -       MM      -       dd
+					            return re.test(d);
+					        }
 					        </script>  
 							</div>
 						</div>
