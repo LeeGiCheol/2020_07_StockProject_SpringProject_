@@ -47,7 +47,7 @@ border-radius: .25rem;
 							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
 							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customerClaimWrite"><span>1:1문의</span></a></li>
+							<li id="claimTitle"><a href="/customClaimWrite"><span>1:1문의</span></a></li>
 						</ul>
 				</div>
 
@@ -68,13 +68,15 @@ border-radius: .25rem;
 			<div class="col-md-10">
              <div class="m-menu">
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;">고객센터 ▼</h1>
+							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+</svg>고객센터 </h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaimWrite">1:1문의</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
 						</div>
 </div>
 				<div class="community" role="main">
@@ -97,7 +99,7 @@ border-radius: .25rem;
 								</div>
 								<div class="inquiry-box">
 									<p class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</p>
-									<a href="/rpan/help/serviceInqry" class="link">1:1 문의</a>
+									<a href="/customerqna" class="link">1:1 문의</a>
 				
 								</div>
 							</fieldset>
@@ -109,7 +111,7 @@ border-radius: .25rem;
 						<div class="sectionWrapper">
 							<dl>
 								<h2 class="main-tit">공지사항</h2>
-								<a class="moreBttn right blue" href="#">더보기</a>
+								<a class="moreBttn right blue" href="/customerNotice">더보기</a>
 								<dd>
 
 								
@@ -278,7 +280,7 @@ border-radius: .25rem;
 
 
 
-					<a href="#" id="cBoxa" class="cBox">
+					<a href="/customerqna" id="cBoxa" class="cBox">
 						<p class="cBoxTitle">도움말</p>
 						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
@@ -294,7 +296,7 @@ border-radius: .25rem;
 
 
 
-					<a href="#" id="cBoxb" class="cBox">
+					<a href="/customClaimWrite" id="cBoxb" class="cBox">
 						<p class="cBoxTitle">1:1 문의</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">

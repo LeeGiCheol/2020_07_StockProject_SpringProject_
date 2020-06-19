@@ -150,6 +150,66 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     height: 80px;
     margin: 0 auto;
 }
+.ranking ul {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 0;
+    padding: 0 20px 16px;
+    background: #fff;
+}
+ .ranking ol li a i {
+    display: block;
+    float: left;
+    width: 14px;
+    text-align: center;
+    color: #000;
+}
+.ranking ol li a * {
+    line-height: 19px;
+    vertical-align: middle;
+}
+.ranking ol li a span {
+    display: block;
+    float: left;
+    width: 112px/*width:102px*/;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-bottom: 1px;
+}
+.ranking ol li a mark {
+    float: right;
+    position: relative;
+    display: block;
+    /* width: 68px; */
+    width: 78px;
+    text-align: right;
+}
+.color-red {
+    color: #ff545b !important;
+}
+.ranking ul li:first-child {
+    margin-top: 18px;
+}
+ .ranking ul li {
+    margin-top: 9px;
+}
+.ranking ul li a {
+    display: block;
+    color: #000;
+}
+
+
+
+
+@media only screen and (max-width: 979px){
+.ranking ol li:first-child {
+    margin-top: 17px;
+}
+.ranking ol li a {
+    clear: both;
+}
+} 
 </style>
 </head>
 <body>
