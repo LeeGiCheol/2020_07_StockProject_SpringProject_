@@ -49,11 +49,11 @@ public class MyAccountServiceImpl implements MyAccountService {
 		String eDate = "";
 		if (startDate.length() > 9) {
 			sDate = startDate.substring(0, 10);
-			sDate = sDate.split("/")[2] + "-" + sDate.split("/")[1] + "-" + sDate.split("/")[0];
+			sDate = sDate.split("-")[0] + "-" + sDate.split("-")[1] + "-" + sDate.split("-")[2];
 		}
 		if (endDate.length() > 9) {
 			eDate = endDate.substring(0, 10);
-			eDate = eDate.split("/")[2] + "-" + eDate.split("/")[1] + "-" + eDate.split("/")[0];
+			eDate = eDate.split("-")[0] + "-" + eDate.split("-")[1] + "-" + eDate.split("-")[2];
 		}
 		map.put("id", loginUser.getId());
 		map.put("startDate", sDate);

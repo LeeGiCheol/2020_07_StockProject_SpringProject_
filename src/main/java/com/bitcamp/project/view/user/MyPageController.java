@@ -64,10 +64,9 @@ public class MyPageController {
          @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
          @ModelAttribute("type") String type) {
 	   
-	   UserVO user = new UserVO();
-	   user.setId("test@test.com");
-	   user = signInService.logIn(user);
-	   session.setAttribute("loginUser", user);
+	   UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+	   loginUser = signInService.logIn(loginUser);
+	   session.setAttribute("loginUser", loginUser);
 	   
 	   if(type.equals(""))
 		   type = "rate";
@@ -77,7 +76,6 @@ public class MyPageController {
 		   nowPage2 = "1";
 	   if(nowPage3.equals(""))
 		   nowPage3 = "1";
-	   UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 	   HashMap<String, Object> hm1 = myAccountService.getMyStockList(loginUser, Integer.parseInt(nowPage1), accountSearch);
 	   HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(loginUser, Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
 //	   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
