@@ -9,7 +9,7 @@
 		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
 		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, #{bno}, 0);
 		
-		<if test='thumbnailName neq null and bno eq 2'>
+		<if test='bno eq 2'>
 			INSERT INTO filelist
 			( pno, thumbnailName )
 			SELECT pno, #{thumbnailName}
