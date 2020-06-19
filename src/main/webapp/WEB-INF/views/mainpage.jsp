@@ -73,7 +73,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 		<div class="row">
 			<div class="col-md-9">
 			<!-- 현재 코스피 주가지수 -->
-			<div class="graph-area">
+<!-- 			<div class="graph-area">
 					<div class="g-box">
 						<div class="graph-left graph_off" style="display:block;">
 							<div class="graph-title">
@@ -107,7 +107,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<span>개인<i id="KRI501000000_indi" class="color-red"><span class="mb_no">+</span>1,230<span class="mb_no">억</span></i></span>
 							</p>
 						</div>
-						<!-- 차트 -->
+						차트
 						<div class="graph-left graph_on has-chart">
 							<p class="g-img"><a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI"><img src="//cichart.paxnet.co.kr/pax/chart/lineAreaChart/V201724/paxLineAreaChartV201724Min01.jsp?abbrSymbol=001" class="main_chart_kosdaq" alt="2020년 06월 19일 실시간 코스피 차트"></a></p>
 						</div>
@@ -115,7 +115,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 							<p class="g-img"><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ"><img src="//cichart.paxnet.co.kr/pax/chart/lineAreaChart/V201724/paxLineAreaChartV201724Min01.jsp?abbrSymbol=501" class="main_chart_kosdaq" alt="2020년 06월 19일 실시간 코스피 차트"></a></p>
 						</div>
 					</div>
-				</div>
+				</div> -->
 					<div class="chartdata-1">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">
