@@ -68,7 +68,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 									<li>
 										<span class="input-style-pass01">
 											<label for="inputPasswordAgain"></label>
-											<input placeholder="한 번 더 입력해주세요" type="password" name="pswdc"  id="inputPasswordAgain" onkeyup="SameCheck(this);" maxlength="13" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
+											<input placeholder="한 번 더 입력해주세요" type="password" name="pswdc"  id="inputPasswordAgain" maxlength="13" autocomplete="OFF"  oninput="checkPw()" onKeyPress="return spaceCheck(event)">
 											<button type="button" class="delete">삭제</button>
 										</span>
 										<div id=pwResult></div>
@@ -186,14 +186,12 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		console.log(roadFullAddr);
 		document.form.inputAddress.value = roadFullAddr;
 	}
-
-
+			
 	
 	$(document).ready(function(e){
 		textLenCheck("inputNickname","닉네임",{max:12,currentLenId:"maxText"});
 		textLenCheck("inputFriend","추천인",{max:12,currentLenId:"maxText1"});
 		var checkflag = 0;
-	
 		$("#submit").on("click", function(){
 			if($("#inputEmail").val()==""){
 				swal({text:"이메일을 입력해주세요.", icon:"error"})
@@ -215,14 +213,19 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				$("#inputNickname").focus();
 				return false;
 			}
+			/* var cTelCheck = $("cTelCheck").val();
+			if(cTelCheck == true){
+				
+			} */
+
 			if($("#inputPhone").val()==""){
 				swal({text:"휴대폰번호를 입력해주세요.", icon:"error"})
 				$("#inputPhone").focus();
 				return false;
 			}
-			if($("#cTel").val()==""){
+			if($("#inputCtel").val()==""){
 				swal({text:"휴대폰번호 인증번호를 입력해주세요.", icon:"error"})
-				$("#cTel").focus();
+				$("#inputCtel").focus();
 				return false;
 			}
 
