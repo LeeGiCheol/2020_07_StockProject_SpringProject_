@@ -273,7 +273,7 @@ function deleteComment(){
 					      </c:if>
 					      
 					      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
-					      <c:if test="${boardPage.nowPage != myBoard.lastPage}">
+					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
 					            href="/myPage03?bnowPage=${boardPage.nowPage+1}"
@@ -328,6 +328,212 @@ function deleteComment(){
 				</div>
 			</div>
 		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<div class="tab-content" id="pills-tabContent">
+					<!-- 전체글 -->
+					<table class="board-free-table">
+ 							<colgroup>
+								<col width="5%">
+								<col width="10%">
+								<col width="50%">
+								<col width="10%">
+								<col width="5%">
+								<col width="5%">
+								<col width="15%">
+							</colgroup>
+							<thead>
+							<tr>
+								<th class="no" scope="col">
+									<p class="check">
+										<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
+										<label for="eventSeq_28900862">선택 삭제</label>
+									</p>
+								</th>
+								<th class="no" scope="col">N0</th>
+								<th class="title" scope="col">내용</th>
+								<th class="writer" scope="col">작성자</th>
+								<th class="views" scope="col">조회</th>
+								<th class="likes" scope="col">추천</th>
+								<th class="date" scope="col">작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${myBoard}" var="board">
+							
+								<c:if test="${board.bno eq 1}">
+									<tr>
+										<td class="board-check">
+											<p class="check">
+												<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
+												<label for="eventSeq_28900862">선택 삭제</label>
+											</p>
+										</td>
+										<td class="board-no">${board.pno}</td>
+										<!-- 글번호 -->
+										
+										<c:choose>
+											<c:when test="${board.commentCount ne 0}">
+												<td class="board-title"><a href="/myPage03/detail?pno=${board.pno}">${board.title}</a><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
+										<!-- 글 제목 -->
+											</c:when>
+											<c:otherwise>
+												<td class="board-title"><a href="/myPage03/detail?pno=${board.pno}">${board.title}</a></td>
+											</c:otherwise>
+										</c:choose>
+										
+										<td class="board-writer">${board.nickname}</td>
+										<!-- 글쓴이 -->
+										<td class="board-views"><span>조회 </span>${board.views}</td>
+										<!-- 조회수 -->
+										<td class="board-likes"><span>추천 </span>${board.likes}</td>
+										<!-- 추천수 -->
+										<fmt:formatDate value="${board.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
+										<td class="board-date">${time}</td>
+										<!-- 날짜 -->
+									</tr>
+								</c:if>
+							</c:forEach>
+
+						</tbody>
+					</table>
+					
+					<!-- 페이징 -->
+					<div class="paging">	
+					<div class="paging-body">				
+					<nav aria-label="..." class="pagination">
+					    <ul class="pagination">
+					
+					<c:if test="${boardPage.nowPage != 1}">
+					      <!-- << 버튼 -->
+					      <li>
+					        <a class="page-link"
+					          href="/myPage03?bnowPage=1&type=${type}&"
+					          tabindex="-1" aria-disabled="true">
+					          <i class="fas fa-angle-double-left"></i>
+					        </a>
+					      </li>
+					      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage == 1}">
+					        <li>
+					          <a class="page-link"
+					            href="/myPage03?bnowPage=${boardPage.nowPage}"
+					            tabindex="-1" aria-disabled="true">
+					            <i class="fas fa-angle-left"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					</c:if>
+					      
+					      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage != 1}">
+					        <li>
+					          <a class="page-link"
+					            href="/myPage03?bnowPage=${boardPage.nowPage-1}"
+					            tabindex="-1" aria-disabled="true">
+					            <i class="fas fa-angle-left"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 한번에 5개 페이지 보여줌 -->
+					       <c:forEach begin="${boardPage.startPage }"
+					        end="${boardPage.endPage }" var="p">
+					        <c:choose>
+					          <c:when test="${p == boardPage.nowPage}">
+					            <li class="page-item active" aria-current="page">
+					              <a class="page-link" href="#">${p}
+					                <span class="sr-only">(current)</span>
+					              </a>
+					            </li>
+					          </c:when>
+					          <c:when test="${p != boardPage.nowPage}">
+					            <li class="page-item">
+					              <a class="page-link" href="/myPage03?bnowPage=${p}">${p}</a>
+					            </li>
+					          </c:when>
+					        </c:choose>
+					      </c:forEach> 
+					      
+					      
+					      
+					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
+					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
+					        <li>
+					          <a class="page-link"
+					            href="/myPage03?bnowPage=${boardPage.nowPage}"
+					            tabindex="+1" aria-disabled="true">
+					            <i class="fas fa-angle-right"></i>
+					          </a>
+					        </li>
+					      </c:if>
+					      
+					      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
+					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
+					        <li>
+					          <a class="page-link"
+					            href="/myPage03?bnowPage=${boardPage.nowPage+1}"
+					            tabindex="+1" aria-disabled="true" data-ajax="false">
+					            <i class="fas fa-angle-right"></i>
+					          </a>
+					        </li>
+					      </c:if> 
+					
+					      <!-- >> 버튼 -->
+					      <li>
+					        <a class="page-link"
+					        href="/myPage03?bnowPage=${boardPage.lastPage}"
+					        tabindex="-1" aria-disabled="true">
+					          <i class="fas fa-angle-double-right"></i>
+					        </a>
+					      </li>
+					      
+					      </c:if>
+					    </ul>
+					  </nav>
+					 </div>
+
+
+					 <c:if test="${loginUser != null}">
+						<p class="right"><a href="/myPage03/write" class="board-write-btn">삭제</a></p>
+					 </c:if>
+				</div>
+				
+				<div class="search-area">
+					<div  class="search-area-body">
+					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage03">
+						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
+						<select class="dropdown-toggle-board" name="searchStyle">
+							<option class="nav-link dropdown-toggle board-item" id="dropdown01"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
+								
+							<option class="dropdown-item board-item" value="search_title"<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option> 
+							<option class="dropdown-item board-item" value="search_content"<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option> 
+							<option class="dropdown-item board-item" value="search_title_content"<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option> 
+							<option class="dropdown-item board-item" value="search_nick"<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
+						</select>
+						<input class="form-control mr-sm-2 board-search" type="search"
+							placeholder="검색어 입력" aria-label="Search">
+						<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
+							type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+					</div>
+				</div>
+			</div>
+		
+		
+		
 	</div>
 </div>
 </div>

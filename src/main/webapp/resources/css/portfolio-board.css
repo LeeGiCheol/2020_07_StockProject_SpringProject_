@@ -612,6 +612,17 @@ fieldset, img, abbr, acronym {
     padding-right: 10px;
     margin-right: 5px;
 }
+
+.date span .like i {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: url(/resources/img/ico_board.png) no-repeat 0 -60px;
+    text-indent: -9999em;
+    margin-right: 5px;
+}
+
 [class*="nick-badge"] a {
     color: #000;
 }
@@ -679,4 +690,12 @@ fieldset, img, abbr, acronym {
 .photo-list li:nth-child(2n) {
     margin-right: 0;
 }
+#recmBtn > i{
+	display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+	background: url(/resources/img/ico_board.png) no-repeat 0 -60px;
+	text-indent: -9999em;
+    margin-right: 5px;
 }

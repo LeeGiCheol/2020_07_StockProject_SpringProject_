@@ -48,18 +48,30 @@ public class BoardController {
 
 	
 	
-	@GetMapping(value= {"/board/free", "/board/free/popularity"})
+	@GetMapping(value= {"/board/free", "/board/free/best"})
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
 		int bno = 1;
+		
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
 		if(searchStyle.equals("")) {
 			keyword = "";
 		}
+		System.out.println("path "+request.getServletPath());
+		if(request.getServletPath().equals("/board/free/best")) {
+			orderby = "best";
+		}
+		else if(request.getServletPath().equals("/board/free")) {
+			orderby = "new";
+		}
+		System.out.println("orderby "+orderby);
 		if(orderby.equals("")) {
+			orderby = "new";
+		}
+		else if(orderby.equals("")) {
 			orderby = "new";
 		}
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno, 30);
@@ -161,11 +173,13 @@ public class BoardController {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
+		
 		ModelAndView mav = new ModelAndView();
 		BoardVO boardDetail = boardService.getBoard(vo);
 		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
+		System.out.println("boardDetail " + boardDetail);
 		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
 		

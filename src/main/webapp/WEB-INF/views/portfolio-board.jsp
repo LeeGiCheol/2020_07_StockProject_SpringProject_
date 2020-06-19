@@ -115,7 +115,7 @@ $(document).ready(function(){
 						<div class="board-type">
 							<div class="board-free-nav">
 								<form id="form" class="board-list-top policy-in"
-									action='/board/portfolio'>
+									action='/board/portfolio/best'>
 									<p class="pc-only">
 										<input type="radio" class="ordeby" id="orderby1"
 											name="orderby" value="new" checked=""><label
@@ -162,6 +162,7 @@ $(document).ready(function(){
 																		<fmt:formatDate value="${portfolioList.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
 																		<span class="data-date-format">${time}</span> <span
 																class="comment" id="countNum150357583575745"><i>댓글</i>${portfolioList.commentCount}</span>
+																<span class="btn-m like" id="recmBtn"><i>추천</i>${portfolioList.likes}</span>
 															</span>
 														</dd>
 													</dl>
@@ -170,89 +171,88 @@ $(document).ready(function(){
 										</c:forEach>
 								</ul>
 									
-
-								<!-- 페이징 -->
+									<!-- 페이징 -->
 								<div class="paging">
-									<div class="paging-body">
-										<nav aria-label="..." class="pagination">
-											<ul class="pagination">
-
-												<c:if test="${boardPage.nowPage != 1}">
-													<!-- << 버튼 -->
-													<li><a class="page-link" href="/board/free?bnowPage=1"
-														tabindex="-1" aria-disabled="true"> <i
-															class="fas fa-angle-double-left"></i>
-													</a></li>
-													<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-													<c:if test="${boardPage.nowPage == 1}">
-														<li><a class="page-link"
-															href="/board/free?bnowPage=${boardPage.nowPage}"
-															tabindex="-1" aria-disabled="true"> <i
-																class="fas fa-angle-left"></i>
-														</a></li>
-													</c:if>
-												</c:if>
-
-												<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-												<c:if test="${boardPage.nowPage != 1}">
-													<li><a class="page-link"
-														href="/board/free?bnowPage=${boardPage.nowPage-1}"
-														tabindex="-1" aria-disabled="true"> <i
-															class="fas fa-angle-left"></i>
-													</a></li>
-												</c:if>
-
-												<!-- 한번에 5개 페이지 보여줌 -->
-												<c:forEach begin="${boardPage.startPage }"
-													end="${boardPage.endPage }" var="p">
-													<c:choose>
-														<c:when test="${p == boardPage.nowPage}">
-															<li class="page-item active" aria-current="page"><a
-																class="page-link" href="#">${p} <span
-																	class="sr-only">(current)</span>
+									<c:if test="${boardPage.total gt 12}">
+											<div class="paging-body">
+												<nav aria-label="..." class="pagination">
+													<ul class="pagination">
+														<c:if test="${boardPage.nowPage != 1}">
+															<!-- << 버튼 -->
+															<li><a class="page-link" href="/board/portfolio?bnowPage=1"
+																tabindex="-1" aria-disabled="true"> <i
+																	class="fas fa-angle-double-left"></i>
 															</a></li>
-														</c:when>
-														<c:when test="${p != boardPage.nowPage}">
-															<li class="page-item"><a class="page-link"
-																href="/board/free?bnowPage=${p}">${p}</a></li>
-														</c:when>
-													</c:choose>
-												</c:forEach>
-
-
-
-												<c:if test="${boardPage.nowPage != boardPage.lastPage}">
-													<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-													<c:if test="${boardPage.nowPage == boardPage.lastPage}">
-														<li><a class="page-link"
-															href="/board/free?bnowPage=${boardPage.nowPage}"
-															tabindex="+1" aria-disabled="true"> <i
-																class="fas fa-angle-right"></i>
-														</a></li>
-													</c:if>
-
-													<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
-													<c:if test="${boardPage.nowPage != boardPage.lastPage}">
-														<li><a class="page-link"
-															href="/board/free?bnowPage=${boardPage.nowPage+1}"
-															tabindex="+1" aria-disabled="true" data-ajax="false">
-																<i class="fas fa-angle-right"></i>
-														</a></li>
-													</c:if>
-
-													<!-- >> 버튼 -->
-													<li><a class="page-link"
-														href="/board/free?bnowPage=${boardPage.lastPage}"
-														tabindex="-1" aria-disabled="true"> <i
-															class="fas fa-angle-double-right"></i>
-													</a></li>
-
-												</c:if>
-											</ul>
-										</nav>
-									</div>
-
-
+															<!-- 1페이지에서 < 버튼 눌렀을 때 -->
+															<c:if test="${boardPage.nowPage == 1}">
+																<li><a class="page-link"
+																	href="/board/portfolio?bnowPage=${boardPage.nowPage}"
+																	tabindex="-1" aria-disabled="true"> <i
+																		class="fas fa-angle-left"></i>
+																</a></li>
+															</c:if>
+														</c:if>
+		
+														<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+														<c:if test="${boardPage.nowPage != 1}">
+															<li><a class="page-link"
+																href="/board/portfolio?bnowPage=${boardPage.nowPage-1}"
+																tabindex="-1" aria-disabled="true"> <i
+																	class="fas fa-angle-left"></i>
+															</a></li>
+														</c:if>
+		
+														<!-- 한번에 5개 페이지 보여줌 -->
+														<c:forEach begin="${boardPage.startPage }"
+															end="${boardPage.endPage }" var="p">
+															<c:choose>
+																<c:when test="${p == boardPage.nowPage}">
+																	<li class="page-item active" aria-current="page"><a
+																		class="page-link" href="#">${p} <span
+																			class="sr-only">(current)</span>
+																	</a></li>
+																</c:when>
+																<c:when test="${p != boardPage.nowPage}">
+																	<li class="page-item"><a class="page-link"
+																		href="/board/portfolio?bnowPage=${p}">${p}</a></li>
+																</c:when>
+															</c:choose>
+														</c:forEach>
+		
+		
+		
+														<c:if test="${boardPage.nowPage != boardPage.lastPage}">
+															<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+															<c:if test="${boardPage.nowPage == boardPage.lastPage}">
+																<li><a class="page-link"
+																	href="/board/portfolio?bnowPage=${boardPage.nowPage}"
+																	tabindex="+1" aria-disabled="true"> <i
+																		class="fas fa-angle-right"></i>
+																</a></li>
+															</c:if>
+		
+															<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
+															<c:if test="${boardPage.nowPage != boardPage.lastPage}">
+																<li><a class="page-link"
+																	href="/board/portfolio?bnowPage=${boardPage.nowPage+1}"
+																	tabindex="+1" aria-disabled="true" data-ajax="false">
+																		<i class="fas fa-angle-right"></i>
+																</a></li>
+															</c:if>
+		
+															<!-- >> 버튼 -->
+															<li><a class="page-link"
+																href="/board/portfolio?bnowPage=${boardPage.lastPage}"
+																tabindex="-1" aria-disabled="true"> <i
+																	class="fas fa-angle-double-right"></i>
+															</a></li>
+		
+														</c:if>
+													</ul>
+												</nav>
+											</div>
+										</c:if>
+	
 									<c:if test="${loginUser != null}">
 										<p class="right">
 											<a href="/board/portfolio/write" class="board-write-btn">글쓰기</a>
@@ -263,7 +263,7 @@ $(document).ready(function(){
 								<div class="search-area">
 									<div class="search-area-body">
 										<form class="form-inline my-2 my-lg-0 underSearchForm"
-											action="/board/free">
+											action="/board/portfolio">
 											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 											<select class="dropdown-toggle-board" name="searchStyle">
@@ -283,7 +283,7 @@ $(document).ready(function(){
 													+ 내용</option>
 												<option class="dropdown-item board-item" value="search_nick"
 													<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
-											</select> <input class="form-control mr-sm-2 board-search"
+											</select> <input class="form-control mr-sm-2 board-search" name="keyword"
 												type="search" placeholder="검색어 입력" aria-label="Search">
 											<button
 												class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
