@@ -143,7 +143,7 @@ $(document).ready(function(){
 														<a href="/board/portfolio/detail?pno=${portfolioList.pno}"> <span>
 																<img
 																src="${portfolioList.thumbnailName}"
-																onerror="this.onError=null;this.src=&quot;//image.paxnet.co.kr/rpan/cafe/common/images/noimg_w.png&quot;">
+																onerror="this.onError=null;this.src=&quot;/resources/img/error.png&quot;">
 														</span>
 														</a>
 													</p>
