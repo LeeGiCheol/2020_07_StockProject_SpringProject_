@@ -57,9 +57,98 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 .graph-area .g-box {
     width: 100%;
 }
-.market-time.small .graph-area .g-box > div {
+ .graph-area .g-box > div {
     position: relative;
     padding: 5px 15px;
+}
+ .graph-area .g-box > div.graph-left {
+    border-right: #f9f9f9 1px solid;
+}
+ .graph-area .g-box > div {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}
+ .graph-area .g-box .graph-title {
+    padding-bottom: 5px;
+}
+ .graph-area .g-box .graph-title {
+    position: relative;
+    min-height: 25px;
+    padding-bottom: 5px;
+}
+ .graph-area .g-box .graph-title > span {
+    font-size: 16px;
+    color: #000;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    font-weight: bold;
+}
+ .graph-area .g-box .graph-title > span a {
+    color: #000;
+}
+ .graph-area .g-box .graph-title > p {
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+.color-blue {
+    color: #1ea3fe !important;
+}
+ .graph-area .g-box .graph-title > p.color-blue a {
+    color: #1ea3fe !important;
+}
+ .graph-area .g-box .graph-title > p > a > span {
+    padding-right: 5px;
+}
+.fall {
+    position: relative;
+    color: #1ea3fe;
+    padding-left: 13px;
+    background: url(/rpan/common/images/ico_fall.png?update=20180329) no-repeat 0 50%;
+    background-size: 8px 6px;
+}
+.hidden {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    text-indent: -9999px;
+}
+ .graph-area .g-box > div {
+    position: relative;
+    padding: 5px 15px;
+}
+.color-red {
+    color: #ff545b !important;
+}
+ .graph-area .g-box .graph-title > p.color-red a {
+    color: #ff545b !important;
+}
+.rise {
+    position: relative;
+    color: #ff545b;
+    padding-left: 13px;
+    background: url(/rpan/common/images/ico_rise.png?update=20180329) no-repeat 0 50%;
+    background-size: 8px 6px;
+}
+ .graph-area .g-box > div.graph-left {
+    border-right: #f9f9f9 1px solid;
+}
+.graph-area .graph_on {
+    display: block;
+}
+ .graph-area .g-box .g-img {
+    width: 274px;
+    height: 80px;
+    margin: 0 auto;
 }
 </style>
 </head>
@@ -73,23 +162,18 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 		<div class="row">
 			<div class="col-md-9">
 			<!-- 현재 코스피 주가지수 -->
-<!-- 			<div class="graph-area">
+			<div class="graph-area">
 					<div class="g-box">
 						<div class="graph-left graph_off" style="display:block;">
 							<div class="graph-title">
 								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">코스피</a></span>
 								<p id="KRI001000000_updownColor_n" class="color-blue">
 									<a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">
-										<span id="KRI001000000_close_n">2,127.42</span>
-										<mark id="KRI001000000_updownState_n" class="fall"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">6.06</em> <span id="KRI001000000_diffRate_n">-0.28%</span></mark>
+										<span id="KRI001000000_close_n">${current_kospi/100 }</span>
+										<mark id="KRI001000000_updownState_n" class="fall"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n">${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></mark>
 									</a>
 								</p>
 							</div>
-							<p class="g-detail" style="cursor:pointer" onclick="location.href='http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI'">
-								<span>외<span class="mb_no">국</span>인<i id="KRI001000000_frgnr" class="color-blue">-1,129<span class="mb_no">억</span></i></span>
-								<span>기관<i id="KRI001000000_organ" class="color-blue">-2,220<span class="mb_no">억</span></i></span>
-								<span>개인<i id="KRI001000000_indi" class="color-red"><span class="mb_no">+</span>3,369<span class="mb_no">억</span></i></span>
-							</p>
 						</div>
 						<div class="graph-right graph_off" style="display:block;">
 							<div class="graph-title">
@@ -101,21 +185,25 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 									</a>
 								</p>
 							</div>
-							<p class="g-detail" style="cursor:pointer" onclick="location.href='http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ'">
-								<span>외<span class="mb_no">국</span>인<i id="KRI501000000_frgnr" class="color-blue">-717<span class="mb_no">억</span></i></span>
-								<span>기관<i id="KRI501000000_organ" class="color-blue">-308<span class="mb_no">억</span></i></span>
-								<span>개인<i id="KRI501000000_indi" class="color-red"><span class="mb_no">+</span>1,230<span class="mb_no">억</span></i></span>
-							</p>
 						</div>
-						차트
+						
 						<div class="graph-left graph_on has-chart">
-							<p class="g-img"><a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI"><img src="//cichart.paxnet.co.kr/pax/chart/lineAreaChart/V201724/paxLineAreaChartV201724Min01.jsp?abbrSymbol=001" class="main_chart_kosdaq" alt="2020년 06월 19일 실시간 코스피 차트"></a></p>
+							
+								<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">
+									<div id="chartcontainer"></div>
+								</a>
+							
 						</div>
 						<div class="graph-right graph_on has-chart">
-							<p class="g-img"><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ"><img src="//cichart.paxnet.co.kr/pax/chart/lineAreaChart/V201724/paxLineAreaChartV201724Min01.jsp?abbrSymbol=501" class="main_chart_kosdaq" alt="2020년 06월 19일 실시간 코스피 차트"></a></p>
+							<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
+								<div id="chartcontainer2"></div>
+							</a>
 						</div>
 					</div>
-				</div> -->
+				</div>
+				
+				
+				
 					<div class="chartdata-1">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">
