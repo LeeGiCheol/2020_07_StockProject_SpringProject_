@@ -189,7 +189,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				data: { "tel" : $('#inputPhone').val() }, 
 				success: function(data){ 
 					if(data == 0 && $.trim($('#inputPhone').val()) != ''){
-						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputPhone').attr("readonly", true);
 						
