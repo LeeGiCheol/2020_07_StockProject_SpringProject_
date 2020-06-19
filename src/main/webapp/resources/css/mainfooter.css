@@ -2,10 +2,14 @@
 
 /* footer start */
 .footer_div {
-	border-top: 1px solid #dddddd;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	background-color: #fff;
+    border-top: 1px solid #dddddd;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer_info {

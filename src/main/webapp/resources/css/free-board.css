@@ -74,7 +74,7 @@ position: relative;
     margin-bottom: /*70px*/40px;
     background: #fff;
     position: relative;
-    border: 1px solid #dddddd;
+    border: 1px solid #dddddd;    height: 100%;
 }
 .last{
 	border-bottom: 1px solid #eaeaea;
