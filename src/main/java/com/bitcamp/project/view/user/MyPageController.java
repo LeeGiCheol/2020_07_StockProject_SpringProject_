@@ -142,10 +142,11 @@ public class MyPageController {
 	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage,
 			@ModelAttribute("cnowPage") String cnowPage, @ModelAttribute("bSearchStyle") String bSearchStyle,
 			@ModelAttribute("boardKeyword") String boardKeyword,
-			@ModelAttribute("commentKeyword") String commentKeyword) {
+			@ModelAttribute("commentKeyword") String commentKeyword,
+			@ModelAttribute("type") String type) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		if (loginUser == null)
-			return "redirec:/mainPage";
+			return "redirect:/mainPage";
 		if (bnowPage == null || bnowPage.equals("")) {
 			bnowPage = "1";
 		}
@@ -163,6 +164,7 @@ public class MyPageController {
 		session.setAttribute("bSearchStyle", bSearchStyle);
 		session.setAttribute("boardKeyword", boardKeyword);
 		session.setAttribute("commentKeyword", commentKeyword);
+		session.setAttribute("type", type);
 		return "mypage03";
 	}
 
