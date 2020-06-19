@@ -21,6 +21,7 @@
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
 </script>
+<style>.removeButton{display: none;}</style>
 </head>
 <body>
 	<div class="wrap">
@@ -83,6 +84,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<div id="nickNameResult"></div>
 										<span class="byte"><b id="maxText">0</b>/12byte</span>
 										<button type="button" class="btn-s gray" id="nickCheck">중복확인</button>
+										<button type="button" class="btn-s red removeButton" id="nickCheckAgain">다시입력</button>
 									</li> 
 									<li>
 										<span class="input-style-nick">
@@ -92,6 +94,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<div id="friendResult"></div>
 										<span class="byte"><b id="maxText1">0</b>/12byte</span>
 										<button type="button" class="btn-s gray" id="friendCheck">추천하기</button>
+										<button type="button" class="btn-s red removeButton" id="friendCheckAgain">다시입력</button>
 									</li> 
 								</ul>
 								<ul>
@@ -407,6 +410,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						// 중복체크 실패 시 회원가입 버튼 비활성화
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}else if(data == 0 && $.trim($('#inputNickname').val()) != ""){
+						$("#nickCheck").toggleClass("removeButton");/* 추가 */
+						$("#nickCheckAgain").toggleClass("removeButton");/* 추가 */
 						idx= true;
 						$('#inputNickname').attr("readonly", true);
  						var html="<p id='err_cust_id' class='ok-text'>사용 가능합니다.</p>"; 
@@ -428,6 +433,14 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				
 			});  
 		});  
+		$("#nickCheckAgain").on("click", function(){
+			document.getElementById("inputNickname").value="";
+			$('#inputNickname').attr("readonly", false);
+			$("#nickCheck").toggleClass("removeButton");
+			$("#nickCheckAgain").toggleClass("removeButton");
+			$('#nickNameResult').empty();
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+		})
 		
 		
 	
@@ -451,6 +464,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					}else{
 						idx= true;
 						$('#inputFriend').attr("readonly", true);
+						$("#friendCheck").toggleClass("removeButton");/* 추가  */
+						$("#friendCheckAgain").toggleClass("removeButton");/* 추가  */
 						var html="<p id='err_cust_id' class='ok-text'>사용 가능합니다.</p>"; 
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
@@ -461,7 +476,15 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					alert("서버에러");
 				}
 			});  
-		});  
+		});
+		$("#friendCheckAgain").on("click", function(){
+			document.getElementById("inputFriend").value="";
+			$('#inputFriend').attr("readonly", false);
+			$("#friendCheck").toggleClass("removeButton");
+			$("#friendCheckAgain").toggleClass("removeButton");
+			$('#friendResult').empty();
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+		})
 	});
 	
 		

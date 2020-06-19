@@ -8,7 +8,9 @@
 .list-group-item{
 	padding-left: 25px;
 }
-
+.bi-chevron-down{
+	margin: 0 15px;
+}
 @media only screen and (max-width: 979px) {
 	.m-menu{
 	    padding-top: 20px;
@@ -35,10 +37,13 @@
 .m-drop-nav{
 	display: block !important;
 }
+.m-drop-nav svg{
+	
+}
  .tit-h1,.m-drop-tit-title,.m-drop-tit-body{
 	font-size: 20px !important;
 	margin: 0 !important;
-	padding: 0 10px 20px !important;
+	padding: 0 10px 22px !important;
 } 
 
 /* .tit-h1, .m-drop-tit-title, .m-drop-tit-body {
@@ -48,10 +53,6 @@
     } */
     
     
-.first{
-	padding-top: 20px !important;
-	border-top: 1px solid #eaeaea !important;
-}
 
 
 
@@ -106,18 +107,24 @@ a:hover {
 }
 .m-drop-tit-body {
     margin: 0 -30px 30px;
-    padding: 0 30px 20px;
+    padding: 18px 31px 16px !important;
     font-size: 20px;
     margin-bottom: 30px;
     color: #888888;
-    font-weight: bold;
+    font-weight: 600;
     line-height: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e1e4ea;
 }
 .m-drop-tit-body a {
     color: #848889;
 }
 .m-drop-nav, .m-drop-down {
     display: none;
+}
+.m-drop-down{
+padding-bottom: 5px;
+    background: #f3f4f575;
 }
 .m-drop-tit-body:hover > a {
   color: #000000;
