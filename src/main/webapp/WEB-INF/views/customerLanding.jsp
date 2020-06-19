@@ -39,7 +39,7 @@
 
 				<div class="sidebar sticky" id="cssmenu">
 					<ul>
-						<li id="sideTitle"><a  href="/customerLanding"><span>고객센터</span></a></li>
+						<li id="sideTitle"><a  href="/customer"><span>고객센터</span></a></li>
 						<li><a href="/customerNotice"><span>공지사항</span></a></li>
 						<li><a href="/customerqna"><span>도움말</span></a></li>
 						<li><a href="/customClaimWrite"><span>1:1문의</span></a></li>
@@ -66,7 +66,7 @@
 							<h1 class="m-drop-tit-title line" style="cursor:pointer;">고객센터 ▼</h1>
 						</div>
 						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customerLanding">고객센터</a></h1>
+							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
 							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
