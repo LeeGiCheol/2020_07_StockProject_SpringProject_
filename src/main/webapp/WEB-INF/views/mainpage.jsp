@@ -470,7 +470,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
-										<a href="/myPage01">내정보</a>
+										<a href="/myPagePwCheck">내정보</a>
 									<c:set var="socialId" value="${loginUser.id}"/>
 									<c:choose>
 										<c:when test="${fn:contains(socialId,'_')}">
