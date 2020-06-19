@@ -204,7 +204,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 				
 				
 				
-					<div class="chartdata-1">
+<%-- 					<div class="chartdata-1">
 						<div class="chartdata-body">
 						<div class="chartdate-nav">
 							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current_kospi/100 } ${(kospi_lastprice[0]-kospi_lastprice[1])/100} ${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></h3>
@@ -221,7 +221,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						</div>
 						<div id="chartcontainer2"></div>
 						</div>
-					</div>
+					</div> --%>
 
 				<div class="stock-ranking">
 					<nav>
@@ -234,9 +234,10 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<div class=".tab-pane" id="tab1">
 							<table class="tbl_home_left">
 								<colgroup>
-									<col width="45%">
-									<col width="25%">
 									<col width="30%">
+									<col width="20%">
+									<col width="30%">
+									<col width="20%">
 								</colgroup>
 								<tbody class="rank-table" id="topRank">
 
@@ -250,9 +251,10 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<div class=".tab-pane" id="tab2">
 							<table class="tbl_home_right">
 								<colgroup>
-									<col width="45%">
-									<col width="25%">
 									<col width="30%">
+									<col width="20%">
+									<col width="30%">
+									<col width="20%">
 								</colgroup>
 								<tbody class="rank-table" id="searchRank">
 
