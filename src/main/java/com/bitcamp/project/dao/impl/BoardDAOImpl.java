@@ -25,6 +25,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public int updateBoard(BoardVO vo) {
+		System.out.println("update "+vo);
 		return mybatis.update("board.updateBoard", vo);
 	}
 

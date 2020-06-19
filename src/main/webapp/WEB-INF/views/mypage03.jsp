@@ -9,55 +9,11 @@
 <title>마이페이지</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<!-- <link href="resources/css/mypage03.css" rel="stylesheet"> -->
+<link href="resources/css/mypage03.css" rel="stylesheet">
 <link href="resources/css/mainheader.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="/resources/css/free-board.css">
-<style type="text/css">
-p.check {
-    vertical-align: middle;
-    text-align: center;
-}
-input[type="checkbox"]:not(old){
-    opacity: 0;
-    outline: 0;
-    margin-left: 0;
-    position: absolute;
-    z-index: -1;
-}
-p.check label {
-    width: 0;
-    text-indent: -9999em;
-}
-input[type="checkbox"]:not(old) + label {
-    display: inline-block;
-    height: 18px;
-    line-height: 18px;
-    padding: 0 0 2px 20px;
-    background-image: url(/resources/img/bg_check.png);
-    background-position: 0 2px;
-    background-repeat: no-repeat;
-    background-size: 14px 14px;
-    cursor: pointer;
-}
-input[type="checkbox"]:not(old) + label {
-    display: inline-block;
-    height: 18px;
-    line-height: 18px;
-    padding: 0 0 2px 20px;
-    background-image: url(/resources/img/bg_check.png);
-    background-position: 0 2px;
-    background-repeat: no-repeat;
-    background-size: 14px 14px;
-    cursor: pointer;
-}
-input[type="checkbox"]:not(old):checked + label {
-    min-width: 18px;
-    background-image: url(/resources/img/bg_check_on_m.png);
-}
-</style>
 <script>
 $(document).ready(function(){
 	$("#jb-checkboxAll-comment").click(function(){

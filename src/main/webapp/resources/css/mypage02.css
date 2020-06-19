@@ -244,7 +244,7 @@ ul i {
 	padding-left: 0;
 		border-radius: 4px;
 }
-/* .week .date .calendar{
+.week .date .calendar{
 	width: 28px;
     height: 28px;
 	display: inline-block;
@@ -252,7 +252,7 @@ ul i {
 	text-indent: -9999em;
 	background: url(/resources/img/btn_board.png) no-repeat -82px 0px;
 	vertical-align: middle;
-} */
+}
 .datepicker-dropdown{
     top: 320px;
 }
@@ -436,14 +436,12 @@ input[type='radio']:before {
     margin: 20% auto;
     border-radius: 50%;
 }
-/* .balance-h2 p {
-    position: absolute;
-	top: 157px;
-    right: 30px;
-} */
+.balance-h2{
+	margin-right: 10px;
+}
 .balance-h2 p{
 	position: relative;
-	margin-bottom: 30px;
+	/* margin-bottom: 30px; */
 }
 [class*="input-style-cal"] {
     max-width: 130px;
@@ -451,6 +449,7 @@ input[type='radio']:before {
 [class*="input-style"] {
     display: inline-block;
     position: relative;
+    vertical-align: middle;
 }
 input[type="text"], input[type="password"], input[type="tel"] {
     -webkit-appearance: none;
@@ -466,9 +465,9 @@ input[type="text"], input[type="password"], input[type="tel"] {
     box-sizing: border-box;
     border-radius: 0;
 }
-/* [class*="input-style"] .calendar {
-    background-position: 10px -560px;
-} */
+[class*="input-style"] .calendar {
+    background-position: 5px -560px;
+}
 [class*="input-style"] button {
     position: absolute;
     right: 1px;
@@ -480,7 +479,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
     background-image: url(/resources/img/bg_form.png);
     background-repeat: no-repeat;
 }
-/* .calendar {
+.calendar {
     width: 25px;
     height: 25px;
     text-indent: -9999px;
@@ -488,7 +487,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
     background-repeat: no-repeat;
     background-position: 7px -559px;
     background-color: white;
-} */	
+}
 	.gray {
     background: #444;
     border: 1px solid #444;
@@ -521,7 +520,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
     position: absolute;
     right: 0;
     top: 0;
-    width: 75px;
+    width: 90px;
+    height: 30px;
     padding-left: 0;
     padding-right: 0;
 }
@@ -530,8 +530,16 @@ input[type="text"], input[type="password"], input[type="tel"] {
     border: 1px solid #444;
     color: #fff;
 }
-
-
+.board-search, .board-search-btn{
+	height: 36px;
+}
+.input-daterange input:first-child{
+	-webkit-border-radius: 0 !important;
+	border-radius:0 !important;
+}
+.money-my{
+	height: 30px;
+}
 
 
 @media only screen and (max-width: 979px){
@@ -585,31 +593,27 @@ input[type="text"], input[type="password"], input[type="tel"] {
     padding: 9px 35px 10px 10px;
     height: 36px;
 }
-/* [class*="input-style"] .calendar {
-    background-position: 10px -363px;
+[class*="input-style"] .calendar {
+    background-position: 5px -363px;
     background-size: 20px 450px;
-} */
+}
 [class*="input-style"] button {
     height: 34px;
     margin-top: -17px;
 }
-/* .calendar {
+.calendar {
     width: 25px;
     height: 25px;
     background-image: url(/rpan/common/images/bg_form.png?update=20180329);
     background-repeat: no-repeat;
     background-position: 7px -368px;
     background-size: 20px 450px;
-} */
+}
 .balance-h2 p {
     position: relative;
     top: 0;
 }
 
-/* [class*="input-style"] .calendar {
-    background-position: 10px -363px;
-    background-size: 20px 450px;
-} */
 .form-table table th {
 	width: 30%;
 
