@@ -15,6 +15,49 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/free-board.css">
+<style type="text/css">
+p.check {
+    vertical-align: middle;
+    text-align: center;
+}
+input[type="checkbox"]:not(old){
+    opacity: 0;
+    outline: 0;
+    margin-left: 0;
+    position: absolute;
+    z-index: -1;
+}
+p.check label {
+    width: 0;
+    text-indent: -9999em;
+}
+input[type="checkbox"]:not(old) + label {
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 0 2px 20px;
+    background-image: url(/resources/img/bg_check.png);
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    cursor: pointer;
+}
+input[type="checkbox"]:not(old) + label {
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 0 2px 20px;
+    background-image: url(/resources/img/bg_check.png);
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    cursor: pointer;
+}
+input[type="checkbox"]:not(old):checked + label {
+    min-width: 18px;
+    background-image: url(/resources/img/bg_check_on_m.png);
+}
+</style>
 <script>
 $(document).ready(function(){
 	$("#jb-checkboxAll-comment").click(function(){
@@ -339,15 +382,22 @@ function deleteComment(){
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
-								<col width="8%">
-								<col width="55%">
+								<col width="5%">
 								<col width="10%">
-								<col width="6%">
-								<col width="6%">
+								<col width="50%">
 								<col width="10%">
+								<col width="5%">
+								<col width="5%">
+								<col width="15%">
 							</colgroup>
 							<thead>
 							<tr>
+								<th class="no" scope="col">
+									<p class="check">
+										<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
+										<label for="eventSeq_28900862">선택 삭제</label>
+									</p>
+								</th>
 								<th class="no" scope="col">N0</th>
 								<th class="title" scope="col">제목</th>
 								<th class="writer" scope="col">작성자</th>
@@ -361,6 +411,12 @@ function deleteComment(){
 							
 								<c:if test="${board.bno eq 1}">
 									<tr>
+										<td class="board-check">
+											<p class="check">
+												<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
+												<label for="eventSeq_28900862">선택 삭제</label>
+											</p>
+										</td>
 										<td class="board-no">${board.pno}</td>
 										<!-- 글번호 -->
 										
@@ -558,6 +614,7 @@ function deleteComment(){
  
   </script>
 	</div>
+	
 
 
 	<%@include file="mainfooter.jsp" %>	
