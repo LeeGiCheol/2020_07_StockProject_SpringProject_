@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
+import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
@@ -62,8 +63,9 @@ public class PortfolioController {
 			orderby = "new";
 		}
         String FilePath = request.getSession().getServletContext().getRealPath("/");
-        vo.setThumbnailName(FilePath+"THUMB_"+vo.getThumbnailName());
         
+        vo.setThumbnailName(FilePath+vo.getThumbnailName());
+        System.out.println("list " + vo);
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno, 12);
 		model.addAttribute("portfolioList", (List<BoardVO>)boardList.get("portfolioList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
@@ -119,21 +121,21 @@ public class PortfolioController {
 						a++;
 					}
 				}
-				// 파일이 존재하지 않을 경우 삭제
-				if(a != 1) {
-					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
-					File originDelete = new File(origin);
-					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
-					File thumbnailDelete = new File(thumbnail);
-					
-					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-					if(originDelete.exists()) {
-					    // 파일을 삭제합니다.
-						originDelete.delete();
-						thumbnailDelete.delete();
-					}
-					    
-				}
+				// 파일이 존재하지 않을 경우 삭제 - 삭제하니까 업데이트가 불가(새로 추가하는 파일은 상관없으나 기존에 있던 파일을 지울경우 안)
+//				if(a != 1) {
+//					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
+//					File originDelete = new File(origin);
+//					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
+//					File thumbnailDelete = new File(thumbnail);
+//					
+//					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+//					if(originDelete.exists()) {
+//					    // 파일을 삭제합니다.
+//						originDelete.delete();
+//						thumbnailDelete.delete();
+//					}
+//					    
+//				}
 			}
 			
 //			List<String> upload = multiplePhotoUpload(request, response);
@@ -147,14 +149,7 @@ public class PortfolioController {
 				}
 			}
 			
-			
-			
-					
-	//		for (int i = 0; i < uploadedFileName.size(); i++) {
-	//			vo.setUploadedFileName(uploadedFileName.get(i));
-	//			vo.setUploadedFileUrl(uploadedFileUrl.get(i));
-	//		}
-			vo.setThumbnailName("/resources/se2/upload/"+uploadThumbnail.get(0));
+			vo.setThumbnailName("/resources/se2/upload/"+uploadThumbnail.get(0).substring(0,8) + "/THUMB_" + uploadThumbnail.get(0).substring(9));
 			uploadedFileName.clear();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -211,6 +206,44 @@ public class PortfolioController {
 		return map;
 	}
 
+
+	
+	@GetMapping("/board/portfolio/update")
+	public String updateBoardView(BoardVO vo, Model model) {
+		BoardVO boardUpdate = boardService.getBoard(vo);
+		model.addAttribute("boardUpdate", boardUpdate);
+//		System.out.println("mmmmm"+boardUpdate);
+		return "portfolioUpdateForm";
+	}
+
+	@PostMapping("/board/portfolio/update")
+	public String updateBoard(BoardVO vo, Model model) {
+		vo.setBno(2);
+		List<String> uploadThumbnail = new ArrayList<String>();
+		
+		FileUpload fileUpload = new FileUpload();
+		if(uploadedFileName.size() != 0){
+			vo = fileUpload.fileUpdate(vo, uploadedFileName, uploadThumbnail, request);
+		}	
+		else {
+			vo = fileUpload.fileUpdate(vo, uploadedFileName, uploadThumbnail, request);
+		}
+		boardService.updateBoard(vo);
+		return "redirect:/board/portfolio";
+	}
+	
+	@GetMapping("/board/portfolio/delete")
+	public String deleteBoard(BoardVO vo) {
+		BoardVO bVo = boardService.getBoard(vo);
+		List<String> uploadThumbnail = new ArrayList<String>();
+
+		FileUpload fileUpload = new FileUpload();
+		vo = fileUpload.fileDel(bVo, uploadedFileName, uploadThumbnail, request);
+		
+		boardService.deleteBoard(vo);
+		return "redirect:/board/portfolio";
+	
+	}
 
 	
 }

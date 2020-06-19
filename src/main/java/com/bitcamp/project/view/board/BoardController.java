@@ -90,11 +90,11 @@ public class BoardController {
 	@PostMapping("/board/free/write")
 	public String boardWrite(BoardVO vo) {
 		
-		List<String> uploadThumbnail = new ArrayList<String>();
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		vo.setId(loginUser.getId());
 		vo.setBno(1); // 자유게시판
 		
+		List<String> uploadThumbnail = new ArrayList<String>();
 		
 		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
 
@@ -139,22 +139,13 @@ public class BoardController {
 				}
 			}
 			
-//			List<String> upload = multiplePhotoUpload(request, response);
 			
-			
-			
-			
-					
-	//		for (int i = 0; i < uploadedFileName.size(); i++) {
-	//			vo.setUploadedFileName(uploadedFileName.get(i));
-	//			vo.setUploadedFileUrl(uploadedFileUrl.get(i));
-	//		}
+			// vo에 저장 후 리셋
 			vo.setThumbnailName("/resources/se2/upload/"+uploadThumbnail.get(0));
 			uploadedFileName.clear();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		// vo에 저장 후 리셋
 		
 		
 		finally {
@@ -230,14 +221,23 @@ public class BoardController {
 
 	@PostMapping("/board/free/update")
 	public String updateBoard(BoardVO vo, Model model) {
-//		System.out.println("test");
-//		System.out.println(vo);
+		BoardVO bVo = boardService.getBoard(vo);
+		List<String> uploadThumbnail = new ArrayList<String>();
+		
+		FileUpload fileUpload = new FileUpload();
+		fileUpload.fileDel(bVo, uploadedFileName, uploadThumbnail, request);
+		
 		boardService.updateBoard(vo);
 		return "redirect:/board/free";
 	}
 	
 	@GetMapping("/board/free/delete")
 	public String deleteBoard(BoardVO vo) {
+		BoardVO bVo = boardService.getBoard(vo);
+		List<String> uploadThumbnail = new ArrayList<String>();
+		FileUpload fileUpload = new FileUpload();
+		fileUpload.fileDel(bVo, uploadedFileName, uploadThumbnail, request);
+		
 		boardService.deleteBoard(vo);
 		return "redirect:/board/free";
 	}
