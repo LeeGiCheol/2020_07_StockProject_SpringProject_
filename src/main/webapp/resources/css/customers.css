@@ -94,7 +94,7 @@ a:hover {
   
 	
 }
-#sideTitle ul a, #sideTitle ul a:visited, #sideTitle ul a:link{
+#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
 	    color: black !important;
   font-weight: 600 !important;
  

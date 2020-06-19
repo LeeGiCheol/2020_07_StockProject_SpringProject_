@@ -20,4 +20,5 @@ public interface BoardDAO {
 	public int deleteBoardComment(BoardVO vo);
 	public int reportBoard(BoardVO vo);
 	public int reportBoardCount(BoardVO vo);
+	public List<BoardVO> portfolioList(PagingVO vo);
 }

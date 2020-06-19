@@ -38,14 +38,14 @@
 	  <div class="col-md-10">
 		<div class="free-board">
 		<div class="drop-nav">
-			<h1 class="tit-h1 line">자유게시판</h1>
+			<h1 class="tit-h1 line">포트폴리오 게시판</h1>
 		</div>
 		<div class="m-drop-nav">
 			<h1 class="m-drop-tit-title line" style="cursor:pointer;">자유게시판 ▼</h1>
 		</div>
 		<div class="m-drop-down">
 			<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
-			<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portfolio">포트폴리오</a></h1>
+			<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
 			<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 		</div>
 		<div class="board-detail">
@@ -200,8 +200,8 @@
 	</div>
 		<p class="bt-area view-bt-area">
         <span>
-            <a href="/board/free" class="btn-s bodrb">목록</a>
-			<a href="/board/free/write" class="btn-s red">글쓰기</a>
+            <a href="/board/portfolio" class="btn-s bodrb">목록</a>
+			<a href="/board/portfolio/write" class="btn-s red">글쓰기</a>
 		</span>
     	</p>
     	<div class="prev-next" id="prev-next">
@@ -450,7 +450,7 @@ function submitReportComt(){
 			console.log(page)
 			$.ajax({
 				type : 'GET',
-				url : '${pageContext.request.contextPath}/board/free/detail/ajax?pno='+pno + page,
+				url : '${pageContext.request.contextPath}/board/portfolio/detail/ajax?pno='+pno + page,
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
@@ -476,7 +476,7 @@ function submitReportComt(){
 					board +=		'</div>'
 					board +=		'<c:if test="${loginUser.nickname eq boardDetail.nickname}">'
 					board +=			'<div id="" class="share-more">'
-					board +=				'<a href="/board/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
+					board +=				'<a href="/board/portfolio/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
 					board +=				'<a href="javascript:void(0)" onclick="delBoard()" id="btnDelete" class="del"><span>삭제</span></a>'
 					board +=			'</div>'
 					board +=		'</c:if>'
@@ -571,7 +571,7 @@ function submitReportComt(){
 		 						// << 버튼 
 		 						commentPaging +=	'<li>'
 		 						commentPaging +=		'<a class="page-link"'
-		 						commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=1"'
+		 						commentPaging +=			'href="/board/portfolio/detail?pno=${boardDetail.pno}&bnowPage=1"'
 		 						commentPaging +=			'tabindex="-1" aria-disabled="true">'
 		 						commentPaging +=			'<i class="fas fa-angle-double-left"></i>'
 		 						commentPaging +=		'</a>'
@@ -580,7 +580,7 @@ function submitReportComt(){
 		 						// < 버튼
 				 				commentPaging +=	'<li>'
 			 					commentPaging +=		'<a class="page-link"'
-								commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"'
+								commentPaging +=			'href="/board/portfolio/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"'
 								commentPaging +=			'tabindex="-1" aria-disabled="true">'
 								commentPaging +=			'<i class="fas fa-angle-left"></i>'
 								commentPaging +=		'</a>'
@@ -599,7 +599,7 @@ function submitReportComt(){
 								if(i != data.commentPage.nowPage){
 									commentPaging +=	'<li class="page-item">'
 									
-									commentPaging +=	"<a class='page-link' href='/board/free/detail?pno="+data.boardDetail.pno+"&bnowPage="+i+"'>"+i+"</a>"
+									commentPaging +=	"<a class='page-link' href='/board/portfolio/detail?pno="+data.boardDetail.pno+"&bnowPage="+i+"'>"+i+"</a>"
 								
 									commentPaging +=	'</li>'
 								}
@@ -610,7 +610,7 @@ function submitReportComt(){
 							if(data.commentPage.nowPage != data.commentPage.lastPage){
 								commentPaging += '<li>'
 								commentPaging += 	'<a class="page-link"'
-								commentPaging += 		"href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}'"
+								commentPaging += 		"href='/board/portfolio/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}'"
 								commentPaging += 		'tabindex="+1" aria-disabled="true" data-ajax="false">'
 								commentPaging += 			'<i class="fas fa-angle-right"></i>'
 								commentPaging += 	'</a>'
@@ -619,7 +619,7 @@ function submitReportComt(){
 								// >> 버튼
 								commentPaging += '<li>'
 								commentPaging += '<a class="page-link"'
-								commentPaging += "href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}'"						
+								commentPaging += "href='/board/portfolio/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}'"						
 								commentPaging += 'tabindex="-1" aria-disabled="true">'
 								commentPaging += 		'<i class="fas fa-angle-double-right"></i>'
 								commentPaging += 	'</a>'
@@ -650,7 +650,7 @@ function submitReportComt(){
 							prev_next +=     '<dl>'
 							prev_next +=          '<dt>이전글</dt>'
 							prev_next +=           '<dd>'
-							prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[1].pno+'">'+data.boardPrevNext[1].title+'</a>'
+							prev_next +=               '<a href="/board/portfolio/detail?pno='+data.boardPrevNext[1].pno+'">'+data.boardPrevNext[1].title+'</a>'
 							prev_next +=                    '</dd>'
 							prev_next +=         '</dl>'
 							prev_next +=    '</div>'
@@ -658,7 +658,7 @@ function submitReportComt(){
 							prev_next +=         '<dl>'
 							prev_next +=           '<dt>다음글</dt>'
 							prev_next +=          '<dd>'
-							prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+							prev_next +=               '<a href="/board/portfolio/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
 							prev_next +=                     '</dd>'
 							prev_next +=          '</dl>'
 							prev_next +=         '</div>'
@@ -673,7 +673,7 @@ function submitReportComt(){
 								prev_next +=         '<dl>'
 								prev_next +=           '<dt>다음글</dt>'
 								prev_next +=          '<dd>'
-								prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+								prev_next +=               '<a href="/board/portfolio/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
 								prev_next +=                     '</dd>'
 								prev_next +=          '</dl>'
 								prev_next +=     '</div>'
@@ -698,7 +698,7 @@ function submitReportComt(){
 						prev_next +=    	 '<dl>'
 						prev_next +=          '<dt>이전글</dt>'
 						prev_next +=           '<dd>'
-						prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+						prev_next +=               '<a href="/board/portfolio/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
 						prev_next +=                    '</dd>'
 						prev_next +=         '</dl>'
 						prev_next +=    '</div>'
@@ -949,7 +949,7 @@ function submitReportComt(){
 
 		window.onpopstate = function(event) {
 			console.log(event)
-			location.href = "/board/free";
+			location.href = "/board/portfolio";
 
 		}; */
 
@@ -2876,29 +2876,6 @@ function submitReportComt(){
 
 
 }));
-</script>
-<script>
-	$(document).ready(function() {
-		
-		setTimeout(function() {
-			var w = $(".image").children().width();
-			var h = $(".image").children().height();
-			console.log(w);
-			if(w >800){
-				var ri = 800/w;
-				w = w * ri;
-				h = h * ri;
-				console.log(ri);
-			}
-			var a_h = $(".board-view-cont").children().height();
-			var a_w = $(".board-view-cont").children().width();
-			
-			console.log(w+" / "+h+" && "+ a_w+" / "+ a_h);
-			$(".image").children().width(w);
-			 $(".image").children().height(h);
-			
-		}, 50);
-	});
 </script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

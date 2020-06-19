@@ -1,6 +1,7 @@
 package com.bitcamp.project.view.board;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,43 +17,41 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
-import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
 
 @Controller
-public class BoardController {
+public class PortfolioController {
 	
 	@Autowired
 	BoardService boardService;
 	
 	@Autowired
-	HttpSession session;
-	
-	@Autowired
 	CommentService commentService;
 	
 	@Autowired
+	HttpSession session;
+	
+	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpServletResponse response;
 	
-	static List<String> uploadedFileName = new ArrayList<String>();
-
+	List<String> uploadedFileName =BoardController.uploadedFileName;
 	
 	
-	@GetMapping(value= {"/board/free", "/board/free/popularity"})
-	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+	@GetMapping(value= {"/board/portfolio", "/board/portfolio/popularity"})
+	public String portfolioBoard(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
-		int bno = 1;
+		int bno = 2;
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
@@ -62,38 +61,41 @@ public class BoardController {
 		if(orderby.equals("")) {
 			orderby = "new";
 		}
-		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno, 30);
-		model.addAttribute("boardList", (List<BoardVO>)boardList.get("boardList"));
+        String FilePath = request.getSession().getServletContext().getRealPath("/");
+        vo.setThumbnailName(FilePath+"THUMB_"+vo.getThumbnailName());
+        
+		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno, 12);
+		model.addAttribute("portfolioList", (List<BoardVO>)boardList.get("portfolioList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
-		
+		model.addAttribute("path", FilePath);
 		
 		if(orderby.equals("new")) {
-			return "free-board";
+			return "portfolio-board";
 		}
 		else {
-			return "free-board-best";
+			return "portfolio-board-best";
 		}
 	}
 	
 	
 	
 	
-	
-	@GetMapping("/board/free/write")
-	public String boardWriteView(BoardVO vo, Model model) {
-		return "writeForm";
+	@GetMapping("/board/portfolio/write")
+	public String portfolioWriteForm() {
+		return "portfolio-writeForm";
 	}
 	
 	
-	@PostMapping("/board/free/write")
-	public String boardWrite(BoardVO vo) {
+	@PostMapping("/board/portfolio/write")
+	public String portfolioWrite(BoardVO vo) {
 		
 		List<String> uploadThumbnail = new ArrayList<String>();
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+        SimpleDateFormat folderNameFormatter = new SimpleDateFormat("yyyyMMdd");
 		vo.setId(loginUser.getId());
-		vo.setBno(1); // 자유게시판
+		vo.setBno(2); // 포트폴리오 게시판
 		
 		
 		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
@@ -121,26 +123,29 @@ public class BoardController {
 				if(a != 1) {
 					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
 					File originDelete = new File(origin);
+					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
+					File thumbnailDelete = new File(thumbnail);
 					
 					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
 					if(originDelete.exists()) {
 					    // 파일을 삭제합니다.
 						originDelete.delete();
+						thumbnailDelete.delete();
 					}
 					    
-				}
-				
-				thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
-				File thumbnailDelete = new File(thumbnail);
-				if(thumbnailDelete.exists()) {
-				    // 파일을 삭제합니다.
-					thumbnailDelete.delete();
-					thumbnailDelete.delete();
 				}
 			}
 			
 //			List<String> upload = multiplePhotoUpload(request, response);
 			
+			
+			for (int i = 1; i < uploadThumbnail.size(); i++) {
+				thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
+				File thumbnailDelete = new File(thumbnail);
+				if(thumbnailDelete.exists()) {
+					thumbnailDelete.delete(); 
+				}
+			}
 			
 			
 			
@@ -162,10 +167,11 @@ public class BoardController {
 			boardService.writeFreeBoard(vo);
 		}
 		
-		return "redirect:/board/free";
+		return "redirect:/board/portfolio";
 	}
 	
-	@GetMapping("/board/free/detail")
+	
+	@GetMapping("/board/portfolio/detail")
 	public ModelAndView getView(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage) {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
@@ -179,12 +185,12 @@ public class BoardController {
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
 		
 		
-		mav.setViewName("free-board-detail");
+		mav.setViewName("portfolio-board-detail");
 		
 		return mav;
 	}
 	
-	@GetMapping("/board/free/detail/ajax")
+	@GetMapping("/board/portfolio/detail/ajax")
 	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
@@ -204,90 +210,8 @@ public class BoardController {
 		
 		return map;
 	}
-	
-	@GetMapping("/board/detail/likes/ajax")
-	@ResponseBody
-	public int boardLikes(BoardVO vo, @RequestParam("pno") int pno) {
-		UserVO uVo = (UserVO)session.getAttribute("loginUser");
-		try {
-			vo.setId(uVo.getId());
-		}catch(Exception e) {
-			return 2;
-		}
-		
-		vo.setPno(pno);
-		return boardService.boardLikes(vo);
-	}
-	
-	
-	@GetMapping("/board/free/update")
-	public String updateBoardView(BoardVO vo, Model model) {
-		BoardVO boardUpdate = boardService.getBoard(vo);
-		model.addAttribute("boardUpdate", boardUpdate);
-//		System.out.println("mmmmm"+boardUpdate);
-		return "updateForm";
-	}
-
-	@PostMapping("/board/free/update")
-	public String updateBoard(BoardVO vo, Model model) {
-//		System.out.println("test");
-//		System.out.println(vo);
-		boardService.updateBoard(vo);
-		return "redirect:/board/free";
-	}
-	
-	@GetMapping("/board/free/delete")
-	public String deleteBoard(BoardVO vo) {
-		boardService.deleteBoard(vo);
-		return "redirect:/board/free";
-	}
-	
-	
-	@PostMapping("/reportBoard")
-	public ModelAndView reportBoard(BoardVO vo, @RequestParam("title") String title, @RequestParam("rtype") String rtype, @RequestParam("rcontent") String rcontent, HttpSession session, Model model) {
-		System.out.println("title "+title);
-		System.out.println("rtype "+rtype);
-		vo.setTitle(title);
-		vo.setRtype(rtype);
-		vo.setRcontent(rcontent);
-		UserVO user = (UserVO)session.getAttribute("loginUser");
-		vo.setNickname(user.getNickname());
-		
-		int report = boardService.reportBoard(vo);
-		
-		ModelAndView mav = new ModelAndView();
-		
-		if(report == 1) {
-			mav.addObject("msg", "해당 게시물이 신고 완료되었습니다.");
-			mav.addObject("location", "/board/free/detail?pno="+vo.getPno());
-			mav.addObject("icon", "success");
-			mav.setViewName("msg");
-			return mav;
-		}
-		else {
-			mav.addObject("msg", "신고는 1회만 가능합니다.");
-			mav.addObject("location", "/board/free/detail?pno="+vo.getPno());
-			mav.addObject("icon", "error");
-			mav.setViewName("msg");
-			return mav;
-		}
-		
-	}
-	
-	
-	
-	@RequestMapping("/fileUpload")
-	public void multiplePhotoUpload(HttpServletRequest request, HttpServletResponse response){
-		FileUpload file = new FileUpload();
-		BoardVO vo = file.file(request, response);
-		uploadedFileName.add(vo.getThumbnailName());
-		System.out.println(uploadedFileName);
-	}
 
 
-	
-	
-	
-	
 	
 }
+
