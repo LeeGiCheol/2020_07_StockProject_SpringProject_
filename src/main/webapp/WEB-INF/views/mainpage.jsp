@@ -544,8 +544,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 									</dd>
 								</dl>
 								<ul class="dot-list02 color-rightgray">
-									<li id="_liBall">자산 <a href="/myPage02"></a>${money}원</li>
-									<li id="_liCyber">포인트 <a href="/myPage01">${loginUser.point}점</a></li>
+									<li id="_liBall">자산 <a href="/myPagePwCheck">${money}원</a></li>
+									<li id="_liCyber">포인트 <a href="/myPagePwCheck">${loginUser.point}점</a></li>
 								</ul>
 							</div>
 							<div class="login-after-btn">
