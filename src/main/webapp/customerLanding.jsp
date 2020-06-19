@@ -99,7 +99,7 @@ border-radius: .25rem;
 								</div>
 								<div class="inquiry-box">
 									<p class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</p>
-									<a href="/rpan/help/serviceInqry" class="link">1:1 문의</a>
+									<a href="/customerqna" class="link">1:1 문의</a>
 				
 								</div>
 							</fieldset>
@@ -111,7 +111,7 @@ border-radius: .25rem;
 						<div class="sectionWrapper">
 							<dl>
 								<h2 class="main-tit">공지사항</h2>
-								<a class="moreBttn right blue" href="#">더보기</a>
+								<a class="moreBttn right blue" href="/customerNotice">더보기</a>
 								<dd>
 
 								
@@ -280,7 +280,7 @@ border-radius: .25rem;
 
 
 
-					<a href="#" id="cBoxa" class="cBox">
+					<a href="/customerqna" id="cBoxa" class="cBox">
 						<p class="cBoxTitle">도움말</p>
 						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
@@ -296,7 +296,7 @@ border-radius: .25rem;
 
 
 
-					<a href="#" id="cBoxb" class="cBox">
+					<a href="/customClaimWrite" id="cBoxb" class="cBox">
 						<p class="cBoxTitle">1:1 문의</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">

@@ -193,7 +193,7 @@ border-left: 4px solid #1e78ff !important;
 									</table>
 								</div>
 								<div class="bt-area">
-									<a href="/board/free"  class="moreBttn left norm"">취소</a>
+									<a href="/customerNotice"  class="moreBttn left norm"">취소</a>
 									<span><a href="javascript:btnSave();"  class="moreBttn right blue" id="addBtn">작성</a></span>
 								</div>
 							</form>

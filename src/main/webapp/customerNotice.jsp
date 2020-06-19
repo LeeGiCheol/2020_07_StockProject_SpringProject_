@@ -251,7 +251,7 @@ border-left: 4px solid #1e78ff !important;
 
 
 									<c:if test="${loginUser != null}">
-										<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
+										<p class="right"><a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a></p>
 									</c:if>
 								</div>
 

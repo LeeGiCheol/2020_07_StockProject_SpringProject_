@@ -635,8 +635,8 @@ max-width: 100%;
 	</div>
 		<p class="bt-area view-bt-area">
         <span>
-        	<a href="/board/free/write" class="moreBttn right blue">글쓰기</a>
-            <a href="/board/free" class="moreBttn right norm">목록</a>
+        	<a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a>
+            <a href="/customerNotice" class="moreBttn right norm">목록</a>
 
 		</span>
     	</p>
