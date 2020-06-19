@@ -218,10 +218,11 @@
   <div class="col-md-10">
 	<div class="free-board">
 						<div class="drop-nav">
-							<h1 class="tit-h1 line">작성 글 | 댓글</h1>
+							<h1 class="tit-h1 line">알림</h1>
+							
 						</div>
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">작성 글 | 댓글 ▼</h1>
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">알림 ▼</h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
@@ -245,9 +246,9 @@
 					<form id="form" class="board-list-top policy-in" action='/board/free'>
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
-								value="new" checked=""><label for="orderby1"  class="new-board">작성 글</label>
+								value="new" checked=""><label for="orderby1"  class="new-board">거래 알림</label>
 							<input type="radio" class="ordeby" id="orderby2" name="orderby"
-								value="best"><label for="orderby2" class="hot-board" >작성 댓글</label>
+								value="best"><label for="orderby2" class="hot-board" >커뮤니티 알림</label>
 						</p>
 					</form>
 		 			 
@@ -260,28 +261,21 @@
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
-								<col width="5%">
 								<col width="10%">
-								<col width="50%">
-								<col width="10%">
-								<col width="5%">
-								<col width="5%">
+								<col width="35%">
 								<col width="15%">
+								<col width="10%">
+								<col width="15%">
+								<col width="10%">
 							</colgroup>
 							<thead>
 							<tr>
-								<th class="no" scope="col">
-									<p class="check">
-										<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
-										<label for="eventSeq_28900862">선택 삭제</label>
-									</p>
-								</th>
 								<th class="no" scope="col">N0</th>
-								<th class="title" scope="col">제목</th>
-								<th class="writer" scope="col">작성자</th>
-								<th class="views" scope="col">조회</th>
-								<th class="likes" scope="col">추천</th>
-								<th class="date" scope="col">작성일</th>
+								<th class="title" scope="col">종목명</th>
+								<th class="writer" scope="col">단가</th>
+								<th class="views" scope="col">수량</th>
+								<th class="likes" scope="col">거래일시</th>
+								<th class="date" scope="col">상태	</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -289,12 +283,6 @@
 							
 								<c:if test="${board.bno eq 1}">
 									<tr>
-										<td class="board-check">
-											<p class="check">
-												<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
-												<label for="eventSeq_28900862">선택 삭제</label>
-											</p>
-										</td>
 										<td class="board-no">${board.pno}</td>
 										<!-- 글번호 -->
 										
