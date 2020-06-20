@@ -12,8 +12,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainpage.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+	<link rel="stylesheet" href="/resources/css/mainheader3.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <style type="text/css">
@@ -55,7 +54,7 @@ position:relative;
 A:link, A:visited, A:hover, A:active{cursor: pointer;}
 
 .graph-area .g-box {
-    width: 100%;
+    width: 100%;padding-top: 7px;
 }
  .graph-area .g-box > div {
     position: relative;
@@ -314,17 +313,17 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 
 				<div class="news-ranking">
 					<div class="news-nav">
-						<ul class="nav top-nav" id="pills-tab" role="tablist">
+						<ul class="nav" id="pills-tab" role="tablist">
 							<li class="breadcrumb-item" role="presentation"><a
-								class="nav-link active" id="top-nav-font" data-toggle="pill"
+								class="nav-link active"  data-toggle="pill"
 								href="#pills-home" role="tab" aria-controls="pills-home"
 								aria-selected="true">종합</a></li>
 							<li class="breadcrumb-item" role="presentation"><a
-								class="nav-link" id="top-nav-font" data-toggle="pill"
+								class="nav-link"  data-toggle="pill"
 								href="#pills-profile" role="tab" aria-controls="pills-profile"
 								aria-selected="false">증권</a></li>
 							<li class="breadcrumb-item" role="presentation"><a
-								class="nav-link" id="top-nav-font" data-toggle="pill"
+								class="nav-link"  data-toggle="pill"
 								href="#pills-contact" role="tab" aria-controls="pills-contact"
 								aria-selected="false">정치/사회</a></li>
 						</ul>
@@ -548,23 +547,40 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 				
 				
 				<div class="faq">
-					<nav>
-						<div class="nav nav-tabs" role="tablist">
-							<a class="nav-item">FAQ</a>
-							<button type="button" class="btn btn-secondary btn-sm plus">더보기</button>
-						</div>
-					</nav>
-					<div class="tab-content">
-						<div class=".tab-pane" id="tab1">
-							<ul class="step1">
-								<li id="test_1"><a href="#">[회원가입] 나의 투자 정보 공개 여부</a></li>
-								<li id="test_1"><a href="#">[거래] 매매 시 수익률 관련</a></li>
-								<li id="test_1"><a href="#">[커뮤니티] 광고성 글 및 선정적 글 신고</a></li>
-								<li id="test_1"><a href="#">[이벤트] 주간 랭킹 TOP 3 상품 안내</a></li>
-								<li id="test_1"><a href="#">[이벤트] 주간 추천 유저</a></li>
-							</ul>
-						</div>
-					</div>
+				<div class="sectionBox2">
+
+
+
+					<a href="/customerqna" id="cBoxa" class="cBox">
+						<p class="cBoxTitle">도움말</p>
+						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd"
+								d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
+							<path
+								d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+						</svg>
+					</a>
+
+
+
+
+
+
+					<a href="/customClaimWrite" id="cBoxb" class="cBox">
+						<p class="cBoxTitle">1:1 문의</p>
+						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd"
+								d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+						</svg>
+					</a>
+
+
+
+
+
+				</div>
 				</div>
 			</div>
 		</div>

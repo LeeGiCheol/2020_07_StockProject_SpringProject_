@@ -20,7 +20,14 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
    box-sizing: border-box;
    word-break: break-all;
 }
-
+.btn-secondary {
+    background-color: #7e8ca5;
+    border-color: #c9d5e6;
+    border-radius: 1px;
+    background: white;
+    color: black;
+    padding: 5px 10px;
+}
 span, em, mark, strong, b, label {
    margin: 0;
    padding: 0;
@@ -69,16 +76,17 @@ tr td button{
     padding: 20px 0 100px 0;
     margin: 0 auto;
 }
-@media (max-width: 979px)
+@media (max-width: 979px){
 .containerNew {
     padding-top: 104px;
 }
-@media only screen and (max-width: 979px)
+}
+@media only screen and (max-width: 979px){
 .containerNew {
     padding: 0;
     padding-bottom: 170px;
 }
-
+}
 em, address {
    font-style: normal;
 }
@@ -103,11 +111,23 @@ input, label, button {
 }
 
 .stock-deal-nav {
-   border-bottom: 1px solid gray;
-   font-size: 24px;
-   line-height: 30px;
-   padding: 10px;
-   font-weight: 600;
+border-bottom: 1px solid #1e78ff4a;
+    font-size: 24px;
+    line-height: 30px;
+    padding: 20px 20px;
+    font-weight: 600;
+    border-top: 1px solid #cce1ff;
+    width: 100%;
+    background: #f0f3f5;
+    color: #5e636d;
+}
+.stock-header{
+	    width: 1250px;
+    margin: auto;
+    font-size: 24px;
+    border-left:5px solid #1e78ff;
+    padding: 0 22px;
+    letter-spacing: 1px;
 }
 
 
@@ -117,6 +137,10 @@ input, label, button {
 
 .stock-search-btn {
    float: right;
+    border-radius: 0 !important;
+    background: #e4e8ea;
+    border: 0 !important;
+    padding: 7px 10px;
 }
 
 .chartdata-form {
@@ -134,14 +158,14 @@ input, label, button {
     background: #fff;
     margin-bottom: 10px;
     overflow: hidden;
-    border: 1px solid #dddddd;
+border: 1px solid #e5e6ef;
 }
 .col-md-3>div {
     position: relative;
     background: #fff;
     margin-bottom: 10px;
     overflow: hidden;
-    border: 1px solid #dddddd;
+border: 1px solid #e5e6ef;
 }
 
 .stock-buying {
@@ -200,14 +224,16 @@ input, label, button {
     display: inline-block;
     width: auto;
     vertical-align: middle;
-    margin-right: .5rem!important;
+    margin-right: 0!important;border-radius: 0 !important;
+
 }
 }
 .chartdata-nav{
-	width: 100%;
-	margin: 30px 0 30px 0;
-	padding-right: 5px;
-    padding-left: 5px;
+width: 100%;
+    margin: 0px 5px 15px;
+    background: white;
+    padding: 20px 14px;
+    border: 1px solid #e5e6ef;
 }
 .input-area {
    margin-top: 15px;
@@ -472,8 +498,7 @@ a.btnStyle {
   background: #ccc;
 }
 .tableDesc{
-	border: none !important;
-	margin: 0;
+	margin: 0;padding: 15px 20px;
 }
 .nav-item-last a{
 	border-right: none !important;
@@ -516,7 +541,7 @@ a.btnStyle {
     position: relative;
     font-weight: normal;
     color: #767676;
-}
+
 }
 .layerPopup .layerBox {
     display: none;
@@ -554,7 +579,7 @@ a.btnStyle {
 
 .stock-chart-table{
 	width: 100%;
-	border: 1px solid #dddddd;
+	border: 1px solid #e5e6ef;
 }
 #stockName {
     font-size: 18px;
@@ -599,7 +624,7 @@ a.btnStyle {
 .now-text{
 	border-bottom: 1px solid #dddddd;
 	border-top: 1px solid #dddddd;
-	background: #eaeaea;
+	background: #fffef0;
 	font-weight: 600;
 }
 #m-price, #price{
@@ -609,7 +634,7 @@ a.btnStyle {
 	border: none;
 	padding: 0;
 	width: 100%;
-	height: 35px;"
+	height: 35px;
 }
  
 
@@ -658,8 +683,8 @@ a.btnStyle {
     float: left;
     width: 592px;
     margin-right: 10px;
-    padding: 10px;
-    height: 230px;
+    padding: 10px 15px 15px 15px;
+    height: auto;
 }
 .h_popular-left {
     font-size: 14px;

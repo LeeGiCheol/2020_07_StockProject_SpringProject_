@@ -75,11 +75,11 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav search">
 					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search"
+						<input class="form-control mr-sm-2 searchArea" type="search"
 							placeholder="통합검색" aria-label="Search">
-						<button class="btn btn-outline-secondary my-2 my-sm-0"
+						<button class="btn btn-outline-secondary my-2 my-sm-0 searchBttn"
 							type="submit">
 							<i class="fas fa-search"></i>
 						</button>

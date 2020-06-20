@@ -18,8 +18,8 @@
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+	<link rel="stylesheet" href="/resources/css/mainheader2.css">
+
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
@@ -62,9 +62,11 @@ tr td button {
 
 	<!-- 전체메뉴 백그라운드-->
 	<div class="all-dim"></div>
+				<div class="stock-deal-nav">
+				<div class="stock-header">거래</div>
+				</div>
 	<div class="containerNew">
 		<div class="stock-deal">
-			<div class="stock-deal-nav">거래</div>
 			<div class="row">
 				<div class="chartdata-nav">
 					<form action="/trade" id="searchForm"
