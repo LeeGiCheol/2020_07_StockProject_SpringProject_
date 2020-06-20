@@ -110,25 +110,27 @@ public class PortfolioController {
 		vo.setBno(2); // 포트폴리오 게시판
 		
 		
-		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+		String[] img = vo.getBcontent().split("/resources/se2/upload/");
 
-		for (int i = 1; i < img.length; i++) {
-			
-			int start = img[i].indexOf("/Photo");
-			int end = img[i].indexOf("\" title=\"");
-			img[i] = img[i].substring(start-8, end);
+		for (int i = 0; i < img.length; i++) {
+			if(img[i].indexOf("/Photo") != -1) {
+				int start = img[i].indexOf("/Photo");
+				int end = img[i].indexOf("\" title=\"");
+				img[i] = img[i].substring(start-8, end);
+			}
 		}
+		
 		
 
 		String thumbnail = null;
 		
 		try {
 			if(uploadedFileName.size() != 0) {
-				for (int i = 0; i < uploadedFileName.size(); i++) {
+				for (int i = 0; i < img.length; i++) {
 					int a = 0;
-					for (int j = 1; j < img.length; j++) {
-						if(uploadedFileName.get(i).equals(img[j])) {
-							uploadThumbnail.add(uploadedFileName.get(i));
+					for (int j = 0; j < uploadedFileName.size(); j++) {
+						if(uploadedFileName.get(j).equals(img[i])) {
+							uploadThumbnail.add(uploadedFileName.get(j));
 							a++;
 						}
 					}

@@ -98,20 +98,14 @@ $(document).ready(function(){
 							<h1 class="tit-h1 line">포트폴리오</h1>
 						</div>
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">포트폴리오
-								▼</h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-								<a href="/board/free">자유게시판</a>
-							</h1>
-							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/portfolio">포트폴리오</a>
-							</h1>
-							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
-								<a href="/news">뉴스</a>
-							</h1>
-						</div>
+								<h1 class="m-drop-tit-title line" style="cursor:pointer;">포트폴리오 ▼</h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
+								<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portfolio">포트폴리오</a></h1>
+								<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
+							</div>
+
 						<div class="board-type">
 							<div class="board-free-nav">
 								<form id="form" class="board-list-top policy-in"
@@ -299,43 +293,53 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">
-  $( document ).ready(function() {
-	  console.log( "document ready!" );
+<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
-	  var $sticky = $('.sticky');
-	  var $stickyrStopper = $('.footer_info');
-	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_info');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
-	    var generalSidebarHeight = $sticky.innerHeight();
-	    var stickyTop = $sticky.offset().top;
-	    var stickOffset = 0;
-	    var stickyStopperPosition = $stickyrStopper.offset().top;
-	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-	    var diff = stopPoint + stickOffset;
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
 
-	    $(window).scroll(function(){ // scroll event
-	      var windowTop = $(window).scrollTop(); // returns number
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
 
-	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
-	      } else if (stickyTop < windowTop+stickOffset) {
-	          $sticky.css({ position: 'fixed', top: stickOffset });
-	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
-	      }
-	    });
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
 
-	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
-  });
-  
-
-
- 
-  </script>
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
 	</div>
 
 	<!--       <div id="carouselExampleControls" class="carousel slide"

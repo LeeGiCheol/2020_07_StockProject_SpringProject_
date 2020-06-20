@@ -84,7 +84,7 @@
 						<div class="sidebar sticky" id="cssmenu">
 							<ul>
 								<li><a href="/board/free"><span>자유게시판</span></a></li>
-								<li class="mid"><a href="/portfolio"><span>포트폴리오</span></a></li>
+								<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
 								<li class="last"><a href="/news"><span>뉴스</span></a></li>
 							</ul>
 						</div>
@@ -102,6 +102,42 @@
 								<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portfolio">포트폴리오</a></h1>
 								<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 							</div>
+							  <script type="text/javascript">
+  $( document ).ready(function() {
+
+	  var $sticky = $('.sticky');
+	  var $stickyrStopper = $('.footer_info');
+	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+	    var generalSidebarHeight = $sticky.innerHeight();
+	    var stickyTop = $sticky.offset().top;
+	    var stickOffset = 0;
+	    var stickyStopperPosition = $stickyrStopper.offset().top;
+	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+	    var diff = stopPoint + stickOffset;
+
+	    $(window).scroll(function(){ // scroll event
+	      var windowTop = $(window).scrollTop(); // returns number
+
+	      if (stopPoint < windowTop) {
+	          $sticky.css({ position: 'relative', top: diff });
+	      } else if (stickyTop < windowTop+stickOffset) {
+	          $sticky.css({ position: 'fixed', top: stickOffset });
+	      } else {
+	          $sticky.css({position: 'relative', top: 'initial'});
+	      }
+	    });
+
+	  }
+	  $(".m-drop-nav").click(function(){
+		    $(".m-drop-down").slideToggle("slow");
+		  });
+  });
+  
+
+
+ 
+  </script>		
 							<form name="form" id="form" role="form" method="POST" action="/board/portfolio/update">
 								<div class="form-table">
 									<table>
