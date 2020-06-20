@@ -56,7 +56,7 @@
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
+							<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
 							<li class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>
@@ -71,7 +71,7 @@
 	</div>
 	<div class="m-drop-down">
 	<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
-	<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portflio">포트폴리오</a></h1>
+	<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portfolio">포트폴리오</a></h1>
 	<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 	</div>
 		<div class="board-type">
@@ -79,9 +79,9 @@
 					<form id="form" class="board-list-top policy-in" action='/board/free'>
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
-								value="new"><label for="orderby1"  class="new-board">최신순</label>
+								value="new" href="/board/free"><label for="orderby1"  class="new-board">최신순</label>
 							<input type="radio" class="ordeby" id="orderby2" name="orderby"
-								value="best" checked=""><label for="orderby2" class="hot-board" >인기순</label>
+								value="best" href="/board/free/best" checked=""><label for="orderby2" class="hot-board" >인기순</label>
 						</p>
 					</form>
 		 			 
@@ -155,7 +155,7 @@
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
-					          href="/board/free?bnowPage=1"
+					          href="/board/free/best?bnowPage=1"
 					          tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
@@ -164,7 +164,7 @@
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            href="/board/free/best?bnowPage=${boardPage.nowPage}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -176,7 +176,7 @@
 					      <c:if test="${boardPage.nowPage != 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage-1}"
+					            href="/board/free/best?bnowPage=${boardPage.nowPage-1}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -196,7 +196,7 @@
 					          </c:when>
 					          <c:when test="${p != boardPage.nowPage}">
 					            <li class="page-item">
-					              <a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
+					              <a class="page-link" href="/board/free/best?bnowPage=${p}">${p}</a>
 					            </li>
 					          </c:when>
 					        </c:choose>
@@ -209,7 +209,7 @@
 					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage}"
+					            href="/board/free/best?bnowPage=${boardPage.nowPage}"
 					            tabindex="+1" aria-disabled="true">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -220,7 +220,7 @@
 					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/board/free?bnowPage=${boardPage.nowPage+1}"
+					            href="/board/free/best?bnowPage=${boardPage.nowPage+1}"
 					            tabindex="+1" aria-disabled="true" data-ajax="false">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -230,7 +230,7 @@
 					      <!-- >> 버튼 -->
 					      <li>
 					        <a class="page-link"
-					        href="/board/free?bnowPage=${boardPage.lastPage}"
+					        href="/board/free/best?bnowPage=${boardPage.lastPage}"
 					        tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
@@ -249,7 +249,7 @@
 				
 				<div class="search-area">
 					<div  class="search-area-body">
-					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free/best">
 						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 						<select class="dropdown-toggle-board" name="searchStyle">

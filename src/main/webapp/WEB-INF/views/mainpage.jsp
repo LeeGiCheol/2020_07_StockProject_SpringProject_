@@ -149,6 +149,66 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     height: 80px;
     margin: 0 auto;
 }
+.ranking ul {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 0;
+    padding: 0 20px 16px;
+    background: #fff;
+}
+ .ranking ol li a i {
+    display: block;
+    float: left;
+    width: 14px;
+    text-align: center;
+    color: #000;
+}
+.ranking ol li a * {
+    line-height: 19px;
+    vertical-align: middle;
+}
+.ranking ol li a span {
+    display: block;
+    float: left;
+    width: 112px/*width:102px*/;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-bottom: 1px;
+}
+.ranking ol li a mark {
+    float: right;
+    position: relative;
+    display: block;
+    /* width: 68px; */
+    width: 78px;
+    text-align: right;
+}
+.color-red {
+    color: #ff545b !important;
+}
+.ranking ul li:first-child {
+    margin-top: 18px;
+}
+ .ranking ul li {
+    margin-top: 9px;
+}
+.ranking ul li a {
+    display: block;
+    color: #000;
+}
+
+
+
+
+@media only screen and (max-width: 979px){
+.ranking ol li:first-child {
+    margin-top: 17px;
+}
+.ranking ol li a {
+    clear: both;
+}
+} 
 </style>
 </head>
 <body>
@@ -426,13 +486,22 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<form method='post' action="/signIn">
 									<fieldset>
 										<div class="chk">
-											<input type="checkbox" name="sID" id="check-id">
-											<label for="check-id">아이디 저장</label>
-											<input type="checkbox" name="autoLogin" onClick="" id="check-log">
-											<label for="check-log">자동로그인</label>
+										<%
+										    Cookie[] c = request.getCookies();
+										    String cookieVal="";
+										    if(c!=null){
+										        for(Cookie i:c){
+										            if(i.getName().equals("saveId")){
+										                cookieVal=i.getValue();
+										            }
+										        }
+										    }
+										%>
+											<input type="checkbox" id="idSaveCheck" class="big" name="saveId" <%=cookieVal!=""?"checked" : ""%>/>
+											<label for="idSaveCheck">아이디 저장</label>
 										</div>
 										<p>
-											<input type="text" name="id" value="" id="user_id" title="아이디 입력" placeholder="아이디">
+											<input type="text" name="id" value="<%=cookieVal !="" ? cookieVal : "" %>" id="user_id" title="아이디 입력" placeholder="아이디">
 											<input type="password" name="pw" value="" id="user_pw" title="비밀번호 입력" placeholder="비밀번호"> 
 											<input type="submit" value="로그인" onclick="">	
 										</p>
@@ -483,8 +552,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 									</dd>
 								</dl>
 								<ul class="dot-list02 color-rightgray">
-									<li id="_liBall">자산 <a href="/myPage02"></a>${money}원</li>
-									<li id="_liCyber">포인트 <a href="/myPage01">${loginUser.point}점</a></li>
+									<li id="_liBall">자산 <a href="/myPagePwCheck">${money}원</a></li>
+									<li id="_liCyber">포인트 <a href="/myPagePwCheck">${loginUser.point}점</a></li>
 								</ul>
 							</div>
 							<div class="login-after-btn">

@@ -48,30 +48,40 @@ public class PortfolioController {
 	List<String> uploadedFileName =BoardController.uploadedFileName;
 	
 	
-	@GetMapping(value= {"/board/portfolio", "/board/portfolio/popularity"})
+	@GetMapping(value= {"/board/portfolio", "/board/portfolio/best"})
 	public String portfolioBoard(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
 		int bno = 2;
+		
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
 		if(searchStyle.equals("")) {
 			keyword = "";
 		}
-		if(orderby.equals("")) {
+		if(request.getServletPath().equals("/board/portfolio/best")) {
+			orderby = "best";
+		}
+		else if(request.getServletPath().equals("/board/portfolio")) {
 			orderby = "new";
 		}
+		else if(orderby.equals("")) {
+			orderby = "new";
+		}
+		
         String FilePath = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/";
-        System.out.println("13212 "+FilePath);
+        
         vo.setThumbnailName(FilePath+vo.getThumbnailName());
-        System.out.println("list " + vo);
+        
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno, 12);
 		model.addAttribute("portfolioList", (List<BoardVO>)boardList.get("portfolioList"));
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("path", FilePath);
+		System.out.println("searchStyle "+searchStyle);
+		System.out.println("keyword "+keyword);
 		
 		if(orderby.equals("new")) {
 			return "portfolio-board";
@@ -100,25 +110,27 @@ public class PortfolioController {
 		vo.setBno(2); // 포트폴리오 게시판
 		
 		
-		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+		String[] img = vo.getBcontent().split("/resources/se2/upload/");
 
-		for (int i = 1; i < img.length; i++) {
-			
-			int start = img[i].indexOf("/Photo");
-			int end = img[i].indexOf("\" title=\"");
-			img[i] = img[i].substring(start-8, end);
+		for (int i = 0; i < img.length; i++) {
+			if(img[i].indexOf("/Photo") != -1) {
+				int start = img[i].indexOf("/Photo");
+				int end = img[i].indexOf("\" title=\"");
+				img[i] = img[i].substring(start-8, end);
+			}
 		}
+		
 		
 
 		String thumbnail = null;
 		
 		try {
 			if(uploadedFileName.size() != 0) {
-				for (int i = 0; i < uploadedFileName.size(); i++) {
+				for (int i = 0; i < img.length; i++) {
 					int a = 0;
-					for (int j = 1; j < img.length; j++) {
-						if(uploadedFileName.get(i).equals(img[j])) {
-							uploadThumbnail.add(uploadedFileName.get(i));
+					for (int j = 0; j < uploadedFileName.size(); j++) {
+						if(uploadedFileName.get(j).equals(img[i])) {
+							uploadThumbnail.add(uploadedFileName.get(j));
 							a++;
 						}
 					}

@@ -146,7 +146,7 @@ width: 48%;
 	padding: 0 0 0 4px;
 }
 .div-login-box {
-	padding: 10px 10px 10px 10px;
+	padding: 15px 20px 12px 20px;
 }
 
 .login-box fieldset .chk {
@@ -437,9 +437,10 @@ input[type="text"], input[type="password"], input[type="tel"] {
 
 .containerNew>.row .col-md-3 .ranking-body ul {
 	position: relative;
-	font-style: normal;
-	padding: 0;
-	margin: 0;
+    z-index: 1;
+    margin: 0 0 0;
+    padding: 0 20px 16px;
+    background: #fff;
 }
 
 .containerNew>.row .col-md-3 .ranking-body ul a {
@@ -451,7 +452,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	position: relative;
 	overflow: hidden;
 	line-height: 23px;
-	padding: 5px;
+
 }
 
 .containerNew>.row .col-md-3 .ranking-body ul li a span {
@@ -527,13 +528,13 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	display: block;
 	float: left;
 	width: 50%;
-	border-right: 1px solid #dee2e6;
 	padding: 10px;
 }
 
 .containerNew>.row .col-md-9 .stock-ranking .tab-content #tab2 {
 	display: block;
 	float: right;
+	border-left: 1px solid #dee2e6;
 	width: 50%;
 	padding: 10px;
 }
@@ -600,7 +601,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	position: relative;
 	overflow: hidden;
 	line-height: 23px;
-	padding: 3px;
+	
 }
 
 .containerNew>.row .col-md-9 .community .tab-content a {

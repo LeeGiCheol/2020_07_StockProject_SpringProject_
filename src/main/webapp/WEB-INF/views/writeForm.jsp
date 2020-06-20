@@ -18,8 +18,6 @@
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="/resources/css/mainheader.css">
-<link rel="stylesheet" href="/resources/css/free-board.css">
-
 <script>
 	function btnSave(){
 		// bcontent에 내용 삽입
@@ -33,23 +31,6 @@
 
 				var contentValue = $('#bcontent').val();
 				
-/* 				console.log(content)
-				console.log(contentValue)
-				contentValue = contentValue.substring(3)
-				console.log(contentValue) */
-			/* 	if(contentValue.trim().length < 4){
-
-					alert("4글자 이상 입력하세요.");
-
-					$('#bcontent').focus();
-
-					}  */
-				
-				/* if(content == "" || content == null){
-					swal({text:"내용을 입력해주세요.", icon:"error"});			
-					$("#bcontent").focus();
-					
-				}	 */
 					
 					
 				if(title.trim() == ""){
@@ -81,7 +62,7 @@
 						<div class="sidebar sticky" id="cssmenu">
 							<ul>
 								<li><a href="/board/free"><span>자유게시판</span></a></li>
-								<li class="mid"><a href="#"><span>포트폴리오</span></a></li>
+								<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
 								<li class="last"><a href="/news"><span>뉴스</span></a></li>
 							</ul>
 						</div>
@@ -92,13 +73,11 @@
 								<h1 class="tit-h1 line">자유게시판</h1>
 							</div>
 							<div class="m-drop-nav">
-								<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-</svg>자유게시판 </h1>
+								<h1 class="m-drop-tit-title line" style="cursor:pointer;">자유게시판 ▼</h1>
 							</div>
 							<div class="m-drop-down">
 								<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
-								<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="#">포트폴리오</a></h1>
+								<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portfolio">포트폴리오</a></h1>
 								<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 							</div>
   <script type="text/javascript">
@@ -137,7 +116,7 @@
 
 
  
-  </script>								
+  </script>							
 							<form name="form" id="form" role="form" method="POST" action="/board/free/write">
 								<div class="form-table">
 									<table>
