@@ -111,10 +111,10 @@ input, label, button {
 }
 
 .stock-deal-nav {
-border-bottom: 1px solid #1e78ff4a;
+    border-bottom: 1px solid #1e78ff4a;
     font-size: 24px;
     line-height: 30px;
-    padding: 20px 20px;
+    padding: 14px 20px;
     font-weight: 600;
     border-top: 1px solid #cce1ff;
     width: 100%;
@@ -122,10 +122,10 @@ border-bottom: 1px solid #1e78ff4a;
     color: #5e636d;
 }
 .stock-header{
-	    width: 1250px;
+width: 1250px;
     margin: auto;
-    font-size: 24px;
-    border-left:5px solid #1e78ff;
+    font-size: 22px;
+    border-left: 5px solid #1e78ff;
     padding: 0 22px;
     letter-spacing: 1px;
 }

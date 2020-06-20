@@ -19,6 +19,7 @@
 	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
 	<link rel="stylesheet" href="/resources/css/mainheader2.css">
+	<link rel="stylesheet" href="/resources/css/mainfooter.css">
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
@@ -650,7 +651,8 @@ tr td button {
 
 	</div>
 
-	<%@include file="mainfooter.jsp"%>
+		<%@include file="mainfooter.jsp" %>
+	
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
 	<!-- 검색 자동완성용 js -->
 	<script src="/resources/js/stockAutoComplete.js" type="text/javascript"></script>
