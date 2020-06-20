@@ -4,7 +4,7 @@
 	position: relative;
 	z-index: 7;
 	background: #fff;
-	box-sizing: border-box;
+	box-sizing: border-box;box-shadow: 0px 2px 11px -4px rgba(0,0,0,0.19);
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
@@ -30,7 +30,15 @@
 .navbar-brand {
 	margin-right: 0;
 }
-
+.dropdown-menu {
+    margin-top: 14px;
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.39);
+    width: 200px;
+    border-radius: 0 !important;
+    border: 1px solid #c9cfd4;
+    border-top: 2px solid #1e78ff;
+    padding: 10px 0;
+}
 @media only screen and (max-width:1599px) {
 	.m-container {
 		padding-right: 0
@@ -192,6 +200,7 @@ background: #0a84ec!important;
 	float: left;
 	margin-right: 10px;
 }
+
 
 @media ( max-width : 979px) {
 	.main-nav {

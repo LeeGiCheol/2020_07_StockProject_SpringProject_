@@ -281,8 +281,8 @@ border-radius: .25rem;
 
 
 
-					<a href="/customerqna" id="cBoxa" class="cBox">
-						<p class="cBoxTitle">도움말</p>
+					<a href="/customerqna" id="cBoxa2" class="cBox2">
+						<p class="cBoxTitle2">도움말</p>
 						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd"
@@ -297,8 +297,8 @@ border-radius: .25rem;
 
 
 
-					<a href="/customClaimWrite" id="cBoxb" class="cBox">
-						<p class="cBoxTitle">1:1 문의</p>
+					<a href="/customClaimWrite" id="cBoxb2" class="cBox2">
+						<p class="cBoxTitle2">1:1 문의</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd"

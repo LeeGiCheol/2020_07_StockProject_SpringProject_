@@ -212,13 +212,10 @@ padding-bottom: 5px;
 
 /* Custom CSS Styles */
 #cssmenu {
-  font-size: 18px;
-  width: 200px;
-  background: white;
-  /* border: 1px solid #848889; */
-/*   border-bottom: 1px solid #d7d8da; */
-  border-top: 1px solid #d7d8da;
-  border-right: 1px solid #d7d8da;
+    font-size: 18px;
+    width: 200px;
+    background: white;
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 }
 
 #cssmenu ul a,
@@ -330,7 +327,7 @@ padding-bottom: 5px;
 
 .card-header {
   background: white !important;
-  border: 0 !important;
+  border: 0 !important; box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 }
 
 .card-body {
@@ -358,13 +355,15 @@ padding-bottom: 5px;
 .phe_main_search {
   width: 100%;
   min-height: 250px;
-  padding: 64px 15px 60px;
+  padding: 64px 15px 53px;
   /* background: url(https://image.paxnet.co.kr/rpan/common/images/bg_phe_main_pc.png) no-repeat 0 0; */
   background-size: 100% 100%;
   color: #fff;
   text-align: center;
   line-height: 150%;
-  background: #1e78ff;
+background: #1e78ff;
+    background: linear-gradient(152deg, rgba(30,120,255,1) 0, rgba(169,30,255,1) 100%);
+    background-size: 150% 150%;
 
 }
 
@@ -391,16 +390,15 @@ padding-bottom: 5px;
 }
 
 .phe_main_search .input-box .search {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 42px;
-  height: 42px;
-  background: url(https://image.paxnet.co.kr/rpan/common/images/btn_search.png) no-repeat 100% 100%;
-  background-size: 70px 70px;
-  font-size: 0;
-  /* line-height: 0;
-  background: #1e78ff; */
+position: absolute;
+    top: 0;
+    right: -7px;
+    width: 44px;
+    height: 41px;
+    background: url(https://image.paxnet.co.kr/rpan/common/images/btn_search.png) no-repeat 100% 100%;
+    background-size: 73px 73px;
+    font-size: 0;
+    border: 2px solid #444444;
 }
 
 .phe_main_search .inquiry-box {
@@ -418,13 +416,13 @@ padding-bottom: 5px;
 }
 
 .phe_main_search .inquiry-box .link {
-  display: inline-block;
-  min-width: 67px;
-  margin: 0 0 0 5px;
-  padding: 2px 5px;
-  border: 1px solid #fff;
-  color: #fff;
-  vertical-align: middle;
+display: inline-block;
+    min-width: 67px;
+    padding: 5px 10px;
+    border: 3px solid #ff81a4;
+    color: #ffffff;
+    vertical-align: middle;
+    margin-top: 10px;
 }
 
 .notice-line {
@@ -488,7 +486,7 @@ padding-bottom: 5px;
 .sectionWrapper {
   padding: 8px 12px 15px 12px;
 }
-.cBox {
+.cBox2 {
 width: 49%;
     display: inline-block;
     text-align: center;
@@ -497,23 +495,23 @@ width: 49%;
     border-top: 5px solid #eff3f6;
 }
 
-.cBox:hover {
+.cBox2:hover {
   background-color: #1e78ff;
   color: white;
 }
 
-.cBox svg {
+.cBox2 svg {
   font-size: 4.5em;
 }
 
-#cBoxa {
+#cBoxa2 {
   margin-right: 16px;
 
 }
 
-#cBoxb {}
+#cBoxb2 {}
 
-.cBoxTitle {
+.cBoxTitle2 {
   font-size: 24px;
   font-weight: 700;
 }

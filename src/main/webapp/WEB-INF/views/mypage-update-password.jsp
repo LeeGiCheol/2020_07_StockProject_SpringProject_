@@ -15,7 +15,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
 <style>
-.gray{width: 172px; height:44px; margin-left: 214px; margin-top: 30px;}
+.gray{width: 172px; height:44px; margin-left: 200px; margin-top: 50px;}
 </style>
 <script>
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
