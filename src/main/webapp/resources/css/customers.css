@@ -5,6 +5,9 @@
   padding: 20px 0 0 0;
   margin: 0 auto;
 }
+#nav-font{
+	color:#5e636d;
+}
 .list-group-item{
 	padding-left: 25px;
 }

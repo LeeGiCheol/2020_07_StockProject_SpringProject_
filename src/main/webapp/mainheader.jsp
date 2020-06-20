@@ -9,7 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>mainheader</title>
 </head>
-	<link rel="stylesheet" href="/resources/css/mainheader3.css">
 
 <body>
 	<div class="header">
