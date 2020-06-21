@@ -285,7 +285,7 @@ border-left: 4px solid #1e78ff !important;
 				
 				<div class="search-area">
 					<div  class="search-area-body">
-					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free/best">
+					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free/">
 						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 						<select class="dropdown-toggle-board" name="searchStyle">

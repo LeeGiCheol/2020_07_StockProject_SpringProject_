@@ -387,7 +387,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
-								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
+								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free/best?orderby=best'">더보기</button>
 							</div>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">신규 글</a>
@@ -447,7 +447,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<a id="new-market-conditions" style="cursor:pointer;">시황 전망</a>
 						<a id="new-event" style="cursor:pointer;">기업 종목분석</a>
 					</span>
-					<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
+					<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/news'">더보기</button>
 
 					<div class="tab-content" id="pills-tabContent">
 						<div class="news-body" id="realTimeHtml">
@@ -595,7 +595,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<ul>
 						
 							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
-								<li class="first"><a><i> <c:out value="${vs.count}"/></i> <span><c:out
+								<li class="first"><a href="/selectUserMoney"><i> <c:out value="${vs.count}"/></i> <span><c:out
 												value="${list.nickname}" /></span>
 										<p class="color-red">
 											<c:out value="${list.revenue}%" />

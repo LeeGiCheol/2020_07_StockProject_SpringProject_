@@ -9,7 +9,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -152,6 +154,19 @@ public class MainPageController {
 		map.put("news2", news_.getNews2());
 		map.put("news3", news_.getNews3());
 		return map;
+	}
+	
+	@GetMapping(value="/selectUserMoney")
+	public String selectUserMoney(Model model, @ModelAttribute("type") String type) {
+		try {
+			if (type.equals(""))
+				type = "rate";
+		}catch(Exception e) {
+			type = "rate";
+			
+		}
+		model.addAttribute("type", type);
+		return "selectUserMoney";
 	}
 
 //	@GetMapping(value = "/mainPage/userRank")

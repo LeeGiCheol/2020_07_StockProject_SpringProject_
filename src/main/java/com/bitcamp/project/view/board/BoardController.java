@@ -61,13 +61,11 @@ public class BoardController {
 		System.out.println("path " + request.getServletPath());
 		if (request.getServletPath().equals("/board/free/best")) {
 			orderby = "best";
-		} else if (request.getServletPath().equals("/board/free")) {
+		} 
+		else if (request.getServletPath().equals("/board/free")) {
 			orderby = "new";
 		}
-		System.out.println("orderby " + orderby);
-		if (orderby.equals("")) {
-			orderby = "new";
-		} else if (orderby.equals("")) {
+		else if (orderby.equals("")) {
 			orderby = "new";
 		}
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
