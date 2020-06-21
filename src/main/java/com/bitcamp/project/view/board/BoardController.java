@@ -107,48 +107,52 @@ public class BoardController {
 		vo.setBno(1); // 자유게시판
 		
 		List<String> uploadThumbnail = new ArrayList<String>();
-		
-		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
 
-		for (int i = 1; i < img.length; i++) {
-			
-			int start = img[i].indexOf("/Photo");
-			int end = img[i].indexOf("\" title=\"");
-			img[i] = img[i].substring(start-8, end);
-		}
-		
-
-		String thumbnail = null;
-		
-		try {
-			for (int i = 0; i < uploadedFileName.size(); i++) {
-				int a = 0;
-				for (int j = 1; j < img.length; j++) {
-					if(uploadedFileName.get(i).equals(img[j])) {
-						uploadThumbnail.add(uploadedFileName.get(i));
-						a++;
-					}
-				}
-
-				thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadThumbnail.get(i).substring(0,8) + "/THUMB_" + uploadThumbnail.get(i).substring(9);
-				File thumbnailDelete = new File(thumbnail);
-				if(thumbnailDelete.exists()) {
-				    // 파일을 삭제
-					thumbnailDelete.delete();
-				}
+		if(vo.getBcontent().contains("<img src=")) {
+			String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+	
+			for (int i = 1; i < img.length; i++) {
+				
+				int start = img[i].indexOf("/Photo");
+				int end = img[i].indexOf("\" title=\"");
+				img[i] = img[i].substring(start-8, end);
 			}
 			
-			uploadedFileName.clear();
-		}catch(Exception e) {
-			e.printStackTrace();
+	
+			String thumbnail = null;
+			
+			try {
+				for (int i = 0; i < uploadedFileName.size(); i++) {
+					int a = 0;
+					for (int j = 1; j < img.length; j++) {
+						if(uploadedFileName.get(i).equals(img[j])) {
+							uploadThumbnail.add(uploadedFileName.get(i));
+							a++;
+						}
+					}
+	
+					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadThumbnail.get(i).substring(0,8) + "/THUMB_" + uploadThumbnail.get(i).substring(9);
+					File thumbnailDelete = new File(thumbnail);
+					if(thumbnailDelete.exists()) {
+					    // 파일을 삭제
+						thumbnailDelete.delete();
+					}
+				}
+				
+				uploadedFileName.clear();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			finally {
+				System.out.println("BV " + vo);
+				boardService.writeFreeBoard(vo);
+			}
 		}
 		
-		
-		finally {
-			System.out.println("BV " + vo);
-			boardService.writeFreeBoard(vo);
-		}
-		
+		boardService.writeFreeBoard(vo);
 		return "redirect:/board/free";
 	}
 	

@@ -229,8 +229,9 @@
 		ev.preventDefault();
 		
 		if (nImageFileCount >= 10){
-			alert("최대 10장까지만 등록할 수 있습니다.");
-			return;
+			swal({text:"최대 10장까지만 등록할 수 있습니다.", icon:"warning"})
+				
+				return;
 		}
 		
 		if(typeof ev.dataTransfer.files == 'undefined'){
@@ -266,7 +267,7 @@
 						j = j+1;
 						nImageInfoCnt = nImageInfoCnt+1;
 					} else {
-						alert("최대 10장까지만 등록할 수 있습니다.");
+						swal({text:"최대 10장까지만 등록할 수 있습니다.", icon:"warning"})
 						break;			
 					}
 				}
