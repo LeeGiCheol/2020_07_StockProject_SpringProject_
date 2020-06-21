@@ -1,0 +1,489 @@
+@charset "UTF-8";
+
+/*--------------------------- start 공통 적용 css ---------------------------*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+	figure, footer, header, hgroup, menu, nav, section, summary, time,
+	audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font-size: 14px;
+	background: transparent;
+	list-style: none;
+	box-sizing: border-box;
+	word-break: break-all;
+}
+
+body {
+	line-height: 1;
+	-webkit-text-size-adjust: none;
+	    background: #eff3f6;
+	color: #000;
+}
+
+span, em, mark, strong, b, label {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	background: transparent;
+	list-style: none;
+	box-sizing: border-box;
+}
+
+p {
+	line-height: 160%;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+	text-decoration: none;
+}
+
+body.member {
+	
+}
+em, i {
+    font-style: normal;
+}
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+}
+legend, caption {
+    font-size: 0;
+    overflow: hidden;
+    text-indent: -9999999px;
+    height: 0;
+    width: 0;
+    line-height: 0;
+}
+td, th {
+    word-break: break-all;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input[type="text"], input[type="password"], input[type="tel"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: 1;
+    width: 100%;
+    padding: 5px 35px 6px 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+.color-red {
+	color: #f6212a !important;
+}
+
+/*--------------------------- end 공통 적용 css ---------------------------*/
+
+/*--------------------------- start 본문 전체 사이즈 containerNew div css ---------------------------*/
+
+@media ( max-width : 979px) {
+	body .containerNew {
+		padding-top: 0;
+	}
+}
+
+@media ( max-width : 979px) {
+	.containerNew {
+		padding-top: 104px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.containerNew {
+		padding: 0;
+		padding-bottom: 170px;
+	}
+}
+
+.containerNew {
+	position: relative;
+	max-width: 1260px;
+	height: 100%;
+	padding: 20px 0 0 0;
+	margin: 0 auto;
+}
+
+/*--------------------------- end 본문 전체 사이즈 containerNew div css ---------------------------*/
+
+/*--------------------------- start 본문 내부 전체 사이즈 contents/member div css ---------------------------*/
+
+.contents.member {
+	margin-right: 0;
+	min-height: 400px;
+}
+
+
+
+@media only screen and (max-width: 1599px) {
+	.contents.member {
+		margin: 0 auto 100px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.contents.member {
+		margin-bottom: 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.contents {
+		position: inherit;
+		min-height: initial;
+	}
+}
+
+@media only screen and (max-width: 1599px) {
+	.contents {
+		margin: 0 auto;
+		max-width: 1260px;
+	}
+}
+
+.contents {
+	position: relative;
+	z-index: 1;
+	min-height: 920px;
+}
+
+/*--------------------------- end 본문 내부 전체 사이즈 contents/member div css ---------------------------*/
+
+/*--------------------------- start 본문 내부 내부 사이즈 cont-area div css ---------------------------*/
+
+.cont-area {
+	margin-right: 310px;
+	padding: /*20px 30px 60px 30px*/ 20px 30px 0 30px;
+	margin-bottom: /*70px*/ 40px;
+	background: #fff;
+	position: relative;    border: 1px solid #e5e6ef;
+}
+
+@media only screen and (max-width: 979px) {
+	.contents.member .cont-area {
+		padding-bottom: 60px;
+	}
+}
+
+@media only screen and (max-width: 1599px) {
+	.contents.member .cont-area {
+		width: 100%;
+		float: none;
+	}
+}
+
+.contents.member .cont-area {
+	margin: 0 auto 0;
+	max-width: 630px;margin: 0 auto 0;
+    max-width: 630px;
+    border: 1px solid #e5e6ef;
+    min-height: 650px;
+}
+
+@media only screen and (max-width: 979px) {
+	.cont-area {
+		min-height: auto;
+		margin-right: 0;
+		padding: 20px 0 120px;
+		/* border-top: 10px solid #eff3f6; */
+		max-width: none !important;
+		width: 100% !important;
+	}
+}
+
+@media only screen and (max-width: 1160px) {
+	.cont-area {
+		margin: 0 auto;
+		max-width: 950px;
+		width: 100%;
+		float: none;
+	}
+}
+
+@media only screen and (max-width: 1599px) {
+	.cont-area {
+		margin-right: 0;
+		float: left;
+		width: calc(100% - 310px);
+	}
+}
+
+/*--------------------------- end 본문 내부 내부 사이즈 div css ---------------------------*/
+
+/*--------------------------- start title css tit-h1 line ---------------------------*/
+
+.tit-h1.line {
+	margin: 0 -30px 30px;
+	border-bottom: 1px solid #eaeaea;
+	padding: 0 30px 20px;
+}
+
+@media only screen and (max-width: 979px) {
+	.contents.member .cont-area h1 {
+		display: block !important;
+		padding-left: 15px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.tit-h1.line {
+		margin: 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.cont-area h1 {
+		display: none;
+	}
+}
+@media only screen and (max-width: 979px) {
+	.h1-top-m {
+		margin-top: 30px !important;
+	}
+}
+
+.tit-h1 {
+	font-size: 20px;
+	margin-bottom: 30px;
+	font-weight: 700;
+	line-height: 100%;
+}
+
+/*--------------------------- end title css tit-h1 line ---------------------------*/
+
+.info-modify {
+    padding: 30px 0;
+}
+.info-modify [class*="message-st"] {
+    padding-bottom: 15px;
+}
+[class*="message-st"] {
+    max-width: 460px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 150%;
+}
+[class*="message-st"] .big-text {
+    position: relative;
+    font-size: 20px;
+    line-height: 150%;
+    padding-top: 100px;
+}
+.big-text {
+    font-size: 16px;
+    line-height: 170%;
+    color: #222;
+}
+[class*="message-st"] span {
+    display: inline-block;
+    font-size: inherit;
+}
+.info-modify [class*="message-st-01"] .big-text:after {
+    background-position: -897px 0;
+}
+.info-modify [class*="message-st"] .big-text:after {
+    background-position: -1175px 0;
+}
+[class*="message-st"] .big-text:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background: url(/rpan/common/images/icon_message.png?update=20180329) no-repeat 0 0;
+}
+input {
+    border: 1px solid black;
+}
+fieldset, img, abbr, acronym {
+    border: 0;
+}
+legend, caption {
+    font-size: 0;
+    overflow: hidden;
+    text-indent: -9999999px;
+    height: 0;
+    width: 0;
+    line-height: 0;
+}
+.info-modify .info-password {
+    border: #eaeaea 1px solid;
+    padding: 30px 50px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.info-modify .info-password .id {
+    padding-bottom: 10px;
+}
+.info-modify .info-password p {
+    overflow: hidden;
+}
+.info-modify .info-password .id label {
+    background: url(/rpan/common/images/ico_member.png?update=20180419) no-repeat -6px 0;
+    background-size: 36px 750px;
+    padding-left: 30px;
+}
+.info-modify .info-password label {
+    display: inline-block;
+    width: 22%;
+    height: 28px;
+    line-height: 28px;
+    vertical-align: middle;
+    float: left;
+}
+.info-modify .info-password .input-style {
+    width: 78%;
+    float: right;
+}
+[class*="input-style"] {
+    display: inline-block;
+    position: relative;
+}
+input[type="text"], input[type="password"], input[type="tel"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: 1;
+    width: 100%;
+    padding: 5px 35px 6px 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+input[readonly], input[disabled] {
+    background: #f9f9f9;
+}
+.info-modify .info-password p {
+    overflow: hidden;
+}
+.info-modify .info-password .pw label {
+    background: url(/rpan/common/images/ico_member.png?update=20180419) no-repeat -6px -51px;
+    background-size: 36px 750px;
+    padding-left: 30px;
+}
+.info-modify .info-password label {
+    display: inline-block;
+    width: 22%;
+    height: 28px;
+    line-height: 28px;
+    vertical-align: middle;
+    float: left;
+}
+.info-modify .info-password .input-style {
+    width: 78%;
+    float: right;
+}
+.member .bt-area {
+    overflow: hidden;
+    padding: 20px 0;
+    text-align: center;
+}
+.bt-area {
+    overflow: hidden;
+    padding: 20px 0 40px;
+}
+.align-c {
+    text-align: center !important;
+}
+.member .bt-area .btn-b {
+    min-width: 142px;
+}
+[class*="btn-"].red {
+    background: #ff545b;
+    border: 1px solid #ff545b;
+    color: #fff;
+}
+[class*="btn-b"] {
+    padding: 13px 25px;
+    min-width: 90px;
+    font-size: 16px;
+}
+[class*="btn-"] {
+    position: relative;
+    background: #fff;
+    border: 1px solid #444;
+    line-height: 100%;
+    display: inline-block;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+
+
+@media only screen and (max-width: 979px){	
+.info-modify {
+    padding: 10px 0;
+}
+[class*="message-st"] .big-text {
+    font-size: 16px;
+}
+.info-modify .message-st-01 mark {
+    display: block;
+}
+.info-modify .info-password {
+    border: none;
+    max-width: 100%;
+    border-top: #eaeaea 1px solid;
+    border-bottom: #eaeaea 1px solid;
+    padding: 30px 20px;
+}
+.info-modify .info-password label {
+    display: none;
+}
+.info-modify .info-password .input-style {
+    width: 100%;
+    float: none;
+}
+input[type="text"], input[type="password"], input[type="tel"] {
+    padding: 9px 35px 10px 10px;
+    height: 36px;
+}
+.info-modify .info-password label {
+    display: none;
+}
+.info-modify .info-password .input-style {
+    width: 100%;
+    float: none;
+}
+.member .bt-area {
+    padding: 20px 0;
+}
+.bt-area {
+    clear: both;
+    overflow: hidden;
+    padding: 0 15px 40px;
+}
+}
