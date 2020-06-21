@@ -665,7 +665,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 		</div>
 	</div>
 
-	<%@include file="mainfooter.jsp"%>
+	<%@include file="mainfooter2.jsp"%>
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
