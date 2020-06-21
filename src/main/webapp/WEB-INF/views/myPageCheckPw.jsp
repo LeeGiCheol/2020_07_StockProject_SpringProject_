@@ -22,32 +22,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 </head>
 <body class="member">
 <%@include file="mainheader.jsp" %>
-
-		<div class="contents member">
-			<div class="cont-area">
-				<h1 align="center" class="tit-h1 line">비밀번호 확인</h1>
-				<div class="id-result">
-					<div class="find-desc h1-top-m">
-					</div>
-					<div class="form-table pass-reset">
-					<form action="/myPagePwCheck" method="post" id="frm" name="frm">
-						<table>
-							<tbody>
-								<tr>
-									<th scope="row"><label for="password">현재 비밀번호</label></th>
-									<td><span class="input-style-case02">
-									<input type="password" id="password" name="password" class="pw" 
-									placeholder="비밀번호를 입력해주세요." onKeyPress="return spaceCheck(event)" maxlength="13"></span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<button style="margin-left: 198px;" id="submit" type="button" class="btn-t gray" >비밀번호 확인</button>
-					</form>
-				</div>
-				</div>
-			</div>
-		</div>
 		
 		<div class="containerNew"> 
 <!-- 		정보수정 -->
@@ -62,11 +36,11 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					<div class="message-st-01">
 						<p class="big-text">
 							개인정보를 안전하게 보호하기 위해 <br> 
-							<span class="color-red">비밀번호를 다시 한번</span> 입력해 <mark>주시기 바랍니다.</mark>
+							<span class="color-fantasy">비밀번호를 다시 한번</span> 입력해 <mark>주시기 바랍니다.</mark>
 						</p>
 					</div>
 					<!-- //message-st-01 -->
- 					<form action="/rpan/member/info/authCheck" method="post" id="frm" name="frm">
+ 					<form action="/myPagePwCheck" method="post" id="frm" name="frm">
  						<input name="returnUrl" type="hidden" value="/rpan/member/info/userInfo">
  						<input name="linkUrl" type="hidden" value="">
 						<fieldset>
@@ -86,13 +60,12 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								<p class="pw">
 									<label>비밀번호</label>
 									<span class="input-style">
-										<input type="password" placeholder="비밀번호 입력" id="pswd" name="pswd" autocomplete="OFF">
-										<button type="button" class="delete">삭제</button>
+										<input type="password" placeholder="비밀번호 입력" id="password" name="password" onKeyPress="return spaceCheck(event)" maxlength="13">
 									</span>
 								</p>
 							</div>
 							<div class="bt-area align-c">  
-								<button type="submit" class="btn-b red">확인</button>
+								<button id="submit" type="button" class="btn-b fantasy" >확인</button>
 							</div>
 						</fieldset> 
 					</form>

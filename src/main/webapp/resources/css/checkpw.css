@@ -53,7 +53,7 @@ a, a:link, a:visited, a:active, a:hover {
 }
 
 body.member {
-	
+    background: #fff;
 }
 em, i {
     font-style: normal;
@@ -97,15 +97,17 @@ input[type="text"], input[type="password"], input[type="tel"] {
 .color-red {
 	color: #f6212a !important;
 }
-
+.color-fantasy {
+	color: #1e78ff !important;
+}
 /*--------------------------- end 공통 적용 css ---------------------------*/
 
 /*--------------------------- start 본문 전체 사이즈 containerNew div css ---------------------------*/
 
 @media ( max-width : 979px) {
-	body .containerNew {
-		padding-top: 0;
-	}
+body.member .containerNew {
+    padding-top: 0;
+}
 }
 
 @media ( max-width : 979px) {
@@ -115,10 +117,10 @@ input[type="text"], input[type="password"], input[type="tel"] {
 }
 
 @media only screen and (max-width: 979px) {
-	.containerNew {
-		padding: 0;
-		padding-bottom: 170px;
-	}
+.containerNew {
+    padding: 0;
+    /* padding-bottom: 170px; */
+}
 }
 
 .containerNew {
@@ -135,7 +137,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 
 .contents.member {
 	margin-right: 0;
-	min-height: 400px;
+    min-height: 600px;
 }
 
 
@@ -177,11 +179,11 @@ input[type="text"], input[type="password"], input[type="tel"] {
 /*--------------------------- start 본문 내부 내부 사이즈 cont-area div css ---------------------------*/
 
 .cont-area {
-	margin-right: 310px;
-	padding: /*20px 30px 60px 30px*/ 20px 30px 0 30px;
-	margin-bottom: /*70px*/ 40px;
-	background: #fff;
-	position: relative;    border: 1px solid #e5e6ef;
+    margin-right: 310px;
+    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
+    margin-bottom: /*70px*/40px;
+    background: #fff;
+    position: relative;
 }
 
 @media only screen and (max-width: 979px) {
@@ -198,11 +200,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 }
 
 .contents.member .cont-area {
-	margin: 0 auto 0;
-	max-width: 630px;margin: 0 auto 0;
+    margin: 0 auto 0;
     max-width: 630px;
-    border: 1px solid #e5e6ef;
-    min-height: 650px;
 }
 
 @media only screen and (max-width: 979px) {
@@ -317,7 +316,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
     margin-left: -65px;
     width: 130px;
     height: 130px;
-    background: url(/rpan/common/images/icon_message.png?update=20180329) no-repeat 0 0;
+    background: url(/resources/img/icon_message.png) no-repeat 0 0;
 }
 input {
     border: 1px solid black;
@@ -419,9 +418,19 @@ input[readonly], input[disabled] {
     min-width: 142px;
 }
 [class*="btn-"].red {
-    background: #ff545b;
-    border: 1px solid #ff545b;
+    background: #1e78ff;
+    border: 1px solid #1e78ff;
     color: #fff;
+}
+[class*="btn-"].fantasy {
+    background: #1e78ff;
+    border: 1px solid #1e78ff;
+    color: #fff;
+}
+.fantasy:hover {
+    color: #1e78ff;
+    border: 1px solid #eff3f6;
+    background: #f3faff;
 }
 [class*="btn-b"] {
     padding: 13px 25px;
@@ -439,7 +448,9 @@ input[readonly], input[disabled] {
     box-sizing: border-box;
     text-align: center;
 }
-
+.info-modify [class*="message-st-01"] .big-text:after {
+    background-position: -897px 0;
+}
 
 
 
