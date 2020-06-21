@@ -16,10 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
+import com.bitcamp.project.service.MyAccountService;
+import com.bitcamp.project.service.MyPostService;
+import com.bitcamp.project.service.SignInService;
 import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.service.UserInfoService;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.HoldingStockVO;
 import com.bitcamp.project.vo.Info;
+import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
 import stockCode.KospiKosdaq;
@@ -37,6 +43,14 @@ public class MainPageController {
 
 	@Autowired
 	UserInfoService userInfoService;
+	
+	@Autowired
+	MyPostService myPostService;
+
+	@Autowired
+	SignInService signInService;
+	@Autowired
+	MyAccountService myAccountService;
 
 	@GetMapping(value = "/mainPage")
 	public ModelAndView mainPage(BoardVO vo, HttpSession session) {
@@ -157,16 +171,70 @@ public class MainPageController {
 	}
 	
 	@GetMapping(value="/selectUserMoney")
-	public String selectUserMoney(Model model, @ModelAttribute("type") String type) {
-		try {
-			if (type.equals(""))
-				type = "rate";
-		}catch(Exception e) {
+	public ModelAndView selectUserMoney(HttpSession session, UserVO vo, Model model,
+										@ModelAttribute("nowPage1") String nowPage1/* 계좌용 */,
+										@ModelAttribute("nowPage2") String nowPage2/* 날짜별 */, @ModelAttribute("nowPage3") String nowPage3/* 종류별 */,
+										@ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
+										@ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
+										@ModelAttribute("type") String type) {
+		if (type.equals(""))
 			type = "rate";
-			
+		if (nowPage1.equals(""))
+			nowPage1 = "1";
+		if (nowPage2.equals(""))
+			nowPage2 = "1";
+		if (nowPage3.equals(""))
+			nowPage3 = "1";
+		
+		UserVO user = null;
+		System.out.println("체크 " + vo);
+		user = myPostService.selectUser(vo);
+		user = signInService.logIn(user);
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		session.setAttribute("loginUser", loginUser);
+		System.out.println("체크2 " + user);
+		ModelAndView mav = new ModelAndView();
+
+		if(loginUser == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("location", "/signInPage");
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
 		}
-		model.addAttribute("type", type);
-		return "selectUserMoney";
+		
+		
+		else if(user.getShowEsetSetting() == 0) {
+			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
+			mav.addObject("location", "");
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
+		}
+		else {
+			mav.addObject("user", user);
+			HashMap<String, Object> hm1 = myAccountService.getMyStockList(user, Integer.parseInt(nowPage1),
+					accountSearch);
+			HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(user,
+					Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
+//			   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
+			HashMap<String, Object> hm4 = userInfoService.getRate(user.getId());
+			mav.addObject("pv1", (PagingVO) hm1.get("pv1"));
+			mav.addObject("holdingStockList", (List<HoldingStockVO>) hm1.get("holdingStockList"));
+			mav.addObject("pv2", (PagingVO) hm2.get("pv2"));
+			mav.addObject("stockHistoryList", (List<StockVO>) hm2.get("stockHistoryList"));
+//			   mav.addObject("pv3", (PagingVO)hm3.get("pv3"));
+//			   mav.addObject("stockHistoryListByStock", (List<StockVO>)hm3.get("stockHistoryListByStock"));
+			mav.addObject("accuntSearch", accountSearch);
+			mav.addObject("tradeSearch", tradeSearch);
+			mav.addObject("startDate", startDate);
+			mav.addObject("endDate", endDate);
+			mav.addObject("type", type);
+			mav.addObject("accumAsset", hm4.get("accumAsset"));
+			mav.addObject("ranking", hm4.get("ranking"));
+			mav.setViewName("selectUserMoney");
+			return mav;
+		}
 	}
 
 //	@GetMapping(value = "/mainPage/userRank")

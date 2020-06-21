@@ -64,7 +64,7 @@
 		<div class="main-nav">
 		<nav
 			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-			<a href="#" class="navbar-logo"><img class="" id="logo"
+			<a href="/mainPage" class="navbar-logo"><img class="" id="logo"
 				src="/resources/img/logo.png"></a> <a class="navbar-brand"
 				href="/mainPage">Fantasy Stock</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"

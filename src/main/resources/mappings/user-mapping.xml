@@ -96,6 +96,13 @@
 		natural join usermoney
 		WHERE id = #{id}
 	</select>
+	
+	<select id="selectUser" parameterType="user" resultType="user">
+		SELECT * 
+		FROM user
+		WHERE nickname = #{nickname}
+	</select>
+	
 	<!-- 아이디찾기 -->
 	<select id="findId" parameterType="user" resultType="user">
 		SELECT *

@@ -57,4 +57,11 @@ public class MyPostDAOImpl implements MyPostDAO {
 			mybatis.update("board.deleteBoardComment", pno);
 		}
 	}
+
+	@Override
+	public UserVO selectUser(UserVO vo) {
+		return mybatis.selectOne("user.selectUser", vo);
+	}
+	
+	
 }

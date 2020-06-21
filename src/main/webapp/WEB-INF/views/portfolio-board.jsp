@@ -160,10 +160,12 @@ $(document).ready(function(){
 																class="ntc"> </span>-->${portfolioList.title}</a>
 														</dt>
 														<dd class="date">
-															<span> <span class="nick-badge-small"><a
-																	href="javascript:viewProfile('webmaster')">${portfolioList.nickname}</a></span> 
-																		
-																		
+
+															<span> <span class="nick-badge-small"><a href="/selectUserMoney?nickname=
+																		${portfolioList.nickname}"><img
+																		src="//www.paxnet.co.kr/my/files/badge/favor3S.png?20200616"
+																		alt="">${portfolioList.nickname}</a></span> 
+																																		
 																		<fmt:formatDate value="${portfolioList.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
 																		<span class="data-date-format">${time}</span> <span
 																class="comment" id="countNum150357583575745"><i class="far fa-comment-dots"> ${portfolioList.commentCount}</i></span>
