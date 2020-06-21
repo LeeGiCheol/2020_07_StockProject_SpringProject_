@@ -396,6 +396,11 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						</ul>
 						<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 					</div>
+					
+					<span class="ranking-tab">
+						<a class="selected" id="srchRanking" style="cursor:pointer;">주간 랭킹</a>
+						<a id="toronRanking" style="cursor:pointer;">누적 랭킹</a>
+					</span>
 
 					<div class="tab-content" id="pills-tabContent">
 						<div class="tab-pane fade show active" id="pills-home"
@@ -609,7 +614,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 		</div>
 	</div>
 
-	<%@include file="mainfooter.jsp"%>
+	<%@include file="mainfooter2.jsp"%>
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
@@ -1047,6 +1052,21 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 			$("#discHtml").show();
 		});
 	}
+/* 	function initDefaultFunc(){
+		$("#srchRanking").click(function(){
+			$(this).addClass("selected");
+			$("#toronRanking").removeClass("selected");
+			$("#searchHtml").show();
+			$("#discHtml").hide();
+		});
+
+		$("#toronRanking").click(function(){
+			$(this).addClass("selected");
+			$("#srchRanking").removeClass("selected");
+			$("#searchHtml").hide();
+			$("#discHtml").show();
+		});
+	} */
 
 </script>
 
