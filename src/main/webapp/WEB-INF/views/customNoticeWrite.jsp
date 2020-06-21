@@ -141,7 +141,7 @@ border-left: 4px solid #1e78ff !important;
 							
 							
 							
-							<form name="form" id="form" role="form" method="POST" action="/board/free/write">
+							<form name="form" id="form" role="form" method="POST" action="/customNoticeWrite">
 								<div class="form-table">
 									<table>
 										<tbody>
