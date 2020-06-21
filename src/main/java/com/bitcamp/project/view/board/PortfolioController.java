@@ -155,14 +155,14 @@ public class PortfolioController {
 				
 				
 				for (int i = 1; i < uploadThumbnail.size(); i++) {
-					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
+					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadThumbnail.get(i).substring(0,8) + "/THUMB_" + uploadThumbnail.get(i).substring(9);
 					File thumbnailDelete = new File(thumbnail);
 					if(thumbnailDelete.exists()) {
 						thumbnailDelete.delete(); 
 					}
 				}
 				
-				vo.setThumbnailName("/resources/se2/upload/"+uploadThumbnail.get(0).substring(0,8) + "/THUMB_" + uploadThumbnail.get(0).substring(9));
+				vo.setThumbnailName("/resources/se2/upload/"+img[1].substring(0,8) + "/THUMB_" + img[1].substring(9));
 				uploadedFileName.clear();
 				boardService.writeFreeBoard(vo);
 			}

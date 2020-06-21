@@ -303,8 +303,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<colgroup>
 									<col width="30%">
 									<col width="20%">
-									<col width="30%">
-									<col width="20%">
+									<col width="25%">
+									<col width="25%">
 								</colgroup>
 								<tbody class="rank-table" id="topRank">
 
@@ -320,8 +320,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<colgroup>
 									<col width="30%">
 									<col width="20%">
-									<col width="30%">
-									<col width="20%">
+									<col width="25%">
+									<col width="25%">
 								</colgroup>
 								<tbody class="rank-table" id="searchRank">
 
@@ -339,13 +339,17 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 				</div>
 
 				<div class="community">
-					<div class="community-best">
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
 								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 							</div>
+							<div class="nav nav-tabs" role="tablist">
+								<a class="nav-item">신규 글</a>
+								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free'">더보기</button>
+							</div>
 						</nav>
+					<div class="community-best">
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
@@ -360,12 +364,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 
 
 					<div class="community-new">
-						<nav>
-							<div class="nav nav-tabs" role="tablist">
-								<a class="nav-item">신규 글</a>
-								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free'">더보기</button>
-							</div>
-						</nav>
+
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
@@ -385,99 +384,44 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 							<li class="breadcrumb-item" role="presentation"><a
 								class="nav-link active"  data-toggle="pill"
 								href="#pills-home" role="tab" aria-controls="pills-home"
-								aria-selected="true">종합</a></li>
+								aria-selected="true">실시간 속보</a></li>
 							<li class="breadcrumb-item" role="presentation"><a
 								class="nav-link"  data-toggle="pill"
 								href="#pills-profile" role="tab" aria-controls="pills-profile"
-								aria-selected="false">증권</a></li>
+								aria-selected="false">시황 전망</a></li>
 							<li class="breadcrumb-item" role="presentation"><a
 								class="nav-link"  data-toggle="pill"
 								href="#pills-contact" role="tab" aria-controls="pills-contact"
-								aria-selected="false">정치/사회</a></li>
+								aria-selected="false">기업 종목분석</a></li>
 						</ul>
+						<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 					</div>
 
 					<div class="tab-content" id="pills-tabContent">
 						<div class="tab-pane fade show active" id="pills-home"
 							role="tabpanel" aria-labelledby="pills-home-tab">
-							<div class="headline">
-								<a href="#">
-									<p>
-										<strong>[fn오전시황] 코스피, 미중 갈등 우려에 2000선 내줘</strong> <span>
-											[파이낸셜뉴스] 코스피가 상승출발했으나 미중 갈등 악화에 약세로 전환했다. 22일 오전 10시 22분 현재
-											코스피는 전 거래일보다 13.82포인트(0.69%) 내린 1984.49를 가리키고 있다. 지수는 전 거래일보다
-											0.16%(3.29포인트) 오른 2001.60으로 개장했지만 외국인 매도세가 짙어지며 2000선 아래로
-											떨어졌다. 유가증권시장에서 외국인과 기관은 각각 1557억원, 413억원 순매도하며 지수를 끌어내리고 있다.
-											개인은 2092억원 순매수하고 있다. 간밤 뉴욕 증시에서 다우존스30 산업평균지수(-0.41%)와
-											스탠더드앤드푸어스(S&P) 500 지수(-0.78%), 나스닥 지수(-0.97%) 등 주요 지수는 홍콩시위와
-											코로나19 확산 책임을 둘러싼 미중 갈등에 일제히 하락했다. </span>
-										<mark>파이낸셜뉴스</mark>
-										<em>10:31</em>
-									</p>
-								</a>
+							<div class="headline" id="mainNews1head">
+								
 							</div>
-							<ul>
-								<li id="test_1"><a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에
-										대체제 부각 '강세'</a> <mark>이데일리</mark> <em>14:53</em></li>
-								<li id="test_1"><a href="#">코스피·코스닥, 외국인·기관 동반 매도세에 1%대
-										급락</a> <mark>아시아경제</mark> <em>13:53</em></li>
-								<li id="test_1"><a href="#">코스피, 외국인·기관 동반 매도에 1% 이상
-										'하락'</a> <mark>이데일리</mark> <em>13:35</em></li>
+							<ul id="mainNews1">
+							
 							</ul>
 						</div>
 						<div class="tab-pane fade" id="pills-profile" role="tabpanel"
 							aria-labelledby="pills-profile-tab">
-							<div class="headline">
-								<a href="#"> <span class="news-img"> <img
-										src="img/20200522_16726299.jpg">
-								</span>
-									<p>
-										<strong>코스닥 외국인 순매수,도 상위20종목</strong> <span> 코스닥 외국인
-											순매수 상위종목(금액기준) 순위 종목명 금액(억원) 1 에코프로비엠(247540) 135.97 2
-											네오위즈(095660) 78.48 3 셀트리온헬스케어(091990) 57.05 4
-											NHN한국사이버결제(060250) 34.54 5 KG이니시스(035600) 34.44 6
-											에스앤에스텍(101490) 33.93 7 메드팩토(235980) 33.28 8 다우데이타(032190)
-											24.68 9 에이디테크놀로지(200710) 21.43 10 컴투스(078340) 19.75 11
-											리노공업(058470) 18.59 </span>
-										<mark>인포스탁</mark>
-										<em>15:51</em>
-									</p>
-								</a>
+							<div class="headline" id="mainNews2head">
+								
 							</div>
-							<ul>
-								<li id="test_1"><a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에
-										대체제 부각 '강세'</a> <mark>이데일리</mark> <em>14:53</em></li>
-								<li id="test_1"><a href="#">코스피·코스닥, 외국인·기관 동반 매도세에 1%대
-										급락</a> <mark>아시아경제</mark> <em>13:53</em></li>
-								<li id="test_1"><a href="#">코스피, 외국인·기관 동반 매도에 1% 이상
-										'하락'</a> <mark>이데일리</mark> <em>13:35</em></li>
+							<ul id="mainNews2">
+								
 							</ul>
 						</div>
 						<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 							aria-labelledby="pills-contact-tab">
-							<div class="headline">
-								<a href="#">
-									<p>
-										<strong>[fn오전시황] 코스피, 미중 갈등 우려에 2000선 내줘</strong> <span>
-											[파이낸셜뉴스] 코스피가 상승출발했으나 미중 갈등 악화에 약세로 전환했다. 22일 오전 10시 22분 현재
-											코스피는 전 거래일보다 13.82포인트(0.69%) 내린 1984.49를 가리키고 있다. 지수는 전 거래일보다
-											0.16%(3.29포인트) 오른 2001.60으로 개장했지만 외국인 매도세가 짙어지며 2000선 아래로
-											떨어졌다. 유가증권시장에서 외국인과 기관은 각각 1557억원, 413억원 순매도하며 지수를 끌어내리고 있다.
-											개인은 2092억원 순매수하고 있다. 간밤 뉴욕 증시에서 다우존스30 산업평균지수(-0.41%)와
-											스탠더드앤드푸어스(S&P) 500 지수(-0.78%), 나스닥 지수(-0.97%) 등 주요 지수는 홍콩시위와
-											코로나19 확산 책임을 둘러싼 미중 갈등에 일제히 하락했다. </span>
-										<mark>파이낸셜뉴스</mark>
-										<em>10:31</em>
-									</p>
-								</a>
+							<div class="headline" id="mainNews3head">
+
 							</div>
-							<ul>
-								<li id="test_1"><a href="#">[특징주]상보, 中희토류 전략무기화 가능성 상승에
-										대체제 부각 '강세'</a> <mark>이데일리</mark> <em>14:53</em></li>
-								<li id="test_1"><a href="#">코스피·코스닥, 외국인·기관 동반 매도세에 1%대
-										급락</a> <mark>아시아경제</mark> <em>13:53</em></li>
-								<li id="test_1"><a href="#">코스피, 외국인·기관 동반 매도에 1% 이상
-										'하락'</a> <mark>이데일리</mark> <em>13:35</em></li>
+							<ul id="mainNews3">
 							</ul>
 						</div>
 					</div>
@@ -675,6 +619,99 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 	
 	<script>
 	$(document).ready(function(){
+		
+		$.ajax({
+			type : 'GET',
+			url : '${pageContext.request.contextPath}/newsAjax',
+			dataType : 'json',
+			contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
+			success : function(data){ 
+				console.log(data)
+				
+				
+					var mainNews1head = "";
+					mainNews1head += '<a href="https://finance.naver.com'+data.news1.url[0]+'" target="_blank">' 
+					if(data.news1.img[0] != null){
+						
+						mainNews1head += 		'<span class="news-img"><img src="'+data.news1.img[0]+'"></span>'
+					}
+					mainNews1head += 	'<p>'
+					mainNews1head += 		'<strong>'+data.news1.title[0]+'</strong> <span>'+data.news1.content[0]+'</span>'
+					mainNews1head += 		'<mark>'+data.news1.writer[0]+'</mark>'
+					mainNews1head += 			'<em>'+data.news1.time[0]+'</em>'
+					mainNews1head += 		'</p>'
+					mainNews1head += 	'</a>'
+					
+					$("#mainNews1head").html(mainNews1head);
+					
+					
+					
+					var mainNews2head = "";
+					mainNews2head += '<a href="https://finance.naver.com'+data.news2.url[0]+'" target="_blank">' 
+					if(data.news2.img[0] != null){
+						
+						mainNews2head += 		'<span class="news-img"><img src="'+data.news2.img[0]+'"></span>'
+					}
+					mainNews2head += 	'<p>'
+					mainNews2head += 		'<strong>'+data.news2.title[0]+'</strong> <span>'+data.news2.content[0]+'</span>'
+					mainNews2head += 		'<mark>'+data.news2.writer[0]+'</mark>'
+					mainNews2head += 			'<em>'+data.news2.time[0]+'</em>'
+					mainNews2head += 		'</p>'
+					mainNews2head += 	'</a>'
+					
+					$("#mainNews2head").html(mainNews2head);
+					
+					
+					var mainNews3head = "";
+					mainNews3head += '<a href="https://finance.naver.com'+data.news3.url[0]+'" target="_blank">' 
+					if(data.news3.img[0] != null){
+						
+						mainNews3head += 		'<span class="news-img"><img src="'+data.news3.img[0]+'"></span>'
+					}
+					mainNews3head += 	'<p>'
+					mainNews3head += 		'<strong>'+data.news3.title[0]+'</strong> <span>'+data.news3.content[0]+'</span>'
+					mainNews3head += 		'<mark>'+data.news3.writer[0]+'</mark>'
+					mainNews3head += 			'<em>'+data.news3.time[0]+'</em>'
+					mainNews3head += 		'</p>'
+					mainNews3head += 	'</a>'
+					
+					$("#mainNews3head").html(mainNews3head);
+					
+					var mainNews1 = "";
+					for(var i=1; i<=5; i++){
+						
+						mainNews1 += '<li id="test_1">'
+						mainNews1 += '<a href="https://finance.naver.com'+data.news1.url[i]+'" target="_blank>">'+data.news1.title[i]
+						mainNews1 += 	"</a> <mark>"+data.news1.writer[i]+"</mark> <em>"+data.news1.time[i]+"</em></li>"
+					}
+					$("#mainNews1").html(mainNews1);
+					
+					var mainNews2 = "";
+					for(var i=1; i<=5; i++){
+						
+						mainNews2 += '<li id="test_1">'
+						mainNews2 += '<a href="https://finance.naver.com'+data.news2.url[i]+'" target="_blank>">'+data.news2.title[i]
+						mainNews2 += 	"</a> <mark>"+data.news2.writer[i]+"</mark> <em>"+data.news2.time[i]+"</em></li>"
+					}
+					$("#mainNews2").html(mainNews2);
+					
+					var mainNews3 = "";
+					for(var i=1; i<=5; i++){
+						
+						mainNews3 += '<li id="test_1">'
+						mainNews3 += '<a href="https://finance.naver.com'+data.news3.url[i]+'" target="_blank>">'+data.news3.title[i]
+						mainNews3 += 	"</a> <mark>"+data.news3.writer[i]+"</mark> <em>"+data.news3.time[i]+"</em></li>"
+					}
+					$("#mainNews3").html(mainNews3);
+			}
+		})
+		
+		
+		
+		
+		
+		
+		
 		
 		function stockRanking(){
 			$.ajax({
