@@ -1,0 +1,152 @@
+/* header1 */
+html {
+
+  position: relative;
+
+  min-height: 100%;
+
+  margin: 0;
+
+
+
+}
+#headlogo{
+	    width: 32%;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100%;
+
+}
+
+
+/* footer */
+.footer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+background: #e9eef3;
+   margin-top: 3%;  border-top: 1px solid #d4dade;
+}
+
+.footer_content {}
+
+#top {
+  width: 100%;
+}
+
+#top ul {
+list-style: none;
+    width: 1250px;
+    margin: auto;
+}
+#top a{
+
+	color:#535367;
+
+}
+#top ul li {
+float: left;
+    width: 284px;
+    border: 1px solid #d6dee6;
+    margin: 10px;
+    padding: 10px 0;
+    background: #ffffff2b;box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+    
+}
+
+.footer_content {}
+
+#mid {
+    width: 1250px;
+    height: 305px;
+}
+#logoF{
+    display: inline-block;
+    width: 81px;
+    padding-right: 20px;
+    margin-left: 42px;
+}
+#left {
+list-style: none;
+    width: 37%;
+    text-align: left;
+    display: inline-block;
+    margin-top: 3%;
+}
+
+#left li {}
+
+#listA > li:nth-child(2) > a{
+color:#535367;
+	
+}
+#listA  a{
+	color:#535367;
+}
+#listB a{
+	color:#535367;
+}
+#right {
+    list-style: none;
+    width: 33%;
+    text-align: left;
+    display: inline-flex;
+    letter-spacing: 1px;
+    position: absolute;
+    margin-top: 30px;
+
+}
+
+#right li {    padding: 2px;}
+
+.liBold {font-weight: 600;}
+
+#companyName {
+ font-weight: 600;
+    color: #1e78ff;
+    font-size: 17px;
+}
+
+#Sitemap {
+     font-weight: 600;
+    color: #1e78ff;
+}
+#listA{
+width: 50%;
+    border-right: 1px solid #c7cace;
+    margin-right: 20px;
+    border-left: 1px solid #c7cace;
+    padding-left: 20px;
+}
+
+.footer_content {}
+
+#bottom {
+padding-top: 10px;
+    margin: auto;
+    width: 100%;
+    background: #d6dee6;
+    height: 57px;
+    color: #535367;
+    bottom: 0;
+    position: absolute;
+}
+
+#bottom ul {    width: 1250px;
+    display: inline-block;}
+
+#bottom li {
+  float: left;
+  margin: 10px;
+}
+
+.footer_content ul {
+  list-style: none;
+
+}
+
+.footer_content ul li {} footer end */
