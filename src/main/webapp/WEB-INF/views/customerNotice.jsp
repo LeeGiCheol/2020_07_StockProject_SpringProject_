@@ -134,13 +134,13 @@ border-left: 4px solid #1e78ff !important;
 
 													<c:choose>
 														<c:when test="${board.commentCount ne 0}">
-															<td class="board-title"><a href="/customerNoticeDetail?pno=${board.pno}">${board.title}</a><b
+															<td class="board-title"><a href="/customerNotice/detail?pno=${board.pno}">${board.title}</a><b
 																	class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b>
 															</td>
 															<!-- 글 제목 -->
 														</c:when>
 														<c:otherwise>
-															<td class="board-title"><a href="/customerNoticeDetail?pno=${board.pno}">${board.title}</a>
+															<td class="board-title"><a href="/customerNotice/detail?pno=${board.pno}">${board.title}</a>
 															</td>
 														</c:otherwise>
 													</c:choose>
@@ -250,7 +250,7 @@ border-left: 4px solid #1e78ff !important;
 									</div>
 
 
-									<c:if test="${loginUser != null}">
+									<c:if test="${loginUser.point le -1}">
 										<p class="right"><a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a></p>
 									</c:if>
 								</div>
@@ -270,8 +270,6 @@ border-left: 4px solid #1e78ff !important;
 													test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option>
 												<option class="dropdown-item board-item" value="search_title_content" <c:if
 													test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option>
-												<option class="dropdown-item board-item" value="search_nick" <c:if
-													test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
 											</select>
 											<input class="form-control mr-sm-2 board-search" type="search" placeholder="검색어 입력"
 												aria-label="Search" name="keyword">

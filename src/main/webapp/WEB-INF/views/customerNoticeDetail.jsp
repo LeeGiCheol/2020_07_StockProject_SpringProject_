@@ -636,7 +636,9 @@ max-width: 100%;
 	</div>
 		<p class="bt-area view-bt-area">
         <span>
-        	<a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a>
+        	<c:if test="${loginUser.point le -1}">
+        		<a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a>
+        	</c:if>
             <a href="/customerNotice" class="moreBttn right norm">목록</a>
 
 		</span>
@@ -887,7 +889,7 @@ function submitReportComt(){
 			console.log(page)
 			$.ajax({
 				type : 'GET',
-				url : '${pageContext.request.contextPath}/board/free/detail/ajax?pno='+pno + page,
+				url : '${pageContext.request.contextPath}/customerNotice/detail/ajax?pno='+pno + page,
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
@@ -913,7 +915,7 @@ function submitReportComt(){
 					board +=		'</div>'
 					board +=		'<c:if test="${loginUser.nickname eq boardDetail.nickname}">'
 					board +=			'<div id="" class="share-more">'
-					board +=				'<a href="/board/free/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
+					board +=				'<a href="/customerNotice/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
 					board +=				'<a href="javascript:void(0)" onclick="delBoard()" id="btnDelete" class="del"><span>삭제</span></a>'
 					board +=			'</div>'
 					board +=		'</c:if>'
@@ -1008,7 +1010,7 @@ function submitReportComt(){
 		 						// << 버튼 
 		 						commentPaging +=	'<li>'
 		 						commentPaging +=		'<a class="page-link"'
-		 						commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=1"'
+		 						commentPaging +=			'href="/customerNotice/detail?pno=${boardDetail.pno}&bnowPage=1"'
 		 						commentPaging +=			'tabindex="-1" aria-disabled="true">'
 		 						commentPaging +=			'<i class="fas fa-angle-double-left"></i>'
 		 						commentPaging +=		'</a>'
@@ -1017,7 +1019,7 @@ function submitReportComt(){
 		 						// < 버튼
 				 				commentPaging +=	'<li>'
 			 					commentPaging +=		'<a class="page-link"'
-								commentPaging +=			'href="/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"'
+								commentPaging +=			'href="/customerNotice/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage-1}"'
 								commentPaging +=			'tabindex="-1" aria-disabled="true">'
 								commentPaging +=			'<i class="fas fa-angle-left"></i>'
 								commentPaging +=		'</a>'
@@ -1036,7 +1038,7 @@ function submitReportComt(){
 								if(i != data.commentPage.nowPage){
 									commentPaging +=	'<li class="page-item">'
 									
-									commentPaging +=	"<a class='page-link' href='/board/free/detail?pno="+data.boardDetail.pno+"&bnowPage="+i+"'>"+i+"</a>"
+									commentPaging +=	"<a class='page-link' href='/customerNotice/detail?pno="+data.boardDetail.pno+"&bnowPage="+i+"'>"+i+"</a>"
 								
 									commentPaging +=	'</li>'
 								}
@@ -1047,7 +1049,7 @@ function submitReportComt(){
 							if(data.commentPage.nowPage != data.commentPage.lastPage){
 								commentPaging += '<li>'
 								commentPaging += 	'<a class="page-link"'
-								commentPaging += 		"href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}'"
+								commentPaging += 		"href='/customerNotice/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.nowPage+1}'"
 								commentPaging += 		'tabindex="+1" aria-disabled="true" data-ajax="false">'
 								commentPaging += 			'<i class="fas fa-angle-right"></i>'
 								commentPaging += 	'</a>'
@@ -1056,7 +1058,7 @@ function submitReportComt(){
 								// >> 버튼
 								commentPaging += '<li>'
 								commentPaging += '<a class="page-link"'
-								commentPaging += "href='/board/free/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}'"						
+								commentPaging += "href='/customerNotice/detail?pno=${boardDetail.pno}&bnowPage=${commentPage.lastPage}'"						
 								commentPaging += 'tabindex="-1" aria-disabled="true">'
 								commentPaging += 		'<i class="fas fa-angle-double-right"></i>'
 								commentPaging += 	'</a>'
@@ -1087,7 +1089,7 @@ function submitReportComt(){
 							prev_next +=     '<dl>'
 							prev_next +=          '<dt>이전글</dt>'
 							prev_next +=           '<dd>'
-							prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[1].pno+'">'+data.boardPrevNext[1].title+'</a>'
+							prev_next +=               '<a href="/customerNotice/detail?pno='+data.boardPrevNext[1].pno+'">'+data.boardPrevNext[1].title+'</a>'
 							prev_next +=                    '</dd>'
 							prev_next +=         '</dl>'
 							prev_next +=    '</div>'
@@ -1095,7 +1097,7 @@ function submitReportComt(){
 							prev_next +=         '<dl>'
 							prev_next +=           '<dt>다음글</dt>'
 							prev_next +=          '<dd>'
-							prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+							prev_next +=               '<a href="/customerNotice/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
 							prev_next +=                     '</dd>'
 							prev_next +=          '</dl>'
 							prev_next +=         '</div>'
@@ -1110,7 +1112,7 @@ function submitReportComt(){
 								prev_next +=         '<dl>'
 								prev_next +=           '<dt>다음글</dt>'
 								prev_next +=          '<dd>'
-								prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+								prev_next +=               '<a href="/customerNotice/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
 								prev_next +=                     '</dd>'
 								prev_next +=          '</dl>'
 								prev_next +=     '</div>'
@@ -1135,7 +1137,7 @@ function submitReportComt(){
 						prev_next +=    	 '<dl>'
 						prev_next +=          '<dt>이전글</dt>'
 						prev_next +=           '<dd>'
-						prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+						prev_next +=               '<a href="/customerNotice/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
 						prev_next +=                    '</dd>'
 						prev_next +=         '</dl>'
 						prev_next +=    '</div>'
@@ -1321,7 +1323,7 @@ function submitReportComt(){
 	    function updateLikes(pno){
 		    $.ajax({
 				type : 'GET',
-				url : '${pageContext.request.contextPath}/board/free/detail/likes/ajax',
+				url : '${pageContext.request.contextPath}/board/detail/likes/ajax',
 				dataType : 'json',
 				data : {"pno" : pno},
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
@@ -1371,7 +1373,7 @@ function submitReportComt(){
 				    swal("성공적으로 삭제되었습니다.", {
 				      icon: "success",
 				    }).then(function(){
-					  location.href = '/board/free/delete?pno=${boardDetail.pno}';
+					  location.href = '/customNotice/delete?pno=${boardDetail.pno}';
 				    });
 				  } else {
 				    swal("삭제가 취소되었습니다.");
