@@ -110,6 +110,12 @@ color:#535367;
     color: #1e78ff;
     font-size: 17px;
 }
+#companyName a{
+
+    color:#1e78ff !important ;
+    
+}
+
 
 #Sitemap {
      font-weight: 600;
