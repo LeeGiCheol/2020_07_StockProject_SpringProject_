@@ -567,7 +567,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								</ul>
 							</div>
 							<div class="login-after-btn">
-								<a href="/myPagePwCheck">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								<a id="leftLogin" href="/myPagePwCheck">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
 							</div>
 						</div>
 					</c:otherwise>
