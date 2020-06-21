@@ -23,7 +23,7 @@
  
 <script>
 	$(document).ready(function() {
-		/* 
+		
 
 		
 		$("#jb-checkboxAll-best").click(function() {

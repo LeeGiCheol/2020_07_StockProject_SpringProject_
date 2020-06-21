@@ -391,10 +391,10 @@ border-left: 4px solid #1e78ff !important;
 
 	<%@include file="mainfooter.jsp" %> 
 <script type="text/javascript">
-  $( document ).ready(function() {
+   $( document ).ready(function() {
 	  console.log( "document ready!" );
 
-	  var $sticky = $('.sticky');
+	  /*	  var $sticky = $('.sticky');
 	  var $stickyrStopper = $('.footer_info');
 	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
@@ -421,7 +421,7 @@ border-left: 4px solid #1e78ff !important;
 	  $(".m-drop-nav").click(function(){
 		    $(".m-drop-down").slideToggle("slow");
 		  });
-	  
+	   */
 		
 	  
 	  $.ajax({
@@ -430,12 +430,9 @@ border-left: 4px solid #1e78ff !important;
 			dataType : 'json',
 			contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 			success : function(data){ 
-				console.log(data)
 				var news1 = "";
 				
 				for(var i=0; i<data.news1.title.length; i++){
-					console.log(data.news1.img[i])
-					console.log(data.news1.url[i])
 					
 	
 					news1 += 	'<dt class="thumb">'
@@ -472,8 +469,6 @@ border-left: 4px solid #1e78ff !important;
 				var news2 = "";
 				
 				for(var i=0; i<data.news2.title.length; i++){
-					console.log(data.news2.img[i])
-					console.log(data.news2.url[i])
 					
 	
 					news2 += 	'<dt class="thumb">'
@@ -507,8 +502,6 @@ border-left: 4px solid #1e78ff !important;
 				var news3 = "";
 				
 				for(var i=0; i<data.news3.title.length; i++){
-					console.log(data.news3.img[i])
-					console.log(data.news3.url[i])
 					
 	
 					news3 += 	'<dt class="thumb">'
