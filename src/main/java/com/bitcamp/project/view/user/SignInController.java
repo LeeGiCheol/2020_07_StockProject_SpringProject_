@@ -106,10 +106,6 @@ public class SignInController {
 				session.invalidate();
 				return "redirect:/mainPage";
 				
-			case "google":
-				System.out.println("구글 로그아웃");
-				break;
-				
 			default:
 				break;
 			}

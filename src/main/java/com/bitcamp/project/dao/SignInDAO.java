@@ -10,4 +10,5 @@ public interface SignInDAO {
 	public UserVO findPw(UserVO vo);
 	public UserVO updatePw(UserVO vo);
 	public String existenceID(String id);
+	public void withdrawal(String id);
 }
