@@ -193,8 +193,8 @@ border-left: 4px solid #1e78ff !important;
 																class="ntc"> </span>-->${portfolioList.title}</a>
 														</dt>
 														<dd class="date">
-															<span> <span class="nick-badge-small"><a
-																	href="javascript:viewProfile('webmaster')"><img
+															<span> <span class="nick-badge-small"><a href="/selectUserMoney?nickname=
+																		${portfolioList.nickname}"><img
 																		src="//www.paxnet.co.kr/my/files/badge/favor3S.png?20200616"
 																		alt="">${portfolioList.nickname}</a></span> 
 																		

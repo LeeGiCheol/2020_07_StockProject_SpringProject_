@@ -74,5 +74,9 @@ public class MyPostServiceImpl implements MyPostService {
 			
 		}
 	}
+	
+	public UserVO selectUser(UserVO vo) {
+		return myPostDAO.selectUser(vo);
+	}
 
 }

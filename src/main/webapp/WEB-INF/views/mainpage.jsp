@@ -595,7 +595,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<ul>
 						
 							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
-								<li class="first"><a href="/selectUserMoney"><i> <c:out value="${vs.count}"/></i> <span><c:out
+								<li class="first"><a href="/selectUserMoney?nickname=${list.nickname}"><i> <c:out value="${vs.count}"/></i> <span><c:out
 												value="${list.nickname}" /></span>
 										<p class="color-red">
 											<c:out value="${list.revenue}%" />
@@ -680,10 +680,10 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 				
 					var mainNews1head = "";
 					mainNews1head += '<a href="https://finance.naver.com'+data.news1.url[0]+'" target="_blank">' 
-					if(data.news1.img[0] != null){
+					/* if(data.news1.img[0] != null){
 						
 						mainNews1head += 		'<span class="news-img"><img src="'+data.news1.img[0]+'"></span>'
-					}
+					} */
 					mainNews1head += 	'<p>'
 					mainNews1head += 		'<strong>'+data.news1.title[0]+'</strong> <span>'+data.news1.content[0]+'</span>'
 					mainNews1head += 		'<mark>'+data.news1.writer[0]+'</mark>'
@@ -697,10 +697,10 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 					
 					var mainNews2head = "";
 					mainNews2head += '<a href="https://finance.naver.com'+data.news2.url[0]+'" target="_blank">' 
-					if(data.news2.img[0] != null){
+					/* if(data.news2.img[0] != null){
 						
-						mainNews2head += 		'<span class="news-img"><img src="'+data.news2.img[0]+'"></span>'
-					}
+						mainNews2head += 		'<span class="news-img"><img src="'+data.news2.img[0]+'"></span>' 
+					} */
 					mainNews2head += 	'<p>'
 					mainNews2head += 		'<strong>'+data.news2.title[0]+'</strong> <span>'+data.news2.content[0]+'</span>'
 					mainNews2head += 		'<mark>'+data.news2.writer[0]+'</mark>'
@@ -713,10 +713,10 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 					
 					var mainNews3head = "";
 					mainNews3head += '<a href="https://finance.naver.com'+data.news3.url[0]+'" target="_blank">' 
-					if(data.news3.img[0] != null){
+					/* if(data.news3.img[0] != null){
 						
 						mainNews3head += 		'<span class="news-img"><img src="'+data.news3.img[0]+'"></span>'
-					}
+					} */
 					mainNews3head += 	'<p>'
 					mainNews3head += 		'<strong>'+data.news3.title[0]+'</strong> <span>'+data.news3.content[0]+'</span>'
 					mainNews3head += 		'<mark>'+data.news3.writer[0]+'</mark>'

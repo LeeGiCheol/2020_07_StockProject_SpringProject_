@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>마이페이지</title>
+<title>유저 정보</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -86,7 +86,7 @@
 					id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 					<div class="noticeBox">
 						<p class="notice">
-							<em>${loginUser.nickname}</em>님의 수익률
+							<em>${user.nickname}</em>님의 수익률
 						</p>
 					</div>
 					<div class="form-table">
@@ -118,7 +118,7 @@
 										<div class="sell-wrap">
 											<div class="money-my">
 												<span class="input-style-case02"><fmt:formatNumber
-														value="${loginUser.money}" type="number" />원</span>
+														value="${user.money}" type="number" />원</span>
 											</div>
 											
 
@@ -135,7 +135,7 @@
 					aria-labelledby="pills-profile-tab">
 					<div class="noticeBox">
 						<p class="notice">
-							<em>${loginUser.nickname}</em>님의 계좌
+							<em>${user.nickname}</em>님의 계좌
 						</p>
 					</div>
 					<div class="form-table">
@@ -269,7 +269,8 @@
 					<div class="search-area">
 						<div class="search-area-body">
 							<form class="form-inline my-2 my-lg-0 underSearchForm"
-								action="/myPage02">
+								action="/selectUserMoney">
+								<input type="hidden" value="${user.nickname}" name="nickname">
 								<input class="form-control mr-sm-2 board-search" type="search"
 									placeholder="검색어 입력" name="accountSearch"
 									value="${accountSearch}" aria-label="Search"> <input
@@ -289,7 +290,7 @@
 					aria-labelledby="pills-contact-tab">
 					<div class="noticeBox">
 						<p class="notice">
-							<em>${loginUser.nickname}</em>님의 거래내역
+							<em>${user.nickname}</em>님의 거래내역
 						</p>
 					</div>
 					<!-- 						<div class="board-free-nav">
@@ -428,7 +429,7 @@
 					<div class="search-area">
 						<div class="search-area-body">
 							<form class="form-inline my-2 my-lg-0 underSearchForm"
-								action="/myPage02">
+								action="/selectUserMoney">
 								<div class="balance-h2" id="sandbox-container">
 									<div class="input-daterange input-group" id="datepicker">
 										<p>
@@ -450,6 +451,7 @@
 									</div>
 								</div>
 								<div class="search-box">
+									<input type="hidden" value="${user.nickname}" name="nickname">
 									<input class="form-control mr-sm-2 board-search" type="search"
 										name="tradeSearch" value="${tradeSearch}" placeholder="검색어 입력"
 										aria-label="Search"> <input type="hidden" name="type"

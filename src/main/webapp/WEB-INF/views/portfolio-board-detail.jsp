@@ -515,7 +515,7 @@ function submitReportComt(){
 					board +=		'<div class="writer">'
 					board +=			'<p class="img"><img class="pax_f2_proimg" cust_id="ciaws94" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>'
 					board +=			'<p class="text">'
-					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;">'+boardNickname+'</span>'
+					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;"><a href="/selectUserMoney?nickname='+boardNickname+'">'+boardNickname+'</a></span>'
 					board +=			'<span class="time">'+changeDate(boardDatetime)+'</span>'
 					board +=			'<span class="viewer"><i>조회</i>'+data.boardDetail.views+'</span>'
 					board +=			'</p>'

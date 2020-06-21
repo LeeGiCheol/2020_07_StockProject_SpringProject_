@@ -95,11 +95,11 @@ public class MyPageController {
 			@ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
 			@ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
 			@ModelAttribute("type") String type) {
-
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		loginUser = signInService.logIn(loginUser);
-		session.setAttribute("loginUser", loginUser);
-
+			loginUser = signInService.logIn(loginUser);
+			session.setAttribute("loginUser", loginUser);
+		
+		
 		if (type.equals(""))
 			type = "rate";
 		if (nowPage1.equals(""))
@@ -127,6 +127,7 @@ public class MyPageController {
 		model.addAttribute("type", type);
 		session.setAttribute("accumAsset", hm4.get("accumAsset"));
 		session.setAttribute("ranking", hm4.get("ranking"));
+
 		return "mypage02";
 	}
 

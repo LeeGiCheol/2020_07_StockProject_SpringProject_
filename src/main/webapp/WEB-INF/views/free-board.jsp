@@ -189,7 +189,7 @@ border-left: 4px solid #1e78ff !important;
 														</c:otherwise>
 													</c:choose>
 
-													<td class="board-writer">${board.nickname}</td>
+													<td class="board-writer"><a href="/selectUserMoney?nickname=${board.nickname}">${board.nickname}</a></td>
 													<!-- 글쓴이 -->
 													<td class="board-views"><span>조회 </span>${board.views}</td>
 													<!-- 조회수 -->
