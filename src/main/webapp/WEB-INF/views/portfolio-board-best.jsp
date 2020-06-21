@@ -94,7 +94,7 @@ $(document).ready(function(){
 				</div>
 				<div class="col-md-10">
 					<div class="free-board">
-						<div class="drop-nav">
+						<div class=" drop-nav">
 							<h1 class="tit-h1 line">포트폴리오</h1>
 						</div>
 						<div class="m-drop-nav">
