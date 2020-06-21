@@ -379,7 +379,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 				</div>
 
 				<div class="news-ranking">
-					<div class="news-nav">
+<!-- 					<div class="news-nav">
 						<ul class="nav" id="pills-tab" role="tablist">
 							<li class="breadcrumb-item" role="presentation"><a
 								class="nav-link active"  data-toggle="pill"
@@ -395,16 +395,17 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								aria-selected="false">기업 종목분석</a></li>
 						</ul>
 						<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
-					</div>
+					</div> -->
 					
-					<span class="ranking-tab">
-						<a class="selected" id="srchRanking" style="cursor:pointer;">주간 랭킹</a>
-						<a id="toronRanking" style="cursor:pointer;">누적 랭킹</a>
+					<span class="news-tab">
+						<a class="selected" id="news-real-time" style="cursor:pointer;">실시간 속보</a>
+						<a id="new-market-conditions" style="cursor:pointer;">시황 전망</a>
+						<a id="new-event" style="cursor:pointer;">기업 종목분석</a>
 					</span>
+					<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 
 					<div class="tab-content" id="pills-tabContent">
-						<div class="tab-pane fade show active" id="pills-home"
-							role="tabpanel" aria-labelledby="pills-home-tab">
+						<div class="news-body" id="realTimeHtml">
 							<div class="headline" id="mainNews1head">
 								
 							</div>
@@ -412,8 +413,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 							
 							</ul>
 						</div>
-						<div class="tab-pane fade" id="pills-profile" role="tabpanel"
-							aria-labelledby="pills-profile-tab">
+						<div class="news-body" id="marketConditionsHtml" style="display:none;">
 							<div class="headline" id="mainNews2head">
 								
 							</div>
@@ -421,8 +421,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								
 							</ul>
 						</div>
-						<div class="tab-pane fade" id="pills-contact" role="tabpanel"
-							aria-labelledby="pills-contact-tab">
+						<div class="news-body" id="eventHtml" style="display:none;">
 							<div class="headline" id="mainNews3head">
 
 							</div>
@@ -1034,10 +1033,11 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 
 
 	$(document).ready(function(){
-		initDefaultFunc();
+		initDefaultRanking();
+		initDefaultNews();
 	});
 
-	function initDefaultFunc(){
+	function initDefaultRanking(){
 		$("#srchRanking").click(function(){
 			$(this).addClass("selected");
 			$("#toronRanking").removeClass("selected");
@@ -1052,21 +1052,33 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 			$("#discHtml").show();
 		});
 	}
-/* 	function initDefaultFunc(){
-		$("#srchRanking").click(function(){
+ 	function initDefaultNews(){
+		$("#news-real-time").click(function(){
 			$(this).addClass("selected");
-			$("#toronRanking").removeClass("selected");
-			$("#searchHtml").show();
-			$("#discHtml").hide();
+			$("#new-market-conditions").removeClass("selected");
+			$("#new-event").removeClass("selected");
+			$("#realTimeHtml").show();
+			$("#marketConditionsHtml").hide();
+			$("#eventHtml").hide();
 		});
-
-		$("#toronRanking").click(function(){
+		$("#new-market-conditions").click(function(){
 			$(this).addClass("selected");
-			$("#srchRanking").removeClass("selected");
-			$("#searchHtml").hide();
-			$("#discHtml").show();
+			$("#news-real-time").removeClass("selected");
+			$("#new-event").removeClass("selected");
+			$("#marketConditionsHtml").show();
+			$("#realTimeHtml").hide();
+			$("#eventHtml").hide();
 		});
-	} */
+		$("#new-event").click(function(){
+			$(this).addClass("selected");
+			$("#news-real-time").removeClass("selected");
+			$("#new-market-conditions").removeClass("selected");
+			
+			$("#eventHtml").show();
+			$("#realTimeHtml").hide();
+			$("#marketConditionsHtml").hide();
+		});
+	}
 
 </script>
 
