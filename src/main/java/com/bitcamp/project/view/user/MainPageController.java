@@ -20,6 +20,7 @@ import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.MainPageNews;
 import stockCode.TopStock;
 
 @Controller
@@ -40,6 +41,9 @@ public class MainPageController {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		Map<String, Object> kospiChart = tradeService.dayChart("종합주가지수");
 		Map<String, Object> kosdaqChart = tradeService.dayChart("(코스닥)종합");
+		Map<String, Object> map = new HashMap<String, Object>();
+		MainPageNews news = new MainPageNews(); 
+		Info inf = news.news();
 
 		Integer[][] kospiData = new Integer[6][60];
 		Integer[][] kosdaqData = new Integer[6][60];
@@ -87,6 +91,10 @@ public class MainPageController {
 
 		if (session.getAttribute("loginUser") != null)
 			mav.addObject("money", formatter.format(tradeService.getMoney(((UserVO) session.getAttribute("loginUser")).getId())));
+			System.out.println(inf.getMainNews());
+				
+		// 메인뉴스 
+		mav.addObject("news", inf.getMainNews());
 		
 		mav.setViewName("mainpage");
 		return mav;
@@ -121,6 +129,17 @@ public class MainPageController {
 			map.put("searchUpDown", searchUpDown);
 			map.put("searchSangHa", searchSangHa);
 		}
+		return map;
+	}
+	
+	@GetMapping(value = "/mainPage/newsAjax")
+	@ResponseBody
+	public Map news() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Info news_ = new Info();
+		map.put("news1", news_.getNews1());
+		map.put("news2", news_.getNews2());
+		map.put("news3", news_.getNews3());
 		return map;
 	}
 

@@ -2,6 +2,7 @@ package com.bitcamp.project.vo;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Info {
 	// 종목명	현재가	전일비	등락률	액면가	거래량	시가	고가	저가
@@ -28,16 +29,46 @@ public class Info {
 	private String[] searchUpDown; // 검색 TOP 인기등락률
 	private String[] searchSangHa; // 검색 TOP 전날대비 상승 하락
 	
-	private String news;
+//	private List<String> title;
+//	private List<String> content;
+//	private List<String> writer;
+//	private List<String> time;
+	private Map<String, Object> news1;
+	private Map<String, Object> news2;
+	private Map<String, Object> news3;
+	private String[] mainNews;
 	
 	
 	
 	
-	public String getNews() {
-		return news;
+	
+	public Map<String, Object> getNews1() {
+		return news1;
 	}
-	public void setNews(String news) {
-		this.news = news;
+	public void setNews1(Map<String, Object> news1) {
+		this.news1 = news1;
+	}
+	
+	
+	public Map<String, Object> getNews2() {
+		return news2;
+	}
+	public void setNews2(Map<String, Object> news2) {
+		this.news2 = news2;
+	}
+	
+	
+	public Map<String, Object> getNews3() {
+		return news3;
+	}
+	public void setNews3(Map<String, Object> news3) {
+		this.news3 = news3;
+	}
+	public String[] getMainNews() {
+		return mainNews;
+	}
+	public void setMainNews(String[] mainNews) {
+		this.mainNews = mainNews;
 	}
 	public String getStockName() {
 		return stockName;
@@ -150,9 +181,15 @@ public class Info {
 	public String toString() {
 		return "Info [stockName=" + stockName + ", currentPrice=" + currentPrice + ", before=" + before + ", upDown="
 				+ upDown + ", maximum=" + maximum + ", minimum=" + minimum + ", up=" + Arrays.toString(up) + ", down="
-				+ Arrays.toString(down) + "]";
+				+ Arrays.toString(down) + ", topName=" + Arrays.toString(topName) + ", topCurrentPrice="
+				+ Arrays.toString(topCurrentPrice) + ", topBefore=" + Arrays.toString(topBefore) + ", topUpDown="
+				+ Arrays.toString(topUpDown) + ", searchName=" + Arrays.toString(searchName) + ", searchCurrentPrice="
+				+ Arrays.toString(searchCurrentPrice) + ", searchBefore=" + Arrays.toString(searchBefore)
+				+ ", searchUpDown=" + Arrays.toString(searchUpDown) + ", searchSangHa=" + Arrays.toString(searchSangHa)
+				+ ", news1=" + news1 + ", news2=" + news2 + ", news3=" + news3 + ", mainNews="
+				+ Arrays.toString(mainNews) + "]";
 	}
-	
+
 	
 	
 	
