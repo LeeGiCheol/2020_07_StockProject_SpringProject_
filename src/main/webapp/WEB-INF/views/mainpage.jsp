@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainpage.css">
-	<link rel="stylesheet" href="/resources/css/mainheader3.css">
+	<link rel="stylesheet" href="/resources/css/mainheader2.css">
+		<link rel="stylesheet" href="/resources/css/mainfooter.css">
+	
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <style type="text/css">
@@ -22,6 +24,9 @@
     height: 100%;
     padding: 20px 0 0 0;
     margin: 0 auto;
+}
+.nav-tabs{
+border:0 !important;
 }
 .btnOverInfo {
 float:left;
@@ -61,7 +66,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     padding: 5px 15px;
 }
  .graph-area .g-box > div.graph-left {
-    border-right: #f9f9f9 1px solid;
+    
 }
  .graph-area .g-box > div {
     width: 50%;
@@ -138,8 +143,10 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     background: url(/rpan/common/images/ico_rise.png?update=20180329) no-repeat 0 50%;
     background-size: 8px 6px;
 }
+.graph-area{
+}
  .graph-area .g-box > div.graph-left {
-    border-right: #f9f9f9 1px solid;
+   
 }
 .graph-area .graph_on {
     display: block;
@@ -253,7 +260,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								</a>
 							
 						</div>
-						<div class="graph-right graph_on has-chart">
+						<div class="graph-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;
+">
 							<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
 								<div id="chartcontainer2"></div>
 							</a>
@@ -538,7 +546,9 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
-										<a href="/myPagePwCheck">내정보</a>
+									<!-- 
+									로그인버튼 따로 오른쪽 보더추가 -->
+										<a id="leftLogin" href="/myPagePwCheck">내정보</a>
 									<c:set var="socialId" value="${loginUser.id}"/>
 									<c:choose>
 										<c:when test="${fn:contains(socialId,'_')}">

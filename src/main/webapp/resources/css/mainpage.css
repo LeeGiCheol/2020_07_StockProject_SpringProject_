@@ -97,11 +97,16 @@ ul i {
 .col-md-9>div {
 	position: relative;
 	background: #fff;
-	margin-bottom: 10px;
+	margin-bottom: 10px;    padding: 2px 7px 5px;
 	overflow: hidden;
 	    border: 1px solid #e5e6ef;
     box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 }
+.graph_off{
+	    border-bottom: 1px solid #0a84ec;
+}
+
+/* 메인 도움말 문의버튼 */
 .sectionBox2{
 	width:100%;
 }
@@ -116,15 +121,12 @@ width: 48%;
     text-align: center;
     padding: 10px;
 }
-#cBoxa:hover {
+#cBoxa:hover,#cBoxb:hover {
 	color: #1e78ff;
     border: 1px solid #eff3f6;
     background: #f3faff;
 }
-#cBoxb:hover {
-	 background: #1e78ff;
-    color: white;
-}
+
 .cBox svg {
   font-size: 3em;margin: 5px;
 }
@@ -135,9 +137,8 @@ width: 48%;
 	
 }
 #cBoxb{
-	color: #1e78ff;
-    border: 1px solid #eff3f6;
-    background: #f3faff;
+	 background: #1e78ff;
+    color: white;
 }
 
 .login-box div>p>a:after {
@@ -235,7 +236,7 @@ background: #1e78ff;
 .div-login-box-after dl dd:nth-of-type(1) a {
     display: inline-block;
     font-size: 13px;
-    color: #a7753a;
+    color: #3e5475;
     margin-top: 6px;
     border-right: 1px solid #ccc;
     padding-right: 7px;
@@ -254,7 +255,7 @@ background: #1e78ff;
 
 .div-login-box-after ul.dot-list02 {
     position: absolute;
-    display: block;
+    display: block;    margin: 3px 0;
 }
 
 .div-login-box-after ul.dot-list02 li {
@@ -266,8 +267,9 @@ background: #1e78ff;
     background: url(/rpan/common/images/bul_dot2.png?update=20180329) no-repeat left 8px;
     padding-left: 6px;
     line-height: 160%;
-    color: #888;
+    color: #0a84ec;
     font-size: 13px;
+    font-weight: 600;
 }
 
 .color-rightgray, .color-rightgray a {
@@ -275,16 +277,20 @@ background: #1e78ff;
 }
 
 .login-after-btn {
-    position: relative;
+position: relative;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40px;
-    background: #f9f9f9;
-    border-top: 1px solid #eaeaea;
-    margin-top: 10px
+    height: 42px;
+    background: #f0f8ff;
+    border-top: 1px solid #0a84ec;
+    margin-top: 16px;
+    letter-spacing: -1px;
+    font-weight: 600;
 }
-
+#leftLogin{
+	border-right: 1px solid #c4e1f9;
+}
 .login-after-btn a {
     position: relative;
     display: block;
@@ -292,7 +298,7 @@ background: #1e78ff;
     width: 50%;
     text-align: center;
     line-height: 40px;
-    color: #444;
+color: #1260a2;
 }
 
 .login-after-btn a:after {
@@ -302,7 +308,6 @@ background: #1e78ff;
     top: 0;
     bottom: 1px;
     width: 1px;
-    background: #eaeaea;
 }
 
 .login-box {
@@ -310,11 +315,12 @@ background: #1e78ff;
 }
 
 .div-login-box-after dl dt button {
-    border: 1px solid #ccc;
-    padding: 1px 2px 2px;
+    border: 1px solid #0a84ec;
+    padding: 2px 5px 3px;
     font-size: 12px;
-    color: #5e5958;
+    color: #0a84ec;
     margin-left: 6px;
+    background: aliceblue;
 }
 
 .div-login-box-after dl dt strong {
@@ -511,7 +517,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	overflow: auto;
 }
 .nav-tabs .nav-item{
-	    letter-spacing: -0.5px;
+	    letter-spacing: -0.5px;font-weight: 600;
 }
 .containerNew>.row .col-md-9 .stock-ranking nav .nav a {
 	display: block;
@@ -586,7 +592,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	float: left;
 	width: 50%;
 	padding: 10px;
-	position: relative;
+	position: relative;	    border-bottom: 1px solid #0a84ec;
+	
 }
 
 .containerNew>.row .col-md-9 .community .community-new {
@@ -594,7 +601,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	float: right;
 	width: 50%;
 	padding: 10px;
-	position: relative;
+	position: relative;	    border-bottom: 1px solid #0a84ec;
+	
 }
 
 .containerNew>.row .col-md-9 .community .tab-content li {
@@ -668,11 +676,11 @@ input[type="text"], input[type="password"], input[type="tel"] {
     position: initial;
     top: 10px;
     left: 0;
-    padding: 8px 10px 5px;
+    padding: 8px 10px 2px;
 }
 
 .nav-link {
-padding: 5px 10px 5px 5px;
+padding: 5px 10px 3px 5px; font-weight: 600;
 }
 
 .news-ranking .tab-content .tab-pane .headline {
@@ -906,8 +914,9 @@ padding: 5px 10px 5px 5px;
     z-index: 1;
 }
 .ranking .ranking-tab a.selected {
-    color: #ff545b;
-    border-bottom: 1px solid #ff545b;
+     color: #0a84ec;
+    border-bottom: 1px solid #0a84ec;
+    font-weight: 600;
 }
  .ranking .ranking-tab a {
     color: #000;
