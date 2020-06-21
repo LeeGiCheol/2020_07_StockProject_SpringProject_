@@ -13,9 +13,9 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 	<link rel="stylesheet" href="/resources/css/mainpage.css">
-		<link rel="stylesheet" href="/resources/css/mainheader3.css">
+		<link rel="stylesheet" href="/resources/css/mainheader2.css">
 	
-	<link rel="stylesheet" href="/resources/css/mainfooter.css">
+	<link rel="stylesheet" href="/resources/css/mainfooter3.css">
 	<link rel="stylesheet" href="/resources/css/customers.css">
 
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -326,7 +326,7 @@ border-radius: .25rem;
 		</div>
 	</div>
 
-	<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter2.jsp" %>
 	<script type="text/javascript">
 		$(document).ready(function () {
 			console.log("document ready!");

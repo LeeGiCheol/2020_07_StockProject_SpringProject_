@@ -131,12 +131,13 @@ margin-top: 10px;
 	padding: 0.5rem 1rem;
 }
 
-.top-nav,.main-nav,.navbar-custom,.justify-content-end  {
+.main-nav,.navbar-custom {
 	
 background: #0a84ec!important;
+    background: linear-gradient(304deg, rgba(10,132,236,1) 0%, rgba(30,120,255,1) 100%) !important;
 }
 .main-nav{
-	    border-top: 1px solid #006cc7;
+	    border-top: 1px solid #55b1ff;
 	
 }
 .navbar-custom,.justify-content-end {
@@ -146,7 +147,12 @@ background: #0a84ec!important;
     border: none !important;
     padding: 0.5rem 1rem;
 }
+.top-nav{
+	    background-color: white !important;
+}
+
 .header .top-nav {
+
     font-size: 0.8rem;
     background-color: white !important;
     color: black;

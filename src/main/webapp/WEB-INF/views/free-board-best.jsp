@@ -14,9 +14,11 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/free-board.css">
+  <link rel="stylesheet" href="/resources/css/sidebar.css">
+
 <script>
 	$(document).ready(function() {
 		$("#jb-checkboxAll-best").click(function() {
@@ -43,7 +45,41 @@
 
 	
 </script>
+
 </head>
+<style>
+#freeTitle{
+border-left: 4px solid #1e78ff !important;
+    color: black !important;
+    font-weight: 600 !important;
+    background: #f6f6f6 !important;
+}
+#freeTitle a, #freeTitle a:visited, #freeTitle a:link{
+	    color: black!important;
+  font-weight: 600 !important;
+ 
+}
+.newsboard-nav-tab li.selected a {
+    z-index: 3;
+    background: #fff;
+    line-height: 50px;
+    color: #5a6268 !important;
+    border-bottom: 2px solid #1e78ff;
+    font-weight: 600;
+}
+.newsboard-nav-tab li {
+    width: 33.333%;
+    letter-spacing: 1px;
+}
+@media only screen and (max-width: 979px) {
+.newsboard-area {
+
+    margin-bottom: 0;
+
+}
+
+} 
+</style>
 <body>
 
 	<%@include file="mainheader.jsp" %> 
@@ -55,9 +91,9 @@
 	<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-							<li class="last"><a href="/news"><span>뉴스</span></a></li>
+							<li id="freeTitle"><a href="/board/free"><span>자유게시판</span></a></li>
+							<li id="portTitle" class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
+							<li id="newsTitle"class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -311,7 +347,7 @@
 	</div>
 
 	<!-- article end -->
-	<%@include file="mainfooter.jsp" %>	
+	<%@include file="mainfooter2.jsp" %>	
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

@@ -370,7 +370,7 @@ display: none;
 
 .sidebar a:hover {
   color: #212529;
-} */
+} *//* 
 #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
@@ -422,12 +422,12 @@ display: none;
 #cssmenu ul ul li {
   font-weight: normal;
 }
-/* Custom CSS Styles */
+Custom CSS Styles
 #cssmenu {
   font-size: 18px;
   width: 200px;
   background: white;
-  /* border: 1px solid #848889; */
+  border: 1px solid #848889;
   border-bottom: 1px solid #d7d8da;
   border-top: 1px solid #d7d8da;
   border-right: 1px solid #d7d8da;
@@ -463,7 +463,7 @@ padding: 25px 10px;
 #cssmenu > ul > li:hover {
   background: #f6f6f6;
 }
-/* Sub Menu */
+Sub Menu
 #cssmenu ul ul a:link,
 #cssmenu ul ul a:visited {
   font-weight: 400;
@@ -504,7 +504,7 @@ padding: 25px 10px;
   border-right: 10px solid #fff;
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
-}
+} */
 .all-dim {
     content: "";
     position: fixed;
@@ -515,11 +515,11 @@ padding: 25px 10px;
     z-index: -1;
     background: #eff3f6;
     text-indent: -9999px;
-}
+}/* 
 #cssmenu > ul > .mid {
 	border-bottom: 1px solid #d7d8da;
 	border-top: 1px solid #d7d8da;
-}
+} */
 .photo-list.no-line {
     border-top: none;
     padding-top: 20px;

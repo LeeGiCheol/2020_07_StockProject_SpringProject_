@@ -13,11 +13,44 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+  <link rel="stylesheet" href="/resources/css/sidebar.css">
+
 
 <style>
 
+#freeTitle{
+border-left: 4px solid #1e78ff !important;
+    color: black !important;
+    font-weight: 600 !important;
+    background: #f6f6f6 !important;
+}
+#freeTitle a, #freeTitle a:visited, #freeTitle a:link{
+	    color: black!important;
+  font-weight: 600 !important;
+ 
+}
+.newsboard-nav-tab li.selected a {
+    z-index: 3;
+    background: #fff;
+    line-height: 50px;
+    color: #5a6268 !important;
+    border-bottom: 2px solid #1e78ff;
+    font-weight: 600;
+}
+.newsboard-nav-tab li {
+    width: 33.333%;
+    letter-spacing: 1px;
+}
+@media only screen and (max-width: 979px) {
+.newsboard-area {
+
+    margin-bottom: 0;
+
+}
+
+} 
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
     font-family: 'Noto Sans KR', sans-serif;
@@ -628,7 +661,7 @@ border-radius: 0 !important;
 	</div>
 	<!-- article end -->
 </div>
-	<%@include file="mainfooter.jsp" %>	
+	<%@include file="mainfooter2.jsp" %>	
 
 
 
