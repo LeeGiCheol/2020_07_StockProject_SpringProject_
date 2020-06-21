@@ -29,6 +29,9 @@ public class Info {
 	private String[] searchUpDown; // 검색 TOP 인기등락률
 	private String[] searchSangHa; // 검색 TOP 전날대비 상승 하락
 	
+	private String kospi;
+	private String kosdaq;
+	
 //	private List<String> title;
 //	private List<String> content;
 //	private List<String> writer;
@@ -42,6 +45,18 @@ public class Info {
 	
 	
 	
+	public String getKospi() {
+		return kospi;
+	}
+	public void setKospi(String kospi) {
+		this.kospi = kospi;
+	}
+	public String getKosdaq() {
+		return kosdaq;
+	}
+	public void setKosdaq(String kosdaq) {
+		this.kosdaq = kosdaq;
+	}
 	public Map<String, Object> getNews1() {
 		return news1;
 	}

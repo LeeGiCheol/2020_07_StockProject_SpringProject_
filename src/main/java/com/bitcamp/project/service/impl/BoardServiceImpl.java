@@ -62,8 +62,8 @@ public class BoardServiceImpl implements BoardService{
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		vo.setBno(bno);
 
-		// 자유게시판
-		if(bno == 1) {
+		// 자유게시판 // 공지사항
+		if(bno == 1 || bno == 3) {
 			boardPage = new PagingVO(boardDAO.count(vo), nowPage, page);
 			boardPage.getUtil().put("searchStyle", searchStyle);
 			boardPage.getUtil().put("keyword", keyword);

@@ -20,6 +20,7 @@ import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.KospiKosdaq;
 import stockCode.MainPageNews;
 import stockCode.TopStock;
 
@@ -81,6 +82,14 @@ public class MainPageController {
 		mav.addObject("kospi_highprice", kospiData[3]);
 		mav.addObject("kospi_lowprice", kospiData[4]);
 		mav.addObject("kospi_lastprice", kospiData[5]);
+		
+		
+		KospiKosdaq kos = new KospiKosdaq();
+		Info kosUpdown = kos.kosUpdown();
+		mav.addObject("kospi", kosUpdown.getKospi());
+		mav.addObject("kosdaq", kosUpdown.getKosdaq());
+
+		
 
 		List<Map> list = userInfoService.getCurrentRevenue();
 		for (int i = 0; i < list.size(); i++) {
@@ -105,7 +114,7 @@ public class MainPageController {
 	public Map topRankAjax() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		TopStock ts = new TopStock();
-
+		
 		Info topStock = ts.topStock();
 		String[] topName = topStock.getTopName();
 		String[] topCurrentPrice = topStock.getTopCurrentPrice();
@@ -129,6 +138,8 @@ public class MainPageController {
 			map.put("searchUpDown", searchUpDown);
 			map.put("searchSangHa", searchSangHa);
 		}
+		
+		
 		return map;
 	}
 	
