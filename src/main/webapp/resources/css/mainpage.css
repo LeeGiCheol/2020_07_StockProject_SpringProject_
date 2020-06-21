@@ -593,7 +593,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	width: 50%;
 	padding: 10px;
 	position: relative;	    
-	border-top: 1px solid #0a84ec;
+	border-top: 1px solid #1e78ff;
 	
 }
 
@@ -917,8 +917,8 @@ padding: 5px 10px 3px 5px; font-weight: 600;
     z-index: 1;
 }
 .ranking .ranking-tab a.selected {
-     color: #0a84ec;
-    border-bottom: 1px solid #0a84ec;
+     color: #1e78ff;
+    border-bottom: 1px solid #1e78ff;
     font-weight: 600;
 }
  .ranking .ranking-tab a {
