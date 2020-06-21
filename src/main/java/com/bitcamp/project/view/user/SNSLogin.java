@@ -29,6 +29,8 @@ public class SNSLogin {
 		UserVO vo = new UserVO();
 		vo.setId(userId);
 		vo = signInService.logIn(vo);
+		session.setAttribute("access_Token", access_Token);
+		
 		if (vo == null) {  // 추가정보 입력 필요
 			mav.addObject("kakaoID", userId);
 			mav.setViewName("signup02_kakao");
