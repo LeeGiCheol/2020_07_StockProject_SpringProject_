@@ -215,7 +215,7 @@ padding-bottom: 5px;
     font-size: 18px;
     width: 200px;
     background: white;
-    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);border: 1px solid #dddddd;
 }
 
 #cssmenu ul a,
@@ -238,7 +238,7 @@ padding-bottom: 5px;
 
 #cssmenu>ul>li {
   border-left: 4px solid #d7d8da;
-  border-bottom: 1px solid #d7d8da !important;
+  border-bottom: 1px solid #d7d8da ;
 }
 
 #cssmenu>ul>li>a {

@@ -109,69 +109,75 @@ public class PortfolioController {
 		vo.setId(loginUser.getId());
 		vo.setBno(2); // 포트폴리오 게시판
 		
-		
-		String[] img = vo.getBcontent().split("/resources/se2/upload/");
+		if (vo.getBcontent().contains("<img src=")) {
 
-		for (int i = 0; i < img.length; i++) {
-			if(img[i].indexOf("/Photo") != -1) {
-				int start = img[i].indexOf("/Photo");
-				int end = img[i].indexOf("\" title=\"");
-				img[i] = img[i].substring(start-8, end);
+			String[] img = vo.getBcontent().split("/resources/se2/upload/");
+	
+			for (int i = 0; i < img.length; i++) {
+				if(img[i].indexOf("/Photo") != -1) {
+					int start = img[i].indexOf("/Photo");
+					int end = img[i].indexOf("\" title=\"");
+					img[i] = img[i].substring(start-8, end);
+				}
 			}
-		}
-		
-		
-
-		String thumbnail = null;
-		
-		try {
-			if(uploadedFileName.size() != 0) {
-				for (int i = 0; i < img.length; i++) {
-					int a = 0;
-					for (int j = 0; j < uploadedFileName.size(); j++) {
-						if(uploadedFileName.get(j).equals(img[i])) {
-							uploadThumbnail.add(uploadedFileName.get(j));
-							a++;
+			
+			
+	
+			String thumbnail = null;
+			
+			try {
+				if(uploadedFileName.size() != 0) {
+					for (int i = 0; i < img.length; i++) {
+						int a = 0;
+						for (int j = 0; j < uploadedFileName.size(); j++) {
+							if(uploadedFileName.get(j).equals(img[i])) {
+								uploadThumbnail.add(uploadedFileName.get(j));
+								a++;
+							}
+						}
+						// 파일이 존재하지 않을 경우 삭제 - 삭제하니까 업데이트가 불가(새로 추가하는 파일은 상관없으나 기존에 있던 파일을 지울경우 안)
+		//				if(a != 1) {
+		//					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
+		//					File originDelete = new File(origin);
+		//					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
+		//					File thumbnailDelete = new File(thumbnail);
+		//					
+		//					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+		//					if(originDelete.exists()) {
+		//					    // 파일을 삭제합니다.
+		//						originDelete.delete();
+		//						thumbnailDelete.delete();
+		//					}
+		//					    
+		//				}
+					}
+					
+		//			List<String> upload = multiplePhotoUpload(request, response);
+					
+					
+					for (int i = 1; i < uploadThumbnail.size(); i++) {
+						thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadThumbnail.get(i).substring(0,8) + "/THUMB_" + uploadThumbnail.get(i).substring(9);
+						File thumbnailDelete = new File(thumbnail);
+						if(thumbnailDelete.exists()) {
+							thumbnailDelete.delete(); 
 						}
 					}
-					// 파일이 존재하지 않을 경우 삭제 - 삭제하니까 업데이트가 불가(새로 추가하는 파일은 상관없으나 기존에 있던 파일을 지울경우 안)
-	//				if(a != 1) {
-	//					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
-	//					File originDelete = new File(origin);
-	//					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
-	//					File thumbnailDelete = new File(thumbnail);
-	//					
-	//					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-	//					if(originDelete.exists()) {
-	//					    // 파일을 삭제합니다.
-	//						originDelete.delete();
-	//						thumbnailDelete.delete();
-	//					}
-	//					    
-	//				}
+					
+					vo.setThumbnailName("/resources/se2/upload/"+img[1].substring(0,8) + "/THUMB_" + img[1].substring(9));
+					uploadedFileName.clear();
+					boardService.writeFreeBoard(vo);
 				}
-				
-	//			List<String> upload = multiplePhotoUpload(request, response);
-				
-				
-				for (int i = 1; i < uploadThumbnail.size(); i++) {
-					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadThumbnail.get(i).substring(0,8) + "/THUMB_" + uploadThumbnail.get(i).substring(9);
-					File thumbnailDelete = new File(thumbnail);
-					if(thumbnailDelete.exists()) {
-						thumbnailDelete.delete(); 
-					}
+				else {
+					boardService.writeFreeBoard(vo);
+					
 				}
-				
-				vo.setThumbnailName("/resources/se2/upload/"+img[1].substring(0,8) + "/THUMB_" + img[1].substring(9));
-				uploadedFileName.clear();
-				boardService.writeFreeBoard(vo);
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
-			else {
-				boardService.writeFreeBoard(vo);
-				
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			boardService.writeFreeBoard(vo);
+
 		}
 		// vo에 저장 후 리셋
 		

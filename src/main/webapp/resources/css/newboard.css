@@ -417,6 +417,7 @@ border: none;
 .board-free-nav{
 	margin: 10px;
 }
+/* 
 .tit-h1,.m-drop-tit-title,.m-drop-tit-body{
 	font-size: 20px;
 	margin: 0 !important;
@@ -481,12 +482,12 @@ border: none;
 #cssmenu ul ul li {
   font-weight: normal;
 }
-/* Custom CSS Styles */
+Custom CSS Styles
 #cssmenu {
   font-size: 18px;
   width: 200px;
   background: white;
-  /* border: 1px solid #848889; */
+  border: 1px solid #848889;
   border-bottom: 1px solid #d7d8da;
   border-top: 1px solid #d7d8da;
   border-right: 1px solid #d7d8da;
@@ -522,7 +523,7 @@ padding: 25px 10px;
 #cssmenu > ul > li:hover {
   background: #f6f6f6;
 }
-/* Sub Menu */
+Sub Menu
 #cssmenu ul ul a:link,
 #cssmenu ul ul a:visited {
   font-weight: 400;
@@ -563,7 +564,7 @@ padding: 25px 10px;
   border-right: 10px solid #fff;
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
-}
+} */
 .paging,.search-area {
     clear: both;
     padding: 0 0 30px 0;
