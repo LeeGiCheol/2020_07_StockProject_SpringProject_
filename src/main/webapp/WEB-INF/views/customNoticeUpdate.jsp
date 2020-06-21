@@ -141,7 +141,7 @@ border-left: 4px solid #1e78ff !important;
 							
 							
 							
-							<form name="form" id="form" role="form" method="POST" action="/customNoticeWrite">
+							<form name="form" id="form" role="form" method="POST" action="/customerNotice/update">
 								<div class="form-table">
 									<table>
 										<tbody>
@@ -149,7 +149,8 @@ border-left: 4px solid #1e78ff !important;
 												<th scope="row"><label for="title">제목</label></th>
 												<td>
 													<span class="input-style-case02">
-														<input type="text" id="title" name="title" placeholder="제목을 입력하세요" value="" maxlength="250">
+														<input type="hidden" value="${boardUpdate.pno}" name="pno">
+														<input type="text" id="title" name="title" placeholder="제목을 입력하세요" value="${boardUpdate.title}" maxlength="250">
 														<!-- <button type="button" class="delete">삭제</button> -->
 													</span>
 												</td>
@@ -169,7 +170,7 @@ border-left: 4px solid #1e78ff !important;
 								            <tr>
 												<th scope="row">내용</th>
 												<td>
-													<textarea class="form-control" rows="5" name="bcontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>
+													<textarea class="form-control" rows="5" name="bcontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;">${boardUpdate.bcontent}</textarea>
 												</td>
 											</tr>
 <%-- 							               <div class="mb-3 title">

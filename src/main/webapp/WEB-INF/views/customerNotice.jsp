@@ -127,20 +127,20 @@ border-left: 4px solid #1e78ff !important;
 									<tbody>
 										<c:forEach items="${boardList}" var="board">
 
-											<c:if test="${board.bno eq 1}">
+											<c:if test="${board.bno eq 3}">
 												<tr>
 													<td class="board-no">${board.pno}</td>
 													<!-- 글번호 -->
 
 													<c:choose>
 														<c:when test="${board.commentCount ne 0}">
-															<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a><b
+															<td class="board-title"><a href="/customerNotice/detail?pno=${board.pno}">${board.title}</a><b
 																	class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b>
 															</td>
 															<!-- 글 제목 -->
 														</c:when>
 														<c:otherwise>
-															<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a>
+															<td class="board-title"><a href="/customerNotice/detail?pno=${board.pno}">${board.title}</a>
 															</td>
 														</c:otherwise>
 													</c:choose>
@@ -170,14 +170,14 @@ border-left: 4px solid #1e78ff !important;
 												<c:if test="${boardPage.nowPage != 1}">
 													<!-- << 버튼 -->
 													<li>
-														<a class="page-link" href="/board/free?bnowPage=1" tabindex="-1" aria-disabled="true">
+														<a class="page-link" href="/customerNotice?bnowPage=1" tabindex="-1" aria-disabled="true">
 															<i class="fas fa-angle-double-left"></i>
 														</a>
 													</li>
 													<!-- 1페이지에서 < 버튼 눌렀을 때 -->
 													<c:if test="${boardPage.nowPage == 1}">
 														<li>
-															<a class="page-link" href="/board/free?bnowPage=${boardPage.nowPage}" tabindex="-1"
+															<a class="page-link" href="/customerNotice?bnowPage=${boardPage.nowPage}" tabindex="-1"
 																aria-disabled="true">
 																<i class="fas fa-angle-left"></i>
 															</a>
@@ -188,7 +188,7 @@ border-left: 4px solid #1e78ff !important;
 												<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
 												<c:if test="${boardPage.nowPage != 1}">
 													<li>
-														<a class="page-link" href="/board/free?bnowPage=${boardPage.nowPage-1}" tabindex="-1"
+														<a class="page-link" href="/customerNotice?bnowPage=${boardPage.nowPage-1}" tabindex="-1"
 															aria-disabled="true">
 															<i class="fas fa-angle-left"></i>
 														</a>
@@ -207,7 +207,7 @@ border-left: 4px solid #1e78ff !important;
 														</c:when>
 														<c:when test="${p != boardPage.nowPage}">
 															<li class="page-item">
-																<a class="page-link" href="/board/free?bnowPage=${p}">${p}</a>
+																<a class="page-link" href="/customerNotice?bnowPage=${p}">${p}</a>
 															</li>
 														</c:when>
 													</c:choose>
@@ -219,7 +219,7 @@ border-left: 4px solid #1e78ff !important;
 													<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
 													<c:if test="${boardPage.nowPage == boardPage.lastPage}">
 														<li>
-															<a class="page-link" href="/board/free?bnowPage=${boardPage.nowPage}" tabindex="+1"
+															<a class="page-link" href="/customerNotice?bnowPage=${boardPage.nowPage}" tabindex="+1"
 																aria-disabled="true">
 																<i class="fas fa-angle-right"></i>
 															</a>
@@ -229,7 +229,7 @@ border-left: 4px solid #1e78ff !important;
 													<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
 													<c:if test="${boardPage.nowPage != boardPage.lastPage}">
 														<li>
-															<a class="page-link" href="/board/free?bnowPage=${boardPage.nowPage+1}" tabindex="+1"
+															<a class="page-link" href="/customerNotice?bnowPage=${boardPage.nowPage+1}" tabindex="+1"
 																aria-disabled="true" data-ajax="false">
 																<i class="fas fa-angle-right"></i>
 															</a>
@@ -238,7 +238,7 @@ border-left: 4px solid #1e78ff !important;
 
 													<!-- >> 버튼 -->
 													<li>
-														<a class="page-link" href="/board/free?bnowPage=${boardPage.lastPage}" tabindex="-1"
+														<a class="page-link" href="/customerNotice?bnowPage=${boardPage.lastPage}" tabindex="-1"
 															aria-disabled="true">
 															<i class="fas fa-angle-double-right"></i>
 														</a>
@@ -250,14 +250,14 @@ border-left: 4px solid #1e78ff !important;
 									</div>
 
 
-									<c:if test="${loginUser != null}">
+									<c:if test="${loginUser.point le -1}">
 										<p class="right"><a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a></p>
 									</c:if>
 								</div>
 
 								<div class="search-area">
 									<div class="search-area-body">
-										<form class="form-inline my-2 my-lg-0 underSearchForm" action="/board/free">
+										<form class="form-inline my-2 my-lg-0 underSearchForm" action="/customerNotice">
 											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 											<select class="dropdown-toggle-board" name="searchStyle">
@@ -270,11 +270,9 @@ border-left: 4px solid #1e78ff !important;
 													test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option>
 												<option class="dropdown-item board-item" value="search_title_content" <c:if
 													test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option>
-												<option class="dropdown-item board-item" value="search_nick" <c:if
-													test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
 											</select>
 											<input class="form-control mr-sm-2 board-search" type="search" placeholder="검색어 입력"
-												aria-label="Search">
+												aria-label="Search" name="keyword">
 											<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
 												<i class="fas fa-search"></i>
 											</button>
