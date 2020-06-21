@@ -592,7 +592,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	float: left;
 	width: 50%;
 	padding: 10px;
-	position: relative;	    border-bottom: 1px solid #0a84ec;
+	position: relative;	    
+	border-top: 1px solid #0a84ec;
 	
 }
 
@@ -601,7 +602,9 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	float: right;
 	width: 50%;
 	padding: 10px;
-	position: relative;	    border-bottom: 1px solid #0a84ec;
+	position: relative;	    
+	border-top: 1px solid #0a84ec;
+	border-left: 1px solid #dee2e6;
 	
 }
 
@@ -642,10 +645,10 @@ input[type="text"], input[type="password"], input[type="tel"] {
     border: 1px solid #e8ebee; 
 }
 
-.containerNew>.row .col-md-3 .faq .nav-tabs .nav-item {
+.community nav .nav-tabs {
 	display: block;
 	float: left;
-	width: 75%;
+	width: 50%;
 	line-height: 28px;
 	margin-right: -2px;
 	padding: 5px;
@@ -932,7 +935,11 @@ padding: 5px 10px 3px 5px; font-weight: 600;
     margin-right: 10px;
 }
 
-
+.plus:hover {
+	color: #1e78ff;
+    border: 1px solid #eff3f6;
+    background: #f3faff;
+}
 
 
 

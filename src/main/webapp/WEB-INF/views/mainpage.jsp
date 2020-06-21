@@ -339,13 +339,17 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 				</div>
 
 				<div class="community">
-					<div class="community-best">
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
 								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 							</div>
+							<div class="nav nav-tabs" role="tablist">
+								<a class="nav-item">신규 글</a>
+								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free'">더보기</button>
+							</div>
 						</nav>
+					<div class="community-best">
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
@@ -360,12 +364,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 
 
 					<div class="community-new">
-						<nav>
-							<div class="nav nav-tabs" role="tablist">
-								<a class="nav-item">신규 글</a>
-								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free'">더보기</button>
-							</div>
-						</nav>
+
 						<div class="tab-content">
 							<div class=".tab-pane" id="tab1">
 								<ul class="step1">
