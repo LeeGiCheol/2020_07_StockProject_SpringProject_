@@ -15,267 +15,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
-
-
-<style>
-
-#freeTitle{
-border-left: 4px solid #1e78ff !important;
-    color: black !important;
-    font-weight: 600 !important;
-    background: #f6f6f6 !important;
-}
-#freeTitle a, #freeTitle a:visited, #freeTitle a:link{
-	    color: black!important;
-  font-weight: 600 !important;
- 
-}
-.newsboard-nav-tab li.selected a {
-    z-index: 3;
-    background: #fff;
-    line-height: 50px;
-    color: #5a6268 !important;
-    border-bottom: 2px solid #1e78ff;
-    font-weight: 600;
-}
-.newsboard-nav-tab li {
-    width: 33.333%;
-    letter-spacing: 1px;
-}
-@media only screen and (max-width: 979px) {
-.newsboard-area {
-
-    margin-bottom: 0;
-
-}
-
-} 
-
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
-   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
-   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
-   figure, footer, header, hgroup, menu, nav, section, summary, time,
-   audio, video {
-   margin: 0;
-   padding: 0;
-   border: 0;
-   vertical-align: baseline;
-   font-size: 14px;
-   background: transparent;
-   list-style: none;
-   box-sizing: border-box;
-   word-break: break-all;
-}
-
-span, em, mark, strong, b, label {
-   margin: 0;
-   padding: 0;
-   border: 0;
-   vertical-align: baseline;
-   background: transparent;
-   list-style: none;
-   box-sizing: border-box;
-}
-
-em, i {
-   font-style: normal;
-}
-
-a, a:link, a:visited, a:active, a:hover {
-   text-decoration: none;
-}
-
-p {
-    line-height: 160%;
-}
-
-.table td, .table th {
-    padding: 6px;
-}
-tr td button{
-	background: transparent;
-	border: none;
-	margin: 0;
-	padding: 0;
-} 
-.table{
-	margin-bottom: 0;
-}
-.containerNew{
-position: relative;
-    max-width: 1260px;
-    height: 100%;
-    padding: 20px 0 0 0;
-    margin: 0 auto;
-}
-@media (max-width: 979px)
-.containerNew {
-    padding-top: 104px;
-}
-@media only screen and (max-width: 979px)
-.containerNew {
-    padding: 0;
-    padding-bottom: 170px;
-}
-.free-board {
-    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
-    margin-bottom: /*70px*/40px;
-    background: #fff;
-    position: relative;
-    border: 1px solid #dddddd;
-}
-.tit-h1.line {
-    margin: 0 -30px 30px;
-    border-bottom: 1px solid #eaeaea;
-    padding: 0 30px 20px;
-}
-.tit-h1 {
-    font-size: 20px;
-    margin-bottom: 30px;
-    font-weight: bold;
-    line-height: 100%;
-}
-
-/* [class*="-btn"].red {
-    background: #ff545b;
-    border: 1px solid #ff545b;
-    color: #fff;
-} */
-[class*="board-write-btn"] {
-	position: relative;
-    background: #c8c8c8;
-    border: 1px solid #b3b3b3;
-    line-height: 100%;
-    display: inline-block;
-    color: #fff;
-    vertical-align: middle;
-    box-sizing: border-box;
-    text-align: center;
-}
-.board-write-btn a:hover{
-	color: gray !important;
-}
-[class*="board-write-btn"] {
-    padding: 6px 10px;
-    min-width: 60px;
-    font-size: 14px;
-}
-.board-free-btn{
-	float: left;
-}
-.board-free-nav{
-	height: 30px;
-	margin-bottom: 20px;
-	position: relative;
-}
-.board-free-table{
-	width: 100%;
-	border-top: #000 1px solid;
-	margin-bottom: 15px;
-}
-.writer{
-	text-align: left;
-}
-.board-writer,.board-title{
-	text-align: left;
-}
-.board-title a{
-	display: inline-block;
-    vertical-align: middle;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-	max-width: 67%/*80%;; */;
-	color: #000;
-}
-thead tr{
-	border-bottom: 1px solid #dddddd;
-	color: #000;
-    font-weight: bold;
-    text-align: center;
-    font-size: 14px !important;
-    
-}
-thead tr th{
-	padding: 10px 0 10px 0;	
-}
-
-tbody tr{
-	border-bottom: 1px solid #dddddd;
-    text-align: center;
-    font-size: 13px !important;
-    color: #888;
-  
-}
-tbody tr td{
-	padding: 10px 0 10px 0;	
-}
-.paging {
-    clear: both;
-    padding: 0 0 30px 0;
-    text-align: center;
-    position: relative;
-}
-.search-area{
-    clear: both;
-    text-align: center;
-    position: relative;
-}
-.paging p.right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 3;
-}
-.paging-body {
-    display: inline-block;
-    padding-left: 0;
-}
-.search-area-body{
-    display: inline-block;
-    padding-left: 0;
-}
-.dropdown-toggle-board{
-    border: 1px solid #ced4da;
-    color:  #888;
-	margin-right: .5rem!important;
-    padding: .375rem .75rem;
-}
-.dropdown-board {
-border-radius: 0 !important;
-color:  #888 !important;
-margin-top: 1px;
-}
-.board-search, .board-search-btn{
-border-radius: 0 !important;
- border: 1px solid #ced4da;
- color:  #888;
-}
-.dropdown-item{
- color:  #888 !important;
-}
-.page-link{
-    color: #888888 !important;
-}
-.page-item.active .page-link {
-    z-index: 3;
-    color: #fff;
-    background-color: white;
-    border: 1.5px solid #888888 !important;
-}
-.board-free-nav p.right {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    margin-top: -15px;
-}
-</style>
+<link rel="stylesheet" href="/resources/css/free-board.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 <script>
 	$(document).ready(function() {
 		$("#jb-checkboxAll-best").click(function() {
@@ -292,6 +33,13 @@ border-radius: 0 !important;
 				$(".check").prop("checked", false);
 			}
 		})
+		$(".sidebar").each(function() {
+			$(this).click(function() {
+				$(this).addClass("selected"); //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+				$(this).siblings().removeClass("selected"); //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+			});
+		});
+		
 	});
 </script>
 </head>
@@ -664,7 +412,53 @@ border-radius: 0 !important;
 	<%@include file="mainfooter2.jsp" %>	
 
 
+		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
+
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
+
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
+
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

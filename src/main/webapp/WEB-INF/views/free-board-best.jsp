@@ -39,47 +39,16 @@
 
 	    	$("#form").submit()
 	    })
+		$(".sidebar").each(function() {
+			$(this).click(function() {
+				$(this).addClass("selected"); //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+				$(this).siblings().removeClass("selected"); //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+			});
+		});
 	});
 	
-
-
-	
 </script>
-
 </head>
-<style>
-#freeTitle{
-border-left: 4px solid #1e78ff !important;
-    color: black !important;
-    font-weight: 600 !important;
-    background: #f6f6f6 !important;
-}
-#freeTitle a, #freeTitle a:visited, #freeTitle a:link{
-	    color: black!important;
-  font-weight: 600 !important;
- 
-}
-.newsboard-nav-tab li.selected a {
-    z-index: 3;
-    background: #fff;
-    line-height: 50px;
-    color: #5a6268 !important;
-    border-bottom: 2px solid #1e78ff;
-    font-weight: 600;
-}
-.newsboard-nav-tab li {
-    width: 33.333%;
-    letter-spacing: 1px;
-}
-@media only screen and (max-width: 979px) {
-.newsboard-area {
-
-    margin-bottom: 0;
-
-}
-
-} 
-</style>
 <body>
 
 	<%@include file="mainheader.jsp" %> 
@@ -89,27 +58,33 @@ border-left: 4px solid #1e78ff !important;
 	<!-- article start -->
 	<div class="row">
 	<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
-						<ul>
-							<li id="freeTitle"><a href="/board/free"><span>자유게시판</span></a></li>
-							<li id="portTitle" class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-							<li id="newsTitle"class="last"><a href="/news"><span>뉴스</span></a></li>
-						</ul>
-					</div>
-				</div>
+		<div class="sidebar sticky" id="cssmenu" style="position: relative;">
+			<ul>	
+				<li class="selected"><a href="/board/free"><span>자유게시판</span></a></li>
+				<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
+				<li class="last"><a href="/news"><span>오늘의 뉴스</span></a></li>
+			</ul>
+		</div>
+  </div>
   <div class="col-md-10">
 	<div class="free-board">
-	<div class="drop-nav">
-	<h1 class="tit-h1 line">자유게시판</h1>
-	</div>
-	<div class="m-drop-nav">
-	<h1 class="m-drop-tit-title line" style="cursor:pointer;">자유게시판 ▼</h1>
-	</div>
-	<div class="m-drop-down">
-	<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
-	<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portfolio">포트폴리오</a></h1>
-	<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
-	</div>
+						<div class="drop-nav">
+							<h1 class="tit-h1 line">자유게시판</h1>
+						</div>
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">자유게시판 <i class="fas fa-angle-down"></i></h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+								<a href="/board/free">자유게시판</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/portfolio">포트폴리오</a>
+							</h1>
+							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+								<a href="/news">뉴스</a>
+							</h1>
+						</div>
 		<div class="board-type">
 			<div class="board-free-nav">
 					<form id="form" class="board-list-top policy-in" action='/board/free'>
@@ -122,7 +97,7 @@ border-left: 4px solid #1e78ff !important;
 					</form>
 		 			 
 		 			 <c:if test="${loginUser != null}">
-						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
+						<p class="right"><a href="/board/free/write" class="board-write-btn fantasy">글쓰기</a></p>
 					 </c:if>	
 					 		
 			</div>
@@ -279,7 +254,7 @@ border-left: 4px solid #1e78ff !important;
 
 
 					 <c:if test="${loginUser != null}">
-						<p class="right"><a href="/board/free/write" class="board-write-btn">글쓰기</a></p>
+						<p class="right"><a href="/board/free/write" class="board-write-btn fantasy">글쓰기</a></p>
 					 </c:if>
 				</div>
 				
@@ -311,39 +286,53 @@ border-left: 4px solid #1e78ff !important;
 </div>
 </div>
 </div>
-  <script type="text/javascript">
-  $( document ).ready(function() {
-	  console.log( "document ready!" );
+		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
-	  var $sticky = $('.sticky');
-	  var $stickyrStopper = $('.footer_info');
-	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
-	    var generalSidebarHeight = $sticky.innerHeight();
-	    var stickyTop = $sticky.offset().top;
-	    var stickOffset = 0;
-	    var stickyStopperPosition = $stickyrStopper.offset().top;
-	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-	    var diff = stopPoint + stickOffset;
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
 
-	    $(window).scroll(function(){ // scroll event
-	      var windowTop = $(window).scrollTop(); // returns number
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
 
-	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
-	      } else if (stickyTop < windowTop+stickOffset) {
-	          $sticky.css({ position: 'fixed', top: stickOffset });
-	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
-	      }
-	    });
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
 
-	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
-	});
-  </script>
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
 	</div>
 
 	<!-- article end -->
