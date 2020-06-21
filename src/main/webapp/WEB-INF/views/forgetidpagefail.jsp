@@ -11,8 +11,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter2.css">
+<link rel="stylesheet" href="/resources/css/mainheader4.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 </head>
 <body class="member">

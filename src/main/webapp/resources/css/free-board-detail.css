@@ -92,7 +92,7 @@ position: relative;
     margin-bottom: /*70px*/40px;
     background: #fff;
     position: relative;
-    border: 1px solid #dddddd;
+    border: 1px solid #dddddd;    min-height: 600px;
 }
 .last{
 	border-bottom: 1px solid #eaeaea;

@@ -13,8 +13,9 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 	<link rel="stylesheet" href="/resources/css/mainpage.css">
+		<link rel="stylesheet" href="/resources/css/mainheader3.css">
+	
 	<link rel="stylesheet" href="/resources/css/mainfooter.css">
-	<link rel="stylesheet" href="/resources/css/mainheader.css">
 	<link rel="stylesheet" href="/resources/css/customers.css">
 
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -280,8 +281,8 @@ border-radius: .25rem;
 
 
 
-					<a href="/customerqna" id="cBoxa" class="cBox">
-						<p class="cBoxTitle">도움말</p>
+					<a href="/customerqna" id="cBoxa2" class="cBox2">
+						<p class="cBoxTitle2">도움말</p>
 						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd"
@@ -296,8 +297,8 @@ border-radius: .25rem;
 
 
 
-					<a href="/customClaimWrite" id="cBoxb" class="cBox">
-						<p class="cBoxTitle">1:1 문의</p>
+					<a href="/customClaimWrite" id="cBoxb2" class="cBox2">
+						<p class="cBoxTitle2">1:1 문의</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd"

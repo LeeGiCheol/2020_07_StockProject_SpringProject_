@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/* footer start */
+.footer_div {
+    border-top: 1px solid #dddddd;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer_info {
+	text-align: center;
+}
+
+.footer_info A:link {
+	text-decoration: none;
+	color: #000000;
+}
+
+.footer_info A:visited {
+	text-decoration: none;
+	color: #000000;
+}
+
+.footer_info A:active {
+	text-decoration: none;
+	color: #000000;
+}
+
+.footer_info A:hover {
+	text-decoration: none;
+	color: #000000;
+}
+/* footer end */

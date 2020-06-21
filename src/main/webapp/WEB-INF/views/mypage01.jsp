@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/mypage01.css" rel="stylesheet">
-<link href="resources/css/mainheader.css" rel="stylesheet">
+<link href="resources/css/mainheader4.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script>

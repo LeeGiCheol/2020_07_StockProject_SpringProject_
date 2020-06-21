@@ -108,7 +108,7 @@ ul i {
     margin-bottom: /*70px*/40px;
     background: #fff;
     position: relative;
-    border: 1px solid #dddddd;height: 100%;
+    border: 1px solid #dddddd;height: 100%;    min-height: 600px;
 }
 .tit-h1, .m-drop-tit-title {
     font-size: 20px;
