@@ -303,8 +303,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<colgroup>
 									<col width="30%">
 									<col width="20%">
-									<col width="30%">
-									<col width="20%">
+									<col width="25%">
+									<col width="25%">
 								</colgroup>
 								<tbody class="rank-table" id="topRank">
 
@@ -320,8 +320,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<colgroup>
 									<col width="30%">
 									<col width="20%">
-									<col width="30%">
-									<col width="20%">
+									<col width="25%">
+									<col width="25%">
 								</colgroup>
 								<tbody class="rank-table" id="searchRank">
 
@@ -394,6 +394,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								href="#pills-contact" role="tab" aria-controls="pills-contact"
 								aria-selected="false">정치/사회</a></li>
 						</ul>
+						<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 					</div>
 
 					<div class="tab-content" id="pills-tabContent">

@@ -530,14 +530,14 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	border-bottom: 1px solid #0a84ec;
 }
 
-.containerNew>.row .col-md-9 .stock-ranking .tab-content #tab1 {
+.stock-ranking .tab-content #tab1 {
 	display: block;
 	float: left;
 	width: 50%;
 	padding: 10px;
 }
 
-.containerNew>.row .col-md-9 .stock-ranking .tab-content #tab2 {
+.stock-ranking .tab-content #tab2 {
 	display: block;
 	float: right;
 	border-left: 1px solid #dee2e6;
@@ -580,7 +580,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 .containerNew>.row .col-md-9 .community .nav-tabs .nav-item {
 	display: block;
 	float: left;
-	width: 85%;
+	width: 50%;
 	line-height: 28px;
 	margin-right: -2px;
 	padding: 5px;
@@ -636,13 +636,12 @@ input[type="text"], input[type="password"], input[type="tel"] {
 }
 
 .plus {
-
-
 	padding: 5px 10px;
     margin: 3px;
     border-radius: 0 !important;
      background: #1e78ff;
     border: 1px solid #e8ebee; 
+    float: right;
 }
 
 .community nav .nav-tabs {
@@ -679,7 +678,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
     position: initial;
     top: 10px;
     left: 0;
-    padding: 8px 10px 2px;
+    padding: 10px;
 }
 
 .nav-link {
@@ -940,7 +939,21 @@ padding: 5px 10px 3px 5px; font-weight: 600;
     border: 1px solid #eff3f6;
     background: #f3faff;
 }
-
+.news-plus:hover {
+	color: #1e78ff;
+    border: 1px solid #eff3f6;
+    background: #f3faff;
+}
+.news-plus{
+	padding: 5px 10px;
+    margin: 3px;
+    border-radius: 0 !important;
+    background: #1e78ff;
+    border: 1px solid #e8ebee;
+	right: 0;
+	top: 10px;
+	position: absolute;
+}
 
 
 
@@ -954,5 +967,8 @@ padding: 5px 10px 3px 5px; font-weight: 600;
     max-width: 100% !important;
     flex: none !important;
     padding: 0 !important;
+}
+.stock-ranking .tab-content #tab1,.stock-ranking .tab-content #tab2{
+	padding: 3px;
 }
 }
