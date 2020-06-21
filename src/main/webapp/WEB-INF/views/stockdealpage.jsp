@@ -775,6 +775,7 @@ tr td button {
 								a++
 							}
 						}
+						
 						$("#topRank").html(topRank);
 
 						
