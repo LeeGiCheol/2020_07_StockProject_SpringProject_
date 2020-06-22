@@ -21,4 +21,6 @@ public interface UserInfoDAO {
 	public List getCurrentRevenue();
 	public List<Integer> getUnoList(String id);
 	public void deleteUnsettledCheck(int uno);
+	public List<Long> getAccumRankingAssetList();
+	public List<String> getAccumRankingNicknameList();
 }

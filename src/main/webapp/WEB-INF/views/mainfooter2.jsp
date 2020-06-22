@@ -17,14 +17,7 @@
 <body>
 
     <div class="footer">
-        <div class="footer_content" id="top">
-            <ul>
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">서비스이용안내</a></li>
-                <li><a href="#">제휴'광고</a></li>
-            </ul>
-        </div>
+
         <div class="footer_content" id="mid">
         <img  id="logoF" src="/resources/img/logo.png">
             <ul id="left">
@@ -58,7 +51,7 @@
         </div>
         <div class="footer_content" id="bottom">
             <ul>
-                <li class="liBold">Copyright ⓒ 2020 - 2020 fantasy stock. All rights reserved.</li>
+                <li id="copyright"class="liBold">Copyright ⓒ 2020 - 2020 fantasy stock. All rights reserved.</li>
                 <li>Tel: 1599-9999</li>
                 <li>Fax: 02-000-0000</li>
                 <li>Email: admin@fantasystock.com</li>

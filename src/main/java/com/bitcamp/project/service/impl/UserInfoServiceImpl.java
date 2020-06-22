@@ -86,6 +86,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return map;
 	}
 	
+	public HashMap<String, Object> getAccumRankingInfoList() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("accumRankingAssetList", userInfoDAO.getAccumRankingAssetList());
+		map.put("accumRankingNicknameList", userInfoDAO.getAccumRankingNicknameList());
+		return map;
+	}
 	
 
 }

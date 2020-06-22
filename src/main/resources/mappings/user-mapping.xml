@@ -226,6 +226,21 @@
 		from userranking
 		where id=#{id}
 	</select>
+	
+	<select id="getAccumRankingAssetList" resultType="long">
+		select accumasset
+		from userranking
+		order by accumasset desc
+		limit 1, 10
+	</select>
+	
+	<select id="getAccumRankingNicknameList" resultType="String">
+		select nickname
+		from userranking
+		natural join usernickname
+		order by accumasset desc
+		limit 1, 10
+	</select>
 	<!-- <insert id="nickname">
 		
 
