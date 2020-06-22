@@ -1,5 +1,6 @@
 package stockCode;
 
+
 import java.util.Arrays;
 
 import org.jsoup.Jsoup;
@@ -41,10 +42,10 @@ public class TopStock {
 		
 		try {
 //			String topLists = doc.select("#_topItems2").text();
+			String url = "https://finance.naver.com/sise/lastsearch2.nhn";
+			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
+			doc = Jsoup.connect(url).get();
 			for (int i = 0; i < 5; i++) {	
-				String url = "https://finance.naver.com/sise/lastsearch2.nhn";
-				Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
-				doc = Jsoup.connect(url).get();
 				String searchNameParse = doc.select("#contentarea > div.box_type_l > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(2) > a").text();
 				//System.out.println(searchNameParse);
 					searchName[i] = searchNameParse;
@@ -62,28 +63,47 @@ public class TopStock {
 					searchUpDown[i] = doc.select("#contentarea > div.box_type_l > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(6)").text();
 			}
 
-			
+			int idx = 0;
+			int count = 0;
+			url = "https://finance.naver.com/sise/sise_upper.nhn";
+			doc = null; // Document에는 페이지의 전체 소스가 저장된다
+			doc = Jsoup.connect(url).get();
 			for (int i = 0; i < 5; i++) {
+				int cnt = 3;
 				
-				String url = "https://finance.naver.com/sise/sise_upper.nhn";
-				Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
-				doc = Jsoup.connect(url).get();
-
-				String topNameParse = doc.select("#contentarea > div:nth-child(3) > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(4) > a").text();
-				//System.out.println(topNameParse);
-				topName[i] = topNameParse;
+				if(idx >= 5)
+					break;
 				
-				String topCurrentPriceParse = doc.select("#contentarea > div:nth-child(3) > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(5)").text();
-				topCurrentPrice[i] = topCurrentPriceParse;
+				if(!(doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(4) > a").text().equals(""))) {
+					cnt = 3;
+				}
+				else {
+					cnt = 4;
+					count++;
+					if(count == 1)
+						i = 0;
+					if(doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(4) > a").text().equals("")) {
+						break;
+					}
+				}
+					String topNameParse = doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(4) > a").text();
+					//System.out.println(topNameParse);
+					topName[idx] = topNameParse;
+					
+					String topCurrentPriceParse = doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(5)").text();
+					topCurrentPrice[idx] = topCurrentPriceParse;
+					
+					String topBeforeParse = doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(6)").text();
+					topBefore[idx] = topBeforeParse;
+					
+					String topUpDownParse = doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(7)").html();
+					if(topUpDownParse.contains("+"))
+						topUpDown[idx] = doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(7)").text();
+					else if(topUpDownParse.contains("-"))
+						topUpDown[idx] = doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(7)").text();
 				
-				String topBeforeParse = doc.select("#contentarea > div:nth-child(3) > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(6)").text();
-				topBefore[i] = topBeforeParse;
-				
-				String topUpDownParse = doc.select("#contentarea > div:nth-child(3) > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(7)").html();
-				if(topUpDownParse.contains("+"))
-					topUpDown[i] = doc.select("#contentarea > div:nth-child(3) > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(7)").text();
-				else if(topUpDownParse.contains("-"))
-					topUpDown[i] = doc.select("#contentarea > div:nth-child(3) > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(7)").text();
+					idx++;
+//					System.out.println(topNameParse);
 			}
 //			System.out.println(Arrays.toString(topName));
 //			System.out.println(Arrays.toString(topCurrentPrice));
@@ -94,8 +114,8 @@ public class TopStock {
 //			System.out.println(Arrays.toString(searchBefore));
 //			System.out.println(Arrays.toString(searchUpDown));
 
-			String url = "https://finance.naver.com/";
-			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
+			url = "https://finance.naver.com/";
+			doc = null; // Document에는 페이지의 전체 소스가 저장된다
 			doc = Jsoup.connect(url).get();
 			
 			int test = 0;

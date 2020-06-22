@@ -41,52 +41,15 @@
 
 			$("#form").submit()
 		})
+		$(".sidebar").each(function() {
+			$(this).click(function() {
+				$(this).addClass("selected"); //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+				$(this).siblings().removeClass("selected"); //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+			});
+		});
 	});
 </script>
 </head>
-<style>
-/* 각 메누리스트에 아이디값을 주고 가장먼저 스타일이 적용되게 페이지내에 코드 작성 */
-
-
-/* 
-현재페이지 메뉴 */
-#freeTitle{
-border-left: 4px solid #1e78ff !important;
-    color: black !important;
-    font-weight: 600 !important;
-    background: #f6f6f6 !important;
-}
-/* 폰트강조 */
-#freeTitle a, #freeTitle a:visited, #freeTitle a:link{
-	    color: black!important;
-  font-weight: 600 !important;
- 
-}
-
-
-
-
-.newsboard-nav-tab li.selected a {
-    z-index: 3;
-    background: #fff;
-    line-height: 50px;
-    color: #5a6268 !important;
-    border-bottom: 2px solid #1e78ff;
-    font-weight: 600;
-}
-.newsboard-nav-tab li {
-    width: 33.333%;
-    letter-spacing: 1px;
-}
-@media only screen and (max-width: 979px) {
-.newsboard-area {
-
-    margin-bottom: 0;
-
-}
-
-} 
-</style>
 <body>
 
 	<%@include file="mainheader.jsp"%>
@@ -95,12 +58,19 @@ border-left: 4px solid #1e78ff !important;
 		<div class="board-page">
 			<div class="row">
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
-						<ul>
-<!-- 현재 페이지 리스트 부분 강조를 위해 각각이아디 값을줌 -->
+<!-- 					<div class="sidebar sticky" id="cssmenu">
+					<ul>
+현재 페이지 리스트 부분 강조를 위해 각각이아디 값을줌
 							<li id="freeTitle"><a href="/board/free"><span>자유게시판</span></a></li>
 							<li id="portTitle" class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
 							<li id="newsTitle"class="last"><a href="/news"><span>뉴스</span></a></li>
+						</ul>
+					</div> -->
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
+						<ul>	
+							<li class="selected mid"><a href="/board/free"><span>자유게시판</span></a></li>
+							<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
+							<li><a href="/news"><span>오늘의 뉴스</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -110,8 +80,7 @@ border-left: 4px solid #1e78ff !important;
 							<h1 class="tit-h1 line">자유게시판</h1>
 						</div>
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">자유게시판
-								▼</h1>
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">자유게시판 <i class="fas fa-angle-down"></i></h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
@@ -121,25 +90,25 @@ border-left: 4px solid #1e78ff !important;
 								<a href="/board/portfolio">포트폴리오</a>
 							</h1>
 							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
-								<a href="/news">뉴스</a>
+								<a href="/news">오늘의 뉴스</a>
 							</h1>
 						</div>
 						<div class="board-type">
 							<div class="board-free-nav">
 								<form id="form" class="board-list-top policy-in"
-									action='/board/free/best'>
+									action='/board/free'>
 									<p class="pc-only">
 										<input type="radio" class="ordeby" id="orderby1"
-											name="orderby" value="new" checked=""><label
+											name="orderby" value="new" <c:if test="${orderby eq 'new'}"> checked="" </c:if> checked="" ><label
 											for="orderby1" class="new-board">최신순</label> <input
 											type="radio" class="ordeby" id="orderby2" name="orderby"
-											value="best"><label for="orderby2" class="hot-board">인기순</label>
+											value="best" <c:if test="${orderby eq 'best'}"> checked="" </c:if> ><label for="orderby2" class="hot-board">인기순</label>
 									</p>
 								</form>
 
 								<c:if test="${loginUser != null}">
 									<p class="right">
-										<a href="/board/free/write" class="board-write-btn">글쓰기</a>
+										<a href="/board/free/write" class="board-write-btn fantasy">글쓰기</a>
 									</p>
 								</c:if>
 
@@ -217,7 +186,7 @@ border-left: 4px solid #1e78ff !important;
 														</c:otherwise>
 													</c:choose>
 
-													<td class="board-writer">${board.nickname}</td>
+													<td class="board-writer"><a href="/selectUserMoney?nickname=${board.nickname}">${board.nickname}</a></td>
 													<!-- 글쓴이 -->
 													<td class="board-views"><span>조회 </span>${board.views}</td>
 													<!-- 조회수 -->
@@ -320,7 +289,7 @@ border-left: 4px solid #1e78ff !important;
 
 									<c:if test="${loginUser != null}">
 										<p class="right">
-											<a href="/board/free/write" class="board-write-btn">글쓰기</a>
+											<a href="/board/free/write" class="board-write-btn fantasy">글쓰기</a>
 										</p>
 									</c:if>
 								</div>
@@ -371,7 +340,7 @@ border-left: 4px solid #1e78ff !important;
 						console.log("document ready!");
 
 						var $sticky = $('.sticky');
-						var $stickyrStopper = $('.footer_info');
+						var $stickyrStopper = $('.footer_content	');
 						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
 							var generalSidebarHeight = $sticky.innerHeight();

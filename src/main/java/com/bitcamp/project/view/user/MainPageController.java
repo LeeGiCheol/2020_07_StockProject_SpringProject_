@@ -9,17 +9,26 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
+import com.bitcamp.project.service.MyAccountService;
+import com.bitcamp.project.service.MyPostService;
+import com.bitcamp.project.service.SignInService;
 import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.service.UserInfoService;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.HoldingStockVO;
 import com.bitcamp.project.vo.Info;
+import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
 
+import stockCode.KospiKosdaq;
 import stockCode.MainPageNews;
 import stockCode.TopStock;
 
@@ -34,6 +43,14 @@ public class MainPageController {
 
 	@Autowired
 	UserInfoService userInfoService;
+	
+	@Autowired
+	MyPostService myPostService;
+
+	@Autowired
+	SignInService signInService;
+	@Autowired
+	MyAccountService myAccountService;
 
 	@GetMapping(value = "/mainPage")
 	public ModelAndView mainPage(BoardVO vo, HttpSession session) {
@@ -81,17 +98,24 @@ public class MainPageController {
 		mav.addObject("kospi_highprice", kospiData[3]);
 		mav.addObject("kospi_lowprice", kospiData[4]);
 		mav.addObject("kospi_lastprice", kospiData[5]);
+		
+		
+		KospiKosdaq kos = new KospiKosdaq();
+		Info kosUpdown = kos.kosUpdown();
+		mav.addObject("kospi", kosUpdown.getKospi());
+		mav.addObject("kosdaq", kosUpdown.getKosdaq());
+
+		
 
 		List<Map> list = userInfoService.getCurrentRevenue();
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).put("revenue", Math.round((double) list.get(i).get("revenue") * 100) / 100.0);
 		}
-		System.out.println(list);
+		//System.out.println(list);
 		mav.addObject("currentRevenue", list);
 
 		if (session.getAttribute("loginUser") != null)
 			mav.addObject("money", formatter.format(tradeService.getMoney(((UserVO) session.getAttribute("loginUser")).getId())));
-			System.out.println(inf.getMainNews());
 				
 		// 메인뉴스 
 		mav.addObject("news", inf.getMainNews());
@@ -105,7 +129,7 @@ public class MainPageController {
 	public Map topRankAjax() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		TopStock ts = new TopStock();
-
+		
 		Info topStock = ts.topStock();
 		String[] topName = topStock.getTopName();
 		String[] topCurrentPrice = topStock.getTopCurrentPrice();
@@ -129,6 +153,8 @@ public class MainPageController {
 			map.put("searchUpDown", searchUpDown);
 			map.put("searchSangHa", searchSangHa);
 		}
+		
+		
 		return map;
 	}
 	
@@ -141,6 +167,71 @@ public class MainPageController {
 		map.put("news2", news_.getNews2());
 		map.put("news3", news_.getNews3());
 		return map;
+	}
+	
+	@GetMapping(value="/selectUserMoney")
+	public ModelAndView selectUserMoney(HttpSession session, UserVO vo, Model model,
+										@ModelAttribute("nowPage1") String nowPage1/* 계좌용 */,
+										@ModelAttribute("nowPage2") String nowPage2/* 날짜별 */, @ModelAttribute("nowPage3") String nowPage3/* 종류별 */,
+										@ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
+										@ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
+										@ModelAttribute("type") String type) {
+		if (type.equals(""))
+			type = "rate";
+		if (nowPage1.equals(""))
+			nowPage1 = "1";
+		if (nowPage2.equals(""))
+			nowPage2 = "1";
+		if (nowPage3.equals(""))
+			nowPage3 = "1";
+		
+		UserVO user = null;
+		user = myPostService.selectUser(vo);
+		user = signInService.logIn(user);
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		session.setAttribute("loginUser", loginUser);
+		ModelAndView mav = new ModelAndView();
+
+		if(loginUser == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("location", "/signInPage");
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
+		}
+		
+		
+		else if(user.getShowEsetSetting() == 0) {
+			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
+			mav.addObject("location", "");
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
+		}
+		else {
+			mav.addObject("user", user);
+			HashMap<String, Object> hm1 = myAccountService.getMyStockList(user, Integer.parseInt(nowPage1),
+					accountSearch);
+			HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(user,
+					Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
+//			   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
+			HashMap<String, Object> hm4 = userInfoService.getRate(user.getId());
+			mav.addObject("pv1", (PagingVO) hm1.get("pv1"));
+			mav.addObject("holdingStockList", (List<HoldingStockVO>) hm1.get("holdingStockList"));
+			mav.addObject("pv2", (PagingVO) hm2.get("pv2"));
+			mav.addObject("stockHistoryList", (List<StockVO>) hm2.get("stockHistoryList"));
+//			   mav.addObject("pv3", (PagingVO)hm3.get("pv3"));
+//			   mav.addObject("stockHistoryListByStock", (List<StockVO>)hm3.get("stockHistoryListByStock"));
+			mav.addObject("accuntSearch", accountSearch);
+			mav.addObject("tradeSearch", tradeSearch);
+			mav.addObject("startDate", startDate);
+			mav.addObject("endDate", endDate);
+			mav.addObject("type", type);
+			mav.addObject("accumAsset", hm4.get("accumAsset"));
+			mav.addObject("ranking", hm4.get("ranking"));
+			mav.setViewName("selectUserMoney");
+			return mav;
+		}
 	}
 
 //	@GetMapping(value = "/mainPage/userRank")

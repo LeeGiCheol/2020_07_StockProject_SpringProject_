@@ -1499,7 +1499,7 @@ h4.top_tlt_news{text-indent:-5000px;border-bottom:1px solid #e1e1e1;height:18px;
 .issueInner2 .newsList{background:url(https://ssl.pstatic.net/imgstock/images5/news/dot_gray_h.gif) repeat-x bottom}
 .photoNewslist{border-top:1px solid #E1E1E1;padding-top:5px;padding-bottom:22px}
 .photoNewslist .block1{background:url(https://ssl.pstatic.net/imgstock/images5/news/dot_gray_h.gif) repeat-x bottom;padding-bottom:1px}
-.realtimeNewsList{border-top:1px solid #E1E1E1}
+/* .realtimeNewsList{border-top:1px solid #E1E1E1} */
 .realtimeNewsList .top{background:url(https://ssl.pstatic.net/imgstock/images5/news/dot_gray_h.gif) repeat-x bottom;_float:left}
 .realtimeNewsList .top dl{padding-top:0}
 .realtimeNewsList .articleSummary:after{clear:left;display:block;content:'X';height:1px;visibility:hidden;overflow:hidden}

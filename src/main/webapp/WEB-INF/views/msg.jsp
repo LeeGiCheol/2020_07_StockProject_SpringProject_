@@ -10,7 +10,13 @@
 <script>
 	window.onload  = function() {
 		swal({text:'${msg}', icon:'${icon}'}).then(function(){
-			window.location.href="${location}";
+			if(${location eq ""}){
+				history.go(-1)
+				
+			}else{
+				
+				window.location.href="${location}";
+			}
 		}); 
 	}
 </script>

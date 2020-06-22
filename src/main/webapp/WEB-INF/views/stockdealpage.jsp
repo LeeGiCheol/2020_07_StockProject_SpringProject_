@@ -766,7 +766,7 @@ tr td button {
 						var topRank = "";
 						var a = 1;
 						
-						for(var i=0; i<data.topName.length-1; i++){
+						for(var i=0; i<data.topName.length; i++){
 							if(data.topName[i] != null){
 								topRank += '<tr class="up">'
 								topRank += '<th scope="row"><em>'+a+'</em>'

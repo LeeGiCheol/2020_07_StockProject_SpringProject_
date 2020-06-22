@@ -17,6 +17,12 @@ public class SignInDAOImpl implements SignInDAO{
 	
 	
 	@Override
+	public void withdrawal(String id) {
+		System.out.println("마이바이트"+id);
+		mybatis.delete("user.withdrawal", id);
+	}
+
+	@Override
 	public String existenceID(String id) {
 		return mybatis.selectOne("existenceID", id);
 	}

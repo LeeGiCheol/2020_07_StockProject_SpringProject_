@@ -21,6 +21,20 @@
 		<result property="charge" column="CHARGE"/>
 	</resultMap> -->
 	
+	<delete id="withdrawal">
+		SET foreign_key_checks = 0;
+		delete from unsettledcheck where uno = (select uno from unsettled where id = #{id});
+		delete from unsettled where id = #{id};
+		delete from holdingstock where id = #{id};
+		delete from stocknotice where id = #{id};
+		delete from tradinghistory where id = #{id};
+		delete from user where id = #{id};
+		delete from usermoney where id = #{id};
+		delete from usernickname where id = #{id};
+		delete from userranking where id = #{id};
+		SET foreign_key_checks = 1;
+	</delete>
+	
 	<select id="getTradeNotice" resultType="map">
 			select notice.tno, stockName, category, tdatetime, tprice,quantity from stocknotice as notice join tradinghistory as td on td.tno = notice.tno where td.id = #{id} order by notice.tno desc;
 	</select>
@@ -82,6 +96,13 @@
 		natural join usermoney
 		WHERE id = #{id}
 	</select>
+	
+	<select id="selectUser" parameterType="user" resultType="user">
+		SELECT * 
+		FROM user
+		WHERE nickname = #{nickname}
+	</select>
+	
 	<!-- 아이디찾기 -->
 	<select id="findId" parameterType="user" resultType="user">
 		SELECT *

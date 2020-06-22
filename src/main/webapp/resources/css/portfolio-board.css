@@ -76,9 +76,6 @@ position: relative;
     position: relative;
     border: 1px solid #dddddd;
 }
-.last{
-	border-bottom: 1px solid #eaeaea;
-}
 .tit-h1, .m-drop-tit-title {
     margin: 0 -30px 30px;
     border-bottom: 1px solid #eaeaea;
@@ -194,11 +191,12 @@ tbody tr td{
     display: inline-block;
     padding-left: 0;
 }
-.dropdown-toggle-board{
+.dropdown-toggle-board {
     border: 1px solid #ced4da;
-    color:  #888;
-	margin-right: .5rem!important;
+    color: #888;
+    margin-right: .5rem!important;
     padding: .375rem .75rem;
+    width: 100px;
 }
 .dropdown-board {
 border-radius: 0 !important;
@@ -335,7 +333,21 @@ display: none;
 	flex: none !important;
 	padding: 0 !important;
 }
+.form-control {
+    width: 50%;
+    margin-right: .5rem!important;
 }
+}
+
+
+
+
+
+
+
+
+
+
 .tab-content{
 	position: relative;
     background: #fff;
@@ -647,22 +659,22 @@ fieldset, img, abbr, acronym {
 .photo-list li > .text dd.date span.comment {
     padding-right: 15px;
     margin-right: 3px;
-    color: #ff545b;
+    color: #1e78ff;
     word-break: break-all;
     letter-spacing: -1px;
 }
 .photo-list li > .text dd.date span.comment i {
-    background: url(/resources/img/ico_board.png) no-repeat 0 -120px;
+    /* background: url(/resources/img/ico_board.png) no-repeat 0 -120px; */
     margin-right: 2px;
 }
-.photo-list li > .text dd.date span i {
+/* .photo-list li > .text dd.date span i {
     width: 20px;
     height: 20px;
     overflow: hidden;
     display: inline-block;
     text-indent: -9999px;
     vertical-align: bottom;
-}
+} */
 @media only screen and (max-width: 979px){
 .photo-list {
     padding: 0 15px 0 15px;
@@ -683,10 +695,10 @@ fieldset, img, abbr, acronym {
 .photo-list li > .text dd.date {
     height: 40px;
 }
-.photo-list li > .text dd.date span.comment i {
+/* .photo-list li > .text dd.date span.comment i {
     background-size: 20px 600px;
     background-position: 0 -310px;
-}
+} */
 .photo-list li:nth-child(2n) {
     margin-right: 0;
 }
