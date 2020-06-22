@@ -17,4 +17,5 @@ public interface UserInfoService {
 	public int checkCharging(String id);
 	public HashMap<String, Object> getRate(String id);
 	public List getCurrentRevenue();
+	public HashMap<String, Object> getAccumRankingInfoList();
 }

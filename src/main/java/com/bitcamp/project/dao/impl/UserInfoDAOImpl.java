@@ -95,4 +95,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	public void deleteUnsettledCheck(int uno) {
 		mybatis.delete("user.deleteUnsettledCheck");
 	}
+	
+	public List<Long> getAccumRankingAssetList() {
+		return mybatis.selectList("user.getAccumRankingAssetList");
+	}
+
+	public List<String> getAccumRankingNicknameList() {
+		return mybatis.selectList("user.getAccumRankingNicknameList");
+	}
 }

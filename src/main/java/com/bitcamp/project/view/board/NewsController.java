@@ -71,7 +71,6 @@ public class NewsController {
 		map.put("news1", news_.getNews1());
 		map.put("news2", news_.getNews2());
 		map.put("news3", news_.getNews3());
-		
 		return map;
 	}
 	@GetMapping("/test")
