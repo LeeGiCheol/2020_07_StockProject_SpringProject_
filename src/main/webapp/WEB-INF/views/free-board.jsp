@@ -15,8 +15,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
 
 <link rel="stylesheet" href="/resources/css/free-board.css">
   <link rel="stylesheet" href="/resources/css/sidebar.css">
@@ -58,14 +58,6 @@
 		<div class="board-page">
 			<div class="row">
 				<div class="col-md-2">
-<!-- 					<div class="sidebar sticky" id="cssmenu">
-					<ul>
-현재 페이지 리스트 부분 강조를 위해 각각이아디 값을줌
-							<li id="freeTitle"><a href="/board/free"><span>자유게시판</span></a></li>
-							<li id="portTitle" class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-							<li id="newsTitle"class="last"><a href="/news"><span>뉴스</span></a></li>
-						</ul>
-					</div> -->
 					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>	
 							<li class="selected mid"><a href="/board/free"><span>자유게시판</span></a></li>

@@ -15,26 +15,13 @@ a:hover {
   border: 1px solid #dddddd;
   padding: 10px
 }
-
-
-
-
-.form-table {
-    border-top: 1px solid #d7d8da !important;
-   
-}
-
-
-
-
-
 .m-menu{
 	background:white;
 	width:100%;
 }
 .m-drop-tit-body {
     margin: 0 -30px 30px;
-    padding: 18px 31px 16px !important;
+    padding: 18px 10px 16px !important;
     font-size: 20px;
     margin-bottom: 30px;
     color: #888888;
@@ -138,6 +125,7 @@ a:hover {
       border-bottom: 1px solid #d7d8da;
   border-top: 1px solid #d7d8da;
   border-right: 1px solid #d7d8da;
+      margin-top: 60px;
 }
 
 #cssmenu ul a,
@@ -266,11 +254,11 @@ a:hover {
     border: 1px solid #1e78ff;
     color: #fff !important;
 }
-.fantasy:hover {
+/* .fantasy:hover {
     color: #1e78ff;
     border: 1px solid #eff3f6;
     background: #f3faff;
-}
+} */
 
 
 
