@@ -201,7 +201,8 @@ public class MainPageController {
 		}
 		
 		
-		else if(user.getShowEsetSetting() == 0) {
+		
+		else if(user == null || user.getShowEsetSetting() == 0) {
 			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
 			mav.addObject("location", "");
 			mav.addObject("icon", "error");

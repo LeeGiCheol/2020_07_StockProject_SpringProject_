@@ -64,6 +64,13 @@ public class MyPageController {
 	
 	
 	
+	@GetMapping(value = "/withdrawal/check")
+	public String withdrawal_check(@ModelAttribute("id") String id) {
+		if (id.substring(id.length() - 1).equals("_"))
+			return "redirect:/withdrawal";
+		return "/withdrawal_PW";
+	}
+	
 	@GetMapping(value = "/withdrawal")
 	public String withdrawal(HttpSession session, @ModelAttribute("id") String id,String code, String state) throws IOException {
 //		String ID = ((UserVO)session.getAttribute("loginUser")).getId();
@@ -86,6 +93,8 @@ public class MyPageController {
 
 
 			default:
+				signInService.withdrawal(id); // id로 서비스 회원탈퇴
+				session.invalidate();
 				return "redirect:/mainPage";
 			}
 
