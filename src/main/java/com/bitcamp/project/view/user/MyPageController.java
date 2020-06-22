@@ -51,6 +51,37 @@ public class MyPageController {
 	@Autowired
 	SignInService signInService;
 
+	@GetMapping(value = "/withdrawal")
+	public String withdrawal(HttpSession session, @ModelAttribute("id") String id) {
+//		String ID = ((UserVO)session.getAttribute("loginUser")).getId();
+
+		if (id.substring(id.length() - 1).equals("_")) { // 끝글자 _ 확인
+
+			String[] ID_s = id.split("_");
+
+			switch (ID_s[ID_s.length - 1]) {
+			case "kakao":
+				System.out.println("카카오 연결끊기");
+				signInService.withdrawal_Kakao((String) session.getAttribute("access_Token")); // 카카오 연결 해제 완료
+				signInService.withdrawal(id); // id로 서비스 회원탈퇴
+				session.invalidate();
+				return "redirect:/mainPage";
+
+			case "naver":
+				System.out.println("네이버 연결끊기");
+				session.invalidate();
+				return "redirect:/mainPage";
+
+			default:
+				return "redirect:/mainPage";
+			}
+
+		}
+		signInService.withdrawal(id); // id로 서비스 회원탈퇴
+		session.invalidate();
+		return "redirect:/mainPage";
+	}
+
 	@GetMapping(value = "/checkCharging")
 	@ResponseBody
 	public int checkCharging(HttpSession session) {
@@ -64,11 +95,11 @@ public class MyPageController {
 			@ModelAttribute("accountSearch") String accountSearch, @ModelAttribute("tradeSearch") String tradeSearch,
 			@ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate,
 			@ModelAttribute("type") String type) {
-
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		loginUser = signInService.logIn(loginUser);
-		session.setAttribute("loginUser", loginUser);
-
+			loginUser = signInService.logIn(loginUser);
+			session.setAttribute("loginUser", loginUser);
+		
+		
 		if (type.equals(""))
 			type = "rate";
 		if (nowPage1.equals(""))
@@ -96,6 +127,7 @@ public class MyPageController {
 		model.addAttribute("type", type);
 		session.setAttribute("accumAsset", hm4.get("accumAsset"));
 		session.setAttribute("ranking", hm4.get("ranking"));
+
 		return "mypage02";
 	}
 
@@ -142,8 +174,7 @@ public class MyPageController {
 	public String myPage03(Model model, HttpSession session, @ModelAttribute("bnowPage") String bnowPage,
 			@ModelAttribute("cnowPage") String cnowPage, @ModelAttribute("bSearchStyle") String bSearchStyle,
 			@ModelAttribute("boardKeyword") String boardKeyword,
-			@ModelAttribute("commentKeyword") String commentKeyword,
-			@ModelAttribute("type") String type) {
+			@ModelAttribute("commentKeyword") String commentKeyword, @ModelAttribute("type") String type) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		if (loginUser == null)
 			return "redirect:/mainPage";

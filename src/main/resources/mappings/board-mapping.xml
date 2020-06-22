@@ -34,7 +34,12 @@
 	
 	<delete id="deleteBoard">
 		DELETE FROM board
-		WHERE pno = #{pno}
+		WHERE pno = #{pno};
+		
+		<if test='bno eq 2'>
+			DELETE FROM filelist
+			WHERE pno = #{pno};
+		</if>
 	</delete>
 	
 	
@@ -100,7 +105,7 @@
 	<select id="boardCount" parameterType="board" resultType="int">
 		select count(*)
 		from board
-		where bno = 1
+		where bno = #{bno}
 	</select>
 		
 	<select id="boardList" parameterType="page" resultType="board">
@@ -174,20 +179,20 @@
 			</when>
 			<!-- 내용검색 -->
 			<when test='util.searchStyle.equals("search_content")'>
-				AND p.bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				AND b.bcontent LIKE CONCAT('%', #{util.keyword}, '%')
 				ORDER BY f.pno DESC
 				LIMIT #{start}, #{cntPerPage}
 			</when>
 			<!-- 제목 + 내용검색 -->
 			<when test='util.searchStyle.equals("search_title_content")'>
-				AND p.title LIKE CONCAT('%', #{util.keyword}, '%')
-				OR p.bcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				AND b.title LIKE CONCAT('%', #{util.keyword}, '%')
+				OR b.bcontent LIKE CONCAT('%', #{util.keyword}, '%')
 				ORDER BY f.pno DESC
 				LIMIT #{start}, #{cntPerPage}
 			</when>
 			<!-- 닉네임 검색 -->
 			<when test='util.searchStyle.equals("search_nick")'>
-				AND p.nickname LIKE CONCAT('%', #{util.keyword}, '%')
+				AND b.nickname LIKE CONCAT('%', #{util.keyword}, '%')
 				ORDER BY f.pno DESC
 				LIMIT #{start}, #{cntPerPage}
 			</when>

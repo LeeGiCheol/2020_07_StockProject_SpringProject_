@@ -16,5 +16,5 @@ public interface MyPostDAO {
 	public List<BoardVO> myBoardList(PagingVO page);
 	public List<CommentVO> myCommentList(PagingVO page);
 	public void deleteMyPost(Map<String, String> myMap, String pno);
-	
+	public UserVO selectUser(UserVO vo);
 }

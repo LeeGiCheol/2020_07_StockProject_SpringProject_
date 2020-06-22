@@ -13,7 +13,7 @@
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
 	<link rel="stylesheet" href="/resources/css/mainfooter.css">
-	<link rel="stylesheet" href="/resources/css/mainheader.css">
+	<link rel="stylesheet" href="/resources/css/mainheader2.css">
 	<link rel="stylesheet" href="resources/css/newboard.css">
 	<link rel="stylesheet" href="/resources/css/customers.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -74,12 +74,6 @@
  
 }
 
-#claimTitle{
-}
-#claimTitle a, #claimTitle a:visited, #claimTitle a:link{
-
- 
-}
 
 .newsboard-nav-tab li.selected a {
     z-index: 3;
@@ -157,13 +151,13 @@
 
 						<div class="newsboard-nav">
 							<ul class="nav newsboard-nav-tab" id="pills-tab" role="tablist">
-								<li class="newsboard-nav-item selected" role="presentation"><a class="nav-link" id="top-nav-font"
+								<li class="newsboard-nav-item selected" role="presentation"><a class="nav-link" id="nav-font"
 										data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
 										aria-selected="true">회원</a></li>
-								<li class="newsboard-nav-item" role="presentation"><a class="nav-link" id="top-nav-font"
+								<li class="newsboard-nav-item" role="presentation"><a class="nav-link" id="nav-font"
 										data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
 										aria-selected="false">커뮤니티</a></li>
-								<li class="newsboard-nav-item" role="presentation"><a class="nav-link" id="top-nav-font"
+								<li class="newsboard-nav-item" role="presentation"><a class="nav-link" id="nav-font"
 										data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
 										aria-selected="false" style="border-right: none;">거래</a></li>
 							</ul>

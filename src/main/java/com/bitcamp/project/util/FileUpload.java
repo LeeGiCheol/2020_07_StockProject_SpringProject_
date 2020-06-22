@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -325,91 +324,120 @@ public class FileUpload {
 	
 
 	public BoardVO fileUpdate(BoardVO vo, List<String> uploadedFileName, List<String> uploadThumbnail, HttpServletRequest request) {
-		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+		String[] img = vo.getBcontent().split("/resources/se2/upload/");
 
-for (int i = 1; i < img.length; i++) {
-			
-			int start = img[i].indexOf("/Photo");
-			int end = img[i].indexOf("\" title=\"");
-			img[i] = img[i].substring(start-8, end);
+		for (int i = 0; i < img.length; i++) {
+			if(img[i].indexOf("/Photo") != -1) {
+				int start = img[i].indexOf("/Photo");
+				int end = img[i].indexOf("\" title=\"");
+				img[i] = img[i].substring(start-8, end);
+			}
 		}
 		
 
 		String thumbnail = null;
 		
+		
 		try {
 			if(uploadedFileName.size() != 0) {
-				for (int i = 0; i < uploadedFileName.size(); i++) {
+				
+				for (int i = 0; i < img.length; i++) {
 					int a = 0;
-					for (int j = 1; j < img.length; j++) {
-						if(uploadedFileName.get(i).equals(img[j])) {
-							uploadThumbnail.add(uploadedFileName.get(i));
+					for (int j = 0; j < uploadedFileName.size(); j++) {
+						if(uploadedFileName.get(j).equals(img[i])) {
+							uploadThumbnail.add(uploadedFileName.get(j));
+
 							a++;
 						}
-					}
 					// 파일이 존재하지 않을 경우 삭제
-					if(a != 1) {
-						String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
-						File originDelete = new File(origin);
-						thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
-						File thumbnailDelete = new File(thumbnail);
-						
 						// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-						if(originDelete.exists()) {
-						    // 파일을 삭제합니다.
-							originDelete.delete();
-							thumbnailDelete.delete();
-						}
-						    
 					}
 				}
-			}else {
+				
+				int start = 0;
+				int size = img.length;
+				
+				if(size >= 3) 
+					start = 2;
+				else
+					start = 1;
+				
+				for (int i = start; i < img.length; i++) {
+					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+img[i];
+					File originDelete = new File(origin);
+					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[i].substring(0,8) + "/THUMB_" + img[i].substring(9);
+					File thumbnailDelete = new File(thumbnail);
+					
+					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+					if(originDelete.exists()) {
+					    // 파일을 삭제합니다.
+						thumbnailDelete.delete();
+					}						
+
+								
+					    
+//					}
+				}
+			
+			String filename_ext = thumbnail.substring(thumbnail.lastIndexOf(".")+1);
+			int thumbnailIdx = img[1].indexOf(".");
+			String realThumbnailName = img[1].substring(0, thumbnailIdx);
+			String path = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[1].substring(0,8)+"/";
+		
+		
+		
+		thumbnailUpdate(realThumbnailName.substring(9),path, filename_ext);
+				
+				
+				vo.setThumbnailName("/resources/se2/upload/"+img[1].substring(0,8) + "/THUMB_" + img[1].substring(9));
+				
+			}
+			else if (uploadedFileName.size() == 0){
 				uploadThumbnail.add(img[1]);
 				
+				int start = 0;
 				int size = img.length;
 				String thumbRoot[] = new String[size];
 				
-				for (int i = 1; i < img.length; i++) {
-						String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+img[i];
-						File originDelete = new File(origin);
-						thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[i].substring(0,8) + "/THUMB_" + img[i].substring(9);
-						
-						String filename_ext = thumbnail.substring(thumbnail.lastIndexOf(".")+1);
-						int thumbnailIdx = uploadThumbnail.get(0).indexOf(".");
-						String realThumbnailName = uploadThumbnail.get(0).substring(0, thumbnailIdx);
-						String path = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[1].substring(0,8)+"/";
+				if(size >= 3) 
+					start = 2;
+				else
+					start = 1;
+					for (int i = start; i < img.length; i++) {
+							String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+img[i];
+							File originDelete = new File(origin);
+							thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[i].substring(0,8) + "/THUMB_" + img[i].substring(9);
+							File thumbnailDelete = new File(thumbnail);
+							
+							// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+							if(originDelete.exists()) {
+							    // 파일을 삭제합니다.
+								thumbnailDelete.delete();
+							}						
 
-						System.out.println("cpath " + realThumbnailName.substring(9));
-						System.out.println("crerere " +path );
-						System.out.println("cfilename_ext " +filename_ext );
-
-						
-						thumbnailUpdate(realThumbnailName.substring(9),path, filename_ext);
-						
-						File thumbnailDelete = new File(thumbnail);
-						
-						// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-//						if(originDelete.exists()) {
-//						    // 파일을 삭제합니다.
-//							thumbnailDelete.delete();
-//						}else {
-//							originDelete.delete();
-//							
-						    
-//					}
-				}
+										
+							    
+	//					}
+					}
+					
+				String filename_ext = thumbnail.substring(thumbnail.lastIndexOf(".")+1);
+				int thumbnailIdx = uploadThumbnail.get(0).indexOf(".");
+				String realThumbnailName = uploadThumbnail.get(0).substring(0, thumbnailIdx);
+				String path = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[1].substring(0,8)+"/";
+				
+				
+				
+				thumbnailUpdate(realThumbnailName.substring(9),path, filename_ext);
+				
+				vo.setThumbnailName("/resources/se2/upload/"+uploadThumbnail.get(0).substring(0,8) + "/THUMB_" + uploadThumbnail.get(0).substring(9));
+				uploadedFileName.clear();
 			}
-			
-//			List<String> upload = multiplePhotoUpload(request, response);
-			
-			
-			
-			vo.setThumbnailName("/resources/se2/upload/"+uploadThumbnail.get(0).substring(0,8) + "/THUMB_" + uploadThumbnail.get(0).substring(9));
-			uploadedFileName.clear();
+				
 		}catch(Exception e) {
-			e.printStackTrace();
-		}
 			
+	
+			return vo;
+		}
 		return vo;
 		
 		

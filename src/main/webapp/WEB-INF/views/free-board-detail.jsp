@@ -16,10 +16,46 @@
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+  <link rel="stylesheet" href="/resources/css/sidebar.css">
+
 </head>
+<style>
+#freeTitle{
+border-left: 4px solid #1e78ff !important;
+    color: black !important;
+    font-weight: 600 !important;
+    background: #f6f6f6 !important;
+}
+#freeTitle a, #freeTitle a:visited, #freeTitle a:link{
+	    color: black!important;
+  font-weight: 600 !important;
+ 
+}
+.newsboard-nav-tab li.selected a {
+    z-index: 3;
+    background: #fff;
+    line-height: 50px;
+    color: #5a6268 !important;
+    border-bottom: 2px solid #1e78ff;
+    font-weight: 600;
+}
+.newsboard-nav-tab li {
+    width: 33.333%;
+    letter-spacing: 1px;
+}
+@media only screen and (max-width: 979px) {
+.newsboard-area {
+
+    margin-bottom: 0;
+
+}
+
+} 
+</style>
 <body>
+
 <div class="wrap">
 <%@include file="mainheader.jsp" %> 
 	<div class="all-dim"></div>
@@ -28,10 +64,9 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
-						<ul>
-							<li><a href="/board/free"><span>자유게시판</span></a></li>
-							<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-							<li class="last"><a href="/news"><span>뉴스</span></a></li>
+						<ul><li id="freeTitle"><a href="/board/free"><span>자유게시판</span></a></li>
+							<li id="portTitle" class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
+							<li id="newsTitle"class="last"><a href="/news"><span>뉴스</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -212,7 +247,7 @@
 		</div>
 		</div>
 	</div>
-	<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter2.jsp" %>
 </div>
 <div id="reportPopup" class="pop-layer" style="display:none">
 		<div class="pop-inner">
@@ -469,7 +504,7 @@ function submitReportComt(){
 					board +=		'<div class="writer">'
 					board +=			'<p class="img"><img class="pax_f2_proimg" cust_id="ciaws94" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>'
 					board +=			'<p class="text">'
-					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;">'+boardNickname+'</span>'
+					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;"><a href="/selectUserMoney?nickname='+boardNickname+'">'+boardNickname+'</a></span>'
 					board +=			'<span class="time">'+changeDate(boardDatetime)+'</span>'
 					board +=			'<span class="viewer"><i>조회</i>'+data.boardDetail.views+'</span>'
 					board +=			'</p>'

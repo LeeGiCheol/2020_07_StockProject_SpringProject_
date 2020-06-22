@@ -74,18 +74,7 @@ position: relative;
     margin-bottom: /*70px*/40px;
     background: #fff;
     position: relative;
-    border: 1px solid #dddddd;    height: 100%;
-}
-.last{
-	border-bottom: 1px solid #eaeaea;
-}
-.tit-h1, .m-drop-tit-title {
-    font-size: 20px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    line-height: 100%;
-            margin: 0 -30px 30px;
-    padding: 0 30px 20px;
+    border: 1px solid #dddddd;    height: 100%;    min-height: 600px;
 }
 .m-drop-tit-body a{
 	color: #848889;
@@ -200,6 +189,7 @@ tbody tr td{
     color:  #888;
 	margin-right: .5rem!important;
     padding: .375rem .75rem;
+    width: 100px;
 }
 .dropdown-board {
 border-radius: 0 !important;
@@ -250,7 +240,7 @@ input[type='radio']:before {
   
 }
 input[type='radio']:checked:before {
-  background:gray;
+  background: #1e78ff;
 }
 .new-board{
 	margin-right: 10px;
@@ -281,8 +271,6 @@ input[type='radio']:checked:before {
 }
 .m-drop-down{
 background: #f3f4f575;
-    border-top: 1px solid #ababab;
-    border-bottom: 1px solid #ababab;
 	
 }
 .bi-chevron-down{
@@ -345,7 +333,17 @@ display: none;
 	flex: none !important;
 	padding: 0 !important;
 }
+.form-control {
+	width: 50%;
+	margin-right: .5rem!important;
 }
+}
+
+
+
+
+
+
 .tab-content{
 	position: relative;
     background: #fff;
@@ -357,7 +355,7 @@ display: none;
     margin: -1px 0 0 10px;
     font-size: 13px;
     font-weight: normal;
-   /*  color: #ff545b; */
+    color: #1e78ff;
 }
 .sidebar {
   float: left;
@@ -382,7 +380,7 @@ display: none;
 .sidebar a:hover {
   color: #212529;
 } */
-#cssmenu,
+/* #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
 #cssmenu ul ul {
@@ -433,12 +431,12 @@ display: none;
 #cssmenu ul ul li {
   font-weight: normal;
 }
-/* Custom CSS Styles */
+Custom CSS Styles
 #cssmenu {
   font-size: 18px;
   width: 200px;
   background: white;
-  /* border: 1px solid #848889; */
+  border: 1px solid #848889;
   border-bottom: 1px solid #d7d8da;
   border-top: 1px solid #d7d8da;
   border-right: 1px solid #d7d8da;
@@ -474,7 +472,7 @@ padding: 25px 10px;
 #cssmenu > ul > li:hover {
   background: #f6f6f6;
 }
-/* Sub Menu */
+Sub Menu
 #cssmenu ul ul a:link,
 #cssmenu ul ul a:visited {
   font-weight: 400;
@@ -516,6 +514,10 @@ padding: 25px 10px;
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
 }
+#cssmenu > ul > .mid {
+	border-bottom: 1px solid #d7d8da;
+	border-top: 1px solid #d7d8da;
+} */
 .all-dim {
     content: "";
     position: fixed;
@@ -527,7 +529,16 @@ padding: 25px 10px;
     background: #eff3f6;
     text-indent: -9999px;
 }
-#cssmenu > ul > .mid {
-	border-bottom: 1px solid #d7d8da;
-	border-top: 1px solid #d7d8da;
+.color-fantasy {
+	color: #1e78ff !important;
+}
+.fantasy {
+    background: #1e78ff;
+    border: 1px solid #1e78ff;
+    color: #fff !important;
+}
+.fantasy:hover {
+    color: #1e78ff;
+    border: 1px solid #eff3f6;
+    background: #f3faff;
 }

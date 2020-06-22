@@ -18,11 +18,8 @@
 	<link rel="stylesheet" href="/resources/css/customers.css">
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
 
-
-
-
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+	<link rel="stylesheet" href="/resources/css/mainfooter.css">
+	<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <script>
 	function btnSave(){
 		// bcontent에 내용 삽입
@@ -144,7 +141,7 @@ border-left: 4px solid #1e78ff !important;
 							
 							
 							
-							<form name="form" id="form" role="form" method="POST" action="/board/free/write">
+							<form name="form" id="form" role="form" method="POST" action="/customNoticeWrite">
 								<div class="form-table">
 									<table>
 										<tbody>

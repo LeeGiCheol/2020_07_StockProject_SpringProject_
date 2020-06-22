@@ -12,4 +12,6 @@ public interface SignInService {
 	public String kakao_GetToken(String code);
 	public String getKakaoId(String access_Token);
 	public String existenceID(String id);
+	public String withdrawal_Kakao(String access_Token);
+	public void withdrawal(String id);
 }

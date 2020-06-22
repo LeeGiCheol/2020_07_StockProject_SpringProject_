@@ -20,9 +20,10 @@
 
 
 
+  <link rel="stylesheet" href="/resources/css/sidebar.css">
 
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <script>
 	function btnSave(){
 		// bcontent에 내용 삽입
@@ -72,6 +73,49 @@
 
 </script> 
 </head>
+<style>
+/* 각 메누리스트에 아이디값을 주고 가장먼저 스타일이 적용되게 페이지내에 코드 작성 */
+
+
+/* 
+현재페이지 메뉴 */
+#portTitle{
+border-left: 4px solid #1e78ff !important;
+    color: black !important;
+    font-weight: 600 !important;
+    background: #f6f6f6 !important;
+}
+/* 폰트강조 */
+#portTitle a, #portTitle a:visited, #portTitle a:link{
+	    color: black!important;
+  font-weight: 600 !important;
+ 
+}
+
+
+
+
+.newsboard-nav-tab li.selected a {
+    z-index: 3;
+    background: #fff;
+    line-height: 50px;
+    color: #5a6268 !important;
+    border-bottom: 2px solid #1e78ff;
+    font-weight: 600;
+}
+.newsboard-nav-tab li {
+    width: 33.333%;
+    letter-spacing: 1px;
+}
+@media only screen and (max-width: 979px) {
+.newsboard-area {
+
+    margin-bottom: 0;
+
+}
+
+} 
+</style>
 <body>
 
 	<%@include file="mainheader.jsp" %> 
@@ -83,9 +127,10 @@
 					<div class="col-md-2">
 						<div class="sidebar sticky" id="cssmenu">
 							<ul>
-								<li><a href="/board/free"><span>자유게시판</span></a></li>
-								<li class="mid"><a href="/portfolio"><span>포트폴리오</span></a></li>
-								<li class="last"><a href="/news"><span>뉴스</span></a></li>
+<!-- 현재 페이지 리스트 부분 강조를 위해 각각이아디 값을줌 -->
+							<li id="freeTitle"><a href="/board/free"><span>자유게시판</span></a></li>
+							<li id="portTitle" class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
+							<li id="newsTitle"class="last"><a href="/news"><span>뉴스</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -102,6 +147,42 @@
 								<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portfolio">포트폴리오</a></h1>
 								<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
 							</div>
+							  <script type="text/javascript">
+  $( document ).ready(function() {
+
+	  var $sticky = $('.sticky');
+	  var $stickyrStopper = $('.footer_info');
+	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+	    var generalSidebarHeight = $sticky.innerHeight();
+	    var stickyTop = $sticky.offset().top;
+	    var stickOffset = 0;
+	    var stickyStopperPosition = $stickyrStopper.offset().top;
+	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+	    var diff = stopPoint + stickOffset;
+
+	    $(window).scroll(function(){ // scroll event
+	      var windowTop = $(window).scrollTop(); // returns number
+
+	      if (stopPoint < windowTop) {
+	          $sticky.css({ position: 'relative', top: diff });
+	      } else if (stickyTop < windowTop+stickOffset) {
+	          $sticky.css({ position: 'fixed', top: stickOffset });
+	      } else {
+	          $sticky.css({position: 'relative', top: 'initial'});
+	      }
+	    });
+
+	  }
+	  $(".m-drop-nav").click(function(){
+		    $(".m-drop-down").slideToggle("slow");
+		  });
+  });
+  
+
+
+ 
+  </script>		
 							<form name="form" id="form" role="form" method="POST" action="/board/portfolio/update">
 								<div class="form-table">
 									<table>
@@ -191,7 +272,7 @@
 			</form>
 		</div>
 	</article>   --%>
-	<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter2.jsp" %>
 	
 <script type="text/javascript">
 var oEditors = [];
