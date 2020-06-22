@@ -128,7 +128,7 @@ position: relative;
     float: left;
     margin-top: 1px;
 }
-input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
+/* input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
     opacity: 0;
     outline: 0;
     margin-left: 0;
@@ -156,7 +156,7 @@ input[type="checkbox"]:not(old) + label {
 }
 input[type="checkbox"].big:not(old):checked + label {
     background-image: url(/resources/img/bg_check_on2.png);
-}
+} */
 .member fieldset.login > div {
     border: 1px solid #ccc;
 }
@@ -405,4 +405,13 @@ input[type="text"], input[type="password"], input[type="tel"] {
     padding-left: 23%;
     font-size: 15px;
 }
+}
+
+.fantasy {
+    background: #1e78ff;
+    border: 1px solid #1e78ff;
+    color: #fff !important;
+}
+.color-fantasy {
+	color: #1e78ff !important;
 }

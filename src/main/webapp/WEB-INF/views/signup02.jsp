@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <script src="//image.paxnet.co.kr/rpan/common/js/validation/validation.custom.js"></script>
 <script src="//image.paxnet.co.kr/rpan/common/js/validation/validation.methods.js"></script>
 <script src="//image.paxnet.co.kr/rpan/common/js/validation/validation.messages.js"></script>
@@ -84,7 +84,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<div id="nickNameResult"></div>
 										<span class="byte"><b id="maxText">0</b>/12byte</span>
 										<button type="button" class="btn-s gray" id="nickCheck">중복확인</button>
-										<button type="button" class="btn-s red removeButton" id="nickCheckAgain">다시입력</button>
+										<button type="button" class="btn-s fantasy removeButton" id="nickCheckAgain">다시입력</button>
 									</li> 
 									<li>
 										<span class="input-style-nick">
@@ -94,7 +94,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<div id="friendResult"></div>
 										<span class="byte"><b id="maxText1">0</b>/12byte</span>
 										<button type="button" class="btn-s gray" id="friendCheck">추천하기</button>
-										<button type="button" class="btn-s red removeButton" id="friendCheckAgain">다시입력</button>
+										<button type="button" class="btn-s fantasy removeButton" id="friendCheckAgain">다시입력</button>
 									</li> 
 								</ul>
 								<ul>
@@ -138,7 +138,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</ul>
 							</fieldset>
 							<div class="bt-area"> 
-								<button type="submit" class="btn-b red" data-text-content="true" id="submit">가입하기</button> 
+								<button type="submit" class="btn-b fantasy" data-text-content="true" id="submit">가입하기</button> 
 								<button type="button" class="btn-b" onclick="location.href='/mainPage'">취소</button>
 							</div>
 						</form>
@@ -157,7 +157,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				</div>
 			</div>
 		</div>
-			<%@include file="mainfooter.jsp" %>
+			<%@include file="mainfooter2.jsp" %>
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

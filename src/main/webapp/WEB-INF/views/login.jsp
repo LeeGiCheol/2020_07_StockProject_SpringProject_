@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/login.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 </head>
 <body>
 <div class="wrap">
@@ -54,7 +54,7 @@
 	
 						</span>
 					</div>
-					<button class="btn-b red" type="submit" value="Submit">로그인</button>
+					<button class="btn-b fantasy" type="submit" value="Submit">로그인</button>
 				</fieldset>
 			</form>
 			<div class="bt-login">
@@ -67,7 +67,6 @@
 			<div class="social-login">
 				<button type="button" class="naverlogin btn-b naver" onclick="location.href='/naverLogin'">네이버 아이디로 로그인</button>
 				<button type="button" class="kakaologin btn-b kakaotalk" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code'">카카오톡 아이디로 로그인</button>
-				<button type="button" class="btn-b google">구글 아이디로 로그인</button>
 			</div>
 		</div>
 	</div><!-- //cont-area -->	 
@@ -91,7 +90,7 @@
 	<input type="hidden" name="sns_returnURL" id="sns_returnURL" value=""> <!-- 회원가입 완료 후 이동할 URL -->
 </form>
 	</div>	
-<%@include file="mainfooter.jsp" %>
+<%@include file="mainfooter2.jsp" %>
 </div>
 <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" ></script>
