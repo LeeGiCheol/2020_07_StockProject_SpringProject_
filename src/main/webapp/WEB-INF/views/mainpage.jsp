@@ -284,7 +284,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 										<p id="KRI501000000_updownColor_n" class="color-blue bu_p bu_pdn">
 											<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
 												<span id="KRI501000000_close_n">${current_kosdaq/100 } </span>
-												<mark id="KRI501000000_updownState_n" class="color-blue bu_p bu_pdn"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></mark>
+												<c:set var = "string1" value = "aaaa3"/>
+												<mark id="KRI501000000_updownState_n" class="color-blue bu_p bu_pdn"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${((kosdaq_lastprice[0]-kosdaq_lastprice[1])/100)}</em> <span id="KRI501000000_diffRate_n"> ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></mark>
 											</a>
 										</p>
 									</c:if>
