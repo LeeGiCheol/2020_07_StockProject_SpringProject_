@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
+import com.bitcamp.project.service.impl.BoardServiceImpl;
 import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
@@ -76,7 +77,9 @@ public class BoardController {
 		model.addAttribute("boardPage", (PagingVO) boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
-
+		
+		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
+		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
 		if (orderby.equals("new")) {
 			return "free-board";
 		} else {

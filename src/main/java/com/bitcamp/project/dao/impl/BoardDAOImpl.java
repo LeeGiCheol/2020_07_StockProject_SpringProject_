@@ -1,6 +1,7 @@
 package com.bitcamp.project.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,11 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> portfolioList(PagingVO vo) {
 		return mybatis.selectList("board.portfolioList", vo);
+	}
+
+	@Override
+	public List<BoardVO> ServiceCenternotice(BoardVO vo) {
+		return mybatis.selectList("board.ServiceCenternotice");
 	}
 	
 }
