@@ -721,7 +721,7 @@ a.btnStyle {
     padding: 10px;
     width: 50%;
     float: left;
-    border-bottom: 1px solid #0a84ec;
+    border-bottom: 1px solid rgba(46,87,255,1);
 }
 .h_popular-right {
     font-size: 14px;
@@ -729,7 +729,7 @@ a.btnStyle {
     padding: 10px;
     width: 50%;
     float: right;
-    border-bottom: 1px solid #0a84ec;
+    border-bottom: 1px solid rgba(46,87,255,1);
 }
 .tbl_home_left {
     width: 48.5%;
