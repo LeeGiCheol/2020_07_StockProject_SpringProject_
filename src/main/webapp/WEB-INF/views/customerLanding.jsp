@@ -48,8 +48,8 @@ border-radius: .25rem;
 							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
 							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customClaimWrite"><span>1:1문의</span></a></li>
-							<li id="claimTitle"><a href="/customerClaim/List"><span>1:1문의 내역</span></a></li>
+							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li id="claimTitle"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
 						</ul>
 				</div>
 
@@ -78,7 +78,8 @@ border-radius: .25rem;
 							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/list">1:1문의 내역</a></h1>
 							
 						</div>
 </div>
@@ -102,7 +103,7 @@ border-radius: .25rem;
 								</div>
 								<div class="inquiry-box">
 									<p class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</p>
-									<a href="/customClaimWrite" class="link">1:1 문의</a>
+									<a href="/customerClaim/write" class="link">1:1 문의</a>
 				
 								</div>
 							</fieldset>
@@ -295,7 +296,7 @@ border-radius: .25rem;
 
 
 
-					<a href="/customClaimWrite" id="cBoxb2" class="cBox2">
+					<a href="/customClaimer/write" id="cBoxb2" class="cBox2">
 						<p class="cBoxTitle2">1:1 문의</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">

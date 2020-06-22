@@ -640,7 +640,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 
 
 
-					<a href="/customClaimWrite" id="cBoxb" class="cBox">
+					<a href="/customerClaim/write" id="cBoxb" class="cBox">
 						<p class="cBoxTitle">1:1 문의</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">

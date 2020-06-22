@@ -115,7 +115,9 @@
 							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
 							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customClaimWrite"><span>1:1문의</span></a></li>
+							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li id="claimList"><a href="/customerClaim/List"><span>1:1문의 내역</span></a></li>
+							
 						</ul>
 					</div>
 				</div>
@@ -145,7 +147,9 @@
 							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/List">1:1문의 내역</a></h1>
+							
 						</div>
 
 

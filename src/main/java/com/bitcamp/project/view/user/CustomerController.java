@@ -20,10 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
+import com.bitcamp.project.service.QnaService;
 import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.QnaVO;
 import com.bitcamp.project.vo.UserVO;
 
 @Controller
@@ -34,6 +36,9 @@ public class CustomerController {
 
 	@Autowired
 	CommentService commentService;
+
+	@Autowired
+	QnaService qnaService;
 	
 	@Autowired
 	HttpSession session;
@@ -80,7 +85,6 @@ public class CustomerController {
 		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
-		System.out.println("boardDetail " + boardDetail);
 		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
 		
@@ -97,9 +101,7 @@ public class CustomerController {
 		}
 		vo.setPno(pno);
 		BoardVO boardDetail = boardService.getBoard(vo);
-		System.out.println(vo);
 		List<BoardVO> boardPrevNext = boardService.boardPrevNext(vo);
-		System.out.println(vo);
 		// 댓글리스트
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -239,29 +241,49 @@ public class CustomerController {
 		return "redirect:/customerNotice";
 	}
 	
-	@GetMapping(value="/customClaimWrite")
-	public String customClaimWriteView() {
-		return "customClaimWrite";
+	@GetMapping(value="/customerClaim/write")
+	public String customClaimWriteView(Model model) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg";
+		}else {
+			return "customerClaimWrite";
+		}
 	}
-	@PostMapping(value="/customClaimWrite")
-	public ModelAndView customClaimWrite(BoardVO vo) {
-		vo.setBno(4);
-//		vo.setCtype("문의");
-		boardService.writeFreeBoard(vo);
-		
+	@PostMapping(value="/customerClaim/write")
+	public ModelAndView customClaimWrite(QnaVO vo) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", "문의가 등록되었습니다");
-		mav.addObject("location", "/customerClaim/List");
-		mav.addObject("icon", "success");
-		mav.setViewName("msg");
 		
-		return mav;
+		if(loginUser == null) {
+			mav.addObject("msg", "로그인이 필요한 페이지입니다.");
+			mav.addObject("location", "/signInPage");
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
+		}else {
+		
+			vo.setId(loginUser.getId());
+			
+			qnaService.writeQna(vo);
+			
+			
+			mav.addObject("msg", "문의가 등록되었습니다");
+			mav.addObject("location", "/customerClaim/list");
+			mav.addObject("icon", "success");
+			mav.setViewName("msg");
+			
+			return mav;
+		}
 	}
 	
-	@GetMapping(value="/customerClaim/List")
-	public String customerQnaList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+	@GetMapping(value="/customerClaim/list")
+	public String customerQnaList(QnaVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
-		int bno = 4;
 
 		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
@@ -270,19 +292,124 @@ public class CustomerController {
 			keyword = "";
 		}
 
-		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
-				"new", bno, 30);
-		System.out.println(boardList);
-		model.addAttribute("boardList", (List<BoardVO>) boardList.get("boardList"));
-		model.addAttribute("boardPage", (PagingVO) boardList.get("boardPage"));
-		model.addAttribute("searchStyle", searchStyle);
-		model.addAttribute("keyword", keyword);
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg";
+		}
+		else {
+			vo.setId(loginUser.getId());
+			
+			
+			Map<String, Object> qnaList = qnaService.qnaList(vo, Integer.parseInt(nowPage), 15, searchStyle, keyword);	
+			model.addAttribute("qnaList", (List<QnaVO>) qnaList.get("qnaList"));
+			model.addAttribute("qnaPage", (PagingVO) qnaList.get("qnaPage"));
+			model.addAttribute("searchStyle", searchStyle);
+			model.addAttribute("keyword", keyword);
+			
+			
 		
+			return "customerClaimList";
+		}
+	}
+	
+	@GetMapping(value="/customerClaim/detail")
+	public String customerClaimDetail(QnaVO vo, Model model, @ModelAttribute("bnowPage") String nowPage) {
+		if (nowPage == null || nowPage.equals("")) {
+			nowPage = "1";
+		}
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg";
+		}
+		else {
 		
+		vo.setId(loginUser.getId());
 		
-		return "customerClaimList";
+		QnaVO qna = qnaService.qnaDetail(vo);
+		model.addAttribute("qna", qna);
+		model.addAttribute("qno", vo.getQno());
+		return "customerClaimDetail";
+		}
+				
 	}
 	
 	
+	@GetMapping(value="/customerClaim/update")
+	public String customerClaimUpdateView(QnaVO vo, Model model) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg";
+		}
+		else {
+			QnaVO qna = qnaService.qnaDetail(vo);
+			model.addAttribute("qna", qna);
+			model.addAttribute("qno", qna.getQno());
+			return "customerClaimUpdate";
+		}
+	}
+
+	@PostMapping(value="/customerClaim/update")
+	public String customerClaimUpdate(QnaVO vo, Model model, @ModelAttribute("qno") int qno) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg";
+		}
+		else {
+			vo.setQno(qno);
+			qnaService.qnaUpdate(vo);
+			
+			return "redirect:/customerClaim/list";
+		}
+	}
+
+	
+	
+	@GetMapping(value="/customerClaim/delete")
+	public String customerClaimDelete(QnaVO vo, Model model, @ModelAttribute("qno") int qno) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg";
+		}
+		else {
+			vo.setId(loginUser.getId());
+			QnaVO qna = qnaService.qnaDetail(vo);
+			
+			
+			int check = qnaService.qnaDelete(qna);
+			if(check == 1) {
+				model.addAttribute("msg", "문의를 삭제하였습니다.");
+				model.addAttribute("location", "/customerClaim/list");
+				model.addAttribute("icon", "success");
+				
+				return "msg";
+			}
+			else {
+				model.addAttribute("msg", "문의를 삭제하지 못했습니다.");
+				model.addAttribute("location", "/customerClaim/list");
+				model.addAttribute("icon", "error");
+				
+				return "msg";
+				
+			}
+		}
+	}
+	
+	
+			
 	
 }
