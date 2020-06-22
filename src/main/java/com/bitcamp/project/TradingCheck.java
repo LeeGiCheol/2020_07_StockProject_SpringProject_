@@ -118,7 +118,6 @@ public class TradingCheck {
 		for (Object key : unsettled.keySet()) {
 			HashMap map = (HashMap) unsettled.get(key);
 			int price = info.get(map.get("stockName")).getCurrentPrice();
-			System.out.println("check" + price);
 			System.out.print(key + ": [" + map.get("stockName") + "] & [요청 가격: " + map.get("rPrice") + "]");
 			System.out.print(" & [현재가 : " + price + "]");
 
