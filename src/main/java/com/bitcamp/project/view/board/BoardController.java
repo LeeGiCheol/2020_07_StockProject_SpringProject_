@@ -64,7 +64,6 @@ public class BoardController {
 		if (orderby.equals("")) {
 			orderby = "new";
 		}
-		System.out.println("orderby "+orderby);
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
 				orderby, bno, 30);
 		model.addAttribute("boardList", (List<BoardVO>) boardList.get("boardList"));
@@ -74,7 +73,6 @@ public class BoardController {
 		
 		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
 		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
-		System.out.println("@@@@@@ : " + model.getAttribute("ServiceCenternotice"));
 
 		return "free-board";
 	}
@@ -148,7 +146,7 @@ public class BoardController {
 		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
-		System.out.println("boardDetail " + boardDetail);
+//		System.out.println("boardDetail " + boardDetail);
 		mav.addObject("commentList", (List<CommentVO>) commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO) commentList.get("commentPage"));
 
