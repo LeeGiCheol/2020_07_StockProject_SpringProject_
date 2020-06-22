@@ -46,7 +46,7 @@ public class BoardController {
 
 	static List<String> uploadedFileName = new ArrayList<String>();
 
-	@GetMapping(value = { "/board/free", "/board/free/best" })
+	@GetMapping(value = "/board/free")
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 			@ModelAttribute("orderby") String orderby /* new = 최신순 best = 인기순 */ ) {
