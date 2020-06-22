@@ -10,6 +10,7 @@ public interface UserInfoDAO {
 	public void memberDelete();
 	public void memberInfoUpdate(UserVO vo);
 	public List getNotice(String id);
+	public List getNewNotice(String id);
 	public void deleteNotice(String id);
 	public void updatePassword(UserVO vo);
 	public int mypageUpdatePasswordCheck(Map<String, String> map);
@@ -20,4 +21,6 @@ public interface UserInfoDAO {
 	public List getCurrentRevenue();
 	public List<Integer> getUnoList(String id);
 	public void deleteUnsettledCheck(int uno);
+	public List<Long> getAccumRankingAssetList();
+	public List<String> getAccumRankingNicknameList();
 }

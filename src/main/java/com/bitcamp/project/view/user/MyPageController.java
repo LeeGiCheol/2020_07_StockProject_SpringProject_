@@ -66,7 +66,7 @@ public class MyPageController {
 	
 	@GetMapping(value = "/withdrawal/check")
 	public String withdrawal_check(@ModelAttribute("id") String id) {
-		if (id.substring(id.length() - 1).equals("_"))
+		if (id.substring(id.length() - 1).equals("_"))//사이에
 			return "redirect:/withdrawal";
 		return "/withdrawal_PW";
 	}
@@ -250,7 +250,11 @@ public class MyPageController {
 				tradeNotice.get(i).put("tprice", formatter.format(tradeNotice.get(i).get("tprice")));
 				modifiedNotice.add(tradeNotice.get(i));
 			}
-
+			
+			for (int i = 0; i < commentNotice.size(); i++) {
+				commentNotice.get(i).put("ndatetime", new Date(((Date) commentNotice.get(i).get("ndatetime")).getTime() - (1000 * 60 * 60 * 9)));
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -329,7 +333,7 @@ public class MyPageController {
 		}
 
 //		JSONObject obj = new JSONObject();
-		List<List> notice = userInfoService.getNotice(id);
+		List<List> notice = userInfoService.getNewNotice(id);
 		if ((notice.get(0).size() == 0) && (notice.get(1).size() == 0))
 			return "NONE";
 		else

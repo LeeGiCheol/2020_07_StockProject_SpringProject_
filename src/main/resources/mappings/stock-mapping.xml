@@ -70,8 +70,8 @@
 	<insert id="buying">
 		insert into tradinghistory(id, stockName, category, tdatetime, tprice, quantity)
 		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
-		INSERT INTO stocknotice(id, tno)
-		SELECT id, tno
+		INSERT INTO stocknotice(id , tno , confirm)
+		SELECT id, tno, '1'
 		FROM tradinghistory as td
 		WHERE td.tno = (select max(tno) from tradinghistory);
 	</insert>
@@ -109,9 +109,8 @@
 	<insert id="selling">
 		insert into tradinghistory(id, stockName, category, tdatetime, tprice, quantity)
 		values(#{id}, #{stockName}, #{category}, NOW(), #{rPrice}, #{quantity});
-		
-		INSERT INTO stocknotice(id, tno)
-		SELECT id, tno
+		INSERT INTO stocknotice(id , tno , confirm)
+		SELECT id, tno, '1'
 		FROM tradinghistory as td
 		WHERE td.tno = (select max(tno) from tradinghistory);
 	</insert>
