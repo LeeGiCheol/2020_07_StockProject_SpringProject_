@@ -18,4 +18,6 @@ public interface UserInfoService {
 	public HashMap<String, Object> getRate(String id);
 	public List getCurrentRevenue();
 	public HashMap<String, Object> getAccumRankingInfoList();
+	public List getNewNotice(String id);
+
 }

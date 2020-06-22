@@ -112,12 +112,11 @@ public class MainPageController {
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).put("revenue", Math.round((double) list.get(i).get("revenue") * 100) / 100.0);
 		}
-		System.out.println(list);
+		//System.out.println(list);
 		mav.addObject("currentRevenue", list);
 
 		if (session.getAttribute("loginUser") != null)
 			mav.addObject("money", formatter.format(tradeService.getMoney(((UserVO) session.getAttribute("loginUser")).getId())));
-			System.out.println(inf.getMainNews());
 				
 		// 메인뉴스 
 		mav.addObject("news", inf.getMainNews());
@@ -188,12 +187,10 @@ public class MainPageController {
 			nowPage3 = "1";
 		
 		UserVO user = null;
-		System.out.println("체크 " + vo);
 		user = myPostService.selectUser(vo);
 		user = signInService.logIn(user);
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		session.setAttribute("loginUser", loginUser);
-		System.out.println("체크2 " + user);
 		ModelAndView mav = new ModelAndView();
 
 		if(loginUser == null) {
@@ -205,7 +202,8 @@ public class MainPageController {
 		}
 		
 		
-		else if(user.getShowEsetSetting() == 0) {
+		
+		else if(user == null || user.getShowEsetSetting() == 0) {
 			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
 			mav.addObject("location", "");
 			mav.addObject("icon", "error");

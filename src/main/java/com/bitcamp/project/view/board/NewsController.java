@@ -62,7 +62,7 @@ public class NewsController {
 //		model.addAttribute("news1_writer", news_.getWriter());
 //		model.addAttribute("news1_time", news_.getTime());
 //		model.addAttribute("news1", news_.getNews1());
-		System.out.println("news2 " + news_.getNews2());
+//		System.out.println("news2 " + news_.getNews2());
 //		System.out.println(news_);
 //		model.addAttribute("news2", news2);
 //		model.addAttribute("news3", news3);

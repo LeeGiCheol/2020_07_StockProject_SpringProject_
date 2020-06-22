@@ -171,8 +171,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						</form>
 							<div class="find-info1">
 								<span class="txt">판타지스탁 서비스 이용을 더 이상 원치 않으시면 클릭해주세요.</span> <span
-									class="bt-area"> <a href="/withdrawal?id=${loginUser.id}"
-									class="btn-s bodrb">회원탈퇴</a>
+									class="bt-area"> 
+									<a href="/withdrawal?id=${loginUser.id}" class="btn-s bodrb">회원탈퇴</a>
 								</span>
 							</div>
 					</div>

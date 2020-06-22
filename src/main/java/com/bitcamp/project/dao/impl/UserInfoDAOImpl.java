@@ -36,6 +36,16 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		notice.add(mybatis.selectList("user.getCommentNotice", id));
 		return notice;  //여기서부터 수정 user mapping getNotice 수정
 	}
+	
+	
+
+	@Override
+	public List getNewNotice(String id) {
+		List notice = new ArrayList<>(); 
+		notice.add(mybatis.selectList("user.getNewTradeNotice", id));
+		notice.add(mybatis.selectList("user.getNewCommentNotice", id));
+		return notice;
+	}
 
 	@Override
 	public void memberInfo() {

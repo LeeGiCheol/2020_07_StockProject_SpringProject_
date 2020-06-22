@@ -71,6 +71,7 @@ public class SignUpController {
 		
 		return "signup03";
 	}
+	
 	@PostMapping(value="/signUp/kakao")
 	public String signUpKakao(UserVO vo, @RequestParam("friend") String friend) {
 		if(friend != null) {

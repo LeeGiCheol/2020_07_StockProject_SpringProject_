@@ -21,10 +21,10 @@ public class MainPageNews {
 				
 					String news = doc.select("#content > div.article > div.section > div.news_area > div > ul > li:nth-child("+(i+1)+") > span > a").text();
 					mainNews[i] = news;
-					System.out.println(mainNews[i]);
+				//	System.out.println(mainNews[i]);
 				}			
 				inf.setMainNews(mainNews);
-				System.out.println(inf.getMainNews());
+				//System.out.println(inf.getMainNews());
 			return inf;
 			
 		} catch (Exception er) {

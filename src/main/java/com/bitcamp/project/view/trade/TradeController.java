@@ -508,8 +508,8 @@ public class TradeController {
 		String[] searchUpDown = topStock.getSearchUpDown();
 		String[] searchSangHa = topStock.getSearchSangHa();
 
-		System.out.println("----------" + Arrays.toString(topUpDown));
-		System.out.println("++++++++++" + Arrays.toString(searchUpDown));
+//		System.out.println("----------" + Arrays.toString(topUpDown));
+//		System.out.println("++++++++++" + Arrays.toString(searchUpDown));
 
 		for (int i = 0; i < topName.length; i++) {
 			map.put("topName", topName);

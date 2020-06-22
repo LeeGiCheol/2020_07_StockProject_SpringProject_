@@ -20,6 +20,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	
 	@Override
+	public List getNewNotice(String id) {
+		return userInfoDAO.getNewNotice(id);
+	}
+
+	@Override
 	public List getCurrentRevenue() {
 		return userInfoDAO.getCurrentRevenue();
 	}

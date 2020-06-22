@@ -48,7 +48,7 @@ public class PortfolioController {
 	List<String> uploadedFileName =BoardController.uploadedFileName;
 	
 	
-	@GetMapping(value= {"/board/portfolio", "/board/portfolio/best"})
+	@GetMapping(value= "/board/portfolio")
 	public String portfolioBoard(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
@@ -60,13 +60,7 @@ public class PortfolioController {
 		if(searchStyle.equals("")) {
 			keyword = "";
 		}
-		if(request.getServletPath().equals("/board/portfolio/best")) {
-			orderby = "best";
-		}
-		else if(request.getServletPath().equals("/board/portfolio")) {
-			orderby = "new";
-		}
-		else if(orderby.equals("")) {
+		if(orderby.equals("")) {
 			orderby = "new";
 		}
 		
@@ -80,15 +74,8 @@ public class PortfolioController {
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("path", FilePath);
-		System.out.println("searchStyle "+searchStyle);
-		System.out.println("keyword "+keyword);
 		
-		if(orderby.equals("new")) {
-			return "portfolio-board";
-		}
-		else {
-			return "portfolio-board-best";
-		}
+		return "portfolio-board";
 	}
 	
 	

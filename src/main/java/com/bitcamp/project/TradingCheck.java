@@ -118,9 +118,8 @@ public class TradingCheck {
 		for (Object key : unsettled.keySet()) {
 			HashMap map = (HashMap) unsettled.get(key);
 			int price = info.get(map.get("stockName")).getCurrentPrice();
-			System.out.println("check" + price);
-			System.out.println(key + ": [" + map.get("stockName") + "] & [요청 가격: " + map.get("rPrice") + "]");
-			System.out.print("   [현재가 : " + price + "]");
+			System.out.print(key + ": [" + map.get("stockName") + "] & [요청 가격: " + map.get("rPrice") + "]");
+			System.out.print(" & [현재가 : " + price + "]");
 
 			if (price == (Integer) map.get("rPrice")) { // 가격 동일시
 				System.out.println(" --> 동일가격 확인 & 거래 실행");
@@ -151,11 +150,11 @@ public class TradingCheck {
 					mybatis.update("stock.updateMoney", sv);
 				}
 			} else
-				System.out.println(" --> 거래 실패");
+				System.out.print(" --> 거래 실패");
 		}
 
 		Date now = new Date();
-		System.out.println(now);
+		System.out.println("  ("+now+")");
 	}
 
 }

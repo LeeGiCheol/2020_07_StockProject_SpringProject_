@@ -23,9 +23,6 @@
  
 <script>
 	$(document).ready(function() {
-		
-
-		
 		$("#jb-checkboxAll-best").click(function() {
 			if ($("#jb-checkboxAll-best").prop("checked")) {
 				$(".check-best").prop("checked", true);
@@ -92,20 +89,20 @@
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/board/portfolio">포트폴리오</a>
 							</h1>
-							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/news">오늘의 뉴스</a>
 							</h1>
 						</div>
 						<div class="board-type">
 							<div class="board-free-nav">
 								<form id="form" class="board-list-top policy-in"
-									action='/board/free/best'>
+									action='/board/free'>
 									<p class="pc-only">
 										<input type="radio" class="ordeby" id="orderby1"
-											name="orderby" value="new" checked=""><label
+											name="orderby" value="new" <c:if test="${orderby eq 'new'}"> checked="" </c:if> checked="" ><label
 											for="orderby1" class="new-board">최신순</label> <input
 											type="radio" class="ordeby" id="orderby2" name="orderby"
-											value="best"><label for="orderby2" class="hot-board">인기순</label>
+											value="best" <c:if test="${orderby eq 'best'}"> checked="" </c:if> ><label for="orderby2" class="hot-board">인기순</label>
 									</p>
 								</form>
 
@@ -137,14 +134,45 @@
 											<th class="date" scope="col">작성일</th>
 										</tr>
 									</thead>
+									<!-- 공지사항 띄우기  -->
+									<tbody>
+										<c:forEach items="${ServiceCenternotice}" var="sc" begin="0" end="1">
+												<tr>
+													<td class="board-no" style="color: red;">[공지]</td>
+													<!-- 글번호 -->
+													<c:choose>
+														<c:when test="${sc.commentCount ne 0}">
+															<td class="board-title">
+															<b><a href="/board/free/detail?pno=${sc.pno}">${sc.title}</a></b>
+															<b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${sc.commentCount}</b></td>
+															<!-- 글 제목 -->
+														</c:when>
+														<c:otherwise>
+															<td class="board-title"><a
+																href="/board/free/detail?pno=${sc.pno}">${sc.title}</a></td>
+														</c:otherwise>
+													</c:choose>
+
+													<td class="board-writer">${sc.nickname}</td>
+													<!-- 글쓴이 -->
+													<td class="board-views"><span>조회 </span>${sc.views}</td>
+													<!-- 조회수 -->
+													<td class="board-likes"><span>추천 </span>${sc.likes}</td>
+													<!-- 추천수 -->
+													<fmt:formatDate value="${sc.bdateTime}" var="time"
+														pattern="MM/dd HH:mm" />
+													<td class="board-date">${time}</td>
+													<!-- 날짜 -->
+												</tr>
+										</c:forEach>
+									</tbody> 
+									<!--  -->
 									<tbody>
 										<c:forEach items="${boardList}" var="board">
-
 											<c:if test="${board.bno eq 1}">
 												<tr>
 													<td class="board-no">${board.pno}</td>
 													<!-- 글번호 -->
-
 													<c:choose>
 														<c:when test="${board.commentCount ne 0}">
 															<td class="board-title"><a
@@ -171,10 +199,9 @@
 												</tr>
 											</c:if>
 										</c:forEach>
-
 									</tbody>
 								</table>
-
+	
 								<!-- 페이징 -->
 								<div class="paging">
 									<c:if test="${boardPage.total gt 30}">

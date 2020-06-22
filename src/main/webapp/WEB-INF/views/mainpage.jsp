@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -238,29 +240,28 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">코스피</a></span>
 
 									<c:if test="${kospi eq '+'}">
-										<p id="KRI001000000_updownColor_n" class="color-red">
+										<p id="KRI001000000_updownColor_n" class="color-red bu_p bu_pup2">
 		
 											<a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">
 												<span id="KRI001000000_close_n">${current_kospi/100 }</span>
-												<mark id="KRI001000000_updownState_n" class="color-red"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n">${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></mark>
+												<mark id="KRI001000000_updownState_n" class="color-red bu_p bu_pup2"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n"><fmt:formatNumber value="${(kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100}" pattern="0.00"/>%</span></mark>
 											</a>
 										</p>
 									</c:if>
 									<c:if test="${kospi eq '-'}">
-										<p id="KRI001000000_updownColor_n" class="color-blue">
+										<p id="KRI001000000_updownColor_n" class="color-blue bu_p bu_pdn">
 		
 											<a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">
 												<span id="KRI001000000_close_n">${current_kospi/100 }</span>
-												<mark id="KRI001000000_updownState_n" class="color-blue"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n">${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></mark>
+												<mark id="KRI001000000_updownState_n" class="color-blue bu_p bu_pdn"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n"><fmt:formatNumber value="${(kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100}" pattern="0.00"/>%</span></mark>
 											</a>
 										</p>
 									</c:if>
 									<c:if test="${kospi eq '0'}">
 										<p id="KRI001000000_updownColor_n" class="color-black" >
-		
 											<a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">
 												<span id="KRI001000000_close_n">${current_kospi/100 }</span>
-												<mark id="KRI001000000_updownState_n" class="color-black"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n">${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></mark>
+												<mark id="KRI001000000_updownState_n" class="color-black"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n"><fmt:formatNumber value="${(kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100}" pattern="0.00"/>%</span></mark>
 											</a>
 										</p>
 									</c:if>
@@ -271,18 +272,18 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">코스닥</a></span>
 									
 									<c:if test="${kosdaq eq '+'}">
-										<p id="KRI501000000_updownColor_n" class="color-red">
+										<p id="KRI501000000_updownColor_n" class="color-red bu_p bu_pup2">
 											<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
 												<span id="KRI501000000_close_n">${current_kosdaq/100 } </span>
-												<mark id="KRI501000000_updownState_n" class="color-red"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></mark>
+												<mark id="KRI501000000_updownState_n" class="color-red bu_p bu_pup2"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> <fmt:formatNumber value="${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100}" pattern="0.00"/>%</span></mark>
 											</a>
 										</p>
 									</c:if>
 									<c:if test="${kosdaq eq '-'}">
-										<p id="KRI501000000_updownColor_n" class="color-blue">
+										<p id="KRI501000000_updownColor_n" class="color-blue bu_p bu_pdn">
 											<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
 												<span id="KRI501000000_close_n">${current_kosdaq/100 } </span>
-												<mark id="KRI501000000_updownState_n" class="color-blue"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></mark>
+												<mark id="KRI501000000_updownState_n" class="color-blue bu_p bu_pdn"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> <fmt:formatNumber value="${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100}" pattern="0.00"/>%</span></mark>
 											</a>
 										</p>
 									</c:if>
@@ -290,7 +291,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 										<p id="KRI501000000_updownColor_n" class="color-black">
 											<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
 												<span id="KRI501000000_close_n">${current_kosdaq/100 } </span>
-												<mark id="KRI501000000_updownState_n" class="color-black"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></mark>
+												<mark id="KRI501000000_updownState_n" class="color-black"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> <fmt:formatNumber value="${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100}" pattern="0.00"/>%</span></mark>
 											</a>
 										</p>
 									</c:if>
@@ -387,7 +388,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
-								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free/best?orderby=best'">더보기</button>
+								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 							</div>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">신규 글</a>
@@ -774,7 +775,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 					var topRank = "";
 					var a = 1;
 					
-					for(var i=0; i<data.topName.length-1; i++){
+					for(var i=0; i<data.topName.length; i++){
 						if(data.topName[i] != null){
 							topRank += '<tr class="up">'
 							topRank += '<th scope="row"><em>'+a+'</em>'

@@ -32,15 +32,6 @@ a:hover {
 	background:white;
 	width:100%;
 }
-.tit-h1, .m-drop-tit-title {
-    font-size: 20px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    line-height: 100%;
-        border-bottom: 1px solid #1e78ff !important;
-            margin: 0 -30px 30px;
-    padding: 0 30px 20px;
-}
 .m-drop-tit-body {
     margin: 0 -30px 30px;
     padding: 18px 31px 16px !important;
@@ -256,9 +247,6 @@ a:hover {
 .fa-angle-down:before {
     font-size: 20px;
 }
-.last{
-	border-bottom: 1px solid #ababab;
-}
 .tit-h1, .m-drop-tit-title {
     font-size: 20px;
     margin-bottom: 20px;
@@ -267,6 +255,7 @@ a:hover {
     margin: 0 -30px 30px;
     padding: 0 30px 20px;
     color: #1e78ff;
+    border-bottom: 1px solid #1e78ff !important;
 }
 
 .color-fantasy {
@@ -281,4 +270,18 @@ a:hover {
     color: #1e78ff;
     border: 1px solid #eff3f6;
     background: #f3faff;
+}
+
+
+
+
+@media only screen and (max-width: 979px){
+.m-drop-nav{
+	display: block;
+}
+.tit-h1, .m-drop-tit-title, .m-drop-tit-body {
+    font-size: 20px;
+    margin: 0 !important;
+    padding: 0 10px 22px;
+}
 }
