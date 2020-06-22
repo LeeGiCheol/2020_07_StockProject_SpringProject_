@@ -131,7 +131,7 @@ border-left: 4px solid #1e78ff !important;
 
 											<c:if test="${board.bno eq 3}">
 												<tr>
-													<td class="board-no">${board.pno}</td>
+													<td class="board-no" style="color: red;">[공지]</td>
 													<!-- 글번호 -->
 
 													<c:choose>
