@@ -238,11 +238,13 @@ a:hover {
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
 }
-#cssmenu > ul > .mid a {
+.mid a {
 	border-bottom: 1px solid #d7d8da;
 }
+.last a {
+	border-top: 1px solid #d7d8da;
+}
 #cssmenu > ul > .selected a{
-	border-bottom: 1px solid #d7d8da;
 		color: #212529;
 		font-weight: 600 !important;
 }

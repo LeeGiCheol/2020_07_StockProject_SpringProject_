@@ -94,7 +94,7 @@
 							<a class="dropdown-item" href="/board/free">자유게시판</a> <a
 								class="dropdown-item" href="/board/portfolio">포트폴리오</a>
 							
-							<a class="dropdown-item" href="/news">뉴스</a>
+							<a class="dropdown-item" href="/news">오늘의 뉴스</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link" href="/trade">거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="/customer">고객센터<span

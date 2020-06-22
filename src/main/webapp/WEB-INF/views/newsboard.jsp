@@ -46,7 +46,7 @@
 	});
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	var date = new Date();
 	date.setDate(date.getDate());
 	//var todayCnt = 0;
@@ -125,7 +125,7 @@
 		//showHideTomorrow();
 		showHideTomorrowBtn(yesterdayDate, new Date());
 	}
-</script>
+</script> -->
 
 </head>
 <style>
@@ -183,34 +183,33 @@ border-left: 4px solid #1e78ff !important;
 		<div class="contents">
 		<div class="row">
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
-						<ul>
-<!-- 현재 페이지 리스트 부분 강조를 위해 각각이아디 값을줌 -->
-							<li id="freeTitle"><a href="/board/free"><span>자유게시판</span></a></li>
-							<li id="portTitle" class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-							<li id="newsTitle"class="last"><a href="/news"><span>뉴스</span></a></li>
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
+						<ul>	
+							<li class="mid"><a href="/board/free"><span>자유게시판</span></a></li>
+							<li><a href="/board/portfolio"><span>포트폴리오</span></a></li>
+							<li class="selected last"><a href="/news"><span>오늘의 뉴스</span></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-10">
 				<div class="newsboard-area">
-				<div class="drop-nav">
-					<h1 class="tit-h1 line">뉴스</h1>
-				</div>
-				<div class="m-drop-nav">
-					<h1 class="m-drop-tit-title line" style="cursor: pointer;">뉴스 <i class="fas fa-angle-down"></i></h1>
-				</div>
-				<div class="m-drop-down">
-					<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-						<a href="/news">뉴스</a>
-					</h1>
-					<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-						<a href="/board/free">자유게시판</a>
-					</h1>
-					<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
-						<a href="#">포트폴리오</a>
-					</h1>
-				</div>
+						<div class="drop-nav">
+							<h1 class="tit-h1 line">오늘의 뉴스</h1>
+						</div>
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">오늘의 뉴스 <i class="fas fa-angle-down"></i></h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+								<a href="/board/free">자유게시판</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/portfolio">포트폴리오</a>
+							</h1>
+							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+								<a href="/news">오늘의 뉴스</a>
+							</h1>
+						</div>
 				<div class="newsboard-nav">
 					<ul class="nav newsboard-nav-tab" id="pills-tab" role="tablist">
 						<li class="newsboard-nav-item selected" role="presentation"><a
@@ -228,7 +227,7 @@ border-left: 4px solid #1e78ff !important;
 					</ul>
 				</div>
 
-				<div class="board-calendar">
+<!-- 				<div class="board-calendar">
 					
 					<div class="week ">
 						<p class="date">
@@ -239,8 +238,8 @@ border-left: 4px solid #1e78ff !important;
 							<button onclick="setTomorrow();" class="next-week" id="btn-tomorrow">내일</button>
 						</p>
 					</div>
-					<!-- //week -->
-				</div>
+					//week
+				</div> -->
 				<!-- //board-calendar -->
 
 
@@ -248,19 +247,19 @@ border-left: 4px solid #1e78ff !important;
 					<div class="tab-pane fade show active" id="pills-home"
 						role="tabpanel" aria-labelledby="pills-home-tab">
 						<ul class="realtimeNewsList" id="news1">
-							<li class="newsList top">
+							<li class="newsList top"></li>
 						</ul>
 				</div>
 					<div class="tab-pane fade" id="pills-profile" role="tabpanel"
 							aria-labelledby="pills-profile-tab">
 							<ul class="realtimeNewList" id="news2">
-								<li>
+								<li></li>
 							</ul>
 					</div>
 				<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 						aria-labelledby="pills-contact-tab">
 						<ul class="newslist" id="news3">
-							<li>
+							<li></li>
 						</ul>
 				</div>	
 				
@@ -270,42 +269,12 @@ border-left: 4px solid #1e78ff !important;
 	</div>
 	</div>
 	</div>
-
+</div>
 	<%@include file="mainfooter.jsp" %> 
 <script type="text/javascript">
    $( document ).ready(function() {
 	  console.log( "document ready!" );
-
-	  /*	  var $sticky = $('.sticky');
-	  var $stickyrStopper = $('.footer_info');
-	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
-
-	    var generalSidebarHeight = $sticky.innerHeight();
-	    var stickyTop = $sticky.offset().top;
-	    var stickOffset = 0;
-	    var stickyStopperPosition = $stickyrStopper.offset().top;
-	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-	    var diff = stopPoint + stickOffset;
-
-	    $(window).scroll(function(){ // scroll event
-	      var windowTop = $(window).scrollTop(); // returns number
-
-	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
-	      } else if (stickyTop < windowTop+stickOffset) {
-	          $sticky.css({ position: 'fixed', top: stickOffset });
-	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
-	      }
-	    });
-
-	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
-	   */
-		
-	  
+			  
 	  $.ajax({
 			type : 'GET',
 			url : '${pageContext.request.contextPath}/newsAjax',
@@ -440,6 +409,53 @@ border-left: 4px solid #1e78ff !important;
 	  $("#news3 a").attr("target", "_blank") */
 	});
   </script>
+  		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
+
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
+
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
+
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
+
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
 	<script src="resources/jpaginate/jquery.twbsPagination.js"></script>
 	<script src="http://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

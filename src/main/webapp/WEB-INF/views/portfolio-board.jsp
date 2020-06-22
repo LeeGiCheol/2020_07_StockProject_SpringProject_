@@ -93,9 +93,9 @@ $(document).ready(function(){
 					<div class="sidebar sticky" id="cssmenu">
 						<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 							<ul>	
-								<li class="mid"><a href="/board/free"><span>자유게시판</span></a></li>
-								<li class="selected"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-								<li class="last"><a href="/news"><span>오늘의 뉴스</span></a></li>
+								<li><a href="/board/free"><span>자유게시판</span></a></li>
+								<li class="selected mid last"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
+								<li><a href="/news"><span>오늘의 뉴스</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -116,7 +116,7 @@ $(document).ready(function(){
 								<a href="/board/portfolio">포트폴리오</a>
 							</h1>
 							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
-								<a href="/news">뉴스</a>
+								<a href="/news">오늘의 뉴스</a>
 							</h1>
 						</div>
 						<div class="board-type">
