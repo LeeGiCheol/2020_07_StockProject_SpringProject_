@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
+import com.bitcamp.project.service.impl.BoardServiceImpl;
 import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
@@ -59,12 +60,7 @@ public class BoardController {
 			keyword = "";
 		}
 		System.out.println("path " + request.getServletPath());
-//		if (request.getServletPath().equals("/board/free/best")) {
-//			orderby = "best";
-//		} 
-//		else if (request.getServletPath().equals("/board/free")) {
-//			orderby = "new";
-//		}
+
 		if (orderby.equals("")) {
 			orderby = "new";
 		}
@@ -75,12 +71,11 @@ public class BoardController {
 		model.addAttribute("boardPage", (PagingVO) boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
+		
+		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
+		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
 
-//		if (orderby.equals("new")) {
-			return "free-board";
-//		} else {
-//			return "free-board-best";
-//		}
+		return "free-board";
 	}
 
 	@GetMapping("/board/free/write")

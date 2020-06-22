@@ -129,28 +129,14 @@
 
 </head>
 <style>
-/* 각 메누리스트에 아이디값을 주고 가장먼저 스타일이 적용되게 페이지내에 코드 작성 */
 
 
-/* 
-현재페이지 메뉴 */
-#newsTitle{
-border-left: 4px solid #1e78ff !important;
-    color: black !important;
-    font-weight: 600 !important;
-    background: #f6f6f6 !important;
-}
-/* 폰트강조 */
-#newsTitle a, #newsTitle a:visited, #newsTitle a:link{
-	    color: black!important;
-  font-weight: 600 !important;
- 
+.newsboard-nav-tab li{
+	border-bottom: 1px solid #eaeaea;
+	
 }
 
-
-
-
-.newsboard-nav-tab li.selected a {
+.newsboard-nav-tab li.selected {
     z-index: 3;
     background: #fff;
     line-height: 50px;
@@ -206,7 +192,7 @@ border-left: 4px solid #1e78ff !important;
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/board/portfolio">포트폴리오</a>
 							</h1>
-							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/news">오늘의 뉴스</a>
 							</h1>
 						</div>
@@ -252,13 +238,13 @@ border-left: 4px solid #1e78ff !important;
 				</div>
 					<div class="tab-pane fade" id="pills-profile" role="tabpanel"
 							aria-labelledby="pills-profile-tab">
-							<ul class="realtimeNewList" id="news2">
+							<ul class="realtimeNewsList" id="news2">
 								<li></li>
 							</ul>
 					</div>
 				<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 						aria-labelledby="pills-contact-tab">
-						<ul class="newslist" id="news3">
+						<ul class="realtimeNewsList" id="news3">
 							<li></li>
 						</ul>
 				</div>	
@@ -345,6 +331,8 @@ border-left: 4px solid #1e78ff !important;
 					news2 += 		'<span class="bar">|</span>'
 					news2 += 		'<span class="wdate">'+data.news2.time[i]+'</span>'
 					news2 += 	'</dd>'
+				
+				
 				
 				}
 				$("#news2").html(news2);

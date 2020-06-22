@@ -221,8 +221,14 @@
 		
 	</select>
 	
-	
-		
+	<!-- 공지사항 다른 게시판에 뿌리기 -->
+	<select id="ServiceCenternotice" parameterType="page" resultType="board">
+		SELECT pno, title, nickname, views, likes, bdatetime
+		FROM board 
+		WHERE bno=3
+		order by bdatetime DESC
+		limit 2;
+	</select>
 	
 	<!-- 댓글 등록 시 게시물 옆에 개수 띄우기용 -->
 	<update id="commentCount">
@@ -304,6 +310,7 @@
 		WHERE pno = #{pno}
 		AND nickname = #{nickname}
 	</select>
+	
 	
 	
 </mapper>
