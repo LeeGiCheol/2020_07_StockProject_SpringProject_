@@ -59,15 +59,16 @@ public class BoardController {
 			keyword = "";
 		}
 		System.out.println("path " + request.getServletPath());
-		if (request.getServletPath().equals("/board/free/best")) {
-			orderby = "best";
-		} 
-		else if (request.getServletPath().equals("/board/free")) {
+//		if (request.getServletPath().equals("/board/free/best")) {
+//			orderby = "best";
+//		} 
+//		else if (request.getServletPath().equals("/board/free")) {
+//			orderby = "new";
+//		}
+		if (orderby.equals("")) {
 			orderby = "new";
 		}
-		else if (orderby.equals("")) {
-			orderby = "new";
-		}
+		System.out.println("orderby "+orderby);
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
 				orderby, bno, 30);
 		model.addAttribute("boardList", (List<BoardVO>) boardList.get("boardList"));
@@ -75,11 +76,11 @@ public class BoardController {
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 
-		if (orderby.equals("new")) {
+//		if (orderby.equals("new")) {
 			return "free-board";
-		} else {
-			return "free-board-best";
-		}
+//		} else {
+//			return "free-board-best";
+//		}
 	}
 
 	@GetMapping("/board/free/write")
