@@ -12,12 +12,12 @@
 <link href="/resources/css/mypage01.css" rel="stylesheet">
 <link href="resources/css/mainheader2.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script>
 function notLocal(){swal({text:"접속하신 해당 홈페이지에서 변경가능합니다.", icon:"warning"})}
 </script>
 <style>
-#addr_post_no{width:521px;}
 A:link, A:visited, A:hover, A:active{cursor: pointer;}
 </style>
 </head>
@@ -29,10 +29,9 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 		<div class="contents member" id="contents">
 			<div class="row">
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu"
-						style="position: relative; top: initial;">
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
-							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<li class="selected mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
 							<c:set var="socialId" value="${loginUser.id}"/>
 									<c:choose>
 										<c:when test="${fn:contains(socialId,'_')}">
@@ -42,12 +41,13 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
 										</c:otherwise>
 									</c:choose>
-							<li class="last"><a href="/myPage02"><span>계좌정보</span></a></li>
+							<li class="mid"><a href="/myPage02"><span>계좌정보</span></a></li>
 							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
-							<li class="last"><a href="/myPage04"><span>알림</span></a></li>
+							<li><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
-					</div>
+					</div>				
 				</div>
+				
 
 				<div class="col-md-10">
 					<!-- cont-area -->
@@ -63,17 +63,20 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<a href="/myPage01">내 정보 관리</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/mypageUpdatePassword">비밀번호 변경</a>
+							</h1>							
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/myPage02">계좌정보</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/myPage03">작성 글 | 댓글</a>
 							</h1>
-							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/myPage04">알림</a>
 							</h1>
 						</div>
-						<form action="/updateUser" name="frm" id="frm" method="POST" novalidate>
 							<div class="modify-mem">
+						<form action="/updateUser" name="frm" id="frm" method="POST" novalidate>
 								<input type="hidden" name="ar_concern" id="ar_concern" value="">
 								<input type="hidden" name="sns_cust" id="sns_cust" value="">
 								<input type="hidden" name="sns_id" id="sns_id" value="">
@@ -152,8 +155,8 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 										</tbody>
 									</table>
 								</div>
-								<small class="text-muted">다른 사용자에게 보유 자산 및 수익률과 거래내역을 노출 하시겠습니까?</small> <br>
 								<div class="ask-form">
+								<p class="text-muted">다른 사용자에게 보유 자산 및 수익률과 거래내역을 노출 하시겠습니까?</p>
 									<div class="custom-control custom-radio">
 										<input type="radio" name="showEsetSetting" id="ask-radio-1" class="custom-control-input" value="1">
 										<label class="custom-control-label" id="ask-radio-1-answer" for="ask-radio-1">예</label>
@@ -162,13 +165,14 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 										<input type="radio" name="showEsetSetting" id="ask-radio-2"class="custom-control-input" value="0">
 										<label class="custom-control-label" for="ask-radio-2">아니오</label>
 									</div>
-								</div>
-								<br>
+								
+								
 							</div>
 							<div class="bt-area">
-								<button class="btn-b" type="button" id="submit">정보수정</button>
+								<button class="btn-b fantasy" type="button" id="submit">정보수정</button>
 							</div>
 						</form>
+						</div>
 							<div class="find-info1">
 								<span class="txt">판타지스탁 서비스 이용을 더 이상 원치 않으시면 클릭해주세요.</span> <span
 									class="bt-area"> 
@@ -182,10 +186,12 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 			</div>
 		</div>
 	</div>
+
 	<%@include file="mainfooter2.jsp"%>
 
-	<script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+	
 </body>
+<script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -194,33 +200,46 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     $(document).ready(function () {
     	$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
     	textLenCheck("userNickname","닉네임",{max:12,currentLenId:"maxText"});
-        var $sticky = $('.sticky');
-        var $stickyrStopper = $('.footer_info');
-        if (!!$sticky.offset()) { // make sure ".sticky" element exists
+		var $sticky = $('.sticky');
+		var $stickyrStopper = $('.footer_content	');
+		if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
-            var generalSidebarHeight = $sticky.innerHeight();
-            var stickyTop = $sticky.offset().top;
-            var stickOffset = 0;
-            var stickyStopperPosition = $stickyrStopper.offset().top;
-            var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-            var diff = stopPoint + stickOffset;
+			var generalSidebarHeight = $sticky.innerHeight();
+			var stickyTop = $sticky.offset().top;
+			var stickOffset = 0;
+			var stickyStopperPosition = $stickyrStopper
+					.offset().top;
+			var stopPoint = stickyStopperPosition
+					- generalSidebarHeight - stickOffset;
+			var diff = stopPoint + stickOffset;
 
-            $(window).scroll(function () { // scroll event
-                var windowTop = $(window).scrollTop(); // returns number
+			$(window).scroll(
+					function() { // scroll event
+						var windowTop = $(window).scrollTop(); // returns number
 
-                if (stopPoint < windowTop) {
-                    $sticky.css({ position: 'relative', top: diff });
-                } else if (stickyTop < windowTop + stickOffset) {
-                    $sticky.css({ position: 'fixed', top: stickOffset });
-                } else {
-                    $sticky.css({ position: 'relative', top: 'initial' });
-                }
-            });
+						if (stopPoint < windowTop) {
+							$sticky.css({
+								position : 'relative',
+								top : diff
+							});
+						} else if (stickyTop < windowTop
+								+ stickOffset) {
+							$sticky.css({
+								position : 'fixed',
+								top : stickOffset
+							});
+						} else {
+							$sticky.css({
+								position : 'relative',
+								top : 'initial'
+							});
+						}
+					});
 
-        }
-        $("input[name=showEsetSetting]").click(function(){
-        	$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
-        });
+		}
+		$(".m-drop-nav").click(function() {
+			$(".m-drop-down").slideToggle("slow");
+		});
         
     });
     function textLenCheck(id,label,condObj){
@@ -273,9 +292,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 		return len;
 	}
     
-    $(".m-drop-nav").click(function () {
-        $(".m-drop-down").slideToggle("slow");
-    });
     
     function submitDoit(){
     	$.ajax({

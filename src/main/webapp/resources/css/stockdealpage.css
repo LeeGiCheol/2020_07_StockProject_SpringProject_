@@ -21,14 +21,14 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
    word-break: break-all;
 }
 .btn-secondary {
-	background: #1e78ff;
+	background: rgba(46,87,255,1);
     border-color:#e8ebee;;
     border-radius: 1px;
     color: #fff;
     padding: 5px 10px;
 }
 .btn-secondary:hover {
-	color: #1e78ff;
+	color: rgba(46,87,255,1);
     border: 1px solid #eff3f6;
     background: #f3faff;
 }
@@ -93,6 +93,8 @@ tr td button{
 	max-width: 100% !important;
     flex: none !important;
     padding: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
 }
 }
 @media only screen and (max-width: 979px){
@@ -131,14 +133,14 @@ font-size: 20px;
     line-height: 100%;
     margin: 0 -10px 30px;
     padding: 20px 30px 20px;
-    color: #1e78ff;
-    border-bottom: 1px solid #1e78ff !important;
+    color: rgba(46,87,255,1);
+    border-bottom: 1px solid rgba(46,87,255,1) !important;
 }
 .stock-header{
 width: 1250px;
     margin: auto;
     font-size: 22px;
-    border-left: 5px solid #1e78ff;
+    border-left: 5px solid rgba(46,87,255,1);
     padding: 0 22px;
     letter-spacing: 1px;
 }
@@ -246,8 +248,8 @@ box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 .chartdata-nav{
 	width: 100%;
     margin-bottom: 10px;
-    padding-right: 5px;
-    padding-left: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
     background: white;
     padding: 0 10px 30px 10px;
     border: 1px solid #e5e6ef;
@@ -528,7 +530,7 @@ a.btnStyle {
     background: #fff;
     line-height: 50px;
     color: #5a6268 !important;
-    border-bottom: 2px solid #1e78ff;
+    border-bottom: 2px solid rgba(46,87,255,1);
     font-weight: 600;
 }
 .stock-nav-tab li {
@@ -681,14 +683,14 @@ a.btnStyle {
 	border-radius: 5px;
 	
   color: #FFFFFF;
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 400;
 	margin-bottom: 10px;
-	padding: 7px 12px;
+	padding: 10px;
 	position: absolute;
-	width: 160px;
-	min-width: 50px;
-	max-width: 300px;
+	width: 200px;
+/*  	min-width: 100px;
+	max-width: 200px */;
 	word-wrap: break-word;
 
 	z-index: 9999;
@@ -719,7 +721,7 @@ a.btnStyle {
     padding: 10px;
     width: 50%;
     float: left;
-    border-bottom: 1px solid #0a84ec;
+    border-bottom: 1px solid rgba(46,87,255,1);
 }
 .h_popular-right {
     font-size: 14px;
@@ -727,7 +729,7 @@ a.btnStyle {
     padding: 10px;
     width: 50%;
     float: right;
-    border-bottom: 1px solid #0a84ec;
+    border-bottom: 1px solid rgba(46,87,255,1);
 }
 .tbl_home_left {
     width: 48.5%;
@@ -928,7 +930,7 @@ caption {
     padding: 5px 10px;
     margin: 3px;
     border-radius: 0 !important;
-    background: #1e78ff;
+    background: rgba(46,87,255,1);
     border: 1px solid #e8ebee;
     float: right;
     top: 5px;

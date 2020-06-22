@@ -113,7 +113,7 @@ input {
     left: 0;
     right: -12px;
     height: 3px;
-    background: #ff545b;
+    background: rgba(46,87,255,1);;
 }
 .step-mem li:nth-of-type(2) {
     width: 36%;
@@ -157,7 +157,7 @@ input {
     background: url(/resources/img/step_mem.png) no-repeat 0 -164px;
 }
 .step-mem li.selected span {
-    color: #ff545b;
+    color: rgba(46,87,255,1);
 }
 .step-mem li span:after {
     content: "";
@@ -200,7 +200,7 @@ input {
     padding-top: 20px;
     border-top: 1px solid #000;
 }
-input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
+/* input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
     opacity: 0;
     outline: 0;
     margin-left: 0;
@@ -232,7 +232,7 @@ input[type="checkbox"]:not(old) + label {
     background-repeat: no-repeat;
     background-size: 14px 14px;
     cursor: pointer;
-}
+} */
 .member .all-check {
     margin-bottom: 12px;
     height: 63px;
@@ -262,7 +262,7 @@ input[type="checkbox"]:not(old) + label {
     padding: 10px;
     overflow: hidden;
 }
-input[type="checkbox"]:not(old):checked + label {
+/* input[type="checkbox"]:not(old):checked + label {
     min-width: 18px;
     background-image: url(/resources/img/bg_check_on_m.png);
 }
@@ -276,7 +276,7 @@ input[type="checkbox"]:not(old) + label {
     background-repeat: no-repeat;
     background-size: 14px 14px;
     cursor: pointer;
-}
+} */
 .clause .choice {
     margin: 0;
     font-size: 13px;
@@ -542,9 +542,8 @@ p.error-text {
     border: none;
 }
 .member .men-step fieldset ul li input[type="radio"]:not(old):checked + label {
-    color: #ff545b;
-    background-color: #fff;
-    border: 1px solid #ff545b;
+    border: 1px solid rgba(46,87,255,1);
+    color: rgba(46,87,255,1) !important;    
 }
 .member .men-step .dormant-radio input[type="radio"]+ label {
     margin-right: 12px;
@@ -574,7 +573,7 @@ p.error-text {
     right: 0;
     top: 15px;
 }
-input[type="radio"]:not(old) + label {
+/* input[type="radio"]:not(old) + label {
     display: inline-block;
     height: 18px;
     padding: 0 0 0 18px;
@@ -587,7 +586,7 @@ input[type="radio"]:not(old) + label {
 }
 input[type="radio"]:not(old):checked + label {
     background-image: url(/resources/img/bg_radio_on.png);
-}
+} */
 .member .men-step fieldset ul + ul {
     margin-top: 15px;
 }
@@ -919,4 +918,15 @@ input[type="text"], input[type="password"], input[type="tel"] {
     width: 100%;
     padding: 10px 12px 15px;
 }
+}
+
+
+
+.fantasy {
+    background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
+    color: #fff !important;
+}
+.color-fantasy {
+	color: rgba(46,87,255,1) !important;
 }

@@ -9,8 +9,8 @@
 <title>비밀번호찾기</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader4.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <style>
 .social-login {
@@ -107,14 +107,14 @@
 				<div class="id-result">
 					<div class="message-st-no"> 
 						<img class="" id="idfail" src="/resources/img/icon.png">
-						<p class="big-text">입력하신 인증번호는 <span class="color-red">일치하지 않습니다</span><br>다시 시도해주세요.</p>
+						<p class="big-text">입력하신 인증번호는 <span class="color-fantasy">일치하지 않습니다</span><br>다시 시도해주세요.</p>
 					</div>
 
 					<div class="social-login">
 						<button type="button" class="naverlogin btn-b naver" onclick="location.href='/naverLogin'">네이버 아이디로 로그인</button>
 						<button type="button" class="kakaologin btn-b kakaotalk" >카카오톡 아이디로 로그인</button>
 					</div>
-					<div class="bt-area"><a href="/forgetPassword" class="btn-b gray">다시 시도하기</a></div>
+					<div class="bt-area"><a href="/forgetPassword" class="btn-b fantasy">다시 시도하기</a></div>
 					<div class="find-info">
 						<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> 
 						<span class="bt-area"> 
@@ -127,7 +127,7 @@
 		</div>
 	</div>
 
-	<%@include file="mainfooter.jsp"%>
+	<%@include file="mainfooter2.jsp"%>
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>

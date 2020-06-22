@@ -20,207 +20,7 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <style type="text/css">
-.containerNew {
-    position: relative;
-    max-width: 1260px;
-    height: 100%;
-    padding: 20px 0 0 0;
-    margin: 0 auto;
-}
-.nav-tabs{
-border:0 !important;
-}
-.btnOverInfo {
-float:left;
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 28px;
-    color: #333;
-}
-#nowStock {
-    margin-left: 10px;
-    padding: 0;
-        font-size: 25px;
-    color: #1a64d2 !important;
-}
-@media only screen and (max-width: 979px){
-.containerNew {
-    padding: 0;
-}
-}
-.refresh {
-position:relative;
-    float: left;
-    margin-left: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    padding-top: 5px;
-    color: #333;
-    top: 7px;
-}
-A:link, A:visited, A:hover, A:active{cursor: pointer;}
 
-.graph-area .g-box {
-    width: 100%;padding-top: 7px;
-}
- .graph-area .g-box > div {
-    position: relative;
-    padding: 5px 15px;
-}
- .graph-area .g-box > div.graph-left {
-    
-}
- .graph-area .g-box > div {
-    width: 50%;
-    float: left;
-    padding: 20px;
-}
- .graph-area .g-box .graph-title {
-    padding-bottom: 5px;
-}
- .graph-area .g-box .graph-title {
-    position: relative;
-    min-height: 25px;
-    padding-bottom: 5px;
-}
- .graph-area .g-box .graph-title > span {
-    font-size: 16px;
-    color: #000;
-    display: block;
-    height: 25px;
-    line-height: 25px;
-    font-weight: bold;
-}
- .graph-area .g-box .graph-title > span a {
-    color: #000;
-}
- .graph-area .g-box .graph-title > p {
-    color: #000;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-weight: 600;
-    font-size: 16px;
-}
-.color-blue {
-    color: #1ea3fe !important;
-}
-.color-black {
-    color: #000000 !important;
-}
- .graph-area .g-box .graph-title > p.color-blue a {
-    color: #1ea3fe !important;
-}
- .graph-area .g-box .graph-title > p > a > span {
-    padding-right: 5px;
-}
-.fall {
-    position: relative;
-    color: #1ea3fe;
-    padding-left: 13px;
-    background: url(/rpan/common/images/ico_fall.png?update=20180329) no-repeat 0 50%;
-    background-size: 8px 6px;
-}
-.hidden {
-    overflow: hidden;
-    width: 0;
-    height: 0;
-    line-height: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 0;
-    text-indent: -9999px;
-}
- .graph-area .g-box > div {
-    position: relative;
-    padding: 5px 15px;
-}
-.color-red {
-    color: #ff545b !important;
-}
- .graph-area .g-box .graph-title > p.color-red a {
-    color: #ff545b !important;
-}
-.rise {
-    position: relative;
-    color: #ff545b;
-    padding-left: 13px;
-    background: url(/rpan/common/images/ico_rise.png?update=20180329) no-repeat 0 50%;
-    background-size: 8px 6px;
-}
-.graph-area{
-}
- .graph-area .g-box > div.graph-left {
-   
-}
-.graph-area .graph_on {
-    display: block;
-}
- .graph-area .g-box .g-img {
-    width: 274px;
-    height: 80px;
-    margin: 0 auto;
-}
-.ranking ul {
-    position: relative;
-    z-index: 1;
-    margin: 0 0 0;
-    padding: 0 20px 16px;
-    background: #fff;
-}
- .ranking ol li a i {
-    display: block;
-    float: left;
-    width: 14px;
-    text-align: center;
-    color: #000;
-}
-.ranking ol li a * {
-    line-height: 19px;
-    vertical-align: middle;
-}
-.ranking ol li a span {
-    display: block;
-    float: left;
-    width: 112px/*width:102px*/;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding-bottom: 1px;
-}
-.ranking ol li a mark {
-    float: right;
-    position: relative;
-    display: block;
-    /* width: 68px; */
-    width: 78px;
-    text-align: right;
-}
-.color-red {
-    color: #ff545b !important;
-}
-.ranking ul li:first-child {
-    margin-top: 18px;
-}
- .ranking ul li {
-    margin-top: 9px;
-}
-.ranking ul li a {
-    display: block;
-    color: #000;
-}
-
-
-
-
-@media only screen and (max-width: 979px){
-.ranking ol li:first-child {
-    margin-top: 17px;
-}
-.ranking ol li a {
-    clear: both;
-}
-} 
 </style>
 </head>
 <body>
@@ -237,7 +37,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 					<div class="g-box">
 						<div class="graph-left graph_off" style="display:block;">
 							<div class="graph-title">
-								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">코스피</a></span>
+								<span><a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">코스피</a></span>
 
 									<c:if test="${kospi eq '+'}">
 										<p id="KRI001000000_updownColor_n" class="color-red bu_p bu_pup2">
@@ -388,11 +188,11 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
-								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
+								<button type="button" class="plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
 							</div>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">신규 글</a>
-								<button type="button" class="btn btn-secondary btn-sm plus" onclick="location.href='/board/free'">더보기</button>
+								<button type="button" class="plus" onclick="location.href='/board/free'">더보기</button>
 							</div>
 						</nav>
 					<div class="community-best">
@@ -448,7 +248,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<a id="new-market-conditions" style="cursor:pointer;">시황 전망</a>
 						<a id="new-event" style="cursor:pointer;">기업 종목분석</a>
 					</span>
-					<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/news'">더보기</button>
+					<button type="button" class="news-plus" onclick="location.href='/news'">더보기</button>
 
 					<div class="tab-content" id="pills-tabContent">
 						<div class="news-body" id="realTimeHtml">

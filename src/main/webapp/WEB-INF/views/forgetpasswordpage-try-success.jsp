@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader4.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <script >
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
@@ -36,18 +36,18 @@ function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:
 								<div class="fint-list-cont">
 									<div class="find-box">
 										<p>
-											회원가입 시 입력한 <span class="color-red">이메일 주소와 동일한 주소</span>를
+											회원가입 시 입력한 <span class="color-fantasy">이메일 주소와 동일한 주소</span>를
 											입력하셔야 해당 메일로 인증번호를 받을 수 있습니다.
 										</p>
 										<ul class="form-list">
 											<li class="input-type">
 											<input type="text"	placeholder="${findUser.id}" id="id" name="id" readonly>
-											<button type="button" class="btn-t gray" onclick="msg()">인증번호전송</button></li>
+											<button type="button" class="btn-t fantasy" onclick="msg()">인증번호전송</button></li>
 													
 											<li class="input-type" id="_liCert2"> 
 											<input type="password" placeholder="인증번호를 입력해주세요." id="email_answer" 
 											name="email_answer" onKeyPress="return numkeyCheck(event)">
-											<button type="submit" class="btn-t gray">인증번호입력</button></li>
+											<button type="submit" class="btn-t fantasy">인증번호입력</button></li>
 													 
 										</ul>
 									</div>
@@ -68,7 +68,7 @@ function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:
 		</div>
 	</div>
 
-	<%@include file="mainfooter.jsp"%>
+	<%@include file="mainfooter2.jsp"%>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

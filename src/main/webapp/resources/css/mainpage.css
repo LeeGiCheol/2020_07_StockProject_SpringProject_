@@ -44,7 +44,7 @@ em, i {
 
 a, a:link, a:visited, a:active, a:hover {
 	text-decoration: none;
-	color: #1e78ff;
+	color: rgba(46,87,255,1);
 }
 
 p {
@@ -90,7 +90,7 @@ ul i {
 	background: #fff;
 	margin-bottom: 10px;
 	overflow: hidden;
-	    border: 1px solid #e5e6ef;
+	border: 1px solid #e5e6ef;
     box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 
 }
@@ -99,11 +99,11 @@ ul i {
 	background: #fff;
 	margin-bottom: 10px;    padding: 2px 7px 5px;
 	overflow: hidden;
-	    border: 1px solid #e5e6ef;
+	border: 1px solid #e5e6ef;
     box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 }
 .graph_off{
-	    border-bottom: 1px solid #0a84ec;
+	border-bottom: 1px solid rgba(46,87,255,1);
 }
 
 /* 메인 도움말 문의버튼 */
@@ -120,10 +120,12 @@ width: 48%;
     display: inline-block;
     text-align: center;
     padding: 10px;
+    background: linear-gradient(27deg, rgb(63, 75, 255) 0%, rgb(3, 255, 185) 86%, rgb(19, 36, 62) 100%);
+    background-size: 410% 130%; color: white;
 }
 #cBoxa:hover,#cBoxb:hover {
-	color: #1e78ff;
-    border: 1px solid #eff3f6;
+	color: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
     background: #f3faff;
 }
 
@@ -131,14 +133,14 @@ width: 48%;
   font-size: 3em;margin: 5px;
 }
 #cBoxa{
-	 margin-right: 6px !important;
-	 background: #1e78ff;
-    color: white;
+	margin-right: 6px !important;
+/* 	background: rgba(46,87,255,1);*/
+    color: white; 
 	
 }
 #cBoxb{
-	 background: #1e78ff;
-    color: white;
+/* 	background: rgba(46,87,255,1);*/
+    color: white; 
 }
 
 .login-box div>p>a:after {
@@ -165,7 +167,7 @@ width: 48%;
 	position: relative;
 /* 	border: 1px solid #ccc;
  */
- border: 1px solid #0a84ec;
+ border: 1px solid rgba(46,87,255,1);
  	height: 64px;
 	box-sizing: border-box;
 }
@@ -176,7 +178,7 @@ width: 48%;
 	left: 0;
 	right: 0;
 	top: 31px;
-    border-top: 1px solid #0a84ec;
+    border-top: 1px solid rgba(46,87,255,1);
 	z-index: 1;
 }
 
@@ -214,7 +216,7 @@ width: 48%;
 	top: -1px;
 	width: 70px;
 	height: 64px;
-background: #1e78ff;
+	background: rgba(46,87,255,1);
 	color: #fff;
 	font-weight: 500;
 	z-index: 2;
@@ -267,7 +269,7 @@ background: #1e78ff;
     background: url(/rpan/common/images/bul_dot2.png?update=20180329) no-repeat left 8px;
     padding-left: 6px;
     line-height: 160%;
-    color: #0a84ec;
+    color: rgba(46,87,255,1);
     font-size: 13px;
     font-weight: 600;
 }
@@ -283,7 +285,7 @@ position: relative;
     right: 0;
     height: 42px;
     background: #f0f8ff;
-    border-top: 1px solid #0a84ec;
+    border-top: 1px solid rgba(46,87,255,1);
     margin-top: 16px;
     letter-spacing: -1px;
     font-weight: 600;
@@ -298,7 +300,6 @@ position: relative;
     width: 50%;
     text-align: center;
     line-height: 40px;
-color: #1260a2;
 }
 
 .login-after-btn a:after {
@@ -315,10 +316,10 @@ color: #1260a2;
 }
 
 .div-login-box-after dl dt button {
-    border: 1px solid #0a84ec;
+    border: 1px solid rgba(46,87,255,1);
     padding: 2px 5px 3px;
     font-size: 12px;
-    color: #0a84ec;
+    color: rgba(46,87,255,1);
     margin-left: 6px;
     background: aliceblue;
 }
@@ -526,8 +527,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	line-height: 28px;
 	margin-right: -2px;
 	padding: 10px;
-	color: #1e78ff !important;    
-	border-bottom: 1px solid #0a84ec;
+	color: rgba(46,87,255,1) !important;    
+	border-bottom: 1px solid rgba(46,87,255,1);
 }
 
 .stock-ranking .tab-content #tab1 {
@@ -582,7 +583,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	float: left;
 	padding-left: 10px;
 	margin-right: -2px;
-	color: #1e78ff !important;
+	color: rgba(46,87,255,1) !important;
 }
 
 .community .community-best {
@@ -591,7 +592,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	width: 50%;
 	padding: 10px;
 	position: relative;	    
-	border-top: 1px solid #1e78ff;
+	border-top: 1px solid rgba(46,87,255,1);
 	
 }
 
@@ -601,7 +602,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	width: 50%;
 	padding: 10px;
 	position: relative;	    
-	border-top: 1px solid #0a84ec;
+	border-top: 1px solid rgba(46,87,255,1);
 	border-left: 1px solid #dee2e6;
 	
 }
@@ -637,8 +638,11 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	padding: 5px 10px;
     margin: 3px;
     border-radius: 0 !important;
-    background: #1e78ff;
+    background: rgba(46,87,255,1);
     border: 1px solid #e8ebee; 
+    color: #fff;
+    font-size: .875rem;
+    line-height: 1.5;
     float: right;
     top: 5px;
     position: relative;
@@ -663,7 +667,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	padding: 10px;
 }
 .news-nav {
-    border-bottom: 1px solid #1e78ff;
+    border-bottom: 1px solid rgba(46,87,255,1);
     position: relative;
     display: block;
     clear: both;
@@ -876,11 +880,6 @@ font-weight: 600;
     vertical-align: middle;
     
 }
-.bu_pup2 {
-    width: 7px !important;
-    height: 11px !important;
-    background-position: 0 -40px;
-}
 .bu_p {
     display: inline-block !important;
     background: url(https://ssl.pstatic.net/static/nfinance/img/spr_bu.gif) no-repeat;
@@ -892,11 +891,6 @@ font-weight: 600;
     height: 1px;
     margin: -1px;
     overflow: hidden;
-}
-.bu_pdn {
-    width: 7px !important;
-    height: 6px !important;
-    background-position: 0 -80px;
 }
 .tbl_home_left, .tbl_home_right{
 	width: 100%;
@@ -916,8 +910,8 @@ font-weight: 600;
     z-index: 1;
 }
 .ranking .ranking-tab a.selected {
-     color: #1e78ff;
-    border-bottom: 1px solid #1e78ff;
+     color: rgba(46,87,255,1);
+    border-bottom: 1px solid rgba(46,87,255,1);
     font-weight: 600;
 }
  .ranking .ranking-tab a {
@@ -933,23 +927,24 @@ font-weight: 600;
     line-height: 48px;
     margin-right: 10px;
 }
-
-.plus:hover {
-	color: #1e78ff;
+/* .plus:hover {
+	color: rgba(46,87,255,1);
+    border: 1px solid #eff3f6;
+    background: rgba(46,168,255,1);
+} */
+/* .news-plus:hover {
+	color: rgba(46,87,255,1);
     border: 1px solid #eff3f6;
     background: #f3faff;
-}
-.news-plus:hover {
-	color: #1e78ff;
-    border: 1px solid #eff3f6;
-    background: #f3faff;
-}
+} */
 .news-plus{
 	padding: 5px 10px;
     margin: 3px;
     border-radius: 0 !important;
-    background: #1e78ff;
+    background: rgba(46,87,255,1);
     border: 1px solid #e8ebee;
+    font-size: .875rem;
+    color: #fff;
 	right: 5px;
 	top: 7px;
 	position: absolute;
@@ -970,8 +965,8 @@ font-weight: 600;
     z-index: 1;
 }
 .news-ranking .news-tab a.selected {
-     color: #1e78ff;
-    border-bottom: 1px solid #1e78ff;
+     color: rgba(46,87,255,1);
+    border-bottom: 1px solid rgba(46,87,255,1);
     font-weight: 600;
 }
  .news-ranking .news-tab a {
@@ -987,9 +982,207 @@ font-weight: 600;
     line-height: 48px;
     margin-right: 10px;
 }
+.containerNew {
+    position: relative;
+    max-width: 1260px;
+    height: 100%;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+.nav-tabs{
+border:0 !important;
+}
+.btnOverInfo {
+float:left;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #333;
+}
+#nowStock {
+    margin-left: 10px;
+    padding: 0;
+        font-size: 25px;
+    color: #1a64d2 !important;
+}
+@media only screen and (max-width: 979px){
+.containerNew {
+    padding: 0;
+}
+}
+.refresh {
+position:relative;
+    float: left;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 5px;
+    color: #333;
+    top: 7px;
+}
+A:link, A:visited, A:hover, A:active{cursor: pointer;}
+
+.graph-area .g-box {
+    width: 100%;padding-top: 7px;
+}
+ .graph-area .g-box > div {
+    position: relative;
+    padding: 5px 15px;
+}
+ .graph-area .g-box > div.graph-left {
+    
+}
+ .graph-area .g-box > div {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}
+ .graph-area .g-box .graph-title {
+    padding-bottom: 5px;
+}
+ .graph-area .g-box .graph-title {
+    position: relative;
+    min-height: 25px;
+    padding-bottom: 5px;
+}
+ .graph-area .g-box .graph-title > span {
+    font-size: 16px;
+    color:rgba(46,87,255,1);
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    font-weight: bold;
+}
+ .graph-area .g-box .graph-title > span a {
+    color: rgba(46,87,255,1);
+}
+ .graph-area .g-box .graph-title > p {
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+.color-blue {
+    color: #1ea3fe !important;
+}
+.color-black {
+    color: #000000 !important;
+}
+ .graph-area .g-box .graph-title > p.color-blue a {
+    color: #1ea3fe !important;
+}
+ .graph-area .g-box .graph-title > p > a > span {
+    padding-right: 5px;
+}
+.fall {
+    position: relative;
+    color: #1ea3fe;
+    padding-left: 13px;
+    background: url(/rpan/common/images/ico_fall.png?update=20180329) no-repeat 0 50%;
+    background-size: 8px 6px;
+}
+.hidden {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    text-indent: -9999px;
+}
+ .graph-area .g-box > div {
+    position: relative;
+    padding: 5px 15px;
+}
+.color-red {
+    color: #ff545b !important;
+}
+ .graph-area .g-box .graph-title > p.color-red a {
+    color: #ff545b !important;
+}
+.rise {
+    position: relative;
+    color: #ff545b;
+    padding-left: 13px;
+    background: url(/rpan/common/images/ico_rise.png?update=20180329) no-repeat 0 50%;
+    background-size: 8px 6px;
+}
+.graph-area{
+}
+ .graph-area .g-box > div.graph-left {
+   
+}
+.graph-area .graph_on {
+    display: block;
+}
+ .graph-area .g-box .g-img {
+    width: 274px;
+    height: 80px;
+    margin: 0 auto;
+}
+.ranking ul {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 0;
+    padding: 0 20px 16px;
+    background: #fff;
+}
+ .ranking ol li a i {
+    display: block;
+    float: left;
+    width: 14px;
+    text-align: center;
+    color: #000;
+}
+.ranking ol li a * {
+    line-height: 19px;
+    vertical-align: middle;
+}
+.ranking ol li a span {
+    display: block;
+    float: left;
+    width: 112px/*width:102px*/;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-bottom: 1px;
+}
+.ranking ol li a mark {
+    float: right;
+    position: relative;
+    display: block;
+    /* width: 68px; */
+    width: 78px;
+    text-align: right;
+}
+.color-red {
+    color: #ff545b !important;
+}
+.ranking ul li:first-child {
+    margin-top: 18px;
+}
+ .ranking ul li {
+    margin-top: 9px;
+}
+.ranking ul li a {
+    display: block;
+    color: #000;
+}
 
 
 
+
+@media only screen and (max-width: 979px){
+.ranking ol li:first-child {
+    margin-top: 17px;
+}
+.ranking ol li a {
+    clear: both;
+}
+} 
 
 
 

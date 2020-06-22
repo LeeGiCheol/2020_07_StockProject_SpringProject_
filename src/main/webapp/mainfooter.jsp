@@ -26,7 +26,7 @@
             </ul>
         </div>
         <div class="footer_content" id="mid">
-        <img  id="logoF" src="/resources/img/logo.png">
+        <img  id="logoF" src="/resources/img/logocolor2.png">
             <ul id="left">
                 <li id="companyName" class="liBold"><a href="/mainPage">Fantasy Stock</a></li>
                 <li>서울특별시 마포구 백범로 23 구프라자 B1</li>

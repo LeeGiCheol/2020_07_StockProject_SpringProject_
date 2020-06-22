@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 
 <link rel="stylesheet" href="/resources/css/free-board.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
  
 <script>
 	$(document).ready(function() {

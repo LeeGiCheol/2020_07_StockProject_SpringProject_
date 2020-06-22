@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 </head>
 <body>
 <div class="wrap">
@@ -38,7 +38,7 @@
 						
 						
 							
-						<p class="all-check"><input type="checkbox" id="check01" onclick="checkAll();" class="big"><label for="check01">이용약관, 개인정보 수집 및 이용에  <strong class="color-red">모두 동의 합니다.</strong></label></p>
+						<p class="all-check"><input type="checkbox" id="check01" onclick="checkAll();" class="big"><label for="check01">이용약관, 개인정보 수집 및 이용에  <strong class="color-fantasy">모두 동의 합니다.</strong></label></p>
 					
 						<div class="clause">
 							<span>
@@ -376,7 +376,7 @@
 					</form>		
 					<div class="bt-area"> 
 						<button class="btn-b" onclick="location.href='/mainPage'">비동의</button>
-						<button class="btn-b red" onclick="nextStep();">동의</button>
+						<button class="btn-b fantasy" onclick="nextStep();">동의</button>
 					</div>  
 				</div> 
 			</div><!-- //cont-area -->
@@ -492,7 +492,7 @@ function goMain() {
 		<div><button class="signup01_nextButton" data-text-content="true" type="submit" id="agree">다음</button></div>
 		</div>
 	</form>-->
-<%@include file="mainfooter.jsp" %>
+<%@include file="mainfooter2.jsp" %>
 </div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>

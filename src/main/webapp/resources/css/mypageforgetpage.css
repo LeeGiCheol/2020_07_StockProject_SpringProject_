@@ -2,66 +2,53 @@
 
 /*--------------------------- start 공통 적용 css ---------------------------*/
 
+
+body{
+	    background: #eff3f6 !important;
+}
+
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
 html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
-	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
-	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
-	figure, footer, header, hgroup, menu, nav, section, summary, time,
-	audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	font-size: 14px;
-	background: transparent;
-	list-style: none;
-	box-sizing: border-box;
-	word-break: break-all;
+   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+   figure, footer, header, hgroup, menu, nav, section, summary, time,
+   audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   font-size: 14px;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+   word-break: break-all;
 }
 
-/* body {
-	line-height: 1;
-	-webkit-text-size-adjust: none;
-	    background: #eff3f6;
-	color: #000;
-} */
 
 span, em, mark, strong, b, label {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	background: transparent;
-	list-style: none;
-	box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
 }
-
-p {
-	line-height: 160%;
-}
-
 ol, ul {
-	list-style: none;
+    list-style: none;
+}
+em, i {
+   font-style: normal;
 }
 
 a, a:link, a:visited, a:active, a:hover {
-	text-decoration: none;
+   text-decoration: none;
 }
-
-body.member {
-	
-}
-em, i {
-    font-style: normal;
-}
-table {
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 0;
+fieldset, img, abbr, acronym {
     border: 0;
 }
 legend, caption {
@@ -72,14 +59,22 @@ legend, caption {
     width: 0;
     line-height: 0;
 }
-td, th {
-    word-break: break-all;
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    box-sizing: border-box;
+p {
+    line-height: 160%;
 }
 
+.table td, .table th {
+    padding: 6px;
+}
+tr td button{
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+} 
+input {
+    border: 1px solid black;
+}
 input[type="text"], input[type="password"], input[type="tel"] {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -94,8 +89,63 @@ input[type="text"], input[type="password"], input[type="tel"] {
     box-sizing: border-box;
     border-radius: 0;
 }
-.color-red {
-	color: #f6212a !important;
+p.error-text {
+    margin-top: 8px !important;
+}
+.error-text {
+    font-size: 13px;
+    color: #ff545b;
+    /* margin-top: 8px; */
+}
+.ok-text {
+    font-size: 13px;
+    color: #1ea3fe;
+    margin-top: 8px;
+}
+.wrap {
+    position: relative;
+    height: 100%;
+}
+.containerNew {
+    position: relative;
+    max-width: 1260px;
+    height: 100%;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+.row {
+   margin: 0;
+}
+.contents.member {
+    margin-right: 0;
+    min-height: 600px;
+}
+.contents {
+    position: relative;
+    z-index: 1;
+    min-height: 920px;
+}
+.contents.member .cont-area {
+margin: 0 auto 29px;
+    max-width: 1100px;
+}	
+.cont-area {
+    margin-right: 310px;
+    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
+    margin-bottom: /*70px*/40px;
+    background: #fff;
+    position: relative;    border: 1px solid #e5e6ef;
+}
+
+.sidebar {
+  float: left;
+  width: auto;
+  border: 1px solid #dddddd;
+  padding: 10px
+}
+.col-md-10, .col-md-2{
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 /*--------------------------- end 공통 적용 css ---------------------------*/
@@ -184,11 +234,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	position: relative;
 }
 
-@media only screen and (max-width: 979px) {
-	.contents.member .cont-area {
-		padding-bottom: 60px;
-	}
-}
+
 
 @media only screen and (max-width: 1599px) {
 	.contents.member .cont-area {
@@ -196,13 +242,14 @@ input[type="text"], input[type="password"], input[type="tel"] {
 		float: none;
 	}
 }
-
+@media only screen and (max-width: 979px) {
+	.contents.member .cont-area {
+		padding-bottom: 60px;
+	}
+}
 .contents.member .cont-area {
-	margin: 0 auto 0;
-	max-width: 630px;margin: 0 auto 0;
-    max-width: 630px;
-    
-    min-height: 650px;
+    margin: 0 auto 29px;
+    max-width: 1100px;
 }
 
 @media only screen and (max-width: 979px) {
@@ -260,11 +307,18 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	.cont-area h1 {
 		display: none;
 	}
+	
 }
 @media only screen and (max-width: 979px) {
 	.h1-top-m {
 		margin-top: 30px !important;
 	}
+.col-md-2, .drop-nav {
+    display: none !important;
+}
+.m-drop-nav {
+    display: block;
+}
 }
 
 .tit-h1 {
@@ -954,4 +1008,70 @@ input[type="button"], button {
     background: rgba(46,87,255,1);
     border: 1px solid rgba(46,87,255,1);
     color: #fff !important;
+}
+.m-drop-nav, .m-drop-down {
+    display: none;
+}
+
+@media only screen and (max-width: 1599px){
+.contents {
+    margin: 0 auto;
+    max-width: 1260px;
+}
+.contents.member .cont-area {
+    width: 100%;
+    float: none;
+}
+}
+
+@media only screen and (max-width: 979px){
+.wrap {
+    position: relative;
+    height: 100%;
+    min-width: 320px;
+}
+body.member .containerNew {
+    padding-top: 0;
+}
+.containerNew {
+    padding: 0;
+}
+.contents.member {
+    margin-bottom: 0;
+}
+.contents {
+    position: inherit;
+    min-height: initial;
+}
+.contents.member .cont-area {
+    padding-bottom: 60px;
+}
+.cont-area {
+    min-height: auto;
+    margin-right: 0;
+    padding: 20px 0 120px;
+    max-width: none !important;
+    width: 100% !important;
+}
+.contents.member .cont-area h1 {
+    display: block !important;
+    padding-left: 15px;
+}
+.col-md-2, .drop-nav {
+    display: none !important;
+}
+.m-drop-nav {
+    display: block;
+}
+.col-md-10 {
+    max-width: 100% !important;
+    flex: none !important;
+    padding: 0 !important;
+}
+.form-table.pass-reset {
+    margin-top: 0;
+}
+.form-table {
+	border: none;
+}
 }
