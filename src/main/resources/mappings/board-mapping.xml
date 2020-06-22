@@ -227,7 +227,7 @@
 		FROM board 
 		WHERE bno=3
 		order by bdatetime DESC
-		limit 2;
+		limit 5;
 	</select>
 	
 	<!-- 댓글 등록 시 게시물 옆에 개수 띄우기용 -->

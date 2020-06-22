@@ -136,7 +136,7 @@
 									</thead>
 									<!-- 공지사항 띄우기  -->
 									<tbody>
-										<c:forEach items="${ServiceCenternotice}" var="sc">
+										<c:forEach items="${ServiceCenternotice}" var="sc" begin="0" end="1">
 												<tr>
 													<td class="board-no" style="color: red;">[공지]</td>
 													<!-- 글번호 -->

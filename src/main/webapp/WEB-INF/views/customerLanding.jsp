@@ -124,13 +124,9 @@ border-radius: .25rem;
 											<!-- 현재 고객센터 공지사항 -> 일반 공지사항으로 변경 요청 -->
 							
 
-											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
-													고객센터에서 확인이 불가능합니다.</a> </li>
-											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
-													고객센터에서 확인이 불가능합니다.</a> </li>
-											<li class="list-group-item"><a href="#">회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
-													고객센터에서 확인이 불가능합니다.</a> </li>
-
+										<c:forEach var="sc" items="${ServiceCenternotice}">
+											<li class="list-group-item"><a href="/customerNotice/detail?pno=${sc.pno}">${sc.title}</a> </li>
+										</c:forEach>
 							
 
 
