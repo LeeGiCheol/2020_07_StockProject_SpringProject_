@@ -40,7 +40,7 @@
 	</select>
 	
 	<select id="getCommentNotice" resultType="map">
-			SELECT c.pno, title, confirm FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id} order by ndatetime desc limit 50;
+			SELECT c.pno, title, ndatetime, confirm FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id} order by ndatetime desc limit 50;
 	</select>
 	
 	<select id="getNewTradeNotice" resultType="map">

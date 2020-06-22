@@ -213,13 +213,13 @@
                             $(
                                 "#a_title")
                                 .html(
-                                    "<tr><th class='no' scope='col'>글번호</th><th class='title' scope='col'>내용</th></tr>");
+                                    "<tr><th class='no' scope='col'>글번호</th><th class='title' scope='col'>내용</th><th class='time' scope='col'>시간</th></tr>");
                             console
                                 .log("클릭");
                             $(
                                 "#a_contents")
                                 .html(
-                                    '<c:forEach items="${commentNotice}" var="list"><tr><c:choose><c:when test="${list.confirm eq 1}"><td class="first" title="글번호" style="color: red">NEW</td></c:when><c:otherwise><td class="first" title="글번호""><c:out value="${list.pno}" /></td></c:otherwise></c:choose><td title="내용"><c:out value="${list.title}" /> 글에 댓글이 달렸습니다.</td>	</tr></c:forEach>');
+                                    '<c:forEach items="${commentNotice}" var="list"><tr><c:choose><c:when test="${list.confirm eq 1}"><td class="first" title="글번호" style="color: red">NEW</td></c:when><c:otherwise><td class="first" title="글번호""><c:out value="${list.pno}" /></td></c:otherwise></c:choose><td title="내용"><c:out value="${list.title}" /> 글에 댓글이 달렸습니다.</td><td title="시간"><fmt:formatDate value="${list.ndatetime}" pattern="yyyy-MM-dd HH:mm:ss" /></td></tr></c:forEach>');
                         })
                 $("#orderby1")
                     .click(

@@ -256,7 +256,11 @@ public class MyPageController {
 				tradeNotice.get(i).put("tprice", formatter.format(tradeNotice.get(i).get("tprice")));
 				modifiedNotice.add(tradeNotice.get(i));
 			}
-
+			
+			for (int i = 0; i < commentNotice.size(); i++) {
+				commentNotice.get(i).put("ndatetime", new Date(((Date) commentNotice.get(i).get("ndatetime")).getTime() - (1000 * 60 * 60 * 9)));
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
