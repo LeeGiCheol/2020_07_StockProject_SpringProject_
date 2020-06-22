@@ -14,8 +14,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainpage.css">
-	<link rel="stylesheet" href="/resources/css/mainheader2.css">
-		<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
 	
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
@@ -596,16 +596,15 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 						<ul>
 						
 							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
-								<li class="first"><a href="/selectUserMoney?nickname=${list.nickname}"><i> <c:out value="${vs.count}"/></i> <span><c:out
-												value="${list.nickname}" /></span>
+								<li class="first"><a href="/selectUserMoney?nickname=${list.nickname}"><i> ${vs.count}</i> <span>${list.nickname}</span>
 										<p class="color-red">
-											<c:out value="${list.revenue}%" />
+											${list.revenue}%
 										</p></a></li>
 							</c:forEach>
 						</ul>
 					</div>
 					<div class="ranking-body" id="discHtml" style="display:none;">
-						<ul>
+						<!-- <ul>
 						
 							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
 								<li class="first"><a><i> <c:out value="${vs.count}"/></i> <span><c:out
@@ -615,6 +614,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 										</p></a></li>
 							</c:forEach>
 						</ul>
+						 -->
 					</div>
 				</div>
 				
@@ -669,6 +669,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 	
 	<script>
 	$(document).ready(function(){
+		showAccumRanking();
 		
 		$.ajax({
 			type : 'GET',
@@ -1125,7 +1126,32 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 			$("#marketConditionsHtml").hide();
 		});
 	}
-
+ 	
+ 	function showAccumRanking() {
+ 		$.ajax({
+ 			type : 'POST',
+ 			url : '${pageContext.request.contextPath}/accumRanking',
+ 			dataType : 'json',
+ 			contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
+ 			success : function(data){
+ 				var HTMLForAccumRanking = "<ul>";
+ 				for(var i = 0; i < data.accumRankingNicknameList.length; ++i) {
+ 					console.log(i);
+ 					HTMLForAccumRanking +=
+ 					'<li class="first"><a><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
+ 					'<p class="color-red">'+
+ 					((data.accumRankingAssetList[i]-10000000)/100000)+'%'+
+ 					'</p></a></li>';
+ 				}
+ 				HTMLForAccumRanking += "</ul>";
+ 				console.log(data.accumRankingAssetList);
+ 				console.log(data.accumRankingAssetList.length);
+ 				console.log(data.accumRankingNicknameList);
+ 				console.log(HTMLForAccumRanking);
+ 				$("#discHtml").html(HTMLForAccumRanking);
+ 			}
+ 		});
+ 	}
 </script>
 
 </body>

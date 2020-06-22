@@ -18,6 +18,8 @@
 			LIMIT 1;
 		</if>
 		
+		
+		
 	</insert>
 	
 	<update id="updateBoard">
@@ -106,6 +108,9 @@
 		select count(*)
 		from board
 		where bno = #{bno}
+		<if test="bno eq 4">
+			AND id=#{id}
+		</if>
 	</select>
 		
 	<select id="boardList" parameterType="page" resultType="board">
@@ -113,6 +118,9 @@
 		FROM board as b
 		WHERE bno=#{util.bno}
 		<choose>
+			<when test='util.bno eq 4'>
+				AND id=#{util.id}
+			</when>
 			<!-- 제목검색 -->
 			<when test='util.searchStyle.equals("search_title")'>
 				AND title LIKE CONCAT('%', #{util.keyword}, '%')
@@ -310,6 +318,7 @@
 		WHERE pno = #{pno}
 		AND nickname = #{nickname}
 	</select>
+	
 	
 	
 	

@@ -680,9 +680,10 @@ input[type="text"], input[type="password"], input[type="tel"] {
     padding: 10px;
 }
 
-.nav-link {
-padding: 5px 10px 3px 5px; font-weight: 600;
-}
+/* .nav-link {
+padding: 5px 10px 3px 5px; 
+font-weight: 600;
+} */
 
 .news-ranking .news-body .headline {
 	border-bottom: 1px solid #dee2e6;

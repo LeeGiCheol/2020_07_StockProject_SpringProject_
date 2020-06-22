@@ -258,10 +258,6 @@ input[type='radio']:checked:before {
     max-width: none !important;
     width: 100% !important;
 }
-.m-drop-down{
-background: #f3f4f575;
-	
-}
 .bi-chevron-down{
 	margin: 0 15px;
 }
@@ -517,19 +513,6 @@ Sub Menu
     z-index: -1;
     background: #eff3f6;
     text-indent: -9999px;
-}
-.color-fantasy {
-	color: #1e78ff !important;
-}
-.fantasy {
-    background: #1e78ff;
-    border: 1px solid #1e78ff;
-    color: #fff !important;
-}
-.fantasy:hover {
-    color: #1e78ff;
-    border: 1px solid #eff3f6;
-    background: #f3faff;
 }
 
 

@@ -711,3 +711,6 @@ fieldset, img, abbr, acronym {
 	text-indent: -9999em;
     margin-right: 5px;
 }
+input[type='radio']:checked:before {
+    background: #1e78ff;
+}

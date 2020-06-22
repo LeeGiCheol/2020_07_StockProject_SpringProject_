@@ -22,4 +22,7 @@ public interface BoardDAO {
 	public int reportBoardCount(BoardVO vo);
 	public List<BoardVO> portfolioList(PagingVO vo);
 	public List<BoardVO> ServiceCenternotice(BoardVO vo);
+	
+	
+
 }
