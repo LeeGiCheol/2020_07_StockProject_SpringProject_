@@ -51,6 +51,13 @@ public class MyPageController {
 	@Autowired
 	SignInService signInService;
 
+	@GetMapping(value = "/withdrawal/check")
+	public String withdrawal_check(@ModelAttribute("id") String id) {
+		if (id.substring(id.length() - 1).equals("_"))
+			return "redirect:/withdrawal";
+		return "/withdrawal_PW";
+	}
+	
 	@GetMapping(value = "/withdrawal")
 	public String withdrawal(HttpSession session, @ModelAttribute("id") String id) {
 //		String ID = ((UserVO)session.getAttribute("loginUser")).getId();
