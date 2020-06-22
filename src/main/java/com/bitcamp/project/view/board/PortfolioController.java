@@ -74,9 +74,6 @@ public class PortfolioController {
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("path", FilePath);
-		model.addAttribute("orderby", orderby);
-		System.out.println("searchStyle "+searchStyle);
-		System.out.println("keyword "+keyword);
 		
 		return "portfolio-board";
 	}

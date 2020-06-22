@@ -483,7 +483,12 @@ function submitReportComt(){
 					board +=	'<div id="bbsWrtCntn" class="board-view-cont" style="word-break:break-word;">'+boardContent+'</div>'
 					board +=	'<div class="sns-area board-sns">'
 					board +=		'<p class="notify-box">'
-					board +=			'<button type="button" id="reportPopupBtn" class="btn-s notify clean-popup-button e-login"><span>신고</span></button>'
+					
+					// 공지사항은 신고 못하게 함
+					if(data.boardDetail.bno != 3){
+						board +=			'<button type="button" id="reportPopupBtn" class="btn-s notify clean-popup-button e-login"><span>신고</span></button>'
+					}
+
 					board +=		'</p>'
 					board +=		'<p class="like-box" id="actBtn" style="">'
 					board +=			'<button class="btn-m like" id="recmBtn" onclick="updateLikes('+data.boardDetail.pno+');"><i>추천</i><span id="recommendCount">'+data.boardDetail.likes+'</span></button>'

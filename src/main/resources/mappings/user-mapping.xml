@@ -36,16 +36,25 @@
 	</delete>
 	
 	<select id="getTradeNotice" resultType="map">
-			select notice.tno, stockName, category, tdatetime, tprice,quantity from stocknotice as notice join tradinghistory as td on td.tno = notice.tno where td.id = #{id} order by notice.tno desc;
+			select notice.tno, stockName, category, tdatetime, tprice,quantity, confirm from stocknotice as notice join tradinghistory as td on td.tno = notice.tno where td.id = #{id} order by notice.tno desc limit 50;
 	</select>
 	
 	<select id="getCommentNotice" resultType="map">
-			SELECT c.pno, title FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id}
+			SELECT c.pno, title, ndatetime, confirm FROM commentnotice as c join board as b on c.pno = b.pno where c.id = #{id} order by ndatetime desc limit 50;
 	</select>
 	
+	<select id="getNewTradeNotice" resultType="map">
+			select * from stocknotice where id = #{id} and confirm = 1;
+	</select>
+	
+	<select id="getNewCommentNotice" resultType="map">
+			SELECT * FROM commentnotice where id = #{id} and confirm = 1;
+	</select>
+	
+	
 	<delete id="deleteNotice">
-		delete from stocknotice where id = #{id};
-		delete from commentnotice where id = #{id};
+		update stocknotice set confirm = 0 where id = #{id};
+		update commentnotice set confirm = 0 where id = #{id};
 	</delete>
 
 	<insert id="signUp">
@@ -60,6 +69,8 @@
 		
 		INSERT INTO usermoney(id, money)
 		VALUES(#{id}, 10000000);
+		
+		insert into userranking(id, accumasset, resetpoint) VALUES(#{id}, 10000000 ,10000000);
 	</insert>
 	
 	<select id="idCheck" resultType="int" parameterType="map">
@@ -214,6 +225,21 @@
 		select accumasset
 		from userranking
 		where id=#{id}
+	</select>
+	
+	<select id="getAccumRankingAssetList" resultType="long">
+		select accumasset
+		from userranking
+		order by accumasset desc
+		limit 1, 10
+	</select>
+	
+	<select id="getAccumRankingNicknameList" resultType="String">
+		select nickname
+		from userranking
+		natural join usernickname
+		order by accumasset desc
+		limit 1, 10
 	</select>
 	<!-- <insert id="nickname">
 		

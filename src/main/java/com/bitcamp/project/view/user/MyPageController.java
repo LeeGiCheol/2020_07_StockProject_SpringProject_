@@ -1,5 +1,6 @@
 package com.bitcamp.project.view.user;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +33,7 @@ import com.bitcamp.project.vo.HoldingStockVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class MyPageController {
@@ -47,41 +49,56 @@ public class MyPageController {
 	@Autowired
 	BCryptPasswordEncoder bPasswordEncoder;
 
-	// ㅇㅇㅇㅇㅇㅇㅇ
 	@Autowired
 	SignInService signInService;
 
-	@GetMapping(value = "/withdrawal")
-	public String withdrawal(HttpSession session, @ModelAttribute("id") String id) {
-//		String ID = ((UserVO)session.getAttribute("loginUser")).getId();
-
-		if (id.substring(id.length() - 1).equals("_")) { // 끝글자 _ 확인
-
-			String[] ID_s = id.split("_");
-
-			switch (ID_s[ID_s.length - 1]) {
-			case "kakao":
-				System.out.println("카카오 연결끊기");
-				signInService.withdrawal_Kakao((String) session.getAttribute("access_Token")); // 카카오 연결 해제 완료
-				signInService.withdrawal(id); // id로 서비스 회원탈퇴
-				session.invalidate();
-				return "redirect:/mainPage";
-
-			case "naver":
-				System.out.println("네이버 연결끊기");
-				session.invalidate();
-				return "redirect:/mainPage";
-
-			default:
-				return "redirect:/mainPage";
-			}
-
-		}
-		signInService.withdrawal(id); // id로 서비스 회원탈퇴
+	@GetMapping(value="/naverUnlock")
+	public String test(HttpSession session) {
+		OAuth2AccessToken token = (OAuth2AccessToken)session.getAttribute("naverToken");
+		String test= token.getAccessToken();
+		String CLIENT_ID = "pQCi1ygY9htqntse3luv";
+		String CLIENT_SECRET = "b3yefyBlt9";
 		session.invalidate();
-		return "redirect:/mainPage";
+		return "redirect:https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&access_token="+test+"&service_provider=NAVER";
 	}
-
+	
+	
+	
+	@GetMapping(value = "/withdrawal/check")
+	public String withdrawal_check(@ModelAttribute("id") String id) {
+		if (id.substring(id.length() - 1).equals("_"))//사이에
+			return "redirect:/withdrawal";
+		return "/withdrawal_PW";
+	}
+	
+	//네이버 jSP에서 확인 누르면 최종탈퇴하러 오는곳
+	@GetMapping(value = "/withdrawalNaverDecision")
+	public String withdrawalNaverDecision(@ModelAttribute("id") String id, HttpSession session){
+		signInService.withdrawal(id);
+		session.invalidate();
+		return "redirect:/signInPage";
+	}
+	
+	//카카오 jSP에서 확인 누르면 최종탈퇴하러 오는곳
+	@GetMapping(value = "/withdrawalKakaoDecision")
+	public String withdrawalKakaoDecision(@ModelAttribute("id") String id, HttpSession session){
+		signInService.withdrawal_Kakao((String) session.getAttribute("access_Token")); // 카카오 연결 해제 완료
+		signInService.withdrawal(id);
+		session.invalidate();
+		return "redirect:/signInPage";
+	}
+	
+	@GetMapping(value = "/withdrawal")
+	public String withdrawal(Model model, HttpSession session, @ModelAttribute("id") String id,String code, String state) throws IOException {
+		if (id.substring(id.length() - 1).equals("_")) { // social로 회원가입 했으면
+			return "socialUnlock";
+		}else {
+			signInService.withdrawal(id); // 자체회원가입 했으면
+			session.invalidate();
+			return "redirect:/signInPage";
+		}
+	}
+	
 	@GetMapping(value = "/checkCharging")
 	@ResponseBody
 	public int checkCharging(HttpSession session) {
@@ -233,7 +250,11 @@ public class MyPageController {
 				tradeNotice.get(i).put("tprice", formatter.format(tradeNotice.get(i).get("tprice")));
 				modifiedNotice.add(tradeNotice.get(i));
 			}
-
+			
+			for (int i = 0; i < commentNotice.size(); i++) {
+				commentNotice.get(i).put("ndatetime", new Date(((Date) commentNotice.get(i).get("ndatetime")).getTime() - (1000 * 60 * 60 * 9)));
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -312,7 +333,7 @@ public class MyPageController {
 		}
 
 //		JSONObject obj = new JSONObject();
-		List<List> notice = userInfoService.getNotice(id);
+		List<List> notice = userInfoService.getNewNotice(id);
 		if ((notice.get(0).size() == 0) && (notice.get(1).size() == 0))
 			return "NONE";
 		else

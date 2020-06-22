@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
+import com.bitcamp.project.service.impl.BoardServiceImpl;
 import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
@@ -46,7 +47,7 @@ public class BoardController {
 
 	static List<String> uploadedFileName = new ArrayList<String>();
 
-	@GetMapping(value = { "/board/free", "/board/free/best" })
+	@GetMapping(value = "/board/free")
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 			@ModelAttribute("orderby") String orderby /* new = 최신순 best = 인기순 */ ) {
@@ -59,28 +60,21 @@ public class BoardController {
 			keyword = "";
 		}
 		System.out.println("path " + request.getServletPath());
-//		if (request.getServletPath().equals("/board/free/best")) {
-//			orderby = "best";
-//		} 
-//		else if (request.getServletPath().equals("/board/free")) {
-//			orderby = "new";
-//		}
+
 		if (orderby.equals("")) {
 			orderby = "new";
 		}
-		System.out.println("orderby "+orderby);
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
 				orderby, bno, 30);
 		model.addAttribute("boardList", (List<BoardVO>) boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO) boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
+		
+		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
+		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
 
-//		if (orderby.equals("new")) {
-			return "free-board";
-//		} else {
-//			return "free-board-best";
-//		}
+		return "free-board";
 	}
 
 	@GetMapping("/board/free/write")
@@ -152,7 +146,7 @@ public class BoardController {
 		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
-		System.out.println("boardDetail " + boardDetail);
+//		System.out.println("boardDetail " + boardDetail);
 		mav.addObject("commentList", (List<CommentVO>) commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO) commentList.get("commentPage"));
 

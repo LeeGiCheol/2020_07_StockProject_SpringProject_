@@ -19,5 +19,6 @@ public interface BoardService {
 	public int boardLikes(BoardVO vo);
 	public List<BoardVO> boardPrevNext(BoardVO vo);
 	public int reportBoard(BoardVO vo);
+	public List<BoardVO> ServiceCenternotice(BoardVO vo);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -201,7 +202,8 @@ public class MainPageController {
 		}
 		
 		
-		else if(user.getShowEsetSetting() == 0) {
+		
+		else if(user == null || user.getShowEsetSetting() == 0) {
 			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
 			mav.addObject("location", "");
 			mav.addObject("icon", "error");
@@ -241,5 +243,12 @@ public class MainPageController {
 //		System.out.println(list);
 //		return list;
 //	}
+	
+	@PostMapping(value="/accumRanking")
+	@ResponseBody
+	public HashMap<String, Object> accumRanking() {
+		HashMap<String, Object> map = userInfoService.getAccumRankingInfoList();
+		return map;
+	}
 
 }

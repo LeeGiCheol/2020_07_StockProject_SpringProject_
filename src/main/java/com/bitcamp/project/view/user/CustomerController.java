@@ -44,7 +44,11 @@ public class CustomerController {
 	static List<String> uploadedFileName = new ArrayList<String>();
 	
 	@GetMapping(value="/customer")
-	public String customerLanding() {
+	public String customerLanding(Model model, BoardVO vo) {
+		vo.setBno(3);
+		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
+		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
+		
 		return "customerLanding";
 	}
 	
