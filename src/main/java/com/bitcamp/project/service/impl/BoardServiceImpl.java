@@ -51,7 +51,6 @@ public class BoardServiceImpl implements BoardService{
 	
 	public List<BoardVO> ServiceCenternotice(BoardVO vo){
 		return boardDAO.ServiceCenternotice(vo);
-		
 	}
 
 	@Override
