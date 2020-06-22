@@ -112,9 +112,10 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value="/customerqna")
-	public String customerqna() {
+	public String customerqnaView() {
 		return "customerqna";
 	}	
+
 	
 	@GetMapping(value="/customNoticeWrite")
 	public String customNoticeWrite() {
@@ -239,8 +240,47 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value="/customClaimWrite")
-	public String customClaimWrite() {
+	public String customClaimWriteView() {
 		return "customClaimWrite";
+	}
+	@PostMapping(value="/customClaimWrite")
+	public ModelAndView customClaimWrite(BoardVO vo) {
+		vo.setBno(4);
+//		vo.setCtype("문의");
+		boardService.writeFreeBoard(vo);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", "문의가 등록되었습니다");
+		mav.addObject("location", "/customerClaim/List");
+		mav.addObject("icon", "success");
+		mav.setViewName("msg");
+		
+		return mav;
+	}
+	
+	@GetMapping(value="/customerClaim/List")
+	public String customerQnaList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
+		int bno = 4;
+
+		if (nowPage == null || nowPage.equals("")) {
+			nowPage = "1";
+		}
+		if (searchStyle.equals("")) {
+			keyword = "";
+		}
+
+		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
+				"new", bno, 30);
+		System.out.println(boardList);
+		model.addAttribute("boardList", (List<BoardVO>) boardList.get("boardList"));
+		model.addAttribute("boardPage", (PagingVO) boardList.get("boardPage"));
+		model.addAttribute("searchStyle", searchStyle);
+		model.addAttribute("keyword", keyword);
+		
+		
+		
+		return "customerClaimList";
 	}
 	
 	
