@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="resources/css/mypage03.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader4.css">
+<link href="resources/css/mainheader2.css" rel="stylesheet">
+<link href="resources/css/mainfooter.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
@@ -100,13 +100,13 @@ function deleteComment(){
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<li class="mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
 							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
-							<li class="last"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
-							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
-							<li class="last"><a href="/myPage04"><span>알림</span></a></li>
+							<li class="mid"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
+							<li class="selected mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
+							<li><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
-					</div>
+					</div>					
 				</div>
   			<div class="col-md-10">
 				<div class="free-board">
@@ -531,49 +531,58 @@ function deleteComment(){
 </div>
 </div>
 </div>
-  <script type="text/javascript">
-  $( document ).ready(function() {
-	  console.log( "document ready!" );
-
-	  var $sticky = $('.sticky');
-	  var $stickyrStopper = $('.footer_info');
-	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
-
-	    var generalSidebarHeight = $sticky.innerHeight();
-	    var stickyTop = $sticky.offset().top;
-	    var stickOffset = 0;
-	    var stickyStopperPosition = $stickyrStopper.offset().top;
-	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-	    var diff = stopPoint + stickOffset;
-
-	    $(window).scroll(function(){ // scroll event
-	      var windowTop = $(window).scrollTop(); // returns number
-
-	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
-	      } else if (stickyTop < windowTop+stickOffset) {
-	          $sticky.css({ position: 'fixed', top: stickOffset });
-	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
-	      }
-	    });
-
-	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
-  });
-  
-
-
- 
-  </script>
 	</div>
 	
 
 
-	<%@include file="mainfooter.jsp" %>	
+	<%@include file="mainfooter2.jsp" %>	
+		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
+
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
+
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
+
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
 </body>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script> -->
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
