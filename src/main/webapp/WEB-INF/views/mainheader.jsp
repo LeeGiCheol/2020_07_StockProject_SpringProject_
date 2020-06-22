@@ -71,7 +71,7 @@
 			
 			<a href="/mainPage" class="navbar-logo">
 			<img class="" id="logo"
-				src="/resources/img/logoo2.png">
+				src="/resources/img/finalogo.png">
 				</a> 
 <!-- 				<a class="navbar-brand" href="/mainPage">Fantasy Stock</a>
  -->				
