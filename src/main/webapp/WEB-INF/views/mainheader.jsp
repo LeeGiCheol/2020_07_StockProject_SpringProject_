@@ -63,10 +63,22 @@
 		<!-- 메인  nav -->
 		<div class="main-nav">
 		<nav
-			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-			<a href="/mainPage" class="navbar-logo"><img class="" id="logo"
-				src="/resources/img/logo.png"></a> <a class="navbar-brand"
-				href="/mainPage">Fantasy Stock</a>
+			class="navbar navbar-expand-lg navbar-light navbar-custom">
+			
+			<!-- 
+			로고들어가는곳 -->
+			
+			
+			<a href="/mainPage" class="navbar-logo">
+			<img class="" id="logo"
+				src="/resources/img/logo3.png">
+				</a> 
+<!-- 				<a class="navbar-brand" href="/mainPage">Fantasy Stock</a>
+ -->				
+				
+				
+				
+				
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
