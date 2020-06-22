@@ -17,9 +17,9 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 
 
 <script>
@@ -90,7 +90,7 @@ $(document).ready(function(){
 		<div class="board-page">
 			<div class="row">
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
+					
 						<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 							<ul>	
 								<li><a href="/board/free"><span>자유게시판</span></a></li>
@@ -98,7 +98,7 @@ $(document).ready(function(){
 								<li><a href="/news"><span>오늘의 뉴스</span></a></li>
 							</ul>
 						</div>
-					</div>
+					
 				</div>
 				<div class="col-md-10">
 					<div class="free-board">
@@ -162,9 +162,7 @@ $(document).ready(function(){
 														<dd class="date">
 
 															<span> <span class="nick-badge-small"><a href="/selectUserMoney?nickname=
-																		${portfolioList.nickname}"><img
-																		src="//www.paxnet.co.kr/my/files/badge/favor3S.png?20200616"
-																		alt="">${portfolioList.nickname}</a></span> 
+																		${portfolioList.nickname}">${portfolioList.nickname}</a></span> 
 																																		
 																		<fmt:formatDate value="${portfolioList.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
 																		<span class="data-date-format">${time}</span> <span

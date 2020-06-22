@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link rel="stylesheet" href="resources/css/newboard.css">
 <link rel="stylesheet" href="resources/css/newsA.css">
   <link rel="stylesheet" href="/resources/css/sidebar.css">
@@ -256,7 +256,7 @@
 	</div>
 	</div>
 </div>
-	<%@include file="mainfooter.jsp" %> 
+	<%@include file="mainfooter2.jsp"%>
 <script type="text/javascript">
    $( document ).ready(function() {
 	  console.log( "document ready!" );

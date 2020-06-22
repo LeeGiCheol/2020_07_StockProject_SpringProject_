@@ -147,146 +147,6 @@ position: relative;
 .board-page {
     margin: 0 auto 100px;
 }
-/*start 사이드 바 css */
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-#cssmenu ul {
-  position: relative;
-  z-index: 597;
-  float: left;
-}
-#cssmenu ul li {
-  float: left;
-  min-height: 1px;
-  line-height: 1em;
-  vertical-align: middle;
-}
-#cssmenu ul li.hover,
-#cssmenu ul li:hover {
-  position: relative;
-  z-index: 599;
-  cursor: default;
-}
-#cssmenu ul ul {
-  margin-top: 1px;
-  visibility: hidden;
-  position: absolute;
-  top: 1px;
-  left: 99%;
-  z-index: 598;
-  width: 100%;
-}
-#cssmenu ul ul li {
-  float: none;
-}
-#cssmenu ul ul ul {
-  top: 1px;
-  left: 99%;
-}
-#cssmenu ul li:hover > ul {
-  visibility: visible;
-}
-#cssmenu ul li {
-  float: none;
-}
-#cssmenu ul ul li {
-  font-weight: normal;
-}
-/* Custom CSS Styles */
-#cssmenu {
-  font-size: 18px;
-  width: 200px;
-  background: white;
-  /* border: 1px solid #848889; */
-  border-bottom: 1px solid #d7d8da;
-  border-top: 1px solid #d7d8da;
-  border-right: 1px solid #d7d8da;
-}
-#cssmenu ul a,
-#cssmenu ul a:link,
-#cssmenu ul a:visited {
-	display: block;
-    color: #848889;
-    text-decoration: none;
-    font-weight: 300;
-    font-size: 16px;
-}
-#cssmenu > ul {
-  float: none;
-}
-#cssmenu ul {
-  background: #fff;
-}
-#cssmenu > ul > li {
-  border-left: 3px solid #d7d8da;
-}
-#cssmenu > ul > li > a {
-padding: 25px 10px;
-}
-#cssmenu > ul > li:hover {
-  border-left: 3px solid #000000;
-}
-#cssmenu ul li:hover > a {
-  color: #000000;
-  font-weight: 600;
-}
-#cssmenu > ul > li:hover {
-  background: #f6f6f6;
-}
-/* Sub Menu */
-#cssmenu ul ul a:link,
-#cssmenu ul ul a:visited {
-  font-weight: 400;
-  font-size: 14px;
-}
-#cssmenu ul ul {
-  width: 180px;
-  background: none;
-  border-left: 20px solid transparent;
-}
-#cssmenu ul ul a {
-  padding: 8px 0;
-  border-bottom: 1px solid #eeeeee;
-}
-#cssmenu ul ul li {
-  padding: 0 20px;
-  background: #fff;
-}
-#cssmenu ul ul li:last-child {
-  border-bottom: 3px solid #d7d8da;
-  padding-bottom: 10px;
-}
-#cssmenu ul ul li:first-child {
-  padding-top: 10px;
-}
-#cssmenu ul ul li:last-child > a {
-  border-bottom: none;
-}
-#cssmenu ul ul li:first-child:after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  left: -20px;
-  top: 13px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid #fff;
-  border-bottom: 10px solid transparent;
-  border-top: 10px solid transparent;
-}
-#cssmenu > ul > .mid {
-	border-bottom: 1px solid #d7d8da;
-	border-top: 1px solid #d7d8da;
-}
-/*end 사이드 바 css */
 .board-view {
     padding: 0 0 30px;
 }
@@ -515,7 +375,7 @@ textarea {
     border-bottom: none;
 }
 .comment-cont .cmt-list > p span {
-    color: #ff545b;
+    color: #1e78ff;
 }
 .comment-cont .cmt-list > p strong {
     position: absolute;
@@ -638,6 +498,7 @@ fieldset, img, abbr, acronym {
 .comment-cont.anonymity .cmt-list li.list > div {
     padding-left: 45px;
 }
+
 }
 .bt-area {
     overflow: hidden;
@@ -646,6 +507,7 @@ fieldset, img, abbr, acronym {
 .bt-area span {
     display: block;
     float: right;
+    margin-right: 5px;
 }
 [class*="btn-s"].bodrb {
     border: 1px solid #444;
@@ -792,12 +654,15 @@ fieldset, img, abbr, acronym {
     display: none !important;
 }
 .free-board {
-	margin: 0;
-	border: none;
-	min-height: auto;
-	padding-bottom:120px;
+    border: none;
+    min-height: auto;
+    margin: 0;
+    padding: 20px 0 120px;
     max-width: none !important;
     width: 100% !important;
+}
+.board-view, .comment-cont {
+	padding: 10px;
 }
 .m-drop-nav {
     display: block;
@@ -810,6 +675,11 @@ li.list > .img {
 }
 .comment-cont .cmt-list li.list > div .text {
     padding-left: 45px;
+}
+.comment-cont:after {
+    left: 0;
+    right: 0;
+    top: -25px;
 }
 }
 
@@ -880,7 +750,7 @@ legend, caption {
     z-index: 2;
     height: 50px;
     line-height: 50px;
-    background: #ff545c url(/resources/img/bg_pop.png) no-repeat 0 0;
+    background: #1e78ff url(/resources/img/bg_pop.png) no-repeat 0 0;
     background-size: 122px 50px;
     text-indent: 10px;
 }
@@ -998,6 +868,7 @@ legend, caption {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+        margin-top: 5px !important;
 }
 .dropdown-menu {
     position: absolute;
@@ -1177,4 +1048,10 @@ textarea {
 
 .board-view-cont p img{
 max-width: 100%;
+}
+.share-more a span{
+    color: #a7753a;
+}
+	
+	
 }
