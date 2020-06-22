@@ -171,7 +171,7 @@ public class MyPageController {
 	}
 
 	@GetMapping(value = "/myPage03")
-	public String myPage03(HttpSession session, @ModelAttribute("bnowPage") String bnowPage,
+	public String myPage03(Model model, HttpSession session, @ModelAttribute("bnowPage") String bnowPage,
 			@ModelAttribute("cnowPage") String cnowPage, @ModelAttribute("bSearchStyle") String bSearchStyle,
 			@ModelAttribute("boardKeyword") String boardKeyword,
 			@ModelAttribute("commentKeyword") String commentKeyword, @ModelAttribute("type") String type) {
@@ -186,6 +186,8 @@ public class MyPageController {
 		}
 		if (bSearchStyle.equals(""))
 			boardKeyword = "";
+		if(type.equals(""))
+			type = "board";
 		Map<String, Object> myPost = myPostService.myPostList(loginUser, Integer.parseInt(bnowPage),
 				Integer.parseInt(cnowPage), bSearchStyle, boardKeyword, commentKeyword);
 		session.setAttribute("myBoard", (List<BoardVO>) myPost.get("myBoard"));
@@ -195,7 +197,7 @@ public class MyPageController {
 		session.setAttribute("bSearchStyle", bSearchStyle);
 		session.setAttribute("boardKeyword", boardKeyword);
 		session.setAttribute("commentKeyword", commentKeyword);
-		session.setAttribute("type", type);
+		model.addAttribute("type", type);
 		return "mypage03";
 	}
 
@@ -287,15 +289,14 @@ public class MyPageController {
 		System.out.println("delList = " + delBoardList);
 		System.out.println("delList = " + delCommentList);
 		String[] deleted;
-		if (!delBoardList.equals(""))
-			deleted = delBoardList.split(",");
-		else
-			deleted = delCommentList.split(",");
 		if (request.getRequestURI().equals("/delete/myBoard")) {
+			deleted = delBoardList.split(",");
+			System.out.println("del leng" + deleted.length);
 			myPostService.deleteMyPost(deleted, "board");
 			return "redirect:/myPage03";
 		} else {
 			System.out.println("comment");
+			deleted = delCommentList.split(",");
 			myPostService.deleteMyPost(deleted, "comment");
 			return "redirect:/myPage03";
 		}

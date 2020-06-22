@@ -122,13 +122,13 @@ $(document).ready(function(){
 						<div class="board-type">
 							<div class="board-free-nav">
 								<form id="form" class="board-list-top policy-in"
-									action='/board/portfolio/best'>
+									action='/board/portfolio'>
 									<p class="pc-only">
 										<input type="radio" class="ordeby" id="orderby1"
-											name="orderby" value="new" checked=""><label
+											name="orderby" value="new" <c:if test="${orderby eq 'new'}"> checked="" </c:if> checked="" ><label
 											for="orderby1" class="new-board">최신순</label> <input
 											type="radio" class="ordeby" id="orderby2" name="orderby"
-											value="best"><label for="orderby2" class="hot-board">인기순</label>
+											value="best" <c:if test="${orderby eq 'best'}"> checked="" </c:if> ><label for="orderby2" class="hot-board">인기순</label>
 									</p>
 								</form>
 
