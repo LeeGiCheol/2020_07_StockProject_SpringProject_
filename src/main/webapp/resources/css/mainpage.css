@@ -120,6 +120,8 @@ width: 48%;
     display: inline-block;
     text-align: center;
     padding: 10px;
+    background: linear-gradient(27deg, rgb(63, 75, 255) 0%, rgb(3, 255, 185) 86%, rgb(19, 36, 62) 100%);
+    background-size: 410% 130%; color: white;
 }
 #cBoxa:hover,#cBoxb:hover {
 	color: rgba(46,87,255,1);
@@ -132,13 +134,13 @@ width: 48%;
 }
 #cBoxa{
 	margin-right: 6px !important;
-	background: rgba(46,87,255,1);
-    color: white;
+/* 	background: rgba(46,87,255,1);*/
+    color: white; 
 	
 }
 #cBoxb{
-	background: rgba(46,87,255,1);
-    color: white;
+/* 	background: rgba(46,87,255,1);*/
+    color: white; 
 }
 
 .login-box div>p>a:after {
