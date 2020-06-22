@@ -223,7 +223,7 @@
 	
 	<!-- 공지사항 다른 게시판에 뿌리기 -->
 	<select id="ServiceCenternotice" parameterType="page" resultType="board">
-		SELECT pno, title, nickname, views, likes, bdatetime
+		SELECT pno, commentcount, title, nickname, views, likes, date_SUB(bdatetime,INTERVAL 9 HOUR) as bdatetime
 		FROM board 
 		WHERE bno=3
 		order by bdatetime DESC

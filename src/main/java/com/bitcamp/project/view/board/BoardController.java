@@ -74,6 +74,7 @@ public class BoardController {
 		
 		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
 		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
+		System.out.println("@@@@@@ : " + model.getAttribute("ServiceCenternotice"));
 
 		return "free-board";
 	}
