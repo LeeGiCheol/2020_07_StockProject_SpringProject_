@@ -646,9 +646,6 @@ input[type="text"], input[type="password"], input[type="tel"] {
 .col-md-2, .drop-nav {
     display: none !important;
 }
-.col-md-2, .drop-nav {
-    display: none !important;
-}
 .m-drop-nav {
     display: block;
 }

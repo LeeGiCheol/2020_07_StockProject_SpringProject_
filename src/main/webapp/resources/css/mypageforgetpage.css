@@ -1,0 +1,1077 @@
+@charset "UTF-8";
+
+/*--------------------------- start 공통 적용 css ---------------------------*/
+
+
+body{
+	    background: #eff3f6 !important;
+}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+   figure, footer, header, hgroup, menu, nav, section, summary, time,
+   audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   font-size: 14px;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+   word-break: break-all;
+}
+
+
+span, em, mark, strong, b, label {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+}
+ol, ul {
+    list-style: none;
+}
+em, i {
+   font-style: normal;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+   text-decoration: none;
+}
+fieldset, img, abbr, acronym {
+    border: 0;
+}
+legend, caption {
+    font-size: 0;
+    overflow: hidden;
+    text-indent: -9999999px;
+    height: 0;
+    width: 0;
+    line-height: 0;
+}
+p {
+    line-height: 160%;
+}
+
+.table td, .table th {
+    padding: 6px;
+}
+tr td button{
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+} 
+input {
+    border: 1px solid black;
+}
+input[type="text"], input[type="password"], input[type="tel"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: 1;
+    width: 100%;
+    padding: 5px 35px 6px 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+p.error-text {
+    margin-top: 8px !important;
+}
+.error-text {
+    font-size: 13px;
+    color: #ff545b;
+    /* margin-top: 8px; */
+}
+.ok-text {
+    font-size: 13px;
+    color: #1ea3fe;
+    margin-top: 8px;
+}
+.wrap {
+    position: relative;
+    height: 100%;
+}
+.containerNew {
+    position: relative;
+    max-width: 1260px;
+    height: 100%;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+.row {
+   margin: 0;
+}
+.contents.member {
+    margin-right: 0;
+    min-height: 600px;
+}
+.contents {
+    position: relative;
+    z-index: 1;
+    min-height: 920px;
+}
+.contents.member .cont-area {
+margin: 0 auto 29px;
+    max-width: 1100px;
+}	
+.cont-area {
+    margin-right: 310px;
+    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
+    margin-bottom: /*70px*/40px;
+    background: #fff;
+    position: relative;    border: 1px solid #e5e6ef;
+}
+
+.sidebar {
+  float: left;
+  width: auto;
+  border: 1px solid #dddddd;
+  padding: 10px
+}
+.col-md-10, .col-md-2{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+/*--------------------------- end 공통 적용 css ---------------------------*/
+
+/*--------------------------- start 본문 전체 사이즈 containerNew div css ---------------------------*/
+
+@media ( max-width : 979px) {
+	body .containerNew {
+		padding-top: 0;
+	}
+}
+
+@media ( max-width : 979px) {
+	.containerNew {
+		padding-top: 104px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.containerNew {
+		padding: 0;
+		padding-bottom: 170px;
+	}
+}
+
+.containerNew {
+	position: relative;
+	max-width: 1260px;
+	height: 100%;
+	padding: 20px 0 0 0;
+	margin: 0 auto;
+}
+
+/*--------------------------- end 본문 전체 사이즈 containerNew div css ---------------------------*/
+
+/*--------------------------- start 본문 내부 전체 사이즈 contents/member div css ---------------------------*/
+
+.contents.member {
+	margin-right: 0;
+	min-height: 400px;
+}
+
+
+
+@media only screen and (max-width: 1599px) {
+	.contents.member {
+		margin: 0 auto 100px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.contents.member {
+		margin-bottom: 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.contents {
+		position: inherit;
+		min-height: initial;
+	}
+}
+
+@media only screen and (max-width: 1599px) {
+	.contents {
+		margin: 0 auto;
+		max-width: 1260px;
+	}
+}
+
+.contents {
+	position: relative;
+	z-index: 1;
+	min-height: 920px;
+}
+
+/*--------------------------- end 본문 내부 전체 사이즈 contents/member div css ---------------------------*/
+
+/*--------------------------- start 본문 내부 내부 사이즈 cont-area div css ---------------------------*/
+
+.cont-area {
+	margin-right: 310px;
+	padding: /*20px 30px 60px 30px*/ 20px 30px 0 30px;
+	margin-bottom: /*70px*/ 40px;
+	background: #fff;
+	position: relative;
+}
+
+
+
+@media only screen and (max-width: 1599px) {
+	.contents.member .cont-area {
+		width: 100%;
+		float: none;
+	}
+}
+@media only screen and (max-width: 979px) {
+	.contents.member .cont-area {
+		padding-bottom: 60px;
+	}
+}
+.contents.member .cont-area {
+    margin: 0 auto 29px;
+    max-width: 1100px;
+}
+
+@media only screen and (max-width: 979px) {
+	.cont-area {
+		min-height: auto;
+		margin-right: 0;
+		padding: 20px 0 120px;
+		/* border-top: 10px solid #eff3f6; */
+		max-width: none !important;
+		width: 100% !important;
+	}
+}
+
+@media only screen and (max-width: 1160px) {
+	.cont-area {
+		margin: 0 auto;
+		max-width: 950px;
+		width: 100%;
+		float: none;
+	}
+}
+
+@media only screen and (max-width: 1599px) {
+	.cont-area {
+		margin-right: 0;
+		float: left;
+		width: calc(100% - 310px);
+	}
+}
+
+/*--------------------------- end 본문 내부 내부 사이즈 div css ---------------------------*/
+
+/*--------------------------- start title css tit-h1 line ---------------------------*/
+
+.tit-h1.line {
+	margin: 0 -30px 30px;
+	border-bottom: 1px solid #eaeaea;
+	padding: 0 30px 20px;
+}
+
+@media only screen and (max-width: 979px) {
+	.contents.member .cont-area h1 {
+		display: block !important;
+		padding-left: 15px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.tit-h1.line {
+		margin: 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.cont-area h1 {
+		display: none;
+	}
+	
+}
+@media only screen and (max-width: 979px) {
+	.h1-top-m {
+		margin-top: 30px !important;
+	}
+.col-md-2, .drop-nav {
+    display: none !important;
+}
+.m-drop-nav {
+    display: block;
+}
+}
+
+.tit-h1 {
+	font-size: 20px;
+	margin-bottom: 30px;
+	font-weight: 700;
+	line-height: 100%;
+}
+
+/*--------------------------- end title css tit-h1 line ---------------------------*/
+
+/*--------------------------- start forgetid/forgetpassword/forgetpasswordreset sub title find-desc/input button div css ---------------------------*/
+
+.find-desc {
+	margin: 50px 0 0 0;
+	text-align: center;
+}
+.find-desc .tit {
+	font-size: 32px;
+}
+.find-desc .txt {
+	margin: 20px 0 0 0;
+	color: #444;
+}
+
+input[type="text"], input[type="password"], input[type="tel"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	line-height: 1;
+	width: 100%;
+	padding: 5px 35px 6px 10px;
+	border: 1px solid #ccc;
+	background: #fff;
+	color: #000;
+	vertical-align: middle;
+	box-sizing: border-box;
+	border-radius: 0;
+}
+
+[class*="input-style"] {
+	display: inline-block;
+	position: relative;
+}
+
+.member [class*="input-style"] button {
+	top: 0;
+	margin-top: 0;
+}
+
+[class*="input-style"] .delete {
+	background-position: 10px -500px;
+	display: none;
+}
+
+[class*="input-style"] button {
+	position: absolute;
+	right: 1px;
+	top: 50%;
+	margin-top: -13px;
+	width: 30px;
+	height: 27px;
+	text-indent: -9999px;
+	background-image: url(/rpan/common/images/bg_form.png?update=20180329);
+	background-repeat: no-repeat;
+}
+
+input[type="button"], button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	cursor: pointer;
+	background: none;
+}
+@media only screen and (max-width: 979px) {
+	.find-desc {
+		padding: 0 15px;
+		text-align: left;
+		margin: 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-desc .tit {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-desc .txt {
+		color: #888;
+		margin: 0;
+	}
+}
+@media only screen and (max-width: 979px) {
+	input[type="text"], input[type="password"], input[type="tel"] {
+		padding: 9px 35px 10px 10px;
+		height: 36px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	[class*="input-style"] .delete {
+		background-position: 10px -295px;
+		background-size: 20px 450px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	[class*="input-style"] button {
+		height: 36px;
+		margin-top: -17px;
+	}
+}
+
+/*--------------------------- end forgetid/forgetpassword/forgetpasswordreset 부 제목 find-desc/input button div css ---------------------------*/
+
+/*--------------------------- start forgetid/forgetpassword 본문 fint-list-cont div css ---------------------------*/
+
+.find-list {
+    margin: 30px 0 0 0;
+}
+
+.find-list li {
+	border-left: 0;
+	border-right: 0;
+}
+
+.find-list li {
+	position: relative;
+	margin: -1px 0 0 0;
+	border: 1px solid #ccc;
+}
+
+.find-list li.selected:after {
+	content: "";
+	z-index: 1;
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	right: -1px;
+	bottom: 1px;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ff545b;
+}
+
+.find-list li a {
+	display: block;
+	height: auto;
+	padding: 25px 49px 25px 55px;
+	line-height: normal;
+	color: #444;
+	font-size: 16px;
+}
+
+.find-list li.selected {
+	position: relative;
+}
+
+.find-list li .fint-list-cont {
+	display: block;
+	padding: 0 49px 30px 55px;
+}
+
+
+.find-list li .find-box {
+	position: relative;
+	z-index: 2;
+}
+
+.find-list .form-list {
+	margin: 15px 0 0 0;
+}
+
+.find-list .form-list li:first-child {
+	margin: 0;
+}
+
+.find-list .form-list li {
+	margin: 8px 0 0 0;
+	border: 0;
+}
+
+.find-list .form-list li .tit {
+	position: absolute;
+	top: -99999em;
+	left: -99999em;
+	width: 0;
+	height: 0;
+	text-indent: -99999em;
+}
+
+.find-list .form-list li .input-style {
+	width: 100%;
+}
+
+.find-list .form-list li.input-type {
+	padding-right: 82px;
+}
+
+.find-list .form-list li.input-type .btn-t {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+@media only screen and (max-width: 979px) {
+	.find-list {
+		margin: 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-list li a {
+		padding: 25px 20px 25px 15px;
+		font-size: 16px;
+	}
+}
+/*
+@media only screen and (max-width: 979px) {
+	.find-list li a:before {
+		content: "";
+		left: 15px;
+		top: 25px;
+		width: 20px;
+		height: 20px;
+		background: url(/rpan/common/images/icon_big_sprite.png?update=20180329) no-repeat -230px -95px;
+		background-size: 250px 250px;
+	}
+}
+
+.find-list li a:before {
+	content: "";
+	position: absolute;
+	top: 23px;
+	left: 20px;
+	width: 25px;
+	height: 25px;
+	background: url(/rpan/common/images/bg_form.png?update=20180329) no-repeat 0 -866px;
+	vertical-align: middle;
+}
+
+.find-list li a:before {
+	background-position: 0 -806px;
+}
+*/
+
+
+@media only screen and (max-width: 979px) {
+	.find-list li.selected a:before {
+		background-position: -230px -65px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-list li .fint-list-cont {
+		padding: 0 15px 20px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-list li {
+		border-left: 0;
+		border-right: 0;
+	}
+}
+
+/*--------------------------- end forgetid/forgetpassword 본문 fint-list-cont div css ---------------------------*/
+
+/*--------------------------- start forgetpasswordreset 본문 form-table div css ---------------------------*/
+
+.form-table.pass-reset {
+    margin-top: 50px;
+}
+.form-table {
+    border-top: 1px solid #000;
+    margin-bottom: 40px;
+}
+.form-table table {
+    width: 100%;
+}
+.form-table.pass-reset table th {
+    width: 25%;
+}
+.form-table table th {
+    background: #f9f9f9;
+    width: 16%;
+    height: 28px;
+    padding: 17px 5px 17px 18px;
+    border-bottom: 1px solid #eaeaea;
+    text-align: left;
+    vertical-align: top;
+}
+.form-table.pass-reset table td {
+    width: auto;
+}
+.form-table table td {
+    width: 84%;
+    height: 28px;
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+    vertical-align: middle;
+}
+.form-table table td [class*="input-style"] {
+    width: 260px;
+}
+.form-table table td [class*="input-style-case02"] {
+    width: 100%;
+}
+.form-table.pass-reset table th {
+    width: 25%;
+}
+.form-table table td input[type="text"], .form-table table td input[type="password"] {
+    width: 100%;
+}
+
+
+
+
+@media only screen and (max-width: 979px){
+.form-table {
+    border-bottom: 1px solid #eaeaea;
+    padding-top: 10px;
+    padding-bottom: 12px;
+}
+}
+@media only screen and (max-width: 979px){
+.form-table table {
+    width: 100%;
+}
+}
+@media only screen and (max-width: 979px){
+.form-table table th {
+    display: none;
+}
+}
+@media only screen and (max-width: 979px){
+.form-table table td {
+    width: 100%;
+    padding: 0 15px 8px;
+    border-bottom: 0;
+}
+}
+@media only screen and (max-width: 979px){
+.form-table table td [class*="input-style"] {
+    width: 100%;
+    display: block;
+}
+}
+@media only screen and (max-width: 979px){
+.form-table table th {
+    display: none;
+}
+}
+@media only screen and (max-width: 979px){
+.form-table table td input[type="text"], .form-table table td input[type="password"] {
+    width: 100%;
+}
+}
+
+/*--------------------------- end forgetpasswordreset 본문 form-table div css ---------------------------*/
+
+/*--------------------------- start bt-area div css ---------------------------*/
+
+[class*="btn-"].gray {
+	background: #444;
+	border: 1px solid #444;
+	color: #fff;
+}
+
+[class*="btn-t"] {
+	padding: 6px 10px;
+	min-width: 60px;
+	font-size: 14px;
+	bottom: 0;
+}
+
+[class*="btn-"] {
+	position: relative;
+	background: #fff;
+	border: 1px solid #444;
+	line-height: 100%;
+	display: inline-block;
+	color: #000;
+	vertical-align: middle;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.bt-area {
+	overflow: hidden;
+	padding: 20px 0 40px;
+}
+
+.member .bt-area {
+	overflow: hidden;
+	padding: 20px 0;
+	text-align: center;
+}
+
+.member .bt-area .btn-b {
+	min-width: 142px;
+}
+
+[class*="btn-"].red {
+	background: #ff545b;
+	border: 1px solid #ff545b;
+	color: #fff;
+}
+
+[class*="btn-"].gray-hg {
+	background: #979797;
+	border: 1px solid #c6c6c6;
+	color: #fff;
+}
+
+[class*="btn-b"] {
+	padding: 13px 25px;
+	min-width: 90px;
+	font-size: 16px;
+}
+
+@media only screen and (max-width: 979px) {
+	[class*="btn-t"] {
+		padding: 10px 10px;
+		min-width: 70px;
+		font-size: 14px;
+		height: 36px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-list+.bt-area {
+		margin-top: 20px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.id-result .bt-area {
+		padding: 0 15px !important;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.member .bt-area {
+		padding: 20px 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.bt-area {
+		clear: both;
+		overflow: hidden;
+		padding: 0 15px 40px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.id-result .bt-area .btn-b {
+		width: 100%;
+	}
+}
+
+/*--------------------------- end bt-area div css ---------------------------*/
+
+/*--------------------------- start find-info div css ---------------------------*/
+
+.find-info {
+	position: relative;
+	margin: 0 0 20px 0;
+	padding: 18px 18px 23px 24px;
+	background: #f9f9f9;
+	color: #888;
+	text-align: right;
+}
+
+.find-info .txt {
+	float: left;
+	margin: 10px 0 0 0;
+	text-align: left;
+}
+
+.find-info .bt-area {
+	display: inline-block;
+	margin: 5px 0 0 0;
+	padding: 0;
+}
+
+@media only screen and (max-width: 979px) {
+	.find-info {
+		margin: 10px 0 0 0;
+		padding: 0;
+		background: none;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-info .txt {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.id-result .bt-area {
+		padding: 0 15px !important;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-info .bt-area {
+		display: block;
+		margin-bottom: 20px;
+		overflow: hidden;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.member .bt-area {
+		padding: 20px 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-info .bt-area .btn-t:first-child {
+		margin-left: 0;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.find-info .bt-area .btn-t {
+		float: left;
+		width: 49%;
+		margin: 0 0.5%;
+	}
+}
+
+/*--------------------------- end find-info div css ---------------------------*/
+
+/*--------------------------- start 아이콘 서브 제목 message-st div css ---------------------------*/
+
+[class*="message-st"] {
+	max-width: 460px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 150%;
+}
+
+.id-result [class*="message-st"] {
+	margin-top: 0;
+}
+
+@media only screen and (max-width: 979px) {
+	.id-result [class*="message-st"] {
+		margin-top: 20px;
+	}
+}
+
+[class*="message-st"] .big-text {
+	position: relative;
+	font-size: 20px;
+	line-height: 150%;
+	margin-top: 30px;
+	/*padding-top: 100px;*/
+}
+
+.big-text {
+	font-size: 16px;
+	line-height: 170%;
+	color: #222;
+}
+
+[class*="message-st"] {
+	max-width: 460px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 150%;
+}
+
+[class*="message-st"] span {
+	display: inline-block;
+	font-size: inherit;
+}
+
+#idfail {
+	height: 150px;
+	width: 150px;
+	-webkit-filter: opacity(.4) drop-shadow(0 0 0 gray);
+	filter: opacity(.6) drop-shadow(0 0 0 gray);
+}
+
+@media only screen and (max-width: 979px) {
+	[class*="message-st"] .big-text {
+		font-size: 16px;
+	}
+}
+@media only screen and (max-width: 979px) {
+	.message-st-no+.bt-area {
+		margin-top: 20px;
+	}
+}
+
+/*--------------------------- end 아이콘 서브 제목 message-st div css ---------------------------*/
+
+/*--------------------------- start 아이디 찾기 아이디 알려주는 result-box div css ---------------------------*/
+
+.result-box {
+	margin: 30px 0 0 0;
+	border: 1px solid #eaeaea;
+}
+
+.result-box .result-list {
+	padding: 30px 0 30px 122px;
+}
+
+.result-box .result-list li {
+	position: relative;
+	padding: 13px 0 13px 174px;
+	overflow: hidden;
+}
+
+.result-box .result-list li .id {
+	position: absolute;
+	top: 13px;
+	left: 0;
+}
+
+.result-box .result-list li .label {
+	min-width: 174px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.result-box .result-list li .join {
+	margin: 0 0 0 5px;
+	font-size: 13px;
+	color: #888;
+}
+
+.result-box .result-list li .join .date {
+	margin: 0 0 0 8px;
+	padding: 0 0 0 9px;
+	background: url(/rpan/common/images/bg_line.png?update=20180329)
+		no-repeat 0 50%;
+}
+
+@media only screen and (max-width: 979px) {
+	.result-box {
+		border-bottom: 0;
+		border-left: 0;
+		border-right: 0;
+		margin-bottom: 30px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.result-box .result-list {
+		padding: 10px 15px;
+		border-bottom: 1px solid #eaeaea;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.result-box .result-list li .label {
+		min-width: 150px;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	.result-box .result-list li .join {
+		display: block;
+		margin-top: 2px;
+		min-width: 150px;
+		float: right;
+		text-align: right;
+	}
+}
+
+/*--------------------------- end 아이디 찾기 아이디 알려주는 result-box div css ---------------------------*/
+
+
+
+.color-fantasy {
+	color: rgba(46,87,255,1) !important;
+}
+.fantasy {
+    background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
+    color: #fff !important;
+}
+.m-drop-nav, .m-drop-down {
+    display: none;
+}
+
+@media only screen and (max-width: 1599px){
+.contents {
+    margin: 0 auto;
+    max-width: 1260px;
+}
+.contents.member .cont-area {
+    width: 100%;
+    float: none;
+}
+}
+
+@media only screen and (max-width: 979px){
+.wrap {
+    position: relative;
+    height: 100%;
+    min-width: 320px;
+}
+body.member .containerNew {
+    padding-top: 0;
+}
+.containerNew {
+    padding: 0;
+}
+.contents.member {
+    margin-bottom: 0;
+}
+.contents {
+    position: inherit;
+    min-height: initial;
+}
+.contents.member .cont-area {
+    padding-bottom: 60px;
+}
+.cont-area {
+    min-height: auto;
+    margin-right: 0;
+    padding: 20px 0 120px;
+    max-width: none !important;
+    width: 100% !important;
+}
+.contents.member .cont-area h1 {
+    display: block !important;
+    padding-left: 15px;
+}
+.col-md-2, .drop-nav {
+    display: none !important;
+}
+.m-drop-nav {
+    display: block;
+}
+.col-md-10 {
+    max-width: 100% !important;
+    flex: none !important;
+    padding: 0 !important;
+}
+.form-table.pass-reset {
+    margin-top: 0;
+}
+.form-table {
+	border: none;
+}
+}

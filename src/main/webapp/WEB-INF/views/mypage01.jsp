@@ -63,6 +63,9 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								<a href="/myPage01">내 정보 관리</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/mypageUpdatePassword">비밀번호 변경</a>
+							</h1>							
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/myPage02">계좌정보</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
