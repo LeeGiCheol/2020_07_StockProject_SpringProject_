@@ -101,28 +101,6 @@ public class BoardServiceImpl implements BoardService{
 			}
 			postMap.put("portfolioList", portfolioList);
 		}
-		// 나의 문의내역 게시판
-		else if(bno == 4) {
-			vo.setId(loginUser.getId());
-			boardPage = new PagingVO(boardDAO.count(vo), nowPage, page);
-			
-			boardPage.getUtil().put("searchStyle", searchStyle);
-			boardPage.getUtil().put("keyword", keyword);
-			boardPage.getUtil().put("orderby", orderby);
-			boardPage.getUtil().put("bno", bno);
-			boardPage.getUtil().put("id", vo.getId());
-			
-			boardList = boardDAO.adminAnswer(boardPage);
-			System.out.println(boardList);
-			for (int i = 0; i < boardList.size(); i++) {
-				try {
-					boardList.get(i).setAdateTime(new Date(boardList.get(i).getAdateTime().getTime()- (1000 * 60 * 60 * 9)));
-				}catch(Exception e) {
-					break;
-				}
-			}
-			postMap.put("boardList", boardList);
-		}
 		
 	
 		

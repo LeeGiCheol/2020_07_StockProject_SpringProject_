@@ -24,6 +24,5 @@ public interface BoardDAO {
 	public List<BoardVO> ServiceCenternotice(BoardVO vo);
 	
 	
-	public List<BoardVO> adminAnswer(PagingVO vo);
 
 }
