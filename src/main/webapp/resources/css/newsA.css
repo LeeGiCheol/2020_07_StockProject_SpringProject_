@@ -1771,3 +1771,68 @@ html[data-useragent*="Mac OS X"] .font_setup .font{display:none}
 .end_photo_org:after{clear:both;display:block;content:''}
 .end_photo_org img{display:inline-block;*display:inline;margin-bottom:5px;vertical-align:middle}
 .end_photo_org .img_desc{display:block;padding-bottom:10px;color:#666;font-size:11px;font-family:'돋움',dotum}
+
+
+
+
+
+
+
+
+.realtimeNewsList .thumb {
+    float: left;
+    padding: 15px 9px 4px 1px;
+    _padding: 15px 6px 5px 1px;
+    display: inline;
+}
+.realtimeNewsList dt {
+    clear: both;
+}
+a:link, a:visited {
+    color: #464646;
+    text-decoration: none;
+}
+.realtimeNewsList .thumb img {
+    border: 1px solid #C9C9C9;
+    vertical-align: top;
+}
+.realtimeNewsList .articleSubject {
+    color: #002560;
+    font: bold 14px/16px dotum;
+    letter-spacing: -0.1em;
+    padding: 15px 0 5px;
+    _display: inline-block;
+}
+.realtimeNewsList .articleSubject a {
+    color: #002560;
+}
+.realtimeNewsList .articleSummary {
+    overflow: visible;
+}
+.realtimeNewsList .articleSummary {
+    line-height: 18px;
+    color: #464646;
+}
+.realtimeNewsList span.press {
+    padding: 0 4px 0 12px;
+    color: #C88282;
+    font-size: 11px;
+}
+.realtimeNewsList span.bar {
+    color: #C0C0C0;
+    font-size: 11px;
+    text-align: center;
+}
+.realtimeNewsList span.wdate {
+    color: #909090;
+    font-size: 11px;
+    letter-spacing: 0;
+}
+.realtimeNewsList .articleSummary:after {
+    clear: left;
+    display: block;
+    content: 'X';
+    height: 1px;
+    visibility: hidden;
+    overflow: hidden;
+}
