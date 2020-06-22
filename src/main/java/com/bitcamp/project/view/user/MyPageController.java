@@ -73,6 +73,8 @@ public class MyPageController {
 				return "redirect:/mainPage";
 
 			default:
+				signInService.withdrawal(id); // id로 서비스 회원탈퇴
+				session.invalidate();
 				return "redirect:/mainPage";
 			}
 
