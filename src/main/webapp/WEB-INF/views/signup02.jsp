@@ -162,7 +162,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-
 	
 	function goPopup(){
 		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
@@ -252,12 +251,12 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					var com = $.trim($('#inputEmail').val().indexOf("."));
 					// @ 와 .이 없으면 이메일 형식이 안맞는다고 띄우기 
 					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
+						$("#idCheck").attr("disabled", "disabled");$("#idCheck").attr("style", "opacity:20%");
 						$("#_liEmailNum").css('display',"block");
 						idx= true;
 						$('#inputEmail').attr("readonly", true);
  						/* var html="<tr><td colspan='3' style='color: green'>이메일에 인증 번호를 확인해주세요.</td></tr>";  */
  						var html="<p id='err_cust_id' class='ok-text'>이메일에 인증 번호를 확인해주세요.</p>";
- 						
 						$('#idResult').empty();
 						$('#cEmailResult').empty();
 						$('#idResult').append(html);
@@ -326,13 +325,14 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		});
 		
 		// 휴대폰 중복확인
-		$('#telCheck').on('click', function(){ 
+		$('#telCheck').on('click', function(){
 			$.ajax({ 
 				type: 'GET', 
 				url: '${pageContext.request.contextPath}/telCheck', 
 				data: { "tel" : $('#inputPhone').val() }, 
 				success: function(data){ 
 					if(data == 0 && $.trim($('#inputPhone').val()) != ''){
+						$("#telCheck").attr("disabled", "disabled");$("#telCheck").attr("style", "opacity:20%");
 						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputPhone').attr("readonly", true);
@@ -360,8 +360,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					alert("서버에러");
 				}
 				
-			});  
-		});  
+			});
+	});  
 		
 		// 휴대폰 인증번호확인
 		$('#cTelCheck').on('click', function(){ 

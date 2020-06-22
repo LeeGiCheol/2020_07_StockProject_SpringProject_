@@ -11,11 +11,12 @@
    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainfooter3.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script> 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
+function msg(){swal({text:"번호를 확인중입니다.", icon:"success"});}
 </script>
 </head>
 <body class="member">
@@ -42,7 +43,7 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
                               <ul class="form-list">
                                  <li class="input-type"><span class="input-style"> 
                                  <input type="text" placeholder="휴대폰 번호는 대시(-)없이 숫자만 입력해주세요." id="tel" name="tel" onKeyPress="return numkeyCheck(event)"></span> 
-                                 <button type="submit" id="show-answer" class="btn-t fantasy">인증번호전송</button></li>
+                                 <button type="submit" id="show-answer" class="btn-t fantasy" onclick="msg();">인증번호전송</button></li>
                               </ul>
                            </div>
                         </div>

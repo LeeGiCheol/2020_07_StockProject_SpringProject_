@@ -14,6 +14,10 @@
 <link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+function msg(){swal({text:"이메일을 확인중입니다.", icon:"success"});}
+</script>
 </head>
 <body class="member">
 	<%@include file="mainheader.jsp"%>
@@ -38,7 +42,7 @@
 										<ul class="form-list">
 											<li class="input-type">
 											<input type="text"	placeholder="이메일 주소를 입력해주세요." id="id" name="id" onKeyPress="return numkeyCheck(event)">
-											<button type="submit" class="btn-t fantasy">인증번호전송</button></li>
+											<button type="submit" class="btn-t fantasy" onclick="msg();">인증번호전송</button></li>
 										</ul>
 									</div>
 								</div>
