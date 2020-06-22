@@ -89,7 +89,7 @@
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/board/portfolio">포트폴리오</a>
 							</h1>
-							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/news">오늘의 뉴스</a>
 							</h1>
 						</div>
