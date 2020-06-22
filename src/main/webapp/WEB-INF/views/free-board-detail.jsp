@@ -174,7 +174,7 @@
 		
 		<div class="support-button">
 
-			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="btn-s fantasy">등록</a></span>
+			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
 
 		</div> 
 		</div>

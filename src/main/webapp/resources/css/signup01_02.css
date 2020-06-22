@@ -113,7 +113,7 @@ input {
     left: 0;
     right: -12px;
     height: 3px;
-    background: #1e78ff;;
+    background: rgba(46,87,255,1);;
 }
 .step-mem li:nth-of-type(2) {
     width: 36%;
@@ -157,7 +157,7 @@ input {
     background: url(/resources/img/step_mem.png) no-repeat 0 -164px;
 }
 .step-mem li.selected span {
-    color: #1e78ff;
+    color: rgba(46,87,255,1);
 }
 .step-mem li span:after {
     content: "";
@@ -542,8 +542,8 @@ p.error-text {
     border: none;
 }
 .member .men-step fieldset ul li input[type="radio"]:not(old):checked + label {
-    border: 1px solid #1e78ff;
-    color: #1e78ff !important;    
+    border: 1px solid rgba(46,87,255,1);
+    color: rgba(46,87,255,1) !important;    
 }
 .member .men-step .dormant-radio input[type="radio"]+ label {
     margin-right: 12px;
@@ -923,10 +923,10 @@ input[type="text"], input[type="password"], input[type="tel"] {
 
 
 .fantasy {
-    background: #1e78ff;
-    border: 1px solid #1e78ff;
+    background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
     color: #fff !important;
 }
 .color-fantasy {
-	color: #1e78ff !important;
+	color: rgba(46,87,255,1) !important;
 }

@@ -948,10 +948,10 @@ input[type="button"], button {
 
 
 .color-fantasy {
-	color: #1e78ff !important;
+	color: rgba(46,87,255,1) !important;
 }
 .fantasy {
-    background: #1e78ff;
-    border: 1px solid #1e78ff;
+    background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
     color: #fff !important;
 }
