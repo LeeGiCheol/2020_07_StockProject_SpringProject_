@@ -23,12 +23,12 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 	word-break: break-all;
 }
 
-body {
+/* body {
 	line-height: 1;
 	-webkit-text-size-adjust: none;
 	    background: #eff3f6;
 	color: #000;
-}
+} */
 
 span, em, mark, strong, b, label {
 	margin: 0;
@@ -181,7 +181,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	padding: /*20px 30px 60px 30px*/ 20px 30px 0 30px;
 	margin-bottom: /*70px*/ 40px;
 	background: #fff;
-	position: relative;    border: 1px solid #e5e6ef;
+	position: relative;
 }
 
 @media only screen and (max-width: 979px) {
@@ -201,7 +201,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	margin: 0 auto 0;
 	max-width: 630px;margin: 0 auto 0;
     max-width: 630px;
-    border: 1px solid #e5e6ef;
+    
     min-height: 650px;
 }
 
@@ -944,3 +944,14 @@ input[type="button"], button {
 }
 
 /*--------------------------- end 아이디 찾기 아이디 알려주는 result-box div css ---------------------------*/
+
+
+
+.color-fantasy {
+	color: rgba(46,87,255,1) !important;
+}
+.fantasy {
+    background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
+    color: #fff !important;
+}

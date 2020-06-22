@@ -34,14 +34,14 @@ a:hover {
     color: #848889;
 }
 .m-drop-tit-body:hover > a {
-	color: #1e78ff;
+	color: rgba(46,87,255,1);
 	font-weight: 600;
 }
 .m-drop-tit-body:hover{
-	border-bottom: 1px solid #1e78ff;
+	border-bottom: 1px solid rgba(46,87,255,1);
 }
 #sideTitle{
-	  border-left: 4px solid #1e78ff !important;
+	  border-left: 4px solid rgba(46,87,255,1) !important;
 	    color: black !important;
   font-weight: 600 !important;
     background: #f6f6f6 !important;
@@ -156,7 +156,7 @@ a:hover {
 
 
 #cssmenu>ul>li:hover {
-  border-left: 4px solid #1e78ff;
+  border-left: 4px solid rgba(46,87,255,1);
 
 }
 
@@ -229,7 +229,7 @@ a:hover {
 }
 .sidebar li.selected {
 	font-weight: 600 !important;
-	border-left: 4px solid #1e78ff !important;
+	border-left: 4px solid rgba(46,87,255,1) !important;
 	background: #f6f6f6 !important;
 }
 .fa-angle-down:before {
@@ -242,20 +242,20 @@ a:hover {
     line-height: 100%;
     margin: 0 -30px 30px;
     padding: 0 30px 20px;
-    color: #1e78ff;
-    border-bottom: 1px solid #1e78ff !important;
+    color: rgba(46,87,255,1);
+    border-bottom: 1px solid rgba(46,87,255,1) !important;
 }
 
 .color-fantasy {
-	color: #1e78ff !important;
+	color: rgba(46,87,255,1) !important;
 }
 .fantasy {
-    background: #1e78ff;
-    border: 1px solid #1e78ff;
+    background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
     color: #fff !important;
 }
 /* .fantasy:hover {
-    color: #1e78ff;
+    color: rgba(46,87,255,1);
     border: 1px solid #eff3f6;
     background: #f3faff;
 } */

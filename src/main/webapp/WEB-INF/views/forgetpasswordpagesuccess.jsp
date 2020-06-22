@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader4.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 </head>
 <body class="member">
@@ -26,12 +26,12 @@
 						<div class="message-st-no"> 
 							<img class="" id="idfail" src="/resources/img/icon_password_reset.png">
 							<p class="big-text">
-								<span class="color-red">비밀번호 재설정이 완료</span>되었습니다.
+								<span class="color-fantasy">비밀번호 재설정이 완료</span>되었습니다.
 								<br>변경하신 비밀번호로 로그인해주세요.
 							</p>
 						</div>
 						<div class="bt-area">
-							<a href="/signInPage" class="btn-b gray">로그인</a>
+							<a href="/signInPage" class="btn-b fantasy">로그인</a>
 						</div>
 						<div class="find-info">
 							<span class="txt">비밀번호 찾기와 회원가입을 원하시나요?</span> 
@@ -45,7 +45,7 @@
 		</div>
 	</div>
 
-	<%@include file="mainfooter.jsp"%>
+	<%@include file="mainfooter2.jsp"%>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

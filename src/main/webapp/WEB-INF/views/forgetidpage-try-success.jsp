@@ -10,12 +10,11 @@
 <link rel="stylesheet"
    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
 function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:"error"});}
@@ -42,18 +41,18 @@ function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:
                      <li><a>회원가입 시 등록한 휴대전화 번호로 인증</a>
                         <div style="padding-bottom:50px;" class="fint-list-cont">
                            <div class="find-box">
-                              <p> 회원가입 시 입력한 <span class="color-red">휴대전화 번호와 동일한 번호</span>를 입력하셔야 인증번호를 받을 수 있습니다.
+                              <p> 회원가입 시 입력한 <span class="color-fantasy">휴대전화 번호와 동일한 번호</span>를 입력하셔야 인증번호를 받을 수 있습니다.
                               </p>
                               <ul class="form-list">
                                  <li class="input-type"><strong class="tit"></strong> <span class="input-style"> 
                                  <input type="text" placeholder="${findUser.tel}" readonly></span> 
-                                 <button type="button" class="btn-t gray" onclick="msg();">인증번호전송</button></li>
+                                 <button type="button" class="btn-t fantasy" onclick="msg()">인증번호전송</button></li>
                                  
                                  <li class="input-type"><strong class="tit"></strong><span class="input-style">
                                  <input type="password" placeholder="인증번호를 입력해주세요." id="answer" name="answer" maxlength="30" onKeyPress="return numkeyCheck(event)">
-                                 </span><button type="submit" class="btn-t gray" onclick="javascript: form.action='/forgetIdTry';">인증번호입력</button></li>
+                                 </span><button type="submit" class="btn-t fantasy" onclick="javascript: form.action='/forgetIdTry';">인증번호입력</button></li>
                                  <li class="input-type"><strong class="tit"></strong><span class="input-style">
-                                 </span><button style="padding-bottom: 20px;" type="button" class="btn-t gray" onclick="location.href='/forgetId'">번호다시입력</button></li>
+                                 </span><button style="padding-bottom: 20px;" type="button" class="btn-t fantasy" onclick="location.href='/forgetId'">번호다시입력</button></li>
                               </ul>
                            </div>
                         </div>
@@ -72,7 +71,7 @@ function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:
          </div>
       </div>
    </div>
-   <%@include file="mainfooter.jsp"%>
+   <%@include file="mainfooter2.jsp"%>
    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

@@ -649,7 +649,7 @@ tr td button {
 							<tbody>
 								<tr id="upDownColor">
 									<td scope="col" class="now-text">현재가</td>
-									<td scope="col" class="now-text" data-tooltip-text="클릭 시 단가가 입력 됩니다."><button id="price"></button></td>
+									<td scope="col" class="now-text" ><button id="price" data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."></button></td>
 									<td scope="col" class="now-text" id="beforeAndUpdown"></td>
 								</tr>
 							</tbody>
@@ -1517,7 +1517,7 @@ tr td button {
 	<script id="upPrice" type="text/x-jsrender">
 			<tr>
 				<td scope="col" class="inside-text"></td>
-				<td scope="col" class="inside-up-text"><button onClick="(function(){
+				<td scope="col" class="inside-up-text"><button data-tooltip-text="호가 클릭 시 단가가 입력 됩니다." onClick="(function(){
 							$('#buying_price').val('{{:up}}');
 							$('#selling_price').val('{{:up}}');
 							$('#mySelect').val('{{:up}}');
@@ -1533,7 +1533,7 @@ tr td button {
 	<script id="downPrice" type="text/x-jsrender">
 			<tr>
 				<td scope="col" class="inside-text"></td>
-				<td scope="col" class="inside-down-text"><button onClick="(function(){
+				<td scope="col" class="inside-down-text"><button data-tooltip-text="호가 클릭 시 단가가 입력 됩니다." onClick="(function(){
 							$('#buying_price').val('{{:down}}');
 							$('#selling_price').val('{{:down}}');
 							$('#mySelect').val('{{:down}}');

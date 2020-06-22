@@ -10,8 +10,7 @@
 <link rel="stylesheet"
    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader4.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -39,12 +38,12 @@ function msg(){swal({text:"번호를 확인중입니다.", icon:"success"});}
                      <li><a>회원가입 시 등록한 휴대전화 번호로 인증</a>
                         <div class="fint-list-cont">
                            <div class="find-box">
-                              <p> 회원가입 시 입력한 <span class="color-red">휴대전화 번호와 동일한 번호</span>를 입력하셔야 인증번호를 받을 수 있습니다.
+                              <p> 회원가입 시 입력한 <span class="color-fantasy">휴대전화 번호와 동일한 번호</span>를 입력하셔야 인증번호를 받을 수 있습니다.
                               </p>
                               <ul class="form-list">
                                  <li class="input-type"><span class="input-style"> 
                                  <input type="text" placeholder="휴대폰 번호는 대시(-)없이 숫자만 입력해주세요." id="tel" name="tel" onKeyPress="return numkeyCheck(event)"></span> 
-                                 <button type="submit" id="show-answer" class="btn-t gray" onclick="msg();">인증번호전송</button></li>
+                                 <button type="submit" id="show-answer" class="btn-t fantasy" onclick="msg();">인증번호전송</button></li>
                               </ul>
                            </div>
                         </div>
@@ -63,7 +62,7 @@ function msg(){swal({text:"번호를 확인중입니다.", icon:"success"});}
          </div>
       </div>
    </div>
-   <%@include file="mainfooter.jsp"%>
+   <%@include file="mainfooter2.jsp"%>
    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
