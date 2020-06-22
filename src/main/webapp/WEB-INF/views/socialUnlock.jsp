@@ -14,7 +14,7 @@
 <c:set var="socialId" value="${loginUser.id}"/>
 <c:choose>
 	<c:when test="${fn:contains(socialId,'_naver_')}">
-				window.onload = function(){
+	window.onload = function(){
 		swal({
 			  text: "정말 탈퇴하시겠습니까?",
 			  icon: "warning",

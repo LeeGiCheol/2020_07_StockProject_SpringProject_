@@ -22,12 +22,10 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 </head>
 <body class="member">
 <%@include file="mainheader.jsp" %>
-		
 		<div class="containerNew"> 
 <!-- 		정보수정 -->
 		<!-- contents -->
 		<div class="contents member" id="contents">
-		
 			<!-- cont-area -->	
 			<div class="cont-area"> 
 				<h1 class="tit-h1 line">내정보 관리</h1>
@@ -71,9 +69,10 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					</form>
 				</div>
 				<!-- //info-modify -->
-
-			</div><!-- //cont-area -->
-		</div><!-- //contents -->  
+		<!-- //cont-area -->
+			</div>
+		<!-- //contents -->
+		</div>  
 	
 
 
