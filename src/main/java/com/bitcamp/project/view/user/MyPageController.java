@@ -1,5 +1,6 @@
 package com.bitcamp.project.view.user;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +33,7 @@ import com.bitcamp.project.vo.HoldingStockVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.StockVO;
 import com.bitcamp.project.vo.UserVO;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class MyPageController {
@@ -47,12 +49,23 @@ public class MyPageController {
 	@Autowired
 	BCryptPasswordEncoder bPasswordEncoder;
 
-	// ㅇㅇㅇㅇㅇㅇㅇ
 	@Autowired
 	SignInService signInService;
 
+	@GetMapping(value="/naverUnlock")
+	public String test(HttpSession session) {
+		OAuth2AccessToken token = (OAuth2AccessToken)session.getAttribute("naverToken");
+		String test= token.getAccessToken();
+		String CLIENT_ID = "pQCi1ygY9htqntse3luv";
+		String CLIENT_SECRET = "b3yefyBlt9";
+		session.invalidate();
+		return "redirect:https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&access_token="+test+"&service_provider=NAVER";
+	}
+	
+	
+	
 	@GetMapping(value = "/withdrawal")
-	public String withdrawal(HttpSession session, @ModelAttribute("id") String id) {
+	public String withdrawal(HttpSession session, @ModelAttribute("id") String id,String code, String state) throws IOException {
 //		String ID = ((UserVO)session.getAttribute("loginUser")).getId();
 
 		if (id.substring(id.length() - 1).equals("_")) { // 끝글자 _ 확인
@@ -68,9 +81,9 @@ public class MyPageController {
 				return "redirect:/mainPage";
 
 			case "naver":
-				System.out.println("네이버 연결끊기");
-				session.invalidate();
-				return "redirect:/mainPage";
+				signInService.withdrawal(id);// id로 서비스 회원탈퇴
+				return "naverLogout";
+
 
 			default:
 				return "redirect:/mainPage";
@@ -81,6 +94,7 @@ public class MyPageController {
 		session.invalidate();
 		return "redirect:/mainPage";
 	}
+	
 
 	@GetMapping(value = "/checkCharging")
 	@ResponseBody

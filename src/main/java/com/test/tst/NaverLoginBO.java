@@ -19,11 +19,10 @@ public class NaverLoginBO {
 //state: 애플리케이션이 생성한 상태 토큰
 	private final static String CLIENT_ID = "pQCi1ygY9htqntse3luv";
 	private final static String CLIENT_SECRET = "b3yefyBlt9";
-	private final static String REDIRECT_URI = "http://192.168.0.96:8080/callback";
+	private final static String REDIRECT_URI = "http://localhost:8080/callback";
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL */
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
-
 	/* 네이버 아이디로 인증 URL 생성 Method */
 	public String getAuthorizationUrl(HttpSession session) {
 		/* 세션 유효성 검증을 위하여 난수를 생성 */
@@ -46,6 +45,7 @@ public class NaverLoginBO {
 					.callback(REDIRECT_URI).state(state).build(NaverLoginApi.instance());
 			/* Scribe에서 제공하는 AccessToken 획득 기능으로 네아로 Access Token을 획득 */
 			OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
+			session.setAttribute("naverToken", accessToken);
 			return accessToken;
 		}
 		return null;
