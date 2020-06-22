@@ -105,5 +105,13 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> ServiceCenternotice(BoardVO vo) {
 		return mybatis.selectList("board.ServiceCenternotice");
 	}
+
+	@Override
+	public List<BoardVO> adminAnswer(PagingVO vo) {
+		return mybatis.selectList("board.adminAnswer", vo);
+	}
+	
+	
+	
 	
 }

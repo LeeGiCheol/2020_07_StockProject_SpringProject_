@@ -49,6 +49,7 @@ border-radius: .25rem;
 							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
 							<li id="claimTitle"><a href="/customClaimWrite"><span>1:1문의</span></a></li>
+							<li id="claimTitle"><a href="/customerClaim/List"><span>1:1문의 내역</span></a></li>
 						</ul>
 				</div>
 
@@ -78,6 +79,7 @@ border-radius: .25rem;
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
 							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
+							
 						</div>
 </div>
 				<div class="community" role="main">
@@ -100,7 +102,7 @@ border-radius: .25rem;
 								</div>
 								<div class="inquiry-box">
 									<p class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</p>
-									<a href="/customerqna" class="link">1:1 문의</a>
+									<a href="/customClaimWrite" class="link">1:1 문의</a>
 				
 								</div>
 							</fieldset>
