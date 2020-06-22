@@ -53,7 +53,7 @@ public class MyPageController {
 
 	@GetMapping(value = "/withdrawal/check")
 	public String withdrawal_check(@ModelAttribute("id") String id) {
-		if (id.substring(id.length() - 1).equals("_"))
+		if (id.substring(id.length() - 1).equals("_"))//사이에
 			return "redirect:/withdrawal";
 		return "/withdrawal_PW";
 	}
@@ -321,7 +321,7 @@ public class MyPageController {
 		}
 
 //		JSONObject obj = new JSONObject();
-		List<List> notice = userInfoService.getNotice(id);
+		List<List> notice = userInfoService.getNewNotice(id);
 		if ((notice.get(0).size() == 0) && (notice.get(1).size() == 0))
 			return "NONE";
 		else
