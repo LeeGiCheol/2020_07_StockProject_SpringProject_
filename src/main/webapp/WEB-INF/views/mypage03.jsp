@@ -16,15 +16,29 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 $(document).ready(function(){
-	$("#jb-checkboxAll-comment").click(function(){
-	    if($("#jb-checkboxAll-comment").prop("checked")){
+	if($("#typeRef").val() === "board")
+		$("#pills-tabContentComment").hide();
+	else
+		$("#pills-tabContentBoard").hide();
+		
+	$("#orderby1").click(function(){
+		$("#pills-tabContentComment").hide();
+		$("#pills-tabContentBoard").show();
+	});
+	$("#orderby2").click(function(){
+		$("#pills-tabContentBoard").hide();
+		$("#pills-tabContentComment").show();
+	});
+	
+	$("#eventSeq_all_comment").click(function(){
+	    if($("#eventSeq_all_comment").prop("checked")){
 	        $(".comment").prop("checked",true);
 	    }else{
 	        $(".comment").prop("checked",false);
 	    }
 	})
-	$("#jb-checkboxAll").click(function(){
-	    if($("#jb-checkboxAll").prop("checked")){
+	$("#eventSeq_all").click(function(){
+	    if($("#eventSeq_all").prop("checked")){
 	        $(".board").prop("checked",true);
 	    }else{
 	        $(".board").prop("checked",false);
@@ -32,6 +46,7 @@ $(document).ready(function(){
 	})
 });
 function deleteBoard(){
+	console.log("delete board");
 	var boardID = "";
 	
 	var deleted = new Array();
@@ -67,6 +82,7 @@ function deleteComment(){
 		return;
 	}
 	$('#delCommentList').val(commentID);
+	console.log(commentID);
 	window.location.href = '/delete/myComment?delCommentList='+commentID;
 }
 
@@ -117,23 +133,24 @@ function deleteComment(){
 								<a href="#">알림</a>
 							</h1>
 						</div>
+						<input type="hidden" id="typeRef" value="${type}">
 		<div class="board-type">
 			<div class="board-free-nav">
 					<form id="form" class="board-list-top policy-in" action='/myPage03'>
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
-								value="new" checked=""><label for="orderby1"  class="new-board">작성 글</label>
+								value="myBoard" <c:if test='${type eq "board"}'>checked="checked"</c:if>><label for="orderby1"  class="new-board">작성 글 </label>
 							<input type="radio" class="ordeby" id="orderby2" name="orderby"
-								value="best"><label for="orderby2" class="hot-board" >작성 댓글</label>
+								value="myComment" <c:if test='${type eq "comment"}'>checked="checked"</c:if>><label for="orderby2" class="hot-board" >작성 댓글 </label>
 						</p>
 					</form>
 		 			 
 		 			 <c:if test="${loginUser != null}">
-						<p class="right"><a href="/myPage03/write" class="board-write-btn">삭제</a></p>
+						<p class="right"><button class="board-write-btn" type="button" onclick="deleteBoard();">삭제</button></p>
 					 </c:if>	
 					 		
 			</div>
-			<div class="tab-content" id="pills-tabContent">
+			<div class="tab-content" id="pills-tabContentBoard">
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
@@ -149,8 +166,8 @@ function deleteComment(){
 							<tr>
 								<th class="no" scope="col">
 									<p class="check">
-										<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
-										<label for="eventSeq_28900862">선택 삭제</label>
+										<input type="checkbox" id="eventSeq_all" class="seq_check board" name="eventSeq">
+										<label for="eventSeq_all">선택 삭제</label>
 									</p>
 								</th>
 								<th class="no" scope="col">N0</th>
@@ -168,8 +185,8 @@ function deleteComment(){
 									<tr>
 										<td class="board-check">
 											<p class="check">
-												<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
-												<label for="eventSeq_28900862">선택 삭제</label>
+												<input type="checkbox" id="eventSeq_${board.pno}" class="seq_check board" name="check" value="${board.pno}" data-on="${board.pno}">
+												<label for="eventSeq_${board.pno}">선택 삭제</label>
 											</p>
 										</td>
 										<td class="board-no">${board.pno}</td>
@@ -177,11 +194,11 @@ function deleteComment(){
 										
 										<c:choose>
 											<c:when test="${board.commentCount ne 0}">
-												<td class="board-title"><a href="/myPage03/detail?pno=${board.pno}">${board.title}</a><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
+												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
 										<!-- 글 제목 -->
 											</c:when>
 											<c:otherwise>
-												<td class="board-title"><a href="/myPage03/detail?pno=${board.pno}">${board.title}</a></td>
+												<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
 											</c:otherwise>
 										</c:choose>
 										
@@ -197,7 +214,11 @@ function deleteComment(){
 									</tr>
 								</c:if>
 							</c:forEach>
-
+							<c:if test="${myBoard.size() == 0}">
+							    <tr>
+							        <td colspan="7" style="text-align: center;">:::::내 글이 없습니다.::::::</td>
+							    </tr>
+							</c:if>
 						</tbody>
 					</table>
 					
@@ -211,7 +232,7 @@ function deleteComment(){
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
-					          href="/myPage03?bnowPage=1&type=${type}&"
+					          href="/myPage03?bnowPage=1&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					          tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
@@ -220,7 +241,7 @@ function deleteComment(){
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage}"
+					            href="/myPage03?bnowPage=${boardPage.nowPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -232,7 +253,7 @@ function deleteComment(){
 					      <c:if test="${boardPage.nowPage != 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage-1}"
+					            href="/myPage03?bnowPage=${boardPage.nowPage-1}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -252,7 +273,7 @@ function deleteComment(){
 					          </c:when>
 					          <c:when test="${p != boardPage.nowPage}">
 					            <li class="page-item">
-					              <a class="page-link" href="/myPage03?bnowPage=${p}">${p}</a>
+					              <a class="page-link" href="/myPage03?bnowPage=${p}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}">${p}</a>
 					            </li>
 					          </c:when>
 					        </c:choose>
@@ -265,7 +286,7 @@ function deleteComment(){
 					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage}"
+					            href="/myPage03?bnowPage=${boardPage.nowPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					            tabindex="+1" aria-disabled="true">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -276,7 +297,7 @@ function deleteComment(){
 					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage+1}"
+					            href="/myPage03?bnowPage=${boardPage.nowPage+1}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					            tabindex="+1" aria-disabled="true" data-ajax="false">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -286,7 +307,7 @@ function deleteComment(){
 					      <!-- >> 버튼 -->
 					      <li>
 					        <a class="page-link"
-					        href="/myPage03?bnowPage=${boardPage.lastPage}"
+					        href="/myPage03?bnowPage=${boardPage.lastPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					        tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
@@ -299,7 +320,7 @@ function deleteComment(){
 
 
 					 <c:if test="${loginUser != null}">
-						<p class="right"><a href="/myPage03/write" class="board-write-btn">삭제</a></p>
+						<p class="right"><button class="board-write-btn" type="button" onclick="deleteBoard();">삭제</button></p>
 					 </c:if>
 				</div>
 				
@@ -308,17 +329,15 @@ function deleteComment(){
 					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage03">
 						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
-						<select class="dropdown-toggle-board" name="searchStyle">
+						<select class="dropdown-toggle-board" name="bsearchStyle">
 							<option class="nav-link dropdown-toggle board-item" id="dropdown01"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
-								
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>							
 							<option class="dropdown-item board-item" value="search_title"<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option> 
-							<option class="dropdown-item board-item" value="search_content"<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option> 
-							<option class="dropdown-item board-item" value="search_title_content"<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option> 
-							<option class="dropdown-item board-item" value="search_nick"<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
+							<option class="dropdown-item board-item" value="search_content"<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option>
 						</select>
+						<input type="hidden" name="type" value="board">
 						<input class="form-control mr-sm-2 board-search" type="search"
-							placeholder="검색어 입력" aria-label="Search">
+							placeholder="검색어 입력" aria-label="Search" name="bSearchKeyword" value="${bSearchKeyword}">
 						<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
 							type="submit">
 							<i class="fas fa-search"></i>
@@ -329,15 +348,7 @@ function deleteComment(){
 			</div>
 		</div>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-			<div class="tab-content" id="pills-tabContent">
+			<div class="tab-content" id="pills-tabContentComment">
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
@@ -353,55 +364,46 @@ function deleteComment(){
 							<tr>
 								<th class="no" scope="col">
 									<p class="check">
-										<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
-										<label for="eventSeq_28900862">선택 삭제</label>
+										<input type="checkbox" id="eventSeq_all_comment" class="seq_check" name="WeventSeq">
+										<label for="eventSeq_all_comment">선택 삭제</label>
 									</p>
 								</th>
 								<th class="no" scope="col">N0</th>
 								<th class="title" scope="col">내용</th>
 								<th class="writer" scope="col">작성자</th>
-								<th class="views" scope="col">조회</th>
-								<th class="likes" scope="col">추천</th>
+								
 								<th class="date" scope="col">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${myBoard}" var="board">
+							<c:forEach items="${myComment}" var="board">
 							
-								<c:if test="${board.bno eq 1}">
+								<c:if test="true">
 									<tr>
 										<td class="board-check">
 											<p class="check">
-												<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
-												<label for="eventSeq_28900862">선택 삭제</label>
+												<input type="checkbox" id="CeventSeq_${comment.cno}" class="seq_check comment" name="check" value="${comment.cno},${comment.pno}">
+												<label for="CeventSeq_${comment.cno}">선택 삭제</label>
 											</p>
 										</td>
 										<td class="board-no">${board.pno}</td>
 										<!-- 글번호 -->
 										
-										<c:choose>
-											<c:when test="${board.commentCount ne 0}">
-												<td class="board-title"><a href="/myPage03/detail?pno=${board.pno}">${board.title}</a><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
-										<!-- 글 제목 -->
-											</c:when>
-											<c:otherwise>
-												<td class="board-title"><a href="/myPage03/detail?pno=${board.pno}">${board.title}</a></td>
-											</c:otherwise>
-										</c:choose>
+										<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.ccontent}</a></td>
 										
 										<td class="board-writer">${board.nickname}</td>
 										<!-- 글쓴이 -->
-										<td class="board-views"><span>조회 </span>${board.views}</td>
-										<!-- 조회수 -->
-										<td class="board-likes"><span>추천 </span>${board.likes}</td>
-										<!-- 추천수 -->
-										<fmt:formatDate value="${board.bdateTime}" var="time" pattern="MM/dd HH:mm"/>
+										<fmt:formatDate value="${board.cdateTime}" var="time" pattern="MM/dd HH:mm"/>
 										<td class="board-date">${time}</td>
 										<!-- 날짜 -->
 									</tr>
 								</c:if>
 							</c:forEach>
-
+							<c:if test="${myBoard.size() == 0}">
+							    <tr>
+							        <td colspan="7" style="text-align: center;">:::::내 댓글이 없습니다.::::::</td>
+							    </tr>
+							</c:if>
 						</tbody>
 					</table>
 					
@@ -411,20 +413,20 @@ function deleteComment(){
 					<nav aria-label="..." class="pagination">
 					    <ul class="pagination">
 					
-					<c:if test="${boardPage.nowPage != 1}">
+					<c:if test="${commentPage.nowPage != 1}">
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
-					          href="/myPage03?bnowPage=1&type=${type}&"
+					          href="/myPage03?cnowPage=1&type=comment&commentKeyword=${commentKeyword}"
 					          tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
 					      </li>
 					      <!-- 1페이지에서 < 버튼 눌렀을 때 -->
-					      <c:if test="${boardPage.nowPage == 1}">
+					      <c:if test="${commentPage.nowPage == 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage}"
+					            href="/myPage03?cnowPage=${commentPage.nowPage}&type=comment&commentKeyword=${commentKeyword}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -433,10 +435,10 @@ function deleteComment(){
 					</c:if>
 					      
 					      <!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-					      <c:if test="${boardPage.nowPage != 1}">
+					      <c:if test="${commentPage.nowPage != 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage-1}"
+					            href="/myPage03?cnowPage=${commentPage.nowPage-1}&type=comment&commentKeyword=${commentKeyword}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -444,19 +446,19 @@ function deleteComment(){
 					      </c:if>
 					      
 					      <!-- 한번에 5개 페이지 보여줌 -->
-					       <c:forEach begin="${boardPage.startPage }"
-					        end="${boardPage.endPage }" var="p">
+					       <c:forEach begin="${commentPage.startPage }"
+					        end="${commentPage.endPage }" var="p">
 					        <c:choose>
-					          <c:when test="${p == boardPage.nowPage}">
+					          <c:when test="${p == commentPage.nowPage}">
 					            <li class="page-item active" aria-current="page">
 					              <a class="page-link" href="#">${p}
 					                <span class="sr-only">(current)</span>
 					              </a>
 					            </li>
 					          </c:when>
-					          <c:when test="${p != boardPage.nowPage}">
+					          <c:when test="${p != commentPage.nowPage}">
 					            <li class="page-item">
-					              <a class="page-link" href="/myPage03?bnowPage=${p}">${p}</a>
+					              <a class="page-link" href="/myPage03?cnowPage=${p}&type=comment&commentKeyword=${commentKeyword}">${p}</a>
 					            </li>
 					          </c:when>
 					        </c:choose>
@@ -464,12 +466,12 @@ function deleteComment(){
 					      
 					      
 					      
-					 	 <c:if test="${boardPage.nowPage != boardPage.lastPage}">    
+					 	 <c:if test="${commentPage.nowPage != commentPage.lastPage}">    
 					      <!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
+					      <c:if test="${commentPage.nowPage == commentPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage}"
+					            href="/myPage03?cnowPage=${commentPage.nowPage}&type=comment&commentKeyword=${commentKeyword}"
 					            tabindex="+1" aria-disabled="true">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -477,10 +479,10 @@ function deleteComment(){
 					      </c:if>
 					      
 					      <!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
-					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
+					      <c:if test="${commentPage.nowPage != commentPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage+1}"
+					            href="/myPage03?cnowPage=${commentPage.nowPage+1}&type=comment&commentKeyword=${commentKeyword}"
 					            tabindex="+1" aria-disabled="true" data-ajax="false">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -490,7 +492,7 @@ function deleteComment(){
 					      <!-- >> 버튼 -->
 					      <li>
 					        <a class="page-link"
-					        href="/myPage03?bnowPage=${boardPage.lastPage}"
+					        href="/myPage03?cnowPage=${commentPage.lastPage}&type=comment&commentKeyword=${commentKeyword}"
 					        tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
@@ -503,7 +505,7 @@ function deleteComment(){
 
 
 					 <c:if test="${loginUser != null}">
-						<p class="right"><a href="/myPage03/write" class="board-write-btn">삭제</a></p>
+						<p class="right"><button class="board-write-btn" type="button" onclick="deleteComment();">삭제</button></p>
 					 </c:if>
 				</div>
 				
@@ -512,15 +514,6 @@ function deleteComment(){
 					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage03">
 						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
-						<select class="dropdown-toggle-board" name="searchStyle">
-							<option class="nav-link dropdown-toggle board-item" id="dropdown01"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="" <c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
-								
-							<option class="dropdown-item board-item" value="search_title"<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option> 
-							<option class="dropdown-item board-item" value="search_content"<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option> 
-							<option class="dropdown-item board-item" value="search_title_content"<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option> 
-							<option class="dropdown-item board-item" value="search_nick"<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
-						</select>
 						<input class="form-control mr-sm-2 board-search" type="search"
 							placeholder="검색어 입력" aria-label="Search">
 						<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
