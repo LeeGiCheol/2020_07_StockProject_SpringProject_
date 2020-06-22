@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
 function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:"error"});}
@@ -46,7 +47,7 @@ function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:
                               <ul class="form-list">
                                  <li class="input-type"><strong class="tit"></strong> <span class="input-style"> 
                                  <input type="text" placeholder="${findUser.tel}" readonly></span> 
-                                 <button type="button" class="btn-t gray" onclick="msg()">인증번호전송</button></li>
+                                 <button type="button" class="btn-t gray" onclick="msg();">인증번호전송</button></li>
                                  
                                  <li class="input-type"><strong class="tit"></strong><span class="input-style">
                                  <input type="password" placeholder="인증번호를 입력해주세요." id="answer" name="answer" maxlength="30" onKeyPress="return numkeyCheck(event)">

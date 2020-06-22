@@ -1,8 +1,6 @@
 package com.bitcamp.project.view.user;
 
 import java.util.HashMap;
-import java.util.Random;
-
 import org.json.simple.JSONObject;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -12,6 +10,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
  * @class ExampleSend
  * @brief This sample code demonstrate how to send sms through CoolSMS Rest API PHP
  */
+
 public class SignUpSend {
   public static String signUpNumStr = ""; //난수가 저장될 변수
 	  public void sendSMS(String tel) {
@@ -22,6 +21,7 @@ public class SignUpSend {
     String api_secret = "HLDLYIETNBAFMSP7YRM2OHK2M5CH2NMJ";
     Message coolsms = new Message(api_key, api_secret);
     
+    
     HashMap<String, String> params = new HashMap<String, String>();
     params.put("to", tel);
     params.put("from", "01064902806"); //무조건 자기번호 (인증)
@@ -30,7 +30,7 @@ public class SignUpSend {
     params.put("app_version", "test app 1.2"); // application name and version
 
     try {
-    	//send() 는 메시지를 보내는 함수  
+    	//send() 는 메시지를 보내는 함수
       JSONObject obj = (JSONObject) coolsms.send(params);
       System.out.println(obj.toString());
     } catch (CoolsmsException e) {
