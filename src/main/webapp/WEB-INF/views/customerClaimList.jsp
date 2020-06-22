@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>자유게시판</title>
+<title>1:1 문의내역</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- CSS파일 -->
 <link rel="stylesheet"
@@ -20,7 +20,11 @@
 
 <link rel="stylesheet" href="/resources/css/free-board.css">
   <link rel="stylesheet" href="/resources/css/sidebar.css">
- 
+<style>
+.board-writer,.board-title{
+	text-align: center;
+}
+</style>
 <script>
 	$(document).ready(function() {
 		$("#jb-checkboxAll-best").click(function() {
@@ -58,49 +62,43 @@
 		<div class="board-page">
 			<div class="row">
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
-						<ul>	
-							<li class="selected mid"><a href="/board/free"><span>자유게시판</span></a></li>
-							<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-							<li><a href="/news"><span>오늘의 뉴스</span></a></li>
+					<div class="sidebar sticky" id="cssmenu">
+						<ul>
+							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
+							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
+							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li id="claimList"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-10">
-					<div class="free-board">
+						<div class="free-board" >
+
 						<div class="drop-nav">
-							<h1 class="tit-h1 line">자유게시판</h1>
+							<h1 class="tit-h1 line">1:1문의 내역</h1>
 						</div>
+
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">자유게시판 <i class="fas fa-angle-down"></i></h1>
+							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+							  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+							</svg>1:1문의 </h1>
 						</div>
 						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-								<a href="/board/free">자유게시판</a>
-							</h1>
-							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/portfolio">포트폴리오</a>
-							</h1>
-							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/news">오늘의 뉴스</a>
-							</h1>
+							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
+							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/list">1:1문의 내역</a></h1>
+							
 						</div>
 						<div class="board-type">
 							<div class="board-free-nav">
-								<form id="form" class="board-list-top policy-in"
-									action='/board/free'>
-									<p class="pc-only">
-										<input type="radio" class="ordeby" id="orderby1"
-											name="orderby" value="new" <c:if test="${orderby eq 'new'}"> checked="" </c:if> checked="" ><label
-											for="orderby1" class="new-board">최신순</label> <input
-											type="radio" class="ordeby" id="orderby2" name="orderby"
-											value="best" <c:if test="${orderby eq 'best'}"> checked="" </c:if> ><label for="orderby2" class="hot-board">인기순</label>
-									</p>
-								</form>
 
 								<c:if test="${loginUser != null}">
 									<p class="right">
-										<a href="/board/free/write" class="board-write-btn fantasy">글쓰기</a>
+										<a href="/customerClaim/write" class="board-write-btn fantasy">글쓰기</a>
 									</p>
 								</c:if>
 
@@ -112,91 +110,39 @@
 										<col width="8%">
 										<col width="55%">
 										<col width="10%">
-										<col width="6%">
-										<col width="6%">
 										<col width="10%">
 									</colgroup>
 									<thead>
 										<tr>
 											<th class="no" scope="col">N0</th>
 											<th class="title" scope="col">제목</th>
-											<th class="writer" scope="col">작성자</th>
-											<th class="views" scope="col">조회</th>
-											<th class="likes" scope="col">추천</th>
 											<th class="date" scope="col">작성일</th>
+											<th class="" scope="col">처리현황</th>
 										</tr>
 									</thead>
-									<!-- 공지사항 띄우기  -->
 									<tbody>
-										<c:forEach items="${ServiceCenternotice}" var="sc" begin="0" end="1">
+										<c:forEach items="${qnaList}" var="qna">
 												<tr>
-													<td class="board-no" style="color: red;">[공지]</td>
+													<td class="board-no">${qna.qno}</td>
 													<!-- 글번호 -->
-													<c:choose>
-														<c:when test="${sc.commentCount ne 0}">
-															<td class="board-title">
-															<b><a href="/board/free/detail?pno=${sc.pno}">${sc.title}</a></b>
-															<b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${sc.commentCount}</b></td>
-															<!-- 글 제목 -->
-														</c:when>
-														<c:otherwise>
 															<td class="board-title"><a
-																href="/board/free/detail?pno=${sc.pno}">${sc.title}</a></td>
-														</c:otherwise>
-													</c:choose>
+																href="/customerClaim/detail?qno=${qna.qno}">${qna.qtitle}</a></td>
 
-													<td class="board-writer">${sc.nickname}</td>
+													<%-- <td class="board-writer"><a href="/selectUserMoney?nickname=${qna.nickname}">${board.nickname}</a></td> --%>
 													<!-- 글쓴이 -->
-													<td class="board-views"><span>조회 </span>${sc.views}</td>
-													<!-- 조회수 -->
-													<td class="board-likes"><span>추천 </span>${sc.likes}</td>
-													<!-- 추천수 -->
-													<fmt:formatDate value="${sc.bdateTime}" var="time"
+													<fmt:formatDate value="${qna.qdateTime}" var="time"
 														pattern="MM/dd HH:mm" />
 													<td class="board-date">${time}</td>
 													<!-- 날짜 -->
+													<td>${qna.qcheck}</td>
 												</tr>
-										</c:forEach>
-									</tbody> 
-									<!--  -->
-									<tbody>
-										<c:forEach items="${boardList}" var="board">
-											<c:if test="${board.bno eq 1}">
-												<tr>
-													<td class="board-no">${board.pno}</td>
-													<!-- 글번호 -->
-													<c:choose>
-														<c:when test="${board.commentCount ne 0}">
-															<td class="board-title"><a
-																href="/board/free/detail?pno=${board.pno}">${board.title}</a><b
-																class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
-															<!-- 글 제목 -->
-														</c:when>
-														<c:otherwise>
-															<td class="board-title"><a
-																href="/board/free/detail?pno=${board.pno}">${board.title}</a></td>
-														</c:otherwise>
-													</c:choose>
-
-													<td class="board-writer"><a href="/selectUserMoney?nickname=${board.nickname}">${board.nickname}</a></td>
-													<!-- 글쓴이 -->
-													<td class="board-views"><span>조회 </span>${board.views}</td>
-													<!-- 조회수 -->
-													<td class="board-likes"><span>추천 </span>${board.likes}</td>
-													<!-- 추천수 -->
-													<fmt:formatDate value="${board.bdateTime}" var="time"
-														pattern="MM/dd HH:mm" />
-													<td class="board-date">${time}</td>
-													<!-- 날짜 -->
-												</tr>
-											</c:if>
 										</c:forEach>
 									</tbody>
 								</table>
 	
 								<!-- 페이징 -->
 								<div class="paging">
-									<c:if test="${boardPage.total gt 30}">
+									<c:if test="${boardPage.total gt 15}">
 										<div class="paging-body">
 											<nav aria-label="..." class="pagination">
 												<ul class="pagination">
@@ -281,7 +227,7 @@
 
 									<c:if test="${loginUser != null}">
 										<p class="right">
-											<a href="/board/free/write" class="board-write-btn fantasy">글쓰기</a>
+											<a href="/customerClaim/write" class="board-write-btn fantasy">글쓰기</a>
 										</p>
 									</c:if>
 								</div>
@@ -289,7 +235,7 @@
 								<div class="search-area">
 									<div class="search-area-body">
 										<form class="form-inline my-2 my-lg-0 underSearchForm"
-											action="/board/free">
+											action="/customerClaim/List">
 											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 											<select class="dropdown-toggle-board" name="searchStyle">
