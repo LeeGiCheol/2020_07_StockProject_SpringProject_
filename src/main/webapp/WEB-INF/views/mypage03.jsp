@@ -142,13 +142,18 @@ function deleteComment(){
 								value="myComment" <c:if test='${type eq "comment"}'>checked="checked"</c:if>><label for="orderby2" class="hot-board" >작성 댓글 </label>
 						</p>
 					</form>
-		 			 
+		 			 <!-- 
 		 			 <c:if test="${loginUser != null}">
 						<p class="right"><button class="board-write-btn fantasy" type="button" onclick="deleteBoard();">삭제</button></p>
-					 </c:if>	
+					 </c:if>
+					  -->	
 					 		
 			</div>
 			<div class="tab-content" id="pills-tabContentBoard">
+			
+			<!-- 1111 -->
+			<c:choose>
+			<c:when test="!${myBoard.size() > 0}">
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
@@ -168,7 +173,7 @@ function deleteComment(){
 										<label for="eventSeq_all">선택 삭제</label>
 									</p>
 								</th>
-								<th class="no" scope="col">N0</th>
+								<th class="no" scope="col">N0.</th>
 								<th class="title" scope="col">제목</th>
 								<th class="writer" scope="col">작성자</th>
 								<th class="views" scope="col">조회</th>
@@ -343,11 +348,29 @@ function deleteComment(){
 					</form>
 					</div>
 				</div>
+				</c:when>
+				
+				
+				<c:otherwise>
+				<!-- 22222 -->
+					<div class="message-wrap">
+						<div class="message-st-01">
+							<p class="big-text">아직 발생한 알림이 없습니다.</p>
+							<p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p>
+						</div>
+					</div>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		
 			<div class="tab-content" id="pills-tabContentComment">
-					<!-- 전체글 -->
+			
+			
+			<!-- 3333 -->
+				<!-- 전체글 -->
+				<c:choose>
+					<c:when test="${myComment.size() > 0}">
 					<table class="board-free-table">
  							<colgroup>
 								<col width="5%">
@@ -521,12 +544,17 @@ function deleteComment(){
 					</form>
 					</div>
 				</div>
+				</c:when>
+				<c:otherwise>
+				<!-- 4444 -->
 					<div class="message-wrap">
 						<div class="message-st-01">
 							<p class="big-text">아직 발생한 알림이 없습니다.</p>
 							<p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p>
 						</div>
-					</div>				
+					</div>
+				</c:otherwise>
+				</c:choose>				
 			</div>
 		
 		

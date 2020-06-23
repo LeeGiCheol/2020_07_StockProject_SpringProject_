@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,7 +6,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>mainheader</title>
+<title></title>
 </head>
 <body>
 	<div class="header">
@@ -16,26 +15,21 @@
 		<c:choose>
 			<c:when test="${loginUser eq null}">
 				<ul class="nav justify-content-end top-nav">
-					<li class="breadcrumb-item"><a id="top-nav-font"
-						href="/signInPage">로그인</a></li>
-					<li class="breadcrumb-item"><a id="top-nav-font"
-						href="/signUpPage/1">회원가입</a></li>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/signInPage">로그인</a></li>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/signUpPage/1">회원가입</a></li>
 				</ul>
 			</c:when>
 			<c:otherwise>
 				<ul class="nav justify-content-end top-nav">
-					<a href="#"><img class="" cust_id="" id="_myhomeId"
-						src="/resources/img/pi_08.png"></a>
+					<a href="#"><img class="" cust_id="" id="_myhomeId" src="/resources/img/pi_08.png"></a>
 					<dl>
 						<dt>
 							<strong>${loginUser.nickname}</strong>　님
 						</dt>
 					</dl>
-					<li class="breadcrumb-item"><a id="top-nav-font"
-						href="/logOut">로그아웃</a></li>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/logOut">로그아웃</a></li>
 					<li class="breadcrumb-item"><a id="top-nav-font" href="/myPagePwCheck">마이페이지</a></li>
-					<li class="breadcrumb-item"><a id="top-nav-font"
-						href="/myPage04">알림<span id="notice"></span></a></li>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/myPage04">알림<span id="notice"></span></a></li>
 				</ul>
 			</c:otherwise>
 		</c:choose>
