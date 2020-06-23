@@ -19,16 +19,6 @@
 	
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
-<style type="text/css">
-.socialLogin {
-    display: inline-block;
-    font-size: 13px;
-    color: #3e5475;
-    margin-top: 6px;
-    padding-right: 7px;
-    margin-right: 3px;
-}
-</style>
 </head>
 <body>
 	<%@include file="mainheader.jsp"%>
