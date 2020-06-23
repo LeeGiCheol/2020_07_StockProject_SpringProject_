@@ -107,7 +107,7 @@
 				<div class="id-result">
 					<div class="message-st-no"> 
 						<img class="" id="idfail" src="/resources/img/icon.png">
-						<p class="big-text">입력하신 인증번호는 <span class="color-fantasy">일치하지 않습니다</span><br>다시 시도해주세요.</p>
+						<p class="big-text">입력하신 이메일을 <span class="color-fantasy">존재하지 않습니다.</span><br>다시 시도해주세요.</p>
 					</div>
 
 					<div class="social-login">

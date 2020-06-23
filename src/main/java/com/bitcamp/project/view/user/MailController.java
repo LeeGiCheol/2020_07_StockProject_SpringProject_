@@ -1,7 +1,5 @@
 package com.bitcamp.project.view.user;
 
-import java.util.Random;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -9,6 +7,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bitcamp.project.vo.UserVO;
@@ -20,7 +19,7 @@ public class MailController {
     private JavaMailSender mailSender;
     
     @RequestMapping(value="/user/mail")
-    public String sendMail(UserVO vo){
+    public String sendMail(UserVO vo, Model model){
         MimeMessage message = mailSender.createMimeMessage();
         String ran = Integer.toString((int)(Math.random()*9000)+1000);
         EmailNumStr = ran;
@@ -33,7 +32,9 @@ public class MailController {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        
-        return "/forgetpasswordpage-try-success";
+        model.addAttribute("msg", "이메일을 확인중입니다.");
+		model.addAttribute("icon", "success");
+		model.addAttribute("location", "/forgetPasswordTry");
+        return "/msg";
     }
 }
