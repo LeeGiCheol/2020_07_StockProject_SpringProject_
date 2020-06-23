@@ -9,6 +9,9 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script>
 	window.onload  = function() {
+		if(${msg eq 'null'}){
+				window.location.href="${location}";
+		}else{
 			
 		swal({text:'${msg}', icon:'${icon}'}).then(function(){
 			if(${location eq ""}){
@@ -19,6 +22,7 @@
 				window.location.href="${location}";
 			}
 		}); 
+		}
 	}
 </script>
 </head>

@@ -58,7 +58,9 @@ public class SignInController {
             if(bPasswordEncoder.matches(pw, dbPw)) {
                 vo.setPw(dbPw);
                 session.setAttribute("loginUser", vo);
-				mav.setViewName("mainpage");
+                mav.addObject("msg","login");
+                mav.addObject("location","/mainPage");
+				mav.setViewName("msg");
 				
 
 				String saveId = request.getParameter("saveId");
