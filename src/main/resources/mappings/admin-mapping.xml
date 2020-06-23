@@ -29,6 +29,12 @@
         WHERE q.qno = #{qno}
 	</select>
 	
+	<select id="reportList" resultType="report">
+		select *
+		from reportboard
+		order by rdatetime DESC;
+	</select>
+	
 	<select id="qnaList" parameterType="page" resultType="qna">
 		SELECT * 
 		FROM claimQuestion 
