@@ -21,15 +21,22 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 </script>
 </head>
 <body class="member">
+<!-- 마이페이지로 가기위한 페이지 -->
 <%@include file="mainheader.jsp" %>
 		<div class="containerNew"> 
-<!-- 		정보수정 -->
 		<!-- contents -->
 		<div class="contents member" id="contents">
 			<!-- cont-area -->	
 			<div class="cont-area"> 
-				<h1 class="tit-h1 line">내정보 관리</h1>
-
+				<c:if test="${pageCheck eq 01}">
+					<h1 class="tit-h1 line">내정보 관리</h1>
+				</c:if>
+				<c:if test="${pageCheck eq 02}">
+					<h1 class="tit-h1 line">나의 계좌관리</h1>
+				</c:if>
+				<c:if test="${pageCheck eq 03}">
+					<h1 class="tit-h1 line">작성한 글, 댓글</h1>
+				</c:if>
 				<div class="info-modify">
 					<div class="message-st-01">
 						<p class="big-text">
@@ -37,8 +44,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							<span class="color-fantasy">비밀번호를 다시 한번</span> 입력해 <mark>주시기 바랍니다.</mark>
 						</p>
 					</div>
-					<!-- //message-st-01 -->
- 					<form action="/myPagePwCheck" method="post" id="frm" name="frm">
+ 					<form action="/myPagePwCheck${pageCheck}" method="post" id="frm" name="frm">
  						<input name="returnUrl" type="hidden" value="/rpan/member/info/userInfo">
  						<input name="linkUrl" type="hidden" value="">
 						<fieldset>
@@ -47,11 +53,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								<p class="id">
 									<label>아이디</label>
 									<span class="input-style">
-									
-										<!--  해드폰상의 저장기능 적용되지 않게 처리  -->
 										<input type="text" name="temp1" style="width:0px;height:0px;display:none;">
 										<input type="password" name="temp2" style="width:0px;height:0px;display:none;">
-										
 										<input type="text" placeholder="" disabled="" id="custId" name="custId" value="${loginUser.id}"> 
 									</span>
 								</p>
@@ -68,17 +71,11 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						</fieldset> 
 					</form>
 				</div>
-				<!-- //info-modify -->
-		<!-- //cont-area -->
+			<!-- //cont-area -->
 			</div>
 		<!-- //contents -->
 		</div>  
-	
-
-
-
 	</div>
-		
 	<%@include file="mainfooter2.jsp" %>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -96,19 +93,30 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		$("#submit").click(function(){
 			$.ajax({ 
 				type: 'POST', 
-				url: '${pageContext.request.contextPath}/myPagePwCheck',
+				url: '${pageContext.request.contextPath}/myPagePwCheck${pageCheck}',
 				data: {"password" : $('#password').val()}, 
 				success: function(data){ 
-				console.log(data)
 						if(data == 1){
-							swal({text:"마이페이지로 이동합니다.", icon:"success"}).then(function(){
-								location.href = '/myPage01'
-								self.close();
-							});
+							if("${pageCheck}" == 01){
+								swal({text:"내정보 관리로 이동합니다.", icon:"success"}).then(function(){
+									location.href = '/myPage${pageCheck}'
+									self.close();
+								});
+							}else if("${pageCheck}" == 02){
+								swal({text:"나의 계좌정보로 이동합니다.", icon:"success"}).then(function(){
+									location.href = '/myPage${pageCheck}'
+									self.close();
+								});
+							}else{
+								swal({text:"작성한 글, 댓글로 이동합니다.", icon:"success"}).then(function(){
+									location.href = '/myPage${pageCheck}'
+									self.close();
+								});
+							}
 							
 						}else{
 							swal({text:"현재비밀번호가 일치하지않습니다.", icon:"error"}).then(function(){
-								location.href = '/myPagePwCheck'
+								location.href = '/myPagePwCheck${pageCheck}'
 							});
 							$('#nowPassword').empty();
 					 	}

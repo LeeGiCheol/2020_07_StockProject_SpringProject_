@@ -20,5 +20,5 @@ public interface BoardService {
 	public List<BoardVO> boardPrevNext(BoardVO vo);
 	public int reportBoard(BoardVO vo);
 	public List<BoardVO> ServiceCenternotice(BoardVO vo);
-
+	public List totalSearch(String title);
 }

@@ -5,16 +5,29 @@
 
 <mapper namespace="qna">
 
-	<insert id="writeQna">
+	<insert id="writeQuestion">
 		INSERT INTO claimQuestion (id, qtitle, qcontent, qdatetime, qcheck)
 		VALUES(#{id}, #{qtitle}, #{qcontent}, now(), "준비중")
 	</insert>
 	
+	<insert id="writeAnswer">
+		INSERT INTO claimAnswer (qno, atitle, acontent, adatetime)
+		VALUES(#{qno}, #{atitle}, #{acontent}, now())
+	</insert>
+	
+	<update id="answerSuceess">
+		UPDATE claimQuestion
+		SET qcheck=#{qcheck}
+		WHERE qno=#{qno}
+	</update>
+	
 	<select id="countQna" parameterType="qna" resultType="int">
 		SELECT COUNT(*)
-		FROM claimQuestion
-		WHERE qno = #{qno}
-		AND id=#{id}
+		FROM claimQuestion AS q
+		JOIN claimAnswer AS a
+		ON q.qno = a.qno
+		WHERE id = #{id}
+        AND q.qno = #{qno}
 	</select>
 	
 	<select id="qnaList" parameterType="page" resultType="qna">
@@ -49,7 +62,7 @@
 	</select>
 	
 	<select id="qnaDetail" parameterType="qna" resultType="qna">
-		<if test="ano neq 0">
+		<if test="ano eq 1">
 			SELECT q.*, a.* 
 			FROM claimQuestion AS q
 			JOIN claimAnswer AS a
@@ -58,7 +71,7 @@
 	        AND q.qno = #{qno};
 	    </if>
 	    
-	    <if test="ano eq 0">
+	    <if test="ano eq -1">
 	    	SELECT * 
 	    	FROM claimQuestion
 	    	WHERE qno = #{qno};

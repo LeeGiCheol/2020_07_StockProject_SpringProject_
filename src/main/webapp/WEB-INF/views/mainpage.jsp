@@ -360,9 +360,16 @@
 									<li id="_liCyber">포인트 <a href="/myPagePwCheck">${loginUser.point}점</a></li>
 								</ul>
 							</div>
-							<div class="login-after-btn">
-								<a id="leftLogin" href="/myPagePwCheck">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
-							</div>
+							<c:if test="${passwordCheckOk eq 'ok'}">
+								<div class="login-after-btn">
+									<a id="leftLogin" href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								</div>
+							</c:if>
+							<c:if test="${passwordCheckOk ne 'ok'}">
+								<div class="login-after-btn">
+									<a id="leftLogin" href="/myPagePwCheck01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								</div>
+							</c:if>
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -571,6 +578,7 @@
 				datatype : "JSON",
 				success : function(data) {
 				
+					console.log(data)
 					// top 종목(상한가) 5개
 					var topRank = "";
 					var a = 1;
@@ -582,10 +590,10 @@
 							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
 							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
 							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
-								topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-								topRank += 	'<span>'+data.topBefore[i]+'</span></td>'
-								topRank += 	'<td><span class="tah p11 red02">'+'+'+data.topUpDown[i].substring(1)+'</span></td>'
-								topRank += '</tr>'
+							topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+							topRank += 	'<span>'+data.topBefore[i]+'</span></td>'
+							topRank += 	'<td><span class="tah p11 red02">'+data.topUpDown[i].substring(1)+'</span></td>'
+							topRank += '</tr>'
 							a++
 						}
 					}
@@ -615,18 +623,18 @@
 					       
 					     if(data.searchSangHa[i]=="up"){
 					       searchRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-					       searchRank += 	'<span>'+data.topBefore[i]+'</span></td>'
-					       searchRank += 	'<td><span class="tah p11 red02">'+'+'+data.searchUpDown[i].substring(1)+'</span></td>'
+					       searchRank += 	'<span>'+data.searchBefore[i]+'</span></td>'
+					       searchRank += 	'<td><span class="tah p11 red02">'+data.searchUpDown[i].substring(1)+'</span></td>'
 					     }
 					             
 					     else if(data.searchSangHa[i]=="down"){
 					       searchRank +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
-					       searchRank += 	'<span>'+data.topBefore[i]+'</span></td>'
-					       searchRank +=     '<td><span class="tah p11 nv01">'+'-'+data.searchUpDown[i].substring(1)+'</span></td>'
+					       searchRank += 	'<span>'+data.searchBefore[i]+'</span></td>'
+					       searchRank +=     '<td><span class="tah p11 nv01">'+data.searchUpDown[i].substring(1)+'</span></td>'
 					     }
 					     else if(data.searchSangHa[i]=='0'){
 					       searchRank += '<td><span class="tah p11"> 0 </span></td>'
-					       searchRank += 	'<td><span>'+data.topBefore[i]+'</span></td>'
+					       searchRank += 	'<td><span>'+data.searchBefore[i]+'</span></td>'
 					     }
 							searchRank += '</tr>'
 						a++

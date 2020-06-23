@@ -9,7 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>mainheader</title>
 </head>
-
 <body>
 	<div class="header">
 	<div class="top-nav">
@@ -64,10 +63,22 @@
 		<!-- 메인  nav -->
 		<div class="main-nav">
 		<nav
-			class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-			<a href="#" class="navbar-logo"><img class="" id="logo"
-				src="/resources/img/logo.png"></a> <a class="navbar-brand"
-				href="/mainPage">Fantasy Stock</a>
+			class="navbar navbar-expand-lg navbar-light navbar-custom">
+			
+			<!-- 
+			로고들어가는곳 -->
+			
+			
+			<a href="/mainPage" class="navbar-logo">
+			<img class="" id="logo"
+				src="/resources/img/finalogo.png">
+				</a> 
+<!-- 				<a class="navbar-brand" href="/mainPage">Fantasy Stock</a>
+ -->				
+				
+				
+				
+				
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -94,8 +105,8 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="/board/free">자유게시판</a> <a
 								class="dropdown-item" href="/board/portfolio">포트폴리오</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="/news">뉴스</a>
+							
+							<a class="dropdown-item" href="/news">오늘의 뉴스</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link" href="/trade">거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="/customer">고객센터<span

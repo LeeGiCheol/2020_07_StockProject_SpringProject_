@@ -30,88 +30,81 @@ import com.bitcamp.project.vo.UserVO;
 
 @Controller
 public class PortfolioController {
-	
+
 	@Autowired
 	BoardService boardService;
-	
+
 	@Autowired
 	CommentService commentService;
-	
+
 	@Autowired
 	HttpSession session;
-	
+
 	@Autowired
 	HttpServletRequest request;
 	@Autowired
 	HttpServletResponse response;
-	
-	List<String> uploadedFileName =BoardController.uploadedFileName;
-	
-	
-	@GetMapping(value= "/board/portfolio")
+
+	List<String> uploadedFileName = BoardController.uploadedFileName;
+
+	@GetMapping(value = "/board/portfolio")
 	public String portfolioBoard(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
-							@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
-							@ModelAttribute("orderby") String orderby /*new = 최신순 best = 인기순*/ ) {
+			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
+			@ModelAttribute("orderby") String orderby /* new = 최신순 best = 인기순 */ ) {
 		int bno = 2;
-		
-		if(nowPage == null || nowPage.equals("")){
+
+		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
 		}
-		if(searchStyle.equals("")) {
+		if (searchStyle.equals("")) {
 			keyword = "";
 		}
-		if(orderby.equals("")) {
+		if (orderby.equals("")) {
 			orderby = "new";
 		}
-		
-        String FilePath = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/";
-        
-        vo.setThumbnailName(FilePath+vo.getThumbnailName());
-        
-		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword, orderby, bno, 12);
-		model.addAttribute("portfolioList", (List<BoardVO>)boardList.get("portfolioList"));
-		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
+
+		String FilePath = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/";
+
+		vo.setThumbnailName(FilePath + vo.getThumbnailName());
+
+		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
+				orderby, bno, 12);
+		model.addAttribute("portfolioList", (List<BoardVO>) boardList.get("portfolioList"));
+		model.addAttribute("boardPage", (PagingVO) boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("path", FilePath);
-		
+
 		return "portfolio-board";
 	}
-	
-	
-	
-	
+
 	@GetMapping("/board/portfolio/write")
 	public String portfolioWriteForm() {
 		return "portfolio-writeForm";
 	}
-	
-	
+
 	@PostMapping("/board/portfolio/write")
 	public String portfolioWrite(BoardVO vo) {
-		
+
 		List<String> uploadThumbnail = new ArrayList<String>();
-		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-        SimpleDateFormat folderNameFormatter = new SimpleDateFormat("yyyyMMdd");
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		SimpleDateFormat folderNameFormatter = new SimpleDateFormat("yyyyMMdd");
 		vo.setId(loginUser.getId());
 		vo.setBno(2); // 포트폴리오 게시판
-		
+
 		if (vo.getBcontent().contains("<img src=")) {
 
-			String[] img = vo.getBcontent().split("/resources/se2/upload/");
-	
-			for (int i = 0; i < img.length; i++) {
-				if(img[i].indexOf("/Photo") != -1) {
-					int start = img[i].indexOf("/Photo");
-					int end = img[i].indexOf("\" title=\"");
-					img[i] = img[i].substring(start-8, end);
-				}
+			String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+
+			for (int i = 1; i < img.length; i++) {
+
+				int start = img[i].indexOf("/Photo");
+				int end = img[i].indexOf("\" title=\"");
+				img[i] = img[i].substring(start - 8, end);
 			}
-			
-			
-	
+
 			String thumbnail = null;
-			
+
 			try {
 				if(uploadedFileName.size() != 0) {
 					for (int i = 0; i < img.length; i++) {
@@ -161,22 +154,17 @@ public class PortfolioController {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+			// vo에 저장 후 리셋
 		}
-		else {
-			boardService.writeFreeBoard(vo);
+			
+			
+			return "redirect:/board/portfolio";
 
-		}
-		// vo에 저장 후 리셋
-		
-		
-		
-		return "redirect:/board/portfolio";
 	}
-	
-	
+
 	@GetMapping("/board/portfolio/detail")
 	public ModelAndView getView(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage) {
-		if(nowPage == null || nowPage.equals("")){
+		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
 		}
 		ModelAndView mav = new ModelAndView();
@@ -184,18 +172,18 @@ public class PortfolioController {
 		boardService.updateViews(vo);
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		mav.addObject("boardDetail", boardDetail);
-		mav.addObject("commentList", (List<CommentVO>)commentList.get("commentList"));
-		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
-		
-		
+		mav.addObject("commentList", (List<CommentVO>) commentList.get("commentList"));
+		mav.addObject("commentPage", (PagingVO) commentList.get("commentPage"));
+
 		mav.setViewName("portfolio-board-detail");
-		
+
 		return mav;
 	}
-	
+
 	@GetMapping("/board/portfolio/detail/ajax")
-	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
-		if(nowPage == null || nowPage.equals("")){
+	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo,
+			@ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
+		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
 		}
 		vo.setPno(pno);
@@ -207,15 +195,13 @@ public class PortfolioController {
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("boardDetail", boardDetail);
-		map.put("commentList", (List<CommentVO>)commentList.get("commentList"));
-		map.put("commentPage", (PagingVO)commentList.get("commentPage"));
+		map.put("commentList", (List<CommentVO>) commentList.get("commentList"));
+		map.put("commentPage", (PagingVO) commentList.get("commentPage"));
 		map.put("boardPrevNext", boardPrevNext);
-		
+
 		return map;
 	}
 
-
-	
 	@GetMapping("/board/portfolio/update")
 	public String updateBoardView(BoardVO vo, Model model) {
 		BoardVO boardUpdate = boardService.getBoard(vo);
@@ -228,18 +214,13 @@ public class PortfolioController {
 	public String updateBoard(BoardVO vo, Model model) {
 		vo.setBno(2);
 		List<String> uploadThumbnail = new ArrayList<String>();
-		
+
 		FileUpload fileUpload = new FileUpload();
-		if(uploadedFileName.size() != 0){
-			vo = fileUpload.fileUpdate(vo, uploadedFileName, uploadThumbnail, request);
-		}	
-		else {
-			vo = fileUpload.fileUpdate(vo, uploadedFileName, uploadThumbnail, request);
-		}
+		vo = fileUpload.fileUpdate(vo, uploadedFileName, uploadThumbnail, request);
 		boardService.updateBoard(vo);
 		return "redirect:/board/portfolio";
 	}
-	
+
 	@GetMapping("/board/portfolio/delete")
 	public String deleteBoard(BoardVO vo) {
 		BoardVO bVo = boardService.getBoard(vo);
@@ -247,12 +228,10 @@ public class PortfolioController {
 
 		FileUpload fileUpload = new FileUpload();
 		vo = fileUpload.fileDel(bVo, uploadedFileName, uploadThumbnail, request);
-		
+
 		boardService.deleteBoard(vo);
 		return "redirect:/board/portfolio";
-	
+
 	}
 
-	
 }
-
