@@ -583,10 +583,10 @@
 							topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
 							topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
 							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
-								topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-								topRank += 	'<span>'+data.topBefore[i]+'</span></td>'
-								topRank += 	'<td><span class="tah p11 red02">'+data.topUpDown[i].substring(1)+'</span></td>'
-								topRank += '</tr>'
+							topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+							topRank += 	'<span>'+data.topBefore[i]+'</span></td>'
+							topRank += 	'<td><span class="tah p11 red02">'+data.topUpDown[i].substring(1)+'</span></td>'
+							topRank += '</tr>'
 							a++
 						}
 					}
