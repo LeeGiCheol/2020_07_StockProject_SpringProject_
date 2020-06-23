@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,9 @@ public class CommentServiceImpl implements CommentService {
 		PagingVO commentPage = new PagingVO(commentDAO.count(vo), nowPage, 10);
 		commentPage.getUtil().put("pno", vo.getPno());
 		List<CommentVO> commentList = commentDAO.getCommentList(commentPage);
+		for (int i = 0; i < commentList.size(); i++) {
+			commentList.get(i).setCdateTime(new Date(commentList.get(i).getCdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		}
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("commentList", commentList);
 		

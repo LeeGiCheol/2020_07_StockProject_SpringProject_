@@ -876,7 +876,7 @@ function submitReportComt(){
 	        	month = "0" + month
 	        }
 	        day = date.getDate();
-	        hour = date.getHours() + 15;
+	        hour = date.getHours() + 9;
 	        if(hour < 10) {
 	        	hour = "0"+hour;
 	        }
