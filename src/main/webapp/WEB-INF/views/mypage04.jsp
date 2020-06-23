@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -9,110 +10,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마이페이지</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="resources/css/mainheader2.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
 <link href="resources/css/mypage03.css" rel="stylesheet">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body>
 	<%@include file="mainheader.jsp"%>
 	<!-- section start -->
-
-	<!-- <form name="alarmForm">
-			<input type="hidden" name="flag" id="flag" value="">
-
-			<div class="my-list-scrap">
-				<input type="checkbox" class="check_all" id="check-all">
-				<label for="check-all">총 <i>1</i>개
-				</label>
-				<p>
-					<button type="button" class="btn-s adhere del selectAlarmDelete">삭제</button>
-					<button type="button" class="btn-s adhere readAlarmDelete">읽은 알림 삭제</button>
-				</p>
-			</div>
-			<div class="alarm-area">
-				<ul>
-					2017.04.26 추가
-					
-					
-					//2017.04.26 추가
-
-					//2017.04.28 추가
-					읽은 내용 <a> 태그 부모에 class="visited" 삽입 → a 텍스트 색 #888 처리됩니다.
-					
-						
-							
-								<li>
-									<p class="check">
-										<input type="checkbox" id="eventSeq_28900862" class="seq_check" name="eventSeq" value="28900862">
-										<label for="eventSeq_28900862">선택 삭제</label>
-									</p>
-									
-										
-										
-											<p class="img">
-												<span class="pro-badge"> <img class="pax_f2_proimg" cust_id="g_1589453219" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"><i style="display: none;"><img class="current_badge_s" cust_id="g_1589453219" id="current_badge_g_1589453219"></i>
-												</span>
-											</p>
-										
-									
-									<dl>
-										<dt class="" id="visited_28900862">
-											방문여부 : visited
-											<span class="red">[댓글]</span> <strong>
-													
-														<a href="#" onclick="javascript:goView('28900862', 'http://www.paxnet.co.kr/tbbs/view?id=N10841&amp;seq=150357583596792');return false;" title="http://www.paxnet.co.kr/tbbs/view?id=N10841&amp;seq=150357583596792">내가 쓴 글의 댓글이 작성되었습니다.</a>
-													
-													
-												</strong>
-										</dt>
-
-										
-										
-											
-											
-												<dd>
-													<span><a href="#">개미굴리트</a></span> <span>2020.06.18 22:47</span>
-												</dd>
-											
-										
-									</dl>
-								</li>
-							
-						
-						
-					
-				</ul>
-			</div>
-			//board-type
-
-			<div class="mobile-only-check fixed">
-				fixed
-				<span><input type="checkbox" id="check_all_mo" class="check_all"><label for="check_all_mo">전체선택</label></span> <span><button type="button" class="del selectAlarmDelete">삭제</button></span> <span><button type="button" class="cancel">취소</button></span>
-			</div>
-		</form> -->
 	<div class="all-dim"></div>
 	<div class="containerNew">
 		<div class="board-page">
 			<div class="row">
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
+					<c:if test="${passwordCheckOk eq 'ok'}"> <!-- 한번 비밀번호 체크 했으면 -->
 						<ul>
 							<li class="mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
-							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호
-										재설정</span></a></li>
-							<li class="mid"><a href="/myPage02"><span>나의
-										계좌정보</span></a></li>
-							<li class="mid"><a href="/myPage03"><span>작성 글 |
-										댓글</span></a></li>
+								<c:set var="socialId" value="${loginUser.id}"/>
+									<c:choose>
+										<c:when test="${fn:contains(socialId,'_')}">
+											<li class="mid"><a onclick="notLocal();"><span>비밀번호 재설정</span></a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="mid"><a href="mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
+										</c:otherwise>
+									</c:choose>
+							<li class="mid"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
+							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
 							<li class="selected"><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
+					</c:if>
+					<c:if test="${passwordCheckOk ne 'ok'}"> <!-- 비밀번호 체크를 한번도 했으면 -->
+						<ul>
+							<li class="mid"><a href="/myPagePwCheck01"><span>내 정보 관리</span></a></li>
+								<c:set var="socialId" value="${loginUser.id}"/>
+									<c:choose>
+										<c:when test="${fn:contains(socialId,'_')}">
+											<li class="mid"><a onclick="notLocal();"><span>비밀번호 재설정</span></a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="mid"><a href="mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
+										</c:otherwise>
+									</c:choose>
+							<li class="mid"><a href="/myPagePwCheck02"><span>나의 계좌정보</span></a></li>
+							<li class="mid"><a href="/myPagePwCheck03"><span>작성 글 | 댓글</span></a></li>
+							<li class="selected"><a href="/myPage04"><span>알림</span></a></li>
+						</ul>
+					</c:if>
 					</div>
 				</div>
 				<div class="col-md-10">
@@ -208,7 +158,7 @@
 									<p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p>
 								</div>
 							</div>
-
+<script>function notLocal(){swal({text:"접속하신 해당 홈페이지에서 변경가능합니다.", icon:"warning"})}</script>
 <script type="text/javascript">
     $(document)
         .ready(

@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -148,21 +149,33 @@ public class MyPageController {
 		return "mypage02";
 	}
 
-	@GetMapping(value = "/myPagePwCheck")
-	public String myPageCheck(HttpSession session) {
+	@GetMapping(value = {"/myPagePwCheck01", "/myPagePwCheck02", "/myPagePwCheck03"})
+	public String myPageCheck(HttpSession session, HttpServletRequest request) {
 		if (((UserVO) session.getAttribute("loginUser")).getId()
 				.substring(((UserVO) session.getAttribute("loginUser")).getId().length() - 1).equals("_")) {
-			return "redirect:/myPage01";
+			return "redirect:/myPage01"; // 소셜 로그인회원이면(뒷글자가 ' _ '이면)
 		} else {
+			if(request.getServletPath().equals("/myPagePwCheck01")) {
+				session.setAttribute("pageCheck", "01");
+				return "myPageCheckPw"; 
+			}else if(request.getServletPath().equals("/myPagePwCheck02")) {
+				session.setAttribute("pageCheck", "02");
+				return "myPageCheckPw";
+			}else if(request.getServletPath().equals("/myPagePwCheck03")) {
+				session.setAttribute("pageCheck", "03");
+				return "myPageCheckPw";
+			}
 			return "myPageCheckPw";
 		}
 	}
 
 	@ResponseBody
-	@PostMapping(value = "/myPagePwCheck")
+	@PostMapping(value = {"/myPagePwCheck01", "/myPagePwCheck02", "/myPagePwCheck03"})
 	public String myPageCheckPost(@ModelAttribute("password") String password, HttpSession session) {
+		System.out.println( );
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		if (bPasswordEncoder.matches(password, loginUser.getPw())) {
+			session.setAttribute("passwordCheckOk", "ok");
 			return Integer.toString(1);
 		} else {
 			return Integer.toString(0);

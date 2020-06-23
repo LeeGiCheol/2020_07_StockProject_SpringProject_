@@ -360,9 +360,16 @@
 									<li id="_liCyber">포인트 <a href="/myPagePwCheck">${loginUser.point}점</a></li>
 								</ul>
 							</div>
-							<div class="login-after-btn">
-								<a id="leftLogin" href="/myPagePwCheck">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
-							</div>
+							<c:if test="${passwordCheckOk eq 'ok'}">
+								<div class="login-after-btn">
+									<a id="leftLogin" href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								</div>
+							</c:if>
+							<c:if test="${passwordCheckOk ne 'ok'}">
+								<div class="login-after-btn">
+									<a id="leftLogin" href="/myPagePwCheck01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								</div>
+							</c:if>
 						</div>
 					</c:otherwise>
 				</c:choose>

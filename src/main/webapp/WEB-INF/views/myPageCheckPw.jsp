@@ -28,7 +28,15 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		<div class="contents member" id="contents">
 			<!-- cont-area -->	
 			<div class="cont-area"> 
-				<h1 class="tit-h1 line">내정보 관리</h1>
+				<c:if test="${pageCheck eq 01}">
+					<h1 class="tit-h1 line">내정보 관리</h1>
+				</c:if>
+				<c:if test="${pageCheck eq 02}">
+					<h1 class="tit-h1 line">나의 계좌관리</h1>
+				</c:if>
+				<c:if test="${pageCheck eq 03}">
+					<h1 class="tit-h1 line">작성한 글, 댓글</h1>
+				</c:if>
 				<div class="info-modify">
 					<div class="message-st-01">
 						<p class="big-text">
@@ -36,7 +44,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							<span class="color-fantasy">비밀번호를 다시 한번</span> 입력해 <mark>주시기 바랍니다.</mark>
 						</p>
 					</div>
- 					<form action="/myPagePwCheck" method="post" id="frm" name="frm">
+ 					<form action="/myPagePwCheck${pageCheck}" method="post" id="frm" name="frm">
  						<input name="returnUrl" type="hidden" value="/rpan/member/info/userInfo">
  						<input name="linkUrl" type="hidden" value="">
 						<fieldset>
@@ -85,19 +93,30 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		$("#submit").click(function(){
 			$.ajax({ 
 				type: 'POST', 
-				url: '${pageContext.request.contextPath}/myPagePwCheck',
+				url: '${pageContext.request.contextPath}/myPagePwCheck${pageCheck}',
 				data: {"password" : $('#password').val()}, 
 				success: function(data){ 
-				console.log(data)
 						if(data == 1){
-							swal({text:"마이페이지로 이동합니다.", icon:"success"}).then(function(){
-								location.href = '/myPage01'
-								self.close();
-							});
+							if("${pageCheck}" == 01){
+								swal({text:"내정보 관리로 이동합니다.", icon:"success"}).then(function(){
+									location.href = '/myPage${pageCheck}'
+									self.close();
+								});
+							}else if("${pageCheck}" == 02){
+								swal({text:"나의 계좌정보로 이동합니다.", icon:"success"}).then(function(){
+									location.href = '/myPage${pageCheck}'
+									self.close();
+								});
+							}else{
+								swal({text:"작성한 글, 댓글로 이동합니다.", icon:"success"}).then(function(){
+									location.href = '/myPage${pageCheck}'
+									self.close();
+								});
+							}
 							
 						}else{
 							swal({text:"현재비밀번호가 일치하지않습니다.", icon:"error"}).then(function(){
-								location.href = '/myPagePwCheck'
+								location.href = '/myPagePwCheck${pageCheck}'
 							});
 							$('#nowPassword').empty();
 					 	}
