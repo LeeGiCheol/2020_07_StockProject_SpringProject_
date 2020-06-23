@@ -28,7 +28,7 @@ public class KospiKosdaq {
 				String kosdaq = doc.select("#content > div.article > div.section2 > div.section_stock_market > div.section_stock > div.kosdaq_area.group_quot > div.heading_area > a > span").html();
 				if(kosdaq.contains("+") || kosdaq.contains("상승") || kosdaq.contains("상한가")) {
 					kosdaq = "+";
-				}else if(kospi.contains("-") || kospi.contains("하락") || kospi.contains("하한가")) {
+				}else if(kosdaq.contains("-") || kosdaq.contains("하락") || kosdaq.contains("하한가")) {
 					kosdaq = "-";
 				}
 				else
@@ -37,6 +37,7 @@ public class KospiKosdaq {
 
 				inf.setKospi(kospi);
 				inf.setKosdaq(kosdaq);
+				System.out.println("kos "+kosdaq);
 			
 			return inf;
 			
