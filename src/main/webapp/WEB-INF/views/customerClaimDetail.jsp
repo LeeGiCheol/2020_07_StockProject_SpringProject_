@@ -17,16 +17,16 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
-
 <link rel="stylesheet" href="/resources/css/free-board.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/mainfooter2.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
  
 </head>
 <body>
 
 	<%@include file="mainheader.jsp"%>
+	<div class="all-dim"></div>
 	<div class="cont-area">
 	
 		
@@ -190,6 +190,7 @@
 					});
 		</script>
 </body>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

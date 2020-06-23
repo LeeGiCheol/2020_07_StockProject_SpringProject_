@@ -303,8 +303,7 @@ display: none;
 	padding: 0;
 }
 .board-title a{
-	/* max-width: 100%; */
-	width: 400px;
+	max-width: 100%;
 	line-height: 22px;
 }
 .board-views span, .board-likes span {
@@ -345,6 +344,7 @@ display: none;
     font-size: 13px;
     font-weight: normal;
     color: rgba(46,87,255,1);
+    vertical-align: middle;
 }
 .sidebar {
   float: left;

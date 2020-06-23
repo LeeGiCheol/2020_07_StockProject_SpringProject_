@@ -15,11 +15,10 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-
 <link rel="stylesheet" href="/resources/css/free-board.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/mainfooter2.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">	
 <style>
 .board-writer,.board-title{
 	text-align: center;
@@ -62,39 +61,45 @@
 		<div class="board-page">
 			<div class="row">
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
-							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
-							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
-							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li id="claimList"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
-							
+							<li class="mid"><a href="/customer"><span>고객센터</span></a></li>
+							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
+							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li class="selected"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-10">
 						<div class="free-board" >
 
-						<div class="drop-nav">
-							<h1 class="tit-h1 line">1:1문의 내역</h1>
-						</div>
+ 							<div class="drop-nav">
+								<h1 class="tit-h1 line">1:1문의 내역</h1>
+							</div>
+							<div class="m-drop-nav">
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">1:1문의 내역 <i class="fas fa-angle-down"></i></h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+									<a href="/customer">고객센터</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerNotice">공지사항</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerqna">도움말</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/write">1:1문의</a>
+								</h1>														
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/list">1:1문의 내역</a>
+								</h1>
+							</div>
 
-						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-							</svg>1:1문의 </h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/list">1:1문의 내역</a></h1>
-							
-						</div>
 						<div class="board-type">
-							<div class="board-free-nav">
+<%-- 							<div class="board-free-nav">
 
 								<c:if test="${loginUser != null}">
 									<p class="right">
@@ -102,7 +107,7 @@
 									</p>
 								</c:if>
 
-							</div>
+							</div> --%>
 							<div class="tab-content" id="pills-tabContent">
 								<!-- 전체글 -->
 								<table class="board-free-table">
