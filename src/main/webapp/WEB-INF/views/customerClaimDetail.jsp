@@ -133,7 +133,7 @@
 					<a href="/customerClaim/update?qno=${qno}" class="btn-s">수정</a>
 				</c:if>
 				<a href="/customerClaim/delete?qno=${qno}" class="btn-s red">삭제</a>
-				<a href="/qnaAnswer/writer?qno=${qno}" class="btn-s red">답변</a>
+				<a href="/qnaAnswer/write?qno=${qno}" class="btn-s red">답변</a>
 			</span> 
 		</div>
 

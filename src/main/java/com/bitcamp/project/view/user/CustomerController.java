@@ -394,13 +394,13 @@ public class CustomerController {
 	}
 	
 	
-	@GetMapping(value="/qnaAnswer/writer")
+	@GetMapping(value="/qnaAnswer/write")
 	public String qnaAnswerWriteView(QnaVO vo, Model model) {
 		model.addAttribute("qno", vo.getQno());
 		return "qnaAnswerWrite";
 	}
 			
-	@PostMapping(value="/qnaAnswer/writer")
+	@PostMapping(value="/qnaAnswer/write")
 	public String qnaAnswerWrite(QnaVO vo, @ModelAttribute("qno") int qno) {
 		
 		vo.setQno(qno);
