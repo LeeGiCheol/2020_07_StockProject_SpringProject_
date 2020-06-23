@@ -27,9 +27,20 @@ public class QnaServiceImpl implements QnaService {
 	
 	
 	@Override
-	public int writeQna(QnaVO vo) {
-		return qnaDAO.writeQna(vo);
+	public int writeQuestion(QnaVO vo) {
+		return qnaDAO.writeQuestion(vo);
 	}
+	@Override
+	public int writeAnswer(QnaVO vo) {
+		return qnaDAO.writeAnswer(vo);
+	}
+	
+	@Override
+	public int countQna(QnaVO vo) {
+		return qnaDAO.countQna(vo);
+	}
+	
+	
 
 	@Override
 	public Map<String, Object> qnaList(QnaVO vo, int nowPage, int page, String searchStyle, String keyword) {
