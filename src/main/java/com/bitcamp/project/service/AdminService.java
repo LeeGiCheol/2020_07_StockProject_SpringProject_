@@ -1,5 +1,6 @@
 package com.bitcamp.project.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.bitcamp.project.vo.AdminVO;
@@ -13,5 +14,4 @@ public interface AdminService {
 	public AdminVO qnaDetail(AdminVO vo);
 	public int qnaDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
-	public Map<String, Object> reportList(AdminVO vo);
 }
