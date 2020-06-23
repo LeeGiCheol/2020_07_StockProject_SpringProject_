@@ -14,8 +14,8 @@
 			<td>종목명</td>
 		</tr>
 		<c:forEach items="${stock}" var="list">
-			<tr>
-				<td class="first" title="주문번호"><c:out value="${list.stockName}" /></td>
+			<tr onClick="location.href='${pageContext.request.contextPath}/trade?stockName=${list.stockName}'">
+				<td class="first" title="주문번호" ><c:out value="${list.stockName}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -27,7 +27,7 @@
 			<td>제목</td>
 		</tr>
 		<c:forEach items="${free}" var="list">
-			<tr>
+			<tr onClick = "location.href='${pageContext.request.contextPath}/board/free/detail?pno=${list.pno}'">
 				<td class="first" title="주문번호"><c:out value="${list.pno}" /></td>
 				<td title="작성자"><c:out value="${list.nickname}" /></td>
 				<td title="제목"><c:out value="${list.title}" /></td>
@@ -42,7 +42,7 @@
 			<td>제목</td>
 		</tr>
 		<c:forEach items="${port}" var="list">
-			<tr>
+			<tr onClick = "location.href='${pageContext.request.contextPath}/board/free/detail?pno=${list.pno}'">
 				<td class="first" title="주문번호"><c:out value="${list.pno}" /></td>
 				<td title="작성자"><c:out value="${list.nickname}" /></td>
 				<td title="제목"><c:out value="${list.title}" /></td>
