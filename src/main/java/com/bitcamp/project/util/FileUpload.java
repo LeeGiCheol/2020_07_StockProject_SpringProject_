@@ -18,9 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.imgscalr.Scalr;
 
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.QnaVO;
 
 public class FileUpload {
 
+	// 파일 생성
 	public BoardVO file(HttpServletRequest request, HttpServletResponse response) {
 		BoardVO vo = new BoardVO();
 
@@ -83,8 +85,8 @@ public class FileUpload {
 			// img 태그의 title 속성을 원본파일명으로 적용시켜주기 위함
 			sFileInfo += "&sFileName=" + filename;
 			sFileInfo += "&sFileURL=" + "/resources/se2/upload/" + folderNameToday + "/" + realFileNm;
-			System.out.println("sFileInfo " + sFileInfo);
-			System.out.println(folderNameToday);
+//			System.out.println("sFileInfo " + sFileInfo);
+//			System.out.println(folderNameToday);
 			thumbnail(realFileNm, filePath, filename_ext);
 			vo.setThumbnailName(folderNameToday + "/" + realFileNm);
 
@@ -103,18 +105,14 @@ public class FileUpload {
 
 		return vo;
 	}
-	
-	
 
+	// 글 작성 시 썸네일 생성
 	public void thumbnail(String realFileNm, String filePath, String filename_ext) {
 		try {
-			System.out.println("tpath " + filePath);
-			System.out.println("trerere " +realFileNm );
-			System.out.println("tfilename_ext " +filename_ext );
 
 			// 원본 이미지 입니다.
 			BufferedImage srcImg = ImageIO.read(new File(filePath + realFileNm));
-
+//			313.234    219.250
 			// 썸네일 크기 입니다.
 			int dw = 450, dh = 270;
 
@@ -154,74 +152,134 @@ public class FileUpload {
 			File thumbFile = new File(thumbName);
 			ImageIO.write(destImg, filename_ext.toUpperCase(), thumbFile);
 
-//			
-//			
-//			
-//			
-//			// 저장된 원본파일로부터 BufferedImage 객체를 생성합니다. 
-//			BufferedImage srcImg = ImageIO.read(new File(filePath+realFileNm)); 
-//			// 썸네일의 너비와 높이 입니다. 
-//			int dw = 250, dh = 150; 
-//			// 원본 이미지의 너비와 높이 입니다. 
-//			int ow = srcImg.getWidth(); 
-//			int oh = srcImg.getHeight(); 
-//			// 원본 너비를 기준으로 하여 썸네일의 비율로 높이를 계산합니다.
-//			int nw = ow; 
-//			int nh = (ow * dh) / dw; 
-//			// 계산된 높이가 원본보다 높다면 crop이 안되므로 
-//			// 원본 높이를 기준으로 썸네일의 비율로 너비를 계산합니다. 
-//			if(nh > oh) { 
-//				nw = (oh * dw) / dh; 
-//				nh = oh; 
-//			} // 계산된 크기로 원본이미지를 가운데에서 crop 합니다. 
-//			BufferedImage cropImg = Scalr.crop(srcImg, (ow-nw)/2, (oh-nh)/2, nw, nh); 
-//
-//
-//			// crop된 이미지로 썸네일을 생성합니다.
-//			BufferedImage destImg = Scalr.resize(srcImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 250);
-//			// 썸네일을 저장합니다. 이미지 이름 앞에 "THUMB_" 를 붙여 표시했습니다. 
-//			String thumbName = filePath + "THUMB_" + realFileNm; 
-//			File thumbFile = new File(thumbName);
-//			ImageIO.write(destImg, filename_ext.toUpperCase(), thumbFile); 
-//			
-//			
-
-//			
-//			
-//            //썸네일 가로사이즈
-//            int thumbnail_width = 500;
-//            //썸네일 세로사이즈
-//            int thumbnail_height = 500;
-//            
-//            //원본이미지파일의 경로+파일명
-//            File origin_file_name = new File(filePath+realFileNm);
-//            System.out.println("origin_file_name " + origin_file_name);
-//            //생성할 썸네일파일의 경로+썸네일파일명
-//            File thumb_file_name = new File(filePath+File.separator+"thumbnail_"+realFileNm);
-// 
-//            BufferedImage buffer_original_image = ImageIO.read(origin_file_name);
-//            BufferedImage buffer_thumbnail_image = new BufferedImage(thumbnail_width, thumbnail_height, BufferedImage.TYPE_3BYTE_BGR);
-//            Graphics2D graphic = buffer_thumbnail_image.createGraphics();
-//            graphic.drawImage(buffer_original_image, 0, 0, thumbnail_width, thumbnail_height, null);
-//            ImageIO.write(buffer_thumbnail_image, "jpg", thumb_file_name);
-//            System.out.println("썸네일 생성완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 	
+	// 글 수정 시 썸네일 변경 thumbnailUpdate 호출
+	public BoardVO fileUpdate(BoardVO vo, List<String> uploadedFileName, List<String> uploadThumbnail,
+			HttpServletRequest request) {
+		String[] img = vo.getBcontent().split("/resources/se2/upload/");
+
+		for (int i = 0; i < img.length; i++) {
+			if (img[i].indexOf("/Photo") != -1) {
+				int start = img[i].indexOf("/Photo");
+				int end = img[i].indexOf("\" title=\"");
+				img[i] = img[i].substring(start - 8, end);
+			}
+		}
+
+		String thumbnail = null;
+
+		try {
+			if (uploadedFileName.size() != 0) {
+
+				for (int i = 0; i < img.length; i++) {
+					int a = 0;
+					for (int j = 0; j < uploadedFileName.size(); j++) {
+						if (uploadedFileName.get(j).equals(img[i])) {
+							uploadThumbnail.add(uploadedFileName.get(j));
+
+							a++;
+						}
+						// 파일이 존재하지 않을 경우 삭제
+						// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+					}
+				}
+
+				int start = 0;
+				int size = img.length;
+
+				if (size >= 3)
+					start = 2;
+				else
+					start = 1;
+
+				for (int i = start; i < img.length; i++) {
+					String origin = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+							+ img[i];
+					File originDelete = new File(origin);
+					thumbnail = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+							+ img[i].substring(0, 8) + "/THUMB_" + img[i].substring(9);
+					File thumbnailDelete = new File(thumbnail);
+
+					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+					if (originDelete.exists()) {
+						// 파일을 삭제합니다.
+						thumbnailDelete.delete();
+					}
+
+//						}
+				}
+
+				String filename_ext = thumbnail.substring(thumbnail.lastIndexOf(".") + 1);
+				int thumbnailIdx = img[1].indexOf(".");
+				String realThumbnailName = img[1].substring(0, thumbnailIdx);
+				String path = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+						+ img[1].substring(0, 8) + "/";
+
+				thumbnailUpdate(realThumbnailName.substring(9), path, filename_ext);
+
+				vo.setThumbnailName(
+						"/resources/se2/upload/" + img[1].substring(0, 8) + "/THUMB_" + img[1].substring(9));
+
+			} else if (uploadedFileName.size() == 0) {
+				uploadThumbnail.add(img[1]);
+
+				int start = 0;
+				int size = img.length;
+				String thumbRoot[] = new String[size];
+
+				if (size >= 3)
+					start = 2;
+				else
+					start = 1;
+				for (int i = start; i < img.length; i++) {
+					String origin = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+							+ img[i];
+					File originDelete = new File(origin);
+					thumbnail = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+							+ img[i].substring(0, 8) + "/THUMB_" + img[i].substring(9);
+					File thumbnailDelete = new File(thumbnail);
+
+					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+					if (originDelete.exists()) {
+						// 파일을 삭제합니다.
+						thumbnailDelete.delete();
+					}
+
+					// }
+				}
+
+				String filename_ext = thumbnail.substring(thumbnail.lastIndexOf(".") + 1);
+				int thumbnailIdx = uploadThumbnail.get(0).indexOf(".");
+				String realThumbnailName = uploadThumbnail.get(0).substring(0, thumbnailIdx);
+				String path = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+						+ img[1].substring(0, 8) + "/";
+
+				thumbnailUpdate(realThumbnailName.substring(9), path, filename_ext);
+
+				vo.setThumbnailName("/resources/se2/upload/" + uploadThumbnail.get(0).substring(0, 8) + "/THUMB_"
+						+ uploadThumbnail.get(0).substring(9));
+				uploadedFileName.clear();
+			}
+
+		} catch (Exception e) {
+
+			return vo;
+		}
+		return vo;
+
+	}
 	
-	
+
+	// 글 수정해서 썸네일이 바뀔경우 fileUpdate이 호출함
 	public void thumbnailUpdate(String realFileNm, String filePath, String filename_ext) {
 		try {
-			System.out.println("tpath " + filePath);
-			System.out.println("trerere " +realFileNm );
-			System.out.println("tfilename_ext " +filename_ext );
-			System.out.println(filePath + realFileNm);
-			File f = new File(filePath + realFileNm+"."+filename_ext);
+			File f = new File(filePath + realFileNm + "." + filename_ext);
 			// 원본 이미지 입니다.
-			System.out.println(new File(filePath + realFileNm+"."+filename_ext).exists());
 			BufferedImage srcImg = ImageIO.read(f);
 
 			// 썸네일 크기 입니다.
@@ -259,190 +317,77 @@ public class FileUpload {
 			BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
 
 			// 이미지 출력
-			String thumbName = filePath + "THUMB_" + realFileNm+"."+filename_ext;
+			String thumbName = filePath + "THUMB_" + realFileNm + "." + filename_ext;
 			File thumbFile = new File(thumbName);
 			ImageIO.write(destImg, filename_ext.toUpperCase(), thumbFile);
 
-//			
-//			
-//			
-//			
-//			// 저장된 원본파일로부터 BufferedImage 객체를 생성합니다. 
-//			BufferedImage srcImg = ImageIO.read(new File(filePath+realFileNm)); 
-//			// 썸네일의 너비와 높이 입니다. 
-//			int dw = 250, dh = 150; 
-//			// 원본 이미지의 너비와 높이 입니다. 
-//			int ow = srcImg.getWidth(); 
-//			int oh = srcImg.getHeight(); 
-//			// 원본 너비를 기준으로 하여 썸네일의 비율로 높이를 계산합니다.
-//			int nw = ow; 
-//			int nh = (ow * dh) / dw; 
-//			// 계산된 높이가 원본보다 높다면 crop이 안되므로 
-//			// 원본 높이를 기준으로 썸네일의 비율로 너비를 계산합니다. 
-//			if(nh > oh) { 
-//				nw = (oh * dw) / dh; 
-//				nh = oh; 
-//			} // 계산된 크기로 원본이미지를 가운데에서 crop 합니다. 
-//			BufferedImage cropImg = Scalr.crop(srcImg, (ow-nw)/2, (oh-nh)/2, nw, nh); 
-//
-//
-//			// crop된 이미지로 썸네일을 생성합니다.
-//			BufferedImage destImg = Scalr.resize(srcImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 250);
-//			// 썸네일을 저장합니다. 이미지 이름 앞에 "THUMB_" 를 붙여 표시했습니다. 
-//			String thumbName = filePath + "THUMB_" + realFileNm; 
-//			File thumbFile = new File(thumbName);
-//			ImageIO.write(destImg, filename_ext.toUpperCase(), thumbFile); 
-//			
-//			
-
-//			
-//			
-//            //썸네일 가로사이즈
-//            int thumbnail_width = 500;
-//            //썸네일 세로사이즈
-//            int thumbnail_height = 500;
-//            
-//            //원본이미지파일의 경로+파일명
-//            File origin_file_name = new File(filePath+realFileNm);
-//            System.out.println("origin_file_name " + origin_file_name);
-//            //생성할 썸네일파일의 경로+썸네일파일명
-//            File thumb_file_name = new File(filePath+File.separator+"thumbnail_"+realFileNm);
-// 
-//            BufferedImage buffer_original_image = ImageIO.read(origin_file_name);
-//            BufferedImage buffer_thumbnail_image = new BufferedImage(thumbnail_width, thumbnail_height, BufferedImage.TYPE_3BYTE_BGR);
-//            Graphics2D graphic = buffer_thumbnail_image.createGraphics();
-//            graphic.drawImage(buffer_original_image, 0, 0, thumbnail_width, thumbnail_height, null);
-//            ImageIO.write(buffer_thumbnail_image, "jpg", thumb_file_name);
-//            System.out.println("썸네일 생성완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	
-	
 
-	public BoardVO fileUpdate(BoardVO vo, List<String> uploadedFileName, List<String> uploadThumbnail, HttpServletRequest request) {
-		String[] img = vo.getBcontent().split("/resources/se2/upload/");
+	// 포트폴리오 게시판 제외한 게시판에서 파일 업로드 시 자동 생성되는 썸네일 삭제
+	public void thumbnailDel(BoardVO vo, QnaVO qVo, HttpServletRequest request, List<String> uploadedFileName,
+			List<String> uploadThumbnail) {
+		String[] img = null;
+		if (vo != null) {
+			if (vo.getBcontent().contains("<img src=")) {
 
-		for (int i = 0; i < img.length; i++) {
-			if(img[i].indexOf("/Photo") != -1) {
-				int start = img[i].indexOf("/Photo");
-				int end = img[i].indexOf("\" title=\"");
-				img[i] = img[i].substring(start-8, end);
+				img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+
+				for (int i = 1; i < img.length; i++) {
+
+					int start = img[i].indexOf("/Photo");
+					int end = img[i].indexOf("\" title=\"");
+					img[i] = img[i].substring(start - 8, end);
+				}
+
+			}
+		} else {
+			if (qVo.getQcontent().contains("<img src=")) {
+
+				img = qVo.getQcontent().split("<img src=\"/resources/se2/upload/");
+
+				for (int i = 1; i < img.length; i++) {
+
+					int start = img[i].indexOf("/Photo");
+					int end = img[i].indexOf("\" title=\"");
+					img[i] = img[i].substring(start - 8, end);
+				}
+
 			}
 		}
-		
 
 		String thumbnail = null;
-		
-		
+
 		try {
-			if(uploadedFileName.size() != 0) {
-				
-				for (int i = 0; i < img.length; i++) {
-					int a = 0;
-					for (int j = 0; j < uploadedFileName.size(); j++) {
-						if(uploadedFileName.get(j).equals(img[i])) {
-							uploadThumbnail.add(uploadedFileName.get(j));
-
-							a++;
-						}
-					// 파일이 존재하지 않을 경우 삭제
-						// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+			for (int i = 0; i < uploadedFileName.size(); i++) {
+				int a = 0;
+				for (int j = 1; j < img.length; j++) {
+					if (uploadedFileName.get(i).equals(img[j])) {
+						uploadThumbnail.add(uploadedFileName.get(i));
+						a++;
 					}
 				}
-				
-				int start = 0;
-				int size = img.length;
-				
-				if(size >= 3) 
-					start = 2;
-				else
-					start = 1;
-				
-				for (int i = start; i < img.length; i++) {
-					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+img[i];
-					File originDelete = new File(origin);
-					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[i].substring(0,8) + "/THUMB_" + img[i].substring(9);
-					File thumbnailDelete = new File(thumbnail);
-					
-					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-					if(originDelete.exists()) {
-					    // 파일을 삭제합니다.
-						thumbnailDelete.delete();
-					}						
 
-								
-					    
-//					}
+				thumbnail = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+						+ uploadedFileName.get(i).substring(0, 8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
+				File thumbnailDelete = new File(thumbnail);
+				if (thumbnailDelete.exists()) {
+					// 파일을 삭제
+					thumbnailDelete.delete();
 				}
-			
-			String filename_ext = thumbnail.substring(thumbnail.lastIndexOf(".")+1);
-			int thumbnailIdx = img[1].indexOf(".");
-			String realThumbnailName = img[1].substring(0, thumbnailIdx);
-			String path = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[1].substring(0,8)+"/";
-		
-		
-		
-		thumbnailUpdate(realThumbnailName.substring(9),path, filename_ext);
-				
-				
-				vo.setThumbnailName("/resources/se2/upload/"+img[1].substring(0,8) + "/THUMB_" + img[1].substring(9));
-				
 			}
-			else if (uploadedFileName.size() == 0){
-				uploadThumbnail.add(img[1]);
-				
-				int start = 0;
-				int size = img.length;
-				String thumbRoot[] = new String[size];
-				
-				if(size >= 3) 
-					start = 2;
-				else
-					start = 1;
-					for (int i = start; i < img.length; i++) {
-							String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+img[i];
-							File originDelete = new File(origin);
-							thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[i].substring(0,8) + "/THUMB_" + img[i].substring(9);
-							File thumbnailDelete = new File(thumbnail);
-							
-							// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-							if(originDelete.exists()) {
-							    // 파일을 삭제합니다.
-								thumbnailDelete.delete();
-							}						
 
-										
-							    
-	//					}
-					}
-					
-				String filename_ext = thumbnail.substring(thumbnail.lastIndexOf(".")+1);
-				int thumbnailIdx = uploadThumbnail.get(0).indexOf(".");
-				String realThumbnailName = uploadThumbnail.get(0).substring(0, thumbnailIdx);
-				String path = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ img[1].substring(0,8)+"/";
-				
-				
-				
-				thumbnailUpdate(realThumbnailName.substring(9),path, filename_ext);
-				
-				vo.setThumbnailName("/resources/se2/upload/"+uploadThumbnail.get(0).substring(0,8) + "/THUMB_" + uploadThumbnail.get(0).substring(9));
-				uploadedFileName.clear();
-			}
-				
-		}catch(Exception e) {
-			
-	
-			return vo;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return vo;
-		
-		
+
 	}
 
+
+	// 글 삭제 시 해당 게시물 모든 사진 삭제
 	public BoardVO fileDel(BoardVO vo, List<String> uploadedFileName, List<String> uploadThumbnail,
 			HttpServletRequest request) {
 		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");

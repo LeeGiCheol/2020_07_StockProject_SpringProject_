@@ -22,6 +22,7 @@ import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
 import com.bitcamp.project.service.QnaService;
 import com.bitcamp.project.util.FileUpload;
+import com.bitcamp.project.view.board.BoardController;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
@@ -46,7 +47,7 @@ public class CustomerController {
 	@Autowired
 	HttpServletRequest request;
 	
-	static List<String> uploadedFileName = new ArrayList<String>();
+	List<String> uploadedFileName = BoardController.uploadedFileName;
 	
 	@GetMapping(value="/customer")
 	public String customerLanding(Model model, BoardVO vo) {
@@ -268,9 +269,18 @@ public class CustomerController {
 		}else {
 		
 			vo.setId(loginUser.getId());
-			
-			qnaService.writeQna(vo);
-			
+			List<String> uploadThumbnail = new ArrayList<String>();
+
+			FileUpload fu = new FileUpload();
+			try {
+
+				fu.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
+				uploadedFileName.clear();
+				qnaService.writeQna(vo);
+			}
+			catch(Exception e) {
+				qnaService.writeQna(vo);
+			}
 			
 			mav.addObject("msg", "문의가 등록되었습니다");
 			mav.addObject("location", "/customerClaim/list");
@@ -368,7 +378,21 @@ public class CustomerController {
 		}
 		else {
 			vo.setQno(qno);
-			qnaService.qnaUpdate(vo);
+			
+			FileUpload fu = new FileUpload();
+			try {
+				List<String> uploadThumbnail = new ArrayList<String>();
+
+				fu.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
+				uploadedFileName.clear();
+				qnaService.qnaUpdate(vo);
+			}
+			catch(Exception e) {
+				qnaService.qnaUpdate(vo);
+			}
+			
+			
+			
 			
 			return "redirect:/customerClaim/list";
 		}

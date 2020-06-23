@@ -571,6 +571,7 @@
 				datatype : "JSON",
 				success : function(data) {
 				
+					console.log(data)
 					// top 종목(상한가) 5개
 					var topRank = "";
 					var a = 1;
@@ -584,7 +585,7 @@
 							topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
 								topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
 								topRank += 	'<span>'+data.topBefore[i]+'</span></td>'
-								topRank += 	'<td><span class="tah p11 red02">'+'+'+data.topUpDown[i].substring(1)+'</span></td>'
+								topRank += 	'<td><span class="tah p11 red02">'+data.topUpDown[i].substring(1)+'</span></td>'
 								topRank += '</tr>'
 							a++
 						}
@@ -615,18 +616,18 @@
 					       
 					     if(data.searchSangHa[i]=="up"){
 					       searchRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-					       searchRank += 	'<span>'+data.topBefore[i]+'</span></td>'
-					       searchRank += 	'<td><span class="tah p11 red02">'+'+'+data.searchUpDown[i].substring(1)+'</span></td>'
+					       searchRank += 	'<span>'+data.searchBefore[i]+'</span></td>'
+					       searchRank += 	'<td><span class="tah p11 red02">'+data.searchUpDown[i].substring(1)+'</span></td>'
 					     }
 					             
 					     else if(data.searchSangHa[i]=="down"){
 					       searchRank +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
-					       searchRank += 	'<span>'+data.topBefore[i]+'</span></td>'
-					       searchRank +=     '<td><span class="tah p11 nv01">'+'-'+data.searchUpDown[i].substring(1)+'</span></td>'
+					       searchRank += 	'<span>'+data.searchBefore[i]+'</span></td>'
+					       searchRank +=     '<td><span class="tah p11 nv01">'+data.searchUpDown[i].substring(1)+'</span></td>'
 					     }
 					     else if(data.searchSangHa[i]=='0'){
 					       searchRank += '<td><span class="tah p11"> 0 </span></td>'
-					       searchRank += 	'<td><span>'+data.topBefore[i]+'</span></td>'
+					       searchRank += 	'<td><span>'+data.searchBefore[i]+'</span></td>'
 					     }
 							searchRank += '</tr>'
 						a++
