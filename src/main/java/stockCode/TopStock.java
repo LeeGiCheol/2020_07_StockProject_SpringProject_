@@ -68,16 +68,14 @@ public class TopStock {
 			url = "https://finance.naver.com/sise/sise_upper.nhn";
 			doc = null; // Document에는 페이지의 전체 소스가 저장된다
 			doc = Jsoup.connect(url).get();
+			int cnt = 3;
 			for (int i = 0; i < 5; i++) {
-				int cnt = 3;
 				
 				if(idx >= 5)
 					break;
 				
-				if(!(doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(4) > a").text().equals(""))) {
-					cnt = 3;
-				}
-				else {
+				
+				if (doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(4) > a").text().equals("")) {
 					cnt = 4;
 					count++;
 					if(count == 1)
@@ -86,6 +84,8 @@ public class TopStock {
 						break;
 					}
 				}
+				
+			
 					String topNameParse = doc.select("#contentarea > div:nth-child("+cnt+") > table > tbody > tr:nth-child("+(i+3)+") > td:nth-child(4) > a").text();
 					//System.out.println(topNameParse);
 					topName[idx] = topNameParse;
@@ -105,6 +105,9 @@ public class TopStock {
 					idx++;
 //					System.out.println(topNameParse);
 			}
+			
+			
+			
 //			System.out.println(Arrays.toString(topName));
 //			System.out.println(Arrays.toString(topCurrentPrice));
 //			System.out.println(Arrays.toString(topBefore));
@@ -185,7 +188,6 @@ public class TopStock {
 			inf.setSearchBefore(searchBefore);
 			inf.setSearchUpDown(searchUpDown);
 			inf.setSearchSangHa(searchSangHa);
-			
 			return inf;
 			
 		} catch (Exception er) {

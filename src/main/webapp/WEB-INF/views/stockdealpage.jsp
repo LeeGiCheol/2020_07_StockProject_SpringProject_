@@ -847,54 +847,57 @@ tr td button {
 								topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
 								topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
 								topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
-	           					topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-	           					topRank += 	'<span class="tah p11 red02">'+data.topUpDown[i].substring(1)+'</span></td>'
-	           					topRank += '</tr>'
+									topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+									topRank += 	'<span>'+data.topBefore[i]+'</span></td>'
+									topRank += 	'<td><span class="tah p11 red02">'+data.topUpDown[i].substring(1)+'</span></td>'
+									topRank += '</tr>'
 								a++
 							}
 						}
-						
 						$("#topRank").html(topRank);
-
 						
 						
-						// 인기검색종목 5개
+						
+						//인기검색종목 5개
 						var searchRank = "";
 						var a = 1;
 						
-
-					      for(var i=0; i<data.searchName.length; i++){
-					          if(data.searchSangHa[i]=="up"){
-					            searchRank += '<tr class="up">'
-					          }
-					          
-					          else if(data.searchSangHa[i]=="down"){
-					            searchRank += '<tr class="down">'
-					          }
-					          else if(data.searchSangHa[i]=='0'){
-					            searchRank += '<tr class="same">'
-					          }
-					          searchRank += '<th scope="row"><em>'+a+'</em>'
-					          
-					          searchRank += 	'<a href="/trade?stockName='+data.searchName[i]+'">'+data.searchName[i]+'</a></th>'
-					          searchRank += '<td>'+data.searchCurrentPrice[i]+'</td>'
-					            
-					          if(data.searchSangHa[i]=="up"){
-					            searchRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
-					            searchRank += 	'<span class="tah p11 red02">'+data.searchUpDown[i].substring(1)+'</span></td>'
-					          }
-					                  
-					          else if(data.searchSangHa[i]=="down"){
-					            searchRank +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
-					            searchRank +=     '<span class="tah p11 nv01">'+data.searchUpDown[i].substring(1)+'</span></td>'
-					          }
-					          else if(data.searchSangHa[i]=='0'){
-					            searchRank += '<td><span class="tah p11"> 0 </span></td>'
-					          }
-	          					searchRank += '</tr>'
-								a++
+						 for(var i=0; i<data.searchName.length; i++){
+						     if(data.searchSangHa[i]=="up"){
+						       searchRank += '<tr class="up">'
+						     }
+						     
+						     else if(data.searchSangHa[i]=="down"){
+						       searchRank += '<tr class="down">'
+						     }
+						     else if(data.searchSangHa[i]=='0'){
+						       searchRank += '<tr class="same">'
+						     }
+						     searchRank += '<th scope="row"><em>'+a+'</em>'
+						     
+						     searchRank += 	'<a href="/trade?stockName='+data.searchName[i]+'">'+data.searchName[i]+'</a></th>'
+						     searchRank += '<td>'+data.searchCurrentPrice[i]+'</td>'
+						       
+						     if(data.searchSangHa[i]=="up"){
+						       searchRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+						       searchRank += 	'<span>'+data.searchBefore[i]+'</span></td>'
+						       searchRank += 	'<td><span class="tah p11 red02">'+data.searchUpDown[i].substring(1)+'</span></td>'
+						     }
+						             
+						     else if(data.searchSangHa[i]=="down"){
+						       searchRank +=   '<td><em class="bu_p bu_pdn"><span class="blind">하락</span></em>'
+						       searchRank += 	'<span>'+data.searchBefore[i]+'</span></td>'
+						       searchRank +=     '<td><span class="tah p11 nv01">'+data.searchUpDown[i].substring(1)+'</span></td>'
+						     }
+						     else if(data.searchSangHa[i]=='0'){
+						       searchRank += '<td><span class="tah p11"> 0 </span></td>'
+						       searchRank += 	'<td><span>'+data.searchBefore[i]+'</span></td>'
+						     }
+								searchRank += '</tr>'
+							a++
 						}
 						$("#searchRank").html(searchRank);
+						
 						
 
 					//$('#price').text(data.currentPrice);

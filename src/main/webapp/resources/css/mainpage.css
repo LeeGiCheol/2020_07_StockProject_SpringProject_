@@ -880,6 +880,11 @@ font-weight: 600;
     vertical-align: middle;
     
 }
+.bu_pup2 {
+    width: 7px !important;
+    height: 11px !important;
+    background-position: 0 -40px;
+}
 .bu_p {
     display: inline-block !important;
     background: url(https://ssl.pstatic.net/static/nfinance/img/spr_bu.gif) no-repeat;
@@ -891,6 +896,11 @@ font-weight: 600;
     height: 1px;
     margin: -1px;
     overflow: hidden;
+}
+.bu_pdn {
+    width: 7px !important;
+    height: 6px !important;
+    background-position: 0 -80px;
 }
 .tbl_home_left, .tbl_home_right{
 	width: 100%;

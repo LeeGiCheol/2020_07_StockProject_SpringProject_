@@ -25,6 +25,13 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	HttpSession session;
 	
+	
+	
+	@Override
+	public List totalSearch(String title) {
+		return boardDAO.totalSearch(title);
+	}
+
 	@Override
 	public int writeFreeBoard(BoardVO vo) {
 		return boardDAO.writeFreeBoard(vo);

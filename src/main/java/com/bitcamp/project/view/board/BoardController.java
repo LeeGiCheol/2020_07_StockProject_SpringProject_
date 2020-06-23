@@ -45,7 +45,7 @@ public class BoardController {
 	@Autowired
 	HttpServletRequest request;
 
-	static List<String> uploadedFileName = new ArrayList<String>();
+	public static List<String> uploadedFileName = new ArrayList<String>();
 
 	@GetMapping(value = "/board/free")
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
@@ -91,47 +91,22 @@ public class BoardController {
 
 		List<String> uploadThumbnail = new ArrayList<String>();
 
-		if (vo.getBcontent().contains("<img src=")) {
-			String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
-
-			for (int i = 1; i < img.length; i++) {
-
-				int start = img[i].indexOf("/Photo");
-				int end = img[i].indexOf("\" title=\"");
-				img[i] = img[i].substring(start - 8, end);
-			}
-
-			String thumbnail = null;
-
-			try {
-				for (int i = 0; i < uploadedFileName.size(); i++) {
-					int a = 0;
-					for (int j = 1; j < img.length; j++) {
-						if (uploadedFileName.get(i).equals(img[j])) {
-							uploadThumbnail.add(uploadedFileName.get(i));
-							a++;
-						}
-					}
-
-					thumbnail = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
-							+ uploadThumbnail.get(i).substring(0, 8) + "/THUMB_" + uploadThumbnail.get(i).substring(9);
-					File thumbnailDelete = new File(thumbnail);
-					if (thumbnailDelete.exists()) {
-						// 파일을 삭제
-						thumbnailDelete.delete();
-					}
-				}
-
-				uploadedFileName.clear();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			boardService.writeFreeBoard(vo);
-		} else {
+		FileUpload fu = new FileUpload();
+		try {
+			
+			fu.thumbnailDel(vo, null, request, uploadedFileName, uploadThumbnail);
+			uploadedFileName.clear();
 			boardService.writeFreeBoard(vo);
 		}
+		catch(Exception e) {
+			boardService.writeFreeBoard(vo);
+			
+		}
+//			
+//		
+//
+//		} else {
+//		}
 		return "redirect:/board/free";
 	}
 
@@ -205,45 +180,13 @@ public class BoardController {
 
 		List<String> uploadThumbnail = new ArrayList<String>();
 
-		if (vo.getBcontent().contains("<img src=")) {
-
-			String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
-	
-			for (int i = 1; i < img.length; i++) {
-	
-				int start = img[i].indexOf("/Photo");
-				int end = img[i].indexOf("\" title=\"");
-				img[i] = img[i].substring(start - 8, end);
-			}
-	
-			String thumbnail = null;
-	
-			try {
-				for (int i = 0; i < uploadedFileName.size(); i++) {
-					int a = 0;
-					for (int j = 1; j < img.length; j++) {
-						if (uploadedFileName.get(i).equals(img[j])) {
-							uploadThumbnail.add(uploadedFileName.get(i));
-							a++;
-						}
-					}
-	
-					thumbnail = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
-							+ uploadedFileName.get(i).substring(0, 8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
-					File thumbnailDelete = new File(thumbnail);
-					if (thumbnailDelete.exists()) {
-						// 파일을 삭제
-						thumbnailDelete.delete();
-					}
-				}
-	
-				boardService.updateBoard(vo);
-				uploadedFileName.clear();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else {
-			
+		FileUpload fu = new FileUpload();
+		try {
+			fu.thumbnailDel(vo, null, request, uploadedFileName, uploadThumbnail);
+			uploadedFileName.clear();
+			boardService.updateBoard(vo);
+		}
+		catch(Exception e) {
 			boardService.updateBoard(vo);
 		}
 		return "redirect:/board/free";
