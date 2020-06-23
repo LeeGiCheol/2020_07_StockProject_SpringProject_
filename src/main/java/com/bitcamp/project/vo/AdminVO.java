@@ -2,7 +2,7 @@ package com.bitcamp.project.vo;
 
 import java.util.Date;
 
-public class QnaVO {
+public class AdminVO {
 	
 	// Question
 	private int qno;

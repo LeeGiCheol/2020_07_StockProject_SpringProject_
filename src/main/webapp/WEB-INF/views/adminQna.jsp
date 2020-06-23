@@ -123,7 +123,6 @@
                                             <th class="center" style="width: 10%;">종류</th>
                                             <th class="center"style="width: 10%">처리현황</th>
                                             <th style="width: 25%">제목</th>
-                                            <th style="width: 35%">내용</th>
                                             <th class="center" style="width: 10%">아이디</th>
                                             <th class="center" style="width: 10%">일시</th>
                                         </tr>
@@ -136,11 +135,10 @@
 	                                       <tr>
 	                                            <td class="center">종류</td>
 	                                            <td class="center">${qna.qcheck}</td>
-	                                            <td><p class="content">${qna.qtitle}</p></td>
-	                                            <td><p class="content">${qna.qcontent}</p></td>
+	                                            <td><p class="content"><a href="/admin/qna/detail?qno=${qna.qno}">${qna.qtitle}</a></p></td>
 	                                            <td class="center">${qna.id}</td>
                            						<fmt:formatDate value="${qna.qdateTime}" var="time"
-													pattern="MM/dd HH:mm" />
+													pattern="yyyy/MM/dd HH:mm" />
 												<td class="board-date">${time}</td>
 	                                        </tr>
 										</c:forEach>

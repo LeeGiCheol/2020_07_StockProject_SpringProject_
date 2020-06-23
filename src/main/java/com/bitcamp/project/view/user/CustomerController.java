@@ -20,13 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
-import com.bitcamp.project.service.QnaService;
+import com.bitcamp.project.service.AdminService;
 import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.view.board.BoardController;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.QnaVO;
+import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.UserVO;
 
 @Controller
@@ -39,7 +39,7 @@ public class CustomerController {
 	CommentService commentService;
 
 	@Autowired
-	QnaService qnaService;
+	AdminService adminService;
 	
 	@Autowired
 	HttpSession session;
@@ -194,7 +194,7 @@ public class CustomerController {
 		}
 	}
 	@PostMapping(value="/customerClaim/write")
-	public ModelAndView customClaimWrite(QnaVO vo) {
+	public ModelAndView customClaimWrite(AdminVO vo) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		ModelAndView mav = new ModelAndView();
 		
@@ -214,10 +214,10 @@ public class CustomerController {
 
 				file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
 				uploadedFileName.clear();
-				qnaService.writeQuestion(vo);
+				adminService.writeQuestion(vo);
 			}
 			catch(Exception e) {
-				qnaService.writeQuestion(vo);
+				adminService.writeQuestion(vo);
 			}
 			
 			mav.addObject("msg", "문의가 등록되었습니다");
@@ -230,7 +230,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value="/customerClaim/list")
-	public String customerQnaList(QnaVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+	public String customerQnaList(AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
 
 		if (nowPage == null || nowPage.equals("")) {
@@ -251,8 +251,8 @@ public class CustomerController {
 			vo.setId(loginUser.getId());
 			
 			
-			Map<String, Object> qnaList = qnaService.qnaList(vo, Integer.parseInt(nowPage), 15, searchStyle, keyword);	
-			model.addAttribute("qnaList", (List<QnaVO>) qnaList.get("qnaList"));
+			Map<String, Object> qnaList = adminService.qnaList(vo, Integer.parseInt(nowPage), 15, searchStyle, keyword);	
+			model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
 			model.addAttribute("qnaPage", (PagingVO) qnaList.get("qnaPage"));
 			model.addAttribute("searchStyle", searchStyle);
 			model.addAttribute("keyword", keyword);
@@ -264,7 +264,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value="/customerClaim/detail")
-	public String customerClaimDetail(QnaVO vo, Model model, @ModelAttribute("bnowPage") String nowPage) {
+	public String customerClaimDetail(AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage) {
 		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
 		}
@@ -279,14 +279,14 @@ public class CustomerController {
 		
 			vo.setId(loginUser.getId());
 			
-			int check = qnaService.countQna(vo);
+			int check = adminService.qnaCount(vo);
 			if(check == 1) {
 				vo.setAno(1);
 			}
 			else
 				vo.setAno(-1);
 			
-			QnaVO qna = qnaService.qnaDetail(vo);
+			AdminVO qna = adminService.qnaDetail(vo);
 			model.addAttribute("qna", qna);
 			model.addAttribute("qno", vo.getQno());
 			return "customerClaimDetail";
@@ -296,7 +296,7 @@ public class CustomerController {
 	
 	
 	@GetMapping(value="/customerClaim/update")
-	public String customerClaimUpdateView(QnaVO vo, Model model) {
+	public String customerClaimUpdateView(AdminVO vo, Model model) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		if(loginUser == null) {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
@@ -305,7 +305,7 @@ public class CustomerController {
 			return "msg";
 		}
 		else {
-			QnaVO qna = qnaService.qnaDetail(vo);
+			AdminVO qna = adminService.qnaDetail(vo);
 			model.addAttribute("qna", qna);
 			model.addAttribute("qno", qna.getQno());
 			return "customerClaimUpdate";
@@ -313,7 +313,7 @@ public class CustomerController {
 	}
 
 	@PostMapping(value="/customerClaim/update")
-	public String customerClaimUpdate(QnaVO vo, Model model, @ModelAttribute("qno") int qno) {
+	public String customerClaimUpdate(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		if(loginUser == null) {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
@@ -330,10 +330,10 @@ public class CustomerController {
 
 				file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
 				uploadedFileName.clear();
-				qnaService.qnaUpdate(vo);
+				adminService.qnaUpdate(vo);
 			}
 			catch(Exception e) {
-				qnaService.qnaUpdate(vo);
+				adminService.qnaUpdate(vo);
 			}
 			return "redirect:/customerClaim/list";
 		}
@@ -342,7 +342,7 @@ public class CustomerController {
 	
 	
 	@GetMapping(value="/customerClaim/delete")
-	public String customerClaimDelete(QnaVO vo, Model model, @ModelAttribute("qno") int qno) {
+	public String customerClaimDelete(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		if(loginUser == null) {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
@@ -353,17 +353,17 @@ public class CustomerController {
 		else {
 			vo.setId(loginUser.getId());
 			
-			int check = qnaService.countQna(vo);
+			int check = adminService.qnaCount(vo);
 			if(check == 1) {
 				vo.setAno(1);
 			}
 			else {
 				vo.setAno(-1);
 			}
-			QnaVO qna = qnaService.qnaDetail(vo);
+			AdminVO qna = adminService.qnaDetail(vo);
 			
 			
-			int delCheck = qnaService.qnaDelete(qna);
+			int delCheck = adminService.qnaDelete(qna);
 			if(delCheck == 1) {
 				
 				FileUpload file = new FileUpload();
@@ -395,16 +395,16 @@ public class CustomerController {
 	
 	
 	@GetMapping(value="/qnaAnswer/write")
-	public String qnaAnswerWriteView(QnaVO vo, Model model) {
+	public String qnaAnswerWriteView(AdminVO vo, Model model) {
 		model.addAttribute("qno", vo.getQno());
 		return "qnaAnswerWrite";
 	}
 			
 	@PostMapping(value="/qnaAnswer/write")
-	public String qnaAnswerWrite(QnaVO vo, @ModelAttribute("qno") int qno) {
+	public String qnaAnswerWrite(AdminVO vo, @ModelAttribute("qno") int qno) {
 		
 		vo.setQno(qno);
-		qnaService.writeAnswer(vo);
+		adminService.writeAnswer(vo);
 		
 		
 		return "customerClaimList";

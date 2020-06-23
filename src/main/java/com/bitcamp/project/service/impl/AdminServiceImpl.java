@@ -1,6 +1,5 @@
 package com.bitcamp.project.service.impl;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,56 +9,60 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bitcamp.project.dao.QnaDAO;
-import com.bitcamp.project.service.QnaService;
-import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.dao.AdminDAO;
+import com.bitcamp.project.service.AdminService;
+import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.QnaVO;
 import com.bitcamp.project.vo.UserVO;
 
 @Service
-public class QnaServiceImpl implements QnaService {
+public class AdminServiceImpl implements AdminService {
 
 	@Autowired
-	QnaDAO qnaDAO;
+	AdminDAO adminDAO;
 	@Autowired
 	HttpSession session;
 	
 	
 	@Override
-	public int writeQuestion(QnaVO vo) {
-		return qnaDAO.writeQuestion(vo);
+	public int writeQuestion(AdminVO vo) {
+		return adminDAO.writeQuestion(vo);
 	}
 	@Override
-	public int writeAnswer(QnaVO vo) {
-		return qnaDAO.writeAnswer(vo);
+	public int writeAnswer(AdminVO vo) {
+		return adminDAO.writeAnswer(vo);
 	}
 	
 	@Override
-	public int countQna(QnaVO vo) {
-		return qnaDAO.countQna(vo);
+	public int qnaCount(AdminVO vo) {
+		return adminDAO.qnaCount(vo);
 	}
 	
 	
 
 	@Override
-	public Map<String, Object> qnaList(QnaVO vo, int nowPage, int page, String searchStyle, String keyword) {
+	public Map<String, Object> qnaList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword) {
 		
-		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		vo.setId(loginUser.getId());
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		
+		
 //		boardPage.getUtil().put("",vo.get)
 //		boardPage.setId(vo.getId());
 		Map<String, Object> postMap = new HashMap<String, Object>();
 	
 		
 		
-		PagingVO qnaPage = new PagingVO(qnaDAO.countQna(vo), nowPage, page);
+		PagingVO qnaPage = new PagingVO(adminDAO.qnaCount(vo), nowPage, page);
 		
 		qnaPage.getUtil().put("searchStyle", searchStyle);
 		qnaPage.getUtil().put("keyword", keyword);
 		qnaPage.getUtil().put("id", vo.getId());
+		
+		if(loginUser.getPoint() < 0) {
+			qnaPage.getUtil().put("point", loginUser.getPoint());
+		}
 			
-			List<QnaVO> qnaList = qnaDAO.qnaList(qnaPage);
+			List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
 System.out.println("@@@@@ "+qnaList);
 //			for (int i = 0; i < qnaList.size(); i++) {
 //				qnaList.get(i).setBdateTime(new Date(qnaList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
@@ -70,17 +73,17 @@ System.out.println("@@@@@ "+qnaList);
 	}
 
 	
-	public QnaVO qnaDetail(QnaVO vo) {
-		return qnaDAO.qnaDetail(vo);
+	public AdminVO qnaDetail(AdminVO vo) {
+		return adminDAO.qnaDetail(vo);
 	}
 	
-	public int qnaDelete(QnaVO vo) {
-		return qnaDAO.qnaDelete(vo);
+	public int qnaDelete(AdminVO vo) {
+		return adminDAO.qnaDelete(vo);
 	}
 
 	@Override
-	public int qnaUpdate(QnaVO vo) {
-		return qnaDAO.qnaUpdate(vo);
+	public int qnaUpdate(AdminVO vo) {
+		return adminDAO.qnaUpdate(vo);
 	}
 
 	

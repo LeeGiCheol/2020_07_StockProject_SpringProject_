@@ -301,7 +301,7 @@
 						</div>
 					</c:when>
 
-					<c:otherwise>
+					<c:when test="${loginUser.point >= 0}">
 						<div class="login-box">
 							<div class="div-login-box-after" style class="login-out">
 								<p class="proimg_div-after">
@@ -338,6 +338,32 @@
 									<a id="leftLogin" href="/myPagePwCheck01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
 								</div>
 						</div>
+					</c:when>
+					
+					<c:otherwise>
+						<div class="login-box">
+							<div class="div-login-box-after" style class="login-out">
+								<p class="proimg_div-after">
+									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
+										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+										class="current_badge_s"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+								</p>
+								<dl>
+									<dt>
+										<strong>관리자</strong>　님
+										<button type="button" class="logout"
+											onclick="location.href='/logOut';">로그아웃</button>
+									</dt>
+									<dd>
+									</dd>
+								</dl>
+							</div>
+								<div class="login-after-btn">
+									<a id="leftLogin" href="/admin/main">관리자페이지</a>
+								</div>
+						</div>
+					
 					</c:otherwise>
 				</c:choose>
 					<script type="text/javascript">

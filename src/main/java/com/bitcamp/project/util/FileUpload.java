@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.imgscalr.Scalr;
 
 import com.bitcamp.project.vo.BoardVO;
-import com.bitcamp.project.vo.QnaVO;
+import com.bitcamp.project.vo.AdminVO;
 
 public class FileUpload {
 
@@ -328,7 +328,7 @@ public class FileUpload {
 	}
 
 	// 포트폴리오 게시판 제외한 게시판에서 파일 업로드 시 자동 생성되는 썸네일 삭제
-	public void thumbnailDel(BoardVO vo, QnaVO qVo, HttpServletRequest request, List<String> uploadedFileName,
+	public void thumbnailDel(BoardVO vo, AdminVO qVo, HttpServletRequest request, List<String> uploadedFileName,
 			List<String> uploadThumbnail) {
 		String[] img = null;
 		if (vo != null) {
