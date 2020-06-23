@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,8 +86,15 @@ $(document).ready(function(){
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li class="mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<c:set var="socialId" value="${loginUser.id}"/>
+									<c:choose>
+										<c:when test="${fn:contains(socialId,'_')}">
+										</c:when>
+										<c:otherwise>
 							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
-							<li class="selected mid"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
+										</c:otherwise>
+									</c:choose>
+							<li class="selected mid"><a href="/myPage02"><span>계좌정보</span></a></li>
 							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
 							<li><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
@@ -96,7 +104,7 @@ $(document).ready(function(){
 
 					<div class="newsboard-area">
 						<div class="drop-nav">
-							<h1 class="tit-h1 line">나의 계좌정보</h1>
+							<h1 class="tit-h1 line">계좌정보</h1>
 						</div>
 						<div class="m-drop-nav">
 							<h1 class="m-drop-tit-title line" style="cursor: pointer;">나의 계좌정보 ▼</h1>
@@ -109,7 +117,7 @@ $(document).ready(function(){
 								<a href="/board/free">비밀번호 재설정</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">나의 계좌정보</a>
+								<a href="/board/free">계좌정보</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/board/free">작성 글 | 댓글</a>

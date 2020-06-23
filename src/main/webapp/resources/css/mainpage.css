@@ -264,7 +264,14 @@ width: 48%;
     float: left;
     margin-right: 15px;
 }
-
+.socialLogin {
+    display: inline-block;
+    font-size: 13px;
+    color: #3e5475;
+    margin-top: 6px;
+    padding-right: 7px;
+    margin-right: 3px;
+}
 .dot-list02 li {
     background: url(/rpan/common/images/bul_dot2.png?update=20180329) no-repeat left 8px;
     padding-left: 6px;

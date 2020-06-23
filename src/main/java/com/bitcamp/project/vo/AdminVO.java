@@ -2,14 +2,18 @@ package com.bitcamp.project.vo;
 
 import java.util.Date;
 
-public class QnaVO {
+public class AdminVO {
+	
+	// Question
 	private int qno;
 	private String id;
 	private String qtitle;
 	private String qcontent;
 	private Date qdateTime;
 	private String qcheck;
+	private String qtype;
 	
+	// Answer
 	private int ano;
 	private String atitle;
 	private String acontent;
@@ -74,13 +78,22 @@ public class QnaVO {
 	public void setAdateTime(Date adateTime) {
 		this.adateTime = adateTime;
 	}
+	public String getQtype() {
+		return qtype;
+	}
+	public void setQtype(String qtype) {
+		this.qtype = qtype;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "QnaVO [qno=" + qno + ", id=" + id + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qdateTime="
-				+ qdateTime + ", qcheck=" + qcheck + ", ano=" + ano + ", atitle=" + atitle + ", acontent=" + acontent
-				+ ", adateTime=" + adateTime + "]";
+				+ qdateTime + ", qcheck=" + qcheck + ", qtype=" + qtype + ", ano=" + ano + ", atitle=" + atitle
+				+ ", acontent=" + acontent + ", adateTime=" + adateTime + "]";
 	}
-	
+
 	
 	
 	

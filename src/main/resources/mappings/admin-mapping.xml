@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="qna">
+<mapper namespace="admin">
 
 	<insert id="writeQuestion">
 		INSERT INTO claimQuestion (id, qtitle, qcontent, qdatetime, qcheck)
@@ -21,19 +21,29 @@
 		WHERE qno=#{qno}
 	</update>
 	
-	<select id="countQna" parameterType="qna" resultType="int">
+	<select id="qnaCount" parameterType="admin" resultType="int">
 		SELECT COUNT(*)
 		FROM claimQuestion AS q
 		JOIN claimAnswer AS a
 		ON q.qno = a.qno
-		WHERE id = #{id}
-        AND q.qno = #{qno}
+        WHERE q.qno = #{qno}
 	</select>
 	
-	<select id="qnaList" parameterType="page" resultType="qna">
+	<select id="reportList" resultType="report">
+		select *
+		from reportboard
+		order by rdatetime DESC;
+	</select>
+	
+	<select id="qnaList" parameterType="page" resultType="admin">
 		SELECT * 
 		FROM claimQuestion 
-		WHERE id=#{util.id}
+		WHERE 1=1
+	
+		<if test="util.point &gt; 0">
+			AND id=#{util.id}
+		</if>
+		
 		<choose>
 			<!-- 제목검색 -->
 			<when test='util.searchStyle.equals("search_title")'>
@@ -61,14 +71,13 @@
 		
 	</select>
 	
-	<select id="qnaDetail" parameterType="qna" resultType="qna">
+	<select id="qnaDetail" parameterType="admin" resultType="admin">
 		<if test="ano eq 1">
 			SELECT q.*, a.* 
 			FROM claimQuestion AS q
 			JOIN claimAnswer AS a
 			ON q.qno = a.qno
-			WHERE id = #{id}
-	        AND q.qno = #{qno};
+	        WHERE q.qno = #{qno};
 	    </if>
 	    
 	    <if test="ano eq -1">
