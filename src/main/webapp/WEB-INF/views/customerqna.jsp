@@ -224,7 +224,26 @@
 											</div>
 										</div>
 									</div>
+									
+									<div class="card">
+										<div class="card-header" id="headingOne-2">
+											<h2 class="mb-0">
+												<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+													data-target="#collapseOne-2" aria-expanded="false" aria-controls="collapseOne-2">
+													[회원탈퇴]회원탈퇴를 하고싶습니다.
+												</button>
+											</h2>
+										</div>
 
+										<div id="collapseOne-2" class="collapse" aria-labelledby="headingOne-2"
+											data-parent="#accordionExample">
+											<div class="card-body">
+												<div class="qAnswer">
+													<p>대충 회원탈퇴 어디서 한다는 소개</p>
+												</div>
+											</div>
+										</div>
+									</div>
 
 
 								</div>
@@ -254,7 +273,7 @@
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p>내가 받을 수 있는 알림은 아래 사항과 같습니다.
+													<p>[알림]내가 받을 수 있는 알림은 아래 사항과 같습니다.
 - 내가 작성한 글에 대한 댓글알림
 - 내가 작성한 방명록글에 대한 댓글알림
 - 내가 작성한 글이 인기글로 선정되었을 시 알림
@@ -315,7 +334,7 @@
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
 													data-target="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
-													[관심종목]관심종목 등록은 어떻게 하나요?
+													[거래]관심종목 등록은 어떻게 하나요?
 												</button>
 											</h2>
 										</div>
@@ -332,6 +351,47 @@
 									</div>
 									<!-- 반복끝 -->
 
+									<div class="card">
+										<div class="card-header" id="headingthree-1">
+											<h2 class="mb-0">
+												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+													data-target="#collapsethree-1" aria-expanded="false" aria-controls="collapsethree-1">
+													[거래]거래는 어떻게 하나요?
+												</button>
+											</h2>
+										</div>
+
+										<div id="collapsethree-1" class="collapse" aria-labelledby="headingthree-1"
+											data-parent="#accordionExample">
+											<div class="card-body">
+												<div class="qAnswer">
+													<p> 거래는 <a href="#"><span>거래 페이지</span>에서 원하는 종목을 검색 후 하실 수 있습니다.
+													오른쪽에서 원하는 가격을 누르고 수량 입력 후 매수, 매도를 하실 수 있습니다.</a></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="card">
+										<div class="card-header" id="headingthree-2">
+											<h2 class="mb-0">
+												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+													data-target="#collapsethree-2" aria-expanded="false" aria-controls="collapsethree-2">
+													[거래]미체결 거래 정정은 어떻게 하나요?
+												</button>
+											</h2>
+										</div>
+
+										<div id="collapsethree-2" class="collapse" aria-labelledby="headingthree-2"
+											data-parent="#accordionExample">
+											<div class="card-body">
+												<div class="qAnswer">
+													<p> 정정은 <a href="#"><span>거래 페이지</span>의 하단에서 정정탭을 선택하시면 할 수 있습니다.
+													미체결 버튼을 누르시고 나오는 거래번호를 입력수 원하는 가격 수량을 누르면 정정가능합니다.</a></p>
+												</div>
+											</div>
+										</div>
+									</div>
 
 
 								</div>

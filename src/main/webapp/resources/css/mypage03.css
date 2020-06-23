@@ -42,7 +42,9 @@ a, a:link, a:visited, a:active, a:hover {
 p {
     line-height: 160%;
 }
-
+body {
+    background: #eff3f6 !important;
+}
 .table td, .table th {
     padding: 6px;
 }
@@ -75,6 +77,7 @@ position: relative;
     background: #fff;
     position: relative;
     border: 1px solid #dddddd;
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 }
 .last{
 	border-bottom: 1px solid #eaeaea;
@@ -374,173 +377,25 @@ display: none;
 .sidebar a:hover {
   color: #212529;
 } */
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-#cssmenu ul {
-  position: relative;
-  z-index: 597;
-  float: left;
-}
-#cssmenu ul li {
-  float: left;
-  min-height: 1px;
-  line-height: 1em;
-  vertical-align: middle;
-}
-#cssmenu ul li.hover,
-#cssmenu ul li:hover {
-  position: relative;
-  z-index: 599;
-  cursor: default;
-}
-#cssmenu ul ul {
-  margin-top: 1px;
-  visibility: hidden;
-  position: absolute;
-  top: 1px;
-  left: 99%;
-  z-index: 598;
-  width: 100%;
-}
-#cssmenu ul ul li {
-  float: none;
-}
-#cssmenu ul ul ul {
-  top: 1px;
-  left: 99%;
-}
-#cssmenu ul li:hover > ul {
-  visibility: visible;
-}
-#cssmenu ul li {
-  float: none;
-}
-#cssmenu ul ul li {
-  font-weight: normal;
-}
-/* Custom CSS Styles */
-#cssmenu {
-  font-size: 18px;
-  width: 200px;
-  background: white;
-  /* border: 1px solid #848889; */
-  border-bottom: 1px solid #d7d8da;
-  border-top: 1px solid #d7d8da;
-  border-right: 1px solid #d7d8da;
-}
-#cssmenu ul a,
-#cssmenu ul a:link,
-#cssmenu ul a:visited {
-	display: block;
-    color: #848889;
-    text-decoration: none;
-    font-weight: 300;
-    font-size: 16px;
-}
-#cssmenu > ul {
-  float: none;
-}
-#cssmenu ul {
-  background: #fff;
-}
-#cssmenu > ul > li {
-  border-left: 3px solid #d7d8da;
-}
-#cssmenu > ul > li > a {
-padding: 25px 10px;
-}
-#cssmenu > ul > li:hover {
-  border-left: 3px solid #000000;
-}
-#cssmenu ul li:hover > a {
-  color: #000000;
-  font-weight: 600;
-}
-#cssmenu > ul > li:hover {
-  background: #f6f6f6;
-}
-/* Sub Menu */
-#cssmenu ul ul a:link,
-#cssmenu ul ul a:visited {
-  font-weight: 400;
-  font-size: 14px;
-}
-#cssmenu ul ul {
-  width: 180px;
-  background: none;
-  border-left: 20px solid transparent;
-}
-#cssmenu ul ul a {
-  padding: 8px 0;
-  border-bottom: 1px solid #eeeeee;
-}
-#cssmenu ul ul li {
-  padding: 0 20px;
-  background: #fff;
-}
-#cssmenu ul ul li:last-child {
-  border-bottom: 3px solid #d7d8da;
-  padding-bottom: 10px;
-}
-#cssmenu ul ul li:first-child {
-  padding-top: 10px;
-}
-#cssmenu ul ul li:last-child > a {
-  border-bottom: none;
-}
-#cssmenu ul ul li:first-child:after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  left: -20px;
-  top: 13px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid #fff;
-  border-bottom: 10px solid transparent;
-  border-top: 10px solid transparent;
-}
-.all-dim {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    background: #eff3f6;
-    text-indent: -9999px;
-}
-#cssmenu > ul > .mid {
-	border-bottom: 1px solid #d7d8da;
-	border-top: 1px solid #d7d8da;
-}
 
 /* start 마이페이지 3 */
 p.check {
     vertical-align: middle;
     text-align: center;
 }
-input[type="checkbox"]:not(old){
+/* input[type="checkbox"]:not(old){
     opacity: 0;
     outline: 0;
     margin-left: 0;
     position: absolute;
     z-index: -1;
-}
+} */
 p.check label {
     width: 0;
     text-indent: -9999em;
+    display: none;
 }
-input[type="checkbox"]:not(old) + label {
+/* input[type="checkbox"]:not(old) + label {
     display: inline-block;
     height: 18px;
     line-height: 18px;
@@ -561,7 +416,7 @@ input[type="checkbox"]:not(old) + label {
     background-repeat: no-repeat;
     background-size: 14px 14px;
     cursor: pointer;
-}
+} */
 input[type="checkbox"]:not(old):checked + label {
     min-width: 18px;
     background-image: url(/resources/img/bg_check_on_m.png);
@@ -589,18 +444,18 @@ span, em, mark, strong, b, label {
 .alarm-area {
     border-top: #444 1px solid;
 }
-input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
+/* input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
     opacity: 0;
     outline: 0;
     margin-left: 0;
     position: absolute;
     z-index: -1;
-}
+} */
 input[type="checkbox"]:not(old):checked + label {
     min-width: 18px;
     background-image: url(/resources/img/bg_check_on_m.png);
 }
-input[type="checkbox"]:not(old) + label {
+/* input[type="checkbox"]:not(old) + label {
     display: inline-block;
     height: 18px;
     line-height: 18px;
@@ -610,7 +465,7 @@ input[type="checkbox"]:not(old) + label {
     background-repeat: no-repeat;
     background-size: 14px 14px;
     cursor: pointer;
-}
+} */
 .my-list-scrap label i {
     color: #ff545b;
 }
@@ -805,8 +660,9 @@ input[type="checkbox"]:not(old) + label {
 /* 라디오버튼 추가 css */
 .board-list-top p.pc-only input[type="radio"]:not(old) + label {
     line-height: 18px;
+    margin-left: 18px;
 }
-input[type="radio"]:not(old):checked + label {
+/* input[type="radio"]:not(old):checked + label {
     background-image: url(/resources/img/bg_radio_on.png);
 }
 input[type="radio"]:not(old) + label {
@@ -819,8 +675,108 @@ input[type="radio"]:not(old) + label {
     background-size: 13px 13px;
     cursor: pointer;
     line-height: 18px;
+} */
+
+
+
+.ordeby{
+	top: 7px;
+    position: absolute;
 }
+
 .board-list-top label {
     font-size: 13px;
     margin-right: 10px;
+}
+
+
+.color-fantasy {
+	color: rgba(46,87,255,1) !important;
+}
+.fantasy {
+    background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
+    color: #fff !important;
+}
+
+.message-wrap {
+    position: relative;
+    height: 550px;
+    display: table;
+    width: 100%;
+}
+.message-wrap [class*="message-st"] {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+}
+[class*="message-st"] {
+    max-width: 460px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 150%;
+}
+[class*="message-st"] .big-text {
+    position: relative;
+    font-size: 20px;
+    line-height: 150%;
+    padding-top: 100px;
+}
+.big-text {
+    font-size: 16px;
+    line-height: 170%;
+    color: #222;
+}
+[class*="message-st"] .big-text + p {
+    margin-top: 4px;
+}
+[class*="message-st"] .bt-area-02 {
+    padding-left: 0;
+    padding-right: 0;
+}
+[class*="message-st"] .bt-area {
+    padding-top: 23px;
+}
+.bt-area {
+    overflow: hidden;
+    padding: 20px 0 40px;
+}
+[class*="message-st"] .bt-area a {
+    margin: 5px 0 0 0;
+}
+[class*="btn-m"] {
+    padding: /*10px 14px*/7px 14px;
+    min-width: 70px;
+    font-size: 14px;
+}
+[class*="btn-"] {
+    position: relative;
+    background: #fff;
+    border: 1px solid #444;
+    line-height: 100%;
+    display: inline-block;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+[class*="message-st"] .big-text:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background: url(/resources/img/icon_message.png) no-repeat 0 0;
+}
+@media only screen and (max-width: 979px){
+[class*="message-st"] .big-text {
+    font-size: 16px;
+}
+.bt-area {
+    clear: both;
+    overflow: hidden;
+    padding: 0 15px 40px;
+}
 }
