@@ -14,6 +14,16 @@
 .bi-chevron-down{
 	margin: 0 15px;
 }
+.community>div {
+	box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+}
+.sectionBox2>a{
+	box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+}
+.col-md-10, .col-md-2 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
 @media only screen and (max-width: 979px) {
 	.m-menu{
 	    padding-top: 20px;
@@ -126,7 +136,6 @@ a:hover {
     display: none;
 }
 .m-drop-down{
-padding-bottom: 5px;
     background: #f3f4f575;
 }
 .m-drop-tit-body:hover > a {
@@ -147,167 +156,6 @@ padding-bottom: 5px;
  
 }
 
-
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-#cssmenu ul {
-  position: relative;
-  z-index: 597;
-  float: left;
-}
-
-#cssmenu ul li {
-  float: left;
-  min-height: 1px;
-  line-height: 1em;
-  vertical-align: middle;
-}
-
-#cssmenu ul li.hover,
-#cssmenu ul li:hover {
-  position: relative;
-  z-index: 599;
-  cursor: default;
-}
-
-#cssmenu ul ul {
-  margin-top: 1px;
-  visibility: hidden;
-  position: absolute;
-  top: 1px;
-  left: 99%;
-  z-index: 598;
-  width: 100%;
-}
-
-#cssmenu ul ul li {
-  float: none;
-}
-
-#cssmenu ul ul ul {
-  top: 1px;
-  left: 99%;
-}
-
-#cssmenu ul li:hover>ul {
-  visibility: visible;
-}
-
-#cssmenu ul li {
-  float: none;
-  padding-left: 10px;
-}
-
-#cssmenu ul ul li {
-  font-weight: normal;
-}
-
-/* Custom CSS Styles */
-#cssmenu {
-    font-size: 18px;
-    width: 200px;
-    background: white;
-    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);border: 1px solid #dddddd;
-}
-
-#cssmenu ul a,
-#cssmenu ul a:link,
-#cssmenu ul a:visited {
-  display: block;
-  color: #848889;
-  text-decoration: none;
-  font-weight: 300;
-  font-size: 16px;
-}
-
-#cssmenu>ul {
-  float: none;
-}
-
-#cssmenu ul {
-  background: #fff;
-}
-
-#cssmenu>ul>li {
-  border-left: 4px solid #d7d8da;
-  border-bottom: 1px solid #d7d8da ;
-}
-
-#cssmenu>ul>li>a {
-  padding: 25px 10px;
-}
-
-
-#cssmenu>ul>li:hover {
-  border-left: 4px solid #1e78ff;
-
-}
-
-#cssmenu ul li:hover>a {
-  color: #000000;
-  font-weight: 600;
-}
-
-#cssmenu>ul>li:hover {
-  background: #f6f6f6;
-}
-
-/* Sub Menu */
-#cssmenu ul ul a:link,
-#cssmenu ul ul a:visited {
-  font-weight: 400;
-  font-size: 14px;
-}
-
-#cssmenu ul ul {
-  width: 180px;
-  background: none;
-  border-left: 20px solid transparent;
-}
-
-#cssmenu ul ul a {
-  padding: 8px 0;
-}
-
-#cssmenu ul ul li {
-  padding: 0 20px;
-  background: #fff;
-}
-
-#cssmenu ul ul li:last-child {
-  border-bottom: 3px solid #d7d8da;
-  padding-bottom: 10px;
-}
-
-#cssmenu ul ul li:first-child {
-  padding-top: 10px;
-}
-
-#cssmenu ul ul li:last-child>a {
-  border-bottom: none;
-}
-
-#cssmenu ul ul li:first-child:after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  left: -20px;
-  top: 13px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid #fff;
-  border-bottom: 10px solid transparent;
-  border-top: 10px solid transparent;
-}
 
 .btn-link,
 .btn-link:link,
@@ -446,11 +294,11 @@ display: inline-block;
   display: inline-block;
 }
 
-.moreBttn,
-.moreBttn:link,
-.moreBttn:visited {
-  padding: 10px 20px;    margin: 0 5px;    border-radius: 2px;
-
+.moreBttn, .moreBttn:link, .moreBttn:visited {
+	padding: 6px 10px;
+	margin-top: 4px;
+/* 	margin: 0 5px;
+	border-radius: 2px; */
 }
 
 .norm {
@@ -486,27 +334,39 @@ display: inline-block;
 .sectionWrapper {
   padding: 8px 12px 15px 12px;
 }
-.cBox2 {
-width: 49%;
+.cBox1 {
+	width: 49.5%;
     display: inline-block;
     text-align: center;
     padding: 25px 20px;
     background: white;
-    border-top: 5px solid #eff3f6;
-}
+    float: left;
 
+}
+.cBox2 {
+width: 49.5%;
+    display: inline-block;
+    text-align: center;
+    padding: 25px 20px;
+    background: white;
+    float: right;
+
+}
+.cBox1:hover {
+  background-color: #1e78ff;
+  color: white;
+}
 .cBox2:hover {
   background-color: #1e78ff;
   color: white;
 }
 
-.cBox2 svg {
+.cBox1 svg {
   font-size: 4.5em;
 }
 
-#cBoxa2 {
-  margin-right: 16px;
-
+.cBox2 svg {
+  font-size: 4.5em;
 }
 
 #cBoxb2 {}

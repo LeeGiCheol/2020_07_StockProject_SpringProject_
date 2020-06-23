@@ -16,423 +16,10 @@
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-	<link rel="stylesheet" href="/resources/css/mainheader2.css">
-	<link rel="stylesheet" href="/resources/css/customers.css">
-
-<style type="text/css">
-#sideTitle {
-     border-left: 4px solid #d7d8da !important; 
-    color: #848889 !important;
-    font-weight: 300 !important;
-    background: white !important;
-}
-#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
-	    color: #848889!important;
-  font-weight: 300 !important;
- 
-}
-#noticeTitle{
-border-left: 4px solid #1e78ff !important;
-    color: black !important;
-    font-weight: 600 !important;
-    background: #f6f6f6 !important;
-}
-#noticeTitle a, #noticeTitle a:visited, #noticeTitle a:link{
-	    color: black!important;
-  font-weight: 600 !important;
- 
-}
-td, th {
-    word-break: break-all;
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-legend, caption {
-    font-size: 0;
-    overflow: hidden;
-    text-indent: -9999999px;
-    height: 0;
-    width: 0;
-    line-height: 0;
-}
-.pop-layer {
-    display: table;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    right: 0;
-    width: 100%;
-    background-color: rgba(0,0,0, 0.3);
-    z-index: 999;
-    table-layout: fixed;
-}
-.pop-layer .pop-inner {
-    display: table-cell;
-    vertical-align: middle;
-}
-.pop-layer .popup-wrap {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    width: 624px;
-    padding-bottom: 35px;
-    margin-left: -312px;
-    box-shadow: 1px 2px 3px 2px rgba(0,0,0,0.1);
-}
-.popup-wrap {
-    position: relative;
-    width: 100%;
-    background: #fff;
-}
-.pop-layer .popup-wrap:after {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 36px;
-    background-size: 60px 18px;
-}
-.popup-wrap .pop-tit {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 2;
-    height: 50px;
-    line-height: 50px;
-    background: #ff545c url(/resources/img/bg_pop.png) no-repeat 0 0;
-    background-size: 122px 50px;
-    text-indent: 10px;
-}
-.popup-wrap .pop-tit span {
-    font-size: 16px;
-    color: #fff;
-}
-.pop-layer .popup-wrap .pop-cont {
-    padding: 70px 20px 20px 20px;
-}
-.pop-clean {
-    padding-bottom: 5px;
-}
-.pop-clean table {
-    border-top: #444 1px solid;
-    width: 100%;
-    margin-bottom: 20px;
-}
-.pop-clean table th {
-    background-color: #f9f9f9;
-    padding: 10px 15px;
-    text-align: left;
-    border-bottom: #eaeaea 1px solid;
-    vertical-align: middle;
-    font-weight: bold;
-}
-.pop-clean table td {
-    padding: 10px;
-    border-bottom: #eaeaea 1px solid;
-}
-.tit-h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-.pop-clean .notify {
-    margin-bottom: 20px;
-}
-.select-style {
-    position: relative;
-}
-.pop-clean .notify .select-style .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 240px;
-}
-.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 220px;
-    min-width: 80px;
-}
-.bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"] {
-    float: none;
-    display: inline-block;
-    margin-left: 0;
-}
-[class*="select-style"] .btn-group {
-    border: #ccc 1px solid;
-}
-.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
-    color: #888;
-}
-.btn-group > .btn:first-child {
-    margin-left: 0;
-}
-[class*="select-style"] button.btn {
-    color: #888;
-    display: inline-block;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    min-width: 60px;
-    height: 26px;
-    box-sizing: border-box;
-    background: #fff;
-    border-radius: 0;
-    padding-left: 10px;
-}
-.bootstrap-select > .dropdown-toggle {
-    width: 100%;
-    padding-right: 25px;
-    z-index: 1;
-}
-.btn-group > .btn, .btn-group-vertical > .btn {
-    position: relative;
-    float: left;
-}
-.bootstrap-select.btn-group .dropdown-toggle .filter-option {
-    display: inline-block;
-    overflow: hidden;
-    width: 100%;
-    text-align: left;
-}
-.pull-left {
-    float: left !important;
-}
-.bootstrap-select.btn-group .dropdown-toggle .caret {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    margin-top: -2px;
-    vertical-align: middle;
-}
-.bootstrap-select.btn-group .dropdown-menu {
-    min-width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-radius: 0;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
-.bootstrap-select.btn-group .dropdown-menu.inner {
-    position: static;
-    float: none;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    border-radius: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    max-height: 300px;
-    overflow-y: scroll;
-}
-.bootstrap-select.btn-group .dropdown-menu {
-    min-width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.open > .dropdown-menu {
-    display: block;
-}
-.bootstrap-select.btn-group .dropdown-menu li {
-    position: relative;
-}
-.bootstrap-select.btn-group .dropdown-menu li a {
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.dropdown-menu > li > a {
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: normal;
-    line-height: 1.42857143;
-    color: #333;
-    white-space: nowrap;
-}
-.bootstrap-select.btn-group .dropdown-menu li a span.text {
-    display: inline-block;
-}
-.bootstrap-select.btn-group .dropdown-menu li a span.check-mark {
-    display: none;
-}
-.glyphicon {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-.bootstrap-select > select {
-    position: absolute !important;
-    bottom: 0;
-    left: 50%;
-    display: block !important;
-    width: 0.5px !important;
-    height: 100% !important;
-    padding: 0 !important;
-    opacity: 0 !important;
-    border: none;
-}
-select {
-    min-width: 60px;
-    height: 28px;
-    border: 1px solid #ccc;
-    vertical-align: middle;
-    box-sizing: border-box;
-    background: #fff;
-    border-radius: 0;
-}
-.pop-clean .notify textarea {
-    display: block;
-    margin-top: 5px;
-    border: #ccc 1px solid;
-}
-textarea {
-    padding: 1%;
-    width: 100%;
-    border: 1px solid #ccc;
-    color: #4d4d4d;
-    resize: none;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0;
-}
-.pop-clean .pop-clean-info {
-    background-color: #f9f9f9;
-    color: #888;
-    padding: 20px;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-.pop-clean .pop-clean-info dt {
-    font-size: 13px;
-    font-weight: bold;
-    height: 20px;
-    line-height: 20px;
-    background: url(/resources/img/btn_etc.png) no-repeat 0 -75px;
-    background-size: 20px 95px;
-    padding-left: 24px;
-    margin-bottom: 10px;
-}
-.pop-clean .pop-clean-info dd {
-    font-size: 13px;
-    line-height: 1.4;
-}
-.pop-clean .pop-clean-call {
-    font-size: 13px;
-    color: #888;
-    background-size: 2px 2px;
-    padding-left: 12px;
-}
-.pop-clean .pop-clean-call a {
-    position: relative;
-    display: inline-block;
-    padding-right: 18px;
-    color: #af814d;
-    font-size: 13px;
-}
-.pop-layer .popup-wrap .pop-btn {
-    position: relative;
-    padding: 20px 0 0;
-}
-.pop-layer .popup-wrap .pop-btn .btn-m {
-    height: /*35px*/30px;
-    padding: 7px 14px;
-}
-.popup-wrap .cla-close {
-    display: block;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 50px;
-    width: 50px;
-    z-index: 3;
-    background: url(/resources/img/btn_etc.png) no-repeat 50% 15px;
-    text-indent: -999px;
-    background-size: 20px 95px;
-}
-.popup-wrap .pop-btn {
-    text-align: center;
-    padding: 20px 20px 40px;
-}
-
-.board-view-cont p img{
-max-width: 100%;
-}
-
-.free-board2 {
-    padding:20px 30px 0 30px;
-    margin-bottom: /*70px*/40px;
-    background: #fff;
-    position: relative;
-    border: 1px solid #dddddd;
-}
-@media only screen and (max-width: 979px){
-.free-board {
-    border: none;
-    min-height: auto;
-    margin: 0;
-    padding: 20px 0 120px !important;
-    max-width: none !important;
-    width: 100% !important;
-        background:white;overflow-x: hidden;
-        
-    
-}
-
-.comment-cont .cmt-list {
-
-    padding-left: 20px;
-}
-}
-
-</style>
+<link rel="stylesheet" href="/resources/css/mainfooter2.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/customers.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">	
 </head>
 <body>
 <div class="wrap">
@@ -444,47 +31,42 @@ max-width: 100%;
 				<div class="col-md-2">
 				
 				
-					<div class="sidebar sticky" id="cssmenu">
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
-							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
-							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
-							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customerClaimWrite"><span>1:1문의</span></a></li>
-							<li id="claimList"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li class="mid"><a href="/customer"><span>고객센터</span></a></li>
+							<li class="selected mid"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
+							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
 						</ul>
 					</div>
-					
-					
-					
 				</div>
 	  <div class="col-md-10">
-	 
-	  
-
-		
-
 		<div class="free-board "role="main">
-		
-								<div class="drop-nav">
-							<h1 class="tit-h1 line">공지사항</h1>
-						</div>
 
-						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-</svg>공지사항 </h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/list">1:1문의 내역</a></h1>
-							
-						</div>
-		
-		
-		
+ 							<div class="drop-nav">
+								<h1 class="tit-h1 line">공지사항</h1>
+							</div>
+							<div class="m-drop-nav">
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">공지사항 <i class="fas fa-angle-down"></i></h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+									<a href="/customer">고객센터</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerNotice">공지사항</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerqna">도움말</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/write">1:1문의</a>
+								</h1>														
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/list">1:1문의 내역</a>
+								</h1>
+							</div>			
 		
 		<div class="board-detail">
 			<div id="boardList"></div>
@@ -552,64 +134,6 @@ max-width: 100%;
 				return 4;
 			}
 		}
-		  $( document ).ready(function() {
-					/* 여기부분 잘 안되는데 뭔지 모르겠음
-					setTimeout(function() {
-						var w = $(".image").children().width();
-						var h = $(".image").children().height();
-						
-						if(w > 1024){
-							var ri = 1024/w;
-							w = w * ri;
-							h = h * ri;
-						}
-						var a_h = $(".article").children().height();
-						var a_w = $(".article").children().width();
-						
-						console.log(w+" / "+h+" && "+ a_w+" / "+ a_h);
-						$(".image").children().width(w);
-						 $(".image").children().height(h);
-						
-					}, 50);
-					*/
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  console.log( "document ready!" );
-
-			  var $sticky = $('.sticky');
-			  var $stickyrStopper = $('.footer_info');
-			  if (!!$sticky.offset()) { // make sure ".sticky" element exists
-
-			    var generalSidebarHeight = $sticky.innerHeight();
-			    var stickyTop = $sticky.offset().top;
-			    var stickOffset = 0;
-			    var stickyStopperPosition = $stickyrStopper.offset().top;
-			    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-			    var diff = stopPoint + stickOffset;
-
-			    $(window).scroll(function(){ // scroll event
-			      var windowTop = $(window).scrollTop(); // returns number
-
-			      if (stopPoint < windowTop) {
-			          $sticky.css({ position: 'relative', top: diff });
-			      } else if (stickyTop < windowTop+stickOffset) {
-			          $sticky.css({ position: 'fixed', top: stickOffset });
-			      } else {
-			          $sticky.css({position: 'relative', top: 'initial'});
-			      }
-			    });
-
-			  }
-		  });
-			  $(".m-drop-nav").click(function(){
-				    $(".m-drop-down").slideToggle("slow");
-				  });
 		</script>
 		<div class="support-button">
 

@@ -14,10 +14,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
-<style>
-.gray{width: 172px; height:44px;}
-#buttonSet{text-align: center; margin-top: 30px;}
-</style>
 <script>
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
 </script>
@@ -58,7 +54,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 									<td><span class="input-style-case02">
 										<input type="password" id="passwordAgain" name="passwordAgain" class="pw" 
 											   placeholder="새로운 비밀번호를 한 번 더 입력해주세요." 
-											   onKeyPress="return spaceCheck(event)"style="margin-bottom: 13px;" maxlength="13"></span>
+											   onKeyPress="return spaceCheck(event)"maxlength="13"></span>
 										<div style="text-align: center;">
 											<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
 											<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
@@ -68,9 +64,9 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</tr>
 							</tbody>
 						</table>
-						<div id="buttonSet">
-						<button id="submit" type="button" class="btn-t gray" onclick="passwordCheck()">비밀번호 저장</button>
-						<button id="button" type="button" class="btn-t gray" onclick="location.href='/myPage01'">취소</button>
+						<div class="bt-area">  
+							<button id="submit" type="button" class="btn-b fantasy" onclick="passwordCheck()">비밀번호 저장</button>
+							<button id="button" type="button" class="btn-b" onclick="location.href='/myPage01'">취소</button>
 						</div>
 					</form>
 				</div>

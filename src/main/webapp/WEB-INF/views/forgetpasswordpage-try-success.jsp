@@ -41,13 +41,15 @@ function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:
 										</p>
 										<ul class="form-list">
 											<li class="input-type">
+											<span class="input-style"> 
 											<input type="text"	placeholder="${findUser.id}" id="id" name="id" readonly>
-											<button type="button" class="btn-t fantasy" onclick="msg()">인증번호전송</button></li>
+											<button type="button" class="delete" onclick="location.href='/forgetPassword'">삭제</button></span>
+											<button type="button" class="btn-t gray" onclick="msg()">인증번호전송</button></li>
 													
 											<li class="input-type" id="_liCert2"> 
 											<input type="password" placeholder="인증번호를 입력해주세요." id="email_answer" 
 											name="email_answer" onKeyPress="return numkeyCheck(event)">
-											<button type="submit" class="btn-t fantasy">인증번호입력</button></li>
+											<button type="submit" class="btn-t gray">인증번호입력</button></li>
 													 
 										</ul>
 									</div>

@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <style>
-.fantasy{width: 100%; height:50px; margin-top: 20px;}
 </style>
 </head>
 <body class="member">
@@ -66,7 +65,11 @@
 								</tr>
 							</tbody>
 						</table>
-						<button id="submit" type="submit" id="show-answer" class="btn-t fantasy">비밀번호 저장</button>
+						<div class="bt-area">  
+		
+							<button type="submit" class="btn-b fantasy" id="show-answer" onclick="formSubmit();">확인</button>
+						</div>						
+						<!-- <button id="submit" type="submit" id="show-answer" class="btn-t fantasy">비밀번호 저장</button> -->
 					</form>
 				</div>
 				</div>

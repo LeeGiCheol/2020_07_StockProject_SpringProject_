@@ -45,14 +45,15 @@ function msg(){swal({text:"이미 인증번호를 전송하였습니다.", icon:
                               </p>
                               <ul class="form-list">
                                  <li class="input-type"><strong class="tit"></strong> <span class="input-style"> 
-                                 <input type="text" placeholder="${findUser.tel}" readonly></span> 
-                                 <button type="button" class="btn-t fantasy" onclick="msg()">인증번호전송</button></li>
+                                 <input type="text" placeholder="${findUser.tel}" readonly>
+                                 <button type="button" class="delete" onclick="location.href='/forgetId'">삭제</button></span> 
+                                 <button type="button" class="btn-t gray" onclick="msg()">인증번호전송</button></li>
                                  
                                  <li class="input-type"><strong class="tit"></strong><span class="input-style">
                                  <input type="password" placeholder="인증번호를 입력해주세요." id="answer" name="answer" maxlength="30" onKeyPress="return numkeyCheck(event)">
-                                 </span><button type="submit" class="btn-t fantasy" onclick="javascript: form.action='/forgetIdTry';">인증번호입력</button></li>
+                                 </span><button type="submit" class="btn-t gray" onclick="javascript: form.action='/forgetIdTry';">인증번호입력</button></li>
                                  <li class="input-type"><strong class="tit"></strong><span class="input-style">
-                                 </span><button style="padding-bottom: 20px;" type="button" class="btn-t fantasy" onclick="location.href='/forgetId'">번호다시입력</button></li>
+                                 </span><!-- <button style="padding-bottom: 20px;" type="button" class="btn-t gray" onclick="location.href='/forgetId'">번호다시입력</button> --></li>
                               </ul>
                            </div>
                         </div>

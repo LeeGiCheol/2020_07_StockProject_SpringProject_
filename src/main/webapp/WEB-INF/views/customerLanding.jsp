@@ -13,23 +13,16 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 	<link rel="stylesheet" href="/resources/css/mainpage.css">
-		<link rel="stylesheet" href="/resources/css/mainheader2.css">
+	<link rel="stylesheet" href="/resources/css/mainheader2.css">
 	
 	<link rel="stylesheet" href="/resources/css/mainfooter3.css">
 	<link rel="stylesheet" href="/resources/css/customers.css">
-
+	<link rel="stylesheet" href="/resources/css/sidebar.css">
+	
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<style type="text/css">
-
-	</style>
+	
 </head>
-<style>
-.list-group,#accordionExample{
-border-top: 1px solid #1e78ff !important;
-border-radius: .25rem;
-}
-</style>
 <body>
 	<%@include file="mainheader.jsp" %>
 
@@ -41,59 +34,21 @@ border-radius: .25rem;
 
 		<div class="row">
 			<div class="col-md-2">
-
-
-				<div class="sidebar sticky" id="cssmenu">
+				<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
-							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
-							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
-							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li id="claimTitle"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li class="selected mid"><a href="/customer"><span>고객센터</span></a></li>
+							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
+							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
 						</ul>
 				</div>
-
-
-
 			</div>
-
-
-
-
-
-
-
-
-
-
-
 			<div class="col-md-10">
-             <div class="m-menu">
-						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-</svg>고객센터 </h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/list">1:1문의 내역</a></h1>
-							
-						</div>
-</div>
 				<div class="community" role="main">
 
-
-
-
-
-
-
-
 					<!-- 검색 -->
-					<div id="searchArea" class="sectionBox">
+<!-- 					<div id="searchArea" class="sectionBox">
 						<div class="phe_main_search">
 							<fieldset>
 								<strong class="tit">궁금하신 사항을 검색해주세요.</strong>
@@ -108,14 +63,39 @@ border-radius: .25rem;
 								</div>
 							</fieldset>
 						</div>
-					</div>
-
+					</div> -->
+					
+					<div class="m-menu">
+<!-- 							<div class="drop-nav">
+								<h1 class="tit-h1 line">고객센터</h1>
+							</div> -->
+							<div class="m-drop-nav">
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">고객센터 <i class="fas fa-angle-down"></i></h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+									<a href="/customer">고객센터</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerNotice">공지사항</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerqna">도움말</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/write">1:1문의</a>
+								</h1>														
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/list">1:1문의 내역</a>
+								</h1>
+							</div>						
+					</div>					
 					<!-- 공지사항 -->
 					<div id="noticeArea" class="sectionBox">
 						<div class="sectionWrapper">
 							<dl>
 								<h2 class="main-tit">공지사항</h2>
-								<a class="moreBttn right blue" href="/customerNotice">더보기</a>
+								<a class="moreBttn right blue" href="/customerNotice" style="cursor: pointer;">더보기</a>
 								<dd>
 
 								
@@ -283,7 +263,7 @@ border-radius: .25rem;
 
 
 
-					<a href="/customerqna" id="cBoxa2" class="cBox2">
+					<a href="/customerqna" id="cBoxa2" class="cBox1">
 						<p class="cBoxTitle2">도움말</p>
 						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
@@ -329,48 +309,53 @@ border-radius: .25rem;
 	</div>
 
 	<%@include file="mainfooter2.jsp" %>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			console.log("document ready!");
+		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
-			var $sticky = $('.sticky');
-			var $stickyrStopper = $('.footer_info');
-			if (!!$sticky.offset()) { // make sure ".sticky" element exists
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
-				var generalSidebarHeight = $sticky.innerHeight();
-				var stickyTop = $sticky.offset().top;
-				var stickOffset = 0;
-				var stickyStopperPosition = $stickyrStopper.offset().top;
-				var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-				var diff = stopPoint + stickOffset;
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
 
-				$(window).scroll(function () { // scroll event
-					var windowTop = $(window).scrollTop(); // returns number
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
 
-					if (stopPoint < windowTop) {
-						$sticky.css({
-							position: 'relative',
-							top: diff
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
+
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
 						});
-					} else if (stickyTop < windowTop + stickOffset) {
-						$sticky.css({
-							position: 'fixed',
-							top: stickOffset
-						});
-					} else {
-						$sticky.css({
-							position: 'relative',
-							top: 'initial'
-						});
-					}
-				});
-
-			}
-			$(".m-drop-nav").click(function () {
-				$(".m-drop-down").slideToggle("slow");
-			});
-		});
-	</script>
+					});
+		</script>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
