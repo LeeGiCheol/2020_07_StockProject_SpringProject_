@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -99,8 +100,15 @@ function deleteComment(){
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li class="mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<c:set var="socialId" value="${loginUser.id}"/>
+									<c:choose>
+										<c:when test="${fn:contains(socialId,'_')}">
+										</c:when>
+										<c:otherwise>
 							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
-							<li class="mid"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
+										</c:otherwise>
+									</c:choose>
+							<li class="mid"><a href="/myPage02"><span>계좌정보</span></a></li>
 							<li class="selected mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
 							<li><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
@@ -122,7 +130,7 @@ function deleteComment(){
 								<a href="/myPage03">비밀번호 재설정</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/myPage03">나의 계좌정보</a>
+								<a href="/myPage03">계좌정보</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/myPage03">작성 글 | 댓글</a>

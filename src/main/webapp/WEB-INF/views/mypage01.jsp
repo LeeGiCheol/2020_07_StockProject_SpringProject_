@@ -35,7 +35,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 							<c:set var="socialId" value="${loginUser.id}"/>
 									<c:choose>
 										<c:when test="${fn:contains(socialId,'_')}">
-							<li class="mid"><a onclick="notLocal();"><span>비밀번호 재설정</span></a></li>
 										</c:when>
 										<c:otherwise>
 							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
