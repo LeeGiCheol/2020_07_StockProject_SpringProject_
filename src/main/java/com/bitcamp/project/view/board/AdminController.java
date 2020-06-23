@@ -108,8 +108,4 @@ public class AdminController {
 		return "adminReport";
 	}
 	
-	@GetMapping("/kgfpggrotaintdiopsdohaifntlwer;aelksfnsda;lgsantl;sadntdsf")
-	public String error() {
-		return "/error/404error";
-	}
 }
