@@ -1,5 +1,6 @@
 package com.bitcamp.project.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,16 @@ public class BoardDAOImpl implements BoardDAO {
 
 	
 	
+	@Override
+	public List totalSearch(String title) {
+		List list = new ArrayList<>();
+		list.add(mybatis.selectList("board.totalSearch_Stock", title));
+		list.add(mybatis.selectList("board.totalSearch_Free", title));
+		list.add(mybatis.selectList("board.totalSearch_Port", title));
+		System.out.println(list);
+		return list;
+	}
+
 	@Override
 	public int writeFreeBoard(BoardVO vo) {
 		return mybatis.insert("board.writeFreeBoard", vo);

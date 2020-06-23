@@ -58,7 +58,9 @@ public class SignInController {
             if(bPasswordEncoder.matches(pw, dbPw)) {
                 vo.setPw(dbPw);
                 session.setAttribute("loginUser", vo);
-				mav.setViewName("mainpage");
+                mav.addObject("msg","login");
+                mav.addObject("location","/mainPage");
+				mav.setViewName("msg");
 				
 
 				String saveId = request.getParameter("saveId");
@@ -137,7 +139,7 @@ public class SignInController {
 			vo.setTel(tel);
 			vo = signInService.findId(vo);
 			session.setAttribute("findUser", vo);
-			if(vo == null) { // 없는 전화번호
+			if(vo == null || tel.equals("")) { // 없는 전화번호
 				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
 			}else if(vo.getId().contains("_naver_"))  {
 				model.addAttribute("msg", "회원님은 네이버회원이십니다. 네이버로 이동합니다");
@@ -152,7 +154,10 @@ public class SignInController {
 			}else {
 				ExampleSend es = new ExampleSend(); // 문자보내는 클래스 
 				ExampleSend.main(args, tel);  // 문자보내는 메서드
-				return "/forgetidpage-try-success";
+				model.addAttribute("msg", "번호를 확인중입니다.");
+				model.addAttribute("icon", "success");
+				model.addAttribute("location", "/forgetIdTry");
+				return "/msg";
 			}
 		}
 		

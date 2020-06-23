@@ -140,6 +140,7 @@ public class MainPageController {
 		String[] searchCurrentPrice = topStock.getSearchCurrentPrice();
 		String[] searchUpDown = topStock.getSearchUpDown();
 		String[] searchSangHa = topStock.getSearchSangHa();
+		String[] searchBefore = topStock.getSearchBefore();
 
 		for (int i = 0; i < topName.length; i++) {
 			map.put("topName", topName);
@@ -151,6 +152,7 @@ public class MainPageController {
 		for (int i = 0; i < searchUpDown.length; i++) {
 			map.put("searchName", searchName);
 			map.put("searchCurrentPrice", searchCurrentPrice);
+			map.put("searchBefore", searchBefore);
 			map.put("searchUpDown", searchUpDown);
 			map.put("searchSangHa", searchSangHa);
 		}

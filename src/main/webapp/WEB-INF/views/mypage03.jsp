@@ -12,6 +12,7 @@
 <link href="resources/css/mypage03.css" rel="stylesheet">
 <link href="resources/css/mainheader2.css" rel="stylesheet">
 <link href="resources/css/mainfooter.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
@@ -87,9 +88,6 @@ function deleteComment(){
 }
 
 </script>
-<style>
-.pagination{margin-left: 65px; margin-top:40px;}
-</style>
 </head>
 <body>
 	<%@include file="mainheader.jsp" %> 
@@ -101,7 +99,7 @@ function deleteComment(){
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
 							<li class="mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
-							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
+							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
 							<li class="mid"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
 							<li class="selected mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
 							<li><a href="/myPage04"><span>알림</span></a></li>
@@ -121,7 +119,7 @@ function deleteComment(){
 								<a href="/news">내 정보 관리</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/myPage03">비밀번호 변경</a>
+								<a href="/myPage03">비밀번호 재설정</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/myPage03">나의 계좌정보</a>
@@ -129,7 +127,7 @@ function deleteComment(){
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/myPage03">작성 글 | 댓글</a>
 							</h1>
-							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="#">알림</a>
 							</h1>
 						</div>
@@ -144,13 +142,18 @@ function deleteComment(){
 								value="myComment" <c:if test='${type eq "comment"}'>checked="checked"</c:if>><label for="orderby2" class="hot-board" >작성 댓글 </label>
 						</p>
 					</form>
-		 			 
+		 			 <!-- 
 		 			 <c:if test="${loginUser != null}">
-						<p class="right"><button class="board-write-btn" type="button" onclick="deleteBoard();">삭제</button></p>
-					 </c:if>	
+						<p class="right"><button class="board-write-btn fantasy" type="button" onclick="deleteBoard();">삭제</button></p>
+					 </c:if>
+					  -->	
 					 		
 			</div>
 			<div class="tab-content" id="pills-tabContentBoard">
+			
+			<!-- 1111 -->
+			<c:choose>
+			<c:when test="!${myBoard.size() > 0}">
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
@@ -170,7 +173,7 @@ function deleteComment(){
 										<label for="eventSeq_all">선택 삭제</label>
 									</p>
 								</th>
-								<th class="no" scope="col">N0</th>
+								<th class="no" scope="col">N0.</th>
 								<th class="title" scope="col">제목</th>
 								<th class="writer" scope="col">작성자</th>
 								<th class="views" scope="col">조회</th>
@@ -320,7 +323,7 @@ function deleteComment(){
 
 
 					 <c:if test="${loginUser != null}">
-						<p class="right"><button class="board-write-btn" type="button" onclick="deleteBoard();">삭제</button></p>
+						<p class="right"><button class="board-write-btn fantasy" type="button" onclick="deleteBoard();">삭제</button></p>
 					 </c:if>
 				</div>
 				
@@ -345,11 +348,29 @@ function deleteComment(){
 					</form>
 					</div>
 				</div>
+				</c:when>
+				
+				
+				<c:otherwise>
+				<!-- 22222 -->
+					<div class="message-wrap">
+						<div class="message-st-01">
+							<p class="big-text">아직 발생한 알림이 없습니다.</p>
+							<p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p>
+						</div>
+					</div>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		
 			<div class="tab-content" id="pills-tabContentComment">
-					<!-- 전체글 -->
+			
+			
+			<!-- 3333 -->
+				<!-- 전체글 -->
+				<c:choose>
+					<c:when test="${myComment.size() > 0}">
 					<table class="board-free-table">
  							<colgroup>
 								<col width="5%">
@@ -505,7 +526,7 @@ function deleteComment(){
 
 
 					 <c:if test="${loginUser != null}">
-						<p class="right"><button class="board-write-btn" type="button" onclick="deleteComment();">삭제</button></p>
+						<p class="right"><button class="board-write-btn fantasy" type="button" onclick="deleteComment();">삭제</button></p>
 					 </c:if>
 				</div>
 				
@@ -523,6 +544,17 @@ function deleteComment(){
 					</form>
 					</div>
 				</div>
+				</c:when>
+				<c:otherwise>
+				<!-- 4444 -->
+					<div class="message-wrap">
+						<div class="message-st-01">
+							<p class="big-text">아직 발생한 알림이 없습니다.</p>
+							<p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p>
+						</div>
+					</div>
+				</c:otherwise>
+				</c:choose>				
 			</div>
 		
 		

@@ -21,15 +21,14 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 </script>
 </head>
 <body class="member">
+<!-- 마이페이지로 가기위한 페이지 -->
 <%@include file="mainheader.jsp" %>
 		<div class="containerNew"> 
-<!-- 		정보수정 -->
 		<!-- contents -->
 		<div class="contents member" id="contents">
 			<!-- cont-area -->	
 			<div class="cont-area"> 
 				<h1 class="tit-h1 line">내정보 관리</h1>
-
 				<div class="info-modify">
 					<div class="message-st-01">
 						<p class="big-text">
@@ -37,7 +36,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							<span class="color-fantasy">비밀번호를 다시 한번</span> 입력해 <mark>주시기 바랍니다.</mark>
 						</p>
 					</div>
-					<!-- //message-st-01 -->
  					<form action="/myPagePwCheck" method="post" id="frm" name="frm">
  						<input name="returnUrl" type="hidden" value="/rpan/member/info/userInfo">
  						<input name="linkUrl" type="hidden" value="">
@@ -47,11 +45,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								<p class="id">
 									<label>아이디</label>
 									<span class="input-style">
-									
-										<!--  해드폰상의 저장기능 적용되지 않게 처리  -->
 										<input type="text" name="temp1" style="width:0px;height:0px;display:none;">
 										<input type="password" name="temp2" style="width:0px;height:0px;display:none;">
-										
 										<input type="text" placeholder="" disabled="" id="custId" name="custId" value="${loginUser.id}"> 
 									</span>
 								</p>
@@ -68,17 +63,11 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						</fieldset> 
 					</form>
 				</div>
-				<!-- //info-modify -->
-		<!-- //cont-area -->
+			<!-- //cont-area -->
 			</div>
 		<!-- //contents -->
 		</div>  
-	
-
-
-
 	</div>
-		
 	<%@include file="mainfooter2.jsp" %>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

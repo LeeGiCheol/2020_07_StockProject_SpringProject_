@@ -74,7 +74,7 @@
 	</c:if>
 	<c:if test="${loginUser == null}">
 		<textarea name="ccon
-		tent" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="댓글을 작성하시려면 로그인을 해주세요" onclick="location.href='/signInPage'"></textarea>
+		tent" class="commentCentent byte-count e-login" disabled="disabled;" style="background: white;" data-byte-limit="1000" rows="2" cols="10" placeholder="댓글을 작성하시려면 로그인을 해주세요"></textarea>
 	</c:if>	
 		<p class="text-byte">0/1000 byte</p>
 		<script type="text/javascript">
@@ -173,8 +173,17 @@
 		</script>
 		
 		<div class="support-button">
-
-			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
+			<c:if test="${loginUser != null}">
+				<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
+			</c:if>
+			<c:if test="${loginUser == null}">
+				<span class="insert"><a onclick="insertNotLoginUser();" class="btn-s gray">등록</a></span>
+			</c:if>
+			<script>
+				function insertNotLoginUser(){
+					swal("로그인을 해주세요", "", "error")
+				}
+			</script>
 
 		</div> 
 		</div>
@@ -199,8 +208,13 @@
 	</div>
 		<p class="bt-area view-bt-area">
         <span>
+            <c:if test="${loginUser != null}">
             <a href="/board/free" class="btn-s bodrb">목록</a>
 			<a href="/board/free/write" class="btn-s fantasy">글쓰기</a>
+			</c:if>
+			<c:if test="${loginUser == null}">
+			<a href="/board/free" class="btn-s bodrb">목록</a>
+			</c:if>
 		</span>
     	</p>
     	<div class="prev-next" id="prev-next">

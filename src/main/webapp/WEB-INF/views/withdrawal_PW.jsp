@@ -65,7 +65,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							</div>
 							<div class="bt-area align-c">  
 								<button id="submit" type="button" class="btn-b fantasy" >확인</button>
-								<button type="button" class="btn-b fantasy" onclick="window.location.href='/mainPage'">취소</button>
+								<button type="button" class="btn-b fantasy" onclick="window.location.href='/myPage01'">취소</button>
 							</div>
 						</fieldset> 
 					</form>
