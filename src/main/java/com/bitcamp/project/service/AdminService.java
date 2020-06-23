@@ -13,4 +13,5 @@ public interface AdminService {
 	public AdminVO qnaDetail(AdminVO vo);
 	public int qnaDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
+	public Map<String, Object> reportList(AdminVO vo);
 }

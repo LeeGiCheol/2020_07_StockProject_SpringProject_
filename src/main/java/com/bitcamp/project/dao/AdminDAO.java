@@ -13,4 +13,5 @@ public interface AdminDAO {
 	public AdminVO qnaDetail(AdminVO vo);
 	public int qnaDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
+	public List<AdminVO> reportList(AdminVO vo);
 }

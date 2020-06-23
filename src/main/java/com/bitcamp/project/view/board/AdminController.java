@@ -104,7 +104,9 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin/report")
-	public String adminReportList() {
+	public String adminReportList(AdminVO vo) {
+		
+		Map<String, Object> reportList = adminService.reportList(vo);
 		return "adminReport";
 	}
 	

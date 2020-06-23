@@ -60,12 +60,9 @@ public class AdminDAOImpl implements AdminDAO {
 	public int qnaUpdate(AdminVO vo) {
 		return mybatis.update("admin.qnaUpdate", vo);
 	}
-	
-	
-	
-
-	
-	
-	
+	@Override
+	public List<AdminVO> reportList(AdminVO vo) {
+		return mybatis.selectList("admin.reportList", vo);
+	}
 	
 }

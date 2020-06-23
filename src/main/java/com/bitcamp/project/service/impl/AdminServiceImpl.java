@@ -84,6 +84,14 @@ public class AdminServiceImpl implements AdminService {
 	public int qnaUpdate(AdminVO vo) {
 		return adminDAO.qnaUpdate(vo);
 	}
+	@Override
+	public Map<String, Object> reportList(AdminVO vo) {
+		
+		Map<String, Object> reportMap = new HashMap<String, Object>();
+		
+		
+		return reportMap;
+	}
 
 	
 }
