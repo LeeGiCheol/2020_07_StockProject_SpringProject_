@@ -17,46 +17,10 @@
 	<link rel="stylesheet" href="/resources/css/mainfooter2.css">
 	<link rel="stylesheet" href="/resources/css/mainheader2.css">
 	<link rel="stylesheet" href="/resources/css/free-board.css">
-		<link rel="stylesheet" href="/resources/css/customers.css">
-	
+	<link rel="stylesheet" href="/resources/css/customers.css">
+	<link rel="stylesheet" href="/resources/css/sidebar.css">	
 </head>
-<style>
-#sideTitle {
-     border-left: 4px solid #d7d8da !important; 
-    color: #848889 !important;
-    font-weight: 300 !important;
-    background: white !important;
-}
-#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
-	    color: #848889!important;
-  font-weight: 300 !important;
- 
-}
-#noticeTitle{
-border-left: 4px solid #1e78ff !important;
-    color: black !important;
-    font-weight: 600 !important;
-    background: #f6f6f6 !important;
-}
-#noticeTitle a, #noticeTitle a:visited, #noticeTitle a:link{
-	    color: black!important;
-  font-weight: 600 !important;
- 
-}
-#qnaTitle{
-}
-#qnaTitle a, #qnaTitle a:visited, #qnaTitle a:link{
 
- 
-}
-
-#claimTitle{
-}
-#claimTitle a, #claimTitle a:visited, #claimTitle a:link{
-
- 
-}
-</style>
 
 <body>
 
@@ -67,13 +31,13 @@ border-left: 4px solid #1e78ff !important;
 			<div class="row">
 				<div class="col-md-2">
 				
-					<div class="sidebar sticky" id="cssmenu">
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
-							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
-							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
-							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li id="claimList"><a href="/customerClaim/list"><span>1:1문의</span></a></li>
+							<li class="mid"><a href="/customer"><span>고객센터</span></a></li>
+							<li class="selected mid"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
+							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
 						</ul>
 					</div>
 					
@@ -82,27 +46,29 @@ border-left: 4px solid #1e78ff !important;
 				</div>
 				<div class="col-md-10">
 					<div class="free-board">
-
-
-
-						<div class="drop-nav">
-							<h1 class="tit-h1 line">공지사항</h1>
-						</div>
-
-						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-</svg>공지사항</h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/list">1:1문의 내역</a></h1>
-						</div>
-
-
+ 							<div class="drop-nav">
+								<h1 class="tit-h1 line">공지사항</h1>
+							</div>
+							<div class="m-drop-nav">
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">공지사항 <i class="fas fa-angle-down"></i></h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+									<a href="/customer">고객센터</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerNotice">공지사항</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerqna">도움말</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/write">1:1문의</a>
+								</h1>														
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/list">1:1문의 내역</a>
+								</h1>
+							</div>	
 
 						<div class="board-type">
 							<div class="tab-content" id="pills-tabContent">
@@ -131,7 +97,7 @@ border-left: 4px solid #1e78ff !important;
 
 											<c:if test="${board.bno eq 3}">
 												<tr>
-													<td class="board-no" style="color: red;">[공지]</td>
+													<td class="board-no"><span>공지</span></td>
 													<!-- 글번호 -->
 
 													<c:choose>
@@ -288,46 +254,51 @@ border-left: 4px solid #1e78ff !important;
 			</div>
 		</div>
 		<script type="text/javascript">
-			$(document).ready(function () {
-				console.log("document ready!");
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
-				var $sticky = $('.sticky');
-				var $stickyrStopper = $('.footer_info');
-				if (!!$sticky.offset()) { // make sure ".sticky" element exists
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
-					var generalSidebarHeight = $sticky.innerHeight();
-					var stickyTop = $sticky.offset().top;
-					var stickOffset = 0;
-					var stickyStopperPosition = $stickyrStopper.offset().top;
-					var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-					var diff = stopPoint + stickOffset;
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
 
-					$(window).scroll(function () { // scroll event
-						var windowTop = $(window).scrollTop(); // returns number
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
 
-						if (stopPoint < windowTop) {
-							$sticky.css({
-								position: 'relative',
-								top: diff
-							});
-						} else if (stickyTop < windowTop + stickOffset) {
-							$sticky.css({
-								position: 'fixed',
-								top: stickOffset
-							});
-						} else {
-							$sticky.css({
-								position: 'relative',
-								top: 'initial'
-							});
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
+
 						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
 					});
-
-				}
-				$(".m-drop-nav").click(function () {
-					$(".m-drop-down").slideToggle("slow");
-				});
-			});
 		</script>
 	</div>
 

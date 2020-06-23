@@ -317,7 +317,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 
 [class*="input-style"] .delete {
 	background-position: 10px -500px;
-	display: none;
+	/* display: none; */
+	margin-top: 3px !important;
 }
 
 [class*="input-style"] button {
@@ -328,7 +329,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	width: 30px;
 	height: 27px;
 	text-indent: -9999px;
-	background-image: url(/rpan/common/images/bg_form.png?update=20180329);
+	background-image: url(/resources/img/bg_form.png);
 	background-repeat: no-repeat;
 }
 
@@ -463,7 +464,7 @@ input[type="button"], button {
 }
 
 .find-list .form-list li.input-type {
-	padding-right: 82px;
+	padding-right: 115px;
 }
 
 .find-list .form-list li.input-type .btn-t {
@@ -828,7 +829,7 @@ input[type="button"], button {
 	font-size: 20px;
 	line-height: 150%;
 	margin-top: 30px;
-	/*padding-top: 100px;*/
+	margin-bottom: 30px;
 }
 
 .big-text {
@@ -954,4 +955,8 @@ input[type="button"], button {
     background: rgba(46,87,255,1);
     border: 1px solid rgba(46,87,255,1);
     color: #fff !important;
+}
+.alert {
+	margin-bottom: 0 !important;
+	margin-top: 10px;
 }

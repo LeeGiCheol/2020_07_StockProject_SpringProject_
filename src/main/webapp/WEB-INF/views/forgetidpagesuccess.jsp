@@ -33,7 +33,7 @@
 						</div>
 						<div class="result-box">
 							<ul class="result-list">
-								<li style="margin-left:103px; padding-bottom:30px;">
+								<li style="margin-left:80px; padding-bottom:30px;">
 								<span class="id"><label for="radio1" class="label">${findUser.id}</label></span></li>	
 							</ul>
 						</div>

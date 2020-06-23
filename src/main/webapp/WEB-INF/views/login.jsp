@@ -23,7 +23,7 @@
 	<div class="cont-area log"> 
 		<div class="login-wrap"> 
 			<div class="logo-log">
-				<a href="http://www.paxnet.co.kr"><img src="/resources/img/logo.png" alt="PAXNet"></a>
+				<a href="/mainPage"><img src="/resources/img/footerlogo2.png" alt="PAXNet"></a>
 			</div>
 			 <form action="/signIn" class="form-signin" method="post">
 				 <div class="on-area clearfix">

@@ -115,12 +115,10 @@ p.error-text {
 }
 .contents.member {
     margin-right: 0;
-    min-height: 600px;
 }
 .contents {
     position: relative;
     z-index: 1;
-    min-height: 920px;
 }
 .contents.member .cont-area {
 margin: 0 auto 29px;
@@ -496,9 +494,6 @@ margin: 0 auto 29px;
 
 
 @media only screen and (max-width: 1599px){
-.contents.member {
-    margin: 0 auto 200px;
-}
 .contents {
     margin: 0 auto;
     max-width: 1260px;
