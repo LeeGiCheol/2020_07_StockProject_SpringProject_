@@ -64,7 +64,9 @@ legend, caption {
     width: 0;
     line-height: 0;
 }
-
+body {
+    background: #eff3f6 !important;
+}
 .container {
 	padding: 20px 0 30px 0;
 }
@@ -371,9 +373,9 @@ border: none;
 .color-black {
     color: #000 !important;
 }
-.table-scroll {
+ .table-scroll {
     width: 100%;
-    border-top: #888 1px solid;
+  
 }
 .table-col {
     width: 100%;
@@ -759,4 +761,6 @@ border-radius: 0 !important;
     border: 1px solid rgba(46,87,255,1);
     color: #fff !important;
 }
-
+.newsboard-area{
+	box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+}
