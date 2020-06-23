@@ -9,6 +9,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script>
 	window.onload  = function() {
+			
 		swal({text:'${msg}', icon:'${icon}'}).then(function(){
 			if(${location eq ""}){
 				history.go(-1)

@@ -11,8 +11,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader4.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 </head>
 <body class="member">
@@ -26,7 +26,7 @@
 				<div class="id-result">
 						<div class="message-st-no"> 
 							<img class="" id="idfail" src="/resources/img/icon.png">
-							<p class="big-text">입력하신 정보와 <span class="color-red">일치하는 회원정보</span>가 없습니다.<br>다른 방법으로 다시 시도해 보세요.</p>
+							<p class="big-text">입력하신 정보와 <span class="color-fantasy">일치하는 회원정보</span>가 없습니다.<br>다른 방법으로 다시 시도해 보세요.</p>
 						</div>
 
 						<div class="bt-area">
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 
-	<%@include file="mainfooter.jsp"%>
+	<%@include file="mainfooter2.jsp"%>
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>

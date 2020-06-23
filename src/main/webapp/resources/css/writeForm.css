@@ -200,6 +200,16 @@ input {
     border: 1px solid #ff545b;
     color: #fff;
 }
+.m-drop-nav, .m-drop-down{
+	display: none;
+}
+[class*="btn-"].fantasy {
+background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
+    color: #fff !important;
+}
+
+
 @media only screen and (max-width: 1599px)
 .board-page {
     margin: 0 auto 100px;
@@ -280,4 +290,10 @@ input {
     overflow: hidden;
     padding: 0 15px 40px;
 	}
+	.form-table {
+    border-top: none !important;
+}
+.m-drop-down {
+    background: #f3f4f575;
+}
 }

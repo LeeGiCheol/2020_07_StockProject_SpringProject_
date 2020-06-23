@@ -13,8 +13,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader4.css">
+<link href="resources/css/mainheader2.css" rel="stylesheet">
+<link href="resources/css/mainfooter.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 <link href="resources/css/mypage03.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -103,14 +104,14 @@
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<li class="mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
 							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호
-										변경</span></a></li>
-							<li class="last"><a href="/myPage02"><span>나의
+										재설정</span></a></li>
+							<li class="mid"><a href="/myPage02"><span>나의
 										계좌정보</span></a></li>
 							<li class="mid"><a href="/myPage03"><span>작성 글 |
 										댓글</span></a></li>
-							<li class="last"><a href="/myPage04"><span>알림</span></a></li>
+							<li class="selected"><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -199,11 +200,16 @@
 												<td title="상태"><c:out value="${list.category}" /></td>
 											</tr>
 										</c:forEach>
-
 									</tbody>
 								</table>
+							<div class="message-wrap">
+								<div class="message-st-01">
+									<p class="big-text">아직 발생한 알림이 없습니다.</p>
+									<p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p>
+								</div>
+							</div>
 
-								<script type="text/javascript">
+<script type="text/javascript">
     $(document)
         .ready(
             function () {
@@ -213,13 +219,13 @@
                             $(
                                 "#a_title")
                                 .html(
-                                    "<tr><th class='no' scope='col'>글번호</th><th class='title' scope='col'>내용</th></tr>");
+                                    "<tr><th class='no' scope='col'>글번호</th><th class='title' scope='col'>내용</th><th class='time' scope='col'>시간</th></tr>");
                             console
                                 .log("클릭");
                             $(
                                 "#a_contents")
                                 .html(
-                                    '<c:forEach items="${commentNotice}" var="list"><tr><c:choose><c:when test="${list.confirm eq 1}"><td class="first" title="글번호" style="color: red">NEW</td></c:when><c:otherwise><td class="first" title="글번호""><c:out value="${list.pno}" /></td></c:otherwise></c:choose><td title="내용"><c:out value="${list.title}" /> 글에 댓글이 달렸습니다.</td>	</tr></c:forEach>');
+                                    '<c:forEach items="${commentNotice}" var="list"><tr><c:choose><c:when test="${list.confirm eq 1}"><td class="first" title="글번호" style="color: red">NEW</td></c:when><c:otherwise><td class="first" title="글번호""><c:out value="${list.pno}" /></td></c:otherwise></c:choose><td title="내용"><c:out value="${list.title}" /> 글에 댓글이 달렸습니다.</td><td title="시간"><fmt:formatDate value="${list.ndatetime}" pattern="yyyy-MM-dd HH:mm:ss" /></td></tr></c:forEach>');
                         })
                 $("#orderby1")
                     .click(
@@ -239,147 +245,27 @@
             })
 </script>
 
-								<!-- 페이징 -->
-								<%-- <div class="paging">
-									<div class="paging-body">
-										<nav aria-label="..." class="pagination">
-											<ul class="pagination">
 
-												<c:if test="${boardPage.nowPage != 1}">
-													<!-- << 버튼 -->
-													<li><a class="page-link" href="/board/free?bnowPage=1"
-														tabindex="-1" aria-disabled="true"> <i
-															class="fas fa-angle-double-left"></i>
-													</a></li>
-													<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-													<c:if test="${boardPage.nowPage == 1}">
-														<li><a class="page-link"
-															href="/board/free?bnowPage=${boardPage.nowPage}"
-															tabindex="-1" aria-disabled="true"> <i
-																class="fas fa-angle-left"></i>
-														</a></li>
-													</c:if>
-												</c:if>
-
-												<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-												<c:if test="${boardPage.nowPage != 1}">
-													<li><a class="page-link"
-														href="/board/free?bnowPage=${boardPage.nowPage-1}"
-														tabindex="-1" aria-disabled="true"> <i
-															class="fas fa-angle-left"></i>
-													</a></li>
-												</c:if>
-
-												<!-- 한번에 5개 페이지 보여줌 -->
-												<c:forEach begin="${boardPage.startPage }"
-													end="${boardPage.endPage }" var="p">
-													<c:choose>
-														<c:when test="${p == boardPage.nowPage}">
-															<li class="page-item active" aria-current="page"><a
-																class="page-link" href="#">${p} <span
-																	class="sr-only">(current)</span>
-															</a></li>
-														</c:when>
-														<c:when test="${p != boardPage.nowPage}">
-															<li class="page-item"><a class="page-link"
-																href="/board/free?bnowPage=${p}">${p}</a></li>
-														</c:when>
-													</c:choose>
-												</c:forEach>
-
-
-
-												<c:if test="${boardPage.nowPage != boardPage.lastPage}">
-													<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-													<c:if test="${boardPage.nowPage == boardPage.lastPage}">
-														<li><a class="page-link"
-															href="/board/free?bnowPage=${boardPage.nowPage}"
-															tabindex="+1" aria-disabled="true"> <i
-																class="fas fa-angle-right"></i>
-														</a></li>
-													</c:if>
-
-													<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
-													<c:if test="${boardPage.nowPage != boardPage.lastPage}">
-														<li><a class="page-link"
-															href="/board/free?bnowPage=${boardPage.nowPage+1}"
-															tabindex="+1" aria-disabled="true" data-ajax="false">
-																<i class="fas fa-angle-right"></i>
-														</a></li>
-													</c:if>
-
-													<!-- >> 버튼 -->
-													<li><a class="page-link"
-														href="/board/free?bnowPage=${boardPage.lastPage}"
-														tabindex="-1" aria-disabled="true"> <i
-															class="fas fa-angle-double-right"></i>
-													</a></li>
-
-												</c:if>
-											</ul>
-										</nav>
-									</div>
-
-
-									<c:if test="${loginUser != null}">
-										<p class="right">
-											<a href="/board/free/write" class="board-write-btn">삭제</a>
-										</p>
-									</c:if>
-								</div> --%>
-
-								<%-- <div class="search-area">
-									<div class="search-area-body">
-										<form class="form-inline my-2 my-lg-0 underSearchForm"
-											action="/board/free">
-											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
-											<select class="dropdown-toggle-board" name="searchStyle">
-												<option class="nav-link dropdown-toggle board-item"
-													id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-													aria-expanded="false" value=""
-													<c:if test='${searchStyle eq ""}'>selected</c:if>>전체
-												</option>
-												<option class="dropdown-item board-item"
-													value="search_title"
-													<c:if
-													test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option>
-												<option class="dropdown-item board-item"
-													value="search_content"
-													<c:if
-													test='${searchStyle eq "search_content"}'>selected</c:if>>내용
-												</option>
-												<option class="dropdown-item board-item"
-													value="search_title_content"
-													<c:if test='${searchStyle eq "search_title_content"}'>selected
-													</c:if>>제목
-													+ 내용</option>
-												<option class="dropdown-item board-item" value="search_nick"
-													<c:if
-													test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
-											</select> <input class="form-control mr-sm-2 board-search"
-												type="search" placeholder="검색어 입력" aria-label="Search">
-											<button
-												class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
-												type="submit">
-												<i class="fas fa-search"></i>
-											</button>
-										</form>
-									</div>
-								</div> --%>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+	</div>
+
+
+
+	<!-- article end -->
+	<%@include file="mainfooter2.jsp"%>
 		<script type="text/javascript">
 			$(document).ready(
 					function() {
 						console.log("document ready!");
 
 						var $sticky = $('.sticky');
-						var $stickyrStopper = $('.footer_info');
+						var $stickyrStopper = $('.footer_content');
 						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
 							var generalSidebarHeight = $sticky.innerHeight();
@@ -420,12 +306,6 @@
 						});
 					});
 		</script>
-	</div>
-
-
-
-	<!-- article end -->
-	<%@include file="mainfooter.jsp"%>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script

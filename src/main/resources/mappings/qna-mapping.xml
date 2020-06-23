@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="qna">
+
+	<insert id="writeQna">
+		INSERT INTO claimQuestion (id, qtitle, qcontent, qdatetime, qcheck)
+		VALUES(#{id}, #{qtitle}, #{qcontent}, now(), "준비중")
+	</insert>
+	
+	<select id="countQna" parameterType="qna" resultType="int">
+		SELECT COUNT(*)
+		FROM claimQuestion
+		WHERE qno = #{qno}
+		AND id=#{id}
+	</select>
+	
+	<select id="qnaList" parameterType="page" resultType="qna">
+		SELECT * 
+		FROM claimQuestion 
+		WHERE id=#{util.id}
+		<choose>
+			<!-- 제목검색 -->
+			<when test='util.searchStyle.equals("search_title")'>
+				AND qtitle LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY qno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 내용검색 -->
+			<when test='util.searchStyle.equals("search_content")'>
+				AND qcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY qno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 제목 + 내용검색 -->
+			<when test='util.searchStyle.equals("search_title_content")'>
+				AND qtitle LIKE CONCAT('%', #{util.keyword}, '%')
+				OR qcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY qno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<otherwise>
+				ORDER BY qno DESC
+			</otherwise>
+		</choose>
+		
+	</select>
+	
+	<select id="qnaDetail" parameterType="qna" resultType="qna">
+		<if test="ano neq 0">
+			SELECT q.*, a.* 
+			FROM claimQuestion AS q
+			JOIN claimAnswer AS a
+			ON q.qno = a.qno
+			WHERE id = #{id}
+	        AND q.qno = #{qno};
+	    </if>
+	    
+	    <if test="ano eq 0">
+	    	SELECT * 
+	    	FROM claimQuestion
+	    	WHERE qno = #{qno};
+	    </if>
+	</select>
+	
+	<update id="qnaUpdate">
+		UPDATE claimQuestion 
+		SET qtitle = #{qtitle}, qcontent = #{qcontent}
+		WHERE qno = #{qno}
+	</update>
+	
+	<delete id="qnaDelete">
+		
+		<if test="ano neq 0">
+			DELETE
+			FROM claimAnswer
+			WHERE ano = #{ano};
+		</if>
+		
+		DELETE
+		FROM claimQuestion
+		WHERE qno = #{qno};
+		
+	</delete>
+	
+	
+	
+</mapper>

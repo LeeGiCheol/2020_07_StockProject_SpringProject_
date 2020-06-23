@@ -169,7 +169,7 @@ float: left;
 }
 #logoF{
 display: inline-block;
-    width: 84px;
+    width: 156px;
     padding-right: 20px;
     margin-left: 53px;
     position: relative;
@@ -214,19 +214,19 @@ list-style: none;
 
 #companyName {
  font-weight: 600;
-    color: #1e78ff;
+    color: rgba(46,87,255,1);
     font-size: 17px;
 }
 #companyName a{
 
-    color:#1e78ff !important ;
+    color:rgba(46,87,255,1) !important ;
     
 }
 
 
 #Sitemap {
      font-weight: 600;
-    color: #1e78ff;
+    color: rgba(46,87,255,1);
 }
 #listA{
 width: 50%;

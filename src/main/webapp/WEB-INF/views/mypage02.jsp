@@ -15,8 +15,9 @@
 <!-- 달력JS/CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
 
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link href="resources/css/mainheader2.css" rel="stylesheet">
+<link href="resources/css/mainfooter.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".newsboard-nav-item").each(function() {
@@ -83,13 +84,13 @@ $(document).ready(function(){
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-							<li><a href="/myPage01"><span>내 정보 관리</span></a></li>
-							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 변경</span></a></li>
-							<li class="last"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
+							<li class="mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
+							<li class="mid"><a href="/mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
+							<li class="selected mid"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
 							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
-							<li class="last"><a href="/myPage04"><span>알림</span></a></li>
+							<li><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
-					</div>
+					</div>					
 				</div>
 				<div class="col-md-10">
 
@@ -105,7 +106,7 @@ $(document).ready(function(){
 								<a href="/news">내 정보 관리</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">비밀번호 변경</a>
+								<a href="/board/free">비밀번호 재설정</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/board/free">나의 계좌정보</a>
@@ -113,7 +114,7 @@ $(document).ready(function(){
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="/board/free">작성 글 | 댓글</a>
 							</h1>
-							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
 								<a href="#">알림</a>
 							</h1>
 						</div>
@@ -205,7 +206,7 @@ $(document).ready(function(){
 											<div class="money-my">
 											<span class="input-style-case02"><fmt:formatNumber value="${loginUser.money}" type="number"/>원</span>
 											</div>
-											<button type="button" class="btn-t gray refresh">머니 초기화</button>
+											<button type="button" class="btn-t fantasy refresh">머니 초기화</button>
 											
 										</div>	
 										</td>
@@ -390,8 +391,8 @@ $(document).ready(function(){
 									<caption>거래 내역</caption>
 									<thead>
 										<tr>
-											<th scope="col" style="width: 150px;"class="a-right">거래일자</th>
-											<th scope="col" style="width: 300px;">종목</th>
+											<th scope="col" style="width: 150px;"class="a-center">거래일자</th>
+											<th scope="col" style="width: 300px;">종목명</th>
 											<th scope="col" class="a-center">수량</th>
 											<th scope="col" class="a-right">거래금액</th>
 											<th scope="col" class="a-center">단가</th>
@@ -402,7 +403,7 @@ $(document).ready(function(){
 									
 									<c:if test="${stockHistoryList.size() == 0}">
 									    <tr>
-									        <td colspan="7" style="text-align: center;">:::::거래 내역이 없습니다.::::::</td>
+									        <td colspan="6" style="text-align: center;">:::::거래 내역이 없습니다.::::::</td>
 									    </tr>
 									</c:if>
 									    <c:forEach items="${stockHistoryList}" var="stock">
@@ -574,8 +575,14 @@ $(document).ready(function(){
 	</div>
 </div>
 
-	<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter2.jsp" %>
+		<script type="text/javascript">
 
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					
+		</script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="http://code.jquery.com/jquery-3.1.0.js"></script>

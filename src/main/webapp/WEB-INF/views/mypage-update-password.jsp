@@ -8,14 +8,15 @@
 <title>비밀번호 재설정</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader4.css">
+<link href="resources/css/mainheader2.css" rel="stylesheet">
+<link href="resources/css/mainfooter.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/forgetpage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
 <style>
-.gray{width: 172px; height:44px; margin-left: 200px; margin-top: 50px;}
+.gray{width: 172px; height:44px;}
+#buttonSet{text-align: center; margin-top: 30px;}
 </style>
 <script>
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
@@ -67,14 +68,17 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</tr>
 							</tbody>
 						</table>
+						<div id="buttonSet">
 						<button id="submit" type="button" class="btn-t gray" onclick="passwordCheck()">비밀번호 저장</button>
+						<button id="button" type="button" class="btn-t gray" onclick="location.href='/myPage01'">취소</button>
+						</div>
 					</form>
 				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<%@include file="mainfooter.jsp"%>
+	<%@include file="mainfooter2.jsp"%>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> 

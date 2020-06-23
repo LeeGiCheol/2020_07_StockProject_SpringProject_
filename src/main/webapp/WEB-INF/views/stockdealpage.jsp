@@ -18,8 +18,8 @@
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
-	<link rel="stylesheet" href="/resources/css/mainheader2.css">
-	<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/mainfooter.css">
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
@@ -63,13 +63,12 @@ tr td button {
 
 	<!-- 전체메뉴 백그라운드-->
 	<div class="all-dim"></div>
-				<div class="stock-deal-nav">
-				<div class="stock-header">거래</div>
-				</div>
+				
 	<div class="containerNew">
 		<div class="stock-deal">
 			<div class="row">
 				<div class="chartdata-nav">
+			<div class="stock-deal-nav">거래</div>
 					<form action="/trade" id="searchForm"
 						class="form-inline chartdata-form" method="GET">
 						<input class="form-control mr-sm-2 stock-search-input"
@@ -223,15 +222,15 @@ tr td button {
 					<div class="stock-deal-control">
 						<div class="stock-deal-control-nav">
 							<ul class="nav stock-nav-tab" id="pills-tab" role="tablist">
-								<li class="nav-item active" role="presentation"><a
+								<li class="stock-nav-item selected" role="presentation"><a
 									class="nav-link" id="pills-home-tab" data-toggle="pill"
 									href="#pills-home" role="tab" aria-controls="pills-home"
 									aria-selected="true">매수</a></li>
-								<li class="nav-item" role="presentation"><a
+								<li class="stock-nav-item" role="presentation"><a
 									class="nav-link" id="pills-profile-tab" data-toggle="pill"
 									href="#pills-profile" role="tab" aria-controls="pills-profile"
 									aria-selected="false">매도</a></li>
-								<li class="nav-item nav-item-last" role="presentation"><a
+								<li class="stock-nav-item nav-item-last" role="presentation"><a
 									class="nav-link" id="pills-contact-tab" data-toggle="pill"
 									href="#pills-contact" role="tab" aria-controls="pills-contact"
 									aria-selected="false">정정/취소</a></li>
@@ -248,18 +247,21 @@ tr td button {
 												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span
 													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
 													type="text" class="alignR" id="buying_price"
-													name="buyingPrice" readOnly></span> 원 <span
+													name="buyingPrice" readOnly style="cursor: pointer;"></span> 원 <span
 													class="buying-check"> <a
-													class="buying-check-btn btnStyle btnS buying-checking">매수가능</a>
-													<script>
+													class="buying-check-btn btnStyle btnS buying-checking" style="cursor: pointer;" data-toggle="modal" data-target="#staticBackdrop">매수가능</a>
+													<input type="hidden" for="nOrdUnpr" name="sName" value="${stockName}" />
+												</span>
+											</div>													
+ 													<script>
 												$(document).ready(function() {
-													  $(".popClose, .nav-item").click(function(){
+/* 													  $(".popClose, .stock-nav-item").click(function(){
 													    $(".layerPopup").hide();
 													  });
 													  $(".buying-checking").click(function(){
 													    $(".layerPopup").show();
 													  });
-													  $(".popClose, .nav-item").click(function(){
+													  $(".popClose, .stock-nav-item").click(function(){
 														    $(".layerPopup-buying-cancel").hide();
 														  });
 														  $(".buying-cancel").click(function(){
@@ -267,23 +269,24 @@ tr td button {
 														  });
 													  $("input:text[numberOnly]").on("keyup", function() {
 														    $(this).val($(this).val().replace(/[^0-9]/g,""));
-														});
-														$(".newboard-nav-item").each(function() {
+														}); */
+														$(".stock-nav-item").each(function() {
 															$(this).click(function() {
 																$(this).addClass("selected"); //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
 																$(this).siblings().removeClass("selected"); //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
 															});
 														});
-														$(function() {
-															var sBtn = $("ul > li"); //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
-															sBtn.find("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
-																sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
-																$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
-															});
-														});
 													});
 												</script>
-													<div class="layerPopup" style="display: none;">
+												
+												
+												
+												
+											<!-- Modal -->
+											<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">												
+													<div class="layerPopup">
 														<div class="layerBox layerStock" id="poplayer_possible"
 															style="display: block;">
 															<h1>매수가능</h1>
@@ -327,21 +330,26 @@ tr td button {
 																</table>
 															</div>
 															<!--// conSection-->
-															<a href="#none" class="popClose">보유 금액 닫기</a>
+															<a href="#none" class="popClose" data-dismiss="modal">보유 금액 닫기</a>
 														</div>
-													</div> <input type="hidden" for="nOrdUnpr" name="sName"
-													value="${stockName}" />
-												</span>
+													</div> 
+												</div>
 											</div>
+										</div>
+
+
+
+
+
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
 													class="alignR" name="buyingQu" id="buying_qu" value="0"
 													onclick="" numberOnly> 주 <span class="buying-check">
 													<a onclick="sumplus(10);"
-													class="buying-check-btn btnStyle btnS btnSum">10주</a> <a
+													class="buying-check-btn btnStyle btnS btnSum" style="cursor: pointer;">10주</a> <a
 													onclick="sumplus(100);"
-													class="buying-check-btn btnStyle btnS btnSum">100주</a> <a
-													id="buy_max" class="buying-check-btn btnStyle btnS btnSum">최대</a>
+													class="buying-check-btn btnStyle btnS btnSum" style="cursor: pointer;">100주</a> <a
+													id="buy_max" class="buying-check-btn btnStyle btnS btnSum" style="cursor: pointer;">최대</a>
 												</span>
 											</div>
 											<script>
@@ -403,14 +411,21 @@ tr td button {
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
-
 												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span
 													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
 													type="text" class="alignR" id="selling_price"
-													name="sellingPrice" readOnly></span> 원 <span
+													name="sellingPrice" readOnly style="cursor: pointer;"></span> 원 <span
 													class="buying-check"> <a onclick="#"
-													class="buying-check-btn btnStyle btnS buying-checking">매도가능</a>
+													class="buying-check-btn btnStyle btnS buying-checking" style="cursor: pointer;"  data-toggle="modal" data-target="#staticBackdrop1">매도가능</a>
+													<input type="hidden" for="nOrdUnpr" name="sName"
+													value="${stockName}" />
+												</span>
+											</div>													
 
+
+											<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">														
 													<div class="layerPopup">
 														<div class="layerBox layerStock" id="poplayer_possible"
 															style="display: block;">
@@ -441,12 +456,14 @@ tr td button {
 																</div>
 															</div>
 															<!--// conSection-->
-															<a href="#none" class="popClose">매도가능 닫기</a>
+															<a href="#none" class="popClose" data-dismiss="modal">매도가능 닫기</a>
 														</div>
-													</div> <input type="hidden" for="nOrdUnpr" name="sName"
-													value="${stockName}" />
-												</span>
+													</div>
+												</div>
 											</div>
+										</div>
+											
+													
 											<div class="detail unit-price">
 												<label for="nOrdUnpr">수량</label> <input type="text"
 													class="alignR" id="selling_qu" name="sellingQu" numberOnly>
@@ -498,7 +515,43 @@ tr td button {
 												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
 												<input type="text" class="alignR" name="uno"> <span
 													class="buying-check"> <a onclick="#"
-													class="buying-check-btn btnStyle btnS buying-cancel">미체결잔량</a>
+													class="buying-check-btn btnStyle btnS buying-cancel" style="cursor: pointer;" data-toggle="modal" data-target="#staticBackdrop2">미체결잔량</a>
+												</span>
+											</div>													
+											<div class="detail unit-price">
+												<label for="nOrdUnpr" style="margin-right: 39px;"
+													class="btn-cc">단가</label><span
+													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
+													type="text" class="alignA" id="mySelect" name="modifyPrice"
+													readonly style="cursor: pointer;"></span> <input type="text" class="alignB"
+													id="mySelect" value="0" style="display: none;" disabled>
+												원
+											</div>
+											<div class="detail unit-price">
+												<label for="nOrdUnpr" style="margin-right: 34px;">수량</label>
+												<input type="text" class="alignR" name="modifyQu" numberOnly>
+												주
+
+											</div>
+										</div>													
+										<div class="sumArea">
+											<span class="text"> <em>총주문금액 :</em> <strong
+												class="sum">0</strong> <strong> <span>원</span>
+											</strong> (수수료 미포함)
+											</span>
+										</div>
+									</div>
+									<button class="btn-modify" type="submit">정정주문</button>
+									<button style="width: 100%; height: auto; display: none;"
+										class="btn-cancel" type="submit">취소주문</button>
+								</form>
+							</div>													
+									
+									
+									
+											<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">														
 													<div class="layerPopup-buying-cancel">
 														<div class="layerBox layerStock"
 															id="poplayer_un_conclusion" style="display: block;">
@@ -550,39 +603,15 @@ tr td button {
 																</div>
 															</div>
 															<!--// conSection-->
-															<a href="#none" class="popClose">미체결잔량 닫기</a>
+															<a href="#none" class="popClose" data-dismiss="modal">미체결잔량 닫기</a>
 														</div>
 													</div>
-												</span>
+												</div>
 											</div>
-											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 39px;"
-													class="btn-cc">단가</label><span
-													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
-													type="text" class="alignA" id="mySelect" name="modifyPrice"
-													readonly></span> <input type="text" class="alignB"
-													id="mySelect" value="0" style="display: none;" disabled>
-												원
-											</div>
-											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 34px;">수량</label>
-												<input type="text" class="alignR" name="modifyQu" numberOnly>
-												주
+										</div>
+										
 
-											</div>
-										</div>
-										<div class="sumArea">
-											<span class="text"> <em>총주문금액 :</em> <strong
-												class="sum">0</strong> <strong> <span>원</span>
-											</strong> (수수료 미포함)
-											</span>
-										</div>
-									</div>
-									<button class="btn-modify" type="submit">정정주문</button>
-									<button style="width: 100%; height: auto; display: none;"
-										class="btn-cancel" type="submit">취소주문</button>
-								</form>
-							</div>
+
 						</div>
 					</div>
 				</div>
@@ -620,7 +649,7 @@ tr td button {
 							<tbody>
 								<tr id="upDownColor">
 									<td scope="col" class="now-text">현재가</td>
-									<td scope="col" class="now-text"><button id="price"></button></td>
+									<td scope="col" class="now-text" ><button id="price" data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."></button></td>
 									<td scope="col" class="now-text" id="beforeAndUpdown"></td>
 								</tr>
 							</tbody>
@@ -648,7 +677,52 @@ tr td button {
 				</div>
 			</div>
 		</div>
+<!-- Button trigger modal -->
+<%-- 													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+													  Launch static backdrop modal
+													</button>
+													
+													<!-- Modal -->
+													<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+													  <div class="modal-dialog">
+													    <div class="modal-content">
+													  <div class="layerPopup">
+														<div class="layerBox layerStock" id="poplayer_possible"
+															style="display: block;">
+															<h1>매도가능</h1>
+															<!-- conSection -->
+															<div class="conSection">
+																<!-- tableWrap -->
+																<div class="tableWrap tableDataWrap">
+																	<table class="tableDefault tableCol tableSmall"
+																		summary="종목명, 잔고수량, 매도가능수량에 관한 정보입니다.">
+																		<colgroup>
+																			<col width="50%">
+																			<col width="50%">
+																		</colgroup>
+																		<thead>
+																			<tr>
+																				<th scope="col" class="first">종목명</th>
+																				<th scope="col">잔고수량</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td title="종목명" class="first">${stockName }</td>
+																				<td title="잔고수량">${myStockQu }</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+															<!--// conSection-->
+															<a href="#none" class="popClose" data-dismiss="modal">매도가능 닫기</a>
+														</div>
+													</div>
 
+													    </div>
+													  </div>
+													</div> --%>
 	</div>
 
 		<%@include file="mainfooter.jsp" %>
@@ -1443,7 +1517,7 @@ tr td button {
 	<script id="upPrice" type="text/x-jsrender">
 			<tr>
 				<td scope="col" class="inside-text"></td>
-				<td scope="col" class="inside-up-text"><button onClick="(function(){
+				<td scope="col" class="inside-up-text"><button data-tooltip-text="호가 클릭 시 단가가 입력 됩니다." onClick="(function(){
 							$('#buying_price').val('{{:up}}');
 							$('#selling_price').val('{{:up}}');
 							$('#mySelect').val('{{:up}}');
@@ -1459,7 +1533,7 @@ tr td button {
 	<script id="downPrice" type="text/x-jsrender">
 			<tr>
 				<td scope="col" class="inside-text"></td>
-				<td scope="col" class="inside-down-text"><button onClick="(function(){
+				<td scope="col" class="inside-down-text"><button data-tooltip-text="호가 클릭 시 단가가 입력 됩니다." onClick="(function(){
 							$('#buying_price').val('{{:down}}');
 							$('#selling_price').val('{{:down}}');
 							$('#mySelect').val('{{:down}}');

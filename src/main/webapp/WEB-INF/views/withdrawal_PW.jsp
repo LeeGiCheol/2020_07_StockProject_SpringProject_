@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>
+<title>회원탈퇴</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
@@ -30,7 +30,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 		
 			<!-- cont-area -->	
 			<div class="cont-area"> 
-				<h1 class="tit-h1 line">내정보 관리</h1>
+				<h1 class="tit-h1 line">회원탈퇴</h1>
 
 				<div class="info-modify">
 					<div class="message-st-01">
@@ -44,7 +44,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
  						<input name="returnUrl" type="hidden" value="/rpan/member/info/userInfo">
  						<input name="linkUrl" type="hidden" value="">
 						<fieldset>
-							<legend>정보조회/변경 비밀번호 재입력</legend> 
 							<div class="info-password">
 								<p class="id">
 									<label>아이디</label>
@@ -54,7 +53,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<input type="text" name="temp1" style="width:0px;height:0px;display:none;">
 										<input type="password" name="temp2" style="width:0px;height:0px;display:none;">
 										
-										<input type="text" placeholder="" disabled="" id="custId" name="custId" value="${loginUser.id}"> 
+										<input type="text" id="custId" name="custId" value="${loginUser.id}"> 
 									</span>
 								</p>
 								<p class="pw">
@@ -66,20 +65,14 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							</div>
 							<div class="bt-area align-c">  
 								<button id="submit" type="button" class="btn-b fantasy" >확인</button>
+								<button type="button" class="btn-b fantasy" onclick="window.location.href='/myPage01'">취소</button>
 							</div>
 						</fieldset> 
 					</form>
 				</div>
-				<!-- //info-modify -->
-
-			</div><!-- //cont-area -->
-		</div><!-- //contents -->  
-	
-
-
-
+			</div>
+		</div>  
 	</div>
-		
 	<%@include file="mainfooter2.jsp" %>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -102,14 +95,28 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				success: function(data){ 
 				console.log(data)
 						if(data == 1){
-							swal({text:"탈퇴되었습니다", icon:"success"}).then(function(){
-								location.href = '/withdrawal?id=${loginUser.id}'
-								self.close();
-							});
+							swal({
+								  text: "정말 탈퇴하시겠습니까?",
+								  icon: "warning",
+								  buttons: true,
+								  dangerMode: true,
+								})
+								.then((willDelete) => {
+								  if (willDelete) {
+								    swal("성공적으로 탈퇴되었습니다. 이용해주셔서 감사합니다.", {
+								      icon: "success",
+								    }).then(function(){
+								    	location.href = '/withdrawal?id=${loginUser.id}'
+											self.close();									    	
+								    });
+								  } else {
+								    swal("회원탈퇴가 취소되었습니다.");
+								  }		        		
+					    	})
 							
 						}else{
 							swal({text:"비밀번호가 일치하지않습니다.", icon:"error"}).then(function(){
-								location.href = '/withdrawal/check'
+								location.href = '/withdrawal/check?id=${loginUser.id}'
 							});
 							$('#nowPassword').empty();
 					 	}

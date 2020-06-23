@@ -659,7 +659,7 @@ fieldset, img, abbr, acronym {
 .photo-list li > .text dd.date span.comment {
     padding-right: 15px;
     margin-right: 3px;
-    color: #1e78ff;
+    color: rgba(46,87,255,1);
     word-break: break-all;
     letter-spacing: -1px;
 }
@@ -710,4 +710,7 @@ fieldset, img, abbr, acronym {
 	background: url(/resources/img/ico_board.png) no-repeat 0 -60px;
 	text-indent: -9999em;
     margin-right: 5px;
+}
+input[type='radio']:checked:before {
+    background: rgba(46,87,255,1);
 }

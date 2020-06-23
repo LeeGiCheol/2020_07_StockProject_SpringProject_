@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,16 @@ import com.bitcamp.project.dao.BoardDAO;
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.UserVO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
 
 	@Autowired
 	private BoardDAO boardDAO;
+	
+	@Autowired
+	HttpSession session;
 	
 	@Override
 	public int writeFreeBoard(BoardVO vo) {
@@ -56,7 +62,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword, String orderby, int bno, int page) {
 		PagingVO boardPage = null;
-
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		
 //		boardPage.getUtil().put("",vo.get)
 //		boardPage.setId(vo.getId());

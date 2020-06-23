@@ -42,49 +42,52 @@ public class SignInController {
 	
 	@PostMapping(value="/signIn")
 	public ModelAndView signIn(@ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		String saveId = request.getParameter("saveId");
-		 //아이디 저장 여부를 보고 쿠키로 아이디값 저장
-        if(saveId!=null) {
-            Cookie c = new Cookie("saveId",id);
-            //쿠키값 저장 시간을 지정함, 숫자당 1초로 계산
-            c.setMaxAge(60*60*24*7); //7일간 저장
-            response.addCookie(c);
-        }else {
-            Cookie c = new Cookie("saveId",id);
-            c.setMaxAge(0);
-            response.addCookie(c);
-        } 
+		
+		
 		ModelAndView mav = new ModelAndView();
 		UserVO vo = new UserVO();
 		vo.setId(id);
-		vo = signInService.logIn(vo);
+		
+		try {
+			vo = signInService.logIn(vo);
 			String dbPw = vo.getPw(); // db에 저장된 pw
             String inputPw = pw;	// 사용자가 입력한 pw
             System.out.println("1 "+dbPw);
             System.out.println("2 " +inputPw);
-            if(vo != null) {
-	            if(bPasswordEncoder.matches(pw, dbPw)) {
-	            	System.out.println("비밀번호가 일치함");
-	                vo.setPw(dbPw);
-	                session.setAttribute("loginUser", vo);
-					mav.addObject("msg", "로그인 성공!");
-					mav.addObject("location", "/mainPage");
-					mav.setViewName("notice");
-					return mav;
-	            }else {
-	            	System.out.println("비밀번호가 ㄴㄴ");
-	            	mav.addObject("msg", "로그인 실패!");
-					mav.addObject("location", "/signInPage");
-					mav.setViewName("notice");
-					return mav;
-	            }
-            }
-			else {
-				mav.addObject("msg", "로그인 실패!");
+
+            if(bPasswordEncoder.matches(pw, dbPw)) {
+                vo.setPw(dbPw);
+                session.setAttribute("loginUser", vo);
+				mav.setViewName("mainpage");
+				
+
+				String saveId = request.getParameter("saveId");
+				//아이디 저장 여부를 보고 쿠키로 아이디값 저장
+				if(saveId!=null) {
+		            Cookie c = new Cookie("saveId",id);
+		            //쿠키값 저장 시간을 지정함, 숫자당 1초로 계산
+		            c.setMaxAge(60*60*24*7); //7일간 저장
+		            response.addCookie(c);
+		        }else {
+		            Cookie c = new Cookie("saveId",id);
+		            c.setMaxAge(0);
+		            response.addCookie(c);
+		        } 
+				
+				return mav;
+            }else {
+            	mav.addObject("msg", "입력한 정보가 일치하지 않습니다!");
 				mav.addObject("location", "/signInPage");
 				mav.setViewName("notice");
 				return mav;
-			}
+            }
+		}
+		catch(Exception e) {
+			mav.addObject("msg", "입력한 정보가 일치하지 않습니다!");
+			mav.addObject("location", "/signInPage");
+			mav.setViewName("notice");
+			return mav;
+		}
             
 	}
 	
@@ -134,7 +137,7 @@ public class SignInController {
 			vo.setTel(tel);
 			vo = signInService.findId(vo);
 			session.setAttribute("findUser", vo);
-			if(vo == null) { // 없는 전화번호
+			if(vo == null || tel.equals("")) { // 없는 전화번호
 				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
 			}else if(vo.getId().contains("_naver_"))  {
 				model.addAttribute("msg", "회원님은 네이버회원이십니다. 네이버로 이동합니다");
@@ -149,7 +152,10 @@ public class SignInController {
 			}else {
 				ExampleSend es = new ExampleSend(); // 문자보내는 클래스 
 				ExampleSend.main(args, tel);  // 문자보내는 메서드
-				return "/forgetidpage-try-success";
+				model.addAttribute("msg", "번호를 확인중입니다.");
+				model.addAttribute("icon", "success");
+				model.addAttribute("location", "/forgetIdTry");
+				return "/msg";
 			}
 		}
 		

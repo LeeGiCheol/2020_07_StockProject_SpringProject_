@@ -71,40 +71,34 @@ public class MyPageController {
 		return "/withdrawal_PW";
 	}
 	
-	@GetMapping(value = "/withdrawal")
-	public String withdrawal(HttpSession session, @ModelAttribute("id") String id,String code, String state) throws IOException {
-//		String ID = ((UserVO)session.getAttribute("loginUser")).getId();
-
-		if (id.substring(id.length() - 1).equals("_")) { // 끝글자 _ 확인
-
-			String[] ID_s = id.split("_");
-
-			switch (ID_s[ID_s.length - 1]) {
-			case "kakao":
-				System.out.println("카카오 연결끊기");
-				signInService.withdrawal_Kakao((String) session.getAttribute("access_Token")); // 카카오 연결 해제 완료
-				signInService.withdrawal(id); // id로 서비스 회원탈퇴
-				session.invalidate();
-				return "redirect:/mainPage";
-
-			case "naver":
-				signInService.withdrawal(id);// id로 서비스 회원탈퇴
-				return "naverLogout";
-
-
-			default:
-				signInService.withdrawal(id); // id로 서비스 회원탈퇴
-				session.invalidate();
-				return "redirect:/mainPage";
-			}
-
-		}
-		signInService.withdrawal(id); // id로 서비스 회원탈퇴
+	//네이버 jSP에서 확인 누르면 최종탈퇴하러 오는곳
+	@GetMapping(value = "/withdrawalNaverDecision")
+	public String withdrawalNaverDecision(@ModelAttribute("id") String id, HttpSession session){
+		signInService.withdrawal(id);
 		session.invalidate();
-		return "redirect:/mainPage";
+		return "redirect:/signInPage";
 	}
 	
-
+	//카카오 jSP에서 확인 누르면 최종탈퇴하러 오는곳
+	@GetMapping(value = "/withdrawalKakaoDecision")
+	public String withdrawalKakaoDecision(@ModelAttribute("id") String id, HttpSession session){
+		signInService.withdrawal_Kakao((String) session.getAttribute("access_Token")); // 카카오 연결 해제 완료
+		signInService.withdrawal(id);
+		session.invalidate();
+		return "redirect:/signInPage";
+	}
+	
+	@GetMapping(value = "/withdrawal")
+	public String withdrawal(Model model, HttpSession session, @ModelAttribute("id") String id,String code, String state) throws IOException {
+		if (id.substring(id.length() - 1).equals("_")) { // social로 회원가입 했으면
+			return "socialUnlock";
+		}else {
+			signInService.withdrawal(id); // 자체회원가입 했으면
+			session.invalidate();
+			return "redirect:/signInPage";
+		}
+	}
+	
 	@GetMapping(value = "/checkCharging")
 	@ResponseBody
 	public int checkCharging(HttpSession session) {
@@ -256,7 +250,11 @@ public class MyPageController {
 				tradeNotice.get(i).put("tprice", formatter.format(tradeNotice.get(i).get("tprice")));
 				modifiedNotice.add(tradeNotice.get(i));
 			}
-
+			
+			for (int i = 0; i < commentNotice.size(); i++) {
+				commentNotice.get(i).put("ndatetime", new Date(((Date) commentNotice.get(i).get("ndatetime")).getTime() - (1000 * 60 * 60 * 9)));
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

@@ -52,49 +52,6 @@
 
 </script> 
 </head>
-<style>
-/* 각 메누리스트에 아이디값을 주고 가장먼저 스타일이 적용되게 페이지내에 코드 작성 */
-
-
-/* 
-현재페이지 메뉴 */
-#portTitle{
-border-left: 4px solid #1e78ff !important;
-    color: black !important;
-    font-weight: 600 !important;
-    background: #f6f6f6 !important;
-}
-/* 폰트강조 */
-#portTitle a, #portTitle a:visited, #portTitle a:link{
-	    color: black!important;
-  font-weight: 600 !important;
- 
-}
-
-
-
-
-.newsboard-nav-tab li.selected a {
-    z-index: 3;
-    background: #fff;
-    line-height: 50px;
-    color: #5a6268 !important;
-    border-bottom: 2px solid #1e78ff;
-    font-weight: 600;
-}
-.newsboard-nav-tab li {
-    width: 33.333%;
-    letter-spacing: 1px;
-}
-@media only screen and (max-width: 979px) {
-.newsboard-area {
-
-    margin-bottom: 0;
-
-}
-
-} 
-</style>
 <body>
 
 	<%@include file="mainheader.jsp" %> 
@@ -104,64 +61,33 @@ border-left: 4px solid #1e78ff !important;
 			<div class="board-page">
 				<div class="row">
 					<div class="col-md-2">
-						<div class="sidebar sticky" id="cssmenu">
-							<ul>
-<!-- 현재 페이지 리스트 부분 강조를 위해 각각이아디 값을줌 -->
-							<li id="freeTitle"><a href="/board/free"><span>자유게시판</span></a></li>
-							<li id="portTitle" class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-							<li id="newsTitle"class="last"><a href="/news"><span>뉴스</span></a></li>
+						<div class="sidebar sticky" id="cssmenu" style="position: relative;">
+							<ul>	
+								<li><a href="/board/free"><span>자유게시판</span></a></li>
+								<li class="selected mid last"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
+								<li><a href="/news"><span>오늘의 뉴스</span></a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-10">
 						<div class="free-board" role="main">
-							<div class="drop-nav">
-								<h1 class="tit-h1 line">자유게시판</h1>
-							</div>
-							<div class="m-drop-nav">
-								<h1 class="m-drop-tit-title line" style="cursor:pointer;">포트폴리오 ▼</h1>
-							</div>
-							<div class="m-drop-down">
-								<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/board/free">자유게시판</a></h1>
-								<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/board/portfolio">포트폴리오</a></h1>
-								<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/news">뉴스</a></h1>
-							</div>
-  <script type="text/javascript">
-  $( document ).ready(function() {
-
-	  var $sticky = $('.sticky');
-	  var $stickyrStopper = $('.footer_info');
-	  if (!!$sticky.offset()) { // make sure ".sticky" element exists
-
-	    var generalSidebarHeight = $sticky.innerHeight();
-	    var stickyTop = $sticky.offset().top;
-	    var stickOffset = 0;
-	    var stickyStopperPosition = $stickyrStopper.offset().top;
-	    var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-	    var diff = stopPoint + stickOffset;
-
-	    $(window).scroll(function(){ // scroll event
-	      var windowTop = $(window).scrollTop(); // returns number
-
-	      if (stopPoint < windowTop) {
-	          $sticky.css({ position: 'relative', top: diff });
-	      } else if (stickyTop < windowTop+stickOffset) {
-	          $sticky.css({ position: 'fixed', top: stickOffset });
-	      } else {
-	          $sticky.css({position: 'relative', top: 'initial'});
-	      }
-	    });
-
-	  }
-	  $(".m-drop-nav").click(function(){
-		    $(".m-drop-down").slideToggle("slow");
-		  });
-  });
-  
-
-
- 
-  </script>							
+						<div class="drop-nav">
+							<h1 class="tit-h1 line">포트폴리오</h1>
+						</div>
+						<div class="m-drop-nav">
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">포트폴리오 <i class="fas fa-angle-down"></i></h1>
+						</div>
+						<div class="m-drop-down">
+							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+								<a href="/board/free">자유게시판</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/board/portfolio">포트폴리오</a>
+							</h1>
+							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+								<a href="/news">오늘의 뉴스</a>
+							</h1>
+						</div>						
 							<form name="form" id="form" role="form" method="POST" action="/board/portfolio/write">
 								<div class="form-table">
 									<table>
@@ -212,7 +138,7 @@ border-left: 4px solid #1e78ff !important;
 								</div>
 								<div class="bt-area">
 									<a href="/board/free" class="btn-m">취소</a>
-									<span><a href="javascript:btnSave();" class="btn-m red" id="addBtn">작성</a></span>
+									<span><a href="javascript:btnSave();" class="btn-m fantasy" id="addBtn">작성</a></span>
 								</div>
 							</form>
 						</div>
@@ -251,6 +177,55 @@ border-left: 4px solid #1e78ff !important;
 	</article>   --%>
 	<%@include file="mainfooter2.jsp" %>
 	
+	
+	
+		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
+
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
+
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
+
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
+
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
 <script type="text/javascript">
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({

@@ -62,6 +62,7 @@ function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) &&
       </div>
    </div>
    <%@include file="mainfooter.jsp"%>
+   
    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
