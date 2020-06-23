@@ -9,7 +9,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script>
 	window.onload  = function() {
-		if(${msg eq 'null'}){
+		if(${msg eq 'login'}){
 				window.location.href="${location}";
 		}else{
 			
