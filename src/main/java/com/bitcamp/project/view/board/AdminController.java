@@ -24,7 +24,7 @@ public class AdminController {
 	HttpSession session;
 	
 
-	@GetMapping("admin/main")
+	@GetMapping("/admin/main")
 	public ModelAndView adminPage() {
 		ModelAndView mav = new ModelAndView();
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
@@ -39,7 +39,7 @@ public class AdminController {
 		return mav;
 	}
 	
-	@GetMapping("admin/qna")
+	@GetMapping("/admin/qna")
 	public String adminQnaList(QnaVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
 
@@ -54,7 +54,7 @@ public class AdminController {
 		return "adminQna";
 	}
 	
-	@GetMapping("admin/report")
+	@GetMapping("/admin/report")
 	public String adminReportList() {
 		return "adminReport";
 	}
