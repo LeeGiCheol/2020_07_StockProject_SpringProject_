@@ -107,4 +107,9 @@ public class AdminController {
 	public String adminReportList() {
 		return "adminReport";
 	}
+	
+	@GetMapping("/kgfpggrotaintdiopsdohaifntlwer;aelksfnsda;lgsantl;sadntdsf")
+	public String error() {
+		return "/error/404error";
+	}
 }
