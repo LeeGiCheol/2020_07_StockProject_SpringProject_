@@ -130,9 +130,9 @@ position: relative;
 .form-table table td [class*="input-style-case02"] {
     width: 100%;
 }
-.form-table table td [class*="input-style"] {
+/* .form-table table td [class*="input-style"] {
     width: 260px;
-}
+} */
 [class*="input-style"] {
     display: inline-block;
     position: relative;
