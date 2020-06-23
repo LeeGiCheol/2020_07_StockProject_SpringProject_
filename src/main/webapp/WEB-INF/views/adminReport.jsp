@@ -129,14 +129,14 @@
                                     </thead>
                                     <!--  데이터값 들어가는 곳 -->
                                     <tbody>
-                                       <c:forEach items="${reportList}" var="report" varStatus="status">
+                                       <c:forEach items="${rList}" var="re" varStatus="status">
 	                                       <tr>
-	                                            <td class="center">${report.rtype}</td>
+	                                            <td class="center">${re.reportType}</td>
 	                                            <td class="center">???</td>
-	                                            <td><p class="content">${report.title}</p></td>
-	                                            <td><p class="content">${report.rcontent}</p></td>
+	                                            <td><p class="content">${re.reportTitle}</p></td>
+	                                            <td><p class="content">${re.reportContent}</p></td>
 	                                            <td class="center">${boardDetail.nickname}</td>
-	                                            <td class="center">${report.sysdate}</td>
+	                                            <td class="center">${re.reportDate}</td>
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>
