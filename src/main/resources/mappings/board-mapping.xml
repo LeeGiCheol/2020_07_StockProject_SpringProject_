@@ -17,10 +17,19 @@
 			ORDER BY pno DESC
 			LIMIT 1;
 		</if>
-		
-		
-		
 	</insert>
+	
+	<select id="totalSearch_Stock" resultType="map">
+		SELECT * FROM stocklist WHERE stockName LIKE CONCAT('%',#{title},'%') limit 5;
+	</select>
+	
+	<select id="totalSearch_Free" resultType="map">
+		SELECT * FROM board WHERE bno = 1 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%'))  limit 5 
+	</select>
+	
+	<select id="totalSearch_Port" resultType="map">
+		SELECT * FROM board WHERE bno = 2 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%'))  limit 5
+	</select>
 	
 	<update id="updateBoard">
 		UPDATE board 

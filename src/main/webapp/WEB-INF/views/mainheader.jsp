@@ -88,9 +88,9 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav search">
-					<form class="form-inline my-2 my-lg-0">
+					<form class="form-inline my-2 my-lg-0" method='GET' action="/total-search">
 						<input class="form-control mr-sm-2 searchArea" type="search"
-							placeholder="통합검색" aria-label="Search">
+							placeholder="통합검색" aria-label="Search" name="keyword">
 						<button class="btn btn-outline-secondary my-2 my-sm-0 searchBttn"
 							type="submit">
 							<i class="fas fa-search"></i>
