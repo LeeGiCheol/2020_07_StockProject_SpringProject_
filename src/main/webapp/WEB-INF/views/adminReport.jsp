@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -128,15 +129,16 @@
                                     </thead>
                                     <!--  데이터값 들어가는 곳 -->
                                     <tbody>
-                                       <tr>
-                                            <td class="center">종류</td>
-                                            <td class="center">처리현황</td>
-                                            <td><p class="content">제목</p></td>
-                                            <td><p class="content">내용</p></td>
-                                            <td class="center">아이디</td>
-                                            <td class="center">05/22/2022</td>
-                                        </tr>
-
+                                       <c:forEach items="${reportList}" var="report" varStatus="status">
+	                                       <tr>
+	                                            <td class="center">${report.rtype}</td>
+	                                            <td class="center">???</td>
+	                                            <td><p class="content">${report.title}</p></td>
+	                                            <td><p class="content">${report.rcontent}</p></td>
+	                                            <td class="center">${boardDetail.nickname}</td>
+	                                            <td class="center">${report.sysdate}</td>
+	                                        </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                                 <!-- 신고테이블끝 -->
