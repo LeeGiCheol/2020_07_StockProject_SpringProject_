@@ -19,9 +19,6 @@
 	
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
-<style type="text/css">
-
-</style>
 </head>
 <body>
 	<%@include file="mainheader.jsp"%>
@@ -225,24 +222,6 @@
 				</div>
 
 				<div class="news-ranking">
-<!-- 					<div class="news-nav">
-						<ul class="nav" id="pills-tab" role="tablist">
-							<li class="breadcrumb-item" role="presentation"><a
-								class="nav-link active"  data-toggle="pill"
-								href="#pills-home" role="tab" aria-controls="pills-home"
-								aria-selected="true">실시간 속보</a></li>
-							<li class="breadcrumb-item" role="presentation"><a
-								class="nav-link"  data-toggle="pill"
-								href="#pills-profile" role="tab" aria-controls="pills-profile"
-								aria-selected="false">시황 전망</a></li>
-							<li class="breadcrumb-item" role="presentation"><a
-								class="nav-link"  data-toggle="pill"
-								href="#pills-contact" role="tab" aria-controls="pills-contact"
-								aria-selected="false">기업 종목분석</a></li>
-						</ul>
-						<button type="button" class="btn btn-secondary btn-sm news-plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
-					</div> -->
-					
 					<span class="news-tab">
 						<a class="selected" id="news-real-time" style="cursor:pointer;">실시간 속보</a>
 						<a id="new-market-conditions" style="cursor:pointer;">시황 전망</a>
@@ -316,15 +295,13 @@
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
 									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
-									<!-- <a href="#" class="social-type facebook">페이스북 로그인</a>
-									<a href="#" class="social-type google">구글 로그인</a> -->
 									</span>
 								</p>
 							</div>
 						</div>
 					</c:when>
 
-					<c:otherwise>
+					<c:when test="${loginUser.point >= 0}">
 						<div class="login-box">
 							<div class="div-login-box-after" style class="login-out">
 								<p class="proimg_div-after">
@@ -340,37 +317,53 @@
 											onclick="location.href='/logOut';">로그아웃</button>
 									</dt>
 									<dd>
-									<!-- 
-									로그인버튼 따로 오른쪽 보더추가 -->
-										<a id="leftLogin" href="/myPagePwCheck">내정보</a>
-									<c:set var="socialId" value="${loginUser.id}"/>
-									<c:choose>
-										<c:when test="${fn:contains(socialId,'_')}">
-											<a onclick="notLocal();">비밀번호 변경</a>
-										</c:when>
-										<c:otherwise>
-											<a href="mypageUpdatePassword">비밀번호 변경</a>
-										</c:otherwise>
-									</c:choose>
-										
+										<c:set var="socialId" value="${loginUser.id}"/>
+										<c:choose>
+											<c:when test="${fn:contains(socialId,'_')}">
+												<a class="socialLogin" href="/myPagePwCheck01">내정보</a>
+											</c:when>
+											<c:otherwise>
+												<a id="leftLogin" href="/myPagePwCheck01">내정보</a>
+												<a href="mypageUpdatePassword">비밀번호 변경</a>
+											</c:otherwise>
+										</c:choose>
 									</dd>
 								</dl>
 								<ul class="dot-list02 color-rightgray">
-									<li id="_liBall">자산 <a href="/myPagePwCheck">${money}원</a></li>
-									<li id="_liCyber">포인트 <a href="/myPagePwCheck">${loginUser.point}점</a></li>
+									<li id="_liBall">자산 <a href="/myPagePwCheck01">${money}원</a></li>
+									<li id="_liCyber">포인트 <a href="/myPagePwCheck02">${loginUser.point}점</a></li>
 								</ul>
 							</div>
-							<c:if test="${passwordCheckOk eq 'ok'}">
-								<div class="login-after-btn">
-									<a id="leftLogin" href="/myPage01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
-								</div>
-							</c:if>
-							<c:if test="${passwordCheckOk ne 'ok'}">
 								<div class="login-after-btn">
 									<a id="leftLogin" href="/myPagePwCheck01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
 								</div>
-							</c:if>
 						</div>
+					</c:when>
+					
+					<c:otherwise>
+						<div class="login-box">
+							<div class="div-login-box-after" style class="login-out">
+								<p class="proimg_div-after">
+									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
+										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+										class="current_badge_s"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+								</p>
+								<dl>
+									<dt>
+										<strong>관리자</strong>　님
+										<button type="button" class="logout"
+											onclick="location.href='/logOut';">로그아웃</button>
+									</dt>
+									<dd>
+									</dd>
+								</dl>
+							</div>
+								<div class="login-after-btn">
+									<a id="leftLogin" href="/admin/main">관리자페이지</a>
+								</div>
+						</div>
+					
 					</c:otherwise>
 				</c:choose>
 					<script type="text/javascript">

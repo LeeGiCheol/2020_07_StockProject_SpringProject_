@@ -88,7 +88,7 @@
 								<a href="/news">오늘의 뉴스</a>
 							</h1>
 						</div>						
-							<form name="form" id="form" role="form" method="POST" action="/qnaAnswer/writer">
+							<form name="form" id="form" role="form" method="POST" action="/qnaAnswer/write">
 								<div class="form-table">
 									<table>
 										<tbody>

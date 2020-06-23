@@ -29,40 +29,20 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
-					<c:if test="${passwordCheckOk eq 'ok'}"> <!-- 한번 비밀번호 체크 했으면 -->
-						<ul>
-							<li class="mid"><a href="/myPage01"><span>내 정보 관리</span></a></li>
-								<c:set var="socialId" value="${loginUser.id}"/>
-									<c:choose>
-										<c:when test="${fn:contains(socialId,'_')}">
-											<li class="mid"><a onclick="notLocal();"><span>비밀번호 재설정</span></a></li>
-										</c:when>
-										<c:otherwise>
-											<li class="mid"><a href="mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
-										</c:otherwise>
-									</c:choose>
-							<li class="mid"><a href="/myPage02"><span>나의 계좌정보</span></a></li>
-							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
-							<li class="selected"><a href="/myPage04"><span>알림</span></a></li>
-						</ul>
-					</c:if>
-					<c:if test="${passwordCheckOk ne 'ok'}"> <!-- 비밀번호 체크를 한번도 했으면 -->
 						<ul>
 							<li class="mid"><a href="/myPagePwCheck01"><span>내 정보 관리</span></a></li>
 								<c:set var="socialId" value="${loginUser.id}"/>
 									<c:choose>
 										<c:when test="${fn:contains(socialId,'_')}">
-											<li class="mid"><a onclick="notLocal();"><span>비밀번호 재설정</span></a></li>
 										</c:when>
 										<c:otherwise>
 											<li class="mid"><a href="mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
 										</c:otherwise>
 									</c:choose>
-							<li class="mid"><a href="/myPagePwCheck02"><span>나의 계좌정보</span></a></li>
+							<li class="mid"><a href="/myPagePwCheck02"><span>계좌정보</span></a></li>
 							<li class="mid"><a href="/myPagePwCheck03"><span>작성 글 | 댓글</span></a></li>
 							<li class="selected"><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
-					</c:if>
 					</div>
 				</div>
 				<div class="col-md-10">
