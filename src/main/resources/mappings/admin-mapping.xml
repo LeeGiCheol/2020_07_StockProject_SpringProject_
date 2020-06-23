@@ -21,7 +21,7 @@
 		WHERE qno=#{qno}
 	</update>
 	
-	<select id="qnaCount" parameterType="qna" resultType="int">
+	<select id="qnaCount" parameterType="admin" resultType="int">
 		SELECT COUNT(*)
 		FROM claimQuestion AS q
 		JOIN claimAnswer AS a
@@ -29,7 +29,7 @@
         WHERE q.qno = #{qno}
 	</select>
 	
-	<select id="qnaList" parameterType="page" resultType="qna">
+	<select id="qnaList" parameterType="page" resultType="admin">
 		SELECT * 
 		FROM claimQuestion 
 		WHERE 1=1
@@ -65,7 +65,7 @@
 		
 	</select>
 	
-	<select id="qnaDetail" parameterType="qna" resultType="qna">
+	<select id="qnaDetail" parameterType="admin" resultType="admin">
 		<if test="ano eq 1">
 			SELECT q.*, a.* 
 			FROM claimQuestion AS q

@@ -13,7 +13,7 @@ import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.AdminVO;
 
-@Repository("adminDAO")
+@Repository("AdminDAO")
 public class AdminDAOImpl implements AdminDAO {
 
 	@Autowired
