@@ -25,7 +25,7 @@
 <!--  스타일-->
   <link href="/resources/css/datatable.css" rel="stylesheet" />
         
-<!-- 통합관리자 -->
+<!-- 통합관리자s -->
  <link rel="stylesheet" href="/resources/css/admin.css">
 
 
@@ -88,9 +88,9 @@
                 </div>
                 
                 
-             <!-- 긴급메뉴 -->
+             <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
                 <div class="sb-sidenav-footer">
-                    <div class="small">퇴사하기</div>
+                    <div class="small">Logged in as:</div>
                     
                 </div>
                 
@@ -101,106 +101,19 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h2 class="mt-4">관리자페이지</h2>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">대시보드</li>
-                    </ol>
 
-
-
-                    <!-- 차트들어가는부분 -->
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-area mr-1"></i>
-                                    Area Chart Example
-                                    차트1
-                                </div>
-                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-bar mr-1"></i>
-                                    Bar Chart Example
-                                    차트2
-                                </div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-                    <div class="mainBottom mb-4">
-
-                            <div class="table-responsive">
-
-                                <!-- 문s의테이블 시작 -->
-                                <div class="left">
-                                <h5 class="mt-4">1:1문의</h5>
+						<div class="container-box">
+ 							<h4 class="mt-4">신고</h4>
                                 <table class="adminTable" width="100%" cellspacing="0">
                                     <!-- 테이블 데이터 헤더 -->
                                     <thead>
                                         <tr>
-                                            <th class="class center" style="width: 10%;">종류</th>
-                                            <th class="status center"style="width: 10%">처리현황</th>
-                                            <th class="title tleft" style="width: 55%">제목</th>
-                                            <th class="writer tleft" style="width: 10%">아이디</th>
-                                            <th class="date center" style="width: 15%">일시</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    
-                                    <!-- 데이터값 들어가는 곳 -->
-                                    <tbody>
-                                       <tr>
-                                            <td class="tClass center">종류</td>
-                                            <td class="tStatus center">처리현황</td>
-                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
-
-                                            <td class="tWriter tleft">아이디</td>
-                                            <td class="tDate center">05/22/2022</td>
-                                        </tr>
-                                        
-                                       <tr>
-                                            <td class="tClass center">종류</td>
-                                            <td class="tStatus center">처리현황</td>
-                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
-
-                                            <td class="tWriter tleft">아이디</td>
-                                            <td class="tDate center">05/22/2022</td>
-                                        </tr>
-                                        
-                                        
-
-
-                                    </tbody>
-                                </table>
-                                </div>
-                                <!-- 문의테이블끝 -->
-								
-                                
-                                
-                                
-                                <!-- 신고테이블 시작 -->
-                               <div class="right">
-                                
-                                <h5 class="mt-4">신고</h5>
-                                <table class="adminTable tRight" width="100%" cellspacing="0">
-                                    <!-- 테이블 데이터 헤더 -->
-                                    <thead>
-                                        <tr>
-                                            <th class="class center" style="width: 10%;">종류</th>
-                                            <th class="status center"style="width: 10%">처리현황</th>
-                                            <th class="title tleft" style="width: 55%">제목</th>
-                                            <th class="writer tleft" style="width: 10%">아이디</th>
-                                            <th class="date center" style="width: 15%">일시</th>
+                                            <th class="class center" style="width: 8%;">종류</th>
+                                            <th class="status center"style="width: 8%">처리현황</th>
+                                            <th class="title tleft" style="width: 23%">제목</th>
+                                            <th class="content tleft" style="width: 30%">내용</th>                                           
+                                            <th class="writer tleft" style="width: 8%">아이디</th>
+                                            <th class="date center" style="width: 8%">일시</th>
                                         </tr>
                                     </thead>
                                     <!--  데이터값 들어가는 곳 -->
@@ -208,8 +121,8 @@
                                        <tr>
                                             <td class="tClass center">종류</td>
                                             <td class="tStatus center">처리현황</td>
-                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
-
+                                            <td class="tTitle tleft"> <a href="">메시지 요청uut용ij656635하지 않습니다.ioiuoiuouioghfhfghfguio</a></td>
+                                            <td class="tContent tleft"> <a href="">소리나게 하다, 꽝 치다, 찰싹 때리다, (술병 등을)따서 마koljklhkyhjghj다, 설명하다</a></td>
                                             <td class="tWriter tleft">아이디</td>
                                             <td class="tDate center">05/22/2022</td>
                                         </tr>
@@ -218,8 +131,8 @@
                                        <tr>
                                             <td class="tClass center">종류</td>
                                             <td class="tStatus center">처리현황</td>
-                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
-
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 tyuioiutryrtyrtytryrtoiu6534654ouiouio</a></td>
+                                            <td class="tContent tleft"> <a href="">소리나게 하다, 꽝 치다, 찰싹 때리다, (술병 등을)따서 마koljklhkyhjghj다, 설명하다</a></td>
                                             <td class="tWriter tleft">아이디</td>
                                             <td class="tDate center">05/22/2022</td>
                                         </tr>
@@ -228,14 +141,6 @@
                                     </tbody>
                                 </table>
                                 </div>
-                                <!-- 신고테이블끝 -->
-
-
-
-
-                        
-                        </div>
-                    </div>
 
 
 
