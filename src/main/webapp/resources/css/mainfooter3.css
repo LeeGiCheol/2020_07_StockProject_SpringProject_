@@ -223,8 +223,8 @@ max-width: 1250px;
     position: relative;
     float: left;
     left: 30px;
-    height: 78px;
-    margin-right: 20px;
+    height: 72px;
+    margin-right: 15px;
     margin-top: 10px;
 }
 #left {
@@ -246,7 +246,7 @@ list-style: none;
         margin-top: 20px;
 }
 #left li {    
-	font-size: 16px;}
+	font-size: 15px;}
 
 .listA > li:nth-child(2) > a{
 color:#535367;
@@ -259,10 +259,10 @@ color:#535367;
 	color:#535367 !important;
 }
 .listA{
-    width: 300px;
-    border-right: 1px solid #c7cace;
+width: 45%;
+    border-right: 1px solid #c7cacea3;
     margin-right: 20px;
-    border-left: 1px solid #c7cace;
+    border-left: 1px solid #c7cacea3;
     padding-left: 20px;
     padding-top: 10px;
 }
@@ -270,11 +270,11 @@ color:#535367;
 	font-size:16px;
 }
 .listB{
-	    width: 300px;
+	    width: 50%;
 	    padding-top: 10px;
 }
 .listC{
-	    width: 350px;
+	    width: 45%;
 }
 .listC li{
 	    width: 350px;    padding: 10px 0 !important;
@@ -283,29 +283,31 @@ color:#535367;
 	    padding-left: 46px !important;
 }
 #contacts{
-		font-size:16px;
+		font-size:18px;
 	text-align:left;
 	font-weight:600;color: #3861f7;    padding-top: 10px;
 }
 .footerIcon{
-	width: 35px;
-    height: 35px;
+	width: 32px;
+    height: 32px;
     display: block;
     position: absolute;
 }
 
 #right {
 list-style: none;
-    width: 650px;
+    width: 50%;
     text-align: left;
     display: inline-flex;
     letter-spacing: 1px;
     position: relative;    
-    margin-left: 100px;
+    margin-left: 2%;
 }
 
-#right li {  font-size: 16px;
-    padding: 4px 2px;}
+#right li {  
+	font-size: 16px;
+    padding: 3px 2px;letter-spacing: -1px;
+    }
 
 .liBold {font-weight: 600;}
 
