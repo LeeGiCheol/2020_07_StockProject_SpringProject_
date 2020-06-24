@@ -101,8 +101,9 @@
 .searchBttn{
 	color: white!important;
     border: 0!important;
-background: white !important;
-    height: 33px!important;
+	background: white !important;
+    /* height: 33px!important; */
+    height: calc(1.5em + .75rem + 2px);
     border-top-left-radius: 0!important;
     border-bottom-left-radius: 0!important;
 }
