@@ -95,15 +95,26 @@
     margin-right: 0 !important;
     width: 200px!important;
     background: white !important;
+    border: 0;
 }
 /* 검색버튼 */
 .searchBttn{
 	color: white!important;
     border: 0!important;
-background: #4b596f!important;
-    height: 36px!important;
+background: white !important;
+    height: 33px!important;
     border-top-left-radius: 0!important;
     border-bottom-left-radius: 0!important;
+}
+.searchBttn:hover{
+	    background: #54f9ff !important;
+}
+.fa-search:hover{
+/* 	color:white; */
+}
+/* 돋보기아이콘 */
+.fa-search{
+	    color: #3e4bff;
 }
 .navbar-light .navbar-brand {
     color: white !important;

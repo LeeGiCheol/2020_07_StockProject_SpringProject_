@@ -11,8 +11,8 @@
 	</insert>
 	
 	<insert id="writeAnswer">
-		INSERT INTO claimAnswer (qno, atitle, acontent, adatetime)
-		VALUES(#{qno}, #{atitle}, #{acontent}, now())
+		INSERT INTO claimAnswer (qno, acontent, adatetime)
+		VALUES(#{qno}, #{acontent}, now())
 	</insert>
 	
 	<update id="answerSuceess">

@@ -19,16 +19,17 @@
     <div class="footer">
 
         <div class="footer_content" id="mid">
-        <img  id="logoF" src="/resources/img/logo.png">
-            <ul id="left">
+        <div id="left">
+        <img  id="logoF" src="/resources/img/footerlogo2.png">
+            <ul>
                 <li id="companyName" class="liBold"><a href="/mainPage">Fantasy Stock</a></li>
                 <li>서울특별시 마포구 백범로 23 구프라자 B1</li>
                 <li>사업자등록번호: 220-01-2020 </li>
                 <li>Fax: 02-000-0000</li>
             </ul>
-            
+            </div>
             <div id="right">
-            <ul id="listA">
+            <ul class="listA">
                 <li id="Sitemap" class="liBold">사이트맵</li>
                   <li class="liBold"><a href="/customerLanding">고객센터</a></li>
               
@@ -37,24 +38,37 @@
                 <li><a href="/customClaimWrite">1:1문의</a></li>
                 
                 </ul>
-              <ul id="listB">
+              <ul class="listB">
                 
                <li class="liBold">커뮤니티</li>
                  <li><a href="/board/free">자유게시판</a></li>
                 <li><a href="/board/portfolio">포트폴리오</a></li>
                 <li><a href="/news">뉴스</a></li>
                 <li class="liBold"><a href="/trade">거래</a></li>
-                
-                
+
             </ul>
+            
+            <div class="listC">
+            <p id="contacts"class="liBold">Contact Us</p>
+            
+            <ul >
+                
+                 <li><img class="footerIcon" src="/resources/img/footeremail.png"><p>admin@fantasystock.com</p></li>
+                <li><img class="footerIcon" src="/resources/img/footerphone.png"><p>02-2020-0706</p></li>
+                <li><img class="footerIcon" src="/resources/img/footerkakao.png"><p>ID: fantasystock</p></li>
+
+            </ul>
+            
+            </div>
+            
+            
             </div>
         </div>
         <div class="footer_content" id="bottom">
             <ul>
                 <li id="copyright"class="liBold">Copyright ⓒ 2020 - 2020 fantasy stock. All rights reserved.</li>
-                <li>Tel: 1599-9999</li>
-                <li>Fax: 02-000-0000</li>
-                <li>Email: admin@fantasystock.com</li>
+                <li>Design by Yaejin</li>
+
             </ul>
         </div>
 

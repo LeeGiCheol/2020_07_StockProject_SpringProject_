@@ -67,9 +67,8 @@
         <div class="footer_content" id="bottom">
             <ul>
                 <li id="copyright"class="liBold">Copyright ⓒ 2020 - 2020 fantasy stock. All rights reserved.</li>
-                <li>Tel: 1599-9999</li>
-                <li>Fax: 02-000-0000</li>
-                <li>Email: admin@fantasystock.com</li>
+                <li>Design by Yaejin</li>
+
             </ul>
         </div>
 
