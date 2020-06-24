@@ -16,5 +16,6 @@ public interface AdminService {
 	public int questionDelete(AdminVO vo);
 	public int answerDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
+	public Map<String, Object> reportList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword);
 	public List<BoardVO> boardChart(BoardVO vo);
 }
