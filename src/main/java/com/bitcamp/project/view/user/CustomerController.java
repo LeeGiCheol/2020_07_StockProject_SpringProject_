@@ -208,7 +208,7 @@ public class CustomerController {
 			return mav;
 		}else {
 		
-			vo.setId(loginUser.getId());
+			vo.setNickname(loginUser.getNickname());
 			List<String> uploadThumbnail = new ArrayList<String>();
 
 			FileUpload file = new FileUpload();
@@ -250,10 +250,10 @@ public class CustomerController {
 			return "msg";
 		}
 		else {
-			vo.setId(loginUser.getId());
+			vo.setNickname(loginUser.getNickname());
 			
 			
-			Map<String, Object> qnaList = adminService.qnaList(vo, Integer.parseInt(nowPage), 15, searchStyle, keyword);	
+			Map<String, Object> qnaList = adminService.qnaList(vo, Integer.parseInt(nowPage), searchStyle, keyword, 15, "");	
 			model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
 			model.addAttribute("qnaPage", (PagingVO) qnaList.get("qnaPage"));
 			model.addAttribute("searchStyle", searchStyle);
@@ -279,7 +279,7 @@ public class CustomerController {
 		}
 		else {
 		
-			vo.setId(loginUser.getId());
+			vo.setNickname(loginUser.getNickname());
 			
 			int check = adminService.qnaCount(vo);
 			if(check == 1) {
@@ -364,7 +364,7 @@ public class CustomerController {
 			return "msg";
 		}
 		else {
-			vo.setId(loginUser.getId());
+			vo.setNickname(loginUser.getNickname());
 			
 			int check = adminService.qnaCount(vo);
 			if(check == 1) {

@@ -70,14 +70,14 @@
 		<div class="qna-desc">
 			<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
 			<span class="time">1:1로 접수 주시면 빠른답변을 받아보실 수 있습니다. 평일 08:30~17:30</span>
-			<a href="javascript:/customerClaim/write" class="inquiry">1:1문의</a>
+			<a href="/customerClaim/write" class="inquiry">1:1문의</a>
 		</div>
 		<!-- // qna-desc -->
 
 		<h2 class="tit-h2 type mopad">문의내역</h2>
 		<div class="table-scroll-no">
 			<table class="table-row">
-				<caption>Q&amp;A 상세내용 : 처리현황, 아이디, 제목, 내용에 대한 정보</caption>
+				<caption>Q&amp;A 상세내용 : 처리현황, 닉네임, 제목, 내용에 대한 정보</caption>
 				<colgroup>
 					<col style="width:25%;">
 					<col style="width:75%;">
@@ -88,8 +88,8 @@
 						<td><span class="ing">${qna.qcheck}</span></td>
 					</tr>
 					<tr>
-						<th scope="row">아이디</th>
-						<td>${qna.id}</td>
+						<th scope="row">닉네임</th>
+						<td>${qna.nickname}</td>
 					</tr>
 					<tr>
 						<th scope="row">제목</th>
