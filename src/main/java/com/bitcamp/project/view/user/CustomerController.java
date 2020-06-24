@@ -1,7 +1,9 @@
 package com.bitcamp.project.view.user;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -287,6 +289,14 @@ public class CustomerController {
 				vo.setAno(-1);
 			
 			AdminVO qna = adminService.qnaDetail(vo);
+
+				qna.setQdateTime(new Date(qna.getQdateTime().getTime()- (1000 * 60 * 60 * 9)));
+				if(qna.getAno() != 0) {
+					qna.setAdateTime(new Date(qna.getAdateTime().getTime()- (1000 * 60 * 60 * 9)));
+					
+				}
+			
+			
 			model.addAttribute("qna", qna);
 			model.addAttribute("qno", vo.getQno());
 			return "customerClaimDetail";

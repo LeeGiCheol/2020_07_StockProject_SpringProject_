@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,9 +52,7 @@ public class AdminServiceImpl implements AdminService {
 //		boardPage.setId(vo.getId());
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		PagingVO qnaPage = new PagingVO(adminDAO.pageCount(vo), nowPage, page);
-		System.out.println("@@@@ "+qnaPage);
 		
-		System.out.println("data2 "+adminDAO.pageCount(vo));
 		qnaPage.getUtil().put("searchStyle", searchStyle);
 		qnaPage.getUtil().put("keyword", keyword);
 		qnaPage.getUtil().put("id", vo.getId());
@@ -61,14 +60,17 @@ public class AdminServiceImpl implements AdminService {
 		if(loginUser.getPoint() < 0) {
 			qnaPage.getUtil().put("point", loginUser.getPoint());
 		}
+		
 			
-			List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
-			System.out.println("KKK "+qnaList);
-			System.out.println("pagegege " + qnaPage);
-			System.out.println("pageqnaListgege " + qnaList);
-//			for (int i = 0; i < qnaList.size(); i++) {
-//				qnaList.get(i).setBdateTime(new Date(qnaList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
-//			}
+		List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
+		for (int i = 0; i < qnaList.size(); i++) {
+			qnaList.get(i).setQdateTime(new Date(qnaList.get(i).getQdateTime().getTime()- (1000 * 60 * 60 * 9)));
+			if(qnaList.get(i).getAno() != 0) {
+				qnaList.get(i).setAdateTime(new Date(qnaList.get(i).getAdateTime().getTime()- (1000 * 60 * 60 * 9)));
+				
+			}
+		}
+		
 		postMap.put("qnaList", qnaList);
 		postMap.put("qnaPage", qnaPage);
 		return postMap;
