@@ -191,17 +191,23 @@
 					</div>
 					</c:if>					
 				
-					
+		<div class="bt-area-answer">
+
+
+			<span>
+				<c:if test="${qna.qcheck eq '준비중'}">
+					<a href="/customerClaim/update?qno=${qno}" class="btn-s">수정</a>
+				</c:if>
+				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
+			</span> 
+		</div>					
 			</div>	
 		
 		
 		<!-- // answer-box -->
 
 		<div class="bt-area">
-				<c:if test="${qna.qcheck eq '준비중'}">
-					<a href="/customerClaim/update?qno=${qno}" class="btn-s">수정</a>
-				</c:if>
-				<a href="/qnaAnswer/write?qno=${qno}" class="btn-s fantasy">답변</a>
+		<a href="/qnaAnswer/write?qno=${qno}" class="btn-s fantasy">답변</a>
 			<span>
 				<a href="/customerClaim/list" class="btn-s">목록</a>
 				
