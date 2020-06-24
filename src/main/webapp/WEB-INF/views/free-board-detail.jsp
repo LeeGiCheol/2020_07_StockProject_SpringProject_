@@ -257,19 +257,48 @@
 								<span class="select-style">
 									<select title="신고항목선택" id="rtype" name="rtype" class="selectpicker" tabindex="-98">
 										<option class="bs-title-option" value="">신고항목선택</option>
-										<option value="RP001">광고</option>
-										<option value="RP002">욕설</option>
-										<option value="RP003">허위루머</option>
-										<option value="RP004">타종목추천</option>
-										<option value="RP005">도배</option>
-										<option value="RP006">명예훼손</option>
-										<option value="RP007">주제무관</option>
-										<option value="RP008">위조/변조</option>
-										<option value="RP009">음란</option>
-										<option value="RP010">지역감정</option>
-										<option value="RP011">기타</option>
+										<option value="광고">광고</option>
+										<option value="욕설">욕설</option>
+										<option value="허위루머">허위루머</option>
+										<option value="타종목추천">타종목추천</option>
+										<option value="도배">도배</option>
+										<option value="명예훼손">명예훼손</option>
+										<option value="주제무관">주제무관</option>
+										<option value="위조/변조">위조/변조</option>
+										<option value="음란">음란</option>
+										<option value="지역감정">지역감정</option>
+										<option value="기타">기타</option>
 									</select>
-								</span>
+								</span>								
+								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
+							</p>
+							<dl class="pop-clean-info">
+								<dt>이용안내</dt>
+								<dd>
+									신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
+									<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
+								</dd>
+							</dl>
+							<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
+						
+						</div>
+						
+							<input type="hidden" name="pno" value="${boardDetail.pno}">
+							<input type="hidden" name="title" value="${boardDetail.title}">
+						
+						<div class="pop-btn">
+
+							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
+							<button type="submit" id="submitReport" class="btn-m red">신고하기</button>
+						</div>
+					</div>
+					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
+				</form> 
+			</div>
+		</div>
+	</div>
+
+
 	<script>
         /** 신고 기능들 모음 Report */
         var Report = (function($) {
@@ -413,34 +442,8 @@ function submitReportComt(){
 		}
 
 </script>
-								
-								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
-							</p>
-							<dl class="pop-clean-info">
-								<dt>이용안내</dt>
-								<dd>
-									신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
-									<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
-								</dd>
-							</dl>
-							<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
-						
-						</div>
-						
-							<input type="hidden" name="pno" value="${boardDetail.pno}">
-							<input type="hidden" name="title" value="${boardDetail.title}">
-						
-						<div class="pop-btn">
 
-							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
-							<button type="submit" id="submitReport" class="btn-m red">신고하기</button>
-						</div>
-					</div>
-					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
-				</form> 
-			</div>
-		</div>
-	</div>
+
 
 <script>
 

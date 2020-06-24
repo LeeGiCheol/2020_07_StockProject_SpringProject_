@@ -243,7 +243,7 @@ public class AdminController {
 		if (orderby.equals("")) {
 			orderby = "new";
 		}
-		Map<String, Object> reportList = adminService.reportList(vo, Integer.parseInt(nowPage), 30, searchStyle, keyword);
+		Map<String, Object> reportList = adminService.reportList(vo, Integer.parseInt(nowPage), 5, searchStyle, keyword);
 		model.addAttribute("reportList", (List<AdminVO>) reportList.get("reportList"));
 		model.addAttribute("reportPage", (PagingVO) reportList.get("reportPage"));
 		model.addAttribute("searchStyle", searchStyle);

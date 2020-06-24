@@ -9729,3 +9729,7 @@ html, body {
 .sb-sidenav-light .sb-sidenav-footer {
 	background-color: #e9ecef;
 }
+.sb-sidenav .sb-sidenav-menu .nav{
+	    padding-top: 0.75rem;
+	    font-size: 16px;
+}

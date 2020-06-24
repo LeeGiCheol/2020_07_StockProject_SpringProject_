@@ -112,8 +112,15 @@
 				ORDER BY pno DESC
 				LIMIT #{start}, #{cntPerPage}
 			</when>
+						<!-- 신고사항 -->
+			<when test='util.searchStyle.equals("search_rtype")'>
+				AND rtype LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY rdatetime DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
 			<otherwise>
 				ORDER BY rdatetime DESC
+				LIMIT #{start}, #{cntPerPage}
 			</otherwise>
 		</choose>
 	</select>
