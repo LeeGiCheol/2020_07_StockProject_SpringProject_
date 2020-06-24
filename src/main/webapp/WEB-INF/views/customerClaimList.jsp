@@ -100,7 +100,7 @@
 							<div class="qna-desc">
 								<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
 								<span class="time">1:1로 접수 주시면 빠른답변을 받아보실 수 있습니다. 평일 08:30~17:30</span>
-								<a href="javascript:pageMove('serviceInqryInsert');" class="inquiry">1:1문의</a>
+								<a href="/customerClaim/write" class="inquiry">1:1문의</a>
 							</div>
 							<h2 class="tit-h2 type mopad" style="">문의내역</h2>
 						<div class="board-type">
@@ -125,7 +125,7 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="no" scope="col">N0</th>
+											<th class="no" scope="col">종류</th>
 											<th class="title" scope="col">제목</th>
 											<th class="" scope="col">처리현황</th>
 											<th class="date" scope="col">작성일</th>
@@ -134,7 +134,7 @@
 									<tbody>
 										<c:forEach items="${qnaList}" var="qna">
 												<tr>
-													<td class="board-no">${qna.qno}</td>
+													<td class="board-no">${qna.qtype}</td>
 													<!-- 글번호 -->
 															<td class="board-title"><a
 																href="/customerClaim/detail?qno=${qna.qno}">${qna.qtitle}</a></td>

@@ -37,7 +37,6 @@
 <body class="sb-nav-fixed">
 
 
-
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!--    로고들어감 -->
         			<a href="/mainPage" class="navbar-logo">
@@ -56,7 +55,7 @@
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="/mainPage">로그아웃</a>
+                    <a class="dropdown-item" href="/logOut">로그아웃</a>
                 </div>
             </li>
         </ul>
@@ -106,7 +105,7 @@
 		<h2 class="tit-h2 type mopad">문의내역</h2>
 		<div class="table-scroll-no">
 			<table class="table-row">
-				<caption>Q&amp;A 상세내용 : 처리현황, 아이디, 제목, 내용에 대한 정보</caption>
+				<caption>Q&amp;A 상세내용 : 처리현황, 닉네임, 제목, 내용에 대한 정보</caption>
 				<colgroup>
 					<col style="width:25%;">
 					<col style="width:75%;">
@@ -117,8 +116,8 @@
 						<td><span class="ing">${qna.qcheck}</span></td>
 					</tr>
 					<tr>
-						<th scope="row">아이디</th>
-						<td>${qna.id}</td>
+						<th scope="row">닉네임</th>
+						<td>${qna.nickname}</td>
 					</tr>
 					<tr>
 						<th scope="row">제목</th>

@@ -43,7 +43,7 @@ public class AdminServiceImpl implements AdminService {
 	
 
 	@Override
-	public Map<String, Object> qnaList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword) {
+	public Map<String, Object> qnaList(AdminVO vo, int nowPage, String searchStyle, String keyword, int page, String orderby) {
 		
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
@@ -57,7 +57,8 @@ public class AdminServiceImpl implements AdminService {
 		System.out.println("data2 "+adminDAO.pageCount(vo));
 		qnaPage.getUtil().put("searchStyle", searchStyle);
 		qnaPage.getUtil().put("keyword", keyword);
-		qnaPage.getUtil().put("id", vo.getId());
+		qnaPage.getUtil().put("nickname", vo.getNickname());
+		qnaPage.getUtil().put("orderby", orderby);
 		
 		if(loginUser.getPoint() < 0) {
 			qnaPage.getUtil().put("point", loginUser.getPoint());

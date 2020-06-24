@@ -1,5 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -59,7 +61,7 @@
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="/mainPage">로그아웃</a>
+                    <a class="dropdown-item" href="/logOut">로그아웃</a>
                 </div>
             </li>
         </ul>
@@ -142,7 +144,7 @@
                                             <th class="class center" style="width: 10%;">종류</th>
                                             <th class="status center" style="width: 10%">처리현황</th>
                                             <th class="title tleft" style="width: 55%">제목</th>
-                                            <th class="writer tleft" style="width: 10%">아이디</th>
+                                            <th class="writer tleft" style="width: 10%">닉네임</th>
                                             <th class="date center" style="width: 15%">일시</th>
                                         </tr>
                                     </thead>
@@ -150,28 +152,22 @@
                                     
                                     <!-- 데이터값 들어가는 곳 -->
                                     <tbody>
-                                       <tr>
-                                            <td class="tClass center">종류</td>
-                                            <td class="tStatus center">처리현황</td>
-                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+                                    
+                                    
+                                    	<c:forEach var="qnaList" items="${qnaList}">
+	                                       <tr>
+	                                            <td class="tClass center">${qnaList.qtype}</td>
+	                                            <td class="tStatus center">${qnaList.qcheck}</td>
+	                                            <td class="tTitle tleft"> <a href="/admin/qna/detail?qno=${qnaList.qno}">${qnaList.qtitle}</a></td>
+	
+	                                            <td class="tWriter tleft">${qnaList.nickname}</td>
+	                                            <fmt:formatDate value="${qnaList.qdateTime}" var="time"
+													pattern="MM/dd HH:mm" />
+												<td class="board-date">${time}</td>
+	                                        </tr>
+                                        </c:forEach>
 
-                                            <td class="tWriter tleft">아이디</td>
-                                            <td class="tDate center">05/22/2022</td>
-                                        </tr>
-                                        
-                                       <tr>
-                                            <td class="tClass center">종류</td>
-                                            <td class="tStatus center">처리현황</td>
-                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
-
-                                            <td class="tWriter tleft">아이디</td>
-                                            <td class="tDate center">05/22/2022</td>
-                                        </tr>
-                                        
-                                        
-
-
-                                    </tbody>
+									</tbody>
                                 </table>
                                 </div>
                                 <!-- 문의테이블끝 -->

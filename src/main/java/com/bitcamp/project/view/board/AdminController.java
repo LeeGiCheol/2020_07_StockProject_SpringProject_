@@ -36,7 +36,8 @@ public class AdminController {
 	
 
 	@GetMapping("/admin/main")
-	public ModelAndView adminPage(BoardVO bVo) {
+	public ModelAndView adminPage(BoardVO bVo, AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
 		ModelAndView mav = new ModelAndView();
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
@@ -51,6 +52,23 @@ public class AdminController {
 		List<BoardVO> boardChart = adminService.boardChart(bVo);
 		System.out.println("boardChart "+boardChart);
 		mav.addObject("boardChart", boardChart);
+		
+		
+		
+		loginUser.getPoint();
+		
+		
+		if (nowPage == null || nowPage.equals("")) {
+			nowPage = "1";
+		}
+		if (searchStyle.equals("")) {
+			keyword = "";
+		}
+
+		Map<String, Object> qnaList = adminService.qnaList(vo, 0, "", "", 5, "main");
+		System.out.println("여 기 " +qnaList);
+		model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
+		
 		
 		
 		
@@ -82,8 +100,7 @@ public class AdminController {
 			keyword = "";
 		}
 
-		Map<String, Object> qnaList = adminService.qnaList(vo, Integer.parseInt(nowPage), 30, searchStyle, keyword);
-		System.out.println("qnaPageqnaPageqnaPage "+(PagingVO) qnaList.get("qnaPage"));
+		Map<String, Object> qnaList = adminService.qnaList(vo, Integer.parseInt(nowPage), searchStyle, keyword, 30, "");
 		model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
 		model.addAttribute("qnaPage", (PagingVO) qnaList.get("qnaPage"));
 		model.addAttribute("searchStyle", searchStyle);
@@ -227,7 +244,7 @@ public class AdminController {
 		if (orderby.equals("")) {
 			orderby = "new";
 		}
-		Map<String, Object> reportList = adminService.reportList(vo, Integer.parseInt(nowPage), 30, searchStyle, keyword);
+		Map<String, Object> reportList = adminService.reportList(vo, Integer.parseInt(nowPage), 5, searchStyle, keyword);
 		model.addAttribute("reportList", (List<AdminVO>) reportList.get("reportList"));
 		model.addAttribute("reportPage", (PagingVO) reportList.get("reportPage"));
 		model.addAttribute("searchStyle", searchStyle);

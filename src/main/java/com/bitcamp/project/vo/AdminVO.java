@@ -8,7 +8,6 @@ public class AdminVO {
 	
 	// Question
 	private int qno;
-	private String id;
 	private String qtitle;
 	private String qcontent;
 	
@@ -83,12 +82,6 @@ public class AdminVO {
 	public void setQno(int qno) {
 		this.qno = qno;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getQtitle() {
 		return qtitle;
 	}
@@ -141,7 +134,7 @@ public class AdminVO {
 	
 	@Override
 	public String toString() {
-		return "AdminVO [qno=" + qno + ", id=" + id + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qdateTime="
+		return "AdminVO [qno=" + qno + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qdateTime="
 				+ qdateTime + ", qcheck=" + qcheck + ", qtype=" + qtype + ", ano=" + ano + ", acontent=" + acontent
 				+ ", adateTime=" + adateTime + "]";
 	}

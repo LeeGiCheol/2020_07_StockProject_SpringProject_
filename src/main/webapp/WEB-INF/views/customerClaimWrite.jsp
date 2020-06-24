@@ -367,7 +367,7 @@ display: none;
 								            	<td>
 								                    <label for="writer"><b>작성자</b></label>
 								                    <input type="text" class="form-control" name="nickname" id="writer" value="${loginUser.nickname}" readonly>
-								                    <input type="hidden" name="id" value="${loginUser.id}">
+								                   <%--  <input type="hidden" name="id" value="${loginUser.id}"> --%>
 							               		</td>
 							               </tr>
 								            <tr>

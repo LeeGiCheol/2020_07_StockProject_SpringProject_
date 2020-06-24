@@ -6,8 +6,8 @@
 <mapper namespace="admin">
 
 	<insert id="writeQuestion">
-		INSERT INTO claimQuestion (id, qtitle, qcontent, qdatetime, qcheck, qtype)
-		VALUES(#{id}, #{qtitle}, #{qcontent}, now(), "준비중", #{qtype})
+		INSERT INTO claimQuestion (nickname, qtitle, qcontent, qdatetime, qcheck, qtype)
+		VALUES(#{nickname}, #{qtitle}, #{qcontent}, now(), "준비중", #{qtype})
 	</insert>
 	
 	<insert id="writeAnswer">
@@ -40,7 +40,7 @@
 			WHERE 1=1
 	
 		<if test="util.point &gt; 0">
-			AND id=#{util.id}
+			AND nickname=#{util.nickname}
 		</if>
 		
 		
@@ -64,6 +64,11 @@
 				OR qcontent LIKE CONCAT('%', #{util.keyword}, '%')
 				ORDER BY qno DESC
 				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- admin 메인페이지용 -->
+			<when test='util.orderby.equals("main")'>
+				ORDER BY qno DESC
+				LIMIT 5
 			</when>
 			<otherwise>
 				ORDER BY qno DESC
@@ -101,8 +106,15 @@
 				ORDER BY pno DESC
 				LIMIT #{start}, #{cntPerPage}
 			</when>
+						<!-- 신고사항 -->
+			<when test='util.searchStyle.equals("search_rtype")'>
+				AND rtype LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY rdatetime DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
 			<otherwise>
 				ORDER BY rdatetime DESC
+				LIMIT #{start}, #{cntPerPage}
 			</otherwise>
 		</choose>
 	</select>

@@ -257,17 +257,17 @@
 								<span class="select-style">
 									<select title="신고항목선택" id="rtype" name="rtype" class="selectpicker" tabindex="-98">
 										<option class="bs-title-option" value="">신고항목선택</option>
-										<option value="RP001">광고</option>
-										<option value="RP002">욕설</option>
-										<option value="RP003">허위루머</option>
-										<option value="RP004">타종목추천</option>
-										<option value="RP005">도배</option>
-										<option value="RP006">명예훼손</option>
-										<option value="RP007">주제무관</option>
-										<option value="RP008">위조/변조</option>
-										<option value="RP009">음란</option>
-										<option value="RP010">지역감정</option>
-										<option value="RP011">기타</option>
+										<option value="광고">광고</option>
+										<option value="욕설">욕설</option>
+										<option value="허위루머">허위루머</option>
+										<option value="타종목추천">타종목추천</option>
+										<option value="도배">도배</option>
+										<option value="명예훼손">명예훼손</option>
+										<option value="주제무관">주제무관</option>
+										<option value="위조/변조">위조/변조</option>
+										<option value="음란">음란</option>
+										<option value="지역감정">지역감정</option>
+										<option value="기타">기타</option>
 									</select>
 								</span>								
 								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>

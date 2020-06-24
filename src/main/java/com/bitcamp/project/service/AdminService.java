@@ -11,7 +11,7 @@ public interface AdminService {
 	public int writeQuestion(AdminVO vo);
 	public int writeAnswer(AdminVO vo);
 	public int qnaCount(AdminVO vo);
-	public Map<String, Object> qnaList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword);
+	public Map<String, Object> qnaList(AdminVO vo, int nowPage, String searchStyle, String keyword, int page, String orderby);
 	public AdminVO qnaDetail(AdminVO vo);
 	public int questionDelete(AdminVO vo);
 	public int answerDelete(AdminVO vo);
