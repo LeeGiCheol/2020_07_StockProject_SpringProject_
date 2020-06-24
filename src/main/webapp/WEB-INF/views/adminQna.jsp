@@ -30,7 +30,8 @@
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
 <link rel="stylesheet" href="/resources/css/free-board.css">
-<link href="/resources/css/free-board-detail.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/sidebar.css">	
+<!-- <link href="/resources/css/free-board-detail.css" rel="stylesheet"> -->
 
   <style type="text/css">
 .free-board {
@@ -271,29 +272,9 @@
  
  						<div class="free-board" >
 
- 							<div class="drop-nav">
+ 							
 								<h1 class="tit-h1 line">Q&amp;A</h1>
-							</div>
-							<div class="m-drop-nav">
-								<h1 class="m-drop-tit-title line" style="cursor: pointer;">Q&amp;A <i class="fas fa-angle-down"></i></h1>
-							</div>
-							<div class="m-drop-down">
-								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-									<a href="/customer">고객센터</a>
-								</h1>
-								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerNotice">공지사항</a>
-								</h1>
-								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerqna">도움말</a>
-								</h1>
-								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/write">1:1문의</a>
-								</h1>														
-								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/list">1:1문의 내역</a>
-								</h1>
-							</div>
+							
 							<div class="qna-desc">
 								<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
 								<span class="time">1:1로 접수 주시면 빠른답변을 받아보실 수 있습니다. 평일 08:30~17:30</span>
