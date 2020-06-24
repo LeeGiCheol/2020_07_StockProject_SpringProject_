@@ -57,6 +57,12 @@ tr td button{
 	margin: 0;
 	padding: 0;
 } 
+body {
+    line-height: 1;
+    -webkit-text-size-adjust: none;
+    background-color: #eff3f6;
+    color: #000;
+}
 .table{
 	margin-bottom: 0;
 }
@@ -1063,12 +1069,7 @@ max-width: 100%;
 
 /* 고객페이지 1:1 수정 디테일 */
 
-body {
-    line-height: 1;
-    -webkit-text-size-adjust: none;
-    background: #eff3f6;
-    color: #000;
-}
+
 table {
     table-layout: fixed;
     border-collapse: collapse;
@@ -1093,17 +1094,6 @@ legend, caption {
 .all-menu, .all-dim, .mob-menu {
     visibility: hidden;
 }
-.all-dim {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 6;
-    background-color: rgba(0,0,0, 0.5);
-    text-indent: -9999px;
-}
 .containerNew {
     position: relative;
     max-width: 1260px;
@@ -1116,6 +1106,8 @@ legend, caption {
     margin-bottom: /*70px*/40px;
     background: #fff;
     position: relative;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 }
 .qna-desc, .qna-desc .import, .qna-desc .time {
     line-height: 150%;

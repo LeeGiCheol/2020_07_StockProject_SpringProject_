@@ -15,7 +15,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href="/resources/css/writeForm.css" rel="stylesheet">
-<link href="/resources/css/free-board-detail.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/mainfooter2.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
@@ -84,6 +83,196 @@ border-left: 4px solid #1e78ff !important;
   font-weight: 600 !important;
  
 }
+
+
+
+.select-style {
+    position: relative;
+}
+.pop-clean .notify .select-style .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 240px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 220px;
+    min-width: 80px;
+}
+.bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"] {
+    float: none;
+    display: inline-block;
+    margin-left: 0;
+}
+[class*="select-style"] .btn-group {
+    border: #ccc 1px solid;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+    color: #888;
+}
+.btn-group > .btn:first-child {
+    margin-left: 0;
+}
+[class*="select-style"] button.btn {
+    color: #888;
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    min-width: 60px;
+    height: 26px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 0;
+    padding-left: 10px;
+}
+.bootstrap-select > .dropdown-toggle {
+    width: 100%;
+    padding-right: 25px;
+    z-index: 1;
+}
+.btn-group > .btn, .btn-group-vertical > .btn {
+    position: relative;
+    float: left;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+}
+.pull-left {
+    float: left !important;
+}
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    margin-top: -2px;
+    vertical-align: middle;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+        margin-top: 5px !important;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 0;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.bootstrap-select.btn-group .dropdown-menu.inner {
+    position: static;
+    float: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.bootstrap-select.btn-group .dropdown-menu li {
+    position: relative;
+}
+.bootstrap-select.btn-group .dropdown-menu li a {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+    display: inline-block;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.check-mark {
+    display: none;
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bootstrap-select > select {
+    position: absolute !important;
+    bottom: 0;
+    left: 50%;
+    display: block !important;
+    width: 0.5px !important;
+    height: 100% !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    border: none;
+}
+select {
+    min-width: 60px;
+    height: 28px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 0;
+}
+
+.guide-text {
+    font-size: 13px;
+    color: #888;
+    line-height: 150%;
+    margin-bottom: 30px;
+}
 </style>
 <body>
 
@@ -94,7 +283,6 @@ border-left: 4px solid #1e78ff !important;
 			<div class="board-page">
 				<div class="row">
 				<div class="col-md-2">
-				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
 							<li class="mid"><a href="/customer"><span>고객센터</span></a></li>
@@ -104,7 +292,6 @@ border-left: 4px solid #1e78ff !important;
 							<li><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
 						</ul>
 					</div>
-				</div>
 				</div>
 					<div class="col-md-10">
 						<div class="free-board" >
@@ -136,7 +323,7 @@ border-left: 4px solid #1e78ff !important;
 							
 							
 							
-							
+							<div class="guide-text">궁금하신 사항을 상세히 적어주시면 상담원들이 상세한 답변을 해드립니다.</div>
 							<form name="form" id="form" role="form" method="POST" action="/customerClaim/write">
 								<div class="form-table">
 									<table>
@@ -198,7 +385,7 @@ border-left: 4px solid #1e78ff !important;
 			</div>
 		</div>
 	
-	<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter2.jsp" %>
 	
 <script type="text/javascript">
 var oEditors = [];
