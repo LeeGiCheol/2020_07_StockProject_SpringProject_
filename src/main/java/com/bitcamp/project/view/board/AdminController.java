@@ -164,7 +164,6 @@ public class AdminController {
 	
 	@PostMapping(value="/admin/qna/answer/write")
 	public String qnaAnswerWrite(AdminVO vo, Model model, @ModelAttribute("qno") int qno, @ModelAttribute("acontent") String acontent) {
-		System.out.println(vo.getAcontent());
 		vo.setQno(qno);
 		
 		int check = adminService.qnaCount(vo);
@@ -185,32 +184,32 @@ public class AdminController {
 		
 		return "redirect:/admin/qna/detail?qno="+vo.getQno();
 	}
-//			
-//	@GetMapping(value="/admin/qna/answer/write")
-//	public String qnaAnswerWrite(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
-//		
-//		vo.setQno(qno);
-//		vo.setAno(-1);
-//		AdminVO qnaDetail = adminService.qnaDetail(vo);
-//		System.out.println("관리자 "+qnaDetail);
-//		model.addAttribute("qna", qnaDetail);
-//		adminService.writeAnswer(qnaDetail);
-//		
-//		
-//		return "adminQna";
-//	}
-//	
 	
-//	@GetMapping("/admin/qna/detail/ajax")
-//	public @ResponseBody Map<String, Object> adminQnaDetailAjax(AdminVO vo) {
-//		System.out.println(vo);
-//		AdminVO qnaDetail = adminService.qnaDetail(vo);
-//		System.out.println(vo);
-//		// 댓글리스트
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("qnaDetail", qnaDetail);
-//		return map;
-//	}
+	@GetMapping("/admin/qna/answer/update")
+	public String adminQnaUpdateView(AdminVO vo, Model model, @ModelAttribute("qno") int qno, @ModelAttribute("acontent") String acontent) {
+		vo.setQno(qno);
+		vo.setAno(1);
+		vo.setAcontent(acontent);
+		System.out.println("v?o "+vo);
+		AdminVO qnaDetail = adminService.qnaDetail(vo);
+		System.out.println("??? dsagasd " + qnaDetail);
+		model.addAttribute("qna", qnaDetail);
+		
+		
+		
+		
+		return "qnaAnswerUpdate";
+	}
+	
+	@PostMapping("/admin/qna/answer/update")
+	public String adminQnaUpdate(AdminVO vo, @ModelAttribute("qno") int qno) {
+		vo.setQno(qno);
+		
+		
+		adminService.updateAnswer(vo);
+		
+		return "redirect:/admin/qna/detail?qno="+vo.getQno();
+	}
 	
 	
 	@GetMapping("/admin/qna/delete")

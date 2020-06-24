@@ -35,6 +35,13 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.writeAnswer(vo);
 	}
 	
+	
+	
+	@Override
+	public int updateAnswer(AdminVO vo) {
+		return adminDAO.updateAnswer(vo);
+		
+	}
 	@Override
 	public int qnaCount(AdminVO vo) {
 		return adminDAO.qnaCount(vo);

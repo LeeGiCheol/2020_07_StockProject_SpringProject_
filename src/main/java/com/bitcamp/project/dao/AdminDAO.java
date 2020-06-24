@@ -10,6 +10,7 @@ import com.bitcamp.project.vo.BoardVO;
 public interface AdminDAO {
 	public int writeQuestion(AdminVO vo);
 	public int writeAnswer(AdminVO vo);
+	public int updateAnswer(AdminVO vo);
 	public int qnaCount(AdminVO vo);
 	public int pageCount(AdminVO vo);
 	public List<AdminVO> qnaList(PagingVO qnaPage); 

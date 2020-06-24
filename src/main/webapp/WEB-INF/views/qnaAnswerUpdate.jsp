@@ -31,10 +31,29 @@
         
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
+<script>
+	function btnSave(){
+		// bcontent에 내용 삽입
+		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
+		// 글제목
+		// 글내용 있는지 확인용 
+		var content = document.getElementsByTagName('p');
 
+				var contentValue = $('#bcontent').val();
+					
+		$("#form").submit();
+		
+		
+		
+		
+	};
+
+
+</script> 
 </head>
 
 <body class="sb-nav-fixed">
+
 
 
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -50,12 +69,12 @@
 
 
         <!-- Navbar 모바일 미디어 드롭메뉴- 사람아이콘 누르면 -->
-        <ul class="navbar-nav ml-auto mr-md-0">
+        <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="/logOut">로그아웃</a>
+                    <a class="dropdown-item" href="/mainPage">로그아웃</a>
                 </div>
             </li>
         </ul>
@@ -68,11 +87,12 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark"">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
+                        <div class="sb-sidenav-menu-heading">메인</div>
                         <a class="nav-link" href="/admin/main">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-             			               관리자페이지
+             			               대시보드
                         </a>
-
+                        <div class="sb-sidenav-menu-heading">사이트관리</div>
                         <a class="nav-link" href="/admin/qna">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
          				                   문의
@@ -84,7 +104,12 @@
                     </div>
                 </div>
                 
-
+                
+             <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    
+                </div>
                 
                 
                 
@@ -104,6 +129,8 @@
 
 		<h2 class="tit-h2 type mopad">문의내역</h2>
 		<div class="table-scroll-no">
+			
+			
 			<table class="table-row">
 				<caption>Q&amp;A 상세내용 : 처리현황, 닉네임, 제목, 내용에 대한 정보</caption>
 				<colgroup>
@@ -129,14 +156,6 @@
 							pattern="MM/dd HH:mm" />
 						<td class="board-date">${time}</td>
 					</tr>
-					<c:if test="${qna.acontent ne null}">
-						<tr>
-							<th scope="row">답변완료일</th>
-							<fmt:formatDate value="${qna.adateTime}" var="time"
-								pattern="MM/dd HH:mm" />
-							<td class="board-date">${time}</td>
-						</tr>
-					</c:if>
 					<tr>
 						<th scope="row">내용</th>
 						<td><div><p>${qna.qcontent}<br></p></div></td>
@@ -146,49 +165,27 @@
 			<!-- //table-row -->
 		</div>
 		<!-- // table-scroll-no -->
-
-		
- 			<div class="answer-box">
-				<strong class="tit">문의주신 내역에 대한 답변입니다.</strong>
-				
-					
-					<c:if test="${qna.acontent eq null}">
-						<div class="answer no-answer">
-							죄송합니다. 운영자의 답변이 아직 기재되지 않았습니다.<br>
-							24시간이 경과한 이후에도 답변이 없다면, 다시 문의하여 주시기 바랍니다. 빠른 시간안에 답변을 드리겠습니다.
+			<form name="form" id="form" role="form" method="POST" action="/admin/qna/answer/update">
+				<div class="answer-box-write">
+					<input type="hidden" name="qno" value="${qna.qno}">
+					<textarea class="form-control" rows="5" name="acontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;">${qna.acontent}</textarea>							
+						<div class="bt-area-answer">
+									<a href="/admin/qna/detail?qno=${qna.qno}" class="btn-s">취소</a>
+							<span>
+								<a href="javascript:btnSave();" class="btn-m fantasy" id="addBtn">작성</a>
+							</span> 
 						</div>
-					</c:if>
-					
-					<c:if test="${qna.acontent ne null }">
-					<div class="answer answer">
-						${qna.acontent}
-						
-						
-					</div>
-						 <div class="bt-area-answer">
-						<span>
-							<c:if test="${qna.qcheck eq '답변완료'}">
-								<a href="/admin/qna/answer/update?qno=${qna.qno}" class="btn-s">수정</a>
-								<a href="/admin/qna/delete?ano=${qna.ano}" class="btn-s fantasy">삭제</a>
-							</c:if>
-						</span> 
-						</div>	
-					</c:if>							
-			</div>
-		
+				</div>	
+			</form>		
 		
 		<!-- // answer-box -->
 
 		<div class="bt-area-answer">
-		
-		<c:if test="${qna.acontent eq null }">
-			<a href="/admin/qna/answer/write?qno=${qna.qno}"class="btn-s fantasy anwer-write-btn">답변</a>
-		</c:if>
-		
+		<a href="/qnaAnswer/write?qno=${qna.qno}"  class="btn-s fantasy anwer-write-btn">답변</a>
 			<span>
-				<a href="/admin/qna" class="btn-s">목록</a>
+				<a href="/customerClaim/list" class="btn-s">목록</a>
 				
-				<a href="/admin/qna/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
+				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
 			</span> 
 		</div>
 

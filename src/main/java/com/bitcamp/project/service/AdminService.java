@@ -10,6 +10,7 @@ import com.bitcamp.project.vo.BoardVO;
 public interface AdminService {
 	public int writeQuestion(AdminVO vo);
 	public int writeAnswer(AdminVO vo);
+	public int updateAnswer(AdminVO vo);
 	public int qnaCount(AdminVO vo);
 	public Map<String, Object> qnaList(AdminVO vo, int nowPage, String searchStyle, String keyword, int page, String orderby);
 	public AdminVO qnaDetail(AdminVO vo);
