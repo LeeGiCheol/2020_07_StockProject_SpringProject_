@@ -114,7 +114,7 @@
                                             <th class="center"style="width: 10%">처리현황</th>
                                             <th style="width: 25%">제목</th>
                                             <th style="width: 35%">내용</th>
-                                            <th class="center" style="width: 10%">신고자 아이디</th>
+                                            <th class="center" style="width: 10%">신고자 닉네임</th>
                                             <th class="center" style="width: 10%">신고 일시</th>
                                         </tr>
 									</thead>
@@ -132,7 +132,7 @@
 	                                       		<c:if test="${re.rtype eq 'RP009'}"><td class="center">음란</td></c:if>
 	                                       		<c:if test="${re.rtype eq 'RP010'}"><td class="center">지역감정</td></c:if>
 	                                       		<c:if test="${re.rtype eq 'RP011'}"><td class="center">기타</td></c:if>
-	                                            <td class="center">???</td>
+	                                            <td class="center">처리대기중</td>
 	                                            <td><p class="content">${re.title}</p></td>
 	                                            <td><p class="content">${re.rcontent}</p></td>
 	                                            <td class="center">${re.nickname}</td>

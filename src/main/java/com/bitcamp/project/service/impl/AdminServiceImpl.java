@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,9 +79,7 @@ public class AdminServiceImpl implements AdminService {
 	public Map<String, Object> reportList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		Map<String, Object> postMap = new HashMap<String, Object>();
-		PagingVO reportPage = new PagingVO(17, nowPage, page);
-		System.out.println("######### : " + reportPage);
-		System.out.println("@@@@@@ : " + page);
+		PagingVO reportPage = new PagingVO(adminDAO.reportCount(vo), nowPage, page);
 		reportPage.getUtil().put("searchStyle", searchStyle);
 		reportPage.getUtil().put("keyword", keyword);
 		/* reportPage.getUtil().put("id", vo.getId()); */
@@ -88,8 +87,11 @@ public class AdminServiceImpl implements AdminService {
 		if(loginUser.getPoint() < 0) {
 			reportPage.getUtil().put("point", loginUser.getPoint());
 		}
-			
+		
 		List<AdminVO> reportList = adminDAO.reportList(reportPage);
+		for (int i = 0; i < reportList.size(); i++) {
+			reportList.get(i).setRdatetime(new Date(reportList.get(i).getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
+		}
 		postMap.put("reportList", reportList);
 		postMap.put("reportPage", reportPage);
 		return postMap;
