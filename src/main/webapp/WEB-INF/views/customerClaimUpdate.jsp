@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>글수정페이지</title>
+<title>Q&amp;A</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
@@ -100,7 +100,7 @@ border-left: 4px solid #1e78ff !important;
 							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
 							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li id="claimList"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li id="claimList"><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -121,7 +121,7 @@ border-left: 4px solid #1e78ff !important;
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
 							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaim/write">1:1문의</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaim/list">1:1문의 내역</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaim/list">Q&amp;A</a></h1>
 						</div>
 							
 							

@@ -109,7 +109,7 @@ border-left: 4px solid #1e78ff !important;
 							<li class="selected mid"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
 							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 						
@@ -138,7 +138,7 @@ border-left: 4px solid #1e78ff !important;
 									<a href="/customerClaim/write">1:1문의</a>
 								</h1>														
 								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/list">1:1문의 내역</a>
+									<a href="/customerClaim/list">Q&amp;A</a>
 								</h1>
 							</div>											
 							
