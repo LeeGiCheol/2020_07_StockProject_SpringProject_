@@ -43,6 +43,10 @@ public class AdminDAOImpl implements AdminDAO {
 		return mybatis.selectOne("admin.qnaCount", vo);
 	}
 	@Override
+	public int pageCount(AdminVO vo) {
+		return mybatis.selectOne("admin.pageCount", vo);
+	}
+	@Override
 	public List<AdminVO> qnaList(PagingVO qnaPage) {
 		return mybatis.selectList("admin.qnaList", qnaPage);
 	}

@@ -21,6 +21,11 @@
 		WHERE qno=#{qno}
 	</update>
 	
+	<select id="pageCount" parameterType="admin" resultType="int">
+		SELECT COUNT(*)
+		FROM claimQuestion
+	</select>
+	
 	<select id="qnaCount" parameterType="admin" resultType="int">
 		SELECT COUNT(*)
 		FROM claimQuestion AS q
@@ -37,6 +42,8 @@
 		<if test="util.point &gt; 0">
 			AND id=#{util.id}
 		</if>
+		
+		
 		
 		<choose>
 			<!-- 제목검색 -->
@@ -60,6 +67,7 @@
 			</when>
 			<otherwise>
 				ORDER BY qno DESC
+				LIMIT #{start}, #{cntPerPage}
 			</otherwise>
 		</choose>
 		
