@@ -29,6 +29,31 @@ public class BoardVO {
 	
 	private String thumbnailName;
 
+	
+	private String chartDate;
+	private String chartCount;
+	
+	
+
+	public String getChartDate() {
+		return chartDate;
+	}
+
+
+	public void setChartDate(String chartDate) {
+		this.chartDate = chartDate;
+	}
+
+
+	public String getChartCount() {
+		return chartCount;
+	}
+
+
+	public void setChartCount(String chartCount) {
+		this.chartCount = chartCount;
+	}
+
 
 	public int getPno() {
 		return pno;

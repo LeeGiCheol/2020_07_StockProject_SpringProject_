@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bitcamp.project.vo.AdminVO;
+import com.bitcamp.project.vo.BoardVO;
 
 
 public interface AdminService {
@@ -16,4 +17,5 @@ public interface AdminService {
 	public int answerDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
 	public Map<String, Object> reportList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword);
+	public List<BoardVO> boardChart(BoardVO vo);
 }

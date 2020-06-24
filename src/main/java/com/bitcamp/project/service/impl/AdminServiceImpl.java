@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.project.dao.AdminDAO;
 import com.bitcamp.project.service.AdminService;
 import com.bitcamp.project.vo.AdminVO;
+import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
 
@@ -63,6 +64,8 @@ public class AdminServiceImpl implements AdminService {
 		}
 			
 			List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
+			System.out.println("pagegege " + qnaPage);
+			System.out.println("pageqnaListgege " + qnaList);
 //			for (int i = 0; i < qnaList.size(); i++) {
 //				qnaList.get(i).setBdateTime(new Date(qnaList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
 //			}
@@ -105,6 +108,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int answerDelete(AdminVO vo) {
 		return adminDAO.answerDelete(vo);
+	}
+	@Override
+	public List<BoardVO> boardChart(BoardVO vo) {
+		return adminDAO.boardChart(vo);
 	}
 	
 	

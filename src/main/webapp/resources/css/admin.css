@@ -14,15 +14,7 @@
       }
        
 #logo {
-    position: relative;
-    display: block;
-    width: 220px;
-    font-size: 0;
-    z-index: 1;
-    overflow: hidden;
-    float: left;
-    margin-right: 12px;
-    padding: 2px 0;
+    width: 180px;
 } 
 h5{
 	
@@ -51,9 +43,9 @@ h5{
 
 /* 
 오른쪽테이블 선나누기 */
-.tRight{
+/* .tRight{
 	border-left: 1px solid #dfdfdf;
-}
+} */
 table thead tr{
 	    background: #f7f7f7;
 	   border-bottom: 1px solid #dddddd;
@@ -118,9 +110,16 @@ tbody tr td{
 .tDate{
 	
 }
+.table-div{
+	padding: 1.25rem;
+}
 
-
-
+.navbar-logo{
+	width: 225px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+}
 
 
 .center{
@@ -182,4 +181,8 @@ thead tr th {
 	    font-size: 24px;
     margin-left: 5%;
 }
+}
+
+.sb-sidenav .sb-sidenav-menu .nav{
+	    padding-top: 0.75rem;
 }

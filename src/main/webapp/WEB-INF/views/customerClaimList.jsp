@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1:1 문의내역</title>
+<title>Q&amp;A</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- CSS파일 -->
 <link rel="stylesheet"
@@ -16,6 +16,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/free-board.css">
+<link href="/resources/css/free-board-detail.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/mainfooter2.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">	
@@ -67,7 +68,7 @@
 							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
 							<li class="mid"><a href="/customerClaim/write"><span>1:1 문의</span></a></li>
-							<li class="selected"><a href="/customerClaim/list"><span>1:1 문의내역</span></a></li>
+							<li class="selected"><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -75,10 +76,10 @@
 						<div class="free-board" >
 
  							<div class="drop-nav">
-								<h1 class="tit-h1 line">1:1 문의내역</h1>
+								<h1 class="tit-h1 line">Q&amp;A</h1>
 							</div>
 							<div class="m-drop-nav">
-								<h1 class="m-drop-tit-title line" style="cursor: pointer;">1:1 문의내역 <i class="fas fa-angle-down"></i></h1>
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">Q&amp;A <i class="fas fa-angle-down"></i></h1>
 							</div>
 							<div class="m-drop-down">
 								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
@@ -97,7 +98,12 @@
 									<a href="/customerClaim/list">1:1문의 내역</a>
 								</h1>
 							</div>
-
+							<div class="qna-desc">
+								<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
+								<span class="time">1:1로 접수 주시면 빠른답변을 받아보실 수 있습니다. 평일 08:30~17:30</span>
+								<a href="javascript:pageMove('serviceInqryInsert');" class="inquiry">1:1문의</a>
+							</div>
+							<h2 class="tit-h2 type mopad" style="">문의내역</h2>
 						<div class="board-type">
 <%-- 							<div class="board-free-nav">
 
@@ -108,7 +114,7 @@
 								</c:if>
 
 							</div> --%>
-							<!-- <h2 class="tit-h2 type mopad">1:1 문의내역</h2> -->
+							
 							<div class="tab-content" id="pills-tabContent">
 								<!-- 전체글 -->
 								<table class="board-free-table">

@@ -396,21 +396,5 @@ public class CustomerController {
 		}
 	}
 	
-	
-	@GetMapping(value="/qnaAnswer/write")
-	public String qnaAnswerWriteView(AdminVO vo, Model model) {
-		model.addAttribute("qno", vo.getQno());
-		return "qnaAnswerWrite";
-	}
-			
-	@PostMapping(value="/qnaAnswer/write")
-	public String qnaAnswerWrite(AdminVO vo, @ModelAttribute("qno") int qno) {
-		
-		vo.setQno(qno);
-		adminService.writeAnswer(vo);
-		
-		
-		return "customerClaimList";
-	}
-	
+
 }

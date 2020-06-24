@@ -31,7 +31,25 @@
         
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
+<script>
+	function btnSave(){
+		// bcontent에 내용 삽입
+		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
+		// 글제목
+		// 글내용 있는지 확인용 
+		var content = document.getElementsByTagName('p');
 
+				var contentValue = $('#bcontent').val();
+					
+		$("#form").submit();
+		
+		
+		
+		
+	};
+
+
+</script> 
 </head>
 
 <body class="sb-nav-fixed">
@@ -111,6 +129,8 @@
 
 		<h2 class="tit-h2 type mopad">문의내역</h2>
 		<div class="table-scroll-no">
+			
+			
 			<table class="table-row">
 				<caption>Q&amp;A 상세내용 : 처리현황, 아이디, 제목, 내용에 대한 정보</caption>
 				<colgroup>
@@ -145,24 +165,23 @@
 			<!-- //table-row -->
 		</div>
 		<!-- // table-scroll-no -->
-
-		
-			<div class="answer-box-write">
-				<textarea class="form-control" rows="5" name="bcontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>							
-					<div class="bt-area-answer">
-								<a href="/admin/qna/update?ano=${qna.ano}" class="btn-s">취소</a>
-						<span>
-							<c:if test="${qna.qcheck eq '답변완료'}">
-								<a href="/admin/qna/delete?ano=${qna.ano}" class="btn-s fantasy">작성</a>
-							</c:if>
-						</span> 
-					</div>
-			</div>			
+			<form name="form" id="form" role="form" method="POST" action="/admin/qna/answer/write">
+				<div class="answer-box-write">
+					<input type="hidden" name="qno" value="${qna.qno}">
+					<textarea class="form-control" rows="5" name="acontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>							
+						<div class="bt-area-answer">
+									<a href="/admin/qna/update?ano=${qna.ano}" class="btn-s">취소</a>
+							<span>
+								<a href="javascript:btnSave();" class="btn-m fantasy" id="addBtn">작성</a>
+							</span> 
+						</div>
+				</div>	
+			</form>		
 		
 		<!-- // answer-box -->
 
 		<div class="bt-area-answer">
-		<a <%-- href="/qnaAnswer/write?qno=${qna.qno}"  --%>class="btn-s fantasy anwer-write-btn">답변</a>
+		<a href="/qnaAnswer/write?qno=${qna.qno}"  class="btn-s fantasy anwer-write-btn">답변</a>
 			<span>
 				<a href="/customerClaim/list" class="btn-s">목록</a>
 				

@@ -11,8 +11,8 @@
 	</insert>
 	
 	<insert id="writeAnswer">
-		INSERT INTO claimAnswer (qno, atitle, acontent, adatetime)
-		VALUES(#{qno}, #{atitle}, #{acontent}, now())
+		INSERT INTO claimAnswer (qno, acontent, adatetime)
+		VALUES(#{qno}, #{acontent}, now())
 	</insert>
 	
 	<update id="answerSuceess">
@@ -146,6 +146,12 @@
 		UPDATE claimQuestion
 		SET qcheck = "준비중";
 	</delete>
+	
+	
+	<select id="boardChart" parameterType="board" resultType="map">
+		SELECT DATE_FORMAT(`bdateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
+		FROM board GROUP BY chartDate;
+	</select>
 	
 	
 </mapper>

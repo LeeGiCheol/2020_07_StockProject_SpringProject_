@@ -1,6 +1,6 @@
 package com.bitcamp.project.view.board;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.AdminService;
@@ -33,7 +35,7 @@ public class AdminController {
 	
 
 	@GetMapping("/admin/main")
-	public ModelAndView adminPage() {
+	public ModelAndView adminPage(BoardVO bVo) {
 		ModelAndView mav = new ModelAndView();
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
@@ -44,9 +46,17 @@ public class AdminController {
 			mav.setViewName("msg");
 		}
 		
+		
+		List<BoardVO> boardChart = adminService.boardChart(bVo);
+		System.out.println("boardChart "+boardChart);
+		mav.addObject("boardChart", boardChart);
+		
+		
+		
 		mav.setViewName("adminPage");
 		return mav;
 	}
+	
 	
 	@GetMapping("/admin/qna")
 	public String adminQnaList(AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
@@ -72,6 +82,7 @@ public class AdminController {
 		}
 
 		Map<String, Object> qnaList = adminService.qnaList(vo, Integer.parseInt(nowPage), 30, searchStyle, keyword);
+		System.out.println(qnaList);
 		model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
 		model.addAttribute("qnaPage", (PagingVO) qnaList.get("qnaPage"));
 		model.addAttribute("searchStyle", searchStyle);
@@ -107,6 +118,80 @@ public class AdminController {
 		
 		return mav;
 	}
+	
+	
+	
+	@GetMapping(value="/admin/qna/answer/write")
+	public String qnaAnswerWriteView(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
+		vo.setQno(qno);
+		AdminVO qnaDetail = adminService.qnaDetail(vo);
+		System.out.println("관리자 "+qnaDetail);
+		model.addAttribute("qna", qnaDetail);
+		model.addAttribute("qno", vo.getQno());
+		return "qnaAnswerWrite";
+	}
+	
+	@PostMapping(value="/admin/qna/answer/write")
+	public String qnaAnswerWrite(AdminVO vo, Model model, @ModelAttribute("qno") int qno, @ModelAttribute("acontent") String acontent) {
+		System.out.println(vo.getAcontent());
+		vo.setQno(qno);
+		
+		int check = adminService.qnaCount(vo);
+		if(check == 1) {
+			vo.setAno(1);
+		}
+		else
+			vo.setAno(-1);
+		System.out.println("v?o "+vo);
+		AdminVO qnaDetail = adminService.qnaDetail(vo);
+		qnaDetail.setAcontent(acontent);
+		System.out.println("v?o2 "+qnaDetail);
+		System.out.println("detail "+qnaDetail);
+		System.out.println("관리자 "+qnaDetail);
+		model.addAttribute("qna", qnaDetail);
+		adminService.writeAnswer(qnaDetail);
+		
+		
+		return "redirect:/admin/qna/detail?qno="+vo.getQno();
+	}
+//			
+//	@GetMapping(value="/admin/qna/answer/write")
+//	public String qnaAnswerWrite(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
+//		
+//		vo.setQno(qno);
+//		vo.setAno(-1);
+//		AdminVO qnaDetail = adminService.qnaDetail(vo);
+//		System.out.println("관리자 "+qnaDetail);
+//		model.addAttribute("qna", qnaDetail);
+//		adminService.writeAnswer(qnaDetail);
+//		
+//		
+//		return "adminQna";
+//	}
+//	
+	
+//	@GetMapping("/admin/qna/detail/ajax")
+//	public @ResponseBody Map<String, Object> adminQnaDetailAjax(AdminVO vo) {
+//		System.out.println(vo);
+//		AdminVO qnaDetail = adminService.qnaDetail(vo);
+//		System.out.println(vo);
+//		// 댓글리스트
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("qnaDetail", qnaDetail);
+//		return map;
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("/admin/qna/delete")
 	public String adminQnaDelete(AdminVO vo) {

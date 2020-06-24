@@ -51,7 +51,7 @@
 
 
         <!-- Navbar 모바일 미디어 드롭메뉴- 사람아이콘 누르면 -->
-        <ul class="navbar-nav ml-auto ml-md-0">
+        <ul class="navbar-nav ml-auto mr-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -69,12 +69,11 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark"">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">메인</div>
                         <a class="nav-link" href="/admin/main">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-             			               대시보드
+             			               관리자페이지
                         </a>
-                        <div class="sb-sidenav-menu-heading">사이트관리</div>
+
                         <a class="nav-link" href="/admin/qna">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
          				                   문의
@@ -86,12 +85,7 @@
                     </div>
                 </div>
                 
-                
-             <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    
-                </div>
+
                 
                 
                 
@@ -151,14 +145,14 @@
 				<strong class="tit">문의주신 내역에 대한 답변입니다.</strong>
 				
 					
-					<c:if test="${qna.atitle eq null}">
+					<c:if test="${qna.acontent eq null}">
 						<div class="answer no-answer">
 							죄송합니다. 운영자의 답변이 아직 기재되지 않았습니다.<br>
 							24시간이 경과한 이후에도 답변이 없다면, 다시 문의하여 주시기 바랍니다. 빠른 시간안에 답변을 드리겠습니다.
 						</div>
 					</c:if>
 					
-					<c:if test="${qna.atitle ne null }">
+					<c:if test="${qna.acontent ne null }">
 					<div class="answer answer">
 						${qna.acontent}
 						
@@ -179,11 +173,15 @@
 		<!-- // answer-box -->
 
 		<div class="bt-area-answer">
-		<a <%-- href="/qnaAnswer/write?qno=${qna.qno}"  --%>class="btn-s fantasy anwer-write-btn">답변</a>
+		
+		<c:if test="${qna.acontent eq null }">
+			<a href="/admin/qna/answer/write?qno=${qna.qno}"class="btn-s fantasy anwer-write-btn">답변</a>
+		</c:if>
+		
 			<span>
-				<a href="/customerClaim/list" class="btn-s">목록</a>
+				<a href="/admin/qna" class="btn-s">목록</a>
 				
-				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
+				<a href="/admin/qna/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
 			</span> 
 		</div>
 

@@ -72,5 +72,9 @@ public class AdminDAOImpl implements AdminDAO {
 		System.out.println("update "+vo);
 		return mybatis.update("admin.qnaUpdate", vo);
 	}
+	@Override
+	public List<BoardVO> boardChart(BoardVO vo) {
+		return mybatis.selectList("admin.boardChart", vo);
+	}
 	
 }
