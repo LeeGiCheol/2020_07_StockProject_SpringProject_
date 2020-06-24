@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -207,9 +208,9 @@ public class AdminController {
 	}
 	
 	
-	/*
+	
 	@GetMapping("/admin/report")
-	public String adminReportList(BoardVO vo, HttpServletRequest request, Model model, @ModelAttribute("bnowPage") String nowPage,
+	public String adminReportList(AdminVO vo, HttpServletRequest request, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 			@ModelAttribute("orderby") String orderby ) {
 
@@ -219,27 +220,19 @@ public class AdminController {
 		if (searchStyle.equals("")) {
 			keyword = "";
 		}
-		System.out.println("path " + request.getServletPath());
 
 		if (orderby.equals("")) {
 			orderby = "new";
 		}
-		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
-				orderby, -1, 30);
-		model.addAttribute("boardList", (List<BoardVO>) boardList.get("boardList"));
-		model.addAttribute("boardPage", (PagingVO) boardList.get("boardPage"));
+		Map<String, Object> boardList = adminService.reportList(vo, Integer.parseInt(nowPage), 30, searchStyle, keyword);
+		model.addAttribute("reportList", (List<BoardVO>) boardList.get("reportList"));
+		model.addAttribute("reportPage", (PagingVO) boardList.get("reportPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 		
-		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
-		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
+		
 		
 		return "adminReport";
 	}
-	*/
 	
-	
-	
-
-
 }

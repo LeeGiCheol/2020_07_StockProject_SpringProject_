@@ -73,7 +73,25 @@ public class AdminServiceImpl implements AdminService {
 		postMap.put("qnaPage", qnaPage);
 		return postMap;
 	}
-
+	
+	@Override
+	public Map<String, Object> reportList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		PagingVO reportPage = new PagingVO(10, nowPage, page);
+		reportPage.getUtil().put("searchStyle", searchStyle);
+		reportPage.getUtil().put("keyword", keyword);
+		/* reportPage.getUtil().put("id", vo.getId()); */
+		
+		if(loginUser.getPoint() < 0) {
+			reportPage.getUtil().put("point", loginUser.getPoint());
+		}
+			
+		List<AdminVO> reportList = adminDAO.reportList(reportPage);
+		postMap.put("reportList", reportList);
+		postMap.put("reportPage", reportPage);
+		return postMap;
+	}
 	
 	public AdminVO qnaDetail(AdminVO vo) {
 		return adminDAO.qnaDetail(vo);
@@ -95,6 +113,7 @@ public class AdminServiceImpl implements AdminService {
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return adminDAO.boardChart(vo);
 	}
+	
 	
 	
 }
