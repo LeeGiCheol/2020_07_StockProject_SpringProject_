@@ -1,61 +1,133 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1:1 문의 내역</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v4.0.1">
+  
+  <title>관리자페이지</title>
 
-<!-- CSS파일 -->
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
 
-<link rel="stylesheet" href="/resources/css/free-board.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<!-- 데이터테이블스타일 -->
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
  
-</head>
-<body>
+<!--  스타일-->
+  <link href="/resources/css/datatable.css" rel="stylesheet" />
+  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+        
+<!-- 통합관리자 -->
+ <link rel="stylesheet" href="/resources/css/admin.css">
 
-	<%@include file="mainheader.jsp"%>
-	<div class="cont-area">
-	
-		
-		<div class="col-md-2">
-			<div class="sidebar sticky" id="cssmenu">
-				<ul>
-					<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
-					<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
-					<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-					<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-					<li id="claimList"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
-					
-				</ul>
-			</div>
-		</div>	
-		<div class="m-drop-nav">
-			<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-			  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-			</svg>1:1문의 </h1>
-		</div>
-		<div class="m-drop-down">
-			<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
-			<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
-			<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-			<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
-			<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/list">1:1문의 내역</a></h1>
-			
-		</div>
-		<h1 class="tit-h1">Q&amp;A</h1>
+
+  <style type="text/css">
+
+  </style>
+
+</head>
+
+<body class="sb-nav-fixed">
+
+
+
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!--    로고들어감 -->
+        			<a href="/mainPage" class="navbar-logo">
+			<img class="" id="logo"
+				src="/resources/img/finalogo.png">
+				</a> 
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
+
+
+
+
+        <!-- Navbar 모바일 미디어 드롭메뉴- 사람아이콘 누르면 -->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="/mainPage">로그아웃</a>
+                </div>
+            </li>
+        </ul>
+
+
+
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark"">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">메인</div>
+                        <a class="nav-link" href="/admin/main">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+             			               대시보드
+                        </a>
+                        <div class="sb-sidenav-menu-heading">사이트관리</div>
+                        <a class="nav-link" href="/admin/qna">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+         				                   문의
+                        </a>
+                        <a class="nav-link" href="/admin/report">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                         		   신고
+                        </a>
+                    </div>
+                </div>
+                
+                
+             <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    
+                </div>
+                
+                
+                
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+					<div class="cont-area">	
+ 							<div class="drop-nav">
+								<h1 class="tit-h1 line">1:1문의 내역</h1>
+							</div>
+							<div class="m-drop-nav">
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">1:1문의 내역 <i class="fas fa-angle-down"></i></h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+									<a href="/customer">고객센터</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerNotice">공지사항</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerqna">도움말</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/write">1:1문의</a>
+								</h1>														
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/list">1:1문의 내역</a>
+								</h1>
+							</div>	
+		<!-- <h1 class="tit-h1">Q&amp;A</h1> -->
 
 		<div class="qna-desc">
 			<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
@@ -126,102 +198,41 @@
 		<!-- // answer-box -->
 
 		<div class="bt-area">
-			<span>
-				<a href="/customerClaim/list" class="btn-s">목록</a>
-				
 				<c:if test="${qna.qcheck eq '준비중'}">
 					<a href="/customerClaim/update?qno=${qno}" class="btn-s">수정</a>
 				</c:if>
-				<a href="/admin/qna/delete?qno=${qna.qno}" class="btn-s red">문의글삭제</a>
-				<a href="/admin/qna/delete?ano=${qna.ano}" class="btn-s red">답변글삭제</a>
-				<a href="/qnaAnswer/write?qno=${qna.qno}" class="btn-s red">답변</a>
+				<a href="/qnaAnswer/write?qno=${qno}" class="btn-s fantasy">답변</a>
+			<span>
+				<a href="/customerClaim/list" class="btn-s">목록</a>
+				
+				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
 			</span> 
 		</div>
 
 	</div>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright ⓒ 2020 - 2020 fantasy stock. All rights reserved.</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+    <script src="/resources/js/scripts.js"></script>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="/resources/js/chart-area-demo.js"></script>
+    <script src="/resources/js/chart-bar-demo.js"></script>
+    <script src="/resources/js/datatables-demo.js"></script>    
+    
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
-
-	<%@include file="mainfooter2.jsp"%>
-	
-<script type="text/javascript">
-			$(document).ready(
-					function() {
-						console.log("document ready!");
-
-						var $sticky = $('.sticky');
-						var $stickyrStopper = $('.footer_content	');
-						if (!!$sticky.offset()) { // make sure ".sticky" element exists
-
-							var generalSidebarHeight = $sticky.innerHeight();
-							var stickyTop = $sticky.offset().top;
-							var stickOffset = 0;
-							var stickyStopperPosition = $stickyrStopper
-									.offset().top;
-							var stopPoint = stickyStopperPosition
-									- generalSidebarHeight - stickOffset;
-							var diff = stopPoint + stickOffset;
-
-							$(window).scroll(
-									function() { // scroll event
-										var windowTop = $(window).scrollTop(); // returns number
-
-										if (stopPoint < windowTop) {
-											$sticky.css({
-												position : 'relative',
-												top : diff
-											});
-										} else if (stickyTop < windowTop
-												+ stickOffset) {
-											$sticky.css({
-												position : 'fixed',
-												top : stickOffset
-											});
-										} else {
-											$sticky.css({
-												position : 'relative',
-												top : 'initial'
-											});
-										}
-									});
-
-						}
-						$(".m-drop-nav").click(function() {
-							$(".m-drop-down").slideToggle("slow");
-						});
-					}
-					
-					
-					
-					
-					
-					function questionDelConfirm(qno){
-						swal({
-							  text: "정말 삭제하시겠습니까?",
-							  icon: "warning",
-							  buttons: true,
-							  dangerMode: true,
-							})
-							.then((willInsert) => {
-							  if (willInsert) {
-							    swal("성공적으로 삭제되었습니다.", {
-							      icon: "success",
-							    }).then(function(){
-							    	writeComment(pno);
-							    });
-							  } else {
-							    swal("삭제가 취소되었습니다.");
-							  }		        		
-				    	})
-					}
-			
-			);
-		</script>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="/resources/jpaginate/jquery.twbsPagination.js"
-	type="text/javascript"></script>
+
 </html>
