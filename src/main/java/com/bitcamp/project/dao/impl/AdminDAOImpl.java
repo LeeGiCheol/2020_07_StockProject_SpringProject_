@@ -37,7 +37,14 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	
 	
+	
+	
+	
 
+	@Override
+	public int updateAnswer(AdminVO vo) {
+		return mybatis.update("admin.updateAnswer", vo);
+	}
 	@Override
 	public int qnaCount(AdminVO vo) {
 		return mybatis.selectOne("admin.qnaCount", vo);

@@ -21,6 +21,12 @@
 		WHERE qno=#{qno}
 	</update>
 	
+	<update id="updateAnswer">
+		UPDATE claimAnswer
+		SET acontent=#{acontent}
+		WHERE qno=#{qno}
+	</update>
+	
 	<select id="pageCount" parameterType="admin" resultType="int">
 		SELECT COUNT(*)
 		FROM claimQuestion
