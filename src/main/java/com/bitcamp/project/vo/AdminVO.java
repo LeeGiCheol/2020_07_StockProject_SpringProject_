@@ -15,7 +15,6 @@ public class AdminVO {
 	
 	// Answer
 	private int ano;
-	private String atitle;
 	private String acontent;
 	private Date adateTime;
 	public int getQno() {
@@ -60,12 +59,6 @@ public class AdminVO {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
-	public String getAtitle() {
-		return atitle;
-	}
-	public void setAtitle(String atitle) {
-		this.atitle = atitle;
-	}
 	public String getAcontent() {
 		return acontent;
 	}
@@ -86,13 +79,13 @@ public class AdminVO {
 	}
 	
 	
-	
 	@Override
 	public String toString() {
-		return "QnaVO [qno=" + qno + ", id=" + id + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qdateTime="
-				+ qdateTime + ", qcheck=" + qcheck + ", qtype=" + qtype + ", ano=" + ano + ", atitle=" + atitle
-				+ ", acontent=" + acontent + ", adateTime=" + adateTime + "]";
+		return "AdminVO [qno=" + qno + ", id=" + id + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qdateTime="
+				+ qdateTime + ", qcheck=" + qcheck + ", qtype=" + qtype + ", ano=" + ano + ", acontent=" + acontent
+				+ ", adateTime=" + adateTime + "]";
 	}
+	
 
 	
 	
