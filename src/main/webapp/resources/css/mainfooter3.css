@@ -28,6 +28,7 @@ body {
 }
 #mid{
 	padding-top:24px!important;
+	    padding-left: 0;
 	
 }
 #bottom ul {
@@ -41,10 +42,16 @@ body {
 }
 #logoF{
 	left: 7% !important; 
+	left: 6% !important;
+    margin-right: 0 !important;
 	
 }
 #left{
-	left:6% !important;
+	left:1% !important;
+}
+.listA,.listB {
+
+    display: none !important;
 }
 
 
@@ -70,8 +77,46 @@ float: inherit;
 }
 
 }
+ @media only screen and (max-width: 1280px){
+	#left {
+    width: 450px !important;
+        left: 0%  !important;
+}
+#right {  
+width: 43% !important;
+    margin-left: 0% !important;
+}
+.listC {
+    width: 235px !important;
+}
 
-@media only screen and (max-width: 660px){
+} 
+@media only screen and (max-width: 1040px){
+	.listA p,.listB p,.listC p{
+	font-size: 14px !important;
+}
+#right li {
+    font-size: 14px !important;
+    padding: 4px 2px !important;
+}
+#left li {
+    font-size: 14px !important;
+}
+.listA {
+    width: 155px !important;
+    padding-top: 10px !important;
+}
+.listB {
+    width: 155px !important;
+    padding-top: 10px !important;
+}
+#companyName{
+	font-size:17px !important;
+}
+	
+}
+
+@media only screen and (max-width: 808px){
 #right{
 	
     visibility: hidden !important;
@@ -80,7 +125,12 @@ float: inherit;
 #logoF{
 	   float: none !important;
     left: 0 !important;
+    height: 60px !important;
 	
+}
+#left ul {
+
+    margin-top: 0 !important;
 }
 .footer{
 	height: 212px !important;
@@ -88,8 +138,9 @@ float: inherit;
 	
 }
 #left{
-	  left: 0 !important;
+left: 0 !important;
     float: none !important;
+    margin: auto;
 }
 #mid {
     top: -15px !important;
@@ -160,62 +211,108 @@ float: left;
 .footer_content {}
 
 #mid {
-    max-width: 1250px;
-    height: 262px;
+max-width: 1250px;
+    height: 300px;
     margin: 0 auto;
     position: relative;
     width: 100%;
     padding-top: 40px;
 }
 #logoF{
-display: inline-block;
-    width: 156px;
-    padding-right: 20px;
-    margin-left: 53px;
+    display: inline-block;
     position: relative;
-    margin: auto;
     float: left;
     left: 30px;
+    height: 78px;
+    margin-right: 20px;
+    margin-top: 10px;
 }
 #left {
 list-style: none;
     text-align: left;
-    display: inline-block;
+    display: flex;
     position: relative;
     float: left;
-    left: 40px;
+    left: 40px;    
+    width: 500px;
 }
+#left p {
+	color:#535367 !important;
+}
+#left ul{
+	left: 30px;
+    display: inline-block;
+    position: relative;
+        margin-top: 20px;
+}
+#left li {    
+	font-size: 16px;}
 
-#left li {}
-
-#listA > li:nth-child(2) > a{
+.listA > li:nth-child(2) > a{
 color:#535367;
 	
 }
-#listA  a{
-	color:#535367;
+.listA  a{
+	color:#535367 !important;
 }
-#listB a{
-	color:#535367;
+.listB a{
+	color:#535367 !important;
 }
+.listA{
+    width: 300px;
+    border-right: 1px solid #c7cace;
+    margin-right: 20px;
+    border-left: 1px solid #c7cace;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.listA p,.listB p,.listC p{
+	font-size:16px;
+}
+.listB{
+	    width: 300px;
+	    padding-top: 10px;
+}
+.listC{
+	    width: 350px;
+}
+.listC li{
+	    width: 350px;    padding: 10px 0 !important;
+}
+.listC li p {
+	    padding-left: 46px !important;
+}
+#contacts{
+		font-size:16px;
+	text-align:left;
+	font-weight:600;color: #3861f7;    padding-top: 10px;
+}
+.footerIcon{
+	width: 35px;
+    height: 35px;
+    display: block;
+    position: absolute;
+}
+
 #right {
 list-style: none;
-    width: 450px;
+    width: 650px;
     text-align: left;
     display: inline-flex;
     letter-spacing: 1px;
-    position: relative;
-
+    position: relative;    
+    margin-left: 100px;
 }
 
-#right li {    padding: 2px;}
+#right li {  font-size: 16px;
+    padding: 4px 2px;}
 
 .liBold {font-weight: 600;}
 
 #companyName {
  font-weight: 600;
     color: rgba(46,87,255,1);
-    font-size: 17px;
+       font-size: 21px !important;
 }
 #companyName a{
 
@@ -228,13 +325,7 @@ list-style: none;
      font-weight: 600;
     color: rgba(46,87,255,1);
 }
-#listA{
-width: 50%;
-    border-right: 1px solid #c7cace;
-    margin-right: 20px;
-    border-left: 1px solid #c7cace;
-    padding-left: 20px;
-}
+
 
 .footer_content {}
 
