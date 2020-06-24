@@ -273,6 +273,12 @@ select {
     line-height: 150%;
     margin-bottom: 30px;
 }
+
+@media only screen and (max-width: 979px){
+.guide-text {
+display: none;
+}
+}
 </style>
 <body>
 
