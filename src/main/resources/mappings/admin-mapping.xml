@@ -110,9 +110,11 @@
 				ORDER BY rdatetime DESC
 			</otherwise>
 		</choose>
-			
-			
-			
+	</select>
+	
+	<select id="reportCount" parameterType="admin" resultType="int">
+		SELECT COUNT(*)
+		FROM reportboard;
 	</select>
 	
 	<select id="qnaDetail" parameterType="admin" resultType="admin">

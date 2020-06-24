@@ -30,10 +30,16 @@ public class AdminVO {
 	private String rcontent;
 	private Date rdatetime;
 	private String nickname;
+	private String rcheck;
 	
 	
 	
-	
+	public String getRcheck() {
+		return rcheck;
+	}
+	public void setRcheck(String rcheck) {
+		this.rcheck = rcheck;
+	}
 	public int getPno() {
 		return pno;
 	}

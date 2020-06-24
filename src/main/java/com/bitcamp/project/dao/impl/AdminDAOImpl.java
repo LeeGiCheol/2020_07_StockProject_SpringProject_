@@ -57,7 +57,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	@Override
 	public int reportCount(AdminVO vo) {
-		return 0;
+		return mybatis.selectOne("admin.reportCount", vo)	;
 	}
 	
 	public AdminVO qnaDetail(AdminVO vo) {
