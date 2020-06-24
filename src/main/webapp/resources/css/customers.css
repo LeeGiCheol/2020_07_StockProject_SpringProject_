@@ -116,7 +116,7 @@ a:hover {
     margin-bottom: 20px;
     font-weight: bold;
     line-height: 100%;
-        border-bottom: 1px solid #1e78ff !important;
+        border-bottom: 1px solidrgba(46,87,255,1) !important;
             margin: 0 -30px 30px;
     padding: 0 30px 20px;
 }
@@ -145,7 +145,7 @@ a:hover {
   font-weight: 600;
 }
 #sideTitle{
-	  border-left: 4px solid #1e78ff !important;
+	  border-left: 4px solidrgba(46,87,255,1) !important;
 	    color: black !important;
   font-weight: 600 !important;
     background: #f6f6f6 !important;
@@ -196,7 +196,7 @@ a:hover {
 	white-space: pre-line;
 }
 .qAnswer span{
-	color: #1e78ff;
+	color:rgba(46,87,255,1);
     font-weight: 600;
     white-space: nowrap;
 }
@@ -211,7 +211,7 @@ a:hover {
   color: #fff;
   text-align: center;
   line-height: 150%;
-background: #1e78ff;
+background:rgba(46,87,255,1);
     background: linear-gradient(152deg, rgba(30,120,255,1) 0, rgba(169,30,255,1) 100%);
     background-size: 150% 150%;
 
@@ -307,14 +307,14 @@ display: inline-block;
   border: 1px solid;padding: 9px 20px !important;
 }
 .moreBttn:hover {
-  border: 0;  background: #1e78ff;
+  border: 0;  background:rgba(46,87,255,1);
   color: white;
 }
 
 .blue,
 .blue:visited,
 .blue:link {
-  background: #1e78ff;
+  background:rgba(46,87,255,1);
   color: white;
 
 
@@ -355,11 +355,11 @@ width: 49.5%;
 
 }
 .cBox1:hover {
-  background-color: #1e78ff;
+  background-color:rgba(46,87,255,1);
   color: white;
 }
 .cBox2:hover {
-  background-color: #1e78ff;
+  background-color:rgba(46,87,255,1);
   color: white;
 }
 

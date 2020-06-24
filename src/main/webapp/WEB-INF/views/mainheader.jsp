@@ -28,7 +28,7 @@
 						</dt>
 					</dl>
 					<li class="breadcrumb-item"><a id="top-nav-font" href="/logOut">로그아웃</a></li>
-					<li class="breadcrumb-item"><a id="top-nav-font" href="/admin/main">관리자페이지</a></li>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/admin/main">관리자 페이지</a></li>
 				</ul>
 			</c:when>
 			

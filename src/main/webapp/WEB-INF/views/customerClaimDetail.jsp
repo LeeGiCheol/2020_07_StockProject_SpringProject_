@@ -88,14 +88,6 @@
 						<td><span class="ing">${qna.qcheck}</span></td>
 					</tr>
 					<tr>
-						<th scope="row">닉네임</th>
-						<td>${qna.nickname}</td>
-					</tr>
-					<tr>
-						<th scope="row">제목</th>
-						<td>${qna.qtitle}</td>
-					</tr>
-					<tr>
 						<th scope="row">작성일</th>
 						<fmt:formatDate value="${qna.qdateTime}" var="time"
 							pattern="MM/dd HH:mm" />
@@ -109,6 +101,14 @@
 							<td class="board-date">${time}</td>
 						</tr>
 					</c:if>
+					<tr>
+						<th scope="row">닉네임</th>
+						<td>${qna.nickname}</td>
+					</tr>
+					<tr>
+						<th scope="row">제목</th>
+						<td>${qna.qtitle}</td>
+					</tr>					
 					<tr>
 						<th scope="row">내용</th>
 						<td><div><p>${qna.qcontent}<br></p></div></td>

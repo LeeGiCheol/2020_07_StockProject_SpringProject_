@@ -1,4 +1,13 @@
-      .bd-placeholder-img {
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+	figure, footer, header, hgroup, menu, nav, section, summary, time,
+	audio, video {
+	    word-break: break-all;
+}
+
+.bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
@@ -181,4 +190,12 @@ thead tr th {
 	    font-size: 24px;
     margin-left: 5%;
 }
+}
+.free-board, .cont-area {
+	margin-bottom: 0 !important;
+	box-shadow:none !important;
+	border: none !important;
+}
+.tit-h2.type {
+	margin-top: 0 !important;
 }

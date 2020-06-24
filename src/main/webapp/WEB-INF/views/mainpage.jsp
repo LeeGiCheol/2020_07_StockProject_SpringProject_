@@ -360,7 +360,7 @@
 								</dl>
 							</div>
 								<div class="admin-login-after-btn">
-									<a id="admin-leftLogin" href="/admin/main">관리자페이지</a>
+									<a id="admin-leftLogin" href="/admin/main">관리자 페이지</a>
 								</div>
 						</div>
 					

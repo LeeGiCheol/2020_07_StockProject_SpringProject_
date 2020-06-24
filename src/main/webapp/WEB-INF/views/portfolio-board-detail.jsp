@@ -18,7 +18,8 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/popup.css">
 
 </head>
 <style>

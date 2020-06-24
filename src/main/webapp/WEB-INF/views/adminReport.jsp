@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.0.1">
-  <title>관리자페이지</title>
+  <title>관리자 페이지</title>
 
 
 
@@ -28,10 +28,10 @@
   <link href="/resources/css/datatable.css" rel="stylesheet" />
         
 <!-- 통합관리자 -->
-<link rel="stylesheet" href="/resources/css/admin.css">
 <link rel="stylesheet" href="/resources/css/free-board.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
-<link href="/resources/css/free-board-detail.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/popup.css">
+<link rel="stylesheet" href="/resources/css/admin.css">
 
 <style type="text/css">
 .free-board {
@@ -80,12 +80,12 @@
                     <div class="nav">
                         <a class="nav-link" href="/admin/main">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-             			               관리자페이지
+             			               관리자 페이지
                         </a>
 
                         <a class="nav-link" href="/admin/qna">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-         				                   문의
+         				                   Q&amp;A
                         </a>
                         <a class="nav-link" href="/admin/report">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -97,7 +97,7 @@
         </div>
         <div id="layoutSidenav_content">
  						<div class="free-board" >
-							<h1 class="tit-h1 line">신고</h1>
+							<h2 class="tit-h2 type mopad">신고</h2>
 						<div class="board-type">
 							<div class="tab-content" id="pills-tabContent">
 								<!-- 전체글 -->
@@ -113,9 +113,9 @@
 									<thead>
 										 <tr>
                                             <th class="center" >신고사항</th>
-                                            <th >제목</th>
-                                            <th >내용</th>
-                                            <th class="center" >신고자 닉네임</th>
+                                            <th class="center">제목</th>
+                                            <th class="center">내용</th>
+                                            <th class="center" >작성자</th>
                                             <th class="center">처리현황</th>
                                             <th class="center" >신고 일시</th>
                                         </tr>
@@ -124,8 +124,8 @@
 										<c:forEach items="${reportList}" var="re" varStatus="status">
 	                                       <tr>	
 	                                       		<td><p class="content">${re.rtype}</p></td>
-	                                            <td><p class="content">${re.title}</p></td>
-	                                            <td><p class="content" id="popup-btn">${re.rcontent}</p></td>
+	                                            <td class="board-title"><p class="content">${re.title}</p></td>
+	                                            <td class="board-title"><p class="content" id="popup-btn" style="cursor: pointer;">${re.rcontent}</p></td>
 	                                            <td class="center">${re.nickname}</td>
 	                                            <td class="center">처리 대기 중</td>
 	                                            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
@@ -309,9 +309,11 @@
 							<input type="hidden" name="title" value="${boardDetail.title}">
 						
 						<div class="pop-btn">
-							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">게시물 삭제</button>
+							<button type="button" class="btn-m fantasy" id="delest-btn">게시물 삭제</button>
+							<span>
 							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
-							<button type="submit" id="submitReport" class="btn-m red">게시물 이동</button>
+							<button type="submit" id="submitReport" class="btn-m fantasy">게시물 이동</button>
+							</span>
 						</div>
 					</div>
 					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>

@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/popup.css">
 </head>
 <body>
 

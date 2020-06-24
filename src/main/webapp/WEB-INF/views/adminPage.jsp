@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.0.1">
-  <title>관리자페이지</title>
+  <title>관리자 페이지</title>
 
 
 
@@ -76,12 +76,12 @@
                     <div class="nav">
                         <a class="nav-link" href="/admin/main">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-             			               관리자페이지
+             			               관리자 페이지
                         </a>
 
                         <a class="nav-link" href="/admin/qna">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-         				                   문의
+         				                   Q&amp;A
                         </a>
                         <a class="nav-link" href="/admin/report">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -99,7 +99,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h2 class="mt-4">관리자페이지</h2>
+                   <!--  <h3 class="mt-3">관리자페이지</h3> -->
 
 
                     <!-- 차트들어가는부분 -->
@@ -131,7 +131,7 @@
 
 					<div class="row">
 
-                            <div class="table-responsive">
+                            
 
                                 <!-- 문s의테이블 시작 -->
                                 <div class="col-xl-6">
@@ -222,7 +222,7 @@
 
                         
                         </div>
-                        </div>
+                        
                     </div>
 
 <!--                     <div class="card mb-4">

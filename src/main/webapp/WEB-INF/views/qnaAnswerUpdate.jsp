@@ -12,7 +12,7 @@
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.0.1">
   
-  <title>관리자페이지</title>
+  <title>관리자 페이지</title>
 
 
 
@@ -87,15 +87,14 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark"">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">메인</div>
                         <a class="nav-link" href="/admin/main">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-             			               대시보드
+             			               관리자 페이지
                         </a>
-                        <div class="sb-sidenav-menu-heading">사이트관리</div>
+
                         <a class="nav-link" href="/admin/qna">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-         				                   문의
+         				                   Q&amp;A
                         </a>
                         <a class="nav-link" href="/admin/report">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -118,16 +117,7 @@
         <div id="layoutSidenav_content">
 					<div class="cont-area">	
 
-		<!-- <h1 class="tit-h1">Q&amp;A</h1> -->
-
-		<div class="qna-desc">
-			<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
-			<span class="time">1:1로 접수 주시면 빠른답변을 받아보실 수 있습니다. 평일 08:30~17:30</span>
-			<a href="javascript:pageMove('serviceInqryInsert');" class="inquiry">1:1문의</a>
-		</div>
-		<!-- // qna-desc -->
-
-		<h2 class="tit-h2 type mopad">문의내역</h2>
+		<h2 class="tit-h2 type mopad">Q&amp;A</h2>
 		<div class="table-scroll-no">
 			
 			

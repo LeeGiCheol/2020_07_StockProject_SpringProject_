@@ -19,11 +19,6 @@
 <link rel="stylesheet" href="/resources/css/mainfooter2.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">	
-<style>
-.board-writer,.board-title{
-	text-align: center;
-}
-</style>
 <script>
 	$(document).ready(function() {
 		$("#jb-checkboxAll-best").click(function() {
