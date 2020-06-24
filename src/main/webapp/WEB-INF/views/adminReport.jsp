@@ -91,7 +91,7 @@
                 
              <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
+                    <div class="small">Logged in as: 관리자</div>
                     
                 </div>
                 

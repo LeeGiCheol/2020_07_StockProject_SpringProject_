@@ -40,7 +40,7 @@
 							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
 							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 									<a href="/customerClaim/write">1:1문의</a>
 								</h1>														
 								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/list">1:1문의 내역</a>
+									<a href="/customerClaim/list">Q&amp;A</a>
 								</h1>
 							</div>						
 					</div>					
@@ -276,8 +276,8 @@
 
 
 
-					<a href="/customClaimer/write" id="cBoxb2" class="cBox2">
-						<p class="cBoxTitle2">1:1 문의</p>
+					<a href="customerClaim/list" id="cBoxb2" class="cBox2">
+						<p class="cBoxTitle2">Q&amp;A</p>
 						<svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd"

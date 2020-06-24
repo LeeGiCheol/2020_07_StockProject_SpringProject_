@@ -51,9 +51,9 @@ h5{
 
 /* 
 오른쪽테이블 선나누기 */
-.tRight{
+/* .tRight{
 	border-left: 1px solid #dfdfdf;
-}
+} */
 table thead tr{
 	    background: #f7f7f7;
 	   border-bottom: 1px solid #dddddd;
@@ -118,7 +118,9 @@ tbody tr td{
 .tDate{
 	
 }
-
+.table-div{
+	padding: 1.25rem;
+}
 
 
 
