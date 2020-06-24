@@ -103,19 +103,21 @@
 								<!-- 전체글 -->
 								<table class="board-free-table">
 									<colgroup>
-										<col width="8%">
-										<col width="55%">
+										<col width="10%">
+										<col width="20%">
+										<col width="30%">
 										<col width="10%">
 										<col width="10%">
+										<col width="20%">
 									</colgroup>
 									<thead>
 										 <tr>
-                                            <th class="center" style="width: 10%;">신고 종류</th>
-                                            <th class="center"style="width: 10%">처리현황</th>
-                                            <th style="width: 25%">제목</th>
-                                            <th style="width: 35%">내용</th>
-                                            <th class="center" style="width: 10%">신고자 닉네임</th>
-                                            <th class="center" style="width: 10%">신고 일시</th>
+                                            <th class="center" >신고사항</th>
+                                            <th >제목</th>
+                                            <th >내용</th>
+                                            <th class="center" >신고자 닉네임</th>
+                                            <th class="center">처리현황</th>
+                                            <th class="center" >신고 일시</th>
                                         </tr>
 									</thead>
 									<tbody>
@@ -132,10 +134,10 @@
 	                                       		<c:if test="${re.rtype eq 'RP009'}"><td class="center">음란</td></c:if>
 	                                       		<c:if test="${re.rtype eq 'RP010'}"><td class="center">지역감정</td></c:if>
 	                                       		<c:if test="${re.rtype eq 'RP011'}"><td class="center">기타</td></c:if>
-	                                            <td class="center">처리대기중</td>
 	                                            <td><p class="content">${re.title}</p></td>
 	                                            <td><p class="content">${re.rcontent}</p></td>
 	                                            <td class="center">${re.nickname}</td>
+	                                            <td class="center">처리 대기 중</td>
 	                                            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
 	                                        </tr>
                                         </c:forEach>
