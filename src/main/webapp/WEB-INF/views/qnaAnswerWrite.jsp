@@ -132,7 +132,7 @@
 			
 			
 			<table class="table-row">
-				<caption>Q&amp;A 상세내용 : 처리현황, 아이디, 제목, 내용에 대한 정보</caption>
+				<caption>Q&amp;A 상세내용 : 처리현황, 닉네임, 제목, 내용에 대한 정보</caption>
 				<colgroup>
 					<col style="width:25%;">
 					<col style="width:75%;">
@@ -143,8 +143,8 @@
 						<td><span class="ing">${qna.qcheck}</span></td>
 					</tr>
 					<tr>
-						<th scope="row">아이디</th>
-						<td>${qna.id}</td>
+						<th scope="row">닉네임</th>
+						<td>${qna.nickname}</td>
 					</tr>
 					<tr>
 						<th scope="row">제목</th>
@@ -170,7 +170,7 @@
 					<input type="hidden" name="qno" value="${qna.qno}">
 					<textarea class="form-control" rows="5" name="acontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>							
 						<div class="bt-area-answer">
-									<a href="/admin/qna/update?ano=${qna.ano}" class="btn-s">취소</a>
+									<a href="/admin/qna/detail?qno=${qna.qno}" class="btn-s">취소</a>
 							<span>
 								<a href="javascript:btnSave();" class="btn-m fantasy" id="addBtn">작성</a>
 							</span> 
