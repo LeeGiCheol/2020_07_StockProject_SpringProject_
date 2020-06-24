@@ -70,7 +70,7 @@
 		<div class="qna-desc">
 			<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
 			<span class="time">1:1로 접수 주시면 빠른답변을 받아보실 수 있습니다. 평일 08:30~17:30</span>
-			<a href="javascript:pageMove('serviceInqryInsert');" class="inquiry">1:1문의</a>
+			<a href="javascript:/customerClaim/write" class="inquiry">1:1문의</a>
 		</div>
 		<!-- // qna-desc -->
 
@@ -101,6 +101,14 @@
 							pattern="MM/dd HH:mm" />
 						<td class="board-date">${time}</td>
 					</tr>
+					<c:if test="${qna.acontent ne null}">
+						<tr>
+							<th scope="row">답변완료일</th>
+							<fmt:formatDate value="${qna.adateTime}" var="time"
+								pattern="MM/dd HH:mm" />
+							<td class="board-date">${time}</td>
+						</tr>
+					</c:if>
 					<tr>
 						<th scope="row">내용</th>
 						<td><div><p>${qna.qcontent}<br></p></div></td>
@@ -124,7 +132,7 @@
 					</c:if>
 					
 					<c:if test="${qna.acontent ne null }">
-					<div class="answer no-answer">
+					<div class="answer">
 						${qna.acontent}
 					</div>
 					</c:if>					
@@ -136,10 +144,6 @@
 		<!-- // answer-box -->
 
 		<div class="bt-area">
-				<c:if test="${qna.qcheck eq '준비중'}">
-					<a href="/customerClaim/update?qno=${qno}" class="btn-s">수정</a>
-				</c:if>
-				<a href="/qnaAnswer/write?qno=${qno}" class="btn-s fantasy">답변</a>
 			<span>
 				<a href="/customerClaim/list" class="btn-s">목록</a>
 				

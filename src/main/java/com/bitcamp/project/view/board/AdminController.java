@@ -1,6 +1,8 @@
 package com.bitcamp.project.view.board;
 
-import java.util.HashMap;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.AdminService;
@@ -91,7 +92,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/qna/detail")
-	public ModelAndView adminQnaDetail(AdminVO vo) {
+	public ModelAndView adminQnaDetail(AdminVO vo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		ModelAndView mav = new ModelAndView();
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 
@@ -111,7 +112,20 @@ public class AdminController {
 		else
 			vo.setAno(-1);
 		
+		
+		// TestVO == VO 클래스
+		// testVO == TestVO Instance
+		
+		
+		
 		AdminVO qnaDetail = adminService.qnaDetail(vo);
+		
+			qnaDetail.setQdateTime(new Date(qnaDetail.getQdateTime().getTime()- (1000 * 60 * 60 * 9)));
+			if(qnaDetail.getAno() != 0) {
+				qnaDetail.setAdateTime(new Date(qnaDetail.getAdateTime().getTime()- (1000 * 60 * 60 * 9)));
+				
+			}
+		
 		System.out.println("?? " + qnaDetail);
 		mav.addObject("qna", qnaDetail);
 		mav.setViewName("adminQnaDetail");
