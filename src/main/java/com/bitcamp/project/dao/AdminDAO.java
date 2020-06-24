@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.AdminVO;
+import com.bitcamp.project.vo.BoardVO;
 
 public interface AdminDAO {
 	public int writeQuestion(AdminVO vo);
@@ -15,4 +16,5 @@ public interface AdminDAO {
 	public int questionDelete(AdminVO vo);
 	public int answerDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
+	public List<BoardVO> boardChart(BoardVO vo);
 }

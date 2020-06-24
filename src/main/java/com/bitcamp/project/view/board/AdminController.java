@@ -1,10 +1,9 @@
 package com.bitcamp.project.view.board;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.AdminService;
@@ -33,7 +33,7 @@ public class AdminController {
 	
 
 	@GetMapping("/admin/main")
-	public ModelAndView adminPage() {
+	public ModelAndView adminPage(BoardVO bVo) {
 		ModelAndView mav = new ModelAndView();
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
@@ -44,9 +44,17 @@ public class AdminController {
 			mav.setViewName("msg");
 		}
 		
+		
+		List<BoardVO> boardChart = adminService.boardChart(bVo);
+		System.out.println("boardChart "+boardChart);
+		mav.addObject("boardChart", boardChart);
+		
+		
+		
 		mav.setViewName("adminPage");
 		return mav;
 	}
+	
 	
 	@GetMapping("/admin/qna")
 	public String adminQnaList(AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
@@ -107,6 +115,46 @@ public class AdminController {
 		
 		return mav;
 	}
+	
+	
+	@GetMapping("/admin/main/ajax")
+	@ResponseBody
+	public Map<String, Object> adminChart(BoardVO vo){
+		
+		List<BoardVO> boardChart = adminService.boardChart(vo);
+		System.out.println("boardChart "+boardChart);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardChart", boardChart);
+		
+		return map;
+	}
+	
+	
+	
+	
+	
+	@GetMapping("/admin/qna/detail/ajax")
+	public @ResponseBody Map<String, Object> adminQnaDetailAjax(AdminVO vo) {
+		System.out.println(vo);
+		AdminVO qnaDetail = adminService.qnaDetail(vo);
+		System.out.println(vo);
+		// 댓글리스트
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("qnaDetail", qnaDetail);
+		return map;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("/admin/qna/delete")
 	public String adminQnaDelete(AdminVO vo) {

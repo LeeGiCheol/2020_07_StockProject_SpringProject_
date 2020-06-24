@@ -110,4 +110,10 @@
 	</delete>
 	
 	
+	<select id="boardChart" parameterType="board" resultType="map">
+		SELECT DATE_FORMAT(`bdateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
+		FROM board GROUP BY chartDate;
+	</select>
+	
+	
 </mapper>

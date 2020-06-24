@@ -18,6 +18,8 @@
   <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- 데이터테이블스타일 -->
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -127,7 +129,7 @@
                                     Bar Chart Example
                                     차트2
                                 </div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body" id="boardChart" style="width: 100%; height: 300px;"><!-- <canvas id="myBarChart" width="100%" height="40"></canvas> --></div>
                             </div>
                         </div>
                     </div>
@@ -253,6 +255,42 @@
     
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+
+<script>
+	google.charts.load("current", {packages:["bar"]});
+	 google.charts.setOnLoadCallback(drawChart);
+
+var a = "${boardChart[0].chartCount}"
+	
+	function drawChart() {
+
+		 var data = google.visualization.arrayToDataTable([
+	          ['일별 게시물 개수', '개수'],
+	          ["${boardChart[0].chartDate}", a],
+	          ["${boardChart[1].chartDate}", "${boardChart[1].chartCount}"],
+	          ["${boardChart[2].chartDate}", "${boardChart[2].chartCount}"],
+	          ["${boardChart[3].chartDate}", "${boardChart[3].chartCount}"],
+	          ["${boardChart[4].chartDate}", "${boardChart[4].chartCount}"]
+	        ]);
+		 
+		 
+		 
+		var options = {
+			chart : {
+				title : 'Analysis of Dialogue System',
+				subtitle : ''
+			}
+		};
+
+		var chart = new google.charts.Bar(document
+				.getElementById('boardChart'));
+
+		chart.draw(data, google.charts.Bar.convertOptions(options));
+
+	}	
+
+</script>
 
 </body>
 

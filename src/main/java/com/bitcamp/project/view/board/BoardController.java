@@ -1,6 +1,5 @@
 package com.bitcamp.project.view.board;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
-import com.bitcamp.project.service.impl.BoardServiceImpl;
 import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;

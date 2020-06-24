@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.project.dao.AdminDAO;
 import com.bitcamp.project.service.AdminService;
 import com.bitcamp.project.vo.AdminVO;
+import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
 
@@ -87,6 +88,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int answerDelete(AdminVO vo) {
 		return adminDAO.answerDelete(vo);
+	}
+	@Override
+	public List<BoardVO> boardChart(BoardVO vo) {
+		return adminDAO.boardChart(vo);
 	}
 	
 	
