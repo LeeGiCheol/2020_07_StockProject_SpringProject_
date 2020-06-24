@@ -50,11 +50,10 @@ public class AdminServiceImpl implements AdminService {
 //		boardPage.getUtil().put("",vo.get)
 //		boardPage.setId(vo.getId());
 		Map<String, Object> postMap = new HashMap<String, Object>();
-	
+		PagingVO qnaPage = new PagingVO(adminDAO.pageCount(vo), nowPage, page);
+		System.out.println("@@@@ "+qnaPage);
 		
-		
-		PagingVO qnaPage = new PagingVO(adminDAO.qnaCount(vo), nowPage, page);
-		
+		System.out.println("data2 "+adminDAO.pageCount(vo));
 		qnaPage.getUtil().put("searchStyle", searchStyle);
 		qnaPage.getUtil().put("keyword", keyword);
 		qnaPage.getUtil().put("id", vo.getId());
@@ -64,6 +63,7 @@ public class AdminServiceImpl implements AdminService {
 		}
 			
 			List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
+			System.out.println("KKK "+qnaList);
 			System.out.println("pagegege " + qnaPage);
 			System.out.println("pageqnaListgege " + qnaList);
 //			for (int i = 0; i < qnaList.size(); i++) {

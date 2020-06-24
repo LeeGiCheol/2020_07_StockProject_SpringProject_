@@ -81,12 +81,15 @@ public class BoardServiceImpl implements BoardService{
 		// 자유게시판 // 공지사항
 		if(bno == 1 || bno == 3) {
 			boardPage = new PagingVO(boardDAO.count(vo), nowPage, page);
+			System.out.println("### "+boardPage);
+			System.out.println("data "+boardDAO.count(vo));
 			boardPage.getUtil().put("searchStyle", searchStyle);
 			boardPage.getUtil().put("keyword", keyword);
 			boardPage.getUtil().put("orderby", orderby);
 			boardPage.getUtil().put("bno", bno);
 			
 			boardList = boardDAO.getBoardList(boardPage);
+			System.out.println("LLLLL "+ boardList);
 			for (int i = 0; i < boardList.size(); i++) {
 				boardList.get(i).setBdateTime(new Date(boardList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
 			}
