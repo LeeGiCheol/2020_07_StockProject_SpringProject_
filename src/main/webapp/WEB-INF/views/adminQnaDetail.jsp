@@ -132,8 +132,9 @@
 				<c:if test="${qna.qcheck eq '준비중'}">
 					<a href="/customerClaim/update?qno=${qno}" class="btn-s">수정</a>
 				</c:if>
-				<a href="/customerClaim/delete?qno=${qno}" class="btn-s red">삭제</a>
-				<a href="/qnaAnswer/write?qno=${qno}" class="btn-s red">답변</a>
+				<a href="/admin/qna/delete?qno=${qna.qno}" class="btn-s red">문의글삭제</a>
+				<a href="/admin/qna/delete?ano=${qna.ano}" class="btn-s red">답변글삭제</a>
+				<a href="/qnaAnswer/write?qno=${qna.qno}" class="btn-s red">답변</a>
 			</span> 
 		</div>
 
@@ -187,7 +188,33 @@
 						$(".m-drop-nav").click(function() {
 							$(".m-drop-down").slideToggle("slow");
 						});
-					});
+					}
+					
+					
+					
+					
+					
+					function questionDelConfirm(qno){
+						swal({
+							  text: "정말 삭제하시겠습니까?",
+							  icon: "warning",
+							  buttons: true,
+							  dangerMode: true,
+							})
+							.then((willInsert) => {
+							  if (willInsert) {
+							    swal("성공적으로 삭제되었습니다.", {
+							      icon: "success",
+							    }).then(function(){
+							    	writeComment(pno);
+							    });
+							  } else {
+							    swal("삭제가 취소되었습니다.");
+							  }		        		
+				    	})
+					}
+			
+			);
 		</script>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -147,7 +147,7 @@ border-left: 4px solid #1e78ff !important;
 
 
 													<span class="select-style">
-														<select title="상담 항목" id="rtype" name="rtype" class="selectpicker" tabindex="-98">
+														<select title="상담 항목" id="rtype" name="qtype" class="selectpicker" tabindex="-98">
 															<option class="bs-title-option" value="">상담 항목</option>
 															<option value="회원">회원</option>
 															<option value="커뮤니티">커뮤니티</option>

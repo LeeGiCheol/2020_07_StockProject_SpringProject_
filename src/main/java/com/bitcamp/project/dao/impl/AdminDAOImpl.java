@@ -53,12 +53,19 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int qnaDelete(AdminVO vo) {
-		return mybatis.delete("admin.qnaDelete", vo);
+	public int questionDelete(AdminVO vo) {
+		return mybatis.delete("admin.questionDelete", vo);
 	}
+	
+	
 
 	@Override
+	public int answerDelete(AdminVO vo) {
+		return mybatis.delete("admin.answerDelete", vo);
+	}
+	@Override
 	public int qnaUpdate(AdminVO vo) {
+		System.out.println("update "+vo);
 		return mybatis.update("admin.qnaUpdate", vo);
 	}
 }

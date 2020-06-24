@@ -295,49 +295,52 @@ public class CustomerController {
 	}
 	
 	
-	@GetMapping(value="/customerClaim/update")
-	public String customerClaimUpdateView(AdminVO vo, Model model) {
-		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-		if(loginUser == null) {
-			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
-			model.addAttribute("location", "/signInPage");
-			model.addAttribute("icon", "error");
-			return "msg";
-		}
-		else {
-			AdminVO qna = adminService.qnaDetail(vo);
-			model.addAttribute("qna", qna);
-			model.addAttribute("qno", qna.getQno());
-			return "customerClaimUpdate";
-		}
-	}
-
-	@PostMapping(value="/customerClaim/update")
-	public String customerClaimUpdate(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
-		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-		if(loginUser == null) {
-			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
-			model.addAttribute("location", "/signInPage");
-			model.addAttribute("icon", "error");
-			return "msg";
-		}
-		else {
-			vo.setQno(qno);
-			
-			FileUpload file = new FileUpload();
-			try {
-				List<String> uploadThumbnail = new ArrayList<String>();
-
-				file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
-				uploadedFileName.clear();
-				adminService.qnaUpdate(vo);
-			}
-			catch(Exception e) {
-				adminService.qnaUpdate(vo);
-			}
-			return "redirect:/customerClaim/list";
-		}
-	}
+//	@GetMapping(value="/customerClaim/update")
+//	public String customerClaimUpdateView(AdminVO vo, Model model) {
+//		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+//		System.out.println("ab "+vo);
+//		System.out.println(loginUser);
+//		if(loginUser == null) {
+//			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+//			model.addAttribute("location", "/signInPage");
+//			model.addAttribute("icon", "error");
+//			return "msg";
+//		}
+//		else {
+//			AdminVO qna = adminService.qnaDetail(vo);
+//			
+//			model.addAttribute("qna", qna);
+//			model.addAttribute("qno", qna.getQno());
+//			return "customerClaimUpdate";
+//		}
+//	}
+//
+//	@PostMapping(value="/customerClaim/update")
+//	public String customerClaimUpdate(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
+//		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+//		if(loginUser == null) {
+//			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+//			model.addAttribute("location", "/signInPage");
+//			model.addAttribute("icon", "error");
+//			return "msg";
+//		}
+//		else {
+//			vo.setQno(qno);
+//			
+//			FileUpload file = new FileUpload();
+//			try {
+//				List<String> uploadThumbnail = new ArrayList<String>();
+//
+//				file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
+//				uploadedFileName.clear();
+//				adminService.qnaUpdate(vo);
+//			}
+//			catch(Exception e) {
+//				adminService.qnaUpdate(vo);
+//			}
+//			return "redirect:/customerClaim/list";
+//		}
+//	}
 
 	
 	
@@ -363,7 +366,7 @@ public class CustomerController {
 			AdminVO qna = adminService.qnaDetail(vo);
 			
 			
-			int delCheck = adminService.qnaDelete(qna);
+			int delCheck = adminService.questionDelete(qna);
 			if(delCheck == 1) {
 				
 				FileUpload file = new FileUpload();

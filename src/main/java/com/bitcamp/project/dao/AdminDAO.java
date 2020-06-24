@@ -12,6 +12,7 @@ public interface AdminDAO {
 	public int qnaCount(AdminVO vo);
 	public List<AdminVO> qnaList(PagingVO qnaPage); 
 	public AdminVO qnaDetail(AdminVO vo);
-	public int qnaDelete(AdminVO vo);
+	public int questionDelete(AdminVO vo);
+	public int answerDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
 }

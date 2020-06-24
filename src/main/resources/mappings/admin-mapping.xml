@@ -6,8 +6,8 @@
 <mapper namespace="admin">
 
 	<insert id="writeQuestion">
-		INSERT INTO claimQuestion (id, qtitle, qcontent, qdatetime, qcheck)
-		VALUES(#{id}, #{qtitle}, #{qcontent}, now(), "준비중")
+		INSERT INTO claimQuestion (id, qtitle, qcontent, qdatetime, qcheck, qtype)
+		VALUES(#{id}, #{qtitle}, #{qcontent}, now(), "준비중", #{qtype})
 	</insert>
 	
 	<insert id="writeAnswer">
@@ -73,7 +73,7 @@
 	        WHERE q.qno = #{qno};
 	    </if>
 	    
-	    <if test="ano eq -1">
+	    <if test="ano eq -1 or ano eq 0">
 	    	SELECT * 
 	    	FROM claimQuestion
 	    	WHERE qno = #{qno};
@@ -86,7 +86,7 @@
 		WHERE qno = #{qno}
 	</update>
 	
-	<delete id="qnaDelete">
+	<delete id="questionDelete">
 		
 		<if test="ano neq 0">
 			DELETE
@@ -100,6 +100,14 @@
 		
 	</delete>
 	
+	<delete id="answerDelete">
+		DELETE
+		FROM claimAnswer
+		WHERE ano = #{ano};
+		
+		UPDATE claimQuestion
+		SET qcheck = "준비중";
+	</delete>
 	
 	
 </mapper>

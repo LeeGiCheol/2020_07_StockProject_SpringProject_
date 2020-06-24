@@ -76,13 +76,18 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.qnaDetail(vo);
 	}
 	
-	public int qnaDelete(AdminVO vo) {
-		return adminDAO.qnaDelete(vo);
+	public int questionDelete(AdminVO vo) {
+		return adminDAO.questionDelete(vo);
 	}
 
 	@Override
 	public int qnaUpdate(AdminVO vo) {
 		return adminDAO.qnaUpdate(vo);
 	}
+	@Override
+	public int answerDelete(AdminVO vo) {
+		return adminDAO.answerDelete(vo);
+	}
+	
 	
 }

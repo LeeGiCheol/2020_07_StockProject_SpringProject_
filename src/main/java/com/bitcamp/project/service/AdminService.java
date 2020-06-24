@@ -12,6 +12,7 @@ public interface AdminService {
 	public int qnaCount(AdminVO vo);
 	public Map<String, Object> qnaList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword);
 	public AdminVO qnaDetail(AdminVO vo);
-	public int qnaDelete(AdminVO vo);
+	public int questionDelete(AdminVO vo);
+	public int answerDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
 }

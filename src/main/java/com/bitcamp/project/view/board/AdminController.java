@@ -101,10 +101,25 @@ public class AdminController {
 			vo.setAno(-1);
 		
 		AdminVO qnaDetail = adminService.qnaDetail(vo);
+		System.out.println("?? " + qnaDetail);
 		mav.addObject("qna", qnaDetail);
 		mav.setViewName("adminQnaDetail");
 		
 		return mav;
+	}
+	
+	@GetMapping("/admin/qna/delete")
+	public String adminQnaDelete(AdminVO vo) {
+		System.out.println("as "+vo);
+		if(vo.getAno() != 0) {
+			adminService.answerDelete(vo);
+		}
+		else if(vo.getQno() != 0) {
+			adminService.questionDelete(vo);
+		}
+			
+		
+		return "redirect:/adminQna";
 	}
 	
 	

@@ -359,8 +359,8 @@
 									</dd>
 								</dl>
 							</div>
-								<div class="login-after-btn">
-									<a id="leftLogin" href="/admin/main">관리자페이지</a>
+								<div class="admin-login-after-btn">
+									<a id="admin-leftLogin" href="/admin/main">관리자페이지</a>
 								</div>
 						</div>
 					
