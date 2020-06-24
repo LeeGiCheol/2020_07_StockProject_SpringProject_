@@ -26,8 +26,8 @@
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
  
 <!--  스타일-->
-  <link href="/resources/css/datatable.css" rel="stylesheet" />
   <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+  <link href="/resources/css/datatable.css" rel="stylesheet" />
         
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
