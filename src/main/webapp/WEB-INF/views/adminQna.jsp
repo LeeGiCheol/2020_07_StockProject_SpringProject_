@@ -145,19 +145,138 @@
                                     </tbody>
                                 </table>
                                 <!-- 신고테이블끝 -->
+<!-- 페이징 -->
+								<div class="paging">
+									<c:if test="${qnaPage.total gt 30}">
+										<div class="paging-body">
+											<nav aria-label="..." class="pagination">
+												<ul class="pagination">
+
+													<c:if test="${qnaPage.nowPage != 1}">
+														<!-- << 버튼 -->
+														<li><a class="page-link"
+															href="/admin/qna?bnowPage=1" tabindex="-1"
+															aria-disabled="true"> <i
+																class="fas fa-angle-double-left"></i>
+														</a></li>
+														<!-- 1페이지에서 < 버튼 눌렀을 때 -->
+														<c:if test="${qnaPage.nowPage == 1}">
+															<li><a class="page-link"
+																href="/admin/qna?bnowPage=${qnaPage.nowPage}"
+																tabindex="-1" aria-disabled="true"> <i
+																	class="fas fa-angle-left"></i>
+															</a></li>
+														</c:if>
+													</c:if>
+
+													<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
+													<c:if test="${qnaPage.nowPage != 1}">
+														<li><a class="page-link"
+															href="/admin/qna?bnowPage=${qnaPage.nowPage-1}"
+															tabindex="-1" aria-disabled="true"> <i
+																class="fas fa-angle-left"></i>
+														</a></li>
+													</c:if>
+
+													<!-- 한번에 5개 페이지 보여줌 -->
+													<c:forEach begin="${qnaPage.startPage }"
+														end="${qnaPage.endPage }" var="p">
+														<c:choose>
+															<c:when test="${p == qnaPage.nowPage}">
+																<li class="page-item active" aria-current="page"><a
+																	class="page-link" href="#">${p} <span
+																		class="sr-only">(current)</span>
+																</a></li>
+															</c:when>
+															<c:when test="${p != qnaPage.nowPage}">
+																<li class="page-item"><a class="page-link"
+																	href="/admin/qna?bnowPage=${p}">${p}</a></li>
+															</c:when>
+														</c:choose>
+													</c:forEach>
 
 
 
+													<c:if test="${qnaPage.nowPage != qnaPage.lastPage}">
+														<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
+														<c:if test="${qnaPage.nowPage == qnaPage.lastPage}">
+															<li><a class="page-link"
+																href="/admin/qna?bnowPage=${qnaPage.nowPage}"
+																tabindex="+1" aria-disabled="true"> <i
+																	class="fas fa-angle-right"></i>
+															</a></li>
+														</c:if>
 
+														<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
+														<c:if test="${qnaPage.nowPage != qnaPage.lastPage}">
+															<li><a class="page-link"
+																href="/admin/qna?bnowPage=${qnaPage.nowPage+1}"
+																tabindex="+1" aria-disabled="true" data-ajax="false">
+																	<i class="fas fa-angle-right"></i>
+															</a></li>
+														</c:if>
+
+														<!-- >> 버튼 -->
+														<li><a class="page-link"
+															href="/admin/qna?bnowPage=${qnaPage.lastPage}"
+															tabindex="-1" aria-disabled="true"> <i
+																class="fas fa-angle-double-right"></i>
+														</a></li>
+
+													</c:if>
+												</ul>
+											</nav>
+										</div>
+									</c:if>
+								</div>
+								<div class="search-area">
+									<div class="search-area-body">
+										<form class="form-inline my-2 my-lg-0 underSearchForm"
+											action="/admin/qna">
+											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
+											<select class="dropdown-toggle-board" name="searchStyle">
+												<option class="nav-link dropdown-toggle board-item"
+													id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" value=""
+													<c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
+												<option class="dropdown-item board-item"
+													value="search_title"
+													<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option>
+												<option class="dropdown-item board-item"
+													value="search_content"
+													<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option>
+												<option class="dropdown-item board-item"
+													value="search_title_content"
+													<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목
+													+ 내용</option>
+												<option class="dropdown-item board-item" value="search_nick"
+													<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
+											</select> <input class="form-control mr-sm-2 board-search"
+												type="search" name="keyword" placeholder="검색어 입력"
+												aria-label="Search">
+											<button
+												class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
+												type="submit">
+												<i class="fas fa-search"></i>
+											</button>
+										</form>
+									</div>
+								</div>
                             </div>
                         </div>
-                    </div>
+					</div>
+				</div>
+                        
+                        
+                        
+                        
+                    
 
 
 
 
 
-                </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">

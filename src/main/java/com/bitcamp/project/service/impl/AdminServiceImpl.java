@@ -64,6 +64,8 @@ public class AdminServiceImpl implements AdminService {
 		}
 			
 			List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
+			System.out.println("pagegege " + qnaPage);
+			System.out.println("pageqnaListgege " + qnaList);
 //			for (int i = 0; i < qnaList.size(); i++) {
 //				qnaList.get(i).setBdateTime(new Date(qnaList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
 //			}
