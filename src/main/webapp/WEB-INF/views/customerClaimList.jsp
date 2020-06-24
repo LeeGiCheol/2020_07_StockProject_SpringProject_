@@ -66,8 +66,8 @@
 							<li class="mid"><a href="/customer"><span>고객센터</span></a></li>
 							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
-							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li class="selected"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li class="mid"><a href="/customerClaim/write"><span>1:1 문의</span></a></li>
+							<li class="selected"><a href="/customerClaim/list"><span>1:1 문의내역</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -75,10 +75,10 @@
 						<div class="free-board" >
 
  							<div class="drop-nav">
-								<h1 class="tit-h1 line">1:1문의 내역</h1>
+								<h1 class="tit-h1 line">1:1 문의내역</h1>
 							</div>
 							<div class="m-drop-nav">
-								<h1 class="m-drop-tit-title line" style="cursor: pointer;">1:1문의 내역 <i class="fas fa-angle-down"></i></h1>
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">1:1 문의내역 <i class="fas fa-angle-down"></i></h1>
 							</div>
 							<div class="m-drop-down">
 								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
@@ -108,6 +108,7 @@
 								</c:if>
 
 							</div> --%>
+							<!-- <h2 class="tit-h2 type mopad">1:1 문의내역</h2> -->
 							<div class="tab-content" id="pills-tabContent">
 								<!-- 전체글 -->
 								<table class="board-free-table">

@@ -57,6 +57,12 @@ tr td button{
 	margin: 0;
 	padding: 0;
 } 
+body {
+    line-height: 1;
+    -webkit-text-size-adjust: none;
+    background-color: #eff3f6;
+    color: #000;
+}
 .table{
 	margin-bottom: 0;
 }
@@ -507,7 +513,6 @@ fieldset, img, abbr, acronym {
 .bt-area span {
     display: block;
     float: right;
-    margin-right: 5px;
 }
 [class*="btn-s"].bodrb {
     border: 1px solid #444;
@@ -1064,12 +1069,7 @@ max-width: 100%;
 
 /* 고객페이지 1:1 수정 디테일 */
 
-body {
-    line-height: 1;
-    -webkit-text-size-adjust: none;
-    background: #eff3f6;
-    color: #000;
-}
+
 table {
     table-layout: fixed;
     border-collapse: collapse;
@@ -1094,17 +1094,6 @@ legend, caption {
 .all-menu, .all-dim, .mob-menu {
     visibility: hidden;
 }
-.all-dim {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 6;
-    background-color: rgba(0,0,0, 0.5);
-    text-indent: -9999px;
-}
 .containerNew {
     position: relative;
     max-width: 1260px;
@@ -1117,6 +1106,8 @@ legend, caption {
     margin-bottom: /*70px*/40px;
     background: #fff;
     position: relative;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
 }
 .qna-desc, .qna-desc .import, .qna-desc .time {
     line-height: 150%;
@@ -1225,10 +1216,7 @@ td, th {
     overflow: hidden;
     padding: 20px 0 40px;
 }
-.bt-area span {
-    display: block;
-    float: right;
-}
+
 [class*="btn-s"] {
     padding: 6px 10px;
     min-width: 60px;
@@ -1254,12 +1242,16 @@ td, th {
 }
 .bt-area-answer{
 	overflow: hidden;
-    padding: 20px 0 20px;
+     padding: 20px 10px 20px;
 }
 .bt-area-answer span {
     display: block;
     float: right;
-    margin-right: 5px;
+}
+.answer-box-write{
+	
+    margin: 20px 0 0 0;
+    border: 1px solid #eaeaea;
 }
 
 @media only screen and (max-width: 1599px){
@@ -1296,7 +1288,15 @@ td, th {
 .answer-box {
     margin: 20px 15px 15px;
 }
+.answer-box-write {
+    margin: 20px 15px 15px;
+}
 .bt-area {
+    clear: both;
+    overflow: hidden;
+    padding: 0 15px 40px;
+}
+.bt-area-answer {
     clear: both;
     overflow: hidden;
     padding: 0 15px 40px;
