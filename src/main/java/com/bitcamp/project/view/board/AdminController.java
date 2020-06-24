@@ -182,17 +182,6 @@ public class AdminController {
 //	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/admin/qna/delete")
 	public String adminQnaDelete(AdminVO vo) {
 		System.out.println("as "+vo);
@@ -224,9 +213,9 @@ public class AdminController {
 		if (orderby.equals("")) {
 			orderby = "new";
 		}
-		Map<String, Object> boardList = adminService.reportList(vo, Integer.parseInt(nowPage), 30, searchStyle, keyword);
-		model.addAttribute("reportList", (List<BoardVO>) boardList.get("reportList"));
-		model.addAttribute("reportPage", (PagingVO) boardList.get("reportPage"));
+		Map<String, Object> reportList = adminService.reportList(vo, Integer.parseInt(nowPage), 30, searchStyle, keyword);
+		model.addAttribute("reportList", (List<AdminVO>) reportList.get("reportList"));
+		model.addAttribute("reportPage", (PagingVO) reportList.get("reportPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 		
