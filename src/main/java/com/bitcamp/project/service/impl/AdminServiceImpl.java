@@ -76,8 +76,8 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.qnaDetail(vo);
 	}
 	
-	public int qnaDelete(AdminVO vo) {
-		return adminDAO.qnaDelete(vo);
+	public int questionDelete(AdminVO vo) {
+		return adminDAO.questionDelete(vo);
 	}
 
 	@Override
@@ -85,13 +85,9 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.qnaUpdate(vo);
 	}
 	@Override
-	public Map<String, Object> reportList(AdminVO vo) {
-		
-		Map<String, Object> reportMap = new HashMap<String, Object>();
-		
-		
-		return reportMap;
+	public int answerDelete(AdminVO vo) {
+		return adminDAO.answerDelete(vo);
 	}
-
+	
 	
 }

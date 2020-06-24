@@ -1,6 +1,7 @@
 package com.bitcamp.project.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.jsp.el.ELParseException;
 
@@ -52,17 +53,19 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int qnaDelete(AdminVO vo) {
-		return mybatis.delete("admin.qnaDelete", vo);
-	}
-
-	@Override
-	public int qnaUpdate(AdminVO vo) {
-		return mybatis.update("admin.qnaUpdate", vo);
-	}
-	@Override
-	public List<AdminVO> reportList(AdminVO vo) {
-		return mybatis.selectList("admin.reportList", vo);
+	public int questionDelete(AdminVO vo) {
+		return mybatis.delete("admin.questionDelete", vo);
 	}
 	
+	
+
+	@Override
+	public int answerDelete(AdminVO vo) {
+		return mybatis.delete("admin.answerDelete", vo);
+	}
+	@Override
+	public int qnaUpdate(AdminVO vo) {
+		System.out.println("update "+vo);
+		return mybatis.update("admin.qnaUpdate", vo);
+	}
 }

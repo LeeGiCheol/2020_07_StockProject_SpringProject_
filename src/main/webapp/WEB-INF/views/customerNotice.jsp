@@ -14,10 +14,9 @@
 	<!-- CSS파일 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+	<link rel="stylesheet" href="/resources/css/free-board.css">
 	<link rel="stylesheet" href="/resources/css/mainfooter2.css">
 	<link rel="stylesheet" href="/resources/css/mainheader2.css">
-	<link rel="stylesheet" href="/resources/css/free-board.css">
-	<link rel="stylesheet" href="/resources/css/customers.css">
 	<link rel="stylesheet" href="/resources/css/sidebar.css">	
 </head>
 
@@ -219,7 +218,7 @@
 
 
 									<c:if test="${loginUser.point le -1}">
-										<p class="right"><a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a></p>
+										<p class="right"><a href="/customNoticeWrite" class="board-write-btn fantasy">글쓰기</a></p>
 									</c:if>
 								</div>
 
