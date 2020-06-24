@@ -24,13 +24,12 @@
 <!-- 데이터테이블스타일 -->
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
  
-<!--  스타일-->
-  <link href="/resources/css/datatable.css" rel="stylesheet" />
         
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
 <link rel="stylesheet" href="/resources/css/free-board.css">
 <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+<!--  스타일-->
 
   <style type="text/css">
 .free-board {
@@ -350,22 +349,22 @@
 	
 								<!-- 페이징 -->
 								<div class="paging">
-									<c:if test="${boardPage.total gt 15}">
+									<c:if test="${qnaPage.total gt 30}">
 										<div class="paging-body">
 											<nav aria-label="..." class="pagination">
 												<ul class="pagination">
 
-													<c:if test="${boardPage.nowPage != 1}">
+													<c:if test="${qnaPage.nowPage != 1}">
 														<!-- << 버튼 -->
 														<li><a class="page-link"
-															href="/board/free?bnowPage=1" tabindex="-1"
+															href="/admin/qna?bnowPage=1" tabindex="-1"
 															aria-disabled="true"> <i
 																class="fas fa-angle-double-left"></i>
 														</a></li>
 														<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-														<c:if test="${boardPage.nowPage == 1}">
+														<c:if test="${qnaPage.nowPage == 1}">
 															<li><a class="page-link"
-																href="/board/free?bnowPage=${boardPage.nowPage}"
+																href="/admin/qna?bnowPage=${qnaPage.nowPage}"
 																tabindex="-1" aria-disabled="true"> <i
 																	class="fas fa-angle-left"></i>
 															</a></li>
@@ -373,47 +372,47 @@
 													</c:if>
 
 													<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-													<c:if test="${boardPage.nowPage != 1}">
+													<c:if test="${qnaPage.nowPage != 1}">
 														<li><a class="page-link"
-															href="/board/free?bnowPage=${boardPage.nowPage-1}"
+															href="/admin/qna?bnowPage=${qnaPage.nowPage-1}"
 															tabindex="-1" aria-disabled="true"> <i
 																class="fas fa-angle-left"></i>
 														</a></li>
 													</c:if>
 
 													<!-- 한번에 5개 페이지 보여줌 -->
-													<c:forEach begin="${boardPage.startPage }"
-														end="${boardPage.endPage }" var="p">
+													<c:forEach begin="${qnaPage.startPage }"
+														end="${qnaPage.endPage }" var="p">
 														<c:choose>
-															<c:when test="${p == boardPage.nowPage}">
+															<c:when test="${p == qnaPage.nowPage}">
 																<li class="page-item active" aria-current="page"><a
 																	class="page-link" href="#">${p} <span
 																		class="sr-only">(current)</span>
 																</a></li>
 															</c:when>
-															<c:when test="${p != boardPage.nowPage}">
+															<c:when test="${p != qnaPage.nowPage}">
 																<li class="page-item"><a class="page-link"
-																	href="/board/free?bnowPage=${p}">${p}</a></li>
+																	href="/admin/qna?bnowPage=${p}">${p}</a></li>
 															</c:when>
 														</c:choose>
 													</c:forEach>
 
 
 
-													<c:if test="${boardPage.nowPage != boardPage.lastPage}">
+													<c:if test="${qnaPage.nowPage != qnaPage.lastPage}">
 														<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-														<c:if test="${boardPage.nowPage == boardPage.lastPage}">
+														<c:if test="${qnaPage.nowPage == qnaPage.lastPage}">
 															<li><a class="page-link"
-																href="/board/free?bnowPage=${boardPage.nowPage}"
+																href="/admin/qna?bnowPage=${qnaPage.nowPage}"
 																tabindex="+1" aria-disabled="true"> <i
 																	class="fas fa-angle-right"></i>
 															</a></li>
 														</c:if>
 
 														<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
-														<c:if test="${boardPage.nowPage != boardPage.lastPage}">
+														<c:if test="${qnaPage.nowPage != qnaPage.lastPage}">
 															<li><a class="page-link"
-																href="/board/free?bnowPage=${boardPage.nowPage+1}"
+																href="/admin/qna?bnowPage=${qnaPage.nowPage+1}"
 																tabindex="+1" aria-disabled="true" data-ajax="false">
 																	<i class="fas fa-angle-right"></i>
 															</a></li>
@@ -421,7 +420,7 @@
 
 														<!-- >> 버튼 -->
 														<li><a class="page-link"
-															href="/board/free?bnowPage=${boardPage.lastPage}"
+															href="/admin/qna?bnowPage=${qnaPage.lastPage}"
 															tabindex="-1" aria-disabled="true"> <i
 																class="fas fa-angle-double-right"></i>
 														</a></li>
@@ -433,11 +432,6 @@
 									</c:if>
 
 
-									<c:if test="${loginUser != null}">
-										<p class="right">
-											<a href="/customerClaim/write" class="board-write-btn fantasy">글쓰기</a>
-										</p>
-									</c:if>
 								</div>
 
 								<div class="search-area">
