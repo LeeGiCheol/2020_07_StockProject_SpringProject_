@@ -26,8 +26,8 @@
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
  
 <!--  스타일-->
-  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
   <link href="/resources/css/datatable.css" rel="stylesheet" />
+  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
         
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
@@ -183,35 +183,35 @@
 							죄송합니다. 운영자의 답변이 아직 기재되지 않았습니다.<br>
 							24시간이 경과한 이후에도 답변이 없다면, 다시 문의하여 주시기 바랍니다. 빠른 시간안에 답변을 드리겠습니다.
 						</div>
-											<a href="/qnaAnswer/write?qno=${qna.qno}" class="btn-s fantasy">답변</a>
 					</c:if>
 					
 					<c:if test="${qna.atitle ne null }">
 					<div class="answer no-answer">
 						${qna.acontent}
 					</div>
-										<a href="/customerClaim/update?qno=${qna.qno}" class="btn-s">수정</a>
-					
 					</c:if>					
 				
-					
+		<div class="bt-area-answer">
+
+
+			<span>
+				<c:if test="${qna.qcheck eq '준비중'}">
+					<a href="/customerClaim/update?qno=${qno}" class="btn-s">수정</a>
+				</c:if>
+				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
+			</span> 
+		</div>					
 			</div>	
 		
 		
 		<!-- // answer-box -->
 
 		<div class="bt-area">
-				<c:if test="${qna.qcheck eq '준비중'}">
-				
-				</c:if>
-				<c:if test="${qna.qcheck eq '답변완료'}">
-					<a href="/qnaAnswer/write?qno=${qna.qno}" class="btn-s fantasy">답변</a>
-					<a href="/customerClaim/update?qno=${qna.qno}" class="btn-s">수정</a>
-				</c:if>
+		<a href="/qnaAnswer/write?qno=${qno}" class="btn-s fantasy">답변</a>
 			<span>
-				<a href="/admin/qna" class="btn-s">목록</a>
+				<a href="/customerClaim/list" class="btn-s">목록</a>
 				
-				<a href="/customerClaim/delete?qno=${qna.qno}" class="btn-s fantasy">삭제</a>
+				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
 			</span> 
 		</div>
 

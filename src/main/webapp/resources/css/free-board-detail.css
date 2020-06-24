@@ -1252,8 +1252,15 @@ td, th {
     border: 1px solid rgba(46,87,255,1);
     color: #fff;
 }
-
-
+.bt-area-answer{
+	overflow: hidden;
+    padding: 20px 0 20px;
+}
+.bt-area-answer span {
+    display: block;
+    float: right;
+    margin-right: 5px;
+}
 
 @media only screen and (max-width: 1599px){
 .cont-area {
