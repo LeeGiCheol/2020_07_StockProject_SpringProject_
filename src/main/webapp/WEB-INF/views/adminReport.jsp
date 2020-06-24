@@ -28,12 +28,18 @@
   <link href="/resources/css/datatable.css" rel="stylesheet" />
         
 <!-- 통합관리자 -->
- <link rel="stylesheet" href="/resources/css/admin.css">
+<link rel="stylesheet" href="/resources/css/admin.css">
+<link rel="stylesheet" href="/resources/css/free-board.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 
 
-  <style type="text/css">
-
-  </style>
+<style type="text/css">
+.free-board {
+	margin-bottom: 0 !important;
+	box-shadow:none !important;
+	border: none !important;
+}
+</style>
 
 </head>
 
@@ -87,33 +93,23 @@
                         </a>
                     </div>
                 </div>
-                
-
-                
-                
-                
             </nav>
         </div>
         <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid">
-
-
-                    <div class="card mb-4 tableBox">
-                        <div class="card-header tableTitle ">
-                        <h4>신고관리</h4>
-                        
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-
-                                
-                                <!-- 신고테이블 시작 -->
-                  
-                                <table class="table table-bordered" width="100%" cellspacing="0">
-                                    <!-- 테이블 데이터 헤더 -->
-                                    <thead>
-                                        <tr>
+ 						<div class="free-board" >
+							<h1 class="tit-h1 line">신고</h1>
+						<div class="board-type">
+							<div class="tab-content" id="pills-tabContent">
+								<!-- 전체글 -->
+								<table class="board-free-table">
+									<colgroup>
+										<col width="8%">
+										<col width="55%">
+										<col width="10%">
+										<col width="10%">
+									</colgroup>
+									<thead>
+										 <tr>
                                             <th class="center" style="width: 10%;">신고 종류</th>
                                             <th class="center"style="width: 10%">처리현황</th>
                                             <th style="width: 25%">제목</th>
@@ -121,10 +117,9 @@
                                             <th class="center" style="width: 10%">신고자 아이디</th>
                                             <th class="center" style="width: 10%">신고 일시</th>
                                         </tr>
-                                    </thead>
-                                    <!--  데이터값 들어가는 곳 -->
-                                    <tbody>
-                                       <c:forEach items="${reportList}" var="re" varStatus="status">
+									</thead>
+									<tbody>
+										<c:forEach items="${reportList}" var="re" varStatus="status">
 	                                       <tr>
 	                                       		<c:if test="${re.rtype eq 'RP001'}"><td class="center">광고</td></c:if>
 	                                       		<c:if test="${re.rtype eq 'RP002'}"><td class="center">욕설</td></c:if>
@@ -144,26 +139,27 @@
 	                                            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
 	                                        </tr>
                                         </c:forEach>
-                                    </tbody>
-                                </table>
-                                <!-- 신고테이블끝 -->
+									</tbody>
+								</table>
+	
 								<!-- 페이징 -->
 								<div class="paging">
-									<c:if test="${reportPage.total gt 10}">
+									<c:if test="${boardPage.total gt 15}">
 										<div class="paging-body">
 											<nav aria-label="..." class="pagination">
 												<ul class="pagination">
-													<c:if test="${reportPage.nowPage != 1}">
+
+													<c:if test="${boardPage.nowPage != 1}">
 														<!-- << 버튼 -->
 														<li><a class="page-link"
-															href="/admin/report?bnowPage=1" tabindex="-1"
+															href="/board/free?bnowPage=1" tabindex="-1"
 															aria-disabled="true"> <i
 																class="fas fa-angle-double-left"></i>
 														</a></li>
 														<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-														<c:if test="${reportPage.nowPage == 1}">
+														<c:if test="${boardPage.nowPage == 1}">
 															<li><a class="page-link"
-																href="/admin/report?bnowPage=${boardPage.nowPage}"
+																href="/board/free?bnowPage=${boardPage.nowPage}"
 																tabindex="-1" aria-disabled="true"> <i
 																	class="fas fa-angle-left"></i>
 															</a></li>
@@ -171,47 +167,47 @@
 													</c:if>
 
 													<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-													<c:if test="${reportPage.nowPage != 1}">
+													<c:if test="${boardPage.nowPage != 1}">
 														<li><a class="page-link"
-															href="/admin/report?bnowPage=${reportPage.nowPage-1}"
+															href="/board/free?bnowPage=${boardPage.nowPage-1}"
 															tabindex="-1" aria-disabled="true"> <i
 																class="fas fa-angle-left"></i>
 														</a></li>
 													</c:if>
 
 													<!-- 한번에 5개 페이지 보여줌 -->
-													<c:forEach begin="${reportPage.startPage }"
-														end="${reportPage.endPage }" var="p">
+													<c:forEach begin="${boardPage.startPage }"
+														end="${boardPage.endPage }" var="p">
 														<c:choose>
-															<c:when test="${p == reportPage.nowPage}">
+															<c:when test="${p == boardPage.nowPage}">
 																<li class="page-item active" aria-current="page"><a
 																	class="page-link" href="#">${p} <span
 																		class="sr-only">(current)</span>
 																</a></li>
 															</c:when>
-															<c:when test="${p != reportPage.nowPage}">
+															<c:when test="${p != boardPage.nowPage}">
 																<li class="page-item"><a class="page-link"
-																	href="/admin/report?bnowPage=${p}">${p}</a></li>
+																	href="/board/free?bnowPage=${p}">${p}</a></li>
 															</c:when>
 														</c:choose>
 													</c:forEach>
 
 
 
-													<c:if test="${reportPage.nowPage != reportPage.lastPage}">
+													<c:if test="${boardPage.nowPage != boardPage.lastPage}">
 														<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-														<c:if test="${reportPage.nowPage == reportPage.lastPage}">
+														<c:if test="${boardPage.nowPage == boardPage.lastPage}">
 															<li><a class="page-link"
-																href="/admin/report?bnowPage=${reportPage.nowPage}"
+																href="/board/free?bnowPage=${boardPage.nowPage}"
 																tabindex="+1" aria-disabled="true"> <i
 																	class="fas fa-angle-right"></i>
 															</a></li>
 														</c:if>
 
 														<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->
-														<c:if test="${reportPage.nowPage != reportPage.lastPage}">
+														<c:if test="${boardPage.nowPage != boardPage.lastPage}">
 															<li><a class="page-link"
-																href="/admin/report?bnowPage=${reportPage.nowPage+1}"
+																href="/board/free?bnowPage=${boardPage.nowPage+1}"
 																tabindex="+1" aria-disabled="true" data-ajax="false">
 																	<i class="fas fa-angle-right"></i>
 															</a></li>
@@ -219,7 +215,7 @@
 
 														<!-- >> 버튼 -->
 														<li><a class="page-link"
-															href="/admin/report?bnowPage=${reportPage.lastPage}"
+															href="/board/free?bnowPage=${boardPage.lastPage}"
 															tabindex="-1" aria-disabled="true"> <i
 																class="fas fa-angle-double-right"></i>
 														</a></li>
@@ -229,42 +225,47 @@
 											</nav>
 										</div>
 									</c:if>
+
 								</div>
+
 								<div class="search-area">
 									<div class="search-area-body">
 										<form class="form-inline my-2 my-lg-0 underSearchForm"
-											action="/admin/report">
+											action="/customerClaim/list">
+											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 											<select class="dropdown-toggle-board" name="searchStyle">
 												<option class="nav-link dropdown-toggle board-item"
-													id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value=""
+													id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" value=""
 													<c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
-												<option class="dropdown-item board-item" value="search_title"
+												<option class="dropdown-item board-item"
+													value="search_title"
 													<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option>
-												<option class="dropdown-item board-item" value="search_content"
+												<option class="dropdown-item board-item"
+													value="search_content"
 													<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option>
-												<option class="dropdown-item board-item" value="search_title_content"
+												<option class="dropdown-item board-item"
+													value="search_title_content"
 													<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목
 													+ 내용</option>
+												<option class="dropdown-item board-item" value="search_nick"
+													<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
 											</select> <input class="form-control mr-sm-2 board-search"
 												type="search" name="keyword" placeholder="검색어 입력"
 												aria-label="Search">
 											<button
-												class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
+												class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
+												type="submit">
 												<i class="fas fa-search"></i>
 											</button>
 										</form>
 									</div>
 								</div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-                </div>
-            </main>
+							</div>
+						</div>
+					</div>            
+            
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">

@@ -55,6 +55,10 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<AdminVO> reportList(PagingVO reportPage) {
 		return mybatis.selectList("admin.reportList", reportPage);
 	}
+	@Override
+	public int reportCount(AdminVO vo) {
+		return 0;
+	}
 	
 	public AdminVO qnaDetail(AdminVO vo) {
 		return (AdminVO)mybatis.selectOne("admin.qnaDetail", vo);
@@ -80,5 +84,6 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return mybatis.selectList("admin.boardChart", vo);
 	}
+	
 	
 }

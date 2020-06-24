@@ -80,7 +80,9 @@ public class AdminServiceImpl implements AdminService {
 	public Map<String, Object> reportList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		Map<String, Object> postMap = new HashMap<String, Object>();
-		PagingVO reportPage = new PagingVO(10, nowPage, page);
+		PagingVO reportPage = new PagingVO(17, nowPage, page);
+		System.out.println("######### : " + reportPage);
+		System.out.println("@@@@@@ : " + page);
 		reportPage.getUtil().put("searchStyle", searchStyle);
 		reportPage.getUtil().put("keyword", keyword);
 		/* reportPage.getUtil().put("id", vo.getId()); */
