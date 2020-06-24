@@ -30,12 +30,12 @@ h5{
 .table-responsive{
 	display:flex !important;
 }
-.left{
+/* .left{
 	width:50%;
 }
 .right{
 	width:50%;
-}
+} */
 .adminTable{
 	    border-top: #000 1px solid;
     width: 100%;
