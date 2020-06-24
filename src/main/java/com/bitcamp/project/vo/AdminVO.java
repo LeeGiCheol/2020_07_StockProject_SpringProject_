@@ -18,6 +18,54 @@ public class AdminVO {
 	private String atitle;
 	private String acontent;
 	private Date adateTime;
+	
+	//report
+	private int pno;
+	private String title;
+	private String rtype;
+	private String rcontent;
+	private Date rdatetime;
+	private String nickname;
+	
+	
+	
+	
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getRtype() {
+		return rtype;
+	}
+	public void setRtype(String rtype) {
+		this.rtype = rtype;
+	}
+	public String getRcontent() {
+		return rcontent;
+	}
+	public void setRcontent(String rcontent) {
+		this.rcontent = rcontent;
+	}
+	public Date getRdatetime() {
+		return rdatetime;
+	}
+	public void setRdatetime(Date rdatetime) {
+		this.rdatetime = rdatetime;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public int getQno() {
 		return qno;
 	}

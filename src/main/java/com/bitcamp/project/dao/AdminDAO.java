@@ -15,4 +15,5 @@ public interface AdminDAO {
 	public int questionDelete(AdminVO vo);
 	public int answerDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
+	public List<AdminVO> reportList(PagingVO reportPage);
 }
