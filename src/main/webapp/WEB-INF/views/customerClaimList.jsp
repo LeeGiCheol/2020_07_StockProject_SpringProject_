@@ -240,7 +240,7 @@
 								<div class="search-area">
 									<div class="search-area-body">
 										<form class="form-inline my-2 my-lg-0 underSearchForm"
-											action="/customerClaim/List">
+											action="/customerClaim/list">
 											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 											<select class="dropdown-toggle-board" name="searchStyle">
