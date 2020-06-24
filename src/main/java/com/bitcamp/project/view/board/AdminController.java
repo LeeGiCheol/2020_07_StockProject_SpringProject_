@@ -81,6 +81,7 @@ public class AdminController {
 		}
 
 		Map<String, Object> qnaList = adminService.qnaList(vo, Integer.parseInt(nowPage), 30, searchStyle, keyword);
+		System.out.println(qnaList);
 		model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
 		model.addAttribute("qnaPage", (PagingVO) qnaList.get("qnaPage"));
 		model.addAttribute("searchStyle", searchStyle);

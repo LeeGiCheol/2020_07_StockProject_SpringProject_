@@ -116,14 +116,14 @@
 				<strong class="tit">문의주신 내역에 대한 답변입니다.</strong>
 				
 					
-					<c:if test="${qna.atitle eq null}">
+					<c:if test="${qna.acontent eq null}">
 						<div class="answer no-answer">
 							죄송합니다. 운영자의 답변이 아직 기재되지 않았습니다.<br>
 							24시간이 경과한 이후에도 답변이 없다면, 다시 문의하여 주시기 바랍니다. 빠른 시간안에 답변을 드리겠습니다.
 						</div>
 					</c:if>
 					
-					<c:if test="${qna.atitle ne null }">
+					<c:if test="${qna.acontent ne null }">
 					<div class="answer no-answer">
 						${qna.acontent}
 					</div>
