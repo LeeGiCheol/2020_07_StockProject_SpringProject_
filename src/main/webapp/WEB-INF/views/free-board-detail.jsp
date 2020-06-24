@@ -269,7 +269,36 @@
 										<option value="RP010">지역감정</option>
 										<option value="RP011">기타</option>
 									</select>
-								</span>
+								</span>								
+								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
+							</p>
+							<dl class="pop-clean-info">
+								<dt>이용안내</dt>
+								<dd>
+									신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
+									<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
+								</dd>
+							</dl>
+							<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
+						
+						</div>
+						
+							<input type="hidden" name="pno" value="${boardDetail.pno}">
+							<input type="hidden" name="title" value="${boardDetail.title}">
+						
+						<div class="pop-btn">
+
+							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
+							<button type="submit" id="submitReport" class="btn-m red">신고하기</button>
+						</div>
+					</div>
+					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
+				</form> 
+			</div>
+		</div>
+	</div>
+
+
 	<script>
         /** 신고 기능들 모음 Report */
         var Report = (function($) {
@@ -413,34 +442,8 @@ function submitReportComt(){
 		}
 
 </script>
-								
-								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
-							</p>
-							<dl class="pop-clean-info">
-								<dt>이용안내</dt>
-								<dd>
-									신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
-									<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
-								</dd>
-							</dl>
-							<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
-						
-						</div>
-						
-							<input type="hidden" name="pno" value="${boardDetail.pno}">
-							<input type="hidden" name="title" value="${boardDetail.title}">
-						
-						<div class="pop-btn">
 
-							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
-							<button type="submit" id="submitReport" class="btn-m red">신고하기</button>
-						</div>
-					</div>
-					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
-				</form> 
-			</div>
-		</div>
-	</div>
+
 
 <script>
 
