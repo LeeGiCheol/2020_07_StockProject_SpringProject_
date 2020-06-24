@@ -186,28 +186,36 @@
 					</c:if>
 					
 					<c:if test="${qna.atitle ne null }">
-					<div class="answer no-answer">
+					<div class="answer answer">
 						${qna.acontent}
+						
+						
 					</div>
+						 <div class="bt-area-answer">
+						<span>
+							<c:if test="${qna.qcheck eq '답변완료'}">
+								<a href="/admin/qna/update?ano=${qna.ano}" class="btn-s">수정</a>
+								<a href="/admin/qna/delete?ano=${qna.ano}" class="btn-s fantasy">삭제</a>
+							</c:if>
+						</span> 
+						</div>	
 					</c:if>					
 				
-		<div class="bt-area-answer">
-
-
+		<%-- <div class="bt-area-answer">
 			<span>
-				<c:if test="${qna.qcheck eq '준비중'}">
-					<a href="/customerClaim/update?qno=${qno}" class="btn-s">수정</a>
+				<c:if test="${qna.qcheck eq '답변완료'}">
+					<a href="/admin/qna/update?qno=${qna.qno}" class="btn-s">수정</a>
+					<a href="/admin/qna/delete?qno=${qna.qno}" class="btn-s fantasy">삭제</a>
 				</c:if>
-				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
 			</span> 
-		</div>					
+		</div>		 --%>			
 			</div>	
 		
 		
 		<!-- // answer-box -->
 
 		<div class="bt-area">
-		<a href="/qnaAnswer/write?qno=${qno}" class="btn-s fantasy">답변</a>
+		<a href="/qnaAnswer/write?qno=${qna.qno}" class="btn-s fantasy">답변</a>
 			<span>
 				<a href="/customerClaim/list" class="btn-s">목록</a>
 				
