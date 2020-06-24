@@ -127,8 +127,8 @@
 										<tr>
 											<th class="no" scope="col">N0</th>
 											<th class="title" scope="col">제목</th>
-											<th class="date" scope="col">작성일</th>
 											<th class="" scope="col">처리현황</th>
+											<th class="date" scope="col">작성일</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -139,13 +139,11 @@
 															<td class="board-title"><a
 																href="/customerClaim/detail?qno=${qna.qno}">${qna.qtitle}</a></td>
 
-													<%-- <td class="board-writer"><a href="/selectUserMoney?nickname=${qna.nickname}">${board.nickname}</a></td> --%>
-													<!-- 글쓴이 -->
+													<!-- 날짜 -->
+													<td>${qna.qcheck}</td>
 													<fmt:formatDate value="${qna.qdateTime}" var="time"
 														pattern="MM/dd HH:mm" />
 													<td class="board-date">${time}</td>
-													<!-- 날짜 -->
-													<td>${qna.qcheck}</td>
 												</tr>
 										</c:forEach>
 									</tbody>

@@ -2,6 +2,8 @@ package com.bitcamp.project.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AdminVO {
 	
 	// Question
@@ -9,6 +11,8 @@ public class AdminVO {
 	private String id;
 	private String qtitle;
 	private String qcontent;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date qdateTime;
 	private String qcheck;
 	private String qtype;
@@ -16,6 +20,8 @@ public class AdminVO {
 	// Answer
 	private int ano;
 	private String acontent;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date adateTime;
 	
 	//report

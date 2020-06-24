@@ -130,6 +130,14 @@
 							pattern="MM/dd HH:mm" />
 						<td class="board-date">${time}</td>
 					</tr>
+					<c:if test="${qna.acontent ne null}">
+						<tr>
+							<th scope="row">답변완료일</th>
+							<fmt:formatDate value="${qna.adateTime}" var="time"
+								pattern="MM/dd HH:mm" />
+							<td class="board-date">${time}</td>
+						</tr>
+					</c:if>
 					<tr>
 						<th scope="row">내용</th>
 						<td><div><p>${qna.qcontent}<br></p></div></td>
