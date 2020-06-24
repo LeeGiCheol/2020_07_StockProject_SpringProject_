@@ -31,6 +31,17 @@
 		});
 	});
 </script>
+<style>
+.contents{
+	background: #fff;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+    
+}
+.tab-content {
+	margin: 0 40px;
+}
+</style>
 </head>
 <body>
 
