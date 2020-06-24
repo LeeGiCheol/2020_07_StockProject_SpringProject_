@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1:1 문의 내역</title>
+<title>Q&amp;A</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- CSS파일 -->
@@ -36,17 +36,17 @@
 							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
 							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li class="selected"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li class="selected"><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 				</div>
 		<div class="col-md-10">
 		<div class="cont-area">	
  							<div class="drop-nav">
-								<h1 class="tit-h1 line">1:1문의 내역</h1>
+								<h1 class="tit-h1 line">Q&amp;A</h1>
 							</div>
 							<div class="m-drop-nav">
-								<h1 class="m-drop-tit-title line" style="cursor: pointer;">1:1문의 내역 <i class="fas fa-angle-down"></i></h1>
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">Q&amp;A <i class="fas fa-angle-down"></i></h1>
 							</div>
 							<div class="m-drop-down">
 								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
@@ -62,7 +62,7 @@
 									<a href="/customerClaim/write">1:1문의</a>
 								</h1>														
 								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/list">1:1문의 내역</a>
+									<a href="/customerClaim/list">Q&amp;A</a>
 								</h1>
 							</div>	
 		<!-- <h1 class="tit-h1">Q&amp;A</h1> -->

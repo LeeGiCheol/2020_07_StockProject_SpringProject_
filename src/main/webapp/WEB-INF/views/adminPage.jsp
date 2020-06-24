@@ -92,7 +92,7 @@
                 
              <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
+                    <div class="small">Logged in as: 관리자</div>
                     
                 </div>
                 
@@ -104,10 +104,6 @@
             <main>
                 <div class="container-fluid">
                     <h2 class="mt-4">관리자페이지</h2>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">대시보드</li>
-                    </ol>
-
 
 
                     <!-- 차트들어가는부분 -->
@@ -137,9 +133,109 @@
 
 
 
+					<div class="row">
+
+                            <div class="table-responsive">
+
+                                <!-- 문s의테이블 시작 -->
+                                <div class="col-xl-6">
+                                	<div class="card mb-4 table-div">
+                                <h5 class="mt-4">1:1문의</h5>
+                                <table class="adminTable" width="100%" cellspacing="0">
+                                    <!-- 테이블 데이터 헤더 -->
+                                    <thead>
+                                        <tr>
+                                            <th class="class center" style="width: 10%;">종류</th>
+                                            <th class="status center" style="width: 10%">처리현황</th>
+                                            <th class="title tleft" style="width: 55%">제목</th>
+                                            <th class="writer tleft" style="width: 10%">아이디</th>
+                                            <th class="date center" style="width: 15%">일시</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    
+                                    <!-- 데이터값 들어가는 곳 -->
+                                    <tbody>
+                                       <tr>
+                                            <td class="tClass center">종류</td>
+                                            <td class="tStatus center">처리현황</td>
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+
+                                            <td class="tWriter tleft">아이디</td>
+                                            <td class="tDate center">05/22/2022</td>
+                                        </tr>
+                                        
+                                       <tr>
+                                            <td class="tClass center">종류</td>
+                                            <td class="tStatus center">처리현황</td>
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+
+                                            <td class="tWriter tleft">아이디</td>
+                                            <td class="tDate center">05/22/2022</td>
+                                        </tr>
+                                        
+                                        
 
 
-                    <div class="card mb-4">
+                                    </tbody>
+                                </table>
+                                </div>
+                                <!-- 문의테이블끝 -->
+								</div>
+                                
+                                
+                                
+                                <!-- 신고테이블 시작 -->
+                               <div class="col-xl-6">
+                                <div class="card mb-4 table-div">
+                                <h5 class="mt-4">신고</h5>
+                                <table class="adminTable tRight" width="100%" cellspacing="0">
+                                    <!-- 테이블 데이터 헤더 -->
+                                    <thead>
+                                        <tr>
+                                            <th class="class center" style="width: 10%;">종류</th>
+                                            <th class="status center" style="width: 10%">처리현황</th>
+                                            <th class="title tleft" style="width: 55%">제목</th>
+                                            <th class="writer tleft" style="width: 10%">아이디</th>
+                                            <th class="date center" style="width: 15%">일시</th>
+                                        </tr>
+                                    </thead>
+                                    <!--  데이터값 들어가는 곳 -->
+                                    <tbody>
+                                       <tr>
+                                            <td class="tClass center">종류</td>
+                                            <td class="tStatus center">처리현황</td>
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+
+                                            <td class="tWriter tleft">아이디</td>
+                                            <td class="tDate center">05/22/2022</td>
+                                        </tr>
+                                        
+                                        
+                                       <tr>
+                                            <td class="tClass center">종류</td>
+                                            <td class="tStatus center">처리현황</td>
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+
+                                            <td class="tWriter tleft">아이디</td>
+                                            <td class="tDate center">05/22/2022</td>
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+                                </div>
+                                <!-- 신고테이블끝 -->
+
+
+
+
+                        
+                        </div>
+                        </div>
+                    </div>
+
+<!--                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
                             사이트관리
@@ -147,10 +243,10 @@
                         <div class="card-body">
                             <div class="table-responsive">
 
-                                <!-- 문의테이블 시작 -->
+                                문의테이블 시작
                                 <h5 class="mt-4">문의</h5>
                                 <table class="table table-bordered" width="100%" cellspacing="0">
-                                    <!-- 테이블 데이터 헤더 -->
+                                    테이블 데이터 헤더
                                     <thead>
                                         <tr>
                                             <th class="center" style="width: 10%;">종류</th>
@@ -163,7 +259,7 @@
                                     </thead>
                                     
                                     
-                                    <!-- 데이터값 들어가는 곳 -->
+                                    데이터값 들어가는 곳
                                     <tbody>
                                         <tr>
                                             <td class="center">종류</td>
@@ -188,13 +284,13 @@
 
                                     </tbody>
                                 </table>
-                                <!-- 문의테이블끝 -->
+                                문의테이블끝
 
                                 
-                                <!-- 신고테이블 시작 -->
+                                신고테이블 시작
                                 <h5 class="mt-4">신고</h5>
                                 <table class="table table-bordered" width="100%" cellspacing="0">
-                                    <!-- 테이블 데이터 헤더 -->
+                                    테이블 데이터 헤더
                                     <thead>
                                         <tr>
                                             <th class="center" style="width: 10%;">종류</th>
@@ -205,7 +301,7 @@
                                             <th class="center" style="width: 10%">일시</th>
                                         </tr>
                                     </thead>
-                                    <!--  데이터값 들어가는 곳 -->
+                                     데이터값 들어가는 곳
                                     <tbody>
                                        <tr>
                                             <td class="center">종류</td>
@@ -218,14 +314,14 @@
 
                                     </tbody>
                                 </table>
-                                <!-- 신고테이블끝 -->
+                                신고테이블끝
 
 
 
 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
 
