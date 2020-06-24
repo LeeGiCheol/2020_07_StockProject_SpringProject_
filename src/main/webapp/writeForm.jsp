@@ -128,6 +128,17 @@ $(document).on('click', '#btnSave', function(e) {
     </div>
   <!-- footer end --> 
 </body>
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+ oAppRef: oEditors,
+ elPlaceHolder: "bcontent",
+ sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+ fCreator: "createSEditor2"
+});
+
+
+</script>
 <script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script> <!-- 글쓰기 메뉴들 -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>

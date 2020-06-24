@@ -507,7 +507,6 @@ fieldset, img, abbr, acronym {
 .bt-area span {
     display: block;
     float: right;
-    margin-right: 5px;
 }
 [class*="btn-s"].bodrb {
     border: 1px solid #444;
@@ -1225,10 +1224,7 @@ td, th {
     overflow: hidden;
     padding: 20px 0 40px;
 }
-.bt-area span {
-    display: block;
-    float: right;
-}
+
 [class*="btn-s"] {
     padding: 6px 10px;
     min-width: 60px;
@@ -1254,12 +1250,16 @@ td, th {
 }
 .bt-area-answer{
 	overflow: hidden;
-    padding: 20px 0 20px;
+     padding: 20px 10px 20px;
 }
 .bt-area-answer span {
     display: block;
     float: right;
-    margin-right: 5px;
+}
+.answer-box-write{
+	
+    margin: 20px 0 0 0;
+    border: 1px solid #eaeaea;
 }
 
 @media only screen and (max-width: 1599px){
@@ -1296,7 +1296,15 @@ td, th {
 .answer-box {
     margin: 20px 15px 15px;
 }
+.answer-box-write {
+    margin: 20px 15px 15px;
+}
 .bt-area {
+    clear: both;
+    overflow: hidden;
+    padding: 0 15px 40px;
+}
+.bt-area-answer {
     clear: both;
     overflow: hidden;
     padding: 0 15px 40px;

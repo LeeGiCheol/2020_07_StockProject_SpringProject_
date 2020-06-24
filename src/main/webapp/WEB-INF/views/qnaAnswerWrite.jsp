@@ -1,191 +1,187 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>글쓰기페이지</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<!-- CSS파일 -->
-<style>
-.ck-blurred, .ck-focused{height: 500px;}
-</style>
-<link href="/resources/css/writeForm.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v4.0.1">
+  
+  <title>관리자페이지</title>
+
+
+
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
- <link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<!-- 데이터테이블스타일 -->
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+ 
+<!--  스타일-->
+  <link href="/resources/css/free-board-detail.css" rel="stylesheet">
+  <link href="/resources/css/datatable.css" rel="stylesheet" />
+        
+<!-- 통합관리자 -->
+ <link rel="stylesheet" href="/resources/css/admin.css">
 
-<script>
-	function btnSave(){
-		// bcontent에 내용 삽입
-		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
-		// 글제목
-		var title = $("#title").val();
-		// 글내용 있는지 확인용 
-		var content = document.getElementsByTagName('p');
-		
-
-
-				var contentValue = $('#bcontent').val();
-				
-					
-					
-				if(title.trim() == ""){
-					swal({text:"제목을 입력해주세요.", icon:"error"});			
-					$("#title").focus();
-				}
-				
-				else{ 
-					$("#form").submit();
-				} 
-		
-		
-		
-		
-	};
-
-
-</script> 
 </head>
-<body>
 
-	<%@include file="mainheader.jsp" %> 
-	
-	<div class="all-dim"></div>
-		<div class="containerNew">
-			<div class="board-page">
-				<div class="row">
-					<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
-						<ul>	
-							<li class="selected mid"><a href="/board/free"><span>자유게시판</span></a></li>
-							<li class="mid"><a href="/board/portfolio"><span>포트폴리오</span></a></li>
-							<li><a href="/news"><span>오늘의 뉴스</span></a></li>
-						</ul>
-					</div>
-					</div>
-					<div class="col-md-10">
-						<div class="free-board" role="main">
-						<div class="drop-nav">
-							<h1 class="tit-h1 line">자유게시판</h1>
-						</div>
-						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">자유게시판 <i class="fas fa-angle-down"></i></h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-								<a href="/board/free">자유게시판</a>
-							</h1>
-							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/portfolio">포트폴리오</a>
-							</h1>
-							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/news">오늘의 뉴스</a>
-							</h1>
-						</div>						
-							<form name="form" id="form" role="form" method="POST" action="/qnaAnswer/write">
-								<div class="form-table">
-									<table>
-										<tbody>
-											<tr>
-												<th scope="row"><label for="title">제목</label></th>
-												<td>
-													<span class="input-style-case02">
-														<input type="text" id="title" name="atitle" placeholder="제목을 입력하세요" value="" maxlength="250">
-														<!-- <button type="button" class="delete">삭제</button> -->
-													</span>
-												</td>
-												
-<!-- 								               <div class="mb-3 title">
-								                    <label for="title"><b>제목</b></label>
-								                    <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" required>
-								               </div> -->
-								            </tr>
-								            <tr class="writer-nickname" style="display: none;">
-								            	<td>
-								                    <label for="writer"><b>작성자</b></label>
-								                    <input type="text" class="form-control" name="nickname" id="writer" value="관리자" readonly>
-								                    <input type="hidden" name="qno" value="${qno}">
-							               		</td>
-							               </tr>
-								            <tr>
-												<th scope="row">내용</th>
-												<td>
-													<textarea class="form-control" rows="5" name="acontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="bt-area">
-									<a href="/customerClaim/list" class="btn-m">취소</a>
-									<span><a href="javascript:btnSave();" class="btn-m fantasy" id="addBtn">작성</a></span>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+<body class="sb-nav-fixed">
+
+
+
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!--    로고들어감 -->
+        			<a href="/mainPage" class="navbar-logo">
+			<img class="" id="logo"
+				src="/resources/img/finalogo.png">
+				</a> 
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
+
+
+
+
+        <!-- Navbar 모바일 미디어 드롭메뉴- 사람아이콘 누르면 -->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="/mainPage">로그아웃</a>
+                </div>
+            </li>
+        </ul>
+
+
+
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark"">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">메인</div>
+                        <a class="nav-link" href="/admin/main">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+             			               대시보드
+                        </a>
+                        <div class="sb-sidenav-menu-heading">사이트관리</div>
+                        <a class="nav-link" href="/admin/qna">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+         				                   문의
+                        </a>
+                        <a class="nav-link" href="/admin/report">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                         		   신고
+                        </a>
+                    </div>
+                </div>
+                
+                
+             <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    
+                </div>
+                
+                
+                
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+					<div class="cont-area">	
+
+		<!-- <h1 class="tit-h1">Q&amp;A</h1> -->
+
+		<div class="qna-desc">
+			<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
+			<span class="time">1:1로 접수 주시면 빠른답변을 받아보실 수 있습니다. 평일 08:30~17:30</span>
+			<a href="javascript:pageMove('serviceInqryInsert');" class="inquiry">1:1문의</a>
 		</div>
-	
-	<%@include file="mainfooter2.jsp" %>
-	
-	
-	
-		<script type="text/javascript">
-			$(document).ready(
-					function() {
-						console.log("document ready!");
+		<!-- // qna-desc -->
 
-						var $sticky = $('.sticky');
-						var $stickyrStopper = $('.footer_content	');
-						if (!!$sticky.offset()) { // make sure ".sticky" element exists
+		<h2 class="tit-h2 type mopad">문의내역</h2>
+		<div class="table-scroll-no">
+			<table class="table-row">
+				<caption>Q&amp;A 상세내용 : 처리현황, 아이디, 제목, 내용에 대한 정보</caption>
+				<colgroup>
+					<col style="width:25%;">
+					<col style="width:75%;">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th scope="row">처리현황</th>
+						<td><span class="ing">${qna.qcheck}</span></td>
+					</tr>
+					<tr>
+						<th scope="row">아이디</th>
+						<td>${qna.id}</td>
+					</tr>
+					<tr>
+						<th scope="row">제목</th>
+						<td>${qna.qtitle}</td>
+					</tr>
+					<tr>
+						<th scope="row">작성일</th>
+						<fmt:formatDate value="${qna.qdateTime}" var="time"
+							pattern="MM/dd HH:mm" />
+						<td class="board-date">${time}</td>
+					</tr>
+					<tr>
+						<th scope="row">내용</th>
+						<td><div><p>${qna.qcontent}<br></p></div></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- //table-row -->
+		</div>
+		<!-- // table-scroll-no -->
 
-							var generalSidebarHeight = $sticky.innerHeight();
-							var stickyTop = $sticky.offset().top;
-							var stickOffset = 0;
-							var stickyStopperPosition = $stickyrStopper
-									.offset().top;
-							var stopPoint = stickyStopperPosition
-									- generalSidebarHeight - stickOffset;
-							var diff = stopPoint + stickOffset;
+		
+			<div class="answer-box-write">
+				<textarea class="form-control" rows="5" name="bcontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>							
+					<div class="bt-area-answer">
+								<a href="/admin/qna/update?ano=${qna.ano}" class="btn-s">취소</a>
+						<span>
+							<c:if test="${qna.qcheck eq '답변완료'}">
+								<a href="/admin/qna/delete?ano=${qna.ano}" class="btn-s fantasy">작성</a>
+							</c:if>
+						</span> 
+					</div>
+			</div>			
+		
+		<!-- // answer-box -->
 
-							$(window).scroll(
-									function() { // scroll event
-										var windowTop = $(window).scrollTop(); // returns number
+		<div class="bt-area-answer">
+		<a <%-- href="/qnaAnswer/write?qno=${qna.qno}"  --%>class="btn-s fantasy anwer-write-btn">답변</a>
+			<span>
+				<a href="/customerClaim/list" class="btn-s">목록</a>
+				
+				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
+			</span> 
+		</div>
 
-										if (stopPoint < windowTop) {
-											$sticky.css({
-												position : 'relative',
-												top : diff
-											});
-										} else if (stickyTop < windowTop
-												+ stickOffset) {
-											$sticky.css({
-												position : 'fixed',
-												top : stickOffset
-											});
-										} else {
-											$sticky.css({
-												position : 'relative',
-												top : 'initial'
-											});
-										}
-									});
+	</div>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright ⓒ 2020 - 2020 fantasy stock. All rights reserved.</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
 
-						}
-						$(".m-drop-nav").click(function() {
-							$(".m-drop-down").slideToggle("slow");
-						});
-					});
-		</script>
-
-
+</body>
 <script type="text/javascript">
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
@@ -195,11 +191,19 @@ nhn.husky.EZCreator.createInIFrame({
  fCreator: "createSEditor2"
 });
 
+</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+    <script src="/resources/js/scripts.js"></script>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="/resources/js/chart-area-demo.js"></script>
+    <script src="/resources/js/chart-bar-demo.js"></script>
+    <script src="/resources/js/datatables-demo.js"></script>    
+    
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
-</script>	
-	
-</body>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </html>

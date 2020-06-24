@@ -16,10 +16,10 @@
 
 
 
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
-   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+<script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- 데이터테이블스타일 -->
@@ -31,11 +31,6 @@
         
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
-
-
-  <style type="text/css">
-
-  </style>
 
 </head>
 
@@ -104,29 +99,7 @@
         </div>
         <div id="layoutSidenav_content">
 					<div class="cont-area">	
- 							<div class="drop-nav">
-								<h1 class="tit-h1 line">1:1문의 내역</h1>
-							</div>
-							<div class="m-drop-nav">
-								<h1 class="m-drop-tit-title line" style="cursor: pointer;">1:1문의 내역 <i class="fas fa-angle-down"></i></h1>
-							</div>
-							<div class="m-drop-down">
-								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-									<a href="/customer">고객센터</a>
-								</h1>
-								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerNotice">공지사항</a>
-								</h1>
-								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerqna">도움말</a>
-								</h1>
-								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/write">1:1문의</a>
-								</h1>														
-								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/list">1:1문의 내역</a>
-								</h1>
-							</div>	
+
 		<!-- <h1 class="tit-h1">Q&amp;A</h1> -->
 
 		<div class="qna-desc">
@@ -174,7 +147,7 @@
 		<!-- // table-scroll-no -->
 
 		
-			<div class="answer-box">
+ 			<div class="answer-box">
 				<strong class="tit">문의주신 내역에 대한 답변입니다.</strong>
 				
 					
@@ -199,23 +172,14 @@
 							</c:if>
 						</span> 
 						</div>	
-					</c:if>					
-				
-		<%-- <div class="bt-area-answer">
-			<span>
-				<c:if test="${qna.qcheck eq '답변완료'}">
-					<a href="/admin/qna/update?qno=${qna.qno}" class="btn-s">수정</a>
-					<a href="/admin/qna/delete?qno=${qna.qno}" class="btn-s fantasy">삭제</a>
-				</c:if>
-			</span> 
-		</div>		 --%>			
-			</div>	
+					</c:if>							
+			</div>
 		
 		
 		<!-- // answer-box -->
 
-		<div class="bt-area">
-		<a href="/qnaAnswer/write?qno=${qna.qno}" class="btn-s fantasy">답변</a>
+		<div class="bt-area-answer">
+		<a <%-- href="/qnaAnswer/write?qno=${qna.qno}"  --%>class="btn-s fantasy anwer-write-btn">답변</a>
 			<span>
 				<a href="/customerClaim/list" class="btn-s">목록</a>
 				
@@ -233,6 +197,18 @@
             </footer>
         </div>
     </div>
+
+</body>
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+ oAppRef: oEditors,
+ elPlaceHolder: "bcontent",
+ sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+ fCreator: "createSEditor2"
+});
+
+</script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
@@ -246,7 +222,5 @@
     
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-
-</body>
 
 </html>
