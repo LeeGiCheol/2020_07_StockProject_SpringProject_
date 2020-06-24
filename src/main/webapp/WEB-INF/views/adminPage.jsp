@@ -54,7 +54,7 @@
 
 
         <!-- Navbar 모바일 미디어 드롭메뉴- 사람아이콘 누르면 -->
-        <ul class="navbar-nav ml-auto ml-md-0">
+        <ul class="navbar-nav ml-auto mr-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -72,12 +72,11 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark"">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">메인</div>
                         <a class="nav-link" href="/admin/main">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-             			               대시보드
+             			               관리자페이지
                         </a>
-                        <div class="sb-sidenav-menu-heading">사이트관리</div>
+
                         <a class="nav-link" href="/admin/qna">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
          				                   문의
@@ -89,12 +88,7 @@
                     </div>
                 </div>
                 
-                
-             <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as: 관리자</div>
-                    
-                </div>
+         
                 
                 
                 
