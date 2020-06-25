@@ -454,6 +454,7 @@ input[type="button"], button {
 @media only screen and (max-width: 979px){
 .containerNew {
     padding-bottom: 160px;
+    padding-top: 0;
 }
 .cont-area {
     margin: 0 auto;
@@ -754,7 +755,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 								
 								<a href="javascript:goJongmokHome('005930')"><i class="keyword">삼성</i>전자 005930</a>
 								
-								<span class="star"><button type="button" id="_btn_1_2" onclick="fncAnalysisPopupSearch('1_2','005930');" class="_star005930 ">관심종목 추가</button></span>
+								<span class="star"><button type="button" id="_btn_1_2" on
+								click="fncAnalysisPopupSearch('1_2','005930');" class="_star005930 ">관심종목 추가</button></span>
 								
 								
 							</p>
@@ -900,6 +902,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 
 	</div>
 </div>
+
 
 <%@include file="mainfooter2.jsp"%>
 

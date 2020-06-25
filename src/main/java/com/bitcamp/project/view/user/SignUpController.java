@@ -1,7 +1,8 @@
 package com.bitcamp.project.view.user;
 
-import static com.bitcamp.project.view.user.SignUpSend.signUpNumStr;
 import static com.bitcamp.project.view.user.SignUpMailController.signUpEmailNumStr;
+import static com.bitcamp.project.view.user.SignUpSend.signUpNumStr;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +55,7 @@ public class SignUpController {
 
 	// 회원가입완료화면
 	@PostMapping(value="/signUp")
-	public String signUp(UserVO vo, @RequestParam("friend") String friend) {
+	public String signUp(UserVO vo, @RequestParam("friend") String friend, Model model) {
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
@@ -67,8 +69,14 @@ public class SignUpController {
 		System.out.println("vo su : " + vo.toString());
 		
 		signUpService.signUp(vo);
+		model.addAttribute("loginUser", vo);
 		
 		
+		return "signup03";
+	}
+	
+	@GetMapping("/a")
+	public String a() {
 		return "signup03";
 	}
 	
