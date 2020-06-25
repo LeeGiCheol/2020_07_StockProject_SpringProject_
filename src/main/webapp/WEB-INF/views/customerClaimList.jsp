@@ -8,23 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1:1 문의내역</title>
+<title>Q&amp;A</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- CSS파일 -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-
 <link rel="stylesheet" href="/resources/css/free-board.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
-<style>
-.board-writer,.board-title{
-	text-align: center;
-}
-</style>
+<link rel="stylesheet" href="/resources/css/mainfooter2.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">	
 <script>
 	$(document).ready(function() {
 		$("#jb-checkboxAll-best").click(function() {
@@ -62,39 +56,50 @@
 		<div class="board-page">
 			<div class="row">
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
-							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
-							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
-							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li id="claimList"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
-							
+							<li class="mid"><a href="/customer"><span>고객센터</span></a></li>
+							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
+							<li class="mid"><a href="/customerClaim/write"><span>1:1 문의</span></a></li>
+							<li class="selected"><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-10">
 						<div class="free-board" >
 
-						<div class="drop-nav">
-							<h1 class="tit-h1 line">1:1문의 내역</h1>
-						</div>
-
-						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-							</svg>1:1문의 </h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/list">1:1문의 내역</a></h1>
-							
-						</div>
+ 							<div class="drop-nav">
+								<h1 class="tit-h1 line">Q&amp;A</h1>
+							</div>
+							<div class="m-drop-nav">
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">Q&amp;A <i class="fas fa-angle-down"></i></h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+									<a href="/customer">고객센터</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerNotice">공지사항</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerqna">도움말</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/write">1:1문의</a>
+								</h1>														
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/list">1:1문의 내역</a>
+								</h1>
+							</div>
+							<div class="qna-desc">
+								<strong class="import">서비스 이용중 궁금한 내역이 있으시면, 언제든지 문의해주세요!</strong>
+								<span class="time">1:1로 접수 주시면 빠른답변을 받아보실 수 있습니다. 평일 08:30~17:30</span>
+								<a href="/customerClaim/write" class="inquiry">1:1문의</a>
+							</div>
+							<h2 class="tit-h2 type mopad" style="">문의내역</h2>
 						<div class="board-type">
-							<div class="board-free-nav">
+<%-- 							<div class="board-free-nav">
 
 								<c:if test="${loginUser != null}">
 									<p class="right">
@@ -102,7 +107,8 @@
 									</p>
 								</c:if>
 
-							</div>
+							</div> --%>
+							
 							<div class="tab-content" id="pills-tabContent">
 								<!-- 전체글 -->
 								<table class="board-free-table">
@@ -114,27 +120,25 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="no" scope="col">N0</th>
+											<th class="no" scope="col">종류</th>
 											<th class="title" scope="col">제목</th>
-											<th class="date" scope="col">작성일</th>
 											<th class="" scope="col">처리현황</th>
+											<th class="date" scope="col">작성일</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${qnaList}" var="qna">
 												<tr>
-													<td class="board-no">${qna.qno}</td>
+													<td class="board-no">${qna.qtype}</td>
 													<!-- 글번호 -->
 															<td class="board-title"><a
 																href="/customerClaim/detail?qno=${qna.qno}">${qna.qtitle}</a></td>
 
-													<%-- <td class="board-writer"><a href="/selectUserMoney?nickname=${qna.nickname}">${board.nickname}</a></td> --%>
-													<!-- 글쓴이 -->
+													<!-- 날짜 -->
+													<td>${qna.qcheck}</td>
 													<fmt:formatDate value="${qna.qdateTime}" var="time"
 														pattern="MM/dd HH:mm" />
 													<td class="board-date">${time}</td>
-													<!-- 날짜 -->
-													<td>${qna.qcheck}</td>
 												</tr>
 										</c:forEach>
 									</tbody>
@@ -235,7 +239,7 @@
 								<div class="search-area">
 									<div class="search-area-body">
 										<form class="form-inline my-2 my-lg-0 underSearchForm"
-											action="/customerClaim/List">
+											action="/customerClaim/list">
 											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 											<select class="dropdown-toggle-board" name="searchStyle">

@@ -1,7 +1,9 @@
 package com.bitcamp.project.view.user;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,13 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.BoardService;
 import com.bitcamp.project.service.CommentService;
-import com.bitcamp.project.service.QnaService;
+import com.bitcamp.project.service.AdminService;
 import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.view.board.BoardController;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.QnaVO;
+import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.UserVO;
 
 @Controller
@@ -39,7 +41,7 @@ public class CustomerController {
 	CommentService commentService;
 
 	@Autowired
-	QnaService qnaService;
+	AdminService adminService;
 	
 	@Autowired
 	HttpSession session;
@@ -174,7 +176,7 @@ public class CustomerController {
 		BoardVO bVo = boardService.getBoard(vo);
 		List<String> uploadThumbnail = new ArrayList<String>();
 		FileUpload fileUpload = new FileUpload();
-		fileUpload.fileDel(bVo, uploadedFileName, uploadThumbnail, request);
+		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
 		
 		boardService.deleteBoard(vo);
 		return "redirect:/customerNotice";
@@ -194,7 +196,7 @@ public class CustomerController {
 		}
 	}
 	@PostMapping(value="/customerClaim/write")
-	public ModelAndView customClaimWrite(QnaVO vo) {
+	public ModelAndView customClaimWrite(AdminVO vo) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		ModelAndView mav = new ModelAndView();
 		
@@ -206,7 +208,7 @@ public class CustomerController {
 			return mav;
 		}else {
 		
-			vo.setId(loginUser.getId());
+			vo.setNickname(loginUser.getNickname());
 			List<String> uploadThumbnail = new ArrayList<String>();
 
 			FileUpload file = new FileUpload();
@@ -214,10 +216,10 @@ public class CustomerController {
 
 				file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
 				uploadedFileName.clear();
-				qnaService.writeQuestion(vo);
+				adminService.writeQuestion(vo);
 			}
 			catch(Exception e) {
-				qnaService.writeQuestion(vo);
+				adminService.writeQuestion(vo);
 			}
 			
 			mav.addObject("msg", "문의가 등록되었습니다");
@@ -230,7 +232,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value="/customerClaim/list")
-	public String customerQnaList(QnaVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
+	public String customerQnaList(AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
 
 		if (nowPage == null || nowPage.equals("")) {
@@ -248,11 +250,11 @@ public class CustomerController {
 			return "msg";
 		}
 		else {
-			vo.setId(loginUser.getId());
+			vo.setNickname(loginUser.getNickname());
 			
 			
-			Map<String, Object> qnaList = qnaService.qnaList(vo, Integer.parseInt(nowPage), 15, searchStyle, keyword);	
-			model.addAttribute("qnaList", (List<QnaVO>) qnaList.get("qnaList"));
+			Map<String, Object> qnaList = adminService.qnaList(vo, Integer.parseInt(nowPage), searchStyle, keyword, 15, "");	
+			model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
 			model.addAttribute("qnaPage", (PagingVO) qnaList.get("qnaPage"));
 			model.addAttribute("searchStyle", searchStyle);
 			model.addAttribute("keyword", keyword);
@@ -264,7 +266,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value="/customerClaim/detail")
-	public String customerClaimDetail(QnaVO vo, Model model, @ModelAttribute("bnowPage") String nowPage) {
+	public String customerClaimDetail(AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage) {
 		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
 		}
@@ -277,16 +279,24 @@ public class CustomerController {
 		}
 		else {
 		
-			vo.setId(loginUser.getId());
+			vo.setNickname(loginUser.getNickname());
 			
-			int check = qnaService.countQna(vo);
+			int check = adminService.qnaCount(vo);
 			if(check == 1) {
 				vo.setAno(1);
 			}
 			else
 				vo.setAno(-1);
 			
-			QnaVO qna = qnaService.qnaDetail(vo);
+			AdminVO qna = adminService.qnaDetail(vo);
+
+				qna.setQdateTime(new Date(qna.getQdateTime().getTime()- (1000 * 60 * 60 * 9)));
+				if(qna.getAno() != 0) {
+					qna.setAdateTime(new Date(qna.getAdateTime().getTime()- (1000 * 60 * 60 * 9)));
+					
+				}
+			
+			
 			model.addAttribute("qna", qna);
 			model.addAttribute("qno", vo.getQno());
 			return "customerClaimDetail";
@@ -295,54 +305,57 @@ public class CustomerController {
 	}
 	
 	
-	@GetMapping(value="/customerClaim/update")
-	public String customerClaimUpdateView(QnaVO vo, Model model) {
-		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-		if(loginUser == null) {
-			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
-			model.addAttribute("location", "/signInPage");
-			model.addAttribute("icon", "error");
-			return "msg";
-		}
-		else {
-			QnaVO qna = qnaService.qnaDetail(vo);
-			model.addAttribute("qna", qna);
-			model.addAttribute("qno", qna.getQno());
-			return "customerClaimUpdate";
-		}
-	}
-
-	@PostMapping(value="/customerClaim/update")
-	public String customerClaimUpdate(QnaVO vo, Model model, @ModelAttribute("qno") int qno) {
-		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-		if(loginUser == null) {
-			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
-			model.addAttribute("location", "/signInPage");
-			model.addAttribute("icon", "error");
-			return "msg";
-		}
-		else {
-			vo.setQno(qno);
-			
-			FileUpload file = new FileUpload();
-			try {
-				List<String> uploadThumbnail = new ArrayList<String>();
-
-				file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
-				uploadedFileName.clear();
-				qnaService.qnaUpdate(vo);
-			}
-			catch(Exception e) {
-				qnaService.qnaUpdate(vo);
-			}
-			return "redirect:/customerClaim/list";
-		}
-	}
+//	@GetMapping(value="/customerClaim/update")
+//	public String customerClaimUpdateView(AdminVO vo, Model model) {
+//		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+//		System.out.println("ab "+vo);
+//		System.out.println(loginUser);
+//		if(loginUser == null) {
+//			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+//			model.addAttribute("location", "/signInPage");
+//			model.addAttribute("icon", "error");
+//			return "msg";
+//		}
+//		else {
+//			AdminVO qna = adminService.qnaDetail(vo);
+//			
+//			model.addAttribute("qna", qna);
+//			model.addAttribute("qno", qna.getQno());
+//			return "customerClaimUpdate";
+//		}
+//	}
+//
+//	@PostMapping(value="/customerClaim/update")
+//	public String customerClaimUpdate(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
+//		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+//		if(loginUser == null) {
+//			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+//			model.addAttribute("location", "/signInPage");
+//			model.addAttribute("icon", "error");
+//			return "msg";
+//		}
+//		else {
+//			vo.setQno(qno);
+//			
+//			FileUpload file = new FileUpload();
+//			try {
+//				List<String> uploadThumbnail = new ArrayList<String>();
+//
+//				file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
+//				uploadedFileName.clear();
+//				adminService.qnaUpdate(vo);
+//			}
+//			catch(Exception e) {
+//				adminService.qnaUpdate(vo);
+//			}
+//			return "redirect:/customerClaim/list";
+//		}
+//	}
 
 	
 	
 	@GetMapping(value="/customerClaim/delete")
-	public String customerClaimDelete(QnaVO vo, Model model, @ModelAttribute("qno") int qno) {
+	public String customerClaimDelete(AdminVO vo, Model model, @ModelAttribute("qno") int qno) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		if(loginUser == null) {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
@@ -351,19 +364,19 @@ public class CustomerController {
 			return "msg";
 		}
 		else {
-			vo.setId(loginUser.getId());
+			vo.setNickname(loginUser.getNickname());
 			
-			int check = qnaService.countQna(vo);
+			int check = adminService.qnaCount(vo);
 			if(check == 1) {
 				vo.setAno(1);
 			}
 			else {
 				vo.setAno(-1);
 			}
-			QnaVO qna = qnaService.qnaDetail(vo);
+			AdminVO qna = adminService.qnaDetail(vo);
 			
 			
-			int delCheck = qnaService.qnaDelete(qna);
+			int delCheck = adminService.questionDelete(qna);
 			if(delCheck == 1) {
 				
 				FileUpload file = new FileUpload();
@@ -393,21 +406,5 @@ public class CustomerController {
 		}
 	}
 	
-	
-	@GetMapping(value="/qnaAnswer/writer")
-	public String qnaAnswerWriteView(QnaVO vo, Model model) {
-		model.addAttribute("qno", vo.getQno());
-		return "qnaAnswerWrite";
-	}
-			
-	@PostMapping(value="/qnaAnswer/writer")
-	public String qnaAnswerWrite(QnaVO vo, @ModelAttribute("qno") int qno) {
-		
-		vo.setQno(qno);
-		qnaService.writeAnswer(vo);
-		
-		
-		return "customerClaimList";
-	}
-	
+
 }

@@ -222,12 +222,14 @@ public class MyPageController {
 				Integer.parseInt(cnowPage), bSearchStyle, boardKeyword, commentKeyword);
 		session.setAttribute("myBoard", (List<BoardVO>) myPost.get("myBoard"));
 		session.setAttribute("myComment", (List<CommentVO>) myPost.get("myComment"));
+		System.out.println("asdasdsaffkdgsbjsdagfnljsd "+(List<CommentVO>) myPost.get("myComment"));
 		session.setAttribute("boardPage", (PagingVO) myPost.get("boardPage"));
 		session.setAttribute("commentPage", (PagingVO) myPost.get("commentPage"));
 		session.setAttribute("bSearchStyle", bSearchStyle);
 		session.setAttribute("boardKeyword", boardKeyword);
 		session.setAttribute("commentKeyword", commentKeyword);
 		model.addAttribute("type", type);
+		System.out.println("my "+(List<BoardVO>) myPost.get("myBoard"));
 		return "mypage03";
 	}
 
@@ -331,6 +333,7 @@ public class MyPageController {
 		} else {
 			System.out.println("comment");
 			deleted = delCommentList.split(",");
+			System.out.println(deleted);
 			myPostService.deleteMyPost(deleted, "comment");
 			return "redirect:/myPage03";
 		}

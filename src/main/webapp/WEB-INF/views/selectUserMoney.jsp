@@ -10,7 +10,8 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/f
+	ont-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
 <link href="/resources/css/mypage02.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -30,6 +31,17 @@
 		});
 	});
 </script>
+<style>
+.contents{
+	background: #fff;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+    
+}
+.tab-content {
+	margin: 0 40px;
+}
+</style>
 </head>
 <body>
 

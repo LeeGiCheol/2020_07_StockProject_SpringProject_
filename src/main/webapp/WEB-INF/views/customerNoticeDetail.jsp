@@ -18,7 +18,6 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/mainfooter2.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
-<link rel="stylesheet" href="/resources/css/customers.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">	
 </head>
 <body>
@@ -37,7 +36,7 @@
 							<li class="selected mid"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
 							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -64,7 +63,7 @@
 									<a href="/customerClaim/write">1:1문의</a>
 								</h1>														
 								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/list">1:1문의 내역</a>
+									<a href="/customerClaim/list">Q&amp;A</a>
 								</h1>
 							</div>			
 		
@@ -137,7 +136,7 @@
 		</script>
 		<div class="support-button">
 
-			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="moreBttn right blue">등록</a></span>
+			<span class="insert"><a href="javascript:commentInsertConfirm('${boardDetail.pno }');" class="btn-s gray">등록</a></span>
 
 		</div> 
 		</div>
@@ -162,10 +161,10 @@
 	</div>
 		<p class="bt-area view-bt-area">
         <span>
+            <a href="/customerNotice" class="btn-s bodrb">목록</a>
         	<c:if test="${loginUser.point le -1}">
-        		<a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a>
+        		<a href="/customNoticeWrite" class="btn-s fantasy">글쓰기</a>
         	</c:if>
-            <a href="/customerNotice" class="moreBttn right norm">목록</a>
 
 		</span>
     	</p>
@@ -177,7 +176,7 @@
 		</div>
 		</div>
 	</div>
-	<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter2.jsp" %>
 </div>
 <div id="reportPopup" class="pop-layer" style="display:none">
 		<div class="pop-inner">
@@ -393,7 +392,53 @@ function submitReportComt(){
 			</div>
 		</div>
 	</div>
+		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
+
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
+
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
+
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
 <script>
 
 		

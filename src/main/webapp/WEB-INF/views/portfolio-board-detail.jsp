@@ -18,7 +18,8 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/mainfooter3.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
+<link rel="stylesheet" href="/resources/css/popup.css">
 
 </head>
 <style>
@@ -864,7 +865,7 @@ function submitReportComt(){
 	        	month = "0" + month
 	        }
 	        day = date.getDate();
-	        hour = date.getHours() + 15;
+	        hour = date.getHours() + 9;
 	        if(hour < 10) {
 	        	hour = "0"+hour;
 	        }

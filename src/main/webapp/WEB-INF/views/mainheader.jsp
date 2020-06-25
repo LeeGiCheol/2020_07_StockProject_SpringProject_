@@ -19,6 +19,21 @@
 					<li class="breadcrumb-item"><a id="top-nav-font" href="/signUpPage/1">회원가입</a></li>
 				</ul>
 			</c:when>
+			<c:when test="${loginUser.point < 0 }">
+				<ul class="nav justify-content-end top-nav">
+					<a href="#"><img class="" cust_id="" id="_myhomeId" src="/resources/img/pi_08.png"></a>
+					<dl>
+						<dt>
+							<strong>관리자</strong>　님
+						</dt>
+					</dl>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/logOut">로그아웃</a></li>
+					<li class="breadcrumb-item"><a id="top-nav-font" href="/admin/main">관리자 페이지</a></li>
+				</ul>
+			</c:when>
+			
+			
+			
 			<c:otherwise>
 				<ul class="nav justify-content-end top-nav">
 					<a href="#"><img class="" cust_id="" id="_myhomeId" src="/resources/img/pi_08.png"></a>

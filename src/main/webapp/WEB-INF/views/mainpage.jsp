@@ -294,14 +294,14 @@
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=411ad5d7607a5206006f889840ab2b27&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									</span>
 								</p>
 							</div>
 						</div>
 					</c:when>
 
-					<c:otherwise>
+					<c:when test="${loginUser.point >= 0}">
 						<div class="login-box">
 							<div class="div-login-box-after" style class="login-out">
 								<p class="proimg_div-after">
@@ -338,6 +338,32 @@
 									<a id="leftLogin" href="/myPagePwCheck01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
 								</div>
 						</div>
+					</c:when>
+					
+					<c:otherwise>
+						<div class="login-box">
+							<div class="div-login-box-after" style class="login-out">
+								<p class="proimg_div-after">
+									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
+										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+										class="current_badge_s"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+								</p>
+								<dl>
+									<dt>
+										<strong>관리자</strong>　님
+										<button type="button" class="logout"
+											onclick="location.href='/logOut';">로그아웃</button>
+									</dt>
+									<dd>
+									</dd>
+								</dl>
+							</div>
+								<div class="admin-login-after-btn">
+									<a id="admin-leftLogin" href="/admin/main">관리자 페이지</a>
+								</div>
+						</div>
+					
 					</c:otherwise>
 				</c:choose>
 					<script type="text/javascript">

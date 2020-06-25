@@ -12,13 +12,12 @@
 <style>
 .ck-blurred, .ck-focused{height: 500px;}
 </style>
-<link href="/resources/css/writeForm.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<link rel="stylesheet" href="/resources/css/mainfooter.css">
-	<link rel="stylesheet" href="/resources/css/mainheader2.css">	
-		<link rel="stylesheet" href="resources/css/newboard.css">
-<link rel="stylesheet" href="/resources/css/customers.css">
+<link href="/resources/css/writeForm.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/mainfooter2.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 
 	
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
@@ -84,6 +83,202 @@ border-left: 4px solid #1e78ff !important;
   font-weight: 600 !important;
  
 }
+
+
+
+.select-style {
+    position: relative;
+}
+.pop-clean .notify .select-style .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 240px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 220px;
+    min-width: 80px;
+}
+.bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"] {
+    float: none;
+    display: inline-block;
+    margin-left: 0;
+}
+[class*="select-style"] .btn-group {
+    border: #ccc 1px solid;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+    color: #888;
+}
+.btn-group > .btn:first-child {
+    margin-left: 0;
+}
+[class*="select-style"] button.btn {
+    color: #888;
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    min-width: 60px;
+    height: 26px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 0;
+    padding-left: 10px;
+}
+.bootstrap-select > .dropdown-toggle {
+    width: 100%;
+    padding-right: 25px;
+    z-index: 1;
+}
+.btn-group > .btn, .btn-group-vertical > .btn {
+    position: relative;
+    float: left;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+}
+.pull-left {
+    float: left !important;
+}
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    margin-top: -2px;
+    vertical-align: middle;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+        margin-top: 5px !important;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 0;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.bootstrap-select.btn-group .dropdown-menu.inner {
+    position: static;
+    float: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.bootstrap-select.btn-group .dropdown-menu li {
+    position: relative;
+}
+.bootstrap-select.btn-group .dropdown-menu li a {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+    display: inline-block;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.check-mark {
+    display: none;
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bootstrap-select > select {
+    position: absolute !important;
+    bottom: 0;
+    left: 50%;
+    display: block !important;
+    width: 0.5px !important;
+    height: 100% !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    border: none;
+}
+select {
+    min-width: 60px;
+    height: 28px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 0;
+}
+
+.guide-text {
+    font-size: 13px;
+    color: #888;
+    line-height: 150%;
+    margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 979px){
+.guide-text {
+display: none;
+}
+}
 </style>
 <body>
 
@@ -94,44 +289,66 @@ border-left: 4px solid #1e78ff !important;
 			<div class="board-page">
 				<div class="row">
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
-							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
-							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
-							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li id="claimList"><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li class="mid"><a href="/customer"><span>고객센터</span></a></li>
+							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
+							<li class="selected mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 				</div>
 					<div class="col-md-10">
 						<div class="free-board" >
 
-						<div class="drop-nav">
-							<h1 class="tit-h1 line">1:1문의</h1>
-						</div>
-
-						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-							</svg>1:1문의 </h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaim/write">1:1문의</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaim/list">1:1문의 내역</a></h1>
-						</div>
+ 							<div class="drop-nav">
+								<h1 class="tit-h1 line">1:1문의</h1>
+							</div>
+							<div class="m-drop-nav">
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">1:1문의 <i class="fas fa-angle-down"></i></h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+									<a href="/customer">고객센터</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerNotice">공지사항</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerqna">도움말</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/write">1:1문의</a>
+								</h1>														
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/list">Q&amp;A</a>
+								</h1>
+							</div>	
 							
 							
 							
 							
-							
+							<div class="guide-text">궁금하신 사항을 상세히 적어주시면 상담원들이 상세한 답변을 해드립니다.</div>
 							<form name="form" id="form" role="form" method="POST" action="/customerClaim/write">
 								<div class="form-table">
 									<table>
 										<tbody>
+											<tr>
+												<th scope="row">종류</th>
+												<td>
+
+
+													<span class="select-style">
+														<select title="상담 항목" id="rtype" name="qtype" class="selectpicker" tabindex="-98">
+															<option class="bs-title-option" value="">상담 항목</option>
+															<option value="회원">회원</option>
+															<option value="커뮤니티">커뮤니티</option>
+															<option value="거래">거래</option>
+														</select>
+													</span>												
+												</td>
+											</tr>										
 											<tr>
 												<th scope="row"><label for="title">제목</label></th>
 												<td>
@@ -150,7 +367,7 @@ border-left: 4px solid #1e78ff !important;
 								            	<td>
 								                    <label for="writer"><b>작성자</b></label>
 								                    <input type="text" class="form-control" name="nickname" id="writer" value="${loginUser.nickname}" readonly>
-								                    <input type="hidden" name="id" value="${loginUser.id}">
+								                   <%--  <input type="hidden" name="id" value="${loginUser.id}"> --%>
 							               		</td>
 							               </tr>
 								            <tr>
@@ -164,8 +381,8 @@ border-left: 4px solid #1e78ff !important;
 									</table>
 								</div>
 								<div class="bt-area">
-									<a href="/customer"  class="moreBttn left norm"">취소</a>
-									<span><a href="javascript:btnSave();"  class="moreBttn right blue" id="addBtn">작성</a></span>
+									<a href="/customer"  class="btn-m">취소</a>
+									<span><a href="javascript:btnSave();"  class="btn-m fantasy" id="addBtn">작성</a></span>
 								</div>
 							</form>
 						</div>
@@ -174,7 +391,7 @@ border-left: 4px solid #1e78ff !important;
 			</div>
 		</div>
 	
-	<%@include file="mainfooter.jsp" %>
+	<%@include file="mainfooter2.jsp" %>
 	
 <script type="text/javascript">
 var oEditors = [];
@@ -187,44 +404,93 @@ nhn.husky.EZCreator.createInIFrame({
 
 
 </script>	
-	  <script type="text/javascript">
-  $( document ).ready(function() {
-     console.log( "document ready!" );
+		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
-     var $sticky = $('.sticky');
-     var $stickyrStopper = $('.footer_info');
-     if (!!$sticky.offset()) { // make sure ".sticky" element exists
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
-       var generalSidebarHeight = $sticky.innerHeight();
-       var stickyTop = $sticky.offset().top;
-       var stickOffset = 0;
-       var stickyStopperPosition = $stickyrStopper.offset().top;
-       var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-       var diff = stopPoint + stickOffset;
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
 
-       $(window).scroll(function(){ // scroll event
-         var windowTop = $(window).scrollTop(); // returns number
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
 
-         if (stopPoint < windowTop) {
-             $sticky.css({ position: 'relative', top: diff });
-         } else if (stickyTop < windowTop+stickOffset) {
-             $sticky.css({ position: 'fixed', top: stickOffset });
-         } else {
-             $sticky.css({position: 'relative', top: 'initial'});
-         }
-       });
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
 
-     }
-     $(".m-drop-nav").click(function(){
-          $(".m-drop-down").slideToggle("slow");
-        });
-  });
-  
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
+	<script>
+$('.e-reportComtPopupClose').on('click',function(){	
+	$(".wrap").show();
+    $('#reportComtPopup').remove();
+});
+
+function submitReportComt(){
+	if( $('#comtRprtCode').val() == "" ){
+    	alert("신고항목을 선택하세요.");
+    	return false;                	
+    	
+    } else if( $.trim($('#comtRprtResn').val()) == "" ){
+    	alert("내용을 입력해주세요.");
+    	return false;                	
+    	
+    } else{
+        $("#rprtCode").val($('#comtRprtCode').val());
+        $("#rprtResn").val($('#comtRprtResn').val());
+        
+        $("#comtRprtCd").val($('#comtRprtCode').val());
+        $("#comtRprtRe").val($('#comtRprtResn').val());
+        
+        //console.log("comtRprtCd " + $("#comtRprtCd").val());
+        //console.log("comtRprtRe " + $("#comtRprtRe").val());
+
+        //console.log("jsonData : " + $("#rtrpFrm").serialize());
+    }
+}
 
 
- 
-  </script>
+		// 취소버튼 눌렀을 때 내용 초기화, 팝업 hide
+		function hidePopup(){
+        /* 	$(".wrap").show(); */
+            jQuery('#reportPopup').hide();
+            initInput()
+		}
+
+</script>
 </body>
+<script src="/resources/js/selectpicker.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

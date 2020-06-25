@@ -130,7 +130,7 @@
 									<tbody>
 										<c:forEach items="${ServiceCenternotice}" var="sc" begin="0" end="1">
 												<tr>
-													<td class="board-no" style="color: red;">[공지]</td>
+													<td class="board-no"><span>공지</span></td>
 													<!-- 글번호 -->
 													<c:choose>
 														<c:when test="${sc.commentCount ne 0}">

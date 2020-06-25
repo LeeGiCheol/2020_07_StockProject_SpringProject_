@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="admin">
+
+	<insert id="writeQuestion">
+		INSERT INTO claimQuestion (nickname, qtitle, qcontent, qdatetime, qcheck, qtype)
+		VALUES(#{nickname}, #{qtitle}, #{qcontent}, now(), "준비중", #{qtype})
+	</insert>
+	
+	<insert id="writeAnswer">
+		INSERT INTO claimAnswer (qno, acontent, adatetime)
+		VALUES(#{qno}, #{acontent}, now())
+	</insert>
+	
+	<update id="answerSuceess">
+		UPDATE claimQuestion
+		SET qcheck=#{qcheck}
+		WHERE qno=#{qno}
+	</update>
+	
+	<update id="updateAnswer">
+		UPDATE claimAnswer
+		SET acontent=#{acontent}
+		WHERE qno=#{qno}
+	</update>
+	
+	<select id="pageCount" parameterType="admin" resultType="int">
+		SELECT COUNT(*)
+		FROM claimQuestion
+	</select>
+	
+	<select id="qnaCount" parameterType="admin" resultType="int">
+		SELECT COUNT(*)
+		FROM claimQuestion AS q
+		JOIN claimAnswer AS a
+		ON q.qno = a.qno
+        WHERE q.qno = #{qno}
+	</select>
+	<select id="qnaList" parameterType="page" resultType="admin">
+	
+			SELECT * 
+			FROM claimQuestion 
+			WHERE 1=1
+	
+		<if test="util.point &gt; 0">
+			AND nickname=#{util.nickname}
+		</if>
+		
+		
+		
+		<choose>
+			<!-- 제목검색 -->
+			<when test='util.searchStyle.equals("search_title")'>
+				AND qtitle LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY qno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 내용검색 -->
+			<when test='util.searchStyle.equals("search_content")'>
+				AND qcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY qno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 제목 + 내용검색 -->
+			<when test='util.searchStyle.equals("search_title_content")'>
+				AND qtitle LIKE CONCAT('%', #{util.keyword}, '%')
+				OR qcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY qno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- admin 메인페이지용 -->
+			<when test='util.orderby.equals("main")'>
+				ORDER BY qno DESC
+				LIMIT 5
+			</when>
+			<otherwise>
+				ORDER BY qno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</otherwise>
+		</choose>
+		
+	</select>
+	<select id="reportList" parameterType="page" resultType="admin">			
+			SELECT * 
+			FROM reportboard 
+			WHERE 1=1
+	
+		<!-- <if test="util.point &gt; 0">
+			AND id=#{util.id}
+		</if> -->
+		
+		<choose>
+			<!-- 제목검색 -->
+			<when test='util.searchStyle.equals("search_title")'>
+				AND title LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 내용검색 -->
+			<when test='util.searchStyle.equals("search_content")'>
+				AND rcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<!-- 제목 + 내용검색 -->
+			<when test='util.searchStyle.equals("search_title_content")'>
+				AND title LIKE CONCAT('%', #{util.keyword}, '%')
+				OR rcontent LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY pno DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+						<!-- 신고사항 -->
+			<when test='util.searchStyle.equals("search_rtype")'>
+				AND rtype LIKE CONCAT('%', #{util.keyword}, '%')
+				ORDER BY rdatetime DESC
+				LIMIT #{start}, #{cntPerPage}
+			</when>
+			<otherwise>
+				ORDER BY rdatetime DESC
+				LIMIT #{start}, #{cntPerPage}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="reportCount" parameterType="admin" resultType="int">
+		SELECT COUNT(*)
+		FROM reportboard;
+	</select>
+	
+	<select id="qnaDetail" parameterType="admin" resultType="admin">
+		<choose>
+			<when test="ano eq 1">
+				SELECT q.*, a.* 
+				FROM claimQuestion AS q
+				JOIN claimAnswer AS a
+				ON q.qno = a.qno
+		        WHERE q.qno = #{qno};
+		    </when>
+		    
+		    <when test="ano eq -1 or ano eq 0">
+		    	SELECT * 
+		    	FROM claimQuestion
+		    	WHERE qno = #{qno};
+		    </when>
+		    
+		    <otherwise>
+		    	SELECT * 
+		    	FROM claimAnswer
+		    	WHERE ano = #{ano};
+		    </otherwise>
+	    </choose>
+	</select>
+	
+	<update id="qnaUpdate">
+		UPDATE claimQuestion 
+		SET qtitle = #{qtitle}, qcontent = #{qcontent}
+		WHERE qno = #{qno}
+	</update>
+	
+	<delete id="questionDelete">
+		
+		<if test="ano neq 0">
+			DELETE
+			FROM claimAnswer
+			WHERE ano = #{ano};
+		</if>
+		
+		DELETE
+		FROM claimQuestion
+		WHERE qno = #{qno};
+		
+	</delete>
+	
+	<delete id="answerDelete">
+		DELETE
+		FROM claimAnswer
+		WHERE ano = #{ano};
+		
+		UPDATE claimQuestion
+		SET qcheck = "준비중";
+	</delete>
+	
+	
+	<select id="boardChart" parameterType="board" resultType="map">
+		SELECT DATE_FORMAT(`bdateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
+		FROM board GROUP BY chartDate
+                ORDER BY chartDate DESC;
+	</select>
+	
+	
+</mapper>

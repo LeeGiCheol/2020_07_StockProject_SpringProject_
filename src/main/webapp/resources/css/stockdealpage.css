@@ -63,6 +63,17 @@ tr td button{
 	margin: 0;
 	padding: 0;
 } 
+.all-dim {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #eff3f6;
+    text-indent: -9999px;
+}
 .table{
 	margin-bottom: 0;
 }
@@ -623,7 +634,7 @@ a.btnStyle {
 }
 .upper-text, .now-text, .Lower-text, .inside-text, .inside-up-text, .inside-down-text{
 	border-right: 1px solid #dddddd;
-	font-size: 16px;
+	font-size: 14px;
 	padding: 10px;
 	text-align: center;
 }

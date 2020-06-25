@@ -12,10 +12,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-	<link rel="stylesheet" href="/resources/css/mainfooter.css">
+	<link rel="stylesheet" href="/resources/css/mainfooter2.css">
 	<link rel="stylesheet" href="/resources/css/mainheader2.css">
+	<link rel="stylesheet" href="/resources/css/sidebar.css">
 	<link rel="stylesheet" href="resources/css/newboard.css">
-	<link rel="stylesheet" href="/resources/css/customers.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
@@ -46,36 +46,15 @@
 		});
 	</script>
 
-	<script type="text/javascript">
-	</script>
-
-</head>
 <style>
-#sideTitle {
-     border-left: 4px solid #d7d8da !important; 
-    color: #848889 !important;
-    font-weight: 300 !important;
-    background: white !important;
-}
-#sideTitle a, #sideTitle a:visited, #sideTitle a:link{
-	    color: #848889!important;
-  font-weight: 300 !important;
- 
-}
-
-#qnaTitle{border-left: 4px solid #1e78ff !important;
-    color: black !important;
-    font-weight: 600 !important;
-    background: #f6f6f6 !important;
-}
-#qnaTitle a, #qnaTitle a:visited, #qnaTitle a:link{
-	    color: black!important;
-  font-weight: 600 !important;
- 
-}
 
 
-.newsboard-nav-tab li.selected a {
+.newsboard-nav-tab li{
+	border-bottom: 1px solid #eaeaea;
+	
+}
+
+.newsboard-nav-tab li.selected {
     z-index: 3;
     background: #fff;
     line-height: 50px;
@@ -87,6 +66,9 @@
     width: 33.333%;
     letter-spacing: 1px;
 }
+.text-left{
+background-color: transparent !important;
+}
 @media only screen and (max-width: 979px) {
 .newsboard-area {
 
@@ -94,8 +76,10 @@
 
 }
 
-}
+} 
 </style>
+
+</head>
 <body>
 
 	<%@include file="mainheader.jsp" %>
@@ -110,14 +94,13 @@
 
 
 				<div class="col-md-2">
-					<div class="sidebar sticky" id="cssmenu">
+					<div class="sidebar sticky" id="cssmenu" style="position: relative;">
 						<ul>
-							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
-							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
-							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li id="claimList"><a href="/customerClaim/List"><span>1:1문의 내역</span></a></li>
-							
+							<li class="mid"><a href="/customer"><span>고객센터</span></a></li>
+							<li class="mid"><a href="/customerNotice"><span>공지사항</span></a></li>
+							<li class="selected mid"><a href="/customerqna"><span>도움말</span></a></li>
+							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
+							<li><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -134,39 +117,48 @@
 					<div class="newsboard-area">
 
 
-						<div class="drop-nav">
-							<h1 class="tit-h1 line">도움말</h1>
-						</div>
+ 							<div class="drop-nav">
+								<h1 class="tit-h1 line">도움말</h1>
+							</div>
+							<div class="m-drop-nav">
+								<h1 class="m-drop-tit-title line" style="cursor: pointer;">도움말 <i class="fas fa-angle-down"></i></h1>
+							</div>
+							<div class="m-drop-down">
+								<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
+									<a href="/customer">고객센터</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerNotice">공지사항</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerqna">도움말</a>
+								</h1>
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/write">1:1문의</a>
+								</h1>														
+								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
+									<a href="/customerClaim/list">Q&amp;A</a>
+								</h1>
+							</div>	
 
-						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor:pointer;"><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-</svg>도움말 </h1>
-						</div>
-						<div class="m-drop-down">
-							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
-							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/write">1:1문의</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customerClaim/List">1:1문의 내역</a></h1>
-							
-						</div>
 
 
-						<div class="newsboard-nav">
-							<ul class="nav newsboard-nav-tab" id="pills-tab" role="tablist">
-								<li class="newsboard-nav-item selected" role="presentation"><a class="nav-link" id="nav-font"
-										data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
-										aria-selected="true">회원</a></li>
-								<li class="newsboard-nav-item" role="presentation"><a class="nav-link" id="nav-font"
-										data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
-										aria-selected="false">커뮤니티</a></li>
-								<li class="newsboard-nav-item" role="presentation"><a class="nav-link" id="nav-font"
-										data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
-										aria-selected="false" style="border-right: none;">거래</a></li>
-							</ul>
-						</div>
-
+				<div class="newsboard-nav">
+					<ul class="nav newsboard-nav-tab" id="pills-tab" role="tablist">
+						<li class="newsboard-nav-item selected" role="presentation"><a
+							class="nav-link" id="top-nav-font" data-toggle="pill"
+							href="#pills-home" role="tab" aria-controls="pills-home"
+							aria-selected="true">회원</a></li>
+						<li class="newsboard-nav-item" role="presentation"><a
+							class="nav-link" id="top-nav-font" data-toggle="pill"
+							href="#pills-profile" role="tab" aria-controls="pills-profile"
+							aria-selected="false">커뮤니티</a></li>
+						<li class="newsboard-nav-item" role="presentation"><a
+							class="nav-link" id="top-nav-font" data-toggle="pill"
+							href="#pills-contact" role="tab" aria-controls="pills-contact"
+							aria-selected="false" style="border-right: none;">거래</a></li>
+					</ul>
+				</div>
 
 
 
@@ -408,44 +400,54 @@
 		</div>
 	</div>
 
-	<%@include file="mainfooter.jsp" %>
-	 <script type="text/javascript">
-  $( document ).ready(function() {
-     console.log( "document ready!" );
+	<%@include file="mainfooter2.jsp" %>
+		<script type="text/javascript">
+			$(document).ready(
+					function() {
+						console.log("document ready!");
 
-     var $sticky = $('.sticky');
-     var $stickyrStopper = $('.footer_info');
-     if (!!$sticky.offset()) { // make sure ".sticky" element exists
+						var $sticky = $('.sticky');
+						var $stickyrStopper = $('.footer_content	');
+						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
-       var generalSidebarHeight = $sticky.innerHeight();
-       var stickyTop = $sticky.offset().top;
-       var stickOffset = 0;
-       var stickyStopperPosition = $stickyrStopper.offset().top;
-       var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-       var diff = stopPoint + stickOffset;
+							var generalSidebarHeight = $sticky.innerHeight();
+							var stickyTop = $sticky.offset().top;
+							var stickOffset = 0;
+							var stickyStopperPosition = $stickyrStopper
+									.offset().top;
+							var stopPoint = stickyStopperPosition
+									- generalSidebarHeight - stickOffset;
+							var diff = stopPoint + stickOffset;
 
-       $(window).scroll(function(){ // scroll event
-         var windowTop = $(window).scrollTop(); // returns number
+							$(window).scroll(
+									function() { // scroll event
+										var windowTop = $(window).scrollTop(); // returns number
 
-         if (stopPoint < windowTop) {
-             $sticky.css({ position: 'relative', top: diff });
-         } else if (stickyTop < windowTop+stickOffset) {
-             $sticky.css({ position: 'fixed', top: stickOffset });
-         } else {
-             $sticky.css({position: 'relative', top: 'initial'});
-         }
-       });
+										if (stopPoint < windowTop) {
+											$sticky.css({
+												position : 'relative',
+												top : diff
+											});
+										} else if (stickyTop < windowTop
+												+ stickOffset) {
+											$sticky.css({
+												position : 'fixed',
+												top : stickOffset
+											});
+										} else {
+											$sticky.css({
+												position : 'relative',
+												top : 'initial'
+											});
+										}
+									});
 
-     }
-     $(".m-drop-nav").click(function(){
-          $(".m-drop-down").slideToggle("slow");
-        });
-  });
-  
-
-
- 
-  </script>
+						}
+						$(".m-drop-nav").click(function() {
+							$(".m-drop-down").slideToggle("slow");
+						});
+					});
+		</script>
 	<script src="resources/jpaginate/jquery.twbsPagination.js"></script>
 	<script src="http://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

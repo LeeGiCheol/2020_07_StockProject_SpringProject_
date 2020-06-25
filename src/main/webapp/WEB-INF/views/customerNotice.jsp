@@ -14,10 +14,9 @@
 	<!-- CSS파일 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+	<link rel="stylesheet" href="/resources/css/free-board.css">
 	<link rel="stylesheet" href="/resources/css/mainfooter2.css">
 	<link rel="stylesheet" href="/resources/css/mainheader2.css">
-	<link rel="stylesheet" href="/resources/css/free-board.css">
-	<link rel="stylesheet" href="/resources/css/customers.css">
 	<link rel="stylesheet" href="/resources/css/sidebar.css">	
 </head>
 
@@ -37,7 +36,7 @@
 							<li class="selected mid"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li class="mid"><a href="/customerqna"><span>도움말</span></a></li>
 							<li class="mid"><a href="/customerClaim/write"><span>1:1문의</span></a></li>
-							<li><a href="/customerClaim/list"><span>1:1문의 내역</span></a></li>
+							<li><a href="/customerClaim/list"><span>Q&amp;A</span></a></li>
 						</ul>
 					</div>
 					
@@ -66,7 +65,7 @@
 									<a href="/customerClaim/write">1:1문의</a>
 								</h1>														
 								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/list">1:1문의 내역</a>
+									<a href="/customerClaim/list">Q&amp;A</a>
 								</h1>
 							</div>	
 
@@ -219,7 +218,7 @@
 
 
 									<c:if test="${loginUser.point le -1}">
-										<p class="right"><a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a></p>
+										<p class="right"><a href="/customNoticeWrite" class="board-write-btn fantasy">글쓰기</a></p>
 									</c:if>
 								</div>
 

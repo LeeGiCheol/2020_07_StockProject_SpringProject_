@@ -96,6 +96,9 @@
         </property>
     </bean>
 	
+
+	
+	
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	<bean id="NaverLoginBO" class="com.test.tst.NaverLoginBO" />
 </beans>

@@ -14,7 +14,7 @@
 		<typeAlias type="com.bitcamp.project.vo.PagingVO" alias="page"></typeAlias>
 		<typeAlias type="com.bitcamp.project.vo.CommentVO" alias="comment"></typeAlias>
 		<typeAlias type="com.bitcamp.project.vo.HoldingStockVO" alias="holdingStock"></typeAlias>
-		<typeAlias type="com.bitcamp.project.vo.QnaVO" alias="qna"></typeAlias>
+		<typeAlias type="com.bitcamp.project.vo.AdminVO" alias="admin"></typeAlias>
 	</typeAliases>
 	
 	<mappers>
@@ -22,6 +22,6 @@
 		<mapper resource="mappings/stock-mapping.xml"/>
 		<mapper resource="mappings/board-mapping.xml"/>
 		<mapper resource="mappings/comment-mapping.xml"/>
-		<mapper resource="mappings/qna-mapping.xml"/>
+		<mapper resource="mappings/admin-mapping.xml"/>
 	</mappers>
 </configuration>

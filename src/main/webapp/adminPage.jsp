@@ -71,7 +71,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">메인</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="/mainPage">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
              			               대시보드
                         </a>
@@ -88,9 +88,9 @@
                 </div>
                 
                 
-             <!--    페이지 하단에 ~로 로그인 하셨습니다 -->
+             <!-- 긴급메뉴 -->
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
+                    <div class="small">퇴사하기</div>
                     
                 </div>
                 
@@ -137,91 +137,103 @@
 
 
 
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table mr-1"></i>
-                            사이트관리
-                        </div>
-                        <div class="card-body">
+                    <div class="mainBottom mb-4">
+
                             <div class="table-responsive">
 
-                                <!-- 문의테이블 시작 -->
-                                <h5 class="mt-4">문의</h5>
-                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                <!-- 문s의테이블 시작 -->
+                                <div class="left">
+                                <h5 class="mt-4">1:1문의</h5>
+                                <table class="adminTable" width="100%" cellspacing="0">
                                     <!-- 테이블 데이터 헤더 -->
                                     <thead>
                                         <tr>
-                                            <th class="center" style="width: 10%;">종류</th>
-                                            <th class="center"style="width: 10%">처리현황</th>
-                                            <th style="width: 25%">제목</th>
-                                            <th style="width: 35%">내용</th>
-                                            <th class="center" style="width: 10%">아이디</th>
-                                            <th class="center" style="width: 10%">일시</th>
+                                            <th class="class center" style="width: 10%;">종류</th>
+                                            <th class="status center"style="width: 10%">처리현황</th>
+                                            <th class="title tleft" style="width: 55%">제목</th>
+                                            <th class="writer tleft" style="width: 10%">아이디</th>
+                                            <th class="date center" style="width: 15%">일시</th>
                                         </tr>
                                     </thead>
                                     
                                     
                                     <!-- 데이터값 들어가는 곳 -->
                                     <tbody>
-                                        <tr>
-                                            <td class="center">종류</td>
-                                            <td class="center">처리현황</td>
-                                            <td><p class="content">제목타입 상태 보고
-메시지 요청된 리소스 (는) 가용하지 않습니다.</p></td>
-                                            <td><p class="content">내용타입 상태 보고
-메시지 요청된 리소스 [/board/portfolio]은(는) 가용하지 않습니다.
-설명 Origin 서버가 대상 리소스를 위한 현재의 representation을 찾지 못했거나, 그것이 존재하는지를 밝히려 하지 않습니다.</p></td>
-                                            <td class="center">아이디</td>
-                                            <td class="center">05/22/2022</td>
+                                       <tr>
+                                            <td class="tClass center">종류</td>
+                                            <td class="tStatus center">처리현황</td>
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+
+                                            <td class="tWriter tleft">아이디</td>
+                                            <td class="tDate center">05/22/2022</td>
                                         </tr>
                                         
                                        <tr>
-                                            <td class="center">종류</td>
-                                            <td class="center">처리현황</td>
-                                            <td><p class="content">제목</p></td>
-                                            <td><p class="content">내용</p></td>
-                                            <td class="center">아이디</td>
-                                            <td class="center">05/22/2022</td>
+                                            <td class="tClass center">종류</td>
+                                            <td class="tStatus center">처리현황</td>
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+
+                                            <td class="tWriter tleft">아이디</td>
+                                            <td class="tDate center">05/22/2022</td>
                                         </tr>
+                                        
+                                        
+
 
                                     </tbody>
                                 </table>
+                                </div>
                                 <!-- 문의테이블끝 -->
-
+								
+                                
+                                
                                 
                                 <!-- 신고테이블 시작 -->
+                               <div class="right">
+                                
                                 <h5 class="mt-4">신고</h5>
-                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                <table class="adminTable tRight" width="100%" cellspacing="0">
                                     <!-- 테이블 데이터 헤더 -->
                                     <thead>
                                         <tr>
-                                            <th class="center" style="width: 10%;">종류</th>
-                                            <th class="center"style="width: 10%">처리현황</th>
-                                            <th style="width: 25%">제목</th>
-                                            <th style="width: 35%">내용</th>
-                                            <th class="center" style="width: 10%">아이디</th>
-                                            <th class="center" style="width: 10%">일시</th>
+                                            <th class="class center" style="width: 10%;">종류</th>
+                                            <th class="status center"style="width: 10%">처리현황</th>
+                                            <th class="title tleft" style="width: 55%">제목</th>
+                                            <th class="writer tleft" style="width: 10%">아이디</th>
+                                            <th class="date center" style="width: 15%">일시</th>
                                         </tr>
                                     </thead>
                                     <!--  데이터값 들어가는 곳 -->
                                     <tbody>
                                        <tr>
-                                            <td class="center">종류</td>
-                                            <td class="center">처리현황</td>
-                                            <td><p class="content">제목</p></td>
-                                            <td><p class="content">내용</p></td>
-                                            <td class="center">아이디</td>
-                                            <td class="center">05/22/2022</td>
+                                            <td class="tClass center">종류</td>
+                                            <td class="tStatus center">처리현황</td>
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+
+                                            <td class="tWriter tleft">아이디</td>
+                                            <td class="tDate center">05/22/2022</td>
                                         </tr>
+                                        
+                                        
+                                       <tr>
+                                            <td class="tClass center">종류</td>
+                                            <td class="tStatus center">처리현황</td>
+                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
+
+                                            <td class="tWriter tleft">아이디</td>
+                                            <td class="tDate center">05/22/2022</td>
+                                        </tr>
+                                        
 
                                     </tbody>
                                 </table>
+                                </div>
                                 <!-- 신고테이블끝 -->
 
 
 
 
-                            </div>
+                        
                         </div>
                     </div>
 

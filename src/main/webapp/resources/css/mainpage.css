@@ -297,9 +297,13 @@ position: relative;
     letter-spacing: -1px;
     font-weight: 600;
 }
+
 #leftLogin{
 	border-right: 1px solid #c4e1f9;
 }
+
+
+
 .login-after-btn a {
     position: relative;
     display: block;
@@ -308,6 +312,33 @@ position: relative;
     text-align: center;
     line-height: 40px;
 }
+
+.admin-login-after-btn {
+position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 42px;
+    background: #f0f8ff;
+    border-top: 1px solid rgba(46,87,255,1);
+    margin-top: 16px;
+    letter-spacing: -1px;
+    font-weight: 600;
+}
+
+
+.admin-login-after-btn a {
+ 	position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+}
+
+
+
+
 
 .login-after-btn a:after {
     content: "";
