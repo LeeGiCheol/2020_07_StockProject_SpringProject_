@@ -411,7 +411,7 @@ function deleteComment(){
 									<tr>
 										<td class="board-check">
 											<p class="check">
-												<input type="checkbox" id="CeventSeq_${comment.cno}" class="seq_check comment" name="check" value="${comment.cno},${comment.pno}">
+												<input type="checkbox" id="CeventSeq_${comment.cno}" class="seq_check comment" name="check" value="${comment.cno},${comment.pno}" data-on="${comment.cno},${comment.pno}">
 												<label for="CeventSeq_${comment.cno}">선택 삭제</label>
 											</p>
 										</td>

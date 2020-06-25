@@ -911,7 +911,6 @@
  			success : function(data){
  				var HTMLForAccumRanking = "<ul>";
  				for(var i = 0; i < data.accumRankingNicknameList.length; ++i) {
- 					console.log(i);
  					HTMLForAccumRanking +=
  					'<li class="first"><a><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
  					'<p class="color-red">'+
@@ -919,10 +918,6 @@
  					'</p></a></li>';
  				}
  				HTMLForAccumRanking += "</ul>";
- 				console.log(data.accumRankingAssetList);
- 				console.log(data.accumRankingAssetList.length);
- 				console.log(data.accumRankingNicknameList);
- 				console.log(HTMLForAccumRanking);
  				$("#discHtml").html(HTMLForAccumRanking);
  			}
  		});
