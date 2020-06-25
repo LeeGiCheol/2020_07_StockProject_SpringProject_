@@ -125,6 +125,10 @@ public class AdminServiceImpl implements AdminService {
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return adminDAO.boardChart(vo);
 	}
+	@Override
+	public List<UserVO> userSignUpChart(UserVO vo) {
+		return adminDAO.userSignUpChart(vo);
+	}
 	
 	
 	

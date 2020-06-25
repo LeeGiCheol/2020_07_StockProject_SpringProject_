@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.UserVO;
 import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 
@@ -22,5 +23,5 @@ public interface AdminDAO {
 	public AdminVO reportSelectList(String pno);
 	public int reportCount(AdminVO vo);
 	public List<BoardVO> boardChart(BoardVO vo);
-	
+	public List<UserVO> userSignUpChart(UserVO vo);
 }

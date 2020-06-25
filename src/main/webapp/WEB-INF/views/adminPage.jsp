@@ -111,7 +111,7 @@
                                     Area Chart Example
                                     차트1
                                 </div>
-                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body" id="userSignUpChart" style="width: 110%; height: 300px;"></div>
                             </div>
                         </div>
                         <div class="col-xl-6">
@@ -345,19 +345,17 @@
 
 <script>
 	google.charts.load("current", {packages:["bar"]});
-	 google.charts.setOnLoadCallback(drawChart);
+	google.charts.setOnLoadCallback(drawBoardChart);
 
-var a = "${boardChart[0].chartCount}"
-	
-	function drawChart() {
+	function drawBoardChart() {
 
 		 var data = google.visualization.arrayToDataTable([
 	          ['일별 게시물 개수', '개수'],
-	          ["${boardChart[0].chartDate}", ${boardChart[0].chartCount}],
-	          ["${boardChart[1].chartDate}", ${boardChart[1].chartCount}],
-	          ["${boardChart[2].chartDate}", ${boardChart[2].chartCount}],
+	          ["${boardChart[4].chartDate}", ${boardChart[4].chartCount}],
 	          ["${boardChart[3].chartDate}", ${boardChart[3].chartCount}],
-	          ["${boardChart[4].chartDate}", ${boardChart[4].chartCount}]
+	          ["${boardChart[2].chartDate}", ${boardChart[2].chartCount}],
+	          ["${boardChart[1].chartDate}", ${boardChart[1].chartCount}],
+	          ["${boardChart[0].chartDate}", ${boardChart[0].chartCount}]
 	        ]);
 		 
 		 
@@ -366,11 +364,46 @@ var a = "${boardChart[0].chartCount}"
 			chart : {
 				title : 'Analysis of Dialogue System',
 				subtitle : ''
+				
 			}
 		};
 
 		var chart = new google.charts.Bar(document
 				.getElementById('boardChart'));
+
+		chart.draw(data, google.charts.Bar.convertOptions(options));
+
+	}	
+	
+	
+
+    google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawUserSignUpChart);
+
+	function drawUserSignUpChart() {
+	console.log("${userSignUpChart[4].chartDate}")
+
+		var data = google.visualization.arrayToDataTable([
+	          ['유저 가입', '수'],
+	          ["${userSignUpChart[4].chartDate}", ${userSignUpChart[4].chartCount}],
+	          ["${userSignUpChart[3].chartDate}", ${userSignUpChart[3].chartCount}],
+	          ["${userSignUpChart[2].chartDate}", ${userSignUpChart[2].chartCount}],
+	          ["${userSignUpChart[1].chartDate}", ${userSignUpChart[1].chartCount}],
+	          ["${userSignUpChart[0].chartDate}", ${userSignUpChart[0].chartCount}]
+	        ]);
+		 
+		 
+		 
+		var options = {
+			chart : {
+				title : 'Analysis of Dialogue System',
+				subtitle : ''
+				
+			}
+		};
+
+		var chart = new google.visualization.AreaChart(document
+				.getElementById('userSignUpChart'));
 
 		chart.draw(data, google.charts.Bar.convertOptions(options));
 

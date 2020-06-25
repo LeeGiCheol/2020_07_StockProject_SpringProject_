@@ -939,7 +939,8 @@
  				for(var i = 0; i < data.accumRankingNicknameList.length; ++i) {
  					console.log(i);
  					HTMLForAccumRanking +=
- 					'<li class="first"><a><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
+
+ 					'<li class="first"><a href="/selectUserMoney?nickname='+data.accumRankingNicknameList[i]+'"><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
  					'<p class="color-red">'+
  					((data.accumRankingAssetList[i]-10000000)/100000)+'%'+
  					'</p></a></li>';
