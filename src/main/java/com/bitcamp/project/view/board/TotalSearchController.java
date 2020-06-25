@@ -32,6 +32,7 @@ public class TotalSearchController {
 		mav.addObject("free", free);
 		mav.addObject("port", port);
 		mav.addObject("nick", nick);
+		mav.addObject("title", title);
 		mav.setViewName("total_Search_Result");
 		return mav;
 	}

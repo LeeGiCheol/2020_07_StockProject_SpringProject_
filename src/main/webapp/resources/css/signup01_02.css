@@ -420,7 +420,6 @@ input[type="text"], input[type="password"], input[type="tel"] {
 }
 .member .men-step fieldset ul li p {
     padding-left: 37px;
-    margin: 0;
 }
 p.error-text {
     margin-top: 8px !important;
@@ -929,4 +928,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 }
 .color-fantasy {
 	color: rgba(46,87,255,1) !important;
+}
+
+input[type=checkbox]{
+	    margin-right: 8px;
 }

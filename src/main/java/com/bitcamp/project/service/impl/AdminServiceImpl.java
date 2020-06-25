@@ -96,6 +96,15 @@ public class AdminServiceImpl implements AdminService {
 		return postMap;
 	}
 	
+	@Override
+	public Map<String, Object> reportSelectList(AdminVO vo, String pno) {
+		AdminVO reportSelectList = adminDAO.reportSelectList(pno);
+			reportSelectList.setRdatetime(new Date(reportSelectList.getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("reportSelectList", reportSelectList);
+		return postMap;
+	}
+	
 	public AdminVO qnaDetail(AdminVO vo) {
 		return adminDAO.qnaDetail(vo);
 	}
@@ -116,6 +125,7 @@ public class AdminServiceImpl implements AdminService {
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return adminDAO.boardChart(vo);
 	}
+	
 	
 	
 	
