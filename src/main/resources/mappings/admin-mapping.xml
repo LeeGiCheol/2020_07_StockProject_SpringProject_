@@ -45,13 +45,19 @@
 			FROM claimQuestion 
 			WHERE 1=1
 	
-		<if test="util.point &gt; 0">
-			AND nickname=#{util.nickname}
-		</if>
+		
+		
 		
 		
 		
 		<choose>
+			<when test="util.point gte 0">
+				AND nickname=#{util.nickname}
+				ORDER BY qno DESC
+			
+			</when>
+		
+		
 			<!-- 제목검색 -->
 			<when test='util.searchStyle.equals("search_title")'>
 				AND qtitle LIKE CONCAT('%', #{util.keyword}, '%')
@@ -84,7 +90,7 @@
 		
 	</select>
 	<select id="reportList" parameterType="page" resultType="admin">			
-			SELECT * 
+			SELECT *
 			FROM reportboard 
 			WHERE 1=1
 	
@@ -124,6 +130,13 @@
 			</otherwise>
 		</choose>
 	</select>
+	
+	<select id="reportSelectList" parameterType="String" resultType="admin">
+		SELECT *
+		FROM reportboard
+		WHERE pno=#{pno}
+	</select> 
+	
 	
 	<select id="reportCount" parameterType="admin" resultType="int">
 		SELECT COUNT(*)

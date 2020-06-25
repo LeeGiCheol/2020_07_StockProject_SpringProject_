@@ -324,8 +324,8 @@
 	</update>
 	
 	<insert id="reportBoard">
-		INSERT INTO reportBoard(pno, title, rtype, rcontent, rdatetime, nickname)
-		VALUES (#{pno}, #{title}, #{rtype}, #{rcontent}, now(), #{nickname})
+		INSERT INTO reportBoard(pno, title, rtype, rcontent, rdatetime, nickname, rcheck)
+		VALUES (#{pno}, #{title}, #{rtype}, #{rcontent}, now(), #{nickname}, '처리대기중')
 	</insert>
 
 	<select id="reportBoardCount" resultType="int">
