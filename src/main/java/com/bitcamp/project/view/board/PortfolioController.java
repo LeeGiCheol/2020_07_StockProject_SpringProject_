@@ -227,7 +227,7 @@ public class PortfolioController {
 		List<String> uploadThumbnail = new ArrayList<String>();
 
 		FileUpload fileUpload = new FileUpload();
-		vo = fileUpload.fileDel(bVo, uploadedFileName, uploadThumbnail, request);
+		vo = fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
 
 		boardService.deleteBoard(vo);
 		return "redirect:/board/portfolio";

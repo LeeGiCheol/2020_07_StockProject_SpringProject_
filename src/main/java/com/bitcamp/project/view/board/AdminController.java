@@ -2,6 +2,7 @@ package com.bitcamp.project.view.board;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.AdminService;
 import com.bitcamp.project.service.BoardService;
+import com.bitcamp.project.util.FileUpload;
 import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
@@ -33,7 +35,12 @@ public class AdminController {
 	BoardService boardService;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	HttpServletRequest request;
 	
+	
+	List<String> uploadedFileName = BoardController.uploadedFileName;
+
 
 	@GetMapping("/admin/main")
 	public ModelAndView adminPage(BoardVO bVo, AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
@@ -173,6 +180,8 @@ public class AdminController {
 		else
 			vo.setAno(-1);
 		System.out.println("v?o "+vo);
+		
+		
 		AdminVO qnaDetail = adminService.qnaDetail(vo);
 		qnaDetail.setAcontent(acontent);
 		System.out.println("v?o2 "+qnaDetail);
@@ -180,6 +189,23 @@ public class AdminController {
 		System.out.println("관리자 "+qnaDetail);
 		model.addAttribute("qna", qnaDetail);
 		adminService.writeAnswer(qnaDetail);
+		
+		
+		List<String> uploadThumbnail = new ArrayList<String>();
+
+		FileUpload file = new FileUpload();
+		try {
+
+			file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
+			uploadedFileName.clear();
+		}
+		catch(Exception e) {
+			return "redirect:/admin/qna/detail?qno="+vo.getQno();
+		}
+		
+		
+		
+		
 		
 		
 		return "redirect:/admin/qna/detail?qno="+vo.getQno();
@@ -206,7 +232,19 @@ public class AdminController {
 		vo.setQno(qno);
 		
 		
-		adminService.updateAnswer(vo);
+
+		List<String> uploadThumbnail = new ArrayList<String>();
+
+		FileUpload file = new FileUpload();
+		try {
+
+			file.thumbnailDel(null, vo, request, uploadedFileName, uploadThumbnail);
+			uploadedFileName.clear();
+			adminService.updateAnswer(vo);
+		}
+		catch(Exception e) {
+			adminService.updateAnswer(vo);
+		}
 		
 		return "redirect:/admin/qna/detail?qno="+vo.getQno();
 	}
@@ -215,15 +253,21 @@ public class AdminController {
 	@GetMapping("/admin/qna/delete")
 	public String adminQnaDelete(AdminVO vo) {
 		System.out.println("as "+vo);
+		AdminVO aVo = adminService.qnaDetail(vo);
+		List<String> uploadThumbnail = new ArrayList<String>();
+		FileUpload fileUpload = new FileUpload();
+		fileUpload.fileDel(null, aVo, uploadedFileName, uploadThumbnail, request);
 		if(vo.getAno() != 0) {
-			adminService.answerDelete(vo);
+			adminService.answerDelete(aVo);
 		}
 		else if(vo.getQno() != 0) {
-			adminService.questionDelete(vo);
+			adminService.questionDelete(aVo);
 		}
+		
+		
 			
 		
-		return "redirect:/adminQna";
+		return "redirect:/admin/qna/detail?qno="+aVo.getQno();
 	}
 	
 	
