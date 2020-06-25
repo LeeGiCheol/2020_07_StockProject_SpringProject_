@@ -353,11 +353,11 @@ var a = "${boardChart[0].chartCount}"
 
 		 var data = google.visualization.arrayToDataTable([
 	          ['일별 게시물 개수', '개수'],
-	          ["${boardChart[0].chartDate}", a],
-	          ["${boardChart[1].chartDate}", "${boardChart[1].chartCount}"],
-	          ["${boardChart[2].chartDate}", "${boardChart[2].chartCount}"],
-	          ["${boardChart[3].chartDate}", "${boardChart[3].chartCount}"],
-	          ["${boardChart[4].chartDate}", "${boardChart[4].chartCount}"]
+	          ["${boardChart[0].chartDate}", ${boardChart[0].chartCount}],
+	          ["${boardChart[1].chartDate}", ${boardChart[1].chartCount}],
+	          ["${boardChart[2].chartDate}", ${boardChart[2].chartCount}],
+	          ["${boardChart[3].chartDate}", ${boardChart[3].chartCount}],
+	          ["${boardChart[4].chartDate}", ${boardChart[4].chartCount}]
 	        ]);
 		 
 		 
