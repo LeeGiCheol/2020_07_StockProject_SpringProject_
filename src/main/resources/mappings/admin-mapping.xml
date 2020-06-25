@@ -200,7 +200,13 @@
 	<select id="boardChart" parameterType="board" resultType="map">
 		SELECT DATE_FORMAT(`bdateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
 		FROM board GROUP BY chartDate
-                ORDER BY chartDate DESC;
+        ORDER BY chartDate DESC;
+	</select>
+	
+	<select id="userSignUpChart" parameterType="board" resultType="map">
+		SELECT DATE_FORMAT(`udateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
+		FROM user GROUP BY chartDate
+		ORDER BY chartDate DESC;
 	</select>
 	
 	

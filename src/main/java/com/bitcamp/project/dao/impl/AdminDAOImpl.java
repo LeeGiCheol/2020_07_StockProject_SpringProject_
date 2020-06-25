@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.bitcamp.project.dao.AdminDAO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.UserVO;
 import com.bitcamp.project.vo.AdminVO;
 
 @Repository("AdminDAO")
@@ -94,6 +95,11 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return mybatis.selectList("admin.boardChart", vo);
+	}
+	
+	@Override
+	public List<UserVO> userSignUpChart(UserVO vo) {
+		return mybatis.selectList("admin.userSignUpChart", vo);
 	}
 	
 	

@@ -14,9 +14,6 @@
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
 </head>
-<style>
-
-</style>
 
 <body>
 
@@ -52,27 +49,20 @@
 				<div class="mem-withdrawal">
 					<div class="mem-message-02">
 						<p class="big-text">
-							<span class="color-red">팍스넷</span>에 오신 것을 환영합니다!
+							<span class="color-fantasy">FantasyStock</span>에 오신 것을 환영합니다!
 						</p>
-						<p><mark>굴리트트님</mark> 팍스넷 회원가입을 축하합니다.</p>
-						<p><mark>ekek3002@naver.com </mark>으로 회원가입 안내 메일이 발송되었습니다.</p>
+						<p><mark></mark> FantasyStock 회원가입을 축하합니다.</p>
+						<p><mark>${loginUser.id} </mark>으로 회원가입 안내 메일이 발송되었습니다.</p>
 						 
 					</div>
 					<!-- //message-st-01 --> 
 					<div class="mem case02">
-						<p class="id"><i>아이디</i> <span>fkfk3002</span></p>
-						<p class="name"><i>필명</i> <span>굴리트트</span></p>
-					</div>
-					<div class="mem-down">
-						<p>본인확인과 필명 변경을 원하시면 버튼을 클릭해주세요.</p>
-						<span>
-							<a href="javascript:goUserInfo();" class="btn-t">본인확인</a>
-							<a href="javascript:goUserInfo();" class="btn-t">필명변경</a>
-						</span>
+						<p class="id"><i>아이디</i> <span class="color-fantasy">${loginUser.id}</span></p>
+						<p class="name"><i>닉네임</i> <span>${loginUser.nickname}</span></p>
 					</div>
 					<div class="bt-area">  
-						<a href="http://www.moneta.co.kr/" class="btn-b">모네타 홈</a>
-						<a href="http://www.paxnet.co.kr" class="btn-b red">팍스넷 홈</a> 
+						<a href="/signInPage" class="btn-b">로그인</a>
+						<a href="/mainPage" class="btn-b fantasy">취소</a> 
 					</div>
 				</div>
 				<!-- //info-modify -->

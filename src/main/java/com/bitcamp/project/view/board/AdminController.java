@@ -48,7 +48,7 @@ public class AdminController {
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
 		ModelAndView mav = new ModelAndView();
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
-		
+		UserVO allUser = new UserVO();
 		if(loginUser == null || loginUser.getPoint() >= 0) {
 			mav.addObject("msg", "관리자만 접근할 수 있습니다");
 			mav.addObject("location", "/mainPage");
@@ -58,9 +58,9 @@ public class AdminController {
 		
 		
 		List<BoardVO> boardChart = adminService.boardChart(bVo);
-		System.out.println("boardChart "+boardChart);
 		mav.addObject("boardChart", boardChart);
-		
+		List<UserVO> userSignUpChart = adminService.userSignUpChart(allUser);
+		mav.addObject("userSignUpChart", userSignUpChart);
 		
 		
 		loginUser.getPoint();

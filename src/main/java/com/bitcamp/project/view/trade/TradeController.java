@@ -287,8 +287,9 @@ public class TradeController {
 		tradeService.stockBuying(vo);
 
 		mav.addObject("msg", "매수 등록: " + stockName + ", " + price);
+		mav.addObject("icon", "success");
 		mav.addObject("location", "/trade?stockName=" + stockName);
-		mav.setViewName("notice");
+		mav.setViewName("msg");
 		return mav;
 	}
 
