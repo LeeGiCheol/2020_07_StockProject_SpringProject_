@@ -48,22 +48,10 @@
 				<div class="community" role="main">
 
 					<!-- 검색 -->
-<!-- 					<div id="searchArea" class="sectionBox">
-						<div class="phe_main_search">
-							<fieldset>
-								<strong class="tit">궁금하신 사항을 검색해주세요.</strong>
-								<div class="input-box">
-									<input type="text" onkeydown="javascript:onKeyDown();" id="question" name="question" class="text">
-									<button type="button" onclick="javascript:search();" class="search">검색</button>
-								</div>
-								<div class="inquiry-box">
-									<p class="inquiry-txt">궁금하신 사항에 대하여 답변을 찾지 못하셨다면 1:1문의를 하세요.</p>
-									<a href="/customerClaim/write" class="link">1:1 문의</a>
-				
-								</div>
-							</fieldset>
+					<div class="sectionBox">
+						<div class="customerBanner">
 						</div>
-					</div> -->
+					</div>
 					
 					<div class="m-menu">
 <!-- 							<div class="drop-nav">
