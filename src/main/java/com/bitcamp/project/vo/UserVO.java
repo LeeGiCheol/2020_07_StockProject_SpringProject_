@@ -1,6 +1,8 @@
 package com.bitcamp.project.vo;
 
-import lombok.Data;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserVO {
 	private String id; 
@@ -14,6 +16,11 @@ public class UserVO {
 	private long money;
 	
 	private String friend;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+	private Date udateTime;
+	
+	
 
 	public String getId() {
 		return id;
@@ -95,12 +102,23 @@ public class UserVO {
 		this.money = money;
 	}
 
+	
+	
+	public Date getUdateTime() {
+		return udateTime;
+	}
+
+	public void setUdateTime(Date udateTime) {
+		this.udateTime = udateTime;
+	}
+
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", pw=" + pw + ", nickname=" + nickname + ", tel=" + tel + ", point=" + point
-				+ ", showEsetSetting=" + showEsetSetting + ", address=" + address + ", charge=" + charge + ", friend="
-				+ friend + "]";
+				+ ", showEsetSetting=" + showEsetSetting + ", address=" + address + ", charge=" + charge + ", money="
+				+ money + ", friend=" + friend + ", udateTime=" + udateTime + "]";
 	}
+
 	
 	
 	

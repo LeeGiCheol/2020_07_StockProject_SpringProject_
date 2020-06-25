@@ -58,8 +58,8 @@
 	</delete>
 
 	<insert id="signUp">
-		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
-		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 0, #{showEsetSetting}, #{address}, 1);
+		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge, udateTime)
+		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 0, #{showEsetSetting}, #{address}, 1, now());
 		
 		
 		<!-- sql 두개 쓰려면 ; 붙여줘야한다 -->

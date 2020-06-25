@@ -1075,7 +1075,7 @@ em, i {
     min-width: 60px;
     font-size: 14px;
 }
-[class*="btn-"] {
+/* [class*="btn-"] {
     position: relative;
     background: #fff;
     border: 1px solid #444;
@@ -1085,7 +1085,7 @@ em, i {
     vertical-align: middle;
     box-sizing: border-box;
     text-align: center;
-}
+} */
 .member .bt-area {
     overflow: hidden;
     padding: 20px 0;
