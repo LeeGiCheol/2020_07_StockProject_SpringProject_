@@ -124,10 +124,12 @@
 										<c:forEach items="${reportList}" var="re" varStatus="status">
 	                                       <tr>	
 	                                       		<td><p class="content">${re.rtype}</p></td>
-	                                            <td class="board-title"><p class="content">${re.title}</p></td>
-	                                            <td class="board-title"><p class="content" id="popup-btn" style="cursor: pointer;">${re.rcontent}</p></td>
+	                                            <td class="center"><p class="content">${re.title}</p></td>
+	                                            <td class="center" onclick="findPno('${re.pno}');">
+		                                            <p class="content" id="popup-btn" style="cursor: pointer;">${re.rcontent}</p>
+	                                            </td>
 	                                            <td class="center">${re.nickname}</td>
-	                                            <td class="center">처리 대기 중</td>
+	                                            <td class="center">${re.rcheck}</td>
 	                                            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
 	                                        </tr>
                                         </c:forEach>
@@ -266,48 +268,13 @@
 					<div class="pop-cont">
 						<div class="pop-clean">
 							<table>
-								<caption>게시물 신고하기</caption>
-								<colgroup>
-									<col style="width: 100px;">
-									<col style="">
-								</colgroup>
-								<tbody>
-								<tr>
-									<th scope="col">처리현황</th>
-									<td>${boardDetail.nickname}</td>
-								</tr>	
-								<tr>
-									<th scope="col">신고날짜</th>
-									<td>${boardDetail.nickname}</td>
-								</tr>															
-								<tr>
-									<th scope="col">신고사항</th>
-									<td>${boardDetail.title}</td>
-								</tr>
-								<tr>
-									<th scope="col">작성자</th>
-									<td>${boardDetail.nickname}</td>
-								</tr>																
-								<tr>
-									<th scope="col">제목</th>
-									<td>${boardDetail.title}</td>
-								</tr>
-								<tr>
-									<th scope="col">내용</th>
-									<td>${boardDetail.title}</td>
-								</tr>								
-
-
-																
+								<colgroup><col style="width: 100px;"><col style=""></colgroup>
+								<tbody id="reportSelectList">
 								</tbody>
 							</table>
-	
-					
 						</div>
-						
-							<input type="hidden" name="pno" value="${boardDetail.pno}">
-							<input type="hidden" name="title" value="${boardDetail.title}">
-						
+							<input type="hidden" name="pno" value="${re.pno}">
+							<input type="hidden" name="title" value="${re.title}">
 						<div class="pop-btn">
 							<button type="button" class="btn-m fantasy" id="delest-btn">게시물 삭제</button>
 							<span>
@@ -321,9 +288,78 @@
 			</div>
 		</div>
 	</div>
-
-
 	<script>
+	function changeDate(date){
+        var date = new Date(date);
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        if(month < 10) {
+        	month = "0" + month
+        }
+        day = date.getDate();
+        hour = date.getHours();
+        if(hour < 10) {
+        	hour = "0"+hour;
+        }
+        if(hour > 24) {
+        	hour -= 24;
+        	if(hour < 10) {
+        	hour = "0"+hour
+        	}
+        }
+        if(hour == 24){
+        	hour = "00";
+        }
+        minute = date.getMinutes();
+        if(minute < 10) {
+        	minute = "0" + minute;
+        }
+        second = date.getSeconds();
+        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute;
+        return strDate;
+    }
+	
+	
+	 function findPno(pno){
+     	$.ajax({
+				type : "POST",
+				url : '${pageContext.request.contextPath}/admin/findPno',
+				data : { "pno" : pno },
+				success : function(data) {
+					var reportSelectList = "";
+					
+					reportSelectList += '<tr>'
+					reportSelectList += 	'<th scope="col">처리현황</th>'
+					reportSelectList += 	'<td id="re.rcheck">'+data.reportSelectList.rcheck+'</td>'
+					reportSelectList += '</tr>'
+					reportSelectList += '<tr>'
+					reportSelectList += 	'<th scope="col">신고날짜</th>'
+					reportSelectList += 	'<td>'+changeDate(data.reportSelectList.rdatetime)+'</td>'
+					reportSelectList += '</tr>'
+					reportSelectList += '<tr>'
+					reportSelectList += 	'<th scope="col">신고사항</th>'
+					reportSelectList += 	'<td>'+data.reportSelectList.rtype+'</td>'
+					reportSelectList += '</tr>'
+					reportSelectList += '<tr>'
+					reportSelectList += 	'<th scope="col">작성자</th>'
+					reportSelectList += 	'<td>'+data.reportSelectList.nickname+'</td>'
+					reportSelectList += '</tr>'
+					reportSelectList += '<tr>'
+					reportSelectList += 	'<th scope="col">제목</th>'
+					reportSelectList += 	'<td>'+data.reportSelectList.title+'</td>'
+					reportSelectList += '</tr>'
+					reportSelectList += '<tr>'
+					reportSelectList += 	'<th scope="col">내용</th>'
+					reportSelectList += 	'<td>'+data.reportSelectList.rcontent+'</td>'
+					reportSelectList += '</tr>'
+					$("#reportSelectList").html(reportSelectList);	
+				},
+				error: function(){
+				}
+			});
+     }findPno();	
+	
+	
         /** 신고 기능들 모음 Report */
         var Report = (function($) {
             var root = this;
@@ -370,7 +406,7 @@
                 	$("#rprtResn").val("");
                 	closeLayerPop();
                 	
-                	if("${loginUser.nickname}" != bbsWrtVO.regmnId){
+                	 if("${loginUser.nickname}" != bbsWrtVO.regmnId){
                 		if(checkWrtRprt(bbsWrtVO.seq)){
                             jQuery('#reportPopup').show();
                             
@@ -378,47 +414,47 @@
         						$('html, body').scrollTop(0);					
         						$(".wrap").hide();
         					}
-                            //jQuery('#reportPopup').attr("style", "position:fixed;display:table;");
                     	}                		
                 	}else{
                 		alert("본인의 글은 신고 할 수 없습니다.");
-                	}
+                	} 
                 	
                 });
 
             }
         }());
         
-        function initInput(){
+         function initInput(){
         	//초기화
             $(".selectpicker").val('');
             $(".selectpicker").selectpicker('refresh');
             $("#rtype").val("");
             $("#rprtResn").val("");
-        }
+        } 
+         
+         function checkWrtRprt(wrtSeq){
+         	var result = true;
+         	$.ajax({
+ 				type : "POST",
+ 				url : "checkWrtRprt.json",
+ 				data : {wrtSeq : wrtSeq},
+ 				dataType : "json",
+ 				async : false,
+ 				success : function(data) {
+ 					if(data.result){
+ 						alert("이미 신고하셨습니다.");
+ 						result = false;
+ 					}
+ 				},beforeSend: function(){
+ 				},
+ 				complete: function(){
+ 				},
+ 				error : function(e, textStatus) {
+ 				}
+ 			});
+         	return result;
+         } 
         
-        function checkWrtRprt(wrtSeq){
-        	var result = true;
-        	$.ajax({
-				type : "POST",
-				url : "checkWrtRprt.json",
-				data : {wrtSeq : wrtSeq},
-				dataType : "json",
-				async : false,
-				success : function(data) {
-					if(data.result){
-						alert("이미 신고하셨습니다.");
-						result = false;
-					}
-				},beforeSend: function(){
-				},
-				complete: function(){
-				},
-				error : function(e, textStatus) {
-				}
-			});
-        	return result;
-        }
     	function closeLayerPop() {
     		$(".scrap-box").css("display", "none");
     		$(".sns").css("display", "none");
@@ -450,32 +486,24 @@ function submitReportComt(){
         $("#comtRprtCd").val($('#comtRprtCode').val());
         $("#comtRprtRe").val($('#comtRprtResn').val());
         
-        //console.log("comtRprtCd " + $("#comtRprtCd").val());
-        //console.log("comtRprtRe " + $("#comtRprtRe").val());
-
-        //console.log("jsonData : " + $("#rtrpFrm").serialize());
     }
 }
-
-
 		// 취소버튼 눌렀을 때 내용 초기화, 팝업 hide
 		function hidePopup(){
-        /* 	$(".wrap").show(); */
             jQuery('#reportPopup').hide();
             initInput()
 		}
 
 </script>
 <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
-<!--     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" ></script>
     <script src="/resources/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script>
-    <script src="/resources/js/chart-area-demo.js"></script>
-    <script src="/resources/js/chart-bar-demo.js"></script>
     <script src="/resources/js/datatables-demo.js"></script>    
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script> -->
+    <!-- <script src="/resources/js/chart-area-demo.js"></script> -->
+    <!-- <script src="/resources/js/chart-bar-demo.js"></script> -->
 </body>
 
 </html>

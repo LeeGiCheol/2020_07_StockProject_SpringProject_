@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.project.service.AdminService;
@@ -249,9 +250,15 @@ public class AdminController {
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
 		
-		
-		
 		return "adminReport";
 	}
 	
+	@ResponseBody
+	@PostMapping("/admin/findPno")
+	public Map<String, Object> adminReportList(Model model, AdminVO vo, @ModelAttribute("pno") String pno) {
+		Map<String, Object> reportSelectList = adminService.reportSelectList(vo, pno);
+		model.addAttribute("reportSelectList", (AdminVO) reportSelectList.get("reportSelectList"));
+		System.out.println("@@@@@@@@@@ : " + model.getAttribute("reportSelectList"));
+		return reportSelectList ;
+	}
 }
