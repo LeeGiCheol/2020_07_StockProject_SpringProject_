@@ -34,6 +34,53 @@
     </article> -->
 
 
+<div class="containerNew"> 
+
+		<!-- contents -->
+		<div class="contents member" id="contents">
+		
+			<!-- cont-area -->	
+			<div class="cont-area"> 
+				<div class="step-mem">
+					<ul>
+						<li><div><span><i>Step1</i></span><em>약관동의</em></div></li> 
+						<li><div><span><i>Step2</i></span><em>기본정보입력</em></div></li>
+						<li class="selected"><div><span><i>Step3</i></span><em>가입완료</em></div></li>
+					</ul>
+				</div>
+
+				<div class="mem-withdrawal">
+					<div class="mem-message-02">
+						<p class="big-text">
+							<span class="color-red">팍스넷</span>에 오신 것을 환영합니다!
+						</p>
+						<p><mark>굴리트트님</mark> 팍스넷 회원가입을 축하합니다.</p>
+						<p><mark>ekek3002@naver.com </mark>으로 회원가입 안내 메일이 발송되었습니다.</p>
+						 
+					</div>
+					<!-- //message-st-01 --> 
+					<div class="mem case02">
+						<p class="id"><i>아이디</i> <span>fkfk3002</span></p>
+						<p class="name"><i>필명</i> <span>굴리트트</span></p>
+					</div>
+					<div class="mem-down">
+						<p>본인확인과 필명 변경을 원하시면 버튼을 클릭해주세요.</p>
+						<span>
+							<a href="javascript:goUserInfo();" class="btn-t">본인확인</a>
+							<a href="javascript:goUserInfo();" class="btn-t">필명변경</a>
+						</span>
+					</div>
+					<div class="bt-area">  
+						<a href="http://www.moneta.co.kr/" class="btn-b">모네타 홈</a>
+						<a href="http://www.paxnet.co.kr" class="btn-b red">팍스넷 홈</a> 
+					</div>
+				</div>
+				<!-- //info-modify -->
+
+			</div><!-- //cont-area -->
+		</div><!-- //contents -->  
+	</div>
+
 	
 <%@include file="mainfooter2.jsp" %>
 
