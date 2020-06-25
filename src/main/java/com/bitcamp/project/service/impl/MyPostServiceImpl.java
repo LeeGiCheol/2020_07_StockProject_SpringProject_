@@ -45,6 +45,7 @@ public class MyPostServiceImpl implements MyPostService {
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("myBoard", myBoard);
 		postMap.put("myComment", myComment);
+		System.out.println("코멘트 "+myComment);
 		postMap.put("boardPage", boardPage);
 		postMap.put("commentPage", commentPage);
 		

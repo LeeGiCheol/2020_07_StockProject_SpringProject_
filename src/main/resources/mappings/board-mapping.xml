@@ -51,6 +51,9 @@
 		DELETE FROM board
 		WHERE pno = #{pno};
 		
+		DELETE FROM commentList
+		WHERE pno = #{pno};
+		
 		<if test='bno eq 2'>
 			DELETE FROM filelist
 			WHERE pno = #{pno};

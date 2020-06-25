@@ -184,9 +184,6 @@ public class AdminController {
 		
 		AdminVO qnaDetail = adminService.qnaDetail(vo);
 		qnaDetail.setAcontent(acontent);
-		System.out.println("v?o2 "+qnaDetail);
-		System.out.println("detail "+qnaDetail);
-		System.out.println("관리자 "+qnaDetail);
 		model.addAttribute("qna", qnaDetail);
 		adminService.writeAnswer(qnaDetail);
 		
@@ -216,9 +213,7 @@ public class AdminController {
 		vo.setQno(qno);
 		vo.setAno(1);
 		vo.setAcontent(acontent);
-		System.out.println("v?o "+vo);
 		AdminVO qnaDetail = adminService.qnaDetail(vo);
-		System.out.println("??? dsagasd " + qnaDetail);
 		model.addAttribute("qna", qnaDetail);
 		
 		
@@ -252,7 +247,6 @@ public class AdminController {
 	
 	@GetMapping("/admin/qna/delete")
 	public String adminQnaDelete(AdminVO vo) {
-		System.out.println("as "+vo);
 		AdminVO aVo = adminService.qnaDetail(vo);
 		List<String> uploadThumbnail = new ArrayList<String>();
 		FileUpload fileUpload = new FileUpload();
