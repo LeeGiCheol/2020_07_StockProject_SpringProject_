@@ -54,12 +54,8 @@ public class AdminServiceImpl implements AdminService {
 		
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
-		
-//		boardPage.getUtil().put("",vo.get)
-//		boardPage.setId(vo.getId());
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		PagingVO qnaPage = new PagingVO(adminDAO.pageCount(vo), nowPage, page);
-		System.out.println("@@@@ "+qnaPage);
 		
 		System.out.println("data2 "+adminDAO.pageCount(vo));
 		qnaPage.getUtil().put("searchStyle", searchStyle);
@@ -67,14 +63,9 @@ public class AdminServiceImpl implements AdminService {
 		qnaPage.getUtil().put("nickname", vo.getNickname());
 		qnaPage.getUtil().put("orderby", orderby);
 		
-		if(loginUser.getPoint() < 0) {
-			qnaPage.getUtil().put("point", loginUser.getPoint());
-		}
-			
-			List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
-			System.out.println("KKK "+qnaList);
-			System.out.println("pagegege " + qnaPage);
-			System.out.println("pageqnaListgege " + qnaList);
+		qnaPage.getUtil().put("point", loginUser.getPoint());
+		
+		List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
 //			for (int i = 0; i < qnaList.size(); i++) {
 //				qnaList.get(i).setBdateTime(new Date(qnaList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
 //			}

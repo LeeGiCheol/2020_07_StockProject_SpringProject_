@@ -31,6 +31,11 @@ body {
 	    padding-left: 0;
 	
 }
+#left ul {
+left: 57px !important;
+    width: 206px;
+    margin-top: 10px !important;
+}
 #bottom ul {
     width: auto !important;
  
@@ -180,6 +185,7 @@ position: absolute;
     background: #e9eef3;
     margin-top: 3%;
     border-top: 1px solid #d4dade;
+    font-family: cera-round-pro !important;
     }
 
 .footer_content {}
@@ -246,7 +252,9 @@ list-style: none;
         margin-top: 20px;
 }
 #left li {    
-	font-size: 15px;}
+	font-size: 15px;
+	    line-height: 23px;
+	}
 
 .listA > li:nth-child(2) > a{
 color:#535367;
@@ -306,7 +314,7 @@ list-style: none;
 
 #right li {  
 	font-size: 16px;
-    padding: 3px 2px;letter-spacing: -1px;
+    padding: 3px 2px;letter-spacing: -1px;    line-height: 20px;
     }
 
 .liBold {font-weight: 600;}
@@ -315,6 +323,7 @@ list-style: none;
  font-weight: 600;
     color: rgba(46,87,255,1);
        font-size: 21px !important;
+       line-height: 30px !important;
 }
 #companyName a{
 
