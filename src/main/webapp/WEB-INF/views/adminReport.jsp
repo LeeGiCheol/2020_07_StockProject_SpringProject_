@@ -273,15 +273,8 @@
 								</tbody>
 							</table>
 						</div>
-							<input type="hidden" name="pno" value="${re.pno}">
-							<input type="hidden" name="title" value="${re.title}">
-						<div class="pop-btn">
-							<button type="button" class="btn-m fantasy" id="delest-btn">게시물 삭제</button>
-							<span>
-							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
-							<button type="submit" id="submitReport" class="btn-m fantasy">게시물 이동</button>
-							</span>
-						</div>
+					</div>
+					<div class="pop-btn" id="pageLocation">
 					</div>
 					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
 				</form> 
@@ -327,7 +320,7 @@
 				data : { "pno" : pno },
 				success : function(data) {
 					var reportSelectList = "";
-					
+					var pageLocation = "";
 					reportSelectList += '<tr>'
 					reportSelectList += 	'<th scope="col">처리현황</th>'
 					reportSelectList += 	'<td id="re.rcheck">'+data.reportSelectList.rcheck+'</td>'
@@ -352,12 +345,21 @@
 					reportSelectList += 	'<th scope="col">내용</th>'
 					reportSelectList += 	'<td>'+data.reportSelectList.rcontent+'</td>'
 					reportSelectList += '</tr>'
-					$("#reportSelectList").html(reportSelectList);	
+					$("#reportSelectList").html(reportSelectList);
+					
+					pageLocation += '<button type="button" class="btn-m fantasy" id="delest-btn" onclick="location.href=/board/free/delete?pno='+data.reportSelectList.pno+'">게시물 삭제</button>'										
+					pageLocation += '<span>'
+					pageLocation += '<button type="button" id="submitReport" class="btn-m fantasy" onclick="location.href=/board/free/detail?pno='+data.reportSelectList.pno+'">게시물 이동</button>'
+					pageLocation += '</span>'
+					$("#pageLocation").html(pageLocation);
+					
+					
+					
 				},
 				error: function(){
 				}
 			});
-     }findPno();	
+     }findPno();
 	
 	
         /** 신고 기능들 모음 Report */
