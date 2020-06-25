@@ -107,7 +107,7 @@ $(document).ready(function(){
 							<h1 class="tit-h1 line">계좌정보</h1>
 						</div>
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">나의 계좌정보 ▼</h1>
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">나의 계좌정보 <i class="fas fa-angle-down"></i></h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">

@@ -120,7 +120,7 @@ function deleteComment(){
 							<h1 class="tit-h1 line">작성 글 | 댓글</h1>
 						</div>
 						<div class="m-drop-nav">
-							<h1 class="m-drop-tit-title line" style="cursor: pointer;">작성 글 | 댓글 ▼</h1>
+							<h1 class="m-drop-tit-title line" style="cursor: pointer;">작성 글 | 댓글 <i class="fas fa-angle-down"></i></h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
