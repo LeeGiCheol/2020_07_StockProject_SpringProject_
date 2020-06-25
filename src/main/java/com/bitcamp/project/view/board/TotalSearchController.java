@@ -26,10 +26,13 @@ public class TotalSearchController {
 		List stock = (List) list.get(0);
 		List free =  (List)list.get(1);
 		List port =  (List)list.get(2);
+		List nick =  (List)list.get(3);
 
 		mav.addObject("stock", stock);
 		mav.addObject("free", free);
 		mav.addObject("port", port);
+		mav.addObject("nick", nick);
+		mav.addObject("title", title);
 		mav.setViewName("total_Search_Result");
 		return mav;
 	}

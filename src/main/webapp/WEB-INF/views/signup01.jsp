@@ -38,8 +38,10 @@
 						
 						
 							
-						<p class="all-check"><input type="checkbox" id="check01" onclick="checkAll();" class="big"><label for="check01">이용약관, 개인정보 수집 및 이용에  <strong class="color-fantasy">모두 동의 합니다.</strong></label></p>
-					
+						<p class="all-check">
+							<input type="checkbox" id="check01" onclick="checkAll();" class="big" style="height: 15px; width: 15px;">
+							<label for="check01">이용약관, 개인정보 수집 및 이용에  <strong class="color-fantasy">모두 동의 합니다.</strong></label>
+						</p>
 						<div class="clause">
 							<span>
 								<input type="checkbox" id="check02" name="check02" onclick="btnCheck();"><label for="check02">이용약관 동의 <em class="choice">(필수)</em></label>

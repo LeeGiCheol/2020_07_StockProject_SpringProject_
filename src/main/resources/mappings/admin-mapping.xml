@@ -138,19 +138,27 @@
 	</select>
 	
 	<select id="qnaDetail" parameterType="admin" resultType="admin">
-		<if test="ano eq 1">
-			SELECT q.*, a.* 
-			FROM claimQuestion AS q
-			JOIN claimAnswer AS a
-			ON q.qno = a.qno
-	        WHERE q.qno = #{qno};
-	    </if>
-	    
-	    <if test="ano eq -1 or ano eq 0">
-	    	SELECT * 
-	    	FROM claimQuestion
-	    	WHERE qno = #{qno};
-	    </if>
+		<choose>
+			<when test="ano eq 1">
+				SELECT q.*, a.* 
+				FROM claimQuestion AS q
+				JOIN claimAnswer AS a
+				ON q.qno = a.qno
+		        WHERE q.qno = #{qno};
+		    </when>
+		    
+		    <when test="ano eq -1 or ano eq 0">
+		    	SELECT * 
+		    	FROM claimQuestion
+		    	WHERE qno = #{qno};
+		    </when>
+		    
+		    <otherwise>
+		    	SELECT * 
+		    	FROM claimAnswer
+		    	WHERE ano = #{ano};
+		    </otherwise>
+	    </choose>
 	</select>
 	
 	<update id="qnaUpdate">
