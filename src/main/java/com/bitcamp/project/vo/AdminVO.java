@@ -134,10 +134,14 @@ public class AdminVO {
 	
 	@Override
 	public String toString() {
-		return "AdminVO [qno=" + qno + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qdateTime="
-				+ qdateTime + ", qcheck=" + qcheck + ", qtype=" + qtype + ", ano=" + ano + ", acontent=" + acontent
-				+ ", adateTime=" + adateTime + "]";
+		return "AdminVO [qno=" + qno + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qdateTime=" + qdateTime
+				+ ", qcheck=" + qcheck + ", qtype=" + qtype + ", ano=" + ano + ", acontent=" + acontent + ", adateTime="
+				+ adateTime + ", pno=" + pno + ", title=" + title + ", rtype=" + rtype + ", rcontent=" + rcontent
+				+ ", rdatetime=" + rdatetime + ", nickname=" + nickname + ", rcheck=" + rcheck + "]";
 	}
+	
+	
+	
 	
 
 	
