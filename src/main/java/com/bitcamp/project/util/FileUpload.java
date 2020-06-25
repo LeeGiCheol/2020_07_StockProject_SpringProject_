@@ -331,33 +331,46 @@ public class FileUpload {
 	public void thumbnailDel(BoardVO vo, AdminVO qVo, HttpServletRequest request, List<String> uploadedFileName,
 			List<String> uploadThumbnail) {
 		String[] img = null;
-		if (vo != null) {
-			if (vo.getBcontent().contains("<img src=")) {
-
-				img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
-
-				for (int i = 1; i < img.length; i++) {
-
-					int start = img[i].indexOf("/Photo");
-					int end = img[i].indexOf("\" title=\"");
-					img[i] = img[i].substring(start - 8, end);
+			if (vo != null) {
+				if (vo.getBcontent().contains("<img src=")) {
+	
+					img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+	
+					for (int i = 1; i < img.length; i++) {
+	
+						int start = img[i].indexOf("/Photo");
+						int end = img[i].indexOf("\" title=\"");
+						img[i] = img[i].substring(start - 8, end);
+					}
+	
 				}
-
-			}
-		} else {
-			if (qVo.getQcontent().contains("<img src=")) {
-
-				img = qVo.getQcontent().split("<img src=\"/resources/se2/upload/");
-
-				for (int i = 1; i < img.length; i++) {
-
-					int start = img[i].indexOf("/Photo");
-					int end = img[i].indexOf("\" title=\"");
-					img[i] = img[i].substring(start - 8, end);
+			} else if(qVo.getQcontent() != null) {
+				if (qVo.getQcontent().contains("<img src=")) {
+	
+					img = qVo.getQcontent().split("<img src=\"/resources/se2/upload/");
+	
+					for (int i = 1; i < img.length; i++) {
+	
+						int start = img[i].indexOf("/Photo");
+						int end = img[i].indexOf("\" title=\"");
+						img[i] = img[i].substring(start - 8, end);
+					}
+	
 				}
-
+			}else {
+				if (qVo.getAcontent().contains("<img src=")) {
+	
+					img = qVo.getAcontent().split("<img src=\"/resources/se2/upload/");
+	
+					for (int i = 1; i < img.length; i++) {
+	
+						int start = img[i].indexOf("/Photo");
+						int end = img[i].indexOf("\" title=\"");
+						img[i] = img[i].substring(start - 8, end);
+					}
+	
+				}
 			}
-		}
 
 		String thumbnail = null;
 
@@ -388,16 +401,28 @@ public class FileUpload {
 
 
 	// 글 삭제 시 해당 게시물 모든 사진 삭제
-	public BoardVO fileDel(BoardVO vo, List<String> uploadedFileName, List<String> uploadThumbnail,
+	public BoardVO fileDel(BoardVO vo, AdminVO aVo, List<String> uploadedFileName, List<String> uploadThumbnail,
 			HttpServletRequest request) {
-		String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
-
-		for (int i = 1; i < img.length; i++) {
-
-			int start = img[i].indexOf("/Photo");
-			int end = img[i].indexOf("\" title=\"");
-			img[i] = img[i].substring(start - 8, end);
-		}
+		
+		String[] img = null;
+		
+		if(vo != null) {
+			
+		
+			img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
+		}	
+		else {
+			img = aVo.getAcontent().split("<img src=\"/resources/se2/upload/");
+				
+			}
+			for (int i = 1; i < img.length; i++) {
+	
+				int start = img[i].indexOf("/Photo");
+				int end = img[i].indexOf("\" title=\"");
+				img[i] = img[i].substring(start - 8, end);
+			}
+		
+		
 
 		String thumbnail = null;
 
@@ -425,8 +450,11 @@ public class FileUpload {
 //				    // 파일을 삭제합니다.
 //				}
 
-			// vo에 저장 후 리셋
-			vo.setThumbnailName("/resources/se2/upload/" + img[1].substring(0, 8) + "/THUMB_" + img[1].substring(9));
+			if(vo != null) {
+				
+				// vo에 저장 후 리셋
+				vo.setThumbnailName("/resources/se2/upload/" + img[1].substring(0, 8) + "/THUMB_" + img[1].substring(9));
+			}else
 			uploadedFileName.clear();
 		} catch (Exception e) {
 			e.printStackTrace();

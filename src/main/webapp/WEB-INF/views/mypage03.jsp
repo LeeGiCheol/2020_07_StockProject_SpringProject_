@@ -161,7 +161,7 @@ function deleteComment(){
 			
 			<!-- 1111 -->
 			<c:choose>
-			<c:when test="!${myBoard.size() > 0}">
+			<c:when test="${myBoard.size() > 0}">
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
@@ -196,6 +196,8 @@ function deleteComment(){
 									<tr>
 										<td class="board-check">
 											<p class="check">
+												
+												
 												<input type="checkbox" id="eventSeq_${board.pno}" class="seq_check board" name="check" value="${board.pno}" data-on="${board.pno}">
 												<label for="eventSeq_${board.pno}">선택 삭제</label>
 											</p>
@@ -405,24 +407,24 @@ function deleteComment(){
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${myComment}" var="board">
+							<c:forEach items="${myComment}" var="comment">
 							
 								<c:if test="true">
 									<tr>
 										<td class="board-check">
 											<p class="check">
-												<input type="checkbox" id="CeventSeq_${comment.cno}" class="seq_check comment" name="check" value="${comment.cno},${comment.pno}">
+												<input type="checkbox" id="CeventSeq_${comment.cno}" class="seq_check comment" name="check" value="${comment.cno}" data-on="${comment.cno},${comment.pno}">
 												<label for="CeventSeq_${comment.cno}">선택 삭제</label>
 											</p>
 										</td>
-										<td class="board-no">${board.pno}</td>
+										<td class="board-no">${comment.pno}</td>
 										<!-- 글번호 -->
 										
-										<td class="board-title"><a href="/board/free/detail?pno=${board.pno}">${board.ccontent}</a></td>
+										<td class="board-title"><a href="/board/free/detail?pno=${comment.pno}">${comment.ccontent}</a></td>
 										
-										<td class="board-writer">${board.nickname}</td>
+										<td class="board-writer">${comment.nickname}</td>
 										<!-- 글쓴이 -->
-										<fmt:formatDate value="${board.cdateTime}" var="time" pattern="MM/dd HH:mm"/>
+										<fmt:formatDate value="${comment.cdateTime}" var="time" pattern="MM/dd HH:mm"/>
 										<td class="board-date">${time}</td>
 										<!-- 날짜 -->
 									</tr>

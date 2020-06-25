@@ -176,7 +176,7 @@ public class CustomerController {
 		BoardVO bVo = boardService.getBoard(vo);
 		List<String> uploadThumbnail = new ArrayList<String>();
 		FileUpload fileUpload = new FileUpload();
-		fileUpload.fileDel(bVo, uploadedFileName, uploadThumbnail, request);
+		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
 		
 		boardService.deleteBoard(vo);
 		return "redirect:/customerNotice";
