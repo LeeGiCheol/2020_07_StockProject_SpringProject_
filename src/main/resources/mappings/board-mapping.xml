@@ -31,6 +31,10 @@
 		SELECT * FROM board WHERE bno = 2 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc limit 5
 	</select>
 	
+	<select id="totalSearch_Nick" resultType="map">
+		SELECT * FROM user WHERE nickname LIKE CONCAT('%',#{title},'%') order by nickname desc limit 5
+	</select>
+	
 	<update id="updateBoard">
 		UPDATE board 
 		SET title = #{title}, bcontent = #{bcontent}
