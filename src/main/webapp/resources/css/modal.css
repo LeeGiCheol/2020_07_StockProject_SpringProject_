@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+#historyModalLabel{
+	font-weight: 600;
+}
+#history > table{
+	    width: 100%;
+}
+#history > table > thead{
+	        background: #e8eff3a6;
+    border-bottom: 1px solid #7b7b90;
+}
+#history > table > thead > tr {
+	
+	    padding: 5px 9px;
+}
+#history > table > tbody > tr{
+	    padding: 5px;
+    border-bottom: 1px solid #dee2e666;
+}
+#history > table > tbody > tr > td.first{
+	text-align: center;
+}
+.page{
+	float:right;
+}
+
+#historyModal,#ownModal{
+	overflow-y:hidden;
+}
+#history > table > thead > tr > th{
+	padding:5px;
+}
+
+
+
+
+#ownModalLabel{
+	font-weight: 600;
+}
+#own > table{
+	    width: 100%;
+}
+#own > table > thead{
+	        background: #e8eff3a6;
+    border-bottom: 1px solid #7b7b90;
+}
+#own > table > thead > tr {
+	
+	    padding: 5px 9px;
+}
+#own > table > tbody > tr{
+	    padding: 5px;
+    border-bottom: 1px solid #dee2e666;
+}
+#own > table > tbody > tr > td.first{
+	text-align: center;
+}
+.page{
+	float:right;
+}
+
+#own > table > thead > tr > th{
+	padding:5px;
+}

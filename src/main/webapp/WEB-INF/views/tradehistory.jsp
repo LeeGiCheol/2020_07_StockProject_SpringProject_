@@ -10,16 +10,20 @@
 <meta charset="UTF-8">
 <title>거래 기록</title>
 </head>
+<!-- 모달css -->
+<link rel="stylesheet" href="/resources/css/modal.css">
 <body>
-	<table border="1px">
+	<table>
+	<thead>
 		<tr>
-			<td>주문번호</td>
-			<td>구분</td>
-			<td>종목명</td>
-			<td>주문단가</td>
-			<td>수량</td>
-			<td>거래 일시</td>
+			<th>주문번호</th>
+			<th>구분</th>
+			<th>종목명</th>
+			<th>주문단가</th>
+			<th>수량</th>
+			<th>거래 일시</th>
 		</tr>
+		</thead>
 		<c:forEach items="${pageHistory}" var="list">
 			<tr>
 				<td class="first" title="주문번호"><c:out value="${list.tno}" /></td>
@@ -34,7 +38,7 @@
 	</table>
 
 	<c:forEach var="i" begin="0" end="${(total-1)/15}">
-		<a href="/trade_history?page=${i+1}">${i+1}</a>
+		<a class="page" href="/trade_history?page=${i+1}">${i+1}</a>
 	</c:forEach>
 
 </body>
