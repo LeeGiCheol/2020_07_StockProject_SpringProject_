@@ -77,6 +77,9 @@ tr td button{
 .table{
 	margin-bottom: 0;
 }
+
+
+
 @media only screen and (max-width: 576px){
 .stock-btn{
 	padding: 3px;

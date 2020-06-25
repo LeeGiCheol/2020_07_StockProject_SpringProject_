@@ -8,13 +8,17 @@
 <meta charset="UTF-8">
 <title>보유 주식</title>
 </head>
+<!-- 모달css -->
+<link rel="stylesheet" href="/resources/css/modal.css">
 <body>
-	<table border="1px">
+	<table>
+	<thead>
 		<tr>
-			<td>종목명</td>
-			<td>수량</td>
-			<td>평균 단가</td>
+			<th>종목명</th>
+			<th>수량</th>
+			<th>평균 단가</th>
 		</tr>
+		</thead>
 		<c:forEach items="${pageHoldingStock}" var="list">
 			<tr>
 				<td class="first" title="종목명"><c:out value="${list.stockName}" /></td>
@@ -25,7 +29,7 @@
 	</table>
 
 	<c:forEach var="i" begin="0" end="${(total-1)/15}">
-		<a href="/trade_history?page=${i+1}">${i+1}</a>
+		<a class="page" href="/trade_history?page=${i+1}">${i+1}</a>
 	</c:forEach>
 
 </body>
