@@ -24,6 +24,7 @@ public class AdminVO {
 	private Date adateTime;
 	
 	//report
+	private int rno;
 	private int pno;
 	private String title;
 	private String rtype;
@@ -34,6 +35,12 @@ public class AdminVO {
 	
 	
 	
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 	public String getRcheck() {
 		return rcheck;
 	}

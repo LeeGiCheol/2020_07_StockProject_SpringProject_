@@ -268,7 +268,7 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin/report")
-	public String adminReportList(AdminVO vo, HttpServletRequest request, Model model, @ModelAttribute("bnowPage") String nowPage,
+	public String adminReportList(AdminVO vo, HttpServletRequest request, HttpSession session, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 			@ModelAttribute("orderby") String orderby ) {
 
@@ -287,16 +287,26 @@ public class AdminController {
 		model.addAttribute("reportPage", (PagingVO) reportList.get("reportPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
-		
 		return "adminReport";
 	}
 	
 	@ResponseBody
-	@PostMapping("/admin/findPno")
-	public Map<String, Object> adminReportList(Model model, AdminVO vo, @ModelAttribute("pno") String pno) {
-		Map<String, Object> reportSelectList = adminService.reportSelectList(vo, pno);
+	@PostMapping("/admin/findRno")
+	public Map<String, Object> adminReportList(HttpSession session, Model model, AdminVO vo, @ModelAttribute("rno") String rno) {
+		Map<String, Object> reportSelectList = adminService.reportSelectList(vo, rno);
 		model.addAttribute("reportSelectList", (AdminVO) reportSelectList.get("reportSelectList"));
-		System.out.println("@@@@@@@@@@ : " + model.getAttribute("reportSelectList"));
 		return reportSelectList ;
+	}
+
+	@GetMapping("/admin/report/delete")
+	public String reportDelete(BoardVO vo) {
+		System.out.println("@@@@여기로들어옴");
+		int delCheck = boardService.deleteBoard(vo);
+		if(delCheck == 1) {
+			int pno = vo.getPno();
+			adminService.updateRcheck(pno);
+		}
+		
+		return "redirect:/admin/report";
 	}
 }

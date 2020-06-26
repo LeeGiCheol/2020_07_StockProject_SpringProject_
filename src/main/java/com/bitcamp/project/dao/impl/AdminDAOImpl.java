@@ -64,8 +64,8 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	
 	@Override
-	public AdminVO reportSelectList(String pno) {
-		return mybatis.selectOne("admin.reportSelectList",pno);
+	public AdminVO reportSelectList(String rno) {
+		return mybatis.selectOne("admin.reportSelectList",rno);
 	}
 	
 	@Override
@@ -94,6 +94,10 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return mybatis.selectList("admin.boardChart", vo);
+	}
+	@Override
+	public int updateRcheck(int pno) {
+		return mybatis.update("admin.updateRcheck", pno);
 	}
 	
 	

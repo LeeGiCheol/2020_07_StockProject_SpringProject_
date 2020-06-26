@@ -193,9 +193,9 @@ public class BoardController {
 	@GetMapping("/board/free/delete")
 	public String deleteBoard(BoardVO vo) {
 		BoardVO bVo = boardService.getBoard(vo);
-		List<String> uploadThumbnail = new ArrayList<String>();
-		FileUpload fileUpload = new FileUpload();
-		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
+//		List<String> uploadThumbnail = new ArrayList<String>();
+//		FileUpload fileUpload = new FileUpload();
+//		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
 
 		boardService.deleteBoard(vo);
 		return "redirect:/board/free";

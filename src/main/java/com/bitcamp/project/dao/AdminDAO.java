@@ -19,8 +19,8 @@ public interface AdminDAO {
 	public int answerDelete(AdminVO vo);
 	public int qnaUpdate(AdminVO vo);
 	public List<AdminVO> reportList(PagingVO reportPage);
-	public AdminVO reportSelectList(String pno);
+	public AdminVO reportSelectList(String rno);
 	public int reportCount(AdminVO vo);
 	public List<BoardVO> boardChart(BoardVO vo);
-	
+	public int updateRcheck(int pno);
 }
