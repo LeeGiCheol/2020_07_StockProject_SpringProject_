@@ -1,9 +1,91 @@
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+	pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+	var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+	tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+	figure, footer, header, hgroup, menu, nav, section, summary, time,
+	audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font-size: 14px;
+	background: transparent;
+	list-style: none;
+	box-sizing: border-box;
+	word-break: break-all;
+}
+
+span, em, mark, strong, b, label {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	background: transparent;
+	list-style: none;
+	box-sizing: border-box;
+}
+
+.all-dim {
+	content: "";
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	background: #eff3f6;
+	text-indent: -9999px;
+}
+
+em, i {
+	font-style: normal;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+	text-decoration: none;
+	color: rgba(46,87,255,1);
+}
+
+p {
+	line-height: 160%;
+}
+
+strong {
+    font-weight: bold;
+}
+dt {
+    font-weight: normal;
+}
+.row {
+    margin: 0;
+}
+
+
+
+
+.all-dim {
+	content: "";
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	background: #eff3f6;
+	text-indent: -9999px;
+}
+
+
 .containerNew {
   position: relative;
   max-width: 1260px;
   height: 100%;
   padding: 20px 0 0 0;
   margin: 0 auto;
+}
+.contents {
+    position: relative;
+    z-index: 1;
 }
 #nav-font{
 	color:#5e636d;
@@ -380,6 +462,14 @@ width: 49.5%;
 .m-menu {
 	display: none;
 }
+/* 고객센터배너 */
+.customerBanner{
+	background: no-repeat url(/resources/img/customer.png);
+    height: 310px;
+    background-size: 100% 100%;
+}
+
+
 @media only screen and (max-width: 979px){
 .m-menu {
 	display: block;

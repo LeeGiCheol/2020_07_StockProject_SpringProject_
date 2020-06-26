@@ -12,9 +12,7 @@
 	<title>고객센터</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-	<link rel="stylesheet" href="/resources/css/mainpage.css">
 	<link rel="stylesheet" href="/resources/css/mainheader2.css">
-	
 	<link rel="stylesheet" href="/resources/css/mainfooter3.css">
 	<link rel="stylesheet" href="/resources/css/customers.css">
 	<link rel="stylesheet" href="/resources/css/sidebar.css">
@@ -31,7 +29,7 @@
 	<div class="all-dim"></div>
 
 	<div class="containerNew">
-
+		<div class="contents">
 		<div class="row">
 			<div class="col-md-2">
 				<div class="sidebar sticky" id="cssmenu" style="position: relative;">
@@ -277,18 +275,18 @@
 
 
 
+					</div>
+
+
+
+
+
 				</div>
 
 
 
 
-
 			</div>
-
-
-
-
-
 
 		</div>
 	</div>
