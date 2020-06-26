@@ -64,6 +64,7 @@
 									</c:if>
 							</div>
 						</div>
+						
 						<div class="graph-title-right graph_off" style="display:block;">
 							<div class="graph-title">
 								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">코스닥</a></span>
@@ -102,6 +103,7 @@
 								</a>
 							
 						</div>
+						<div class="boder"></div>
 						<div class="graph-body-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;>
 ">
 							<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
