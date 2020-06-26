@@ -499,8 +499,8 @@
 				<div class="col-md-2">
 					<div class="sidebar sticky" id="cssmenu">
 						<ul>
-							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
-							<li class="selected"><a href="/myPage02"><span>계좌정보</span></a></li>
+							<li class="mid"><a href="/selectUserBoard?nickname=${user.nickname}"><span>작성 글 | 댓글</span></a></li>
+							<li class="selected"><a href="/selectUserMoney?nickname=${user.nickname}"><span>계좌정보</span></a></li>
 						</ul>
 					</div>					
 				</div>
@@ -561,7 +561,7 @@
 						role="tabpanel" aria-labelledby="pills-home-tab">
 						<div class="noticeBox">
 							<p class="notice">
-								<em>${loginUser.nickname}</em>님의 수익률
+								<em>${user.nickname}</em>님의 수익률
 							</p>
 						</div>
 						<div class="form-table">					
@@ -607,7 +607,7 @@
 										<td>
 										<div class="sell-wrap">
 											<div class="money-my">
-											<span class="input-style-case02"><fmt:formatNumber value="${loginUser.money}" type="number"/>원</span>
+											<span class="input-style-case02"><fmt:formatNumber value="${user.money}" type="number"/>원</span>
 											</div>
 											<button type="button" class="btn-t fantasy refresh">머니 초기화</button>
 											
@@ -622,7 +622,7 @@
 						aria-labelledby="pills-profile-tab">
 						<div class="noticeBox">
 							<p class="notice">
-								<em>${loginUser.nickname}</em>님의 계좌
+								<em>${user.nickname}</em>님의 계좌
 							</p>
 						</div>
 						<div class="form-table">
@@ -776,7 +776,7 @@
 						aria-labelledby="pills-contact-tab">
 						<div class="noticeBox">
 							<p class="notice">
-								<em>${loginUser.nickname}</em>님의 거래내역
+								<em>${user.nickname}</em>님의 거래내역
 							</p>
 						</div>						
 <!-- 						<div class="board-free-nav">
