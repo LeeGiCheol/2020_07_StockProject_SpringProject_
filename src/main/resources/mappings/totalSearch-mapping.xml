@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="board">
+	<select id="totalSearch_Stock" resultType="map">
+		SELECT * FROM stocklist WHERE stockName LIKE CONCAT('%',#{title},'%') limit 5;
+	</select>
+	
+	
+	<select id="totalSearch_Free" resultType="map">
+		SELECT * FROM board WHERE bno = 1 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc limit 5 
+	</select>
+	
+	<select id="totalSearch_Port" resultType="map">
+		SELECT * FROM board WHERE bno = 2 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc limit 5
+	</select>
+	
+	<select id="totalSearch_Nick" resultType="map">
+		SELECT * FROM user WHERE nickname LIKE CONCAT('%',#{title},'%') order by nickname desc limit 5
+	</select>
+	
+	<select id="totalSearch_Stock_Count" resultType="int">
+		SELECT COUNT(*) FROM stocklist WHERE stockName LIKE CONCAT('%',#{title},'%');
+	</select>
+	
+	
+	<select id="totalSearch_Free_Count" resultType="int">
+		SELECT COUNT(*) FROM board WHERE bno = 1 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc 
+	</select>
+	
+	<select id="totalSearch_Port_Count" resultType="int">
+		SELECT COUNT(*) FROM board WHERE bno = 2 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc 
+	</select>
+	
+	<select id="totalSearch_Nick_Count" resultType="int">
+		SELECT COUNT(*) FROM user WHERE nickname LIKE CONCAT('%',#{title},'%') order by nickname desc
+	</select>
+</mapper>

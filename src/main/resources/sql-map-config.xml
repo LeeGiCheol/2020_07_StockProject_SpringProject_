@@ -23,5 +23,6 @@
 		<mapper resource="mappings/board-mapping.xml"/>
 		<mapper resource="mappings/comment-mapping.xml"/>
 		<mapper resource="mappings/admin-mapping.xml"/>
+		<mapper resource="mappings/totalSearch-mapping.xml"/>
 	</mappers>
 </configuration>
