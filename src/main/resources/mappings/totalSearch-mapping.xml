@@ -5,20 +5,79 @@
 
 <mapper namespace="board">
 	<select id="totalSearch_Stock" resultType="map">
-		SELECT * FROM stocklist WHERE stockName LIKE CONCAT('%',#{title},'%') limit 5;
+		SELECT * 
+		FROM stocklist 
+		WHERE stockName 
+		LIKE CONCAT('%',#{title},'%') 
+		<if test="check eq 0">
+			LIMIT 5;
+		</if>
 	</select>
 	
 	
 	<select id="totalSearch_Free" resultType="map">
-		SELECT * FROM board WHERE bno = 1 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc limit 5 
+		SELECT * 
+		FROM board 
+		WHERE bno = 1 
+		AND (title LIKE CONCAT('%',#{title},'%') 
+		OR bcontent like CONCAT('%',#{title},'%')) 
+		
+		<!-- 기본검색 -->
+		<if test="check eq 0">
+			ORDER BY bdatetime DESC 
+			LIMIT 5;
+		</if>
+		<!-- 기본검색 좋아요 순 -->
+		<if test="check eq 1">
+			ORDER BY likes DESC 
+			LIMIT 5;
+		</if>
+		<!-- 상세검색 -->
+		<if test="check eq 2">
+			ORDER BY bdatetime DESC 
+		</if>
+		<!-- 상세검색 좋아요 순 -->
+		<if test="check eq 3">
+			ORDER BY likes DESC 
+		</if>
 	</select>
 	
 	<select id="totalSearch_Port" resultType="map">
-		SELECT * FROM board WHERE bno = 2 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc limit 5
+		SELECT * 
+		FROM board 
+		WHERE bno = 2 
+		AND (title LIKE CONCAT('%',#{title},'%') 
+		OR bcontent like CONCAT('%',#{title},'%')) 
+		<!-- 기본검색 -->
+		<if test="check eq 0">
+			ORDER BY bdatetime DESC 
+			LIMIT 5;
+		</if>
+		<!-- 기본검색 좋아요 순 -->
+		<if test="check eq 1">
+			ORDER BY likes DESC 
+			LIMIT 5;
+		</if>
+		<!-- 상세검색 -->
+		<if test="check eq 2">
+			ORDER BY bdatetime DESC 
+		</if>
+		<!-- 상세검색 좋아요 순 -->
+		<if test="check eq 3">
+			ORDER BY likes DESC 
+		</if>
 	</select>
 	
 	<select id="totalSearch_Nick" resultType="map">
-		SELECT * FROM user WHERE nickname LIKE CONCAT('%',#{title},'%') order by nickname desc limit 5
+		SELECT * 
+		FROM user 
+		WHERE nickname 
+		LIKE CONCAT('%',#{title},'%') 
+		ORDER BY nickname DESC
+		<if test="check eq 0">
+			LIMIT 5;
+		</if>
+	
 	</select>
 	
 	<select id="totalSearch_Stock_Count" resultType="int">
