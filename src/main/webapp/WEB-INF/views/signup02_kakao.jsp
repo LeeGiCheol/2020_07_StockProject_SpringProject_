@@ -162,6 +162,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 
 	
 	$(document).ready(function(e){
+		$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 		textLenCheck("inputNickname","닉네임",{max:12,currentLenId:"maxText"});
 		textLenCheck("inputFriend","추천인",{max:12,currentLenId:"maxText1"});
 		var checkflag = 0;

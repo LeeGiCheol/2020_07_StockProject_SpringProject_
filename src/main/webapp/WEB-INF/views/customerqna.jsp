@@ -14,8 +14,8 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
 	<link rel="stylesheet" href="/resources/css/mainfooter2.css">
 	<link rel="stylesheet" href="/resources/css/mainheader2.css">
-	<link rel="stylesheet" href="/resources/css/sidebar.css">
 	<link rel="stylesheet" href="resources/css/newboard.css">
+	<link rel="stylesheet" href="/resources/css/sidebar.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {

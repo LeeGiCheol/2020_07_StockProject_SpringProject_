@@ -46,14 +46,10 @@ window.onkeydown = function() {
 							<fieldset>
 								<legend>기본정보입력</legend>  
 								<ul>
-										<span class="input-style-mail">
-											<label for="inputCemail"></label>
-											<input placeholder="인증받으실 이메일을 입력해주세요" value="${naverId}" type="text" id="inputEmail" name="id"  style="display: none;">
-										</span>
 									<li>
 										<span class="input-style-nick">
 											<label for="inputNickname"></label>
-											<input placeholder="닉네임을 입력해주세요. 추천 닉네임 : ${naverNickname}" type="text"  name="nickname" id="inputNickname" maxlength="24" onKeyPress="return spaceCheck(event)">
+											<input placeholder="닉네임을 입력해주세요" type="text"  name="nickname" id="inputNickname" maxlength="24" onKeyPress="return spaceCheck(event)">
 										</span>  
 										<div id="nickNameResult"></div>
 										<span class="byte"><b id="maxText">0</b>/12byte</span>
@@ -70,6 +66,10 @@ window.onkeydown = function() {
 										<button type="button" class="btn-s gray" id="friendCheck">추천하기</button>
 										<button type="button" class="btn-s fantasy removeButton" id="friendCheckAgain">다시입력</button>
 									</li>
+										<span class="input-style-mail" style="display: none;">
+											<label for="inputCemail"></label>
+											<input placeholder="인증받으실 이메일을 입력해주세요" value="${naverId}" type="text" id="inputEmail" name="id" >
+										</span>									
 								</ul>
 								<ul>
 									<li>
@@ -166,6 +166,7 @@ window.onkeydown = function() {
 
 	
 	$(document).ready(function(e){
+		$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 		textLenCheck("inputNickname","닉네임",{max:12,currentLenId:"maxText"});
 		textLenCheck("inputFriend","추천인",{max:12,currentLenId:"maxText1"});
 		var checkflag = 0;
@@ -267,7 +268,6 @@ window.onkeydown = function() {
 				success: function(data){ 
 					if($.trim($('#inputNickname').val()) == ""){
 						/* "<button type='button' class='btn-s gray' id='nickCheckAgain' onclick='removeNickname()'>다시입력</button>"; */
-						var html="<p id='cust_id-error' class='error-text'>공백은 불가능합니다(필수 입력사항은 아닙니다).</p>";
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
 						document.getElementById("inputNickname").value="";
@@ -316,7 +316,7 @@ window.onkeydown = function() {
 				data: { "nickname" : $('#inputFriend').val() }, 
 				success: function(data){
 					if($.trim($('#inputFriend').val()) == ""){
-						var html="<p id='cust_id-error' class='error-text'>공백은 불가능합니다.</p>";
+						var html="<p id='cust_id-error' class='error-text'>공백은 불가능합니다.<br>(필수 입력사항은 아닙니다)</p>";
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
 						document.getElementById("inputFriend").value="";

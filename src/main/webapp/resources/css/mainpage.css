@@ -63,21 +63,11 @@ dt {
 .container {
 	padding: 20px 0 30px 0;
 }
-.stock-ranking{
-	    padding: 2px 7px 5px;
-}
+
 .containerNew>.row .col-md-9 .chartdata {
 	padding: 30px;
 }
-/* .chartdata{
-	height: 300px !important;
-} */
-/* 고객센터배너 */
-.customerBanner{
-	    background: no-repeat url(/resources/img/customer.png);
-    width: 100%;
-    height: 310px;
-}
+
 .col-md-9, .col-md-3 {
 	padding-right: 5px;
 	padding-left: 5px;
@@ -102,7 +92,7 @@ ul i {
 .col-md-9>div {
 	position: relative;
 	background: #fff;
-	margin-bottom: 10px;    padding: 2px 7px 5px;
+	margin-bottom: 10px;
 	overflow: hidden;
 	border: 1px solid #e5e6ef;
     box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
@@ -154,7 +144,8 @@ width: 48%;
 	padding: 0 0 0 4px;
 }
 .div-login-box {
-	padding: 15px 20px 12px 20px;
+	/* padding: 15px 20px 12px 20px; */
+	padding: 10px;
 }
 
 .login-box fieldset .chk {
@@ -489,7 +480,8 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	position: relative;
     z-index: 1;
     margin: 0 0 0;
-    padding: 0 20px 16px;
+    /* padding: 0 20px 16px; */
+    padding:10px;
     background: #fff;
 }
 
@@ -658,7 +650,7 @@ input[type="text"], input[type="password"], input[type="tel"] {
 }
 
 .containerNew>.row .col-md-9 .community .tab-content a {
-	width: 180px;
+	width: 65%;
 	display: inline-block;
 	float: left;
 	text-align: left;
@@ -675,8 +667,12 @@ input[type="text"], input[type="password"], input[type="tel"] {
 	text-align: right;
 	color: #a7753a;
     font-size: 13px;
+    width: 35%
 }
-
+@media only screen and (max-width: 576px)
+[class*="tbl_home_"] tbody th a {
+    font-size: 9px;
+}
 .plus {
 	padding: 5px 10px;
     margin: 3px;
@@ -715,10 +711,6 @@ input[type="text"], input[type="password"], input[type="tel"] {
     display: block;
     clear: both;
     line-height: 28px;
-}
-
-.news-ranking{
-	padding: 2px 7px 5px;
 }
 #pills-tab {
     position: initial;
@@ -869,7 +861,6 @@ font-weight: 600;
 }
 [class*="tbl_home_"]  tbody td {
     color: #666;
-    font-family: tahoma,sans-serif;
     text-align: right;
     font-size: 14px;
 }
@@ -951,7 +942,7 @@ font-weight: 600;
 .ranking .ranking-tab {
     position: relative;
     display: block;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 .ranking .ranking-tab:after {
     content: "";
@@ -1003,6 +994,8 @@ font-weight: 600;
 	position: absolute;
 }
 
+
+
 .news-ranking .news-tab {
     position: relative;
     display: block;
@@ -1023,15 +1016,11 @@ font-weight: 600;
     font-weight: 600;
 }
  .news-ranking .news-tab a {
-    color: #000;
-    letter-spacing: -1px;
-}
- .news-ranking .news-tab a {
     position: relative;
     z-index: 2;
     display: inline-block;
-    color: #000;
     height: 48px;
+    letter-spacing: -1px;
     line-height: 48px;
     margin-right: 10px;
 }
@@ -1062,6 +1051,22 @@ float:left;
 .containerNew {
     padding: 0;
 }
+.news-ranking .news-body ul li a {
+    display: block;
+    max-width: 100%;
+}
+.news-ranking .news-body ul li mark{
+margin-bottom: 10px;
+}
+.news-ranking .news-body ul li em{
+	margin-bottom: 10px;
+}
+.containerNew>.row .col-md-9 .community .tab-content a{
+	font-size: 10px;
+}
+.nickname{
+	font-size: 9px;
+}
 }
 .refresh {
 position:relative;
@@ -1075,20 +1080,15 @@ position:relative;
 }
 A:link, A:visited, A:hover, A:active{cursor: pointer;}
 
-.graph-area .g-box {
-    width: 100%;padding-top: 7px;
-}
+
  .graph-area .g-box > div {
     position: relative;
-    padding: 5px 15px;
 }
- .graph-area .g-box > div.graph-left {
-    
-}
+
  .graph-area .g-box > div {
     width: 50%;
     float: left;
-    padding: 20px;
+    padding: 10px;
 }
  .graph-area .g-box .graph-title {
     padding-bottom: 5px;
@@ -1099,7 +1099,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     padding-bottom: 5px;
 }
  .graph-area .g-box .graph-title > span {
-    font-size: 16px;
+    font-size: 14px;
     color:rgba(46,87,255,1);
     display: block;
     height: 25px;
@@ -1148,7 +1148,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 }
  .graph-area .g-box > div {
     position: relative;
-    padding: 5px 15px;
 }
 .color-red {
     color: #ff545b !important;
@@ -1162,11 +1161,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     padding-left: 13px;
     background: url(/rpan/common/images/ico_rise.png?update=20180329) no-repeat 0 50%;
     background-size: 8px 6px;
-}
-.graph-area{
-}
- .graph-area .g-box > div.graph-left {
-   
 }
 .graph-area .graph_on {
     display: block;
@@ -1215,7 +1209,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     color: #ff545b !important;
 }
 .ranking ul li:first-child {
-    margin-top: 18px;
+    margin-top: 0;
 }
  .ranking ul li {
     margin-top: 9px;
@@ -1224,6 +1218,98 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     display: block;
     color: #000;
 }
+.graph-body-right{
+	 border-left: 1px solid #dee2e6;
+}
+.link-btn {
+    float: right;
+    position: relative; 
+    color: #af814d;
+    font-size: 13px;
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+/* .link-btn-left {
+    position: relative;
+    display: inline-block;
+    padding-right: 18px;
+    color: #af814d;
+    font-size: 13px;
+    font-weight: normal;
+}
+.link-btn-left {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 48px;
+    line-height: 48px;
+}
+.link-btn-right {
+    position: relative;
+    display: inline-block;
+    padding-right: 18px;
+    color: #af814d;
+    font-size: 13px;
+    font-weight: normal;
+}
+.link-btn-right {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 48px;
+    line-height: 48px;
+} */
+
+
+.login-box-m{
+	display: none;
+}
+
+@media screen and (max-width: 576px) {
+ 	.g-box {
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+		-webkit-box-orient: vertical;
+		-moz-box-orient: vertical;
+		box-orient: vertical;
+	}
+	.graph-title-left {
+		-webkit-box-ordinal-group: 1;
+		-moz-box-ordinal-group: 1;
+		box-ordinal-group: 1;
+	}
+	.graph-title-right {
+		-webkit-box-ordinal-group: 3;
+		-moz-box-ordinal-group: 3;
+		box-ordinal-group: 3;
+		border-top: 1px solid #e5e6ef;
+	}
+	.graph-body-left {
+		-webkit-box-ordinal-group: 2;
+		-moz-box-ordinal-group: 2;
+		box-ordinal-group: 2;
+		border-bottom: 10px solid #eff3f6;
+		box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+	}
+	.graph-body-right {
+		-webkit-box-ordinal-group: 4;
+		-moz-box-ordinal-group: 4;
+		box-ordinal-group: 4;
+		border-left: none !important;
+	}
+	.graph-area .g-box > div {
+	    width: 100%;
+	    float: none;
+	    padding: 10px;
+}
+
+}
+
+
+
+
 
 
 
@@ -1251,5 +1337,11 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 }
 .community .community-best, .community .community-new{
 	padding: 5px;
+}
+.login-box-m{
+	display: block;
+}
+.login-box-web{
+	display: none;
 }
 }

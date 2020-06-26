@@ -32,7 +32,7 @@
 			<!-- 현재 코스피 주가지수 -->
 			<div class="graph-area">
 					<div class="g-box">
-						<div class="graph-left graph_off" style="display:block;">
+						<div class="graph-title-left graph_off" style="display:block;">
 							<div class="graph-title">
 								<span><a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">코스피</a></span>
 
@@ -64,7 +64,7 @@
 									</c:if>
 							</div>
 						</div>
-						<div class="graph-right graph_off" style="display:block;">
+						<div class="graph-title-right graph_off" style="display:block;">
 							<div class="graph-title">
 								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">코스닥</a></span>
 									
@@ -95,14 +95,14 @@
 							</div>
 						</div>
 						
-						<div class="graph-left graph_on has-chart">
+						<div class="graph-body-left graph_on has-chart">
 							
 								<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">
 									<div id="chartcontainer"></div>
 								</a>
 							
 						</div>
-						<div class="graph-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;
+						<div class="graph-body-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;>
 ">
 							<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
 								<div id="chartcontainer2"></div>
@@ -111,6 +111,112 @@
 					</div>
 				</div>
 				
+				<c:choose>
+					<c:when test="${loginUser eq null}">
+						<div class="login-box login-box-m">
+							<div class="div-login-box">
+								<form method='post' action="/signIn">
+									<fieldset>
+										<div class="chk">
+										<%
+										    Cookie[] c = request.getCookies();
+										    String cookieVal="";
+										    if(c!=null){
+										        for(Cookie i:c){
+										            if(i.getName().equals("saveId")){
+										                cookieVal=i.getValue();
+										            }
+										        }
+										    }
+										%>
+											<input type="checkbox" id="idSaveCheck" class="big" name="saveId" <%=cookieVal!=""?"checked" : ""%>/>
+											<label for="idSaveCheck">아이디 저장</label>
+										</div>
+										<p>
+											<input type="text" name="id" value="<%=cookieVal !="" ? cookieVal : "" %>" id="user_id" title="아이디 입력" placeholder="아이디">
+											<input type="password" name="pw" value="" id="user_pw" title="비밀번호 입력" placeholder="비밀번호"> 
+											<input type="submit" value="로그인" onclick="">	
+										</p>
+									</fieldset>
+								</form>
+								<p>
+									<a href="/signUpPage/1">회원가입</a>
+									<span><a href="/forgetId" class="idforgot">아이디 찾기</a>
+									<a href="/forgetPassword">비밀번호 찾기</a></span>
+								    <span class="social-login"> 
+								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=411ad5d7607a5206006f889840ab2b27&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									</span>
+								</p>
+							</div>
+						</div>
+					</c:when>
+
+					<c:when test="${loginUser.point >= 0}">
+						<div class="login-box">
+							<div class="div-login-box-after" style class="login-out">
+								<p class="proimg_div-after">
+									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
+										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+										class="current_badge_s"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+								</p>
+								<dl>
+									<dt>
+										<strong>${loginUser.nickname}</strong>　님
+										<button type="button" class="logout"
+											onclick="location.href='/logOut';">로그아웃</button>
+									</dt>
+									<dd>
+										<c:set var="socialId" value="${loginUser.id}"/>
+										<c:choose>
+											<c:when test="${fn:contains(socialId,'_')}">
+												<a class="socialLogin" href="/myPagePwCheck01">내정보</a>
+											</c:when>
+											<c:otherwise>
+												<a id="leftLogin" href="/myPagePwCheck01">내정보</a>
+												<a href="mypageUpdatePassword">비밀번호 변경</a>
+											</c:otherwise>
+										</c:choose>
+									</dd>
+								</dl>
+								<ul class="dot-list02 color-rightgray">
+									<li id="_liBall">자산 <a href="/myPagePwCheck01">${money}원</a></li>
+									<li id="_liCyber">포인트 <a href="/myPagePwCheck02">${loginUser.point}점</a></li>
+								</ul>
+							</div>
+								<div class="login-after-btn">
+									<a id="leftLogin" href="/myPagePwCheck01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								</div>
+						</div>
+					</c:when>
+					
+					<c:otherwise>
+						<div class="login-box">
+							<div class="div-login-box-after" style class="login-out">
+								<p class="proimg_div-after">
+									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
+										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+										class="current_badge_s"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+								</p>
+								<dl>
+									<dt>
+										<strong>관리자</strong>　님
+										<button type="button" class="logout"
+											onclick="location.href='/logOut';">로그아웃</button>
+									</dt>
+									<dd>
+									</dd>
+								</dl>
+							</div>
+								<div class="admin-login-after-btn">
+									<a id="admin-leftLogin" href="/admin/main">관리자 페이지</a>
+								</div>
+						</div>
+					
+					</c:otherwise>
+				</c:choose>				
 				
 				
 <%-- 					<div class="chartdata-1">
@@ -144,10 +250,9 @@
 						<div class=".tab-pane" id="tab1">
 							<table class="tbl_home_left">
 								<colgroup>
-									<col width="30%">
+									<col width="40%">
 									<col width="20%">
-									<col width="25%">
-									<col width="25%">
+									<col width="20%">
 								</colgroup>
 								<tbody class="rank-table" id="topRank">
 
@@ -161,10 +266,9 @@
 						<div class=".tab-pane" id="tab2">
 							<table class="tbl_home_right">
 								<colgroup>
-									<col width="30%">
+									<col width="40%">
 									<col width="20%">
-									<col width="25%">
-									<col width="25%">
+									<col width="20%">
 								</colgroup>
 								<tbody class="rank-table" id="searchRank">
 
@@ -185,11 +289,13 @@
 						<nav>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">커뮤니티 베스트</a>
-								<button type="button" class="plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
+								<!-- <button type="button" class="plus" onclick="location.href='/board/free?orderby=best'">더보기</button> -->
+								<a href="/board/free?orderby=best" class="link-btn">더보기 <i class="fas fa-angle-right"></i></a>
 							</div>
 							<div class="nav nav-tabs" role="tablist">
 								<a class="nav-item">신규 글</a>
-								<button type="button" class="plus" onclick="location.href='/board/free'">더보기</button>
+								<!-- <button type="button" class="plus" onclick="location.href='/board/free'">더보기</button> -->
+								<a href="/board/free" class="link-btn">더보기 <i class="fas fa-angle-right"></i></a>
 							</div>
 						</nav>
 					<div class="community-best">
@@ -204,6 +310,7 @@
 							</div>
 						</div>
 					</div>
+								
 
 
 					<div class="community-new">
@@ -219,6 +326,7 @@
 							</div>
 						</div>
 					</div>
+								
 				</div>
 
 				<div class="news-ranking">
@@ -226,8 +334,9 @@
 						<a class="selected" id="news-real-time" style="cursor:pointer;">실시간 속보</a>
 						<a id="new-market-conditions" style="cursor:pointer;">시황 전망</a>
 						<a id="new-event" style="cursor:pointer;">기업 종목분석</a>
+					<a href="/news" class="link-btn">더보기 <i class="fas fa-angle-right"></i></a>
 					</span>
-					<button type="button" class="news-plus" onclick="location.href='/news'">더보기</button>
+					<!-- <button type="button" class="news-plus" onclick="location.href='/news'">더보기</button> -->
 
 					<div class="tab-content" id="pills-tabContent">
 						<div class="news-body" id="realTimeHtml">
@@ -237,6 +346,7 @@
 							<ul id="mainNews1">
 							
 							</ul>
+							
 						</div>
 						<div class="news-body" id="marketConditionsHtml" style="display:none;">
 							<div class="headline" id="mainNews2head">
@@ -262,7 +372,7 @@
 
 				<c:choose>
 					<c:when test="${loginUser eq null}">
-						<div class="login-box">
+						<div class="login-box login-box-web">
 							<div class="div-login-box">
 								<form method='post' action="/signIn">
 									<fieldset>
@@ -294,7 +404,7 @@
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=411ad5d7607a5206006f889840ab2b27&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=411ad5d7607a5206006f889840ab2b27&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									</span>
 								</p>
 							</div>

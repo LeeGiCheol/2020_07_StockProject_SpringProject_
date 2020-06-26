@@ -131,11 +131,17 @@
 		</choose>
 	</select>
 	
-	<select id="reportSelectList" parameterType="String" resultType="admin">
+	<select id="reportSelectList" resultType="admin">
 		SELECT *
 		FROM reportboard
-		WHERE pno=#{pno}
+		WHERE rno=#{rno}
 	</select> 
+	
+	<update id="updateRcheck" parameterType="int">
+		UPDATE reportBoard
+		SET rcheck ='처리완료'
+		WHERE pno=#{pno};
+	</update>
 	
 	
 	<select id="reportCount" parameterType="admin" resultType="int">

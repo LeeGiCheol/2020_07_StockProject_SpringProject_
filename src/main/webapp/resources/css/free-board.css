@@ -445,6 +445,6 @@ display: none;
     background-size: 35px 200px;
 }
 .board-no{
-	padding-top: 10px;
+	vertical-align: middle;
 }
 

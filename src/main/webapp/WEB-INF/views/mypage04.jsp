@@ -132,11 +132,13 @@
 										</c:forEach>
 									</tbody>
 								</table>
-							<div class="message-wrap">
+							<div class="message-wrap" id="message">
+							<%-- <c:if test="${modifiedNotice eq null}">
 								<div class="message-st-01">
 									<p class="big-text">아직 발생한 알림이 없습니다.</p>
 									<p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p>
 								</div>
+							</c:if>  --%>
 							</div>
 <script>function notLocal(){swal({text:"접속하신 해당 홈페이지에서 변경가능합니다.", icon:"warning"})}</script>
 <script type="text/javascript">
@@ -156,6 +158,12 @@
                                 "#a_contents")
                                 .html(
                                     '<c:forEach items="${commentNotice}" var="list"><tr><c:choose><c:when test="${list.confirm eq 1}"><td class="first" title="글번호" style="color: red">NEW</td></c:when><c:otherwise><td class="first" title="글번호""><c:out value="${list.pno}" /></td></c:otherwise></c:choose><td title="내용"><c:out value="${list.title}" /> 글에 댓글이 달렸습니다.</td><td title="시간"><fmt:formatDate value="${list.ndatetime}" pattern="yyyy-MM-dd HH:mm:ss" /></td></tr></c:forEach>');
+                            if("${commentNotice}"==="[]"){
+                            	$("#message").html('<div class="message-st-01"><p class="big-text">아직 발생한 알림이 없습니다.</p><p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p></div>')
+                            }else{
+                            	$("#message").html('')
+                            }
+                            
                         })
                 $("#orderby1")
                     .click(
@@ -170,7 +178,12 @@
                                 "#a_contents")
                                 .html(
                                     '<c:forEach items="${modifiedNotice}" var="list"><tr><c:choose><c:when test="${list.confirm eq 1}"><td class="first" title="주문번호" style="color: red">NEW</td></c:when><c:otherwise><td class="first" title="주문번호"><c:out value="${list.tno}" /></td>	</c:otherwise></c:choose><td title="종목명"><c:out value="${list.stockName}" /></td><td title="주문단가"><c:out value="${list.tprice}" /></td><td title="주문수량"><c:out value="${list.quantity}" /></td><td title="거래일시"><fmt:formatDate value="${list.tdatetime}" pattern="yyyy-MM-dd HH:mm:ss" /></td><td title="상태"><c:out value="${list.category}" /></td></tr></c:forEach>');
-                        })
+                            if("${modifiedNotice}"==="[]"){
+                            	$("#message").html('<div class="message-st-01"><p class="big-text">아직 발생한 알림이 없습니다.</p><p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p></div>')
+                            }else{
+                            	$("#message").html('')
+                            }
+                        })	
 
             })
 </script>

@@ -113,16 +113,16 @@
 								<!-- 전체글 -->
 								<table class="board-free-table">
 									<colgroup>
-										<col width="8%">
-										<col width="55%">
 										<col width="10%">
+										<col width="60%">
 										<col width="10%">
+										<col width="20%">
 									</colgroup>
 									<thead>
 										<tr>
 											<th class="no" scope="col">종류</th>
 											<th class="title" scope="col">제목</th>
-											<th class="" scope="col">처리현황</th>
+											<th class="views" scope="col">처리현황</th>
 											<th class="date" scope="col">작성일</th>
 										</tr>
 									</thead>
@@ -135,7 +135,7 @@
 																href="/customerClaim/detail?qno=${qna.qno}">${qna.qtitle}</a></td>
 
 													<!-- 날짜 -->
-													<td>${qna.qcheck}</td>
+													<td class="board-views">${qna.qcheck}</td>
 													<fmt:formatDate value="${qna.qdateTime}" var="time"
 														pattern="MM/dd HH:mm" />
 													<td class="board-date">${time}</td>

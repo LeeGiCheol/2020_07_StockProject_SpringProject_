@@ -28,8 +28,7 @@
   <link href="/resources/css/datatable.css" rel="stylesheet" />
         
 <!-- 통합관리자 -->
-<link rel="stylesheet" href="/resources/css/free-board.css">
-<link rel="stylesheet" href="/resources/css/sidebar.css">	
+<link rel="stylesheet" href="/resources/css/free-board.css">	
  <link rel="stylesheet" href="/resources/css/admin.css">
 
 
@@ -111,16 +110,16 @@
 								<!-- 전체글 -->
 								<table class="board-free-table">
 									<colgroup>
-										<col width="8%">
-										<col width="55%">
 										<col width="10%">
+										<col width="60%">
 										<col width="10%">
+										<col width="20%">
 									</colgroup>
 									<thead>
 										<tr>
 											<th class="no" scope="col">종류</th>
 											<th class="title" scope="col">제목</th>
-											<th class="" scope="col">처리현황</th>
+											<th class="views" scope="col">처리현황</th>
 											<th class="date" scope="col">작성일</th>
 										</tr>
 									</thead>
@@ -134,7 +133,7 @@
 
 													<%-- <td class="board-writer"><a href="/selectUserMoney?nickname=${qna.nickname}">${board.nickname}</a></td> --%>
 													<!-- 글쓴이 -->
-													<td>${qna.qcheck}</td>
+													<td class="board-views">${qna.qcheck}</td>
 													<fmt:formatDate value="${qna.qdateTime}" var="time"
 														pattern="MM/dd HH:mm" />
 													<td class="board-date">${time}</td>
@@ -282,13 +281,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="/resources/js/scripts.js"></script>
-    
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="/resources/js/chart-area-demo.js"></script>
-    <script src="/resources/js/chart-bar-demo.js"></script>
     <script src="/resources/js/datatables-demo.js"></script>    
-    
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 

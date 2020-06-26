@@ -98,12 +98,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public Map<String, Object> reportSelectList(AdminVO vo, String pno) {
-		AdminVO reportSelectList = adminDAO.reportSelectList(pno);
+	public Map<String, Object> reportSelectList(AdminVO vo, String rno) {
+		AdminVO reportSelectList = adminDAO.reportSelectList(rno);
 			reportSelectList.setRdatetime(new Date(reportSelectList.getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("reportSelectList", reportSelectList);
 		return postMap;
+	}
+	
+	@Override
+	public int updateRcheck(int pno) {
+		return adminDAO.updateRcheck(pno);
 	}
 	
 	public AdminVO qnaDetail(AdminVO vo) {
