@@ -159,7 +159,6 @@
 	                                            <td class="tClass center">${qnaList.qtype}</td>
 	                                            <td class="tStatus center">${qnaList.qcheck}</td>
 	                                            <td class="tTitle tleft"> <a href="/admin/qna/detail?qno=${qnaList.qno}">${qnaList.qtitle}</a></td>
-	
 	                                            <td class="tWriter tleft">${qnaList.nickname}</td>
 	                                            <fmt:formatDate value="${qnaList.qdateTime}" var="time"
 													pattern="MM/dd HH:mm" />
@@ -185,33 +184,24 @@
                                         <tr>
                                             <th class="class center" style="width: 10%;">종류</th>
                                             <th class="status center" style="width: 10%">처리현황</th>
-                                            <th class="title tleft" style="width: 55%">제목</th>
+                                            <th class="title center" style="width: 55%">제목</th>
                                             <th class="writer tleft" style="width: 10%">아이디</th>
                                             <th class="date center" style="width: 15%">일시</th>
                                         </tr>
                                     </thead>
                                     <!--  데이터값 들어가는 곳 -->
                                     <tbody>
-                                       <tr>
-                                            <td class="tClass center">종류</td>
-                                            <td class="tStatus center">처리현황</td>
-                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
-
-                                            <td class="tWriter tleft">아이디</td>
-                                            <td class="tDate center">05/22/2022</td>
-                                        </tr>
-                                        
-                                        
-                                       <tr>
-                                            <td class="tClass center">종류</td>
-                                            <td class="tStatus center">처리현황</td>
-                                            <td class="tTitle tleft"> <a href="">메시지 요청된 리소스 (는) 가용하지 않습니다.ioiuoiuouiouio</a></td>
-
-                                            <td class="tWriter tleft">아이디</td>
-                                            <td class="tDate center">05/22/2022</td>
-                                        </tr>
-                                        
-
+                                       <c:forEach items="${reportList}" var="re" varStatus="status" begin="1" end="5">
+	                                       <tr>	
+	                                       		<c:if test="${re.rcheck eq '처리대기중'}">
+	                                       		<td class="class center" style="width: 10%;">${re.rtype}</td>
+	                                            <td class="status center" style="width: 10%">${re.rcheck}</td>
+	                                            <td class="title center" style="width: 55%">${re.title}</td>
+	                                            <td class="writer tleft" style="width: 10%">${re.nickname}</td>
+	                                            <td class="date center" style="width: 15%"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
+	                                            </c:if>
+	                                        </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                                 </div>
