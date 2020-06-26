@@ -37,6 +37,7 @@
     border: 1px solid #c9cfd4;
     padding: 0 !important;
     /* border-top: 2px solid #1e78ff; */
+    margin: 0 !important;
 }
 @media only screen and (max-width:1599px) {
 	.m-container {
@@ -89,7 +90,7 @@
 	margin: 0 auto !important;
 }
 .searchArea{
-	width: 92%!important;
+	width: 88%!important;
 }
 body > div.header > div.main-nav > nav > button > i{
 	font-size: 24px;

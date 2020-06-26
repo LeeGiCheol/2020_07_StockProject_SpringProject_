@@ -382,3 +382,69 @@ legend, caption {
 	display: block;
     float: left;
 }
+
+
+
+
+@media only screen and (max-width: 979px){
+/* .pop-layer {
+    position: absolute;
+}
+.pop-layer {
+    display: block;
+} */
+.pop-layer .popup-wrap {
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: 0;
+    -webkit-transform: none;
+    transform: none;
+    position: absolute;
+    height: 100%;
+}
+.popup-wrap .pop-tit {
+    background-image: none;
+}
+.pop-tit {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    z-index: 2;
+    overflow: hidden;
+    background: #ff545c url(/resources/img/bg_pop.png) no-repeat 0 0;
+    background-size: 122px 50px;
+    color: #fff;
+    font-size: 16px;
+    text-indent: 10px;
+}
+.pop-clean .tit-h2 {
+    padding: 0;
+}
+.pop-clean .notify {
+    margin: 0 0 25px;
+}
+.pop-clean .notify .select-style {
+    display: block;
+}
+.pop-clean .pop-clean-info {
+    margin: 0 0 15px;
+}
+.pop-clean .pop-clean-call {
+    margin: 0;
+}
+.pop-layer .popup-wrap .pop-btn {
+    padding: 15px 0 0;
+}
+.popup-wrap .pop-btn {
+    bottom: 5px;
+}
+.popup-wrap .cla-close {
+    background: url(/resources/img/btn-close.png) no-repeat 15px 16px;
+}
+}
