@@ -101,6 +101,12 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<UserVO> userSignUpChart(UserVO vo) {
 		return mybatis.selectList("admin.userSignUpChart", vo);
 	}
+	@Override
+	public int userVisit(AdminVO vo) {
+		return mybatis.insert("");
+	}
+	
+	
 	
 	
 	

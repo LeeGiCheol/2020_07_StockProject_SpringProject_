@@ -24,4 +24,5 @@ public interface AdminDAO {
 	public int reportCount(AdminVO vo);
 	public List<BoardVO> boardChart(BoardVO vo);
 	public List<UserVO> userSignUpChart(UserVO vo);
+	public int userVisit(AdminVO vo);
 }

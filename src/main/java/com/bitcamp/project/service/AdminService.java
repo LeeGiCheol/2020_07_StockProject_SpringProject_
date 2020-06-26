@@ -22,4 +22,6 @@ public interface AdminService {
 	public List<BoardVO> boardChart(BoardVO vo);
 	public List<UserVO> userSignUpChart(UserVO vo);
 	public Map<String, Object> reportSelectList(AdminVO vo,String pno);
+	public int userVisit(AdminVO vo);
+
 }

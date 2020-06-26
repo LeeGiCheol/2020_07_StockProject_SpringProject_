@@ -262,7 +262,7 @@ public class AdminController {
 		
 			
 		
-		return "redirect:/admin/qna/detail?qno="+aVo.getQno();
+		return "redirect:/admin/qna";
 	}
 	
 	

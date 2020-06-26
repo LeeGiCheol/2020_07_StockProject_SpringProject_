@@ -180,7 +180,7 @@
 			<span>
 				<a href="/admin/qna" class="btn-s">목록</a>
 				
-				<a href="/admin/qna/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
+				<a href="/admin/qna/delete?qno=${qna.qno}" class="btn-s fantasy">삭제</a>
 			</span> 
 		</div>
 
