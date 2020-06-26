@@ -27,12 +27,22 @@ public class TotalSearchController {
 		List free =  (List)list.get(1);
 		List port =  (List)list.get(2);
 		List nick =  (List)list.get(3);
+		int stockCount = (int) list.get(4);
+		int freeCount = (int) list.get(5);
+		int portCount = (int) list.get(6);
+		int nickCount = (int) list.get(7);
 
+		System.out.println("여기에요 " +nick);
+		
 		mav.addObject("stock", stock);
 		mav.addObject("free", free);
 		mav.addObject("port", port);
 		mav.addObject("nick", nick);
 		mav.addObject("title", title);
+		mav.addObject("stockCount", stockCount);
+		mav.addObject("freeCount", freeCount);
+		mav.addObject("portCount", portCount);
+		mav.addObject("nickCount", nickCount);
 		mav.setViewName("total_Search_Result");
 		return mav;
 	}

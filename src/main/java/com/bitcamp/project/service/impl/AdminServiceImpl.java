@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.project.dao.AdminDAO;
@@ -97,12 +98,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public Map<String, Object> reportSelectList(AdminVO vo, String pno) {
-		AdminVO reportSelectList = adminDAO.reportSelectList(pno);
+	public Map<String, Object> reportSelectList(AdminVO vo, String rno) {
+		AdminVO reportSelectList = adminDAO.reportSelectList(rno);
 			reportSelectList.setRdatetime(new Date(reportSelectList.getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("reportSelectList", reportSelectList);
 		return postMap;
+	}
+	
+	@Override
+	public int updateRcheck(int pno) {
+		return adminDAO.updateRcheck(pno);
 	}
 	
 	public AdminVO qnaDetail(AdminVO vo) {
@@ -128,6 +134,13 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<UserVO> userSignUpChart(UserVO vo) {
 		return adminDAO.userSignUpChart(vo);
+	}
+	
+	
+	@Override
+	public int userVisit(AdminVO vo) {
+		System.out.println("adslgknsadlgknasdklgnasdsadfsadf");
+		return adminDAO.userVisit(vo);
 	}
 	
 	

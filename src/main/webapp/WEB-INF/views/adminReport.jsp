@@ -22,7 +22,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- 데이터테이블스타일 -->
-<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
  
 <!--  스타일-->
   <link href="/resources/css/datatable.css" rel="stylesheet" />
@@ -125,7 +125,7 @@
 	                                       <tr>	
 	                                       		<td><p class="content">${re.rtype}</p></td>
 	                                            <td class="center"><p class="content">${re.title}</p></td>
-	                                            <td class="center" onclick="findPno('${re.pno}');">
+	                                            <td class="center" onclick="findRno('${re.rno}');">
 		                                            <p class="content" id="popup-btn" style="cursor: pointer;">${re.rcontent}</p>
 	                                            </td>
 	                                            <td class="center">${re.nickname}</td>
@@ -263,7 +263,7 @@
 <div id="reportPopup" class="pop-layer" style="display:none">
 		<div class="pop-inner">
 			<div class="popup-wrap">
-				<form id="reportBoard" action="/reportBoard" method="POST"> 
+				<form id="reportBoard" action="/reportBoard" method="POST">
 					<div class="pop-tit"><span>게시물 신고 내역</span></div>
 					<div class="pop-cont">
 						<div class="pop-clean">
@@ -273,8 +273,8 @@
 								</tbody>
 							</table>
 						</div>
-					</div>
-					<div class="pop-btn" id="pageLocation">
+							<div class="pop-btn" id="pageLocation">
+							</div>
 					</div>
 					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
 				</form> 
@@ -312,15 +312,15 @@
         return strDate;
     }
 	
-	
-	 function findPno(pno){
+		
+	 function findRno(rno){
      	$.ajax({
 				type : "POST",
-				url : '${pageContext.request.contextPath}/admin/findPno',
-				data : { "pno" : pno },
+				url : '${pageContext.request.contextPath}/admin/findRno',
+				data : { "rno" : rno },
 				success : function(data) {
 					var reportSelectList = "";
-					var pageLocation = "";
+					
 					reportSelectList += '<tr>'
 					reportSelectList += 	'<th scope="col">처리현황</th>'
 					reportSelectList += 	'<td id="re.rcheck">'+data.reportSelectList.rcheck+'</td>'
@@ -345,21 +345,23 @@
 					reportSelectList += 	'<th scope="col">내용</th>'
 					reportSelectList += 	'<td>'+data.reportSelectList.rcontent+'</td>'
 					reportSelectList += '</tr>'
+
 					$("#reportSelectList").html(reportSelectList);
-					
-					pageLocation += '<button type="button" class="btn-m fantasy" id="delest-btn" onclick="location.href=/board/free/delete?pno='+data.reportSelectList.pno+'">게시물 삭제</button>'										
-					pageLocation += '<span>'
-					pageLocation += '<button type="button" id="submitReport" class="btn-m fantasy" onclick="location.href=/board/free/detail?pno='+data.reportSelectList.pno+'">게시물 이동</button>'
-					pageLocation += '</span>'
+					var pageLocation=""
+					if(data.reportSelectList.rcheck === '처리대기중'){
+						pageLocation += '<button type="button" class="btn-m red" onclick="location.href=\'/board/free/detail?pno='+data.reportSelectList.pno+'\'">게시물 이동</button>'
+						pageLocation += '<button type="button" class="btn-m" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
+					}
+					pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>'
+							
 					$("#pageLocation").html(pageLocation);
-					
-					
+							
 					
 				},
 				error: function(){
 				}
 			});
-     }findPno();
+     }
 	
 	
         /** 신고 기능들 모음 Report */
@@ -503,9 +505,6 @@ function submitReportComt(){
     <script src="/resources/js/datatables-demo.js"></script>    
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script> -->
-    <!-- <script src="/resources/js/chart-area-demo.js"></script> -->
-    <!-- <script src="/resources/js/chart-bar-demo.js"></script> -->
 </body>
 
 </html>
