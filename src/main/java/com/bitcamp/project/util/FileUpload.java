@@ -412,7 +412,7 @@ public class FileUpload {
 			img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
 		}	
 		else {
-			img = aVo.getAcontent().split("<img src=\"/resources/se2/upload/");
+			img = aVo.getQcontent().split("<img src=\"/resources/se2/upload/");
 				
 			}
 			for (int i = 1; i < img.length; i++) {

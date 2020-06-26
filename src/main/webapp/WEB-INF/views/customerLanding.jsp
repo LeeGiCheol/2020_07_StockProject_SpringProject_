@@ -133,7 +133,7 @@
 											<div class="qAnswer">
 												<p>회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
 													고객센터에서 확인이 불가능합니다.
-													로그인 영역> 비밀번호 찾기 를 통해 확인 부탁 드립니다.</p>
+													로그인 영역> 아이디 찾기, 비밀번호 찾기를 통해 확인 부탁 드립니다.</p>
 											</div>
 										</div>
 									</div>
@@ -152,11 +152,11 @@
 										<div class="card-body">
 											<div class="qAnswer">
 												<p>회원가입 상태에서는 아이디를 변경하실 수가 없습니다.
-													단, 아이디를 제외한 나머지 정보들(필명,이메일,주소,전화번호,비밀번호 등)은 변경이 가능합니다.
+													단, 아이디를 제외한 나머지 정보들(주소, 비밀번호 등)은 변경이 가능합니다.
 													아이디를 변경하시기 위해서는 회원 탈퇴 후 다시 재가입 을 하셔야 합니다.
 
 													회원탈퇴를 하시기전에 사용하셨던
-													아이디, 유료서비스 등의 사용이 불가능 하므로
+													아이디의 사용이 불가능 하므로
 													탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.</p>
 											</div>
 										</div>
@@ -169,7 +169,7 @@
 										<h2 class="mb-0">
 											<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
 												data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-												[팍스넷 신규 회원 무료쿠폰]은 어떤 서비스인가요?
+												[회원탈퇴]회원탈퇴는 어떻게 하나요?
 											</button>
 										</h2>
 									</div>
@@ -177,7 +177,10 @@
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-												<p>탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.</p>
+												<p>마이페이지에서 비밀번호확인 후 회원탈퇴가능합니다.
+													회원탈퇴시 각 게시판의 기존 글은 유지됩니다.
+													소셜로그인 회원분들은 비밀번호 확인이 없으시니 유의해주시길바랍니다.
+												</p>
 											</div>
 
 										</div>
@@ -189,8 +192,7 @@
 										<h2 class="mb-0">
 											<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
 												data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-												[팍스넷 신규 회원 무료쿠폰]은 어떤 서비스
-												인가요?
+												[머니재지급]거래할수 있는 보유 머니를 전부 소진했어요.
 											</button>
 										</h2>
 									</div>
@@ -198,7 +200,9 @@
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-												<p>탈퇴하시기 전에 반드시 유료서비스를 먼저 해지하여주시기 바랍니다.</p>
+												<p>거래에 필요한 보유 머니가 없을시
+													마이페이지 - 계좌정보 - 수익률 우측하단에 '머니 초기화'
+													버튼을 눌러 하루 최대 2번 지급받으실수 있습니다.</p>
 											</div>
 										</div>
 									</div>
@@ -209,8 +213,7 @@
 										<h2 class="mb-0">
 											<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
 												data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-												[팍스넷 신규 회원 무료쿠폰]은 어떤 서비스
-												인가요?
+												[문의사항]더 궁금하신게 있으신가요?
 											</button>
 										</h2>
 									</div>
@@ -218,8 +221,8 @@
 										data-parent="#accordionExample">
 										<div class="card-body">
 											<div class="qAnswer">
-												<p>회원가입 상태에서는 아이디를 변경하실 수가 없습니다.
-													단, 아이디를 제외한 나머지 정보들(필명,이메일,주소,전화번호,비밀번호 등)</p>
+												<p>우측 하단에 1:1 문의를 통하여 문의가능합니다.
+												비로그인 유저는 회원가입 후 사용가능합니다.</p>
 											</div>
 										</div>
 									</div>

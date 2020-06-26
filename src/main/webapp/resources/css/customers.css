@@ -83,9 +83,26 @@ dt {
   padding: 20px 0 0 0;
   margin: 0 auto;
 }
+/* <<<<<<< HEAD
 .contents {
     position: relative;
     z-index: 1;
+======= */
+/* 고객센터배너 */
+.customerBanner{
+	    background: no-repeat url(/resources/img/customer.png);
+    width: 100%;
+    height: 310px;
+}
+@media only screen and (max-width: 500px){
+.customerBanner {
+    background: no-repeat url(/resources/img/customer.png);
+    width: 123%;
+    height: 265px;
+    background-size: 145%;
+    left: -22%;
+    position: relative;
+}
 }
 #nav-font{
 	color:#5e636d;
