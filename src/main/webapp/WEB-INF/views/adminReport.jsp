@@ -103,34 +103,30 @@
 								<!-- 전체글 -->
 								<table class="board-free-table">
 									<colgroup>
+										<col width="15%">
+										<col width="40%">
+										
 										<col width="10%">
-										<col width="20%">
-										<col width="30%">
-										<col width="10%">
-										<col width="10%">
+										<col width="15%">
 										<col width="20%">
 									</colgroup>
 									<thead>
-										 <tr>
-                                            <th class="center" >신고사항</th>
-                                            <th class="center">제목</th>
-                                            <th class="center">내용</th>
-                                            <th class="center" >작성자</th>
-                                            <th class="center">처리현황</th>
-                                            <th class="center" >신고 일시</th>
+										<tr>
+                                            <th class="no" scope="col">신고사항</th>
+                                            <th class="title" scope="col">제목</th>
+                                            <th class="writer" scope="col">작성자</th>
+                                            <th class="views" scope="col">처리현황</th>
+                                            <th class="date" scope="col">신고 일시</th>
                                         </tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${reportList}" var="re" varStatus="status">
 	                                       <tr>	
-	                                       		<td><p class="content">${re.rtype}</p></td>
-	                                            <td class="center"><p class="content">${re.title}</p></td>
-	                                            <td class="center" onclick="findRno('${re.rno}');">
-		                                            <p class="content" id="popup-btn" style="cursor: pointer;">${re.rcontent}</p>
-	                                            </td>
-	                                            <td class="center">${re.nickname}</td>
-	                                            <td class="center">${re.rcheck}</td>
-	                                            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
+	                                       		<td><p class="board-no">${re.rtype}</p></td>
+	                                            <td class="board-title" onclick="findRno('${re.rno}');"><a class="content" id="popup-btn" style="cursor: pointer;">${re.title}</a></td>
+	                                            <td class="board-writer">${re.nickname}</td>
+	                                            <td class="board-views">${re.rcheck}</td>
+	                                            <td class="board-date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
 	                                        </tr>
                                         </c:forEach>
 									</tbody>
@@ -340,10 +336,6 @@
 					reportSelectList += '<tr>'
 					reportSelectList += 	'<th scope="col">제목</th>'
 					reportSelectList += 	'<td>'+data.reportSelectList.title+'</td>'
-					reportSelectList += '</tr>'
-					reportSelectList += '<tr>'
-					reportSelectList += 	'<th scope="col">내용</th>'
-					reportSelectList += 	'<td>'+data.reportSelectList.rcontent+'</td>'
 					reportSelectList += '</tr>'
 
 					$("#reportSelectList").html(reportSelectList);
