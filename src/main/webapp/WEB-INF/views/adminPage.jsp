@@ -191,7 +191,7 @@
                                     </thead>
                                     <!--  데이터값 들어가는 곳 -->
                                     <tbody>
-                                       <c:forEach items="${reportList}" var="re" varStatus="status" begin="1" end="5">
+                                       <c:forEach items="${reportList}" var="re" varStatus="status" begin="0" end="4">
 	                                       <tr>	
 	                                       		<c:if test="${re.rcheck eq '처리대기중'}">
 	                                       		<td class="class center" style="width: 10%;">${re.rtype}</td>
