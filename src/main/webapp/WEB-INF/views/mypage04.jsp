@@ -53,7 +53,7 @@
 						</div>
 						<div class="m-drop-nav">
 							<h1 class="m-drop-tit-title line" style="cursor: pointer;">알림
-								▼</h1>
+								<i class="fas fa-angle-down"></i></h1>
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">

@@ -19,7 +19,10 @@
 	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+
+<!-- 모달css -->
+<link rel="stylesheet" href="/resources/css/modal.css">
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
@@ -93,15 +96,112 @@ tr td button {
 							<button type="button"
 								class="btn btn-secondary companydata-btn stock-btn" id="day">
 								일차트보기</button>
-							<button type="button"
+								
+								
+							<!-- 	ajax호출버튼 -->
+							<button id="historyBttn" type="button"
+								class="btn btn-secondary companydata-btn stock-btn"  data-toggle="modal" data-target="#historyModal">
+								거래 기록</button>
+							<!-- 	원래버튼  <button id="historyBttn" type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
 								onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
-								거래 기록</button>
-							<button type="button"
+								거래 기록</button> -->
+
+							<button id="ownBttn" type="button"
+								class="btn btn-secondary companydata-btn stock-btn" data-toggle="modal" data-target="#ownModal">
+						
+								보유 종목</button>
+							<!-- <button id="recordBttn" type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
 								onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
-								보유 종목</button>
+								보유 종목</button> -->
 						</div>
+						
+						
+					<!-- 	 jsp모달 ajax로 넣기 -->
+					 						<script>
+												$(document).ready(function() {
+											        //거래기록
+											        $('#historyBttn').on('click', function () {
+											          $('#history').load('/trade_history?page=1'); 
+
+											        });
+											        
+											        $('#ownBttn').on('click', function () {
+												          $('#own').load('/myStock?page=1'); 
+
+												        });
+													
+												});
+												</script>
+												
+												
+																							
+									<!-- 거래기록 Modal -->
+						<div class="modal fade" id="historyModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
+						  <div class="modal-dialog  modal-dialog-centered">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="historyModalLabel">거래기록</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+											 <!--거래기록 ajax페이지 들어가는 곳 -->
+											<div id="history" class="stockModal">
+	
+										</div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<!-- 거래기록 Modal -->
+															
+									
+									
+									<!-- 보유종목 Modal -->
+						<div class="modal fade" id="ownModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="ownModalLabel" aria-hidden="true">
+						  <div class="modal-dialog  modal-dialog-centered">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="ownModalLabel">보유종목</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+											 <!--거래기록 ajax페이지 들어가는 곳 -->
+											<div id="own" class="stockModal">
+	
+										</div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<!-- 보유종목 Modal -->
+
+								
+
+
+
+
+	
+
+						
+						
+						
+						
+						
+						
+						
+						
 					</form>
 
 				</div>
@@ -284,7 +384,7 @@ tr td button {
 												
 											<!-- Modal -->
 											<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-											  <div class="modal-dialog">
+											  <div class="modal-dialog ">
 											    <div class="modal-content">												
 													<div class="layerPopup">
 														<div class="layerBox layerStock" id="poplayer_possible"
@@ -725,7 +825,7 @@ tr td button {
 													</div> --%>
 	</div>
 
-		<%@include file="mainfooter.jsp" %>
+		<%@include file="mainfooter2.jsp" %>
 	
 	<script src="/resources/js/jsrender.js" type="text/javascript"></script>
 	<!-- 검색 자동완성용 js -->

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.UserVO;
 
 
 public interface AdminService {
@@ -21,4 +22,6 @@ public interface AdminService {
 	public List<BoardVO> boardChart(BoardVO vo);
 	public Map<String, Object> reportSelectList(AdminVO vo,String rno);
 	public int updateRcheck(int pno);
+	public List<UserVO> userSignUpChart(UserVO vo);
+	public int userVisit(AdminVO vo);
 }

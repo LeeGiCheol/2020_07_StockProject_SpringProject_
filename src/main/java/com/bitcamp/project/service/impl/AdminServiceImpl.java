@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.project.dao.AdminDAO;
@@ -129,6 +130,17 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return adminDAO.boardChart(vo);
+	}
+	@Override
+	public List<UserVO> userSignUpChart(UserVO vo) {
+		return adminDAO.userSignUpChart(vo);
+	}
+	
+	
+	@Override
+	public int userVisit(AdminVO vo) {
+		System.out.println("adslgknsadlgknasdklgnasdsadfsadf");
+		return adminDAO.userVisit(vo);
 	}
 	
 	
