@@ -28,8 +28,8 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override
-	public List totalSearch(String title) {
-		return boardDAO.totalSearch(title);
+	public List totalSearch(String title, int check) {
+		return boardDAO.totalSearch(title, check);
 	}
 
 	@Override
