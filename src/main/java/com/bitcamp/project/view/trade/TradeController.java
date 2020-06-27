@@ -37,16 +37,6 @@ public class TradeController {
 	@Autowired
 	HttpSession session;
 
-//	public static JSONObject getJsonStringFromMap(Map<String, Object> map) {
-//		JSONObject jsonObject = new JSONObject();
-//		for (Map.Entry<String, Object> entry : map.entrySet()) {
-//			String key = entry.getKey();
-//			Object value = entry.getValue();
-//			jsonObject.put(key, value);
-//		}
-//
-//		return jsonObject;
-//	}
 	@GetMapping(value = "/myStock")
 	public ModelAndView myStock(@RequestParam(value = "page") int page) {
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -56,7 +46,7 @@ public class TradeController {
 			id = ((UserVO) session.getAttribute("loginUser")).getId();
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
-			mav.setViewName("blank");
+			mav.setViewName("msg/blank");
 			return mav;
 		}
 
@@ -74,7 +64,7 @@ public class TradeController {
 
 		mav.addObject("total", holdingStock.size());
 		mav.addObject("pageHoldingStock", pageHoldingStock);
-		mav.setViewName("holdingStock");
+		mav.setViewName("stock/holdingStock");
 		return mav;
 	}
 
@@ -87,7 +77,7 @@ public class TradeController {
 			id = ((UserVO) session.getAttribute("loginUser")).getId();
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
-			mav.setViewName("blank");
+			mav.setViewName("msg/blank");
 			return mav;
 		}
 
@@ -112,7 +102,7 @@ public class TradeController {
 
 		mav.addObject("total", history.size());
 		mav.addObject("pageHistory", pageHistory);
-		mav.setViewName("tradehistory");
+		mav.setViewName("stock/tradehistory");
 		return mav;
 	}
 
@@ -127,7 +117,7 @@ public class TradeController {
 		if (id == null) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/signInPage");
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
 
@@ -141,7 +131,7 @@ public class TradeController {
 		if (unsettledDetail == null) {
 			mav.addObject("msg", "주문 번호가 조회되지 않습니다");
 			mav.addObject("location", "/trade");
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
 
@@ -154,7 +144,7 @@ public class TradeController {
 			if (Integer.parseInt(qu) == 0) {
 				mav.addObject("msg", "정정 가능한 최소 수량은 1주 입니다");
 				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
-				mav.setViewName("notice");
+				mav.setViewName("msg/notice");
 				return mav;
 			}
 
@@ -167,7 +157,7 @@ public class TradeController {
 					&& (myStockQu < Integer.parseInt(qu) - (Integer) unsettledDetail.get("quantity"))) {
 				mav.addObject("msg", "보유 수량이 부족합니다");
 				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
-				mav.setViewName("notice");
+				mav.setViewName("msg/notice");
 				return mav;
 			}
 
@@ -178,7 +168,7 @@ public class TradeController {
 									* Long.valueOf((int) unsettledDetail.get("quantity"))))) {
 				mav.addObject("msg", "잔액이 부족합니다");
 				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
-				mav.setViewName("notice");
+				mav.setViewName("msg/notice");
 				return mav;
 			}
 
@@ -189,7 +179,7 @@ public class TradeController {
 			if (Integer.parseInt(qu) > (Integer) unsettledDetail.get("quantity")) {
 				mav.addObject("msg", "보유 수량이 부족합니다");
 				mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
-				mav.setViewName("notice");
+				mav.setViewName("msg/notice");
 				return mav;
 			}
 
@@ -208,7 +198,7 @@ public class TradeController {
 			modify = "정정";
 		mav.addObject("msg", "주문 " + modify + " 성공");
 		mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
-		mav.setViewName("notice");
+		mav.setViewName("msg/notice");
 		return mav;
 	}
 
@@ -224,7 +214,7 @@ public class TradeController {
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
 
@@ -240,7 +230,7 @@ public class TradeController {
 		if (myStockQu < Integer.parseInt(qu)) {
 			mav.addObject("msg", "보유 수량이 부족합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
 
@@ -249,7 +239,7 @@ public class TradeController {
 		tradeService.stockSelling(vo);
 		mav.addObject("msg", "매도 등록: " + stockName + ", " + price);
 		mav.addObject("location", "/trade?stockName=" + stockName);
-		mav.setViewName("notice");
+		mav.setViewName("msg/notice");
 		return mav;
 	}
 
@@ -264,7 +254,7 @@ public class TradeController {
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
 //		String id = "test"; // test 용 아이디
@@ -273,7 +263,7 @@ public class TradeController {
 		if (money < Long.parseLong(price) * Long.parseLong(qu)) {
 			mav.addObject("msg", "잔액이 부족합니다");
 			mav.addObject("location", "/trade?stockName=" + stockName);
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
 
@@ -289,7 +279,7 @@ public class TradeController {
 		mav.addObject("msg", "매수 등록: " + stockName + ", " + price);
 		mav.addObject("icon", "success");
 		mav.addObject("location", "/trade?stockName=" + stockName);
-		mav.setViewName("msg");
+		mav.setViewName("msg/msg");
 		return mav;
 	}
 
@@ -356,7 +346,7 @@ public class TradeController {
 		} catch (Exception e) {
 			mav.addObject("msg", "정확한 종목명을 입력해주세요");
 			mav.addObject("location", "/trade");
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
 
@@ -375,7 +365,7 @@ public class TradeController {
 
 		mav.addObject("stockName", stockName);
 		mav.addObject("stockCode", stockCode);
-		mav.setViewName("stockdealpage");
+		mav.setViewName("stock/stockdealpage");
 
 		return mav;
 

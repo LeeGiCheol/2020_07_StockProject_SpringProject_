@@ -72,12 +72,12 @@ public class BoardController {
 		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
 		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
 
-		return "free-board";
+		return "board/free-board";
 	}
 
 	@GetMapping("/board/free/write")
 	public String boardWriteView(BoardVO vo, Model model) {
-		return "writeForm";
+		return "board/free-board-writeForm";
 	}
 
 	@PostMapping("/board/free/write")
@@ -100,11 +100,6 @@ public class BoardController {
 			boardService.writeFreeBoard(vo);
 			
 		}
-//			
-//		
-//
-//		} else {
-//		}
 		return "redirect:/board/free";
 	}
 
@@ -123,7 +118,7 @@ public class BoardController {
 		mav.addObject("commentList", (List<CommentVO>) commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO) commentList.get("commentPage"));
 
-		mav.setViewName("free-board-detail");
+		mav.setViewName("board/free-board-detail");
 
 		return mav;
 	}
@@ -169,7 +164,7 @@ public class BoardController {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
 //		System.out.println("mmmmm"+boardUpdate);
-		return "updateForm";
+		return "board/free-board-updateForm";
 	}
 
 	@PostMapping("/board/free/update")
@@ -221,13 +216,13 @@ public class BoardController {
 			mav.addObject("msg", "해당 게시물이 신고 완료되었습니다.");
 			mav.addObject("location", "/board/free/detail?pno=" + vo.getPno());
 			mav.addObject("icon", "success");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		} else {
 			mav.addObject("msg", "신고는 1회만 가능합니다.");
 			mav.addObject("location", "/board/free/detail?pno=" + vo.getPno());
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		}
 

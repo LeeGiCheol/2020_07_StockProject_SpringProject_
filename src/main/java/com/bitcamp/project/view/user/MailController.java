@@ -35,6 +35,6 @@ public class MailController {
         model.addAttribute("msg", "이메일을 확인중입니다.");
 		model.addAttribute("icon", "success");
 		model.addAttribute("location", "/forgetPasswordTry");
-        return "/msg";
+        return "msg/msg";
     }
 }

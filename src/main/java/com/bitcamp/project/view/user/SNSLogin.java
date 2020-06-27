@@ -33,7 +33,7 @@ public class SNSLogin {
 		
 		if (vo == null) {  // 추가정보 입력 필요
 			mav.addObject("kakaoID", userId);
-			mav.setViewName("signup02_kakao");
+			mav.setViewName("signInUp/signup02_kakao");
 			return mav;
 		} else {
 			session.setAttribute("loginUser", vo);

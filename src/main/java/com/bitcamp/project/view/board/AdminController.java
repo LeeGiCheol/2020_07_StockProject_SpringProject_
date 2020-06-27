@@ -53,7 +53,7 @@ public class AdminController {
 			mav.addObject("msg", "관리자만 접근할 수 있습니다");
 			mav.addObject("location", "/mainPage");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 		}
 		
 		
@@ -82,7 +82,7 @@ public class AdminController {
 		model.addAttribute("reportPage", (PagingVO) reportList.get("reportPage"));
 		
 		
-		mav.setViewName("adminPage");
+		mav.setViewName("admin/adminPage");
 		return mav;
 	}
 	
@@ -97,7 +97,7 @@ public class AdminController {
 			model.addAttribute("msg", "관리자만 접근할 수 있습니다");
 			model.addAttribute("location", "/mainPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}
 		
 		loginUser.getPoint();
@@ -115,7 +115,7 @@ public class AdminController {
 		model.addAttribute("qnaPage", (PagingVO) qnaList.get("qnaPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
-		return "adminQna";
+		return "admin/adminQna";
 	}
 	
 	@GetMapping("/admin/qna/detail")
@@ -127,7 +127,7 @@ public class AdminController {
 			mav.addObject("msg", "관리자만 접근할 수 있습니다");
 			mav.addObject("location", "/mainPage");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			
 			return mav;
 		}
@@ -155,7 +155,7 @@ public class AdminController {
 		
 		System.out.println("?? " + qnaDetail);
 		mav.addObject("qna", qnaDetail);
-		mav.setViewName("adminQnaDetail");
+		mav.setViewName("admin/adminQnaDetail");
 		
 		return mav;
 	}
@@ -169,7 +169,7 @@ public class AdminController {
 		System.out.println("관리자 "+qnaDetail);
 		model.addAttribute("qna", qnaDetail);
 		model.addAttribute("qno", vo.getQno());
-		return "qnaAnswerWrite";
+		return "admin/qnaAnswerWrite";
 	}
 	
 	@PostMapping(value="/admin/qna/answer/write")
@@ -204,10 +204,6 @@ public class AdminController {
 		}
 		
 		
-		
-		
-		
-		
 		return "redirect:/admin/qna/detail?qno="+vo.getQno();
 	}
 	
@@ -222,7 +218,7 @@ public class AdminController {
 		
 		
 		
-		return "qnaAnswerUpdate";
+		return "admin/qnaAnswerUpdate";
 	}
 	
 	@PostMapping("/admin/qna/answer/update")
@@ -250,21 +246,28 @@ public class AdminController {
 	
 	@GetMapping("/admin/qna/delete")
 	public String adminQnaDelete(AdminVO vo) {
+		if(vo.getAno() != 0)
+			vo.setAno(1);
+				
 		AdminVO aVo = adminService.qnaDetail(vo);
 		List<String> uploadThumbnail = new ArrayList<String>();
 		FileUpload fileUpload = new FileUpload();
 		fileUpload.fileDel(null, aVo, uploadedFileName, uploadThumbnail, request);
-		if(vo.getAno() != 0) {
 			adminService.answerDelete(aVo);
-		}
-		else if(vo.getQno() != 0) {
 			adminService.questionDelete(aVo);
-		}
-		
-		
-			
-		
 		return "redirect:/admin/qna";
+	}
+	
+	
+	@GetMapping("/admin/answer/delete")
+	public String adminAnswerDelete(AdminVO vo) {
+	
+		AdminVO aVo = adminService.qnaDetail(vo);
+		List<String> uploadThumbnail = new ArrayList<String>();
+		FileUpload fileUpload = new FileUpload();
+		fileUpload.fileDel(null, aVo, uploadedFileName, uploadThumbnail, request);
+			adminService.answerDelete(aVo);
+		return "redirect:/admin/qna/detail?qno=" + aVo.getQno();
 	}
 	
 	
@@ -289,7 +292,7 @@ public class AdminController {
 		model.addAttribute("reportPage", (PagingVO) reportList.get("reportPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
-		return "adminReport";
+		return "admin/adminReport";
 	}
 	
 	@ResponseBody

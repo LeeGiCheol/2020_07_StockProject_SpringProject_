@@ -57,7 +57,7 @@ public class CustomerController {
 		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
 		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
 		
-		return "customerLanding";
+		return "customer/customerLanding";
 	}
 	
 	@GetMapping(value="/customerNotice")
@@ -75,7 +75,7 @@ public class CustomerController {
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
-		return "customerNotice";
+		return "customer/customerNotice";
 	}	
 	@GetMapping("/customerNotice/detail")
 	public ModelAndView getView(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage) {
@@ -92,7 +92,7 @@ public class CustomerController {
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
 		
 		
-		mav.setViewName("customerNoticeDetail");
+		mav.setViewName("customer/customerNoticeDetail");
 		
 		return mav;
 	}
@@ -116,18 +116,18 @@ public class CustomerController {
 		return map;
 	}
 	
-	@GetMapping(value="/customerqna")
+	@GetMapping(value="/customerQna")
 	public String customerqnaView() {
-		return "customerqna";
+		return "customer/customerqna";
 	}	
 
 	
-	@GetMapping(value="/customNoticeWrite")
+	@GetMapping(value="/customerNoticeWrite")
 	public String customNoticeWrite() {
-		return "customNoticeWrite";
+		return "customer/customerNoticeWrite";
 	}	
 	
-	@PostMapping("/customNoticeWrite")
+	@PostMapping("/customerNoticeWrite")
 	public String boardWrite(BoardVO vo) {
 		
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
@@ -151,7 +151,7 @@ public class CustomerController {
 	public String updateBoardView(BoardVO vo, Model model) {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
-		return "customNoticeUpdate";
+		return "customer/customNoticeUpdate";
 	}
 
 	@PostMapping("/customerNotice/update")
@@ -171,7 +171,7 @@ public class CustomerController {
 		return "redirect:/customerNotice";
 	}
 	
-	@GetMapping("/customNotice/delete")
+	@GetMapping("/customerNotice/delete")
 	public String deleteBoard(BoardVO vo) {
 		BoardVO bVo = boardService.getBoard(vo);
 		List<String> uploadThumbnail = new ArrayList<String>();
@@ -183,7 +183,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value="/customerClaim/write")
-	public String customClaimWriteView(Model model) {
+	public String customerClaimWriteView(Model model) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
@@ -192,11 +192,11 @@ public class CustomerController {
 			model.addAttribute("icon", "error");
 			return "msg";
 		}else {
-			return "customerClaimWrite";
+			return "customer/customerClaimWrite";
 		}
 	}
 	@PostMapping(value="/customerClaim/write")
-	public ModelAndView customClaimWrite(AdminVO vo) {
+	public ModelAndView customerClaimWrite(AdminVO vo) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		ModelAndView mav = new ModelAndView();
 		
@@ -204,7 +204,7 @@ public class CustomerController {
 			mav.addObject("msg", "로그인이 필요한 페이지입니다.");
 			mav.addObject("location", "/signInPage");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		}else {
 		
@@ -225,7 +225,7 @@ public class CustomerController {
 			mav.addObject("msg", "문의가 등록되었습니다");
 			mav.addObject("location", "/customerClaim/list");
 			mav.addObject("icon", "success");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			
 			return mav;
 		}
@@ -247,7 +247,7 @@ public class CustomerController {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
 			model.addAttribute("location", "/signInPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}
 		else {
 			vo.setNickname(loginUser.getNickname());
@@ -261,7 +261,7 @@ public class CustomerController {
 			
 			
 		
-			return "customerClaimList";
+			return "customer/customerClaimList";
 		}
 	}
 	
@@ -275,7 +275,7 @@ public class CustomerController {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
 			model.addAttribute("location", "/signInPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}
 		else {
 		
@@ -299,7 +299,7 @@ public class CustomerController {
 			
 			model.addAttribute("qna", qna);
 			model.addAttribute("qno", vo.getQno());
-			return "customerClaimDetail";
+			return "customer/customerClaimDetail";
 		}
 				
 	}
@@ -361,7 +361,7 @@ public class CustomerController {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
 			model.addAttribute("location", "/signInPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}
 		else {
 			vo.setNickname(loginUser.getNickname());
@@ -389,18 +389,12 @@ public class CustomerController {
 				catch(Exception e) {
 				}
 
-				model.addAttribute("msg", "문의를 삭제하였습니다.");
-				model.addAttribute("location", "/customerClaim/list");
-				model.addAttribute("icon", "success");
 				
-				return "msg";
+				return "redirect:/customerClaim/list";
 			}
 			else {
-				model.addAttribute("msg", "문의를 삭제하지 못했습니다.");
-				model.addAttribute("location", "/customerClaim/list");
-				model.addAttribute("icon", "error");
 				
-				return "msg";
+				return "redirect:/customerClaim/list";
 				
 			}
 		}

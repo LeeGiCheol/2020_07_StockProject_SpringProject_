@@ -34,7 +34,7 @@ public class SignUpController {
 	// 회원가입화면
 		@GetMapping(value="/signUpPage/1")
 		public String signUpVieww() {
-				return "signup01";
+				return "signInUp/signup01";
 		}
 ////		// 회원가입화면
 //		@PostMapping(value="/signUp2")
@@ -50,7 +50,7 @@ public class SignUpController {
 	@GetMapping(value="/signUpPage/2")
 	public String signUpView(UserVO vo) {
 		System.out.println("vo suv : " + vo.toString());
-		return "signup02";
+		return "signInUp/signup02";
 	}
 
 	// 회원가입완료화면
@@ -72,13 +72,9 @@ public class SignUpController {
 		model.addAttribute("loginUser", vo);
 		
 		
-		return "signup03";
+		return "signInUp/signup03";
 	}
 	
-	@GetMapping("/a")
-	public String a() {
-		return "signup03";
-	}
 	
 	@PostMapping(value="/signUp/kakao")
 	public String signUpKakao(UserVO vo, @RequestParam("friend") String friend) {
@@ -88,7 +84,7 @@ public class SignUpController {
 		System.out.println("vo su : " + vo.toString());
 		signUpService.signUp(vo);
 		
-		return "signup03";
+		return "signInUp/signup03";
 	}
 	
 

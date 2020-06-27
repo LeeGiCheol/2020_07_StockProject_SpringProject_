@@ -75,12 +75,12 @@ public class PortfolioController {
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("path", FilePath);
 
-		return "portfolio-board";
+		return "board/portfolio-board";
 	}
 
 	@GetMapping("/board/portfolio/write")
 	public String portfolioWriteForm() {
-		return "portfolio-writeForm";
+		return "board/portfolio-writeForm";
 	}
 
 	@PostMapping("/board/portfolio/write")
@@ -175,7 +175,7 @@ public class PortfolioController {
 		mav.addObject("commentList", (List<CommentVO>) commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO) commentList.get("commentPage"));
 
-		mav.setViewName("portfolio-board-detail");
+		mav.setViewName("board/portfolio-board-detail");
 
 		return mav;
 	}
@@ -207,7 +207,7 @@ public class PortfolioController {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
 //		System.out.println("mmmmm"+boardUpdate);
-		return "portfolioUpdateForm";
+		return "board/portfolio-updateForm";
 	}
 
 	@PostMapping("/board/portfolio/update")

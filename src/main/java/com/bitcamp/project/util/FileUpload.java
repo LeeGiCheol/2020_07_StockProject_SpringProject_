@@ -404,26 +404,110 @@ public class FileUpload {
 	public BoardVO fileDel(BoardVO vo, AdminVO aVo, List<String> uploadedFileName, List<String> uploadThumbnail,
 			HttpServletRequest request) {
 		
-		String[] img = null;
+ 		String[] img = null;
+		String[] Qimg = null;
+		String[] Aimg = null;
 		
 		if(vo != null) {
-			
-		
 			img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
 		}	
-		else {
-			img = aVo.getQcontent().split("<img src=\"/resources/se2/upload/");
+		else if(vo == null){
+			try {
+				if(aVo.getQcontent().equals(null)) {
+				}
+			}catch(Exception e) {
+				aVo.setQcontent("");
+			}
+			try {
+				if(aVo.getAcontent().equals(null)) {
+				}
+			}catch(Exception e) {
+				aVo.setAcontent("");
+			}
 				
-			}
-			for (int i = 1; i < img.length; i++) {
-	
-				int start = img[i].indexOf("/Photo");
-				int end = img[i].indexOf("\" title=\"");
-				img[i] = img[i].substring(start - 8, end);
-			}
-		
-		
+				
+				
+				if(aVo.getQcontent().contains("<img src=\"/resources/se2/upload/")) {
+					img = aVo.getQcontent().split("<img src=\"/resources/se2/upload/");
+				}
+				else if(aVo.getAcontent().contains("<img src=\"/resources/se2/upload/")) {
+					img = aVo.getAcontent().split("<img src=\"/resources/se2/upload/");
+				}
+				else if(aVo.getQcontent().contains("<img src=\"/resources/se2/upload/") && aVo.getAcontent().contains("<img src=\"/resources/se2/upload/")) {
+					Qimg = aVo.getQcontent().split("<img src=\"/resources/se2/upload/");
+					Aimg = aVo.getAcontent().split("<img src=\"/resources/se2/upload/");
+					
+					for (int i = 1; i < Qimg.length; i++) {
 
+						int start = Qimg[i].indexOf("/Photo");
+						int end = Qimg[i].indexOf("\" title=\"");
+						Qimg[i] = Qimg[i].substring(start - 8, end);
+					}
+					for (int i = 1; i < Aimg.length; i++) {
+						
+						int start = Aimg[i].indexOf("/Photo");
+						int end = Aimg[i].indexOf("\" title=\"");
+						Aimg[i] = Aimg[i].substring(start - 8, end);
+					}
+					String thumbnail = null;
+
+					try {
+
+						for (int j = 1; j < Qimg.length; j++) {
+
+							String origin = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+									+ Qimg[j];
+							File originDelete = new File(origin);
+							thumbnail = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+									+ Qimg[j].substring(0, 8) + "/THUMB_" + Qimg[j].substring(9);
+							File thumbnailDelete = new File(thumbnail);
+
+							// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+							if (originDelete.exists()) {
+								// 파일을 삭제합니다.
+								originDelete.delete();
+								thumbnailDelete.delete();
+
+							}
+						}
+						for (int j = 1; j < Aimg.length; j++) {
+							
+							String origin = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+									+ Qimg[j];
+							File originDelete = new File(origin);
+							thumbnail = request.getSession().getServletContext().getRealPath("/") + "resources/se2/upload/"
+									+ Aimg[j].substring(0, 8) + "/THUMB_" + Aimg[j].substring(9);
+							File thumbnailDelete = new File(thumbnail);
+							
+							// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+							if (originDelete.exists()) {
+								// 파일을 삭제합니다.
+								originDelete.delete();
+								thumbnailDelete.delete();
+								
+							}
+						}
+
+
+						uploadedFileName.clear();
+						return null;
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					
+				}
+				else 
+					return null;
+				
+		}
+		for (int i = 1; i < img.length; i++) {
+
+			int start = img[i].indexOf("/Photo");
+			int end = img[i].indexOf("\" title=\"");
+			img[i] = img[i].substring(start - 8, end);
+		}
 		String thumbnail = null;
 
 		try {
@@ -455,7 +539,7 @@ public class FileUpload {
 				// vo에 저장 후 리셋
 				vo.setThumbnailName("/resources/se2/upload/" + img[1].substring(0, 8) + "/THUMB_" + img[1].substring(9));
 			}else
-			uploadedFileName.clear();
+				uploadedFileName.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -90,7 +90,7 @@ public class TotalSearchController {
 		mav.addObject("nickCount", nickCount);
 		
 	
-		mav.setViewName("total_Search_Result");
+		mav.setViewName("totalSearch/total_Search_Result");
 		return mav;
 	}
 	
@@ -107,21 +107,21 @@ public class TotalSearchController {
 			int stockCount = (int) list.get(4);
 			mav.addObject("stock", stock);
 			mav.addObject("stockCount", stockCount);
-			mav.setViewName("jongmok_Search_Result");
+			mav.setViewName("totalSearch/jongmok_Search_Result");
 		}
 		if(request.getServletPath().equals("/total-search/free")) {
 			List free =  (List)list.get(1);
 			int freeCount = (int) list.get(5);
 			mav.addObject("free", free);
 			mav.addObject("freeCount", freeCount);
-			mav.setViewName("free-board_Search_Result");
+			mav.setViewName("totalSearch/free-board_Search_Result");
 		}
 		else if(request.getServletPath().equals("/total-search/portfolio")) {
 			List port =  (List)list.get(2);
 			int portCount = (int) list.get(6);
 			mav.addObject("port", port);
 			mav.addObject("portCount", portCount);
-			mav.setViewName("portfolio_Search_Result");
+			mav.setViewName("totalSearch/portfolio_Search_Result");
 		}
 		
 		else if(request.getServletPath().equals("/total-search/user")) {
@@ -129,7 +129,7 @@ public class TotalSearchController {
 			int nickCount = (int) list.get(7);
 			mav.addObject("nick", nick);
 			mav.addObject("nickCount", nickCount);
-			mav.setViewName("user_Search_Result");
+			mav.setViewName("totalSearch/user_Search_Result");
 		}
 
 		
@@ -153,14 +153,14 @@ public class TotalSearchController {
 			int freeCount = (int) list.get(5);
 			mav.addObject("free", free);
 			mav.addObject("freeCount", freeCount);
-			mav.setViewName("free-board_Search_Result");
+			mav.setViewName("totalSearch/free-board_Search_Result");
 		}
 		else if(request.getServletPath().equals("/total-search/portfolio/detail/best")) {
 			List port =  (List)list.get(2);
 			int portCount = (int) list.get(6);
 			mav.addObject("port", port);
 			mav.addObject("portCount", portCount);
-			mav.setViewName("portfolio_Search_Result");
+			mav.setViewName("totalSearch/portfolio_Search_Result");
 		}
 		
 		
