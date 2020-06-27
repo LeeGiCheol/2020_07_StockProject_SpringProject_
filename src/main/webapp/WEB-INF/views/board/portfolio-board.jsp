@@ -161,7 +161,7 @@ $(document).ready(function(){
 														</dt>
 														<dd class="date">
 
-															<span> <span class="nick-badge-small"><a href="/selectUserMoney?nickname=
+															<span> <span class="nick-badge-small"><a href="/selectUserBoard?nickname=
 																		${portfolioList.nickname}">${portfolioList.nickname}</a></span> 
 																																		
 																		<fmt:formatDate value="${portfolioList.bdateTime}" var="time" pattern="MM/dd HH:mm"/>

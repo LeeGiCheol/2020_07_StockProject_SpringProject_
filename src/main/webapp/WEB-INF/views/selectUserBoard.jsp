@@ -105,7 +105,7 @@ $(document).ready(function(){
 						<input type="hidden" id="typeRef" value="${type}">
 		<div class="board-type">
 			<div class="board-free-nav">
-					<form id="form" class="board-list-top policy-in" action='/myPage03'>
+					<form id="form" class="board-list-top policy-in" action='/selectUserBoard?nickname=${user.nickname}'>
 						<p class="pc-only">
 							<input type="radio" class="ordeby" id="orderby1" name="orderby"
 								value="userBoard" <c:if test='${type eq "board"}'>checked="checked"</c:if>><label for="orderby1"  class="new-board">작성 글 </label>
@@ -128,7 +128,6 @@ $(document).ready(function(){
 					<!-- 전체글 -->
 					<table class="board-free-table">
  							<colgroup>
-								<col width="5%">
 								<col width="10%">
 								<col width="50%">
 								<col width="10%">
@@ -149,7 +148,6 @@ $(document).ready(function(){
 						<tbody>
 							<c:forEach items="${userBoard}" var="board">
 							
-								<c:if test="${board.bno eq 1}">
 									<tr>
 										<td class="board-no">${board.pno}</td>
 										<!-- 글번호 -->
@@ -174,7 +172,6 @@ $(document).ready(function(){
 										<td class="board-date">${time}</td>
 										<!-- 날짜 -->
 									</tr>
-								</c:if>
 							</c:forEach>
 							<c:if test="${userBoard.size() == 0}">
 							    <tr>
@@ -194,7 +191,7 @@ $(document).ready(function(){
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
-					          href="/myPage03?bnowPage=1&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
+					          href="/selectUserBoard?nickname=${user.nickname}&bnowPage=1&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					          tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
@@ -203,7 +200,7 @@ $(document).ready(function(){
 					      <c:if test="${boardPage.nowPage == 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
+					            href="/selectUserBoard?nickname=${user.nickname}&bnowPage=${boardPage.nowPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -215,7 +212,7 @@ $(document).ready(function(){
 					      <c:if test="${boardPage.nowPage != 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage-1}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
+					            href="/selectUserBoard?nickname=${user.nickname}&bnowPage=${boardPage.nowPage-1}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -235,7 +232,7 @@ $(document).ready(function(){
 					          </c:when>
 					          <c:when test="${p != boardPage.nowPage}">
 					            <li class="page-item">
-					              <a class="page-link" href="/myPage03?bnowPage=${p}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}">${p}</a>
+					              <a class="page-link" href="/selectUserBoard?nickname=${user.nickname}&bnowPage=${p}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}">${p}</a>
 					            </li>
 					          </c:when>
 					        </c:choose>
@@ -248,7 +245,7 @@ $(document).ready(function(){
 					      <c:if test="${boardPage.nowPage == boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
+					            href="/selectUserBoard?nickname=${user.nickname}&bnowPage=${boardPage.nowPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					            tabindex="+1" aria-disabled="true">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -259,7 +256,7 @@ $(document).ready(function(){
 					      <c:if test="${boardPage.nowPage != boardPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?bnowPage=${boardPage.nowPage+1}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
+					            href="/selectUserBoard?nickname=${user.nickname}&bnowPage=${boardPage.nowPage+1}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					            tabindex="+1" aria-disabled="true" data-ajax="false">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -269,7 +266,7 @@ $(document).ready(function(){
 					      <!-- >> 버튼 -->
 					      <li>
 					        <a class="page-link"
-					        href="/myPage03?bnowPage=${boardPage.lastPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
+					        href="/selectUserBoard?nickname=${user.nickname}&bnowPage=${boardPage.lastPage}&type=board&boardKeyword=${boardKeyword}&bSearchStyle=${bSearchStyle}"
 					        tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
@@ -329,40 +326,30 @@ $(document).ready(function(){
 					<c:when test="${userComment.size() > 0}">
 					<table class="board-free-table">
  							<colgroup>
-								<col width="5%">
 								<col width="10%">
 								<col width="50%">
 								<col width="10%">
-								<col width="5%">
-								<col width="5%">
-								<col width="15%">
+								<col width="20%">
 							</colgroup>
 							<thead>
 							<tr>
-								<th class="no" scope="col">
-									<p class="check">
-										<input type="checkbox" id="eventSeq_all_comment" class="seq_check" name="WeventSeq">
-										<label for="eventSeq_all_comment">선택 삭제</label>
-									</p>
-								</th>
-								<th class="no" scope="col">N0</th>
-								<th class="title" scope="col">내용</th>
+								<th class="no" scope="col">N0.</th>
+								<th class="title" scope="col">제목</th>
 								<th class="writer" scope="col">작성자</th>
-								
 								<th class="date" scope="col">작성일</th>
 							</tr>
 						</thead>
+						
+						
+						
+						
+						
+						
 						<tbody>
 							<c:forEach items="${userComment}" var="comment">
 							
 								<c:if test="true">
 									<tr>
-										<td class="board-check">
-											<p class="check">
-												<input type="checkbox" id="CeventSeq_${comment.cno}" class="seq_check comment" name="check" value="${comment.cno}" data-on="${comment.cno},${comment.pno}">
-												<label for="CeventSeq_${comment.cno}">선택 삭제</label>
-											</p>
-										</td>
 										<td class="board-no">${comment.pno}</td>
 										<!-- 글번호 -->
 										
@@ -394,7 +381,7 @@ $(document).ready(function(){
 					      <!-- << 버튼 -->
 					      <li>
 					        <a class="page-link"
-					          href="/myPage03?cnowPage=1&type=comment&commentKeyword=${commentKeyword}"
+					          href="/selectUserBoard?nickname=${user.nickname}&cnowPage=1&type=comment&commentKeyword=${commentKeyword}"
 					          tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-left"></i>
 					        </a>
@@ -403,7 +390,7 @@ $(document).ready(function(){
 					      <c:if test="${commentPage.nowPage == 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?cnowPage=${commentPage.nowPage}&type=comment&commentKeyword=${commentKeyword}"
+					            href="/selectUserBoard?nickname=${user.nickname}&cnowPage=${commentPage.nowPage}&type=comment&commentKeyword=${commentKeyword}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -415,7 +402,7 @@ $(document).ready(function(){
 					      <c:if test="${commentPage.nowPage != 1}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?cnowPage=${commentPage.nowPage-1}&type=comment&commentKeyword=${commentKeyword}"
+					            href="/selectUserBoard?nickname=${user.nickname}&cnowPage=${commentPage.nowPage-1}&type=comment&commentKeyword=${commentKeyword}"
 					            tabindex="-1" aria-disabled="true">
 					            <i class="fas fa-angle-left"></i>
 					          </a>
@@ -435,7 +422,7 @@ $(document).ready(function(){
 					          </c:when>
 					          <c:when test="${p != commentPage.nowPage}">
 					            <li class="page-item">
-					              <a class="page-link" href="/myPage03?cnowPage=${p}&type=comment&commentKeyword=${commentKeyword}">${p}</a>
+					              <a class="page-link" href="/selectUserBoard?nickname=${user.nickname}&cnowPage=${p}&type=comment&commentKeyword=${commentKeyword}">${p}</a>
 					            </li>
 					          </c:when>
 					        </c:choose>
@@ -448,7 +435,7 @@ $(document).ready(function(){
 					      <c:if test="${commentPage.nowPage == commentPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?cnowPage=${commentPage.nowPage}&type=comment&commentKeyword=${commentKeyword}"
+					            href="/selectUserBoard?nickname=${user.nickname}&cnowPage=${commentPage.nowPage}&type=comment&commentKeyword=${commentKeyword}"
 					            tabindex="+1" aria-disabled="true">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -459,7 +446,7 @@ $(document).ready(function(){
 					      <c:if test="${commentPage.nowPage != commentPage.lastPage}">
 					        <li>
 					          <a class="page-link"
-					            href="/myPage03?cnowPage=${commentPage.nowPage+1}&type=comment&commentKeyword=${commentKeyword}"
+					            href="/selectUserBoard?nickname=${user.nickname}&cnowPage=${commentPage.nowPage+1}&type=comment&commentKeyword=${commentKeyword}"
 					            tabindex="+1" aria-disabled="true" data-ajax="false">
 					            <i class="fas fa-angle-right"></i>
 					          </a>
@@ -469,7 +456,7 @@ $(document).ready(function(){
 					      <!-- >> 버튼 -->
 					      <li>
 					        <a class="page-link"
-					        href="/myPage03?cnowPage=${commentPage.lastPage}&type=comment&commentKeyword=${commentKeyword}"
+					        href="/selectUserBoard?nickname=${user.nickname}&cnowPage=${commentPage.lastPage}&type=comment&commentKeyword=${commentKeyword}"
 					        tabindex="-1" aria-disabled="true">
 					          <i class="fas fa-angle-double-right"></i>
 					        </a>
@@ -485,7 +472,7 @@ $(document).ready(function(){
 				
 				<div class="search-area">
 					<div  class="search-area-body">
-					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/myPage03">
+					<form class="form-inline my-2 my-lg-0 underSearchForm" action="/selectUserBoard?nickname=${user.nickname}">
 						<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 						<input class="form-control mr-sm-2 board-search" type="search"

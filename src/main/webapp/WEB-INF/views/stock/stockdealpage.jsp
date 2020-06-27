@@ -549,7 +549,7 @@ tr td button {
 																		<tbody>
 																			<tr>
 																				<td title="종목명" class="first">${stockName }</td>
-																				<td title="잔고수량">${myStockQu }</td>
+																				<td title="잔고수량">${myStockQu}</td>
 																			</tr>
 																		</tbody>
 																	</table>

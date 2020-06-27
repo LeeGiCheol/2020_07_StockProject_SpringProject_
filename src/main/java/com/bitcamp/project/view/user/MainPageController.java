@@ -203,6 +203,15 @@ public class MainPageController {
 		user = myPostService.selectUser(vo);
 		user = signInService.logIn(user);
 		
+		if(user == null) {
+			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
+			mav.addObject("location", "");
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
+		}
+		
+		
 		Map<String, Object> myPost = myPostService.myPostList(user, Integer.parseInt(bnowPage),
 				Integer.parseInt(cnowPage), bSearchStyle, boardKeyword, commentKeyword);
 		mav.addObject("user", user);
@@ -287,6 +296,11 @@ public class MainPageController {
 			mav.addObject("accumAsset", hm4.get("accumAsset"));
 			mav.addObject("ranking", hm4.get("ranking"));
 			mav.setViewName("selectUserMoney");
+			
+			System.out.println("1 "+(PagingVO) hm1.get("pv1"));
+			System.out.println("2 "+(PagingVO) hm2.get("pv2"));
+			
+			
 			return mav;
 		}
 	}

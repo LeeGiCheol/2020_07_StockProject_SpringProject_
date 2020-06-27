@@ -239,7 +239,8 @@ public class TradeController {
 		tradeService.stockSelling(vo);
 		mav.addObject("msg", "매도 등록: " + stockName + ", " + price);
 		mav.addObject("location", "/trade?stockName=" + stockName);
-		mav.setViewName("msg/notice");
+		mav.addObject("icon", "success");
+		mav.setViewName("msg/msg");
 		return mav;
 	}
 
@@ -296,6 +297,7 @@ public class TradeController {
 
 		try {
 			String id = ((UserVO) session.getAttribute("loginUser")).getId();
+			System.out.println("id "+id);
 			StockVO sv = new StockVO();
 			sv.setId(id);
 			sv.setStockName(stockName);
