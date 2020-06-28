@@ -349,7 +349,7 @@
 	function drawUserVisitChart() {
 	
 		 var data = google.visualization.arrayToDataTable([
-	          ['게시물', '개수'],
+	          ['유저 방문현황', '방문 수'],
 	          ["${userVisitChart[7].chartDate}", ${userVisitChart[7].chartCount}],
 	          ["${userVisitChart[6].chartDate}", ${userVisitChart[6].chartCount}],
 	          ["${userVisitChart[5].chartDate}", ${userVisitChart[5].chartCount}],
@@ -364,7 +364,7 @@
 		 
 		var options = {
 			chart : {
-				title : '일별 게시물 개수',
+				title : '유저 방문현황',
 				subtitle : ''
 				
 			}
@@ -408,7 +408,7 @@
 		var chart = new google.visualization.AreaChart(document
 				.getElementById('userSignUpChart'));
 
-		chart.draw(data, google.charts.Bar.convertOptions(options2));
+		chart.draw(data, options2);
 		 
 
 	}	

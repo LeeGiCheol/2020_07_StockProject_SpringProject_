@@ -83,6 +83,14 @@ public class SignUpController {
 		}
 		System.out.println("vo su : " + vo.toString());
 		signUpService.signUp(vo);
+		
+		if(vo.getId().contains("_naver_")) {
+			vo.setId(vo.getId().replace("_naver_", ""));
+		}
+		else if(vo.getId().contains("_kakao_")) {
+			vo.setId(vo.getId().replace("_kakao_", ""));
+		}
+		
 		session.setAttribute("loginUser", vo);
 		return "signInUp/signup03";
 	}

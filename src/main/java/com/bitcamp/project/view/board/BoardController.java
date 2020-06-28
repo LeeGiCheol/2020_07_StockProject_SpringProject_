@@ -209,11 +209,16 @@ public class BoardController {
 		vo.setRcontent(rcontent);
 		UserVO user = (UserVO) session.getAttribute("loginUser");
 		vo.setNickname(user.getNickname());
+		
+		
 
 		int report = boardService.reportBoard(vo);
 
 		ModelAndView mav = new ModelAndView();
 
+		
+	
+		
 		if (report == 1) {
 			mav.addObject("msg", "해당 게시물이 신고 완료되었습니다.");
 			

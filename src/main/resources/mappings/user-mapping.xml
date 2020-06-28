@@ -155,7 +155,11 @@
 	<update id="updateUser" parameterType="user">
 		update user
 		set NICKNAME=#{nickname}, ADDRESS=#{address}, showEsetSetting=#{showEsetSetting}
-		where ID=#{id}
+		where ID=#{id};
+
+		update usernickname
+		set NICKNAME=#{nickname}
+		where ID=#{id};
 	</update>
 	
 	<select id="getChargingCount" parameterType="String" resultType="int">
