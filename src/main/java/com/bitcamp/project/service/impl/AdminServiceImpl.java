@@ -113,10 +113,12 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.updateRcheck(pno);
 	}
 	
+	@Override
 	public AdminVO qnaDetail(AdminVO vo) {
 		return adminDAO.qnaDetail(vo);
 	}
 	
+	@Override
 	public int questionDelete(AdminVO vo) {
 		return adminDAO.questionDelete(vo);
 	}
@@ -125,24 +127,25 @@ public class AdminServiceImpl implements AdminService {
 	public int qnaUpdate(AdminVO vo) {
 		return adminDAO.qnaUpdate(vo);
 	}
+	
 	@Override
 	public int answerDelete(AdminVO vo) {
 		return adminDAO.answerDelete(vo);
 	}
+	
 	@Override
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return adminDAO.boardChart(vo);
 	}
+	
 	@Override
 	public List<UserVO> userSignUpChart(UserVO vo) {
 		return adminDAO.userSignUpChart(vo);
 	}
+	
 	@Override
 	public List<VisitVO> userVisitChart(VisitVO vo) {
 		return visitCountDAO.userVisitChart(vo);
 	}
-	
-	
-	
 	
 }
