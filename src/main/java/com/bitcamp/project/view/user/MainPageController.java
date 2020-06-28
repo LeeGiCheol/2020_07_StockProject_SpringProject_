@@ -101,6 +101,9 @@ public class MainPageController {
 		mav.addObject("kospi_lowprice", kospiData[4]);
 		mav.addObject("kospi_lastprice", kospiData[5]);
 		
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		
+		mav.addObject("loginUser", loginUser);
 		
 		KospiKosdaq kos = new KospiKosdaq();
 		Info kosUpdown = kos.kosUpdown();
