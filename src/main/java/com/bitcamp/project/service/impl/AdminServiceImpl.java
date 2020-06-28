@@ -8,21 +8,24 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.project.dao.AdminDAO;
+import com.bitcamp.project.dao.VisitCountDAO;
 import com.bitcamp.project.service.AdminService;
 import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
+import com.bitcamp.project.vo.VisitVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminDAO adminDAO;
+	@Autowired
+	VisitCountDAO visitCountDAO;
 	@Autowired
 	HttpSession session;
 	
@@ -58,7 +61,6 @@ public class AdminServiceImpl implements AdminService {
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		PagingVO qnaPage = new PagingVO(adminDAO.pageCount(vo), nowPage, page);
 		
-		System.out.println("data2 "+adminDAO.pageCount(vo));
 		qnaPage.getUtil().put("searchStyle", searchStyle);
 		qnaPage.getUtil().put("keyword", keyword);
 		qnaPage.getUtil().put("nickname", vo.getNickname());
@@ -107,6 +109,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	public Map<String, Object> showReport(AdminVO vo, String pno) {
+		AdminVO showReport = adminDAO.showReport(pno);
+		if(showReport == (null)) {
+			return null;
+		}
+		showReport.setRdatetime(new Date(showReport.getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("reportSelectList", showReport);
+		return postMap;	
+	}
+	
+	@Override
 	public int updateRcheck(int pno) {
 		return adminDAO.updateRcheck(pno);
 	}
@@ -135,13 +149,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<UserVO> userSignUpChart(UserVO vo) {
 		return adminDAO.userSignUpChart(vo);
 	}
-	
-	
 	@Override
-	public int userVisit(AdminVO vo) {
-		System.out.println("adslgknsadlgknasdklgnasdsadfsadf");
-		return adminDAO.userVisit(vo);
+	public List<VisitVO> userVisitChart(VisitVO vo) {
+		return visitCountDAO.userVisitChart(vo);
 	}
+	
 	
 	
 	

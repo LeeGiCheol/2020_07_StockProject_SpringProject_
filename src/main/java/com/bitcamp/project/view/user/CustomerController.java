@@ -53,7 +53,7 @@ public class CustomerController {
 	
 	@GetMapping(value="/customer")
 	public String customerLanding(Model model, BoardVO vo) {
-		vo.setBno(3);
+		vo.setBno("customerNotice");
 		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
 		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
 		
@@ -63,7 +63,7 @@ public class CustomerController {
 	@GetMapping(value="/customerNotice")
 	public String customerNotice(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
-		int bno = 3;
+		String bno = "customerNotice";
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
@@ -75,7 +75,8 @@ public class CustomerController {
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
-		return "customer/customerNotice";
+		System.out.println((List<BoardVO>)boardList.get("boardList"));
+		return "customer/customerNotice"; 
 	}	
 	@GetMapping("/customerNotice/detail")
 	public ModelAndView getView(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage) {
@@ -132,7 +133,7 @@ public class CustomerController {
 		
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		vo.setId(loginUser.getId());
-		vo.setBno(3); // 공지사항
+		vo.setBno("customerNotice"); // 공지사항
 		List<String> uploadThumbnail = new ArrayList<String>();
 		
 		FileUpload file = new FileUpload();

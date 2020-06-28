@@ -1,7 +1,6 @@
 package com.bitcamp.project.view.board;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +25,7 @@ import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
+import com.bitcamp.project.vo.VisitVO;
 
 @Controller
 public class AdminController {
@@ -62,6 +62,11 @@ public class AdminController {
 		List<UserVO> userSignUpChart = adminService.userSignUpChart(allUser);
 		mav.addObject("userSignUpChart", userSignUpChart);
 		
+		VisitVO vVo = new VisitVO();
+		
+		List<VisitVO> visitChart = adminService.userVisitChart(vVo);
+		mav.addObject("userVisitChart", visitChart);
+		System.out.println(visitChart);
 		
 		loginUser.getPoint();
 		
@@ -74,7 +79,6 @@ public class AdminController {
 		}
 
 		Map<String, Object> qnaList = adminService.qnaList(vo, 0, "", "", 5, "main");
-		System.out.println("여 기 " +qnaList);
 		model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
 		
 		Map<String, Object> reportList = adminService.reportList(vo, Integer.parseInt(nowPage), 30, "", "");
@@ -304,14 +308,28 @@ public class AdminController {
 	}
 
 	@GetMapping("/admin/report/delete")
-	public String reportDelete(BoardVO vo) {
-		System.out.println("@@@@여기로들어옴");
+	public String reportDelete(Model model, BoardVO vo) {
 		int delCheck = boardService.deleteBoard(vo);
 		if(delCheck == 1) {
 			int pno = vo.getPno();
 			adminService.updateRcheck(pno);
+			model.addAttribute("msg", "성공적으로 삭제되었습니다.");
+			model.addAttribute("location", "/admin/report");
+			model.addAttribute("icon", "success");
 		}
 		
-		return "redirect:/admin/report";
+		
+		return "msg/msg";
+	}
+	
+	@ResponseBody
+	@PostMapping("/admin/showReport")
+	public Map<String, Object> showReport(HttpSession session, Model model, AdminVO vo, @ModelAttribute("pno") String pno) {
+		Map<String, Object> showReport = adminService.showReport(vo, pno);
+		if(showReport == (null)) {
+			return null;
+		}
+		model.addAttribute("showReport", (AdminVO) showReport.get("showReport"));
+		return showReport;
 	}
 }

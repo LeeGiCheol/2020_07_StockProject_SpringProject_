@@ -49,7 +49,7 @@ public class BoardController {
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 			@ModelAttribute("orderby") String orderby /* new = 최신순 best = 인기순 */ ) {
-		int bno = 1;
+		String bno = "free";
 
 		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
@@ -85,7 +85,7 @@ public class BoardController {
 
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		vo.setId(loginUser.getId());
-		vo.setBno(1); // 자유게시판
+		vo.setBno("free"); // 자유게시판
 
 		List<String> uploadThumbnail = new ArrayList<String>();
 
@@ -235,5 +235,7 @@ public class BoardController {
 		uploadedFileName.add(vo.getThumbnailName());
 		System.out.println(uploadedFileName);
 	}
+	
+	
 
 }

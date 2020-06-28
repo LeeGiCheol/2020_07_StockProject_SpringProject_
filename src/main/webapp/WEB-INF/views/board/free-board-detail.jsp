@@ -228,80 +228,157 @@
 	</div>
 	<%@include file="../mainfooter2.jsp" %>
 </div>
-<div id="reportPopup" class="pop-layer" style="display:none">
+<c:if test="${loginUser.point ge 0 }">
+	<div id="reportPopup" class="pop-layer" style="display:none">
+			<div class="pop-inner">
+				<div class="popup-wrap">
+					<form id="reportBoard" action="/reportBoard" method="POST"> 
+						<div class="pop-tit"><span>게시물 신고하기</span></div>
+						<div class="pop-cont">
+							<div class="pop-clean">
+								<table>
+									<caption>게시물 신고하기</caption>
+									<colgroup>
+										<col style="width: 100px;">
+										<col style="">
+									</colgroup>
+									<tbody>
+									<tr>
+										<th scope="col">제목</th>
+										<td>${boardDetail.title}</td>
+									</tr>
+									<tr>
+										<th scope="col">작성자</th>
+										<td>${boardDetail.nickname}</td>
+									</tr>
+									</tbody>
+								</table>
+		
+								<h2 class="tit-h2">신고사항</h2>
+								<p class="notify">
+									<span class="select-style">
+										<select title="신고항목선택" id="rtype" name="rtype" class="selectpicker" tabindex="-98">
+											<option class="bs-title-option" value="">신고항목선택</option>
+											<option value="광고">광고</option>
+											<option value="욕설">욕설</option>
+											<option value="허위루머">허위루머</option>
+											<option value="타종목추천">타종목추천</option>
+											<option value="도배">도배</option>
+											<option value="명예훼손">명예훼손</option>
+											<option value="주제무관">주제무관</option>
+											<option value="위조/변조">위조/변조</option>
+											<option value="음란">음란</option>
+											<option value="지역감정">지역감정</option>
+											<option value="기타">기타</option>
+										</select>
+									</span>								
+									<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
+								</p>
+								<dl class="pop-clean-info">
+									<dt>이용안내</dt>
+									<dd>
+										신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
+										<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
+									</dd>
+								</dl>
+								<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
+							
+							</div>
+							
+								<input type="hidden" name="pno" value="${boardDetail.pno}">
+								<input type="hidden" name="title" value="${boardDetail.title}">
+							
+							<div class="pop-btn">
+	
+								<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
+								<button type="submit" id="submitReport" class="btn-m red">신고하기</button>
+							</div>
+						</div>
+						<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
+					</form> 
+				</div>
+			</div>
+		</div>
+	</c:if>
+<c:if test="${loginUser.point le -1 }">
+	<script>
+	window.onload = function(){showReport(${boardDetail.pno});}
+	</script>
+	<div id="reportPopup" class="pop-layer" style="display:none" >
 		<div class="pop-inner">
 			<div class="popup-wrap">
-				<form id="reportBoard" action="/reportBoard" method="POST"> 
-					<div class="pop-tit"><span>게시물 신고하기</span></div>
+				<form id="reportBoard" action="" method="POST">
+				<%-- <button type="button" onclick="showReport('${boardDetail.pno}');"></button> --%>
+					<div class="pop-tit"><span>게시물 신고 내역</span></div>
 					<div class="pop-cont">
-						<div class="pop-clean">
+						<div class="pop-clean" id="nonReport">
 							<table>
-								<caption>게시물 신고하기</caption>
-								<colgroup>
-									<col style="width: 100px;">
-									<col style="">
-								</colgroup>
-								<tbody>
-								<tr>
-									<th scope="col">제목</th>
-									<td>${boardDetail.title}</td>
-								</tr>
-								<tr>
-									<th scope="col">작성자</th>
-									<td>${boardDetail.nickname}</td>
-								</tr>
+								<colgroup><col style="width: 100px;"><col style=""></colgroup>
+								<tbody id="reportSelectList">
 								</tbody>
 							</table>
-	
-							<h2 class="tit-h2">신고사항</h2>
-							<p class="notify">
-								<span class="select-style">
-									<select title="신고항목선택" id="rtype" name="rtype" class="selectpicker" tabindex="-98">
-										<option class="bs-title-option" value="">신고항목선택</option>
-										<option value="광고">광고</option>
-										<option value="욕설">욕설</option>
-										<option value="허위루머">허위루머</option>
-										<option value="타종목추천">타종목추천</option>
-										<option value="도배">도배</option>
-										<option value="명예훼손">명예훼손</option>
-										<option value="주제무관">주제무관</option>
-										<option value="위조/변조">위조/변조</option>
-										<option value="음란">음란</option>
-										<option value="지역감정">지역감정</option>
-										<option value="기타">기타</option>
-									</select>
-								</span>								
-								<textarea cols="10" rows="3" class="byte-count" id="rprtResn" name="rcontent" title="내용입력" data-byte-limit="2000" placeholder="내용을 입력해주세요."></textarea>
-							</p>
-							<dl class="pop-clean-info">
-								<dt>이용안내</dt>
-								<dd>
-									신고된 내용은 판타지스탁 게시물 운영정책에 따라 삭제 되거나, 게시물 작성자는 서비스 이용의 제한을 받을 수도 있습니다.
-									<span>신고 해 주신 내용은 확인 후 처리 하도록 하겠습니다. 회원님의 소중한 신고에 감사를 드립니다.</span>
-								</dd>
-							</dl>
-							<p class="pop-clean-call">신고사항 외의 기타문의 사항이 있으시면 고객센터로 문의해주세요. <a href="#">고객센터 문의</a></p>
-						
 						</div>
-						
-							<input type="hidden" name="pno" value="${boardDetail.pno}">
-							<input type="hidden" name="title" value="${boardDetail.title}">
-						
-						<div class="pop-btn">
-
-							<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>
-							<button type="submit" id="submitReport" class="btn-m red">신고하기</button>
-						</div>
+							<div class="pop-btn" id="pageLocation">
+							</div>
 					</div>
 					<button type="button" onclick="hidePopup()" class="cla-close e-reportPopupClose">닫기</button>
 				</form> 
 			</div>
 		</div>
 	</div>
-
-
+</c:if>
+	
 	<script>
         /** 신고 기능들 모음 Report */
+    	 function showReport(pno){
+     	$.ajax({
+				type : "POST",
+				url : '${pageContext.request.contextPath}/admin/showReport',
+				data : { "pno" : pno },
+				success : function(data) {
+						var reportSelectList = "";
+						var pageLocation=""
+						if(data === ('')){
+							reportSelectList += '해당 게시물은 신고되지 않았습니다.'
+							$("#nonReport").html(reportSelectList);
+							pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>'
+							$("#pageLocation").html(pageLocation);
+						}
+						else if(data.reportSelectList.rno >= 1){
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">처리현황</th>'
+						reportSelectList += 	'<td id="re.rcheck">'+data.reportSelectList.rcheck+'</td>'
+						reportSelectList += '</tr>'
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">신고날짜</th>'
+						reportSelectList += 	'<td>'+changeDate(data.reportSelectList.rdatetime)+'</td>'
+						reportSelectList += '</tr>'
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">신고사항</th>'
+						reportSelectList += 	'<td>'+data.reportSelectList.rtype+'</td>'
+						reportSelectList += '</tr>'
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">작성자</th>'
+						reportSelectList += 	'<td>'+data.reportSelectList.nickname+'</td>'
+						reportSelectList += '</tr>'
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">신고제목</th>'
+						reportSelectList += 	'<td>'+data.reportSelectList.title+'</td>'
+						reportSelectList += '</tr>'
+	
+						$("#reportSelectList").html(reportSelectList);
+						var pageLocation=""
+							if((data.reportSelectList.rcheck)===("처리대기중")){
+								pageLocation += '<button type="button" class="btn-m" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
+							}
+								pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>'
+								$("#pageLocation").html(pageLocation);
+						}
+						
+					}
+				});
+			}
+     
         var Report = (function($) {
             var root = this;
             var Module;
@@ -464,14 +541,14 @@ function submitReportComt(){
 		var pno = ${boardDetail.pno}
 		var page = "&bnowPage="+${commentPage.nowPage}
 		
-			console.log(page)
+			/* console.log(page) */
 			$.ajax({
 				type : 'GET',
 				url : '${pageContext.request.contextPath}/board/free/detail/ajax?pno='+pno + page,
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
-					console.log(data)
+					/* console.log(data) */
 					// 게시판상세보기
 					var board = "";
 					
@@ -556,7 +633,7 @@ function submitReportComt(){
 							// 내 댓글에 수정/삭제 버튼 띄우기
 							if("${loginUser.nickname}" == data.commentList[i].nickname){
 								var test = data.commentList[i].ccontent
-								console.log("${loginUser.nickname}")
+								/* console.log("${loginUser.nickname}") */
 								//console.log(data.commentList.nickname)
 								$("#showhide-btn").hide()
 	 							comment +=  	   '<div class="share-more">'
@@ -715,7 +792,7 @@ function submitReportComt(){
 					
 					// 마지막 글일 때
 					if(data.boardPrevNext[0].pno > data.boardDetail.pno){
-						console.log(1)
+						/* console.log(1) */
 	 					prev_next += 	'<div class="prev">'
 						prev_next +=    	 '<dl>'
 						prev_next +=          '<dt>이전글</dt>'
@@ -732,8 +809,8 @@ function submitReportComt(){
 					
 	 			},
 				error : function(error, data){
-					console.log(data)
-					console.log(error)
+					/* console.log(data)
+					console.log(error) */
 					alert('error!!'); 
 				}
 			});
