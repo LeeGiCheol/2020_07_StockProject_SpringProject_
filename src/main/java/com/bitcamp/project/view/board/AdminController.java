@@ -42,6 +42,12 @@ public class AdminController {
 	
 	List<String> uploadedFileName = BoardController.uploadedFileName;
 
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
+	
+	
 
 	@GetMapping("/admin/main")
 	public ModelAndView adminPage(BoardVO bVo, AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
