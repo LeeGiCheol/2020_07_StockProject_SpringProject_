@@ -18,7 +18,7 @@
 	<select id="totalSearch_Free" resultType="map">
 		SELECT * 
 		FROM board 
-		WHERE bno = 1 
+		WHERE bno = "free" 
 		AND (title LIKE CONCAT('%',#{title},'%') 
 		OR bcontent like CONCAT('%',#{title},'%')) 
 		
@@ -45,7 +45,7 @@
 	<select id="totalSearch_Port" resultType="map">
 		SELECT * 
 		FROM board 
-		WHERE bno = 2 
+		WHERE bno = "portfolio" 
 		AND (title LIKE CONCAT('%',#{title},'%') 
 		OR bcontent like CONCAT('%',#{title},'%')) 
 		<!-- 기본검색 -->
@@ -86,11 +86,11 @@
 	
 	
 	<select id="totalSearch_Free_Count" resultType="int">
-		SELECT COUNT(*) FROM board WHERE bno = 1 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc 
+		SELECT COUNT(*) FROM board WHERE bno = "free" and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc 
 	</select>
 	
 	<select id="totalSearch_Port_Count" resultType="int">
-		SELECT COUNT(*) FROM board WHERE bno = 2 and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc 
+		SELECT COUNT(*) FROM board WHERE bno = "portfolio" and (title LIKE CONCAT('%',#{title},'%') or bcontent like CONCAT('%',#{title},'%')) order by bdatetime desc 
 	</select>
 	
 	<select id="totalSearch_Nick_Count" resultType="int">
