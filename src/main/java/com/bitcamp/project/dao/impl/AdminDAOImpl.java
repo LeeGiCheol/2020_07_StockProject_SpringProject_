@@ -62,8 +62,8 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	//게시판에 뿌려주기용
 	@Override
-	public AdminVO showReport(String pno) {
-		return mybatis.selectOne("admin.showReport", pno);
+	public AdminVO showReport(AdminVO vo) {
+		return mybatis.selectOne("admin.showReport", vo);
 	}
 	
 	

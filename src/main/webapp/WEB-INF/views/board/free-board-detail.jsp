@@ -243,7 +243,7 @@
 										<col style="">
 									</colgroup>
 									<tbody>
-									<tr
+									<tr>
 										<th scope="col">제목</th>
 										<td>${boardDetail.title}</td>
 									</tr>
@@ -287,6 +287,7 @@
 							
 								<input type="hidden" name="pno" value="${boardDetail.pno}">
 								<input type="hidden" name="title" value="${boardDetail.title}">
+								<input type="hidden" name="bno" value="${boardDetail.bno}">
 							
 							<div class="pop-btn">
 	
@@ -302,7 +303,7 @@
 	</c:if>
 <c:if test="${loginUser.point le -1 }">
 	<script>
-	window.onload = function(){showReport(${boardDetail.pno});}
+	window.onload = function(){showReport(${boardDetail.pno}, '${boardDetail.bno}');}
 	</script>
 	<div id="reportPopup" class="pop-layer" style="display:none" >
 		<div class="pop-inner">
@@ -330,11 +331,11 @@
 	
 	<script>
         /** 신고 기능들 모음 Report */
-    	 function showReport(pno){
+    	 function showReport(pno, bno){
      	$.ajax({
 				type : "POST",
 				url : '${pageContext.request.contextPath}/admin/showReport',
-				data : { "pno" : pno },
+				data : { "pno" : pno, "bno" : bno },
 				success : function(data) {
 						var reportSelectList = "";
 						var pageLocation=""

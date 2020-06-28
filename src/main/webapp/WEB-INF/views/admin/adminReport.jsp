@@ -329,6 +329,13 @@
 					reportSelectList += 	'<th scope="col">신고사항</th>'
 					reportSelectList += 	'<td>'+data.reportSelectList.rtype+'</td>'
 					reportSelectList += '</tr>'
+					reportSelectList += 	'<th scope="col">게시판 명</th>'
+					if(data.reportSelectList.bno === 'free')
+						data.reportSelectList.bno = '자유게시판'
+					if(data.reportSelectList.bno === 'portfolio')
+						data.reportSelectList.bno = '포트폴리오 게시판'
+					reportSelectList += 	'<td>'+data.reportSelectList.bno+'</td>'
+					reportSelectList += '</tr>'
 					reportSelectList += '<tr>'
 					reportSelectList += 	'<th scope="col">작성자</th>'
 					reportSelectList += 	'<td>'+data.reportSelectList.nickname+'</td>'
@@ -337,12 +344,20 @@
 					reportSelectList += 	'<th scope="col">제목</th>'
 					reportSelectList += 	'<td>'+data.reportSelectList.title+'</td>'
 					reportSelectList += '</tr>'
+					reportSelectList += '<tr>'
+					
 
 					$("#reportSelectList").html(reportSelectList);
 					var pageLocation=""
 					if(data.reportSelectList.rcheck === '처리대기중'){
-						pageLocation += '<button type="button" class="btn-m red" onclick="location.href=\'/board/free/detail?pno='+data.reportSelectList.pno+'\'">게시물 이동</button>'
-						pageLocation += '<button type="button" class="btn-m" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
+						if(data.reportSelectList.bno === '자유게시판'){
+							pageLocation += '<button type="button" class="btn-m red" onclick="location.href=\'/board/free/detail?pno='+data.reportSelectList.pno+'\'">게시물 이동</button>'
+							pageLocation += '<button type="button" class="btn-m" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
+						}
+						else if(data.reportSelectList.bno === '포트폴리오 게시판'){
+							pageLocation += '<button type="button" class="btn-m red" onclick="location.href=\'/board/portfolio/detail?pno='+data.reportSelectList.pno+'\'">게시물 이동</button>'
+							pageLocation += '<button type="button" class="btn-m" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
+						}
 					}
 					pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>'
 							
