@@ -191,7 +191,7 @@ public class CustomerController {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
 			model.addAttribute("location", "/signInPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}else {
 			return "customer/customerClaimWrite";
 		}

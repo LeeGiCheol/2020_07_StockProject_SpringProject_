@@ -69,7 +69,7 @@ public class SignUpController {
 		System.out.println("vo su : " + vo.toString());
 		
 		signUpService.signUp(vo);
-		model.addAttribute("loginUser", vo);
+		model.addAttribute("login", vo);
 		
 		
 		return "signInUp/signup03";
