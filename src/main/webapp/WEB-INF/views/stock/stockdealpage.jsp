@@ -341,7 +341,7 @@ tr td button {
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span
+												<label for="nOrdUnpr">단가</label><span
 													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
 													type="text" class="alignR" id="buying_price"
 													name="buyingPrice" readOnly style="cursor: pointer;"></span> 원 <span
@@ -439,7 +439,7 @@ tr td button {
 
 
 											<div class="detail unit-price">
-												<label for="nOrdUnpr">수량</label> <input type="text"
+												<label for="nOrdUnpr">수량</label><input type="text"
 													class="alignR" name="buyingQu" id="buying_qu" value="0"
 													onclick="" numberOnly> 주 <span class="buying-check">
 													<a onclick="sumplus(10);"
@@ -508,7 +508,7 @@ tr td button {
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 14px;">단가</label><span
+												<label for="nOrdUnpr">단가</label><span
 													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
 													type="text" class="alignR" id="selling_price"
 													name="sellingPrice" readOnly style="cursor: pointer;"></span> 원 <span
@@ -562,7 +562,7 @@ tr td button {
 											
 													
 											<div class="detail unit-price">
-												<label for="nOrdUnpr">수량</label> <input type="text"
+												<label for="nOrdUnpr">수량</label><input type="text"
 													class="alignR" id="selling_qu" name="sellingQu" numberOnly>
 												주
 											</div>
@@ -583,10 +583,10 @@ tr td button {
 								<form id="trad_frm" action="/modify" method="post">
 									<div class="stock-buying">
 										<div class="choice">
-											<strong>주문구분</strong> <input type="radio" id="input-modify"
-												name="cancleModify" value="modify" onchange="setDisplay();">정정
+											<strong>주문구분</strong><input type="radio" id="input-modify"
+												name="cancleModify" value="modify" onchange="setDisplay();"><label for="input-modify">정정</label>
 											<input type="radio" id="input-cancel" name="cancleModify"
-												value="cancle" onchange="setDisplay();">취소
+												value="cancle" onchange="setDisplay();"><label for="input-cancel">취소</label>
 											<script>
 											function setDisplay(){
 											    if($('input:radio[id=input-modify]').is(':checked')){
@@ -609,24 +609,22 @@ tr td button {
 										</div>
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin: -2px 6px 0 0;">주문번호</label>
-												<input type="text" class="alignR" name="uno"> <span
+												<label for="nOrdUnpr">주문번호</label><input type="text" class="alignR" name="uno"><span
 													class="buying-check"> <a onclick="#"
 													class="buying-check-btn btnStyle btnS buying-cancel" style="cursor: pointer;" data-toggle="modal" data-target="#staticBackdrop2">미체결잔량</a>
 												</span>
 											</div>													
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 39px;"
-													class="btn-cc">단가</label><span
+												<label for="nOrdUnpr"
+													class="btn-cc" style="margin-right: 34px;">단가</label><span
 													data-tooltip-text="호가 클릭 시 단가가 입력 됩니다."><input
 													type="text" class="alignA" id="mySelect" name="modifyPrice"
-													readonly style="cursor: pointer;"></span> <input type="text" class="alignB"
+													readonly style="cursor: pointer;"></span><input type="text" class="alignB"
 													id="mySelect" value="0" style="display: none;" disabled>
 												원
 											</div>
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 34px;">수량</label>
-												<input type="text" class="alignR" name="modifyQu" numberOnly>
+												<label for="nOrdUnpr" style="margin-right: 34px;">수량</label><input type="text" class="alignR" name="modifyQu" numberOnly>
 												주
 
 											</div>

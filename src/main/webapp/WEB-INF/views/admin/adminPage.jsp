@@ -103,13 +103,13 @@
 
 
                     <!-- 차트들어가는부분 -->
-                        <div class="col-xl-12">
+                        <div class="col-xl-12" style="padding: 0 !important;">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area mr-1"></i>
                                     유저 방문현황
                                 </div>
-                                <div class="card-body" id="userVisitChart" style="width: 100%; height: 300px;"></div>
+                                <div class="card-body" id="userVisitChart" style="width: 100%;"></div>
                             </div>
                         </div>
                     <div class="row">
@@ -119,7 +119,7 @@
                                     <i class="fas fa-chart-area mr-1"></i>
                                     유저 가입현황
                                 </div>
-                                <div class="card-body" id="userSignUpChart" style="width: 110%; height: 300px;"></div>
+                                <div class="card-body" id="userSignUpChart" style="width: 100%;"></div>
                             </div>
                         </div>
                         <div class="col-xl-6">
@@ -128,7 +128,7 @@
                                     <i class="fas fa-chart-bar mr-1"></i>
                                     일별 게시물 개수 현황
                                 </div>
-                                <div class="card-body" id="boardChart" style="width: 100%; height: 300px;"><!-- <canvas id="myBarChart" width="100%" height="40"></canvas> --></div>
+                                <div class="card-body" id="boardChart" style="width: 100%; "><!-- <canvas id="myBarChart" width="100%" height="40"></canvas> --></div>
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                                         <tr>
                                             <th class="class center" style="width: 10%;">종류</th>
                                             <th class="status center" style="width: 10%">처리현황</th>
-                                            <th class="title tleft" style="width: 55%">제목</th>
+                                            <th class="title center" style="width: 55%">제목</th>
                                             <th class="writer tleft" style="width: 10%">닉네임</th>
                                             <th class="date center" style="width: 15%">일시</th>
                                         </tr>
@@ -190,9 +190,9 @@
                                     <thead>
                                         <tr>
                                             <th class="class center" style="width: 10%;">종류</th>
-                                            <th class="status center" style="width: 10%">처리현황</th>
-                                            <th class="title center" style="width: 55%">제목</th>
-                                            <th class="writer tleft" style="width: 10%">아이디</th>
+                                            <th class="status center" style="width: 15%">처리현황</th>
+                                            <th class="title center" style="width: 50%">제목</th>
+                                            <th class="writer tleft" style="width: 10%">닉네임</th>
                                             <th class="date center" style="width: 15%">일시</th>
                                         </tr>
                                     </thead>
@@ -201,11 +201,11 @@
                                        <c:forEach items="${reportList}" var="re" varStatus="status" begin="0" end="4">
 	                                       <tr>	
 	                                       		<c:if test="${re.rcheck eq '처리대기중'}">
-	                                       		<td class="class center" style="width: 10%;">${re.rtype}</td>
-	                                            <td class="status center" style="width: 10%">${re.rcheck}</td>
-	                                            <td class="title center" style="width: 55%">${re.title}</td>
-	                                            <td class="writer tleft" style="width: 10%">${re.nickname}</td>
-	                                            <td class="date center" style="width: 15%"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
+	                                       		<td class="class center">${re.rtype}</td>
+	                                            <td class="status center">${re.rcheck}</td>
+	                                            <td class="title tleft">${re.title}</td>
+	                                            <td class="writer tleft">${re.nickname}</td>
+	                                            <td class="date center"><fmt:formatDate pattern="MM/dd HH:mm" value="${re.rdatetime}"/></td>
 	                                            </c:if>
 	                                        </tr>
                                         </c:forEach>
