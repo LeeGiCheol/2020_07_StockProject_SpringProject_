@@ -97,7 +97,7 @@ dt {
 @media only screen and (max-width: 500px){
 .customerBanner {
     background: no-repeat url(/resources/img/customer.png);
-    width: 123%;
+    width: 122%;
     height: 265px;
     background-size: 145%;
     left: -22%;

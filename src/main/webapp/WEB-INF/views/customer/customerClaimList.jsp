@@ -89,7 +89,7 @@
 									<a href="/customerClaim/write">1:1문의</a>
 								</h1>														
 								<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-									<a href="/customerClaim/list">1:1문의 내역</a>
+									<a href="/customerClaim/list">Q&amp;A</a>
 								</h1>
 							</div>
 							<div class="qna-desc">
@@ -146,6 +146,11 @@
 	
 								<!-- 페이징 -->
 								<div class="paging">
+									<c:if test="${loginUser != null}">
+										<p class="right">
+											<a href="/customerClaim/write" class="board-write-btn fantasy">글쓰기</a>
+										</p>
+									</c:if>								
 									<c:if test="${boardPage.total gt 15}">
 										<div class="paging-body">
 											<nav aria-label="..." class="pagination">
@@ -227,13 +232,6 @@
 											</nav>
 										</div>
 									</c:if>
-
-
-									<c:if test="${loginUser != null}">
-										<p class="right">
-											<a href="/customerClaim/write" class="board-write-btn fantasy">글쓰기</a>
-										</p>
-									</c:if>
 								</div>
 
 								<div class="search-area">
@@ -259,14 +257,13 @@
 													+ 내용</option>
 												<option class="dropdown-item board-item" value="search_nick"
 													<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
-											</select> <input class="form-control mr-sm-2 board-search"
-												type="search" name="keyword" placeholder="검색어 입력"
-												aria-label="Search">
-											<button
-												class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
-												type="submit">
-												<i class="fas fa-search"></i>
-											</button>
+											</select> 
+											<span class="input-style">
+											<input type="search" name="keyword" placeholder="검색어 입력" aria-label="Search">
+												<button class="search" type="submit">
+													<i class="fas fa-search"></i>
+												</button>
+											</span>
 										</form>
 									</div>
 								</div>

@@ -70,6 +70,11 @@
 							</div>	
 
 						<div class="board-type">
+							<div class="board-free-nav">
+									<c:if test="${loginUser.point le -1}">
+										<p class="right"><a href="/customerNoticeWrite" class="board-write-btn fantasy">글쓰기</a></p>
+									</c:if>										
+							</div>
 							<div class="tab-content" id="pills-tabContent">
 								<!-- 전체글 -->
 								<table class="board-free-table">
@@ -96,7 +101,7 @@
 
 											<c:if test="${board.bno eq 'customerNotice'}">
 												<tr>
-													<td class="board-no"><span>공지</span></td>
+													<td class="board-no notice-icon"><span>공지</span></td>
 													<!-- 글번호 -->
 
 													<c:choose>
@@ -130,6 +135,9 @@
 
 								<!-- 페이징 -->
 								<div class="paging">
+									<c:if test="${loginUser.point le -1}">
+										<p class="right"><a href="/customerNoticeWrite" class="board-write-btn fantasy">글쓰기</a></p>
+									</c:if>								
 									<div class="paging-body">
 										<nav aria-label="..." class="pagination">
 											<ul class="pagination">
@@ -215,11 +223,6 @@
 											</ul>
 										</nav>
 									</div>
-
-
-									<c:if test="${loginUser.point le -1}">
-										<p class="right"><a href="/customerNoticeWrite" class="board-write-btn fantasy">글쓰기</a></p>
-									</c:if>
 								</div>
 
 								<div class="search-area">
@@ -238,11 +241,13 @@
 												<option class="dropdown-item board-item" value="search_title_content" <c:if
 													test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목 + 내용</option>
 											</select>
-											<input class="form-control mr-sm-2 board-search" type="search" placeholder="검색어 입력"
+											<span class="input-style">
+											<input type="search" placeholder="검색어 입력"
 												aria-label="Search" name="keyword">
-											<button class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn" type="submit">
+											<button class="search" type="submit">
 												<i class="fas fa-search"></i>
 											</button>
+											</span>
 										</form>
 									</div>
 								</div>

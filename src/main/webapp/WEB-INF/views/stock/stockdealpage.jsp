@@ -87,20 +87,20 @@ tr td button {
 
 						<div class="stock-deal-button">
 							<button type="button"
-								class="btn btn-secondary companydata-btn stock-btn"
+								class="board-write-btn fantasy"
 								onclick="window.open('http://media.kisline.com/highlight/mainHighlight.nice?paper_stock=${stockCode}')">기업정보
 							</button>
 							<button type="button"
-								class="btn btn-secondary companydata-btn stock-btn" id="minute">
+								class="board-write-btn fantasy" id="minute">
 								분차트보기</button>
 							<button type="button"
-								class="btn btn-secondary companydata-btn stock-btn" id="day">
+								class="board-write-btn fantasy" id="day">
 								일차트보기</button>
 								
 								
 							<!-- 	ajax호출버튼 -->
 							<button id="historyBttn" type="button"
-								class="btn btn-secondary companydata-btn stock-btn"  data-toggle="modal" data-target="#historyModal">
+								class="board-write-btn fantasy"  data-toggle="modal" data-target="#historyModal">
 								거래 기록</button>
 							<!-- 	원래버튼  <button id="historyBttn" type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
@@ -108,7 +108,7 @@ tr td button {
 								거래 기록</button> -->
 
 							<button id="ownBttn" type="button"
-								class="btn btn-secondary companydata-btn stock-btn" data-toggle="modal" data-target="#ownModal">
+								class="board-write-btn fantasy" data-toggle="modal" data-target="#ownModal">
 						
 								보유 종목</button>
 							<!-- <button id="recordBttn" type="button"
@@ -218,11 +218,6 @@ tr td button {
 								<col width="30%">
 								<col width="45%">
 							</colgroup>
-							<%-- 							<thead>
-								<tr>
-									<th scope="col" colspan="3" id="stockName">${stockName}</th>
-								</tr>
-							</thead> --%>
 							<tbody>
 								<tr>
 									<td scope="col" class="table-border"></td>
@@ -277,39 +272,41 @@ tr td button {
 									인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
 								</caption>
 								<colgroup>
-									<col width="40%">
-									<col width="20%">
-									<col width="20%">
+									<col width="34%">
+									<col width="25%">
+									<col width="22%">
+									<col width="19%">
 								</colgroup>
-								<thead>
+<!-- 								<thead>
 									<tr>
 										<th scope="col">구분</th>
 										<th scope="col">현재가</th>
 										<th scope="col">전일대비</th>
 									</tr>
-								</thead>
+								</thead> -->
 								<tbody id="topRank">
 
 								</tbody>
 							</table>
 						</div>
-						<div class="table-body-rigth">
+						<div class="table-body-right">
 							<table class="tbl_home_right">
 								<caption>
 									인기 검색 종목표 <span>종목명에 대한 현재가,전일대비로 구분되어 있습니다.</span>
 								</caption>
 								<colgroup>
-									<col width="40%">
-									<col width="20%">
-									<col width="20%">
+									<col width="34%">
+									<col width="25%">
+									<col width="22%">
+									<col width="19%">
 								</colgroup>
-								<thead>
+<!-- 								<thead>
 									<tr>
 										<th scope="col">구분</th>
 										<th scope="col">현재가</th>
 										<th scope="col">전일대비</th>
 									</tr>
-								</thead>
+								</thead> -->
 								<tbody class="rank-table" id="searchRank">
 
 								</tbody>
@@ -946,10 +943,10 @@ tr td button {
 								topRank += '<th scope="row"><em>'+a+'</em>'
 								topRank += 	'<a href="/trade?stockName='+data.topName[i]+'"'
 								topRank += 	'onclick="clickcr(this, &quot;boa.list&quot;, &quot;007570&quot;, &quot;1&quot;, event);">'+data.topName[i]+'</a></th>'
-								topRank += '<td>'+data.topCurrentPrice[i]+'</td>'
-									topRank += '<td><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
+								topRank += '<td scope="row">'+data.topCurrentPrice[i]+'</td>'
+									topRank += '<td scope="row"><em class="bu_p bu_pup2"><span class="blind">상한가</span></em>'
 									topRank += 	'<span>'+data.topBefore[i]+'</span></td>'
-									topRank += 	'<td><span class="tah p11 red02">'+data.topUpDown[i].substring(1)+'</span></td>'
+									topRank += 	'<td scope="row"><span class="tah p11 red02">'+data.topUpDown[i].substring(1)+'</span></td>'
 									topRank += '</tr>'
 								a++
 							}

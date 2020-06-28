@@ -18,8 +18,8 @@
 <link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/mainfooter.css">
 
-<link rel="stylesheet" href="/resources/css/sidebar.css">
 <link rel="stylesheet" href="/resources/css/free-board.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
  
 <script>
 	$(document).ready(function() {
@@ -129,8 +129,8 @@
 									<!-- 공지사항 띄우기  -->
 									<tbody>
 										<c:forEach items="${ServiceCenternotice}" var="sc" begin="0" end="1">
-												<tr>
-													<td class="board-no"><span>공지</span></td>
+												<tr class="board-notice">
+													<td class="board-no notice-icon"><span>공지</span></td>
 													<!-- 글번호 -->
 													<c:choose>
 														<c:when test="${sc.commentCount ne 0}">
@@ -196,6 +196,11 @@
 	
 								<!-- 페이징 -->
 								<div class="paging">
+									<c:if test="${loginUser != null}">
+										<p class="right">
+											<a href="/board/free/write" class="board-write-btn fantasy">글쓰기</a>
+										</p>
+									</c:if>								
 									<c:if test="${boardPage.total gt 30}">
 										<div class="paging-body">
 											<nav aria-label="..." class="pagination">
@@ -279,11 +284,7 @@
 									</c:if>
 
 
-									<c:if test="${loginUser != null}">
-										<p class="right">
-											<a href="/board/free/write" class="board-write-btn fantasy">글쓰기</a>
-										</p>
-									</c:if>
+
 								</div>
 
 								<div class="search-area">
@@ -293,7 +294,7 @@
 											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
 											<select class="dropdown-toggle-board" name="searchStyle">
-												<option class="nav-link dropdown-toggle board-item"
+												<option class="dropdown-toggle board-item"
 													id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
 													aria-expanded="false" value=""
 													<c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
@@ -309,14 +310,18 @@
 													+ 내용</option>
 												<option class="dropdown-item board-item" value="search_nick"
 													<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
-											</select> <input class="form-control mr-sm-2 board-search"
+											</select> 
+											
+											<span class="input-style">
+											<input
 												type="search" name="keyword" placeholder="검색어 입력"
 												aria-label="Search">
 											<button
-												class="btn btn-outline-secondary my-2 my-sm-0 board-search-btn"
+												class="search"
 												type="submit">
 												<i class="fas fa-search"></i>
 											</button>
+											</span>
 										</form>
 									</div>
 								</div>
@@ -378,6 +383,7 @@
 
 	<%@include file="../mainfooter2.jsp"%>
 </body>
+<script src="/resources/js/selectpicker.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
