@@ -107,6 +107,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	public Map<String, Object> showReport(AdminVO vo, String pno) {
+		AdminVO showReport = adminDAO.showReport(pno);
+		if(showReport == (null)) {
+			return null;
+		}
+		showReport.setRdatetime(new Date(showReport.getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("reportSelectList", showReport);
+		return postMap;	
+	}
+	
+	@Override
 	public int updateRcheck(int pno) {
 		return adminDAO.updateRcheck(pno);
 	}
@@ -142,6 +154,7 @@ public class AdminServiceImpl implements AdminService {
 		System.out.println("adslgknsadlgknasdklgnasdsadfsadf");
 		return adminDAO.userVisit(vo);
 	}
+	
 	
 	
 	

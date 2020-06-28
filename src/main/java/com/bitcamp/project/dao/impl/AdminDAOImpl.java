@@ -35,12 +35,6 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		return cnt;
 	}
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public int updateAnswer(AdminVO vo) {
@@ -68,6 +62,12 @@ public class AdminDAOImpl implements AdminDAO {
 	public AdminVO reportSelectList(String rno) {
 		return mybatis.selectOne("admin.reportSelectList",rno);
 	}
+	//게시판에 뿌려주기용
+	@Override
+	public AdminVO showReport(String pno) {
+		return mybatis.selectOne("admin.showReport", pno);
+	}
+	
 	
 	@Override
 	public int reportCount(AdminVO vo) {
@@ -109,6 +109,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public int userVisit(AdminVO vo) {
 		return mybatis.insert("");
 	}
+	
 	
 	
 	

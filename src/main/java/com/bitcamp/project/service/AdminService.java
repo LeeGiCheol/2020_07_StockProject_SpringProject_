@@ -21,6 +21,7 @@ public interface AdminService {
 	public Map<String, Object> reportList(AdminVO vo, int nowPage, int page, String searchStyle, String keyword);
 	public List<BoardVO> boardChart(BoardVO vo);
 	public Map<String, Object> reportSelectList(AdminVO vo,String rno);
+	public Map<String, Object> showReport(AdminVO vo,String pno);
 	public int updateRcheck(int pno);
 	public List<UserVO> userSignUpChart(UserVO vo);
 	public int userVisit(AdminVO vo);

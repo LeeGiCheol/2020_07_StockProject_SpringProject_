@@ -115,11 +115,11 @@
 						<!-- 신고사항 -->
 			<when test='util.searchStyle.equals("search_rtype")'>
 				AND rtype LIKE CONCAT('%', #{util.keyword}, '%')
-				ORDER BY rdatetime DESC
+				ORDER BY rcheck ASC, rdatetime DESC
 				LIMIT #{start}, #{cntPerPage}
 			</when>
 			<otherwise>
-				ORDER BY rdatetime DESC
+				ORDER BY rcheck ASC, rdatetime DESC
 				LIMIT #{start}, #{cntPerPage}
 			</otherwise>
 		</choose>
@@ -130,6 +130,12 @@
 		FROM reportboard
 		WHERE rno=#{rno}
 	</select> 
+	
+	<select id="showReport" resultType="admin">
+		SELECT *
+		FROM  reportboard
+		WHERE pno=#{pno}
+	</select>
 	
 	<update id="updateRcheck" parameterType="int">
 		UPDATE reportBoard

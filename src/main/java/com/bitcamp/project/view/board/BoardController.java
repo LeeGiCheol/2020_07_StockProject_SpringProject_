@@ -235,5 +235,7 @@ public class BoardController {
 		uploadedFileName.add(vo.getThumbnailName());
 		System.out.println(uploadedFileName);
 	}
+	
+	
 
 }
