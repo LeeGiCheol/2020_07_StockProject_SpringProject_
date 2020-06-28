@@ -23,6 +23,7 @@ import com.bitcamp.project.service.SignInService;
 import com.bitcamp.project.service.TradeService;
 import com.bitcamp.project.service.UserInfoService;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.CommentVO;
 import com.bitcamp.project.vo.HoldingStockVO;
 import com.bitcamp.project.vo.Info;
 import com.bitcamp.project.vo.PagingVO;
@@ -172,6 +173,66 @@ public class MainPageController {
 		return map;
 	}
 	
+	@GetMapping(value="/selectUserBoard")
+	public ModelAndView selectUserBoard(UserVO vo, Model model, HttpSession session, @ModelAttribute("bnowPage") String bnowPage,
+			@ModelAttribute("cnowPage") String cnowPage, @ModelAttribute("bSearchStyle") String bSearchStyle,
+			@ModelAttribute("boardKeyword") String boardKeyword,
+			@ModelAttribute("commentKeyword") String commentKeyword, @ModelAttribute("type") String type) {
+	
+		ModelAndView mav = new ModelAndView();
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		if(loginUser == null) {
+			mav.addObject("msg", "로그인 후 이용 가능합니다.");
+			mav.addObject("location", "/signInPage");
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
+		}
+		if (bnowPage == null || bnowPage.equals("")) {
+			bnowPage = "1";
+		}
+		if (cnowPage == null || cnowPage.equals("")) {
+			cnowPage = "1";
+		}
+		if (bSearchStyle.equals(""))
+			boardKeyword = "";
+		if(type.equals(""))
+			type = "board";
+		
+		UserVO user = null;
+		user = myPostService.selectUser(vo);
+		user = signInService.logIn(user);
+		
+		if(user == null) {
+			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
+			mav.addObject("location", "");
+			mav.addObject("icon", "error");
+			mav.setViewName("msg");
+			return mav;
+		}
+		
+		
+		Map<String, Object> myPost = myPostService.myPostList(user, Integer.parseInt(bnowPage),
+				Integer.parseInt(cnowPage), bSearchStyle, boardKeyword, commentKeyword);
+		mav.addObject("user", user);
+		mav.addObject("userBoard", (List<BoardVO>) myPost.get("myBoard"));
+		mav.addObject("userComment", (List<CommentVO>) myPost.get("myComment"));
+		mav.addObject("boardPage", (PagingVO) myPost.get("boardPage"));
+		mav.addObject("commentPage", (PagingVO) myPost.get("commentPage"));
+		mav.addObject("bSearchStyle", bSearchStyle);
+		mav.addObject("boardKeyword", boardKeyword);
+		mav.addObject("commentKeyword", commentKeyword);
+		mav.addObject("type", type);
+		
+		mav.setViewName("selectUserBoard");
+		
+		
+		return mav;
+		
+		
+		
+	}
+	
 	@GetMapping(value="/selectUserMoney")
 	public ModelAndView selectUserMoney(HttpSession session, UserVO vo, Model model,
 										@ModelAttribute("nowPage1") String nowPage1/* 계좌용 */,
@@ -213,13 +274,14 @@ public class MainPageController {
 			return mav;
 		}
 		else {
-			mav.addObject("user", user);
+			
 			HashMap<String, Object> hm1 = myAccountService.getMyStockList(user, Integer.parseInt(nowPage1),
 					accountSearch);
 			HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(user,
 					Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
 //			   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
 			HashMap<String, Object> hm4 = userInfoService.getRate(user.getId());
+			mav.addObject("user", user);
 			mav.addObject("pv1", (PagingVO) hm1.get("pv1"));
 			mav.addObject("holdingStockList", (List<HoldingStockVO>) hm1.get("holdingStockList"));
 			mav.addObject("pv2", (PagingVO) hm2.get("pv2"));
@@ -234,6 +296,11 @@ public class MainPageController {
 			mav.addObject("accumAsset", hm4.get("accumAsset"));
 			mav.addObject("ranking", hm4.get("ranking"));
 			mav.setViewName("selectUserMoney");
+			
+			System.out.println("1 "+(PagingVO) hm1.get("pv1"));
+			System.out.println("2 "+(PagingVO) hm2.get("pv2"));
+			
+			
 			return mav;
 		}
 	}

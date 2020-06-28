@@ -686,7 +686,11 @@ li.list > .img {
     right: 0;
     top: -25px;
 }
+.comment-cont .cmt-list li.list > div {
+    padding-left: 45px !important;
 }
+}
+
 
 
 

@@ -60,7 +60,7 @@ public class LoginController {
 			if (vo == null) { 
 			  session.setAttribute("naverId", id+"_naver_");
 			  session.setAttribute("naverNickname", nickname);
-			  return "signup_naver";
+			  return "signInUp/signup_naver";
 			} else {
 				session.setAttribute("loginUser", vo);
 				model.addAttribute("result", apiResult);

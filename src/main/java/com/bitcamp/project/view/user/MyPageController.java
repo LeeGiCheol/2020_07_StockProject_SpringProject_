@@ -69,7 +69,7 @@ public class MyPageController {
 	public String withdrawal_check(@ModelAttribute("id") String id) {
 		if (id.substring(id.length() - 1).equals("_"))//사이에
 			return "redirect:/withdrawal";
-		return "/withdrawal_PW";
+		return "myPage/withdrawal_PW";
 	}
 	
 	//네이버 jSP에서 확인 누르면 최종탈퇴하러 오는곳
@@ -92,7 +92,7 @@ public class MyPageController {
 	@GetMapping(value = "/withdrawal")
 	public String withdrawal(Model model, HttpSession session, @ModelAttribute("id") String id,String code, String state) throws IOException {
 		if (id.substring(id.length() - 1).equals("_")) { // social로 회원가입 했으면
-			return "socialUnlock";
+			return "myPage/socialUnlock";
 		}else {
 			signInService.withdrawal(id); // 자체회원가입 했으면
 			session.invalidate();
@@ -146,7 +146,7 @@ public class MyPageController {
 		session.setAttribute("accumAsset", hm4.get("accumAsset"));
 		session.setAttribute("ranking", hm4.get("ranking"));
 
-		return "mypage02";
+		return "myPage/mypage02";
 	}
 
 	@GetMapping(value = {"/myPagePwCheck01", "/myPagePwCheck02", "/myPagePwCheck03"})
@@ -157,15 +157,15 @@ public class MyPageController {
 		} else {
 			if(request.getServletPath().equals("/myPagePwCheck01")) {
 				session.setAttribute("pageCheck", "01");
-				return "myPageCheckPw"; 
+				return "myPage/myPageCheckPw"; 
 			}else if(request.getServletPath().equals("/myPagePwCheck02")) {
 				session.setAttribute("pageCheck", "02");
-				return "myPageCheckPw";
+				return "myPage/myPageCheckPw";
 			}else if(request.getServletPath().equals("/myPagePwCheck03")) {
 				session.setAttribute("pageCheck", "03");
-				return "myPageCheckPw";
+				return "myPage/myPageCheckPw";
 			}
-			return "myPageCheckPw";
+			return "myPage/myPageCheckPw";
 		}
 	}
 
@@ -197,7 +197,7 @@ public class MyPageController {
 		PagingVO pv2 = new PagingVO();
 		PagingVO pv3 = new PagingVO();
 
-		return "mypage01";
+		return "myPage/mypage01";
 	}
 
 	@GetMapping(value = "/myPage03")
@@ -230,7 +230,7 @@ public class MyPageController {
 		session.setAttribute("commentKeyword", commentKeyword);
 		model.addAttribute("type", type);
 		System.out.println("my "+(List<BoardVO>) myPost.get("myBoard"));
-		return "mypage03";
+		return "myPage/mypage03";
 	}
 
 	@SuppressWarnings("unchecked")
@@ -243,7 +243,7 @@ public class MyPageController {
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/signInPage");
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -275,7 +275,7 @@ public class MyPageController {
 		}
 		mav.addObject("commentNotice", commentNotice);
 		mav.addObject("modifiedNotice", modifiedNotice);
-		mav.setViewName("mypage04");
+		mav.setViewName("myPage/mypage04");
 
 		userInfoService.deleteNotice(id);
 
@@ -296,7 +296,7 @@ public class MyPageController {
 
 	@GetMapping(value = "/mypageUpdatePassword")
 	public String mypageUpdatePasswordView() {
-		return "mypage-update-password";
+		return "myPage/mypage-update-password";
 	}
 
 	@GetMapping(value = "/mypageUpdatePasswordCheck")

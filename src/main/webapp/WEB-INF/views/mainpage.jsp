@@ -64,6 +64,7 @@
 									</c:if>
 							</div>
 						</div>
+						
 						<div class="graph-title-right graph_off" style="display:block;">
 							<div class="graph-title">
 								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">코스닥</a></span>
@@ -102,6 +103,7 @@
 								</a>
 							
 						</div>
+						<div class="boder"></div>
 						<div class="graph-body-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;>
 ">
 							<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
@@ -506,7 +508,7 @@
 						<ul>
 						
 							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
-								<li class="first"><a href="/selectUserMoney?nickname=${list.nickname}"><i> ${vs.count}</i> <span>${list.nickname}</span>
+								<li class="first"><a href="/selectUserBoard?nickname=${list.nickname}"><i> ${vs.count}</i> <span>${list.nickname}</span>
 										<p class="color-red">
 											${list.revenue}%
 										</p></a></li>
@@ -1050,7 +1052,7 @@
  					console.log(i);
  					HTMLForAccumRanking +=
 
- 					'<li class="first"><a href="/selectUserMoney?nickname='+data.accumRankingNicknameList[i]+'"><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
+ 					'<li class="first"><a href="/selectUserBoard?nickname='+data.accumRankingNicknameList[i]+'"><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
  					'<p class="color-red">'+
  					((data.accumRankingAssetList[i]-10000000)/100000)+'%'+
  					'</p></a></li>';

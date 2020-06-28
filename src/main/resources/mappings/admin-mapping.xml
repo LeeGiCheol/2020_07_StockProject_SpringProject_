@@ -44,12 +44,6 @@
 			SELECT * 
 			FROM claimQuestion 
 			WHERE 1=1
-	
-		
-		
-		
-		
-		
 		<choose>
 			<when test="util.point gte 0">
 				AND nickname=#{util.nickname}
@@ -186,7 +180,6 @@
 			FROM claimAnswer
 			WHERE ano = #{ano};
 		</if>
-		
 		DELETE
 		FROM claimQuestion
 		WHERE qno = #{qno};

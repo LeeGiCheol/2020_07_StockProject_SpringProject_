@@ -102,7 +102,7 @@ position: relative;
 	color: gray !important;
 }
 [class*="board-write-btn"] {
-    padding: 6px 10px;
+    padding: 8px 10px;
     min-width: 60px;
     font-size: 14px;
 }
@@ -386,6 +386,9 @@ display: none;
 }
 .tit-h2.mopad, .tit-h3.mopad {
     padding-left: 15px;
+}
+.board-free-nav p.right{
+	right: 10px;
 }
 }
 
