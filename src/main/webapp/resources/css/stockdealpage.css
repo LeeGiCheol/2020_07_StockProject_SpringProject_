@@ -591,7 +591,7 @@ a.btnStyle {
 }
 .stock-deal-control{
 	float: right;
-	width: 332.625px;
+	width: 327.625px;
 }
 @media only screen and (max-width: 1260px){
 .stock-deal-control {
@@ -727,7 +727,7 @@ a.btnStyle {
 
 .aside_area{
     float: left;
-    width: 592px;
+    width: 597px;
     margin-right: 10px;
     height: auto;
 }
@@ -816,7 +816,7 @@ caption {
     margin-right: 3px;
     color: #6879ab;
     font-family: tahoma;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
 }
 
