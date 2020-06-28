@@ -103,13 +103,21 @@
 
 
                     <!-- 차트들어가는부분 -->
+                        <div class="col-xl-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-area mr-1"></i>
+                                    유저 방문현황
+                                </div>
+                                <div class="card-body" id="userVisitChart" style="width: 100%; height: 300px;"></div>
+                            </div>
+                        </div>
                     <div class="row">
                         <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area mr-1"></i>
-                                    Area Chart Example
-                                    차트1
+                                    유저 가입현황
                                 </div>
                                 <div class="card-body" id="userSignUpChart" style="width: 110%; height: 300px;"></div>
                             </div>
@@ -118,8 +126,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar mr-1"></i>
-                                    Bar Chart Example
-                                    차트2
+                                    일별 게시물 개수 현황
                                 </div>
                                 <div class="card-body" id="boardChart" style="width: 100%; height: 300px;"><!-- <canvas id="myBarChart" width="100%" height="40"></canvas> --></div>
                             </div>
@@ -334,13 +341,85 @@
 
 
 <script>
+	
+	
+	google.charts.load("current", {packages:["bar"]});
+	google.charts.setOnLoadCallback(drawUserVisitChart);
+	
+	function drawUserVisitChart() {
+	
+		 var data = google.visualization.arrayToDataTable([
+	          ['게시물', '개수'],
+	          ["${userVisitChart[7].chartDate}", ${userVisitChart[7].chartCount}],
+	          ["${userVisitChart[6].chartDate}", ${userVisitChart[6].chartCount}],
+	          ["${userVisitChart[5].chartDate}", ${userVisitChart[5].chartCount}],
+	          ["${userVisitChart[4].chartDate}", ${userVisitChart[4].chartCount}],
+	          ["${userVisitChart[3].chartDate}", ${userVisitChart[3].chartCount}],
+	          ["${userVisitChart[2].chartDate}", ${userVisitChart[2].chartCount}],
+	          ["${userVisitChart[1].chartDate}", ${userVisitChart[1].chartCount}],
+	          ["${userVisitChart[0].chartDate}", ${userVisitChart[0].chartCount}]
+	        ]);
+		 
+		 
+		 
+		var options = {
+			chart : {
+				title : '일별 게시물 개수',
+				subtitle : ''
+				
+			}
+		};
+	
+		var chart = new google.charts.Bar(document
+				.getElementById('userVisitChart'));
+	
+		chart.draw(data, google.charts.Bar.convertOptions(options));
+	
+	}	
+	
+	
+	
+
+    google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawUserSignUpChart);
+
+	function drawUserSignUpChart() {
+	console.log("${userSignUpChart[4].chartDate}")
+
+		var data = google.visualization.arrayToDataTable([
+	          ['유저', '수'],
+	          ["${userSignUpChart[4].chartDate}", ${userSignUpChart[4].chartCount}],
+	          ["${userSignUpChart[3].chartDate}", ${userSignUpChart[3].chartCount}],
+	          ["${userSignUpChart[2].chartDate}", ${userSignUpChart[2].chartCount}],
+	          ["${userSignUpChart[1].chartDate}", ${userSignUpChart[1].chartCount}],
+	          ["${userSignUpChart[0].chartDate}", ${userSignUpChart[0].chartCount}]
+	        ]);
+		
+	
+	
+		var options2 = {
+				chart : {
+					title : '유저가입현황',
+					subtitle : ''
+					
+				}
+			};
+	
+		var chart = new google.visualization.AreaChart(document
+				.getElementById('userSignUpChart'));
+
+		chart.draw(data, google.charts.Bar.convertOptions(options2));
+		 
+
+	}	
+
 	google.charts.load("current", {packages:["bar"]});
 	google.charts.setOnLoadCallback(drawBoardChart);
 
 	function drawBoardChart() {
 
 		 var data = google.visualization.arrayToDataTable([
-	          ['일별 게시물 개수', '개수'],
+	          ['게시물', '개수'],
 	          ["${boardChart[4].chartDate}", ${boardChart[4].chartCount}],
 	          ["${boardChart[3].chartDate}", ${boardChart[3].chartCount}],
 	          ["${boardChart[2].chartDate}", ${boardChart[2].chartCount}],
@@ -352,7 +431,7 @@
 		 
 		var options = {
 			chart : {
-				title : 'Analysis of Dialogue System',
+				title : '일별 게시물 개수',
 				subtitle : ''
 				
 			}
@@ -365,40 +444,6 @@
 
 	}	
 	
-	
-
-    google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(drawUserSignUpChart);
-
-	function drawUserSignUpChart() {
-	console.log("${userSignUpChart[4].chartDate}")
-
-		var data = google.visualization.arrayToDataTable([
-	          ['유저 가입', '수'],
-	          ["${userSignUpChart[4].chartDate}", ${userSignUpChart[4].chartCount}],
-	          ["${userSignUpChart[3].chartDate}", ${userSignUpChart[3].chartCount}],
-	          ["${userSignUpChart[2].chartDate}", ${userSignUpChart[2].chartCount}],
-	          ["${userSignUpChart[1].chartDate}", ${userSignUpChart[1].chartCount}],
-	          ["${userSignUpChart[0].chartDate}", ${userSignUpChart[0].chartCount}]
-	        ]);
-		 
-		 
-		 
-		var options = {
-			chart : {
-				title : 'Analysis of Dialogue System',
-				subtitle : ''
-				
-			}
-		};
-
-		var chart = new google.visualization.AreaChart(document
-				.getElementById('userSignUpChart'));
-
-		chart.draw(data, google.charts.Bar.convertOptions(options));
-
-	}	
-
 </script>
 
 </body>

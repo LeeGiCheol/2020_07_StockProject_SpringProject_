@@ -52,6 +52,7 @@
 		<if test='!util.commentKeyword.equals("")'>
 		and ccontent like CONCAT('%', #{util.commentKeyword}, '%')
 		</if>
+		order by cno desc
 		limit #{start}, #{cntPerPage}
 	</select>
 	

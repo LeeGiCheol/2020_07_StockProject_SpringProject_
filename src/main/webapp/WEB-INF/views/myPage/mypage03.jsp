@@ -192,7 +192,6 @@ function deleteComment(){
 						<tbody>
 							<c:forEach items="${myBoard}" var="board">
 							
-								<c:if test="${board.bno eq 1}">
 									<tr>
 										<td class="board-check">
 											<p class="check">
@@ -225,7 +224,6 @@ function deleteComment(){
 										<td class="board-date">${time}</td>
 										<!-- 날짜 -->
 									</tr>
-								</c:if>
 							</c:forEach>
 							<c:if test="${myBoard.size() == 0}">
 							    <tr>

@@ -9,7 +9,7 @@
 		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
 		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, #{bno}, 0);
 		
-		<if test='bno eq 2'>
+		<if test='bno eq "portfolio"'>
 			INSERT INTO filelist
 			( pno, thumbnailName )
 			SELECT pno, #{thumbnailName}
@@ -24,7 +24,7 @@
 		UPDATE board 
 		SET title = #{title}, bcontent = #{bcontent}
 		WHERE pno = #{pno};
-		<if test='bno eq 2'>
+		<if test="bno eq 'portfolio'">
 			UPDATE filelist
 			SET thumbnailName = #{thumbnailName}
 			WHERE pno = #{pno};
@@ -39,7 +39,7 @@
 		DELETE FROM commentList
 		WHERE pno = #{pno};
 		
-		<if test='bno eq 2'>
+		<if test="bno eq 'portfolio'">
 			DELETE FROM filelist
 			WHERE pno = #{pno};
 		</if>
@@ -78,16 +78,17 @@
 	</select>
 	
 	<select id="getMyBoard" parameterType="page" resultType="board">
-		select *
-		from board
-		where id=#{util.id}
+		SELECT *
+		FROM board
+		WHERE id=#{util.id}
 		<if test='util.bSearchStyle.equals("제목")'>
-		and title like CONCAT('%', #{util.boardKeyword}, '%')
+		AND title LIKE CONCAT('%', #{util.boardKeyword}, '%')
 		</if>
 		<if test='util.bSearchStyle.equals("내용")'>
-		and bcontent like CONCAT('%', #{util.boardKeyword}, '%')
+		AND bcontent LIKE CONCAT('%', #{util.boardKeyword}, '%')
 		</if>
-		limit #{start}, #{cntPerPage}
+		ORDER BY pno DESC
+		LIMIT #{start}, #{cntPerPage}
 	</select>
 	
 
@@ -109,9 +110,6 @@
 		select count(*)
 		from board
 		where bno = #{bno}
-		<if test="bno eq 4">
-			AND id=#{id}
-		</if>
 	</select>
 		
 	<select id="boardList" parameterType="page" resultType="board">
@@ -119,9 +117,6 @@
 		FROM board as b
 		WHERE bno=#{util.bno}
 		<choose>
-			<when test='util.bno eq 4'>
-				AND id=#{util.id}
-			</when>
 			<!-- 제목검색 -->
 			<when test='util.searchStyle.equals("search_title")'>
 				AND title LIKE CONCAT('%', #{util.keyword}, '%')
@@ -167,7 +162,9 @@
 				ORDER BY pno DESC
 				LIMIT 5;
 			</when>
-			
+			<otherwise>
+				ORDER BY pno DESC
+			</otherwise>
 		
 		</choose>	
 		
@@ -234,7 +231,7 @@
 	<select id="ServiceCenternotice" parameterType="page" resultType="board">
 		SELECT pno, commentcount, title, nickname, views, likes, date_SUB(bdatetime,INTERVAL 9 HOUR) as bdatetime
 		FROM board 
-		WHERE bno=3
+		WHERE bno= "customerNotice"
 		order by bdatetime DESC
 		limit 5;
 	</select>
