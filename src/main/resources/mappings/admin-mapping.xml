@@ -195,27 +195,33 @@
 		SET qcheck = "준비중";
 	</delete>
 	
-	
+	<!-- 게시물 수 차트 -->
 	<select id="boardChart" parameterType="board" resultType="map">
 		SELECT DATE_FORMAT(`bdateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
 		FROM board GROUP BY chartDate
         ORDER BY chartDate DESC;
 	</select>
 	
+	<!-- 가입자 수 차트 -->
 	<select id="userSignUpChart" parameterType="board" resultType="map">
 		SELECT DATE_FORMAT(`udateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
 		FROM user GROUP BY chartDate
 		ORDER BY chartDate DESC;
 	</select>
 	
+	<!-- 방문자 수 차트 -->
 	<select id="userVisitChart" parameterType="visit" resultType="map">
 		SELECT DATE_FORMAT(`vdateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
 		FROM visit GROUP BY chartDate
 		ORDER BY chartDate DESC;
 	</select>
 		
-	
-	
+	<!-- 방문자 수 증가 -->
+	<insert id="insertVisit" parameterType="visit">
+		INSERT
+		INTO visit (vno, vdateTime)
+		VALUES (#{vno}, now())
+	</insert>
 	
 	
 </mapper>

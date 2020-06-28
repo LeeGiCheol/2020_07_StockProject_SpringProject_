@@ -6,7 +6,6 @@ import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
-import com.bitcamp.project.vo.VisitVO;
 
 public interface AdminDAO {
 	public int writeQuestion(AdminVO vo);

@@ -15,12 +15,11 @@ public class VisitCountDAOImpl implements VisitCountDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-	
+	@Override
     public int insertVisitor(VisitVO vo) {
     	System.out.println("asdglsadgbjlksdabfkjadsblf");
-        return mybatis.insert("visit.insertVisit",vo);
+        return mybatis.insert("admin.insertVisit",vo);
     }
-
 
 	@Override
 	public List<VisitVO> userVisitChart(VisitVO vo) {
