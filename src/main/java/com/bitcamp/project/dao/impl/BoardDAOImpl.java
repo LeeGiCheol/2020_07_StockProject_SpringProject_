@@ -39,6 +39,7 @@ public class BoardDAOImpl implements BoardDAO {
 		int portCount = mybatis.selectOne("board.totalSearch_Port_Count", title);
 		int nickCount = mybatis.selectOne("board.totalSearch_Nick_Count", title);
 		list.add(stockCount); list.add(freeCount); list.add(portCount); list.add(nickCount);
+		System.out.println("stockCount " + stockCount);
 		return list;
 	}
 

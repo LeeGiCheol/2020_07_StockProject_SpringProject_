@@ -78,18 +78,40 @@ public class TotalSearchController {
 		else {
 			mav.addObject("free", free);
 			mav.addObject("port", port);
-			mav.addObject("freeCount", freeCount);
-			mav.addObject("portCount", portCount);
+			mav.addObject("freeCount", Integer.toString(freeCount));
+			mav.addObject("portCount", Integer.toString(portCount));
 		}
 		
 		
 		mav.addObject("stock", stock);
 		mav.addObject("nick", nick);
 		mav.addObject("keyword", title);
-		mav.addObject("stockCount", stockCount);
-		mav.addObject("nickCount", nickCount);
+		mav.addObject("stockCount", Integer.toString(stockCount));
+		mav.addObject("nickCount", Integer.toString(nickCount));
 		
+		String countCheck = "0";
+		if(stockCount == 0 && freeCount == 0 && portCount == 0 && nickCount == 0) {
+			System.out.println("다 0 "+countCheck);
+			mav.addObject("countCheck", countCheck);
+		}
+		else {
+			System.out.println("다 0x "+countCheck);
+			countCheck = "1";
+			mav.addObject("countCheck", countCheck);
+		}
+			
 	
+		
+		System.out.println("stock " + stock);
+		System.out.println("nick " + nick);
+		System.out.println("free " + free);
+		System.out.println("port " + port);
+		System.out.println("stockCount " + stockCount);
+		System.out.println("nickCount " + nickCount);
+		System.out.println("freeCount " + freeCount);
+		System.out.println("portCount " + portCount);
+		
+		
 		mav.setViewName("totalSearch/total_Search_Result");
 		return mav;
 	}
