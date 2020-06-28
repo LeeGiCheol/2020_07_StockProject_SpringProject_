@@ -243,7 +243,7 @@
 										<col style="">
 									</colgroup>
 									<tbody>
-									<tr>
+									<tr
 										<th scope="col">제목</th>
 										<td>${boardDetail.title}</td>
 									</tr>
