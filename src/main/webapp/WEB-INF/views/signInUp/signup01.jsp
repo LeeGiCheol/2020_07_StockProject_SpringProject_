@@ -39,16 +39,14 @@
 						
 							
 						<p class="all-check">
-							<input type="checkbox" id="check01" onclick="checkAll();" class="big" style="height: 15px; width: 15px;">
-							<label for="check01">이용약관, 개인정보 수집 및 이용에  <strong class="color-fantasy">모두 동의 합니다.</strong></label>
+							<input type="checkbox" id="check01" onclick="checkAll();" class="big" style="height: 15px; width: 15px; position: absolute;">
+							<label for="check01">이용약관, 개인정보 수집 및 이용에 <br><strong class="color-fantasy">모두 동의 합니다.</strong></label>
 						</p>
 						<div class="clause">
 							<span>
 								<input type="checkbox" id="check02" name="check02" onclick="btnCheck();"><label for="check02">이용약관 동의 <em class="choice">(필수)</em></label>
-								<button type="button" class="cla-view">내용보기</button>
+								<!-- <button type="button" class="cla-view">내용보기</button> -->
 							</span>
-							<div class="clause-in">
-								<div class="pop-tit">이용약관 동의  <button class="cla-close" >닫기</button></div>
 								<div class="scroll">
 									<p>제 1 장   총 칙</p>
 
@@ -297,17 +295,15 @@
 									① 이 약관은 2017년 8월 10일부터 적용됩니다.<br>
 									② 2015년 8월 10일부터 시행되었던 종전의 약관은 본 약관으로 대체합니다.
 									</p>
-								</div>
+								
 							</div>
 						</div>
 						
 						<div class="clause">
 							<span>
 								<input type="checkbox" id="check03" name="check03" onclick="btnCheck();"><label for="check03">개인정보 수집 및 이용에 <mark>대한 동의 <em class="choice">(필수)</em></mark></label>
-								<button type="button" class="cla-view">내용보기</button>
+								<!-- <button type="button" class="cla-view">내용보기</button> -->
 							</span>
-							<div class="clause-in">
-								<div class="pop-tit">개인정보 수집 및 이용에 대한 동의 <button class="cla-close">닫기</button></div>
 								<div class="scroll">
 									<p>
 									1. 수집하는 개인정보 및 수집방법<br>
@@ -373,7 +369,7 @@
 									</p>
 
 								</div>
-							</div>
+							
 						</div>
 					</form>		
 					<div class="bt-area"> 
@@ -386,11 +382,6 @@
 	</div>
 </div> 
 <script>
-
-/* function scrollHide() {
-	$(".clause-in").hide();
-} */
-
 function checkAll(){
     $(".clause input[type=checkbox]").prop("checked", $('#check01').prop('checked'));
 	/*var chkYn = false;
@@ -466,8 +457,10 @@ function goMain() {
 	location.href='/mainPage';
 }
 
+
+
 </script>
-	
+
 
 
 <%@include file="../mainfooter2.jsp" %>

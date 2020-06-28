@@ -102,7 +102,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<span class="input-style-address">
 											<input type="text" name="address" id="inputAddress" class="_onlyNumber" placeholder="우편번호"  required="true" readonly>
 										</span>
-										<button type="button" class="btn-s" onclick="goPopup();">우편번호 찾기</button>
+										<button type="button" class="btn-s" onclick="goPopup();">검색</button>
 									</li>
 									<li>
 										<span class="input-style-phone">

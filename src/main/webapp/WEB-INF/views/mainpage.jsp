@@ -252,9 +252,10 @@
 						<div class=".tab-pane" id="tab1">
 							<table class="tbl_home_left">
 								<colgroup>
-									<col width="40%">
-									<col width="20%">
-									<col width="20%">
+									<col width="34%">
+									<col width="25%">
+									<col width="22%">
+									<col width="19%">
 								</colgroup>
 								<tbody class="rank-table" id="topRank">
 
@@ -268,9 +269,10 @@
 						<div class=".tab-pane" id="tab2">
 							<table class="tbl_home_right">
 								<colgroup>
-									<col width="40%">
-									<col width="20%">
-									<col width="20%">
+									<col width="34%">
+									<col width="25%">
+									<col width="22%">
+									<col width="19%">
 								</colgroup>
 								<tbody class="rank-table" id="searchRank">
 
