@@ -81,13 +81,13 @@ public class SignUpController {
 	}
 	
 	@PostMapping(value="/signUp/kakao")
-	public String signUpKakao(UserVO vo, @RequestParam("friend") String friend) {
+	public String signUpKakao(HttpSession session,UserVO vo, @RequestParam("friend") String friend, @RequestParam("id") String id,@RequestParam("nickname") String nickname) {
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
 		System.out.println("vo su : " + vo.toString());
 		signUpService.signUp(vo);
-		
+		session.setAttribute("loginUser", vo);
 		return "signup03";
 	}
 	
