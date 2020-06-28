@@ -32,9 +32,18 @@ public class AdminVO {
 	private Date rdatetime;
 	private String nickname;
 	private String rcheck;
+	private String bno;
 	
 	
 	
+	
+	
+	public String getBno() {
+		return bno;
+	}
+	public void setBno(String bno) {
+		this.bno = bno;
+	}
 	public int getRno() {
 		return rno;
 	}
@@ -137,15 +146,16 @@ public class AdminVO {
 	public void setQtype(String qtype) {
 		this.qtype = qtype;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "AdminVO [qno=" + qno + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qdateTime=" + qdateTime
 				+ ", qcheck=" + qcheck + ", qtype=" + qtype + ", ano=" + ano + ", acontent=" + acontent + ", adateTime="
-				+ adateTime + ", pno=" + pno + ", title=" + title + ", rtype=" + rtype + ", rcontent=" + rcontent
-				+ ", rdatetime=" + rdatetime + ", nickname=" + nickname + ", rcheck=" + rcheck + "]";
+				+ adateTime + ", rno=" + rno + ", pno=" + pno + ", title=" + title + ", rtype=" + rtype + ", rcontent="
+				+ rcontent + ", rdatetime=" + rdatetime + ", nickname=" + nickname + ", rcheck=" + rcheck + ", bno="
+				+ bno + "]";
 	}
+	
+	
 	
 	
 	

@@ -42,6 +42,12 @@ public class AdminController {
 	
 	List<String> uploadedFileName = BoardController.uploadedFileName;
 
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
+	
+	
 
 	@GetMapping("/admin/main")
 	public ModelAndView adminPage(BoardVO bVo, AdminVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
@@ -324,8 +330,11 @@ public class AdminController {
 	
 	@ResponseBody
 	@PostMapping("/admin/showReport")
-	public Map<String, Object> showReport(HttpSession session, Model model, AdminVO vo, @ModelAttribute("pno") String pno) {
+	public Map<String, Object> showReport(HttpSession session, Model model, AdminVO vo, @ModelAttribute("pno") String pno, @ModelAttribute("bno") String bno) {
 		Map<String, Object> showReport = adminService.showReport(vo, pno);
+		System.out.println("asdfdsafsad : " + vo);
+		System.out.println("!!!!!! : " + pno); 
+		System.out.println("#########" + showReport);
 		if(showReport == (null)) {
 			return null;
 		}

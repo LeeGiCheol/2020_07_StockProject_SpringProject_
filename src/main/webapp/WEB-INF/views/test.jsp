@@ -17,7 +17,7 @@
 
 <body>
 
-<%@include file="../mainheader.jsp" %>
+<%@include file="mainheader.jsp" %>
 
 
 
@@ -56,8 +56,8 @@
 					</div>
 					<!-- //message-st-01 --> 
 					<div class="mem case02">
-						<p class="id"><i>아이디</i> <span class="color-fantasy">${loginUser.id}</span></p>
-						<p class="name"><i>닉네임</i> <span>${loginUser.nickname}</span></p>
+						<p class="id"><i>아이디</i> <span class="color-fantasy">asdqwek200asdqwek200asdqwek200@google.com</span></p>
+						<p class="name"><i>닉네임</i> <span>asdqwek200asdqwek200asdqwek200@google.com</span></p>
 					</div>
 					<div class="bt-area">  
 						<a href="/signInPage" class="btn-b">로그인</a>
@@ -71,7 +71,7 @@
 	</div>
 
 	
-<%@include file="../mainfooter2.jsp" %>
+<%@include file="mainfooter2.jsp" %>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>

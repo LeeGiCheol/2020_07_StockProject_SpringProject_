@@ -147,5 +147,17 @@ public class AdminServiceImpl implements AdminService {
 	public List<VisitVO> userVisitChart(VisitVO vo) {
 		return visitCountDAO.userVisitChart(vo);
 	}
+	@Override
+	public Map<String, Object> showReport(AdminVO vo, String pno) {
+		AdminVO showReport = adminDAO.showReport(vo);
+		System.out.println("@@@@@@@@@@@" + showReport);
+		if(showReport == (null)) {
+			return null;
+		}
+		showReport.setRdatetime(new Date(showReport.getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("reportSelectList", showReport);
+		return postMap;	
+	}
 	
 }

@@ -188,7 +188,7 @@ public class MainPageController {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("location", "/signInPage");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		}
 		if (bnowPage == null || bnowPage.equals("")) {
@@ -210,7 +210,7 @@ public class MainPageController {
 			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
 			mav.addObject("location", "");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		}
 		
@@ -251,7 +251,6 @@ public class MainPageController {
 			nowPage2 = "1";
 		if (nowPage3.equals(""))
 			nowPage3 = "1";
-		
 		UserVO user = null;
 		user = myPostService.selectUser(vo);
 		user = signInService.logIn(user);
@@ -263,7 +262,7 @@ public class MainPageController {
 			mav.addObject("msg", "로그인 후 이용 가능합니다.");
 			mav.addObject("location", "/signInPage");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		}
 		
@@ -273,7 +272,7 @@ public class MainPageController {
 			mav.addObject("msg", "해당 회원의 정보를 볼 수 없습니다.");
 			mav.addObject("location", "");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		}
 		else {

@@ -306,14 +306,15 @@
 	</update>
 	
 	<insert id="reportBoard">
-		INSERT INTO reportBoard(pno, title, rtype, rcontent, rdatetime, nickname, rcheck)
-		VALUES (#{pno}, #{title}, #{rtype}, #{rcontent}, now(), #{nickname}, '처리대기중')
+		INSERT INTO reportBoard(pno, title, rtype, rcontent, rdatetime, nickname, rcheck, bno)
+		VALUES (#{pno}, #{title}, #{rtype}, #{rcontent}, now(), #{nickname}, '처리대기중',#{bno})
 	</insert>
 
 	<select id="reportBoardCount" resultType="int">
 		SELECT COUNT(*) 
 		FROM reportBoard
 		WHERE pno = #{pno}
+		AND bno = #{bno}
 		AND nickname = #{nickname}
 	</select>
 	

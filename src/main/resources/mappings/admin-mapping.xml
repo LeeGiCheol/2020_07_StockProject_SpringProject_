@@ -135,6 +135,7 @@
 		SELECT *
 		FROM  reportboard
 		WHERE pno=#{pno}
+		AND bno=#{bno}
 	</select>
 	
 	<update id="updateRcheck" parameterType="int">
