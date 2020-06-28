@@ -1627,7 +1627,7 @@ tr td button {
 							$('#selling_result').text(sell_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 							})()">
 				{{:up}}</td>
-				<td scope="col"></td>
+				<td scope="col"></td> 
 			</tr>
 	</script>
 	<script id="downPrice" type="text/x-jsrender">
