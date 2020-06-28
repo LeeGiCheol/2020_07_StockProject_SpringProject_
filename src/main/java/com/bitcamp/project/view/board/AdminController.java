@@ -308,14 +308,28 @@ public class AdminController {
 	}
 
 	@GetMapping("/admin/report/delete")
-	public String reportDelete(BoardVO vo) {
-		System.out.println("@@@@여기로들어옴");
+	public String reportDelete(Model model, BoardVO vo) {
 		int delCheck = boardService.deleteBoard(vo);
 		if(delCheck == 1) {
 			int pno = vo.getPno();
 			adminService.updateRcheck(pno);
+			model.addAttribute("msg", "성공적으로 삭제되었습니다.");
+			model.addAttribute("location", "/admin/report");
+			model.addAttribute("icon", "success");
 		}
 		
-		return "redirect:/admin/report";
+		
+		return "msg/msg";
+	}
+	
+	@ResponseBody
+	@PostMapping("/admin/showReport")
+	public Map<String, Object> showReport(HttpSession session, Model model, AdminVO vo, @ModelAttribute("pno") String pno) {
+		Map<String, Object> showReport = adminService.showReport(vo, pno);
+		if(showReport == (null)) {
+			return null;
+		}
+		model.addAttribute("showReport", (AdminVO) showReport.get("showReport"));
+		return showReport;
 	}
 }

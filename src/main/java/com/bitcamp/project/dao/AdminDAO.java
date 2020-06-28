@@ -20,6 +20,7 @@ public interface AdminDAO {
 	public int qnaUpdate(AdminVO vo);
 	public List<AdminVO> reportList(PagingVO reportPage);
 	public AdminVO reportSelectList(String rno);
+	public AdminVO showReport(String pno);
 	public int reportCount(AdminVO vo);
 	public List<BoardVO> boardChart(BoardVO vo);
 	public int updateRcheck(int pno);

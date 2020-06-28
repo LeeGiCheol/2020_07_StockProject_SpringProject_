@@ -301,13 +301,17 @@
 		</div>
 	</c:if>
 <c:if test="${loginUser.point le -1 }">
-	<div id="reportPopup" class="pop-layer" style="display:none">
+	<script>
+	window.onload = function(){showReport(${boardDetail.pno});}
+	</script>
+	<div id="reportPopup" class="pop-layer" style="display:none" >
 		<div class="pop-inner">
 			<div class="popup-wrap">
-				<form id="reportBoard" action="/reportBoard" method="POST">
+				<form id="reportBoard" action="" method="POST">
+				<%-- <button type="button" onclick="showReport('${boardDetail.pno}');"></button> --%>
 					<div class="pop-tit"><span>게시물 신고 내역</span></div>
 					<div class="pop-cont">
-						<div class="pop-clean">
+						<div class="pop-clean" id="nonReport">
 							<table>
 								<colgroup><col style="width: 100px;"><col style=""></colgroup>
 								<tbody id="reportSelectList">
@@ -326,6 +330,55 @@
 	
 	<script>
         /** 신고 기능들 모음 Report */
+    	 function showReport(pno){
+     	$.ajax({
+				type : "POST",
+				url : '${pageContext.request.contextPath}/admin/showReport',
+				data : { "pno" : pno },
+				success : function(data) {
+						var reportSelectList = "";
+						var pageLocation=""
+						if(data === ('')){
+							reportSelectList += '해당 게시물은 신고되지 않았습니다.'
+							$("#nonReport").html(reportSelectList);
+							pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>'
+							$("#pageLocation").html(pageLocation);
+						}
+						else if(data.reportSelectList.rno >= 1){
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">처리현황</th>'
+						reportSelectList += 	'<td id="re.rcheck">'+data.reportSelectList.rcheck+'</td>'
+						reportSelectList += '</tr>'
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">신고날짜</th>'
+						reportSelectList += 	'<td>'+changeDate(data.reportSelectList.rdatetime)+'</td>'
+						reportSelectList += '</tr>'
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">신고사항</th>'
+						reportSelectList += 	'<td>'+data.reportSelectList.rtype+'</td>'
+						reportSelectList += '</tr>'
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">작성자</th>'
+						reportSelectList += 	'<td>'+data.reportSelectList.nickname+'</td>'
+						reportSelectList += '</tr>'
+						reportSelectList += '<tr>'
+						reportSelectList += 	'<th scope="col">신고제목</th>'
+						reportSelectList += 	'<td>'+data.reportSelectList.title+'</td>'
+						reportSelectList += '</tr>'
+	
+						$("#reportSelectList").html(reportSelectList);
+						var pageLocation=""
+							if((data.reportSelectList.rcheck)===("처리대기중")){
+								pageLocation += '<button type="button" class="btn-m" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
+							}
+								pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>'
+								$("#pageLocation").html(pageLocation);
+						}
+						
+					}
+				});
+			}
+     
         var Report = (function($) {
             var root = this;
             var Module;
@@ -488,14 +541,14 @@ function submitReportComt(){
 		var pno = ${boardDetail.pno}
 		var page = "&bnowPage="+${commentPage.nowPage}
 		
-			console.log(page)
+			/* console.log(page) */
 			$.ajax({
 				type : 'GET',
 				url : '${pageContext.request.contextPath}/board/free/detail/ajax?pno='+pno + page,
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
-					console.log(data)
+					/* console.log(data) */
 					// 게시판상세보기
 					var board = "";
 					
@@ -580,7 +633,7 @@ function submitReportComt(){
 							// 내 댓글에 수정/삭제 버튼 띄우기
 							if("${loginUser.nickname}" == data.commentList[i].nickname){
 								var test = data.commentList[i].ccontent
-								console.log("${loginUser.nickname}")
+								/* console.log("${loginUser.nickname}") */
 								//console.log(data.commentList.nickname)
 								$("#showhide-btn").hide()
 	 							comment +=  	   '<div class="share-more">'
@@ -739,7 +792,7 @@ function submitReportComt(){
 					
 					// 마지막 글일 때
 					if(data.boardPrevNext[0].pno > data.boardDetail.pno){
-						console.log(1)
+						/* console.log(1) */
 	 					prev_next += 	'<div class="prev">'
 						prev_next +=    	 '<dl>'
 						prev_next +=          '<dt>이전글</dt>'
@@ -756,8 +809,8 @@ function submitReportComt(){
 					
 	 			},
 				error : function(error, data){
-					console.log(data)
-					console.log(error)
+					/* console.log(data)
+					console.log(error) */
 					alert('error!!'); 
 				}
 			});
