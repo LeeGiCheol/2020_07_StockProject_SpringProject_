@@ -146,7 +146,6 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							<dt>이용안내</dt>
 							<dd>
 								<ul>
-									<li>성명, 성별, 생년월일은 아이디찾기, 비밀번호찾기 , 휴면계정 본인확인 등 가입자 정보 확인 시 본인확인을 위한 정보로 사용합니다.</li>
 									<li>입력된 내용은 내정보 관리에서 변경 할 수 있습니다.</li>
 									<li>허위정보는 본인확인에 대한 도움을 드릴 수 없습니다.</li>
 								</ul>

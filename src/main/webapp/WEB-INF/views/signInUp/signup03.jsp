@@ -56,8 +56,8 @@
 					</div>
 					<!-- //message-st-01 --> 
 					<div class="mem case02">
-						<p class="id"><i>아이디</i> <span class="color-fantasy">${loginUser.id}</span></p>
-						<p class="name"><i>닉네임</i> <span>${loginUser.nickname}</span></p>
+						<p class="id"><i>아이디</i> <span class="color-fantasy">${login.id}</span></p>
+						<p class="name"><i>닉네임</i> <span>${login.nickname}</span></p>
 					</div>
 					<div class="bt-area">  
 						<a href="/signInPage" class="btn-b">로그인</a>
