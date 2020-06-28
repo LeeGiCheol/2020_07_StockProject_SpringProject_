@@ -74,7 +74,6 @@ public class AdminController {
 		}
 
 		Map<String, Object> qnaList = adminService.qnaList(vo, 0, "", "", 5, "main");
-		System.out.println("여 기 " +qnaList);
 		model.addAttribute("qnaList", (List<AdminVO>) qnaList.get("qnaList"));
 		
 		Map<String, Object> reportList = adminService.reportList(vo, Integer.parseInt(nowPage), 30, "", "");

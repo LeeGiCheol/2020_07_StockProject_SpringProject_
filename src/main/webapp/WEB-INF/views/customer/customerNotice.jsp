@@ -94,7 +94,7 @@
 									<tbody>
 										<c:forEach items="${boardList}" var="board">
 
-											<c:if test="${board.bno eq 3}">
+											<c:if test="${board.bno eq 'customerNotice'}">
 												<tr>
 													<td class="board-no"><span>공지</span></td>
 													<!-- 글번호 -->

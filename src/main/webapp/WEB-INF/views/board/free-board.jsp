@@ -161,7 +161,7 @@
 									<!--  -->
 									<tbody>
 										<c:forEach items="${boardList}" var="board">
-											<c:if test="${board.bno eq 1}">
+											<c:if test="${board.bno eq 'free'}">
 												<tr>
 													<td class="board-no">${board.pno}</td>
 													<!-- 글번호 -->

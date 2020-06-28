@@ -144,7 +144,7 @@ $(document).ready(function(){
 								<!-- 전체글 -->
 								<ul class="photo-list no-line board-col">
 										<c:forEach items="${portfolioList}" var="portfolioList">
-											<c:if test="${portfolioList.bno eq 2}">
+											<c:if test="${portfolioList.bno eq 'portfolio'}">
 												<li class="type_" data-seq="150357583575745">
 													<p class="img">
 														<a href="/board/portfolio/detail?pno=${portfolioList.pno}"> <span>

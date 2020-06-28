@@ -81,8 +81,8 @@ public class MainPageController {
 			kosdaqData[5][i] = (Integer) ((HashMap) kosdaqChart.get(i)).get("lastprice");
 		}
 
-		Map<String, Object> bestBoardList = boardService.boardList(vo, 0, "", "", "mainNew", 1, 5);
-		Map<String, Object> newBoardList = boardService.boardList(vo, 0, "", "", "mainBest", 1, 5);
+		Map<String, Object> bestBoardList = boardService.boardList(vo, 0, "", "", "mainNew", "free", 5);
+		Map<String, Object> newBoardList = boardService.boardList(vo, 0, "", "", "mainBest", "free", 5);
 		mav.addObject("bestBoardList", (List<BoardVO>) bestBoardList.get("boardList"));
 		mav.addObject("newBoardList", (List<BoardVO>) newBoardList.get("boardList"));
 
