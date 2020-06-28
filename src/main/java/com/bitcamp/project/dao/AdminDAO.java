@@ -1,12 +1,12 @@
 package com.bitcamp.project.dao;
 
 import java.util.List;
-import java.util.Map;
 
-import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.UserVO;
 import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
+import com.bitcamp.project.vo.PagingVO;
+import com.bitcamp.project.vo.UserVO;
+import com.bitcamp.project.vo.VisitVO;
 
 public interface AdminDAO {
 	public int writeQuestion(AdminVO vo);
@@ -25,5 +25,4 @@ public interface AdminDAO {
 	public List<BoardVO> boardChart(BoardVO vo);
 	public int updateRcheck(int pno);
 	public List<UserVO> userSignUpChart(UserVO vo);
-	public int userVisit(AdminVO vo);
 }

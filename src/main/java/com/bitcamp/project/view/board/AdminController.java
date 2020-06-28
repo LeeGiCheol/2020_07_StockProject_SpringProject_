@@ -1,7 +1,6 @@
 package com.bitcamp.project.view.board;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +25,7 @@ import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
+import com.bitcamp.project.vo.VisitVO;
 
 @Controller
 public class AdminController {
@@ -62,6 +62,11 @@ public class AdminController {
 		List<UserVO> userSignUpChart = adminService.userSignUpChart(allUser);
 		mav.addObject("userSignUpChart", userSignUpChart);
 		
+		VisitVO vVo = new VisitVO();
+		
+		List<VisitVO> visitChart = adminService.userVisitChart(vVo);
+		mav.addObject("userVisitChart", visitChart);
+		System.out.println(visitChart);
 		
 		loginUser.getPoint();
 		

@@ -1,19 +1,17 @@
 package com.bitcamp.project.dao.impl;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.jsp.el.ELParseException;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.AdminDAO;
+import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
-import com.bitcamp.project.vo.AdminVO;
+import com.bitcamp.project.vo.VisitVO;
 
 @Repository("AdminDAO")
 public class AdminDAOImpl implements AdminDAO {
@@ -105,11 +103,6 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<UserVO> userSignUpChart(UserVO vo) {
 		return mybatis.selectList("admin.userSignUpChart", vo);
 	}
-	@Override
-	public int userVisit(AdminVO vo) {
-		return mybatis.insert("");
-	}
-	
 	
 	
 	

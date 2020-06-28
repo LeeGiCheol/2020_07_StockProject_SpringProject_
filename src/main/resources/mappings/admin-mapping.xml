@@ -208,5 +208,14 @@
 		ORDER BY chartDate DESC;
 	</select>
 	
+	<select id="userVisitChart" parameterType="visit" resultType="map">
+		SELECT DATE_FORMAT(`vdateTime`, '%Y-%m-%d') chartDate, COUNT(*) as chartCount 
+		FROM visit GROUP BY chartDate
+		ORDER BY chartDate DESC;
+	</select>
+		
+	
+	
+	
 	
 </mapper>
