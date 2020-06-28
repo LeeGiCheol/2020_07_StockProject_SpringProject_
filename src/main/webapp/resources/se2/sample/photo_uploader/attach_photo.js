@@ -34,7 +34,7 @@
 	var welDropAreaUL = $Element(elDropAreaUL); 
 	var fnUploadImage = null;
 	
-	//File API 지원 여부로 결정
+/*	//File API 지원 여부로 결정
 	function checkDragAndDropAPI(){
 		try{
 			if( !oNavigator.ie ){
@@ -49,7 +49,32 @@
 		}catch(e){
 			bSupportDragAndDropAPI = false;
 		}
-	}
+	}*/
+	
+	 function checkDragAndDropAPI(){
+		  try{
+		   if( !oNavigator.ie ){
+		    if(!!oNavigator.safari && oNavigator.version <= 5){
+		     bSupportDragAndDropAPI = false;
+		    }else{
+		     //bSupportDragAndDropAPI = true;
+
+		     //모바일인경우 드래그앤드랍 지원안하도록 수정 2013.12.10. 추가시작라인
+		     if ( oNavigator.mobile || oNavigator.msafari || oNavigator.mopera || oNavigator.mie)
+		     {
+		      bSupportDragAndDropAPI = false;
+		     } else {
+		      bSupportDragAndDropAPI = true;
+		     }
+		     //추가 끝라인.
+		    }
+		   } else {
+		    bSupportDragAndDropAPI = false;
+		   }
+		  }catch(e){
+		   bSupportDragAndDropAPI = false;
+		  }
+		 }
 	
 	//--------------- html5 미지원 브라우저에서 (IE9 이하) ---------------
 	/** 

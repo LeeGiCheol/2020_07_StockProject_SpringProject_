@@ -265,7 +265,7 @@ $(document).ready(function(){
 									</c:if>
 								</div>
 
-								<div class="search-area">
+<%-- 								<div class="search-area">
 									<div class="search-area-body">
 										<form class="form-inline my-2 my-lg-0 underSearchForm"
 											action="/board/portfolio">
@@ -297,7 +297,46 @@ $(document).ready(function(){
 											</button>
 										</form>
 									</div>
-								</div>
+								</div> --%>
+								
+								<div class="search-area">
+									<div class="search-area-body">
+										<form class="form-inline my-2 my-lg-0 underSearchForm"
+											action="/board/free">
+											<!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제목</a> -->
+											<select class="dropdown-toggle-board" name="searchStyle">
+												<option class="dropdown-toggle board-item"
+													id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" value=""
+													<c:if test='${searchStyle eq ""}'>selected</c:if>>전체</option>
+												<option class="dropdown-item board-item"
+													value="search_title"
+													<c:if test='${searchStyle eq "search_title"}'>selected</c:if>>제목</option>
+												<option class="dropdown-item board-item"
+													value="search_content"
+													<c:if test='${searchStyle eq "search_content"}'>selected</c:if>>내용</option>
+												<option class="dropdown-item board-item"
+													value="search_title_content"
+													<c:if test='${searchStyle eq "search_title_content"}'>selected</c:if>>제목
+													+ 내용</option>
+												<option class="dropdown-item board-item" value="search_nick"
+													<c:if test='${searchStyle eq "search_nick"}'>selected</c:if>>글쓴이</option>
+											</select> 
+											
+											<span class="input-style">
+											<input
+												type="search" name="keyword" placeholder="검색어 입력"
+												aria-label="Search">
+											<button
+												class="search"
+												type="submit">
+												<i class="fas fa-search"></i>
+											</button>
+											</span>
+										</form>
+									</div>
+								</div>								
 							</div>
 						</div>
 					</div>

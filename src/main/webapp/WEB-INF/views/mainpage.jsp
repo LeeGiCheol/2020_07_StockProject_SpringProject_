@@ -155,7 +155,7 @@
 					</c:when>
 
 					<c:when test="${loginUser.point >= 0}">
-						<div class="login-box">
+						<div class="login-box login-box-web">
 							<div class="div-login-box-after" style class="login-out">
 								<p class="proimg_div-after">
 									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"

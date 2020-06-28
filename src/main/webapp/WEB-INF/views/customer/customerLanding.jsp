@@ -47,10 +47,6 @@
 
 					<!-- 검색 -->
 					<div class="sectionBox">
-						<div class="customerBanner">
-						</div>
-					</div>
-					
 					<div class="m-menu">
 <!-- 							<div class="drop-nav">
 								<h1 class="tit-h1 line">고객센터</h1>
@@ -75,7 +71,12 @@
 									<a href="/customerClaim/list">Q&amp;A</a>
 								</h1>
 							</div>						
-					</div>					
+					</div>
+						<div class="customerBanner">
+						</div>
+					</div>
+					
+					
 					<!-- 공지사항 -->
 					<div id="noticeArea" class="sectionBox">
 						<div class="sectionWrapper">
