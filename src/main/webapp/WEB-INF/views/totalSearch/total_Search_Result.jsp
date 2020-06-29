@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>검색</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -54,8 +54,12 @@
 				<div class="t-search-msg">
 					<p>
 
-
+						<c:if test="${keyword eq ''}">
+						<span class="color-fantasy">전체 조회 결과입니다.</span>
+						</c:if>
+						<c:if test="${keyword ne ''}">
 						‘<span class="color-fantasy">${keyword}</span>’ (으)로 검색한 결과입니다.
+						</c:if>
 					</p>
 				</div>
 

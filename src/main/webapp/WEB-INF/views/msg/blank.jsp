@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <script>
-	alert('${msg}');
+	swal({text:'${msg}', icon:'${icon}'})
 	self.close();
 	</script>
 </body>
