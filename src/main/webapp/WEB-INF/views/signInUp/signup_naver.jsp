@@ -289,7 +289,7 @@ window.onkeydown = function() {
 						$('#nickNameResult').append(html);
 						document.getElementById("inputNickname").value="";
 						// 중복체크 실패 시 회원가입 버튼 비활성화
-						
+							
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
 				},

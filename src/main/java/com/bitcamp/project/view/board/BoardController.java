@@ -128,7 +128,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/board/free/detail/ajax")
-	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo,
+	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, Model model,
 			@ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
 		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
@@ -165,11 +165,10 @@ public class BoardController {
 		map.put("commentList", comment);
 		map.put("commentPage", (PagingVO) commentList.get("commentPage"));
 		map.put("boardPrevNext", boardPrevNext);
+		model.addAttribute("loginUser", session.getAttribute("loginUser")); // 비로그인 유저는 신고 못하게를 위한
+		map.put("loginUser", model.getAttribute("loginUser"));
 		map.put("boardDate", boardDate);
 		map.put("commentDate", commentDate);
-		
-		
-		
 		return map;
 	}
 

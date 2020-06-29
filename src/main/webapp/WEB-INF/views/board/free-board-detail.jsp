@@ -548,8 +548,7 @@ function submitReportComt(){
 				url : '${pageContext.request.contextPath}/board/free/detail/ajax?pno='+pno + page,
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
-				success : function(data){ 
-					/* console.log(data) */
+				success : function(data){
 					// 게시판상세보기
 					var board = "";
 					
@@ -557,7 +556,6 @@ function submitReportComt(){
 					var boardNickname = data.boardDetail.nickname
 					var boardDatetime = data.boardDetail.bdateTime
 					var boardContent = data.boardDetail.bcontent
-					
 					
 					board +=	'<div class="board-view-tit">'
 					board +=		'<h1>'+boardTitle+'</h1>'
@@ -580,9 +578,11 @@ function submitReportComt(){
 					board +=	'<div class="sns-area board-sns">'
 					board +=		'<p class="notify-box">'
 					
-					// 공지사항은 신고 못하게 함
-					if(data.boardDetail.bno !== "customerNotice"){
+					// 공지사항, 비로그인 유저는 신고 못하게 함
+					if(data.loginUser !== null){
+						if(data.boardDetail.bno !== "customerNotice"){
 						board +=			'<button type="button" id="reportPopupBtn" class="btn-s notify clean-popup-button e-login"><span>신고</span></button>'
+						}
 					}
 
 					board +=		'</p>'
