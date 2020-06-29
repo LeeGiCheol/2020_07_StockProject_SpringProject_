@@ -52,10 +52,16 @@
 				<div class="t-search-msg">
 					<p>
 
-
+						<c:if test="${keyword eq ''}">
+						<span class="color-fantasy">전체 조회 결과입니다.</span>
+						</c:if>
+						<c:if test="${keyword ne ''}">
 						‘<span class="color-fantasy">${keyword}</span>’ (으)로 검색한 결과입니다.
+						</c:if>
 					</p>
 				</div>
+
+				
 
 				<!-- //검색결과없음 -->
 				<div class="tab-area swiper-container swiper-container-horizontal"

@@ -34,21 +34,27 @@
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
 <script>
-	function btnSave(){
-		// bcontent에 내용 삽입
-		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
-		// 글제목
-		// 글내용 있는지 확인용 
-		var content = document.getElementsByTagName('p');
+function btnSave(){
+	// bcontent에 내용 삽입
+	oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
+	// 글내용 있는지 확인용 
+	var content = document.getElementsByTagName('p');
+	
+    var bcontent = $("#bcontent").val();
 
-				var contentValue = $('#bcontent').val();
-					
-		$("#form").submit();
-		
-		
-		
-		
-	};
+    if (bcontent == ""  || bcontent == null || bcontent == '&nbsp;' || bcontent == '<br>' || bcontent == '<br />' || bcontent == '<p>&nbsp;</p>')  {
+    	 swal({text:"내용을 입력해주세요.", icon:"error"}).then(function(){
+             oEditors.getById["bcontent"].exec("FOCUS"); 
+    	 })
+         return;
+    }
+    
+
+    try {
+    	$("#form").submit();
+    } catch(e) {}
+};
+
 
 
 </script> 

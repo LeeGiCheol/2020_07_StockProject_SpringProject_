@@ -150,12 +150,12 @@ public class CustomerController {
 	}	
 
 	
-	@GetMapping(value="/customerNoticeWrite")
+	@GetMapping(value="/customerNotice/write")
 	public String customNoticeWrite() {
 		return "customer/customerNoticeWrite";
 	}	
 	
-	@PostMapping("/customerNoticeWrite")
+	@PostMapping("/customerNotice/write")
 	public String boardWrite(BoardVO vo) {
 		
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
@@ -174,12 +174,13 @@ public class CustomerController {
 		}
 		return "redirect:/customerNotice";
 	}
-	
+				  
 	@GetMapping("/customerNotice/update")
 	public String updateBoardView(BoardVO vo, Model model) {
 		BoardVO boardUpdate = boardService.getBoard(vo);
+		System.out.println(boardUpdate.toString());
 		model.addAttribute("boardUpdate", boardUpdate);
-		return "customer/customNoticeUpdate";
+		return "customer/customerNoticeUpdate";
 	}
 
 	@PostMapping("/customerNotice/update")
