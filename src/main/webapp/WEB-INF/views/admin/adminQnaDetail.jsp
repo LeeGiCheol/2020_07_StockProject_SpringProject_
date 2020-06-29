@@ -161,8 +161,8 @@
 						 <div class="bt-area-answer">
 						<span>
 							<c:if test="${qna.qcheck eq '답변완료'}">
-								<a href="/admin/qna/answer/update?qno=${qna.qno}" class="btn-s">수정</a>
-								<a href="javascript:void(0)" onclick="delAnswer('${qna.ano}')" class="btn-s fantasy">삭제</a>
+								<a href="/admin/qna/answer/update?qno=${qna.qno}" class="modify"><span>수정</span></a>
+								<a href="javascript:void(0)" onclick="delAnswer('${qna.ano}')" class="btn-s fantasy del">삭제</a>
 							</c:if>
 						</span> 
 						</div>	
@@ -182,7 +182,7 @@
 				<a href="/admin/qna" class="btn-s">목록</a>
 				
 				<c:if test="${qna.acontent eq null}">
-					<a href="/admin/qna/delete?qno=${qna.qno}" class="btn-s fantasy">삭제</a>
+					<a href="javascript:void(0)" onclick="delAnswer('${qna.qno}')" class="btn-s fantasy">삭제</a>
 				</c:if>
 				<c:if test="${qna.acontent ne null}">
 					<a href="javascript:void(0)" onclick="delQna('${qna.qno}', '${qna.ano}')" class="btn-s fantasy">삭제</a>

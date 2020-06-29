@@ -571,12 +571,14 @@ fieldset, img, abbr, acronym {
     font-size: 9px;
     padding-right: 7px;
 }
+
 .comment-cont .cmt-list li.list .share-more a.modify span {
     background: url(/resources/img/ico_sub.png) no-repeat 0 -260px;
 }
 .comment-cont .cmt-list li.list .share-more a.del span {
     background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
 }
+
 .paging {
     clear: both;
     text-align: center;

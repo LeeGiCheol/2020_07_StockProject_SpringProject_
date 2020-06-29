@@ -102,24 +102,24 @@ tr td button {
 							<button id="historyBttn" type="button"
 								class="board-write-btn fantasy"  data-toggle="modal" data-target="#historyModal">
 								거래 기록</button>
-							<!-- 	원래버튼  <button id="historyBttn" type="button"
+							   <button id="historyBttn" type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
 								onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
-								거래 기록</button> -->
+								거래 기록</button> 
 
 							<button id="ownBttn" type="button"
 								class="board-write-btn fantasy" data-toggle="modal" data-target="#ownModal">
 						
 								보유 종목</button>
-							<!-- <button id="recordBttn" type="button"
+								<button id="recordBttn" type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
 								onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
-								보유 종목</button> -->
+								보유 종목</button> 
 						</div>
 						
 						
 					<!-- 	 jsp모달 ajax로 넣기 -->
-					 						<script>
+					 					<!-- 	<script>
 												$(document).ready(function() {
 											        //거래기록
 											        $('#historyBttn').on('click', function () {
@@ -133,7 +133,7 @@ tr td button {
 												        });
 													
 												});
-												</script>
+												</script> -->
 												
 												
 																							
