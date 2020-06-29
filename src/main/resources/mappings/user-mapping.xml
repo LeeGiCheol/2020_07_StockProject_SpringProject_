@@ -235,7 +235,7 @@
 		select accumasset
 		from userranking
 		order by accumasset desc
-		limit 0, 9
+		limit 0, 10
 	</select>
 	
 	<select id="getAccumRankingNicknameList" resultType="String">
@@ -243,7 +243,7 @@
 		from userranking
 		natural join user
 		order by accumasset desc
-		limit 1, 10
+		limit 0, 10
 	</select>
 	<!-- <insert id="nickname">
 		
