@@ -46,6 +46,7 @@ public class TradeController {
 			id = ((UserVO) session.getAttribute("loginUser")).getId();
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.addObject("icon", "error");
 			mav.setViewName("msg/blank");
 			return mav;
 		}
@@ -77,6 +78,7 @@ public class TradeController {
 			id = ((UserVO) session.getAttribute("loginUser")).getId();
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
+			mav.addObject("icon", "error");
 			mav.setViewName("msg/blank");
 			return mav;
 		}
