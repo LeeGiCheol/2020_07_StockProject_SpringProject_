@@ -42,7 +42,7 @@ public class MyAccountServiceImpl implements MyAccountService {
 	}
 
 	@Override
-	public HashMap<String, Object> getMyTradeHistoryListByDate(UserVO loginUser, int nowPage, String startDate,
+	public HashMap<String, Object> getMyTradeHistoryList(UserVO loginUser, int nowPage, String startDate,
 			String endDate, String tradeSearch) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String sDate = "";
