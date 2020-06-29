@@ -196,6 +196,7 @@ public class PortfolioController {
 		String commentDateString = null;
 		List<String> commentDate = new ArrayList<String>();
 		for (int i = 0; i < comment.size(); i++) {
+			comment.get(i).setCdateTime(new Date(comment.get(i).getCdateTime().getTime()- (1000 * 60 * 60 * 9)));
 			Date commentDate_ = comment.get(i).getCdateTime();
 			commentDateString = transFormat.format(commentDate_);
 			commentDate.add(commentDateString);
