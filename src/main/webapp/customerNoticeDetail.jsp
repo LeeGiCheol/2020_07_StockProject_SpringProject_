@@ -449,7 +449,7 @@ max-width: 100%;
 							<li id="sideTitle"><a href="/customer"><span>고객센터</span></a></li>
 							<li id="noticeTitle"><a href="/customerNotice"><span>공지사항</span></a></li>
 							<li id="qnaTitle"><a href="/customerqna"><span>도움말</span></a></li>
-							<li id="claimTitle"><a href="/customClaimWrite"><span>1:1문의</span></a></li>
+							<li id="claimTitle"><a href="/customClaim/write"><span>1:1문의</span></a></li>
 						</ul>
 					</div>
 					
@@ -477,7 +477,7 @@ max-width: 100%;
 							<h1 class="m-drop-tit-body first line" style="cursor:pointer;"><a href="/customer">고객센터</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerNotice">공지사항</a></h1>
 							<h1 class="m-drop-tit-body line" style="cursor:pointer;"><a href="/customerqna">도움말</a></h1>
-							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaimWrite">1:1문의</a></h1>
+							<h1 class="m-drop-tit-body last line" style="cursor:pointer;"><a href="/customClaim/write">1:1문의</a></h1>
 						</div>
 		
 		
@@ -635,7 +635,7 @@ max-width: 100%;
 	</div>
 		<p class="bt-area view-bt-area">
         <span>
-        	<a href="/customNoticeWrite" class="moreBttn right blue">글쓰기</a>
+        	<a href="/customNotice/write" class="moreBttn right blue">글쓰기</a>
             <a href="/customerNotice" class="moreBttn right norm">목록</a>
 
 		</span>
