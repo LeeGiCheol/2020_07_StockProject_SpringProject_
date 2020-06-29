@@ -581,14 +581,19 @@ function submitReportComt(){
 					// 공지사항, 비로그인 유저는 신고 못하게 함
 					if(data.loginUser !== null){
 						if(data.boardDetail.bno !== "customerNotice"){
-						board +=			'<button type="button" id="reportPopupBtn" class="btn-s notify clean-popup-button e-login"><span>신고</span></button>'
+							board +=			'<button type="button" id="reportPopupBtn" class="btn-s notify clean-popup-button e-login"><span>신고</span></button>'
 						}
 					}
 
 					board +=		'</p>'
-					board +=		'<p class="like-box" id="actBtn" style="">'
-					board +=			'<button class="btn-m like" id="recmBtn" onclick="updateLikes('+data.boardDetail.pno+');"><i>추천</i><span id="recommendCount">'+data.boardDetail.likes+'</span></button>'
-					board +=		'</p>'
+					
+						// 비로그인 유저는 좋아요 못하게 함
+					if(data.loginUser !== null){
+						board +=		'<p class="like-box" id="actBtn" style="">'
+						board +=			'<button class="btn-m like" id="recmBtn" onclick="updateLikes('+data.boardDetail.pno+');"><i>추천</i><span id="recommendCount">'+data.boardDetail.likes+'</span></button>'
+						board +=		'</p>'
+					}
+					
 					board +=	'</div>'
 							
 					
