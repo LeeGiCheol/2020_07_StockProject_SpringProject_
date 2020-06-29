@@ -692,7 +692,9 @@ tr td button {
 																							value="${list.quantity}" /></td>
 																				</tr>
 																			</c:forEach>
-
+																			<c:if test="${unsettled eq null}">
+   																				<tr title="미체결잔량">로그인이 필요합니다.</tr>
+																			</c:if>
 																		</tbody>
 																	</table>
 																</div>
