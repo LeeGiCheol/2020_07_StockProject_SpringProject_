@@ -2,6 +2,7 @@ package com.bitcamp.project.view.user;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -109,10 +110,34 @@ public class CustomerController {
 		// 댓글리스트
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		List<CommentVO> comment = (List<CommentVO>) commentList.get("commentList");
+		
+		// 아이폰에서 시간이 제대로 표시 안되는 관계로 String으로 형변환
+		// mysql Timezone이 UTC로 설정되어있어 시간 재설정
+		// 게시물
+		boardDetail.setBdateTime(new Date(boardDetail.getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		Date from = boardDetail.getBdateTime();
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String boardDate = transFormat.format(from);
+		// 댓글
+		String commentDateString = null;
+		List<String> commentDate = new ArrayList<String>();
+		for (int i = 0; i < comment.size(); i++) {
+			Date commentDate_ = comment.get(i).getCdateTime();
+			commentDateString = transFormat.format(commentDate_);
+			commentDate.add(commentDateString);
+		}
+		
+		
+		
 		map.put("boardDetail", boardDetail);
-		map.put("commentList", (List<CommentVO>)commentList.get("commentList"));
+		map.put("commentList", comment);
 		map.put("commentPage", (PagingVO)commentList.get("commentPage"));
 		map.put("boardPrevNext", boardPrevNext);
+		map.put("boardDate", boardDate);
+		map.put("commentDate", commentDate);
 		
 		return map;
 	}

@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -87,9 +88,8 @@ public class BoardServiceImpl implements BoardService{
 			boardPage.getUtil().put("bno", bno);
 			
 			boardList = boardDAO.getBoardList(boardPage);
-			for (int i = 0; i < boardList.size(); i++) {
-				boardList.get(i).setBdateTime(new Date(boardList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
-			}
+ 			
+ 			
 			postMap.put("boardList", boardList);
 		}
 		// 포트폴리오 게시판
@@ -102,11 +102,9 @@ public class BoardServiceImpl implements BoardService{
 			boardPage.getUtil().put("bno", bno);
 			
 			portfolioList = boardDAO.portfolioList(boardPage);
-			System.out.println("1 "+boardPage);
-			System.out.println("2 "+portfolioList);
-			for (int i = 0; i < portfolioList.size(); i++) {
-				portfolioList.get(i).setBdateTime(new Date(portfolioList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
-			}
+//			for (int i = 0; i < portfolioList.size(); i++) {
+//				portfolioList.get(i).setBdateTime(new Date(portfolioList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+//			}
 			postMap.put("portfolioList", portfolioList);
 		}
 		
