@@ -43,7 +43,6 @@ public class SignInController {
 	@PostMapping(value="/signIn")
 	public ModelAndView signIn(@ModelAttribute("id") String id, @ModelAttribute("pw") String pw, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		
 		ModelAndView mav = new ModelAndView();
 		UserVO vo = new UserVO();
 		vo.setId(id);
@@ -219,16 +218,16 @@ public class SignInController {
 	@PostMapping(value="/updatePassword")	
 	public String updatePassword(UserVO vo, @ModelAttribute("password") String password, 
 			@ModelAttribute("passwordAgain") String passwordAgain, HttpSession session) {
-		
 		String encPassword = passwordEncoder.encode(password);
 		
-		if(bPasswordEncoder.matches(passwordAgain, encPassword)) {
+		if(bPasswordEncoder.matches(password, encPassword)) {
+			System.out.println("password @@@: " + password);
 			UserVO finduserVO = (UserVO) session.getAttribute("findUser");
 			finduserVO.setPw(encPassword);
 			vo = signInService.updatePw(finduserVO);
 			return "forgetidpw/forgetpasswordpagesuccess";
 		}else{ // 비밀번호랑 비밀번호 확인이 같지않으면 어처피 클릭이 되지 않아 else는 구현 안함
-			
+			System.out.println("password ###: " + password);
 		}
 	return "forgetidpw/forgetpasswordpagereset";
 	}

@@ -29,27 +29,32 @@
 		// 글내용 있는지 확인용 
 		var content = document.getElementsByTagName('p');
 		
-        var bcontent = $("#bcontent").val();
+				
 
-        if(title.trim() == ""){
-			swal({text:"제목을 입력해주세요.", icon:"error"}).then(function(){
-				$("#title").focus();
-			})
-			return;
+		var contentValue = $('#bcontent').val();
+		var checkBlankOnly = contentValue;
+		while(checkBlankOnly.indexOf("&nbsp;") != -1){
+			checkBlankOnly = checkBlankOnly.replace("&nbsp;", "");
 		}
-        else if(bcontent == ""  || bcontent == null || bcontent == '&nbsp;' || bcontent == '<br>' || bcontent == '<br />' || bcontent == '<p>&nbsp;</p>')  {
-	    	 swal({text:"내용을 입력해주세요.", icon:"error"}).then(function(){
-	             oEditors.getById["bcontent"].exec("FOCUS"); 
-	    	 })
-             return;
-        }
-        
-
-        try {
-        	$("#form").submit();
-        } catch(e) {}
-		
-		
+		while(checkBlankOnly.indexOf("<p>") != -1){
+			checkBlankOnly = checkBlankOnly.replace("<p>", "");
+		}
+		while(checkBlankOnly.indexOf("</p>") != -1){
+			checkBlankOnly = checkBlankOnly.replace("</p>", "");
+		}
+		checkBlankOnly = checkBlankOnly.trim();
+		if(title.trim() == ""){
+			swal({text:"제목을 입력해주세요.", icon:"error"});			
+			$("#title").focus();
+		}
+		else{
+			if(checkBlankOnly.length == 0){
+				swal({text:"내용을 입력해주세요.", icon:"error"});
+			}
+			else{
+				$("#form").submit();
+			}					
+		}
 	};
 
 
@@ -119,7 +124,7 @@
 								            <tr>
 												<th scope="row">내용</th>
 												<td>
-													<textarea class="form-control" rows="5" name="bcontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>
+													<textarea class="form-control" name="bcontent" id="bcontent" placeholder="내용을 입력해 주세요" rows="30" style="width:100%;"></textarea>
 												</td>
 											</tr>
 										</tbody>
