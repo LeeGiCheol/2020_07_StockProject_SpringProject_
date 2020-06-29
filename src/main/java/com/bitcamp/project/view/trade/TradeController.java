@@ -112,17 +112,19 @@ public class TradeController {
 	public ModelAndView modify(@RequestParam(value = "modifyQu") String qu,
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
 			@RequestParam(value = "cancleModify") String modify) {
-		String id = ((UserVO) session.getAttribute("loginUser")).getId();
-//		String id = "test"; // test 용 아이디
 		ModelAndView mav = new ModelAndView();
+		
+		String id = null;
 
-		if (id == null) {
+		try {
+			id = ((UserVO) session.getAttribute("loginUser")).getId();
+		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
 			mav.addObject("location", "/signInPage");
 			mav.setViewName("msg/notice");
 			return mav;
 		}
-
+		
 		StockVO vo = new StockVO();
 
 		vo.setId(id);
@@ -215,7 +217,7 @@ public class TradeController {
 			id = ((UserVO) session.getAttribute("loginUser")).getId();
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
-			mav.addObject("location", "/trade?stockName=" + stockName);
+			mav.addObject("location", "/signInPage");
 			mav.setViewName("msg/notice");
 			return mav;
 		}
@@ -256,7 +258,7 @@ public class TradeController {
 			id = ((UserVO) session.getAttribute("loginUser")).getId();
 		} catch (Exception e) {
 			mav.addObject("msg", "회원만 사용가능합니다");
-			mav.addObject("location", "/trade?stockName=" + stockName);
+			mav.addObject("location", "/signInPage");
 			mav.setViewName("msg/notice");
 			return mav;
 		}

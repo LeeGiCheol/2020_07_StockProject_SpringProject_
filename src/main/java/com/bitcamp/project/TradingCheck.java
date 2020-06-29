@@ -154,7 +154,7 @@ public class TradingCheck {
 		}
 
 		Date now = new Date();
-		System.out.println("  ("+now+")");
+//		System.out.println("  ("+now+")");
 	}
 
 }
