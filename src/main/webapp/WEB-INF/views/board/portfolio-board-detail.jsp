@@ -580,9 +580,11 @@ function submitReportComt(){
 					board +=	'<div class="sns-area board-sns">'
 					board +=		'<p class="notify-box">'
 					
-					// 공지사항은 신고 못하게 함
-					if(data.boardDetail.bno != 3){
+					// 공지사항, 비로그인 유저는 신고 못하게 함
+					if(data.loginUser !== null){
+						if(data.boardDetail.bno !== "customerNotice"){
 						board +=			'<button type="button" id="reportPopupBtn" class="btn-s notify clean-popup-button e-login"><span>신고</span></button>'
+						}
 					}
 
 					board +=		'</p>'
