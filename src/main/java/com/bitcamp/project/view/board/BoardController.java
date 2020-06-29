@@ -85,9 +85,19 @@ public class BoardController {
 	}
 
 	@PostMapping("/board/free/write")
-	public String boardWrite(BoardVO vo) {
+	public String boardWrite(BoardVO vo, Model model) {
 
-		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg/msg";
+		}
+		
+		
+		
 		vo.setId(loginUser.getId());
 		vo.setBno("free"); // 자유게시판
 
@@ -190,14 +200,22 @@ public class BoardController {
 	public String updateBoardView(BoardVO vo, Model model) {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
-//		System.out.println("mmmmm"+boardUpdate);
 		return "board/free-board-updateForm";
 	}
 
 	@PostMapping("/board/free/update")
 	public String updateBoard(BoardVO vo, Model model) {
-		BoardVO bVo = boardService.getBoard(vo);
 
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg/msg";
+		}
+		
+		
 		List<String> uploadThumbnail = new ArrayList<String>();
 
 		FileUpload fu = new FileUpload();
@@ -213,11 +231,16 @@ public class BoardController {
 	}
 
 	@GetMapping("/board/free/delete")
-	public String deleteBoard(BoardVO vo) {
-		BoardVO bVo = boardService.getBoard(vo);
-//		List<String> uploadThumbnail = new ArrayList<String>();
-//		FileUpload fileUpload = new FileUpload();
-//		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
+	public String deleteBoard(BoardVO vo, Model model) {
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg/msg";
+		}
+		
 
 		boardService.deleteBoard(vo);
 		return "redirect:/board/free";
