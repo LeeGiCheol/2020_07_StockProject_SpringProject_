@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -159,20 +160,32 @@
                                     
                                     <!-- 데이터값 들어가는 곳 -->
                                     <tbody>
-                                    
-                                    
-                                    	<c:forEach var="qnaList" items="${qnaList}">
-	                                       <tr>
-	                                            <td class="tClass center">${qnaList.qtype}</td>
-	                                            <td class="tStatus center">${qnaList.qcheck}</td>
-	                                            <td class="tTitle tleft"> <a href="/admin/qna/detail?qno=${qnaList.qno}">${qnaList.qtitle}</a></td>
-	                                            <td class="tWriter tleft">${qnaList.nickname}</td>
-	                                            <fmt:formatDate value="${qnaList.qdateTime}" var="time"
-													pattern="MM/dd HH:mm" />
-												<td class="board-date">${time}</td>
-	                                        </tr>
+                                    	<c:forEach var="qnaList" items="${qnaList}" varStatus="status" begin="0" end="0">
+	                                       	<c:set var="qcheck" value="${qnaList.qcheck}"/>
+		                                       	<c:if test="${not fn:contains(qcheck,'준비중')}"> <!-- 전부 처리헀으면 -->
+		    	                                		<tr>	
+				                                       		<td></td>
+				                                            <td></td>
+				                                            <td>처리하지않은 문의사항이 없습니다.</td>
+				                                            <td></td>
+				                                            <td></td>
+				                                        </tr>
+		                                       	</c:if>
                                         </c:forEach>
-
+                                        <c:forEach var="qnaList" items="${qnaList}">
+	                                        <c:set var="qcheck" value="${qnaList.qcheck}"/>
+		                                       	<c:if test="${fn:contains(qcheck,'준비중')}"> <!-- 처리되지않은게있으면 -->
+				                                       <tr>
+				                                            <td class="tClass center">${qnaList.qtype}</td>
+				                                            <td class="tStatus center">${qnaList.qcheck}</td>
+				                                            <td class="tTitle tleft"> <a href="/admin/qna/detail?qno=${qnaList.qno}">${qnaList.qtitle}</a></td>
+				                                            <td class="tWriter tleft">${qnaList.nickname}</td>
+				                                            <fmt:formatDate value="${qnaList.qdateTime}" var="time"
+																pattern="MM/dd HH:mm" />
+															<td class="board-date">${time}</td>
+				                                        </tr>
+		                                       	</c:if>
+                                       	</c:forEach>
 									</tbody>
                                 </table>
                                 </div>
@@ -198,122 +211,38 @@
                                     </thead>
                                     <!--  데이터값 들어가는 곳 -->
                                     <tbody>
-                                       <c:forEach items="${reportList}" var="re" varStatus="status" begin="0" end="4">
-	                                       <tr>	
-	                                       		<c:if test="${re.rcheck eq '처리대기중'}">
-	                                       		<td class="class center">${re.rtype}</td>
-	                                            <td class="status center">${re.rcheck}</td>
-	                                            <td class="title tleft">${re.title}</td>
-	                                            <td class="writer tleft">${re.nickname}</td>
-	                                            <td class="date center"><fmt:formatDate pattern="MM/dd HH:mm" value="${re.rdatetime}"/></td>
-	                                            </c:if>
-	                                        </tr>
-                                        </c:forEach>
+	                                       	<c:forEach items="${reportList}" var="re" varStatus="status" begin="0" end="0">
+	                                       	<c:set var="rcheck" value="${re.rcheck}"/>
+	                                       	<c:if test="${not fn:contains(rcheck,'처리대기중')}"> <!-- 전부처리되었으면  -->
+	    	                                		<tr>	
+			                                       		<td></td>
+			                                            <td></td>
+			                                            <td>처리하지않은 신고사항이 없습니다.</td>
+			                                            <td></td>
+			                                            <td></td>
+			                                        </tr>
+	                                       	</c:if>
+	                                        </c:forEach>
+	                                        <c:forEach items="${reportList}" var="re" varStatus="status" begin="0" end="4">
+	                                        <c:set var="rcheck" value="${re.rcheck}"/>
+	                                       	<c:if test="${fn:contains(rcheck,'처리대기중')}"> <!-- 처리대기중인게 있으면 -->
+			                                       <tr>	
+			                                       		<c:if test="${re.rcheck eq '처리대기중'}"> 
+			                                       		<td class="class center">${re.rtype}</td>
+			                                            <td class="status center">${re.rcheck}</td>
+			                                            <td class="title tleft">${re.title}</td>
+			                                            <td class="writer tleft">${re.nickname}</td>
+			                                            <td class="date center"><fmt:formatDate pattern="MM/dd HH:mm" value="${re.rdatetime}"/></td>
+			                                            </c:if>
+			                                        </tr>
+	                                       	</c:if>
+	                                       	</c:forEach>
                                     </tbody>
                                 </table>
                                 </div>
                                 <!-- 신고테이블끝 -->
-
-
-
-
-                        
                         </div>
-                        
                     </div>
-
-<!--                     <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table mr-1"></i>
-                            사이트관리
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-
-                                문의테이블 시작
-                                <h5 class="mt-4">문의</h5>
-                                <table class="table table-bordered" width="100%" cellspacing="0">
-                                    테이블 데이터 헤더
-                                    <thead>
-                                        <tr>
-                                            <th class="center" style="width: 10%;">종류</th>
-                                            <th class="center"style="width: 10%">처리현황</th>
-                                            <th style="width: 25%">제목</th>
-                                            <th style="width: 35%">내용</th>
-                                            <th class="center" style="width: 10%">아이디</th>
-                                            <th class="center" style="width: 10%">일시</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    
-                                    데이터값 들어가는 곳
-                                    <tbody>
-                                        <tr>
-                                            <td class="center">종류</td>
-                                            <td class="center">처리현황</td>
-                                            <td><p class="content">제목타입 상태 보고
-메시지 요청된 리소스 (는) 가용하지 않습니다.</p></td>
-                                            <td><p class="content">내용타입 상태 보고
-메시지 요청된 리소스 [/board/portfolio]은(는) 가용하지 않습니다.
-설명 Origin 서버가 대상 리소스를 위한 현재의 representation을 찾지 못했거나, 그것이 존재하는지를 밝히려 하지 않습니다.</p></td>
-                                            <td class="center">아이디</td>
-                                            <td class="center">05/22/2022</td>
-                                        </tr>
-                                        
-                                       <tr>
-                                            <td class="center">종류</td>
-                                            <td class="center">처리현황</td>
-                                            <td><p class="content">제목</p></td>
-                                            <td><p class="content">내용</p></td>
-                                            <td class="center">아이디</td>
-                                            <td class="center">05/22/2022</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                                문의테이블끝
-
-                                
-                                신고테이블 시작
-                                <h5 class="mt-4">신고</h5>
-                                <table class="table table-bordered" width="100%" cellspacing="0">
-                                    테이블 데이터 헤더
-                                    <thead>
-                                        <tr>
-                                            <th class="center" style="width: 10%;">종류</th>
-                                            <th class="center"style="width: 10%">처리현황</th>
-                                            <th style="width: 25%">제목</th>
-                                            <th style="width: 35%">내용</th>
-                                            <th class="center" style="width: 10%">아이디</th>
-                                            <th class="center" style="width: 10%">일시</th>
-                                        </tr>
-                                    </thead>
-                                     데이터값 들어가는 곳
-                                    <tbody>
-                                       <tr>
-                                            <td class="center">종류</td>
-                                            <td class="center">처리현황</td>
-                                            <td><p class="content">제목</p></td>
-                                            <td><p class="content">내용</p></td>
-                                            <td class="center">아이디</td>
-                                            <td class="center">05/22/2022</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                                신고테이블끝
-
-
-
-
-                            </div>
-                        </div>
-                    </div> -->
-
-
-
-
-
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
@@ -326,20 +255,14 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="/resources/js/scripts.js"></script>
-    
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="/resources/js/chart-area-demo.js"></script>
     <script src="/resources/js/chart-bar-demo.js"></script>
     <script src="/resources/js/datatables-demo.js"></script>    
-    
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-
-
 <script>
 	
 	

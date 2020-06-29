@@ -187,8 +187,9 @@ background-color: transparent !important;
 											<div class="card-body">
 												<div class="qAnswer">
 													<p>회원가입시 설정하신 비밀번호는 모두 암호화되어 저장되므로,
-고객센터에서 확인이 불가능합니다.
-<span>로그인 영역> 비밀번호 찾기</span> 를 통해 확인 부탁 드립니다.</p>
+													고객센터에서 확인이 불가능합니다.
+													<span>로그인 영역> 아이디 찾기, 비밀번호 찾기</span>를 통해 확인 부탁 드립니다.
+													</p>
 												</div>
 											</div>
 										</div>
@@ -208,10 +209,11 @@ background-color: transparent !important;
 											<div class="card-body">
 												<div class="qAnswer">
 													<p><span>로그인영역>아이디찾기 </span>에서 ID를 확인 하실 수 있습니다.
-아이디 확인이 불가한 경우
-회원님의 성함,  필명, 생년월일, 성별, 휴대폰번호, 이메일주소(회원가입시 작성하셨던 계정)
-기재하셔서 <span> (webmaster@unistock.kr)</span>로 보내주시면
-확인후 답변 드리겠습니다.</p>
+													아이디 확인이 불가한 경우
+													회원님의 성함, 휴대폰번호, 이메일주소(회원가입시 작성하셨던 계정)
+													기재하셔서 <span> (zooozp2@gmail.com)</span>로 보내주시면
+													확인후 답변 드리겠습니다.
+													</p>
 												</div>
 											</div>
 										</div>
@@ -231,7 +233,9 @@ background-color: transparent !important;
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p>대충 회원탈퇴 어디서 한다는 소개</p>
+													<p>마이페이지에서 비밀번호확인 후 회원탈퇴가능합니다. 회원탈퇴시 각 게시판의 기존 글은 유지됩니다.<br>
+													소셜로그인 회원분들은 비밀번호 확인이 없으시니 유의해주시길바랍니다.</p>
+
 												</div>
 											</div>
 										</div>
@@ -256,7 +260,7 @@ background-color: transparent !important;
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
 													data-target="#collapsetwo" aria-expanded="false" aria-controls="collapsetwo">
-													내가 받을 수 있는 알림의 종류는 무엇이 있나요?
+													[알림]내가 받을 수 있는 알림의 종류는 무엇이 있나요?
 												</button>
 											</h2>
 										</div>
@@ -265,18 +269,11 @@ background-color: transparent !important;
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p>[알림]내가 받을 수 있는 알림은 아래 사항과 같습니다.
-- 내가 작성한 글에 대한 댓글알림
-- 내가 작성한 방명록글에 대한 댓글알림
-- 내가 작성한 글이 인기글로 선정되었을 시 알림
-- 내가 작성한 글이 베스트글로 선정되었을 시 알림
-- 신규 선호회원이 등록된 경우 제공되는 알림
-- 방명록에 새글이 등록된 경우 제공되는 알림
-- 내글이 300건이상 조회수를 초과했을 시 제공되는 조회수 달성알림
-- 내글이 10건이상의 조회수를 초과했을 시 제공되는 추천수 달성알림
-- 내가 작성한 글이 신고접수 되었을 시 제공되는 신고 알림
-- 나의 선호회원중 프로필이 변경된 회원이 발생한 경우 제공되는 프로필변경알림
-- 나를 차단한 회원이 발생하였을 시 제공되는 차단알림</p>
+													<p>내가 받을 수 있는 알림은 아래 사항과 같습니다.<br>
+													- 내가 작성한 글에 대한 댓글알림<br>
+													- 내가 작성한 댓글에 대한 알림<br>
+													- 매도/매수 등 거래에 대한 알림
+													</p>
 												</div>
 											</div>
 										</div>
@@ -288,19 +285,17 @@ background-color: transparent !important;
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
 													data-target="#collapsetwo1" aria-expanded="false" aria-controls="collapsetwo1">
-													[게시판]베스트글 선정기준이 무엇인가요?
+													[검색]통합검색은 무엇인가요?
 												</button>
 											</h2>
 										</div>
 										<div id="collapsetwo1" class="collapse" aria-labelledby="headingtwo2" data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p><span>베스트글은 인기글중 추천수 15개 이상의 베스트추천수를 받았을 경우 </span>
-베스트글로 선정되며, 토론실 최상단에 특별 배치됩니다.
-<span>신규 베스트글이 나타났을 경우 익일 교체되며, 베스트글 유지기간은 최대 2일입니다. </span>
-인기글과 베스트글은 자동으로 선정이 되기 때문에 종목별로 차이를 두고 있지 않습니다.
-다만 인기글로 선정된 글이라도 운영원칙에 위반되는 글 등 선정 기준에 부합하지 않은 경우 
-해지가 될 수 있습니다</p>
+													<p>메인홈페이지 혹은 각 페이지상단에 [통합검색]에 원하시는 키워드를 입력하여서
+													종목 & 자유게시판 & 포트폴리오 & 회원으로 나누어 검색이 가능합니다. 
+													추가 궁금하신부분이 있으시면 1:1문의를 통해 접수가능합니다.
+													</p>
 												</div>
 											</div>
 										</div>
@@ -322,28 +317,6 @@ background-color: transparent !important;
 
 									<!-- 반복시작 -->
 									<div class="card">
-										<div class="card-header" id="headingthree">
-											<h2 class="mb-0">
-												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-													data-target="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
-													[거래]관심종목 등록은 어떻게 하나요?
-												</button>
-											</h2>
-										</div>
-
-										<div id="collapsethree" class="collapse" aria-labelledby="headingthree"
-											data-parent="#accordionExample">
-											<div class="card-body">
-												<div class="qAnswer">
-													<p>팍스넷 상단의 관심종목을 클릭하면 관심종목 등록 페이지로 이동 합니다.
-해당 페이지에서 <span>"괸심종목 등록/변경"</span>버튼을 통해 종목을 등록할 수 있습니다.</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- 반복끝 -->
-
-									<div class="card">
 										<div class="card-header" id="headingthree-1">
 											<h2 class="mb-0">
 												<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
@@ -357,7 +330,7 @@ background-color: transparent !important;
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p> 거래는 <a href="#"><span>거래 페이지</span>에서 원하는 종목을 검색 후 하실 수 있습니다.
+													<p><a href="/trade"><span>거래는 거래 페이지</span>에서 원하는 종목을 검색 후 하실 수 있습니다.
 													오른쪽에서 원하는 가격을 누르고 수량 입력 후 매수, 매도를 하실 수 있습니다.</a></p>
 												</div>
 											</div>
@@ -378,7 +351,7 @@ background-color: transparent !important;
 											data-parent="#accordionExample">
 											<div class="card-body">
 												<div class="qAnswer">
-													<p> 정정은 <a href="#"><span>거래 페이지</span>의 하단에서 정정탭을 선택하시면 할 수 있습니다.
+													<p><a href="/trade"><span>정정은 거래 페이지</span>의 하단에서 정정탭을 선택하시면 할 수 있습니다.
 													미체결 버튼을 누르시고 나오는 거래번호를 입력수 원하는 가격 수량을 누르면 정정가능합니다.</a></p>
 												</div>
 											</div>
