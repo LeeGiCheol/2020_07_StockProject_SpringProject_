@@ -61,9 +61,8 @@
 
 
 
-
-
-					<c:if test="${stock eq ''}">
+					<!-- 검색어에 아무 데이터가 안들어있을 때 -->					
+					<c:if test="${countCheck == 0 == true}">
 
 					
 						<div class="message-wrap">
@@ -78,8 +77,8 @@
 
 
 
-
-					<c:if test="${stock ne ''}">
+					<!-- 검색어에 데이터가 하나라도 있을 때 -->
+					<c:if test="${countCheck == 0 == false}">
 					
 					<!-- //검색결과없음 -->
 						<div class="tab-area swiper-container swiper-container-horizontal" style="cursor: grab;">

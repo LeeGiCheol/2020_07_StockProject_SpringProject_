@@ -89,14 +89,14 @@ public class TotalSearchController {
 		mav.addObject("stockCount", Integer.toString(stockCount));
 		mav.addObject("nickCount", Integer.toString(nickCount));
 		
-		String countCheck = "0";
+		int countCheck = 0;
 		if(stockCount == 0 && freeCount == 0 && portCount == 0 && nickCount == 0) {
 			System.out.println("다 0 "+countCheck);
 			mav.addObject("countCheck", countCheck);
 		}
 		else {
 			System.out.println("다 0x "+countCheck);
-			countCheck = "1";
+			countCheck = 1;
 			mav.addObject("countCheck", countCheck);
 		}
 			
