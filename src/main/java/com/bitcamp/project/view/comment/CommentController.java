@@ -40,7 +40,6 @@ public class CommentController {
         	vo.setId(loginVO.getId());
         }
         catch(Exception e) {
-        	System.out.println("로그인 해주세요 페이지 구현하기");
         }
         
         commentService.writeComment(vo);
