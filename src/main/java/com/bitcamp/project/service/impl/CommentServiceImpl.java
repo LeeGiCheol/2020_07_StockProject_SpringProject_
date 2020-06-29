@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -43,12 +44,11 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Map<String, Object> commentList(CommentVO vo, int nowPage) {
+																	// 한페이지에 10개
 		PagingVO commentPage = new PagingVO(commentDAO.count(vo), nowPage, 10);
 		commentPage.getUtil().put("pno", vo.getPno());
 		List<CommentVO> commentList = commentDAO.getCommentList(commentPage);
-		for (int i = 0; i < commentList.size(); i++) {
-			commentList.get(i).setCdateTime(new Date(commentList.get(i).getCdateTime().getTime()- (1000 * 60 * 60 * 9)));
-		}
+		
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("commentList", commentList);
 		

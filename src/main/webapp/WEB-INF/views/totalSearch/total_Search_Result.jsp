@@ -28,7 +28,7 @@
 
 			<div class="t-search-box">
 
-				<form id="frmData" method="get" action="/search/home">
+				<form id="frmData" method="get" action="/total-search">
 					<input type="hidden" name="currentPageNo" id="currentPageNo"
 						value="1"> <input type="hidden" name="searchType"
 						id="searchType" value=""> <input type="hidden"
@@ -61,18 +61,26 @@
 
 
 
+					<!-- 검색어에 아무 데이터가 안들어있을 때 -->					
+					<c:if test="${countCheck == 0 == true}">
+
+					
+						<div class="message-wrap">
+							<div class="message-st-01">
+								<p class="big-text">
+									조회하는 단어와 일치하는 <span> 데이터가 없습니다.</span><br> <span
+										class="color-fantasy">다른 검색어로 검색해 보세요.</span>
+								</p>
+							</div>
+						</div>
+					</c:if>
 
 
 
-
-
-
-
-				<c:choose>
-					<c:when test="${stockCount ne 0 and freeCount ne 0 and portCount ne 0 and userCount ne 0}">
-
-
-						<!-- //검색결과없음 -->
+					<!-- 검색어에 데이터가 하나라도 있을 때 -->
+					<c:if test="${countCheck == 0 == false}">
+					
+					<!-- //검색결과없음 -->
 						<div class="tab-area swiper-container swiper-container-horizontal" style="cursor: grab;">
 							<ul class="tab-st01 num07 swiper-wrapper" style="width: auto;">
 								<li class="selected swiper-slide"><a href="/total-search?keyword=${keyword}" style="width: 100%;">통합검색</a></li>
@@ -226,18 +234,11 @@
 								</p>
 							</div>
 						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="message-wrap">
-							<div class="message-st-01">
-								<p class="big-text">
-									조회하는 단어와 일치하는 <span> 데이터가 없습니다.</span><br> <span
-										class="color-fantasy">다른 검색어로 검색해 보세요.</span>
-								</p>
-							</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
+					</c:if>
+
+
+				
+						
 				<!-- //회원 -->
 
 			</div>

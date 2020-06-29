@@ -565,7 +565,7 @@ function submitReportComt(){
 					board +=			'<p class="img"><img class="pax_f2_proimg" cust_id="ciaws94" src="https://www.paxnet.co.kr/my/files/proimg/di/pi_08.png"></p>'
 					board +=			'<p class="text">'
 					board +=			'<span class="nickname" style="cursor:pointer;" onclick="#;"><a href="/selectUserBoard?nickname='+boardNickname+'">'+boardNickname+'</a></span>'
-					board +=			'<span class="time">'+changeDate(boardDatetime)+'</span>'
+					board +=			'<span class="time">'+data.boardDate+'</span>'
 					board +=			'<span class="viewer"><i>조회</i>'+data.boardDetail.views+'</span>'
 					board +=			'</p>'
 					board +=		'</div>'
@@ -615,7 +615,7 @@ function submitReportComt(){
 						comment += 	"<div class='text'>"
 						comment += 	"<p class='writer'>"
 						comment +=	"<span id='writer_45219165' onclick='#' style='cursor:pointer;'>"+data.commentList[i].nickname+"</span>"
-						comment +=	"<span class='data-date-format'>"+changeDate(data.commentList[i].cdateTime)+"</span>"
+						comment +=	"<span class='data-date-format'>"+data.commentDate[i]+"</span>"
 						comment += 	"</p>"
 						comment += 	"<p class='cont' id='com" + data.commentList[i].cno + "'>" +data.commentList[i].ccontent+"</p>"
 						comment += 	"</div>"

@@ -407,7 +407,7 @@ background-color: transparent !important;
 						console.log("document ready!");
 
 						var $sticky = $('.sticky');
-						var $stickyrStopper = $('.footer_content	');
+						var $stickyrStopper = $('.tab-content');
 						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
 							var generalSidebarHeight = $sticky.innerHeight();

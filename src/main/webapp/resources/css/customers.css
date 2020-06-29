@@ -41,10 +41,10 @@ em, i {
 	font-style: normal;
 }
 
-a, a:link, a:visited, a:active, a:hover {
+/* .link-btn, .link-btn:link, .link-btn:visited{
 	text-decoration: none;
 	color: rgba(46,87,255,1);
-}
+} */
 
 p {
 	line-height: 160%;
@@ -485,7 +485,15 @@ width: 49.5%;
     height: 310px;
     background-size: 100% 100%;
 }
-
+.link-btn {
+    float: right;
+    position: relative;
+    color: #af814d;
+    font-size: 13px;
+    font-weight: normal;
+    margin-right: 10px;
+    margin-top: 15px
+}
 
 @media only screen and (max-width: 979px){
 .m-menu {

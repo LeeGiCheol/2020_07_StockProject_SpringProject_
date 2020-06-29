@@ -448,13 +448,7 @@ fieldset, img, abbr, acronym {
 .comment-cont.anonymity .cmt-list li.list > div {
     padding-left: 0;
 }
-.comment-cont .cmt-list .list div.text .writer {
-    font-size: 13px;
-    color: #888;
-    vertical-align: top;
-    padding-bottom: 3px;
-    padding-right: 70px;
-}
+
 .comment-cont .cmt-list .list div.text .writer span:first-child {
     background: url(/resources/img/bg_line.png) no-repeat right 50%;
     padding-right: 10px;
@@ -465,7 +459,7 @@ fieldset, img, abbr, acronym {
     color: #888;
     vertical-align: top;
     padding-bottom: 3px;
-    padding-right: 70px;
+    padding-right: 50px;
 }
 .comment-cont .cmt-list .list div.text .cont {
     padding-bottom: 10px;

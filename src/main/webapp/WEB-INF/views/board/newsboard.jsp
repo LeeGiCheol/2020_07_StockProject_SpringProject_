@@ -235,6 +235,7 @@
 						<ul class="realtimeNewsList" id="news1">
 							<li class="newsList top"></li>
 						</ul>
+					
 				</div>
 					<div class="tab-pane fade" id="pills-profile" role="tabpanel"
 							aria-labelledby="pills-profile-tab">
@@ -248,14 +249,13 @@
 							<li></li>
 						</ul>
 				</div>	
-				
-				
 			</div>
 		</div>
 	</div>
 	</div>
 	</div>
 </div>
+				
 	<%@include file="../mainfooter2.jsp"%>
 <script type="text/javascript">
    $( document ).ready(function() {

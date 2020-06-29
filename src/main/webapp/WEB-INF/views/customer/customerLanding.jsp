@@ -14,8 +14,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 	<link rel="stylesheet" href="/resources/css/mainheader2.css">
 	<link rel="stylesheet" href="/resources/css/mainfooter3.css">
-	<link rel="stylesheet" href="/resources/css/customers.css">
 	<link rel="stylesheet" href="/resources/css/sidebar.css">
+	<link rel="stylesheet" href="/resources/css/customers.css">
 	
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -82,7 +82,7 @@
 						<div class="sectionWrapper">
 							<dl>
 								<h2 class="main-tit">공지사항</h2>
-								<a class="moreBttn right blue" href="/customerNotice" style="cursor: pointer;">더보기</a>
+								<a class="link-btn" href="/customerNotice" style="cursor: pointer;">더보기 <i class="fas fa-angle-right"></i></a>
 								<dd>
 
 								
@@ -302,7 +302,7 @@
 						console.log("document ready!");
 
 						var $sticky = $('.sticky');
-						var $stickyrStopper = $('.footer_content	');
+						var $stickyrStopper = $('.sectionBox2');
 						if (!!$sticky.offset()) { // make sure ".sticky" element exists
 
 							var generalSidebarHeight = $sticky.innerHeight();

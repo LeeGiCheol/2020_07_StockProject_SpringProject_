@@ -150,11 +150,6 @@ public class AdminController {
 			vo.setAno(-1);
 		
 		
-		// TestVO == VO 클래스
-		// testVO == TestVO Instance
-		
-		
-		
 		AdminVO qnaDetail = adminService.qnaDetail(vo);
 		
 			qnaDetail.setQdateTime(new Date(qnaDetail.getQdateTime().getTime()- (1000 * 60 * 60 * 9)));
