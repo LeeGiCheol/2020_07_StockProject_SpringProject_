@@ -29,24 +29,25 @@
 		// 글내용 있는지 확인용 
 		var content = document.getElementsByTagName('p');
 		
-
-
-				var contentValue = $('#bcontent').val();
-				
-					
-					
-				if(title.trim() == ""){
-					swal({text:"제목을 입력해주세요.", icon:"error"});			
-					$("#title").focus();
-				}
-				
-				else{ 
-					$("#form").submit();
-				} 
-		
-		
-		
-		
+	    var bcontent = $("#bcontent").val();
+	
+	    if(title.trim() == ""){
+			swal({text:"제목을 입력해주세요.", icon:"error"}).then(function(){
+				$("#title").focus();
+			})
+			return;
+		}
+	    else if(bcontent == ""  || bcontent == null || bcontent == '&nbsp;' || bcontent == '<br>' || bcontent == '<br />' || bcontent == '<p>&nbsp;</p>')  {
+	    	 swal({text:"내용을 입력해주세요.", icon:"error"}).then(function(){
+	             oEditors.getById["bcontent"].exec("FOCUS"); 
+	    	 })
+	         return;
+	    }
+	    
+	
+	    try {
+	    	$("#form").submit();
+	    } catch(e) {}
 	};
 
 

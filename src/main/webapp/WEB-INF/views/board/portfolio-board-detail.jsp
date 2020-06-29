@@ -571,7 +571,7 @@ function submitReportComt(){
 					board +=		'</div>'
 					board +=		'<c:if test="${loginUser.nickname eq boardDetail.nickname}">'
 					board +=			'<div id="" class="share-more">'
-					board +=				'<a href="/board/free/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
+					board +=				'<a href="/board/portfolio/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
 					board +=				'<a href="javascript:void(0)" onclick="delBoard()" id="btnDelete" class="del"><span>삭제</span></a>'
 					board +=			'</div>'
 					board +=		'</c:if>'

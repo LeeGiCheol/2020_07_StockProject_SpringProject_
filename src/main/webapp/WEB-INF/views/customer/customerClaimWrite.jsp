@@ -33,29 +33,23 @@
 		// 글제목
 		var title = $("#title").val();
 		// 글내용 있는지 확인용 
-		var content = document.getElementsByTagName('p');
+		var contentValue = $('#bcontent').html();
 		
-
-
-				var contentValue = $('#bcontent').val();
-				
-
-					
-				if(title.trim() == ""){
-					swal({text:"제목을 입력해주세요.", icon:"error"});			
-					$("#title").focus();
-				}
-				
-				else{ 
-					$("#form").submit();
-				} 
-		
-		
-		
-		
+		if(title.trim() == ""){
+			swal({text:"제목을 입력해주세요.", icon:"error"});			
+			$("#title").focus();
+		}
+		else{
+			if(contentValue.trim() == ""){
+				console.log("쳌포2");
+				swal({text:"내용을 입력해주세요.", icon:"error"});
+			}
+			else{
+				console.log("쳌포3");
+				$("#form").submit();
+			}					
+		}
 	};
-
-
 </script> 
 </head>
 <style>

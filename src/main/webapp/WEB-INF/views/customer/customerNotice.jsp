@@ -72,7 +72,7 @@
 						<div class="board-type">
 							<div class="board-free-nav">
 									<c:if test="${loginUser.point le -1}">
-										<p class="right"><a href="/customerNoticeWrite" class="board-write-btn fantasy">글쓰기</a></p>
+										<p class="right"><a href="/customerNotice/write" class="board-write-btn fantasy">글쓰기</a></p>
 									</c:if>										
 							</div>
 							<div class="tab-content" id="pills-tabContent">
@@ -136,7 +136,7 @@
 								<!-- 페이징 -->
 								<div class="paging">
 									<c:if test="${loginUser.point le -1}">
-										<p class="right"><a href="/customerNoticeWrite" class="board-write-btn fantasy">글쓰기</a></p>
+										<p class="right"><a href="/customerNotice/write" class="board-write-btn fantasy">글쓰기</a></p>
 									</c:if>								
 									<div class="paging-body">
 										<nav aria-label="..." class="pagination">

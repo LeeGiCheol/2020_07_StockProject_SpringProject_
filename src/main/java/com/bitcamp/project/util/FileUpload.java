@@ -408,7 +408,7 @@ public class FileUpload {
 		String[] Qimg = null;
 		String[] Aimg = null;
 		
-		if(vo != null) {
+		if(vo != null && vo.getBcontent().contains("<img src=\"/resources/se2/upload/")) {
 			img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
 		}	
 		else if(vo == null){
@@ -534,8 +534,7 @@ public class FileUpload {
 //				    // 파일을 삭제합니다.
 //				}
 
-			if(vo != null) {
-				
+			if(vo != null && vo.getBno().equals("portfolio")) {
 				// vo에 저장 후 리셋
 				vo.setThumbnailName("/resources/se2/upload/" + img[1].substring(0, 8) + "/THUMB_" + img[1].substring(9));
 			}else

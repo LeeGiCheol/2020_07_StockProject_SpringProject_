@@ -111,7 +111,7 @@ tr td button {
 								class="board-write-btn fantasy" data-toggle="modal" data-target="#ownModal">
 						
 								보유 종목</button>
-								<button id="recordBttn" type="button"
+							<button id="recordBttn" type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
 								onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
 								보유 종목</button> 
@@ -722,9 +722,7 @@ tr td button {
 																							value="${list.quantity}" /></td>
 																				</tr>
 																			</c:forEach>
-																			<c:if test="${unsettled eq null}">
-   																				<tr title="미체결잔량">로그인이 필요합니다.</tr>
-																			</c:if>
+
 																		</tbody>
 																	</table>
 																</div>
