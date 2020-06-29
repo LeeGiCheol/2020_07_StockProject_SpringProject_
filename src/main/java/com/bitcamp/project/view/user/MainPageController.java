@@ -279,7 +279,7 @@ public class MainPageController {
 			
 			HashMap<String, Object> hm1 = myAccountService.getMyStockList(user, Integer.parseInt(nowPage1),
 					accountSearch);
-			HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryListByDate(user,
+			HashMap<String, Object> hm2 = myAccountService.getMyTradeHistoryList(user,
 					Integer.parseInt(nowPage2), startDate, endDate, tradeSearch);
 //			   HashMap<String, Object> hm3 = myAccountService.getMyTradeHistoryListByStock(loginUser, Integer.parseInt(nowPage3), tradeSearch);
 			HashMap<String, Object> hm4 = userInfoService.getRate(user.getId());

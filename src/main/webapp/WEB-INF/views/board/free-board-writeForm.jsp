@@ -31,18 +31,22 @@
 		
 
 
-				var contentValue = $('#bcontent').val();
+				var contentValue = $('#bcontent').html();
 				
-					
-					
 				if(title.trim() == ""){
 					swal({text:"제목을 입력해주세요.", icon:"error"});			
 					$("#title").focus();
 				}
-				
-				else{ 
-					$("#form").submit();
-				} 
+				else{
+					if(contentValue.trim() == ""){
+						console.log("쳌포2");
+						swal({text:"내용을 입력해주세요.", icon:"error"});
+					}
+					else{
+						console.log("쳌포3");
+						$("#form").submit();
+					}					
+				}
 		
 		
 		

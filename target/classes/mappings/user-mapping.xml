@@ -235,13 +235,13 @@
 		select accumasset
 		from userranking
 		order by accumasset desc
-		limit 1, 10
+		limit 0, 9
 	</select>
 	
 	<select id="getAccumRankingNicknameList" resultType="String">
 		select nickname
 		from userranking
-		natural join usernickname
+		natural join user
 		order by accumasset desc
 		limit 1, 10
 	</select>
