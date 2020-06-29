@@ -24,8 +24,8 @@ public class MyPostServiceImpl implements MyPostService {
 	@Override
 	public Map<String, Object> myPostList(UserVO loginUser, int bnowPage, int cnowPage,
 			String bSearchStyle, String boardKeyword, String commentKeyword) {
-		PagingVO boardPage = new PagingVO(myPostDAO.countBoard(loginUser), bnowPage, 3);
-		PagingVO commentPage = new PagingVO(myPostDAO.countComment(loginUser), cnowPage, 3);
+		PagingVO boardPage = new PagingVO(myPostDAO.countBoard(loginUser), bnowPage, 10);
+		PagingVO commentPage = new PagingVO(myPostDAO.countComment(loginUser), cnowPage, 10);
 		boardPage.getUtil().put("id", loginUser.getId());
 		boardPage.getUtil().put("bSearchStyle", bSearchStyle);
 		boardPage.getUtil().put("boardKeyword", boardKeyword);

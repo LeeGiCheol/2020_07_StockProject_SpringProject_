@@ -337,7 +337,7 @@ tr td button {
 							id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-home"
 								role="tabpanel" aria-labelledby="pills-home-tab">
-								<form id="trad_frm" action="/buying" method="post">
+								<form id="trad_frm" class="trade_buy" action="/buying" method="post">
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
@@ -451,6 +451,33 @@ tr td button {
 											</div>
 											<script>
 											$(document).ready(function(){
+												$(".trade_buy").submit(function() {
+												      if ($("#buying_price").val() == ""||$("#buying_qu").val()== '0'||$("#buying_qu").val()== '') {
+												    	  alert("입력 값을 확인해 주세요.");
+												    	  return false;
+												      }else{
+												      return true;
+												      }
+												    });
+												$(".trade_sell").submit(function() {
+												      if ($("#selling_price").val() == ""||$("#selling_qu").val()== '0'||$("#selling_qu").val()== '') {
+												    	  alert("입력 값을 확인해 주세요.");
+												    	  return false;
+												      }else{
+												      return true;
+												      }
+												    });
+												
+												$(".trade_mod").submit(function() {
+												      if ($("#trade_uno").val() == ""||$("#mod_qu").val()== '0'||$("#mod_qu").val()== ''||$("#mySelect").val() == "") {
+												    	alert("입력 값을 확인해 주세요.");
+												        return false;
+												      }else{
+												      return true;
+												      }
+												    });
+
+												
 												$("#buy_max").click(function(){
 													var money = parseInt('${money}'.replace(/,/g,"").replace('원',''))
 													var price = parseInt($("#buying_price").val().replace(/,/g,""))
@@ -504,7 +531,7 @@ tr td button {
 
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel"
 								aria-labelledby="pills-profile-tab">
-								<form id="trad_frm" action="/selling" method="post">
+								<form id="trad_frm" class="trade_sell" action="/selling" method="post">
 									<div class="stock-buying">
 										<div class="input-area">
 											<div class="detail unit-price">
@@ -580,7 +607,7 @@ tr td button {
 							</div>
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 								aria-labelledby="pills-contact-tab">
-								<form id="trad_frm" action="/modify" method="post">
+								<form id="trad_frm" class="trade_mod" action="/modify" method="post">
 									<div class="stock-buying">
 										<div class="choice">
 											<strong>주문구분</strong><input type="radio" id="input-modify"
@@ -588,6 +615,9 @@ tr td button {
 											<input type="radio" id="input-cancel" name="cancleModify"
 												value="cancle" onchange="setDisplay();"><label for="input-cancel">취소</label>
 											<script>
+											
+											
+											
 											function setDisplay(){
 											    if($('input:radio[id=input-modify]').is(':checked')){
 											        $('.btn-modify').show();
@@ -609,7 +639,7 @@ tr td button {
 										</div>
 										<div class="input-area">
 											<div class="detail unit-price">
-												<label for="nOrdUnpr">주문번호</label><input type="text" class="alignR" name="uno"><span
+												<label for="nOrdUnpr">주문번호</label><input id="trade_uno" type="text" class="alignR" name="uno"><span
 													class="buying-check"> <a onclick="#"
 													class="buying-check-btn btnStyle btnS buying-cancel" style="cursor: pointer;" data-toggle="modal" data-target="#staticBackdrop2">미체결잔량</a>
 												</span>
@@ -624,7 +654,7 @@ tr td button {
 												원
 											</div>
 											<div class="detail unit-price">
-												<label for="nOrdUnpr" style="margin-right: 34px;">수량</label><input type="text" class="alignR" name="modifyQu" numberOnly>
+												<label for="nOrdUnpr" style="margin-right: 34px;">수량</label><input type="text" id="mod_qu" class="alignR" name="modifyQu" numberOnly>
 												주
 
 											</div>

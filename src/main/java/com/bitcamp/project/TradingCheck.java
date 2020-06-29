@@ -82,7 +82,7 @@ public class TradingCheck {
 	public void TestScheduler() {
 		if (trriger++ % 3 == 1) {
 			StockParsing sp = new StockParsing();
-			System.out.println("평가금액 업데이트");
+//			System.out.println("평가금액 업데이트");
 			List<UserVO> users = mybatis.selectList("user.getAllUser");
 			for (int i = 0; i < users.size(); ++i) {
 				Map<String, Object> map = new HashMap<String, Object>();
@@ -154,7 +154,7 @@ public class TradingCheck {
 		}
 
 		Date now = new Date();
-		System.out.println("  ("+now+")");
+//		System.out.println("  ("+now+")");
 	}
 
 }

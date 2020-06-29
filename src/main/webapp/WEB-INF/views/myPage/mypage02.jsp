@@ -325,8 +325,7 @@ $(document).ready(function(){
 											</c:choose>
 										</c:forEach> 
 										
-										
-										<c:if test="!${holdingStockList.size() == 0}">
+										<c:if test="${holdingStockList.size() > 0}">
 											<c:if test="${pv1.nowPage != pv1.lastPage}">    
 											<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
 												<c:if test="${pv1.nowPage == pv1.lastPage}">
@@ -401,6 +400,7 @@ $(document).ready(function(){
 										<tr>
 											<th scope="col" style="width: 150px;"class="a-center">거래일자</th>
 											<th scope="col" style="width: 300px;">종목명</th>
+											<th scope="col" class="a-center">종류</th>
 											<th scope="col" class="a-center">수량</th>
 											<th scope="col" class="a-right">거래금액</th>
 											<th scope="col" class="a-center">단가</th>
@@ -418,6 +418,7 @@ $(document).ready(function(){
 											<tr>
 												<td scope="col" style="width: 150px;" class="a-right">${stock.tdatetime}</td>
 												<td scope="col" style="width: 300px;">${stock.stockName}</td>
+												<td scope="col" class="a-center">${stock.category}</td>
 												<td scope="col" class="a-center"><fmt:formatNumber value="${stock.quantity}" type="number"/></td>
 												<td scope="col" class="a-right"><fmt:formatNumber value="${stock.tprice*stock.quantity}" type="number"/></td>
 												<td scope="col" class="a-center">${stock.tprice}</td>
@@ -486,7 +487,7 @@ $(document).ready(function(){
 											</c:choose>
 										</c:forEach>
 										
-										<c:if test="!${stockHistoryList.size() == 0}">
+										<c:if test="${stockHistoryList.size() > 0}">
 											<c:if test="${pv2.nowPage != pv2.lastPage}">    
 												<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
 												<c:if test="${pv2.nowPage == pv2.lastPage}">

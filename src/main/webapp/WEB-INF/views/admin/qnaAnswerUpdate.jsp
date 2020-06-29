@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <!-- 데이터테이블스타일 -->
@@ -32,22 +33,26 @@
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
 <script>
-	function btnSave(){
-		// bcontent에 내용 삽입
-		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
-		// 글제목
-		// 글내용 있는지 확인용 
-		var content = document.getElementsByTagName('p');
+function btnSave(){
+	// bcontent에 내용 삽입
+	oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
+	// 글내용 있는지 확인용 
+	var content = document.getElementsByTagName('p');
+	
+    var bcontent = $("#bcontent").val();
 
-				var contentValue = $('#bcontent').val();
-					
-		$("#form").submit();
-		
-		
-		
-		
-	};
+    if(bcontent == ""  || bcontent == null || bcontent == '&nbsp;' || bcontent == '<br>' || bcontent == '<br />' || bcontent == '<p>&nbsp;</p>')  {
+    	 swal({text:"내용을 입력해주세요.", icon:"error"}).then(function(){
+             oEditors.getById["bcontent"].exec("FOCUS"); 
+    	 })
+         return;
+    }
+    
 
+    try {
+    	$("#form").submit();
+    } catch(e) {}
+};
 
 </script> 
 </head>
