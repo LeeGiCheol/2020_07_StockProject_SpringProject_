@@ -453,7 +453,7 @@ tr td button {
 											$(document).ready(function(){
 												$(".trade_buy").submit(function() {
 												      if ($("#buying_price").val() == ""||$("#buying_qu").val()== '0'||$("#buying_qu").val()== '') {
-												    	  alert("입력 값을 확인해 주세요.");
+												    	  swal({text:"입력값을 확인해주세요.", icon:"error"})
 												    	  return false;
 												      }else{
 												      return true;
@@ -461,7 +461,7 @@ tr td button {
 												    });
 												$(".trade_sell").submit(function() {
 												      if ($("#selling_price").val() == ""||$("#selling_qu").val()== '0'||$("#selling_qu").val()== '') {
-												    	  alert("입력 값을 확인해 주세요.");
+												    	  swal({text:"입력값을 확인해주세요.", icon:"error"})
 												    	  return false;
 												      }else{
 												      return true;
@@ -470,7 +470,7 @@ tr td button {
 												
 												$(".trade_mod").submit(function() {
 												      if ($("#trade_uno").val() == ""||$("#mod_qu").val()== '0'||$("#mod_qu").val()== ''||$("#mySelect").val() == "") {
-												    	alert("입력 값을 확인해 주세요.");
+												    	  swal({text:"입력값을 확인해주세요.", icon:"error"})
 												        return false;
 												      }else{
 												      return true;
