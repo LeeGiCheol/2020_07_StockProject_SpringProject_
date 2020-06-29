@@ -31,11 +31,11 @@
             <div id="right">
             <ul class="listA">
                 <li id="Sitemap" class="liBold">사이트맵</li>
-                  <li class="liBold"><a href="/customerLanding">고객센터</a></li>
+                  <li class="liBold"><a href="/customer">고객센터</a></li>
               
                 <li><a href="/customerNotice">공지사항</a></li>
-                <li><a href="/customerqna">도움말</a></li>
-                <li><a href="/customClaimWrite">1:1문의</a></li>
+                <li><a href="/customerQna">도움말</a></li>
+                <li><a href="/customerClaim/write">1:1문의</a></li>
                 
                 </ul>
               <ul class="listB">

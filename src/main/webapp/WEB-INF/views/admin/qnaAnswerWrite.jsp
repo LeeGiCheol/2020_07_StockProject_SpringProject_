@@ -22,6 +22,8 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <!-- 데이터테이블스타일 -->
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
  
@@ -166,11 +168,9 @@
 		<!-- // answer-box -->
 
 		<div class="bt-area-answer">
-		<a href="/qnaAnswer/write?qno=${qna.qno}"  class="btn-s fantasy anwer-write-btn">답변</a>
 			<span>
 				<a href="/customerClaim/list" class="btn-s">목록</a>
-				
-				<a href="/customerClaim/delete?qno=${qno}" class="btn-s fantasy">삭제</a>
+				<a href="javascript:void(0)" onclick="questionDelConfirm('${qno}')" class="btn-s fantasy">삭제</a>
 			</span> 
 		</div>
 
@@ -186,7 +186,13 @@
     </div>
 
 </body>
+
+
+
+
 <script type="text/javascript">
+
+
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
  oAppRef: oEditors,
@@ -196,6 +202,32 @@ nhn.husky.EZCreator.createInIFrame({
 });
 
 </script>
+
+<script>
+
+
+function questionDelConfirm(qno){
+	swal({
+		  text: "정말삭제하시겠습니까?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+		    swal("성공적으로 삭제되었습니다.", {
+		      icon: "success",
+		    }).then(function(){
+			  location.href = '/customerClaim/delete?qno=${qno}';
+		    });
+		  } else {
+		    swal("삭제가 취소되었습니다.");
+		  }
+	});
+}
+</script>
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>

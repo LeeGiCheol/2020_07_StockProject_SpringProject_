@@ -17,7 +17,6 @@ public class VisitCountDAOImpl implements VisitCountDAO {
 
 	@Override
     public int insertVisitor(VisitVO vo) {
-    	System.out.println("asdglsadgbjlksdabfkjadsblf");
         return mybatis.insert("admin.insertVisit",vo);
     }
 
