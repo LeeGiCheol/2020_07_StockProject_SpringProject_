@@ -80,7 +80,6 @@
 					<!-- 검색어에 데이터가 하나라도 있을 때 -->
 					<c:if test="${countCheck == 0 == false}">
 					
-					<!-- //검색결과없음 -->
 						<div class="tab-area swiper-container swiper-container-horizontal" style="cursor: grab;">
 							<ul class="tab-st01 num07 swiper-wrapper" style="width: auto;">
 								<li class="selected swiper-slide"><a href="/total-search?keyword=${keyword}" style="width: 100%;">통합검색</a></li>

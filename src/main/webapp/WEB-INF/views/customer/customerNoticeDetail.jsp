@@ -85,7 +85,7 @@
 	</c:if>
 	<c:if test="${loginUser == null}">
 		<textarea name="ccon
-		tent" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="댓글을 작성하시려면 로그인을 해주세요" onclick="location.href='/signInPage'"></textarea>
+		tent" class="commentCentent byte-count e-login" data-byte-limit="1000" rows="2" cols="10" placeholder="댓글을 작성하시려면 로그인을 해주세요" disabled="disabled;" style="background: white;"></textarea>
 	</c:if>	
 		<p class="text-byte">0/1000 byte</p>
 		<script type="text/javascript">
@@ -526,9 +526,6 @@ function submitReportComt(){
 						comment +=	"<span class='data-date-format'>"+data.commentDate[i]+"</span>"
 						comment += 	"</p>"
 						comment += 	"<p class='cont' id='com" + data.commentList[i].cno + "'>" +data.commentList[i].ccontent+"</p>"
-						comment += 	"</div>"
-						comment += 	"<div class='share-more'>"
-						comment += 	"<a class='notify e-login e-report-comt-popup' href='#'><span>신고</span></a>"	
 						comment += 	"</div>"
 
 						

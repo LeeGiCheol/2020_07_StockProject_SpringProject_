@@ -616,9 +616,6 @@ function submitReportComt(){
 						comment += 	"</p>"
 						comment += 	"<p class='cont' id='com" + data.commentList[i].cno + "'>" +data.commentList[i].ccontent+"</p>"
 						comment += 	"</div>"
-						comment += 	"<div class='share-more'>"
-						comment += 	"<a class='notify e-login e-report-comt-popup' href='#'><span>신고</span></a>"	
-						comment += 	"</div>"
 
 						
 						
