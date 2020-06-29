@@ -19,46 +19,6 @@
 <body>
 
 	<%@include file="../mainheader.jsp"%>
-	<%-- 	<table border="1px">종목 검색결과
-		<tr>
-			<td>종목명</td>
-		</tr>
-		<c:forEach items="${stock}" var="list">
-			<tr onClick="location.href='${pageContext.request.contextPath}/trade?stockName=${list.stockName}'">
-				<td class="first" title="주문번호" ><c:out value="${list.stockName}" /></td>
-			</tr>
-		</c:forEach>
-	</table>
-
-	<table border="1px">자유게시판 검색결과
-		<tr>
-			<td>글번호</td>
-			<td>작성자</td>
-			<td>제목</td>
-		</tr>
-		<c:forEach items="${free}" var="list">
-			<tr onClick = "location.href='${pageContext.request.contextPath}/board/free/detail?pno=${list.pno}'">
-				<td class="first" title="주문번호"><c:out value="${list.pno}" /></td>
-				<td title="작성자"><c:out value="${list.nickname}" /></td>
-				<td title="제목"><c:out value="${list.title}" /></td>
-			</tr>
-		</c:forEach>
-	</table>
-	
-	<table border="1px">포릍폴리오 검색결과
-		<tr>
-			<td>글번호</td>
-			<td>작성자</td>
-			<td>제목</td>
-		</tr>
-		<c:forEach items="${port}" var="list">
-			<tr onClick = "location.href='${pageContext.request.contextPath}/board/portfolio/detail?pno=${list.pno}'">
-				<td class="first" title="주문번호"><c:out value="${list.pno}" /></td>
-				<td title="작성자"><c:out value="${list.nickname}" /></td>
-				<td title="제목"><c:out value="${list.title}" /></td>
-			</tr>
-		</c:forEach>
-	</table> --%>
 
 	<div class="containerNew">
 		<div class="cont-area toggle_wrap">
@@ -92,11 +52,14 @@
 				<div class="t-search-msg">
 					<p>
 
-
+						<c:if test="${keyword eq ''}">
+						<span class="color-fantasy">전체 조회 결과입니다.</span>
+						</c:if>
+						<c:if test="${keyword ne ''}">
 						‘<span class="color-fantasy">${keyword}</span>’ (으)로 검색한 결과입니다.
+						</c:if>
 					</p>
 				</div>
-
 
 
 				<!-- //검색결과없음 -->
