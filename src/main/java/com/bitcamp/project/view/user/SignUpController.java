@@ -91,7 +91,7 @@ public class SignUpController {
 			vo.setId(vo.getId().replace("_kakao_", ""));
 		}
 		
-		session.setAttribute("loginUser", vo);
+		session.setAttribute("login", vo);
 		return "signInUp/signup03";
 	}
 	
