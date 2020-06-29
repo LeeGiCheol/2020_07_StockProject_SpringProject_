@@ -1,5 +1,6 @@
 package com.bitcamp.project.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +29,8 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override
-	public List totalSearch(String title) {
-		return boardDAO.totalSearch(title);
+	public List totalSearch(String title, int check) {
+		return boardDAO.totalSearch(title, check);
 	}
 
 	@Override
@@ -67,7 +68,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword, String orderby, int bno, int page) {
+	public Map<String, Object> boardList(BoardVO vo, int nowPage, String searchStyle, String keyword, String orderby, String bno, int page) {
 		PagingVO boardPage = null;
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		
@@ -79,7 +80,7 @@ public class BoardServiceImpl implements BoardService{
 		vo.setBno(bno);
 
 		// 자유게시판 // 공지사항
-		if(bno == 1 || bno == 3) {
+		if(bno.equals("free") || bno.equals("customerNotice")) {
 			boardPage = new PagingVO(boardDAO.count(vo), nowPage, page);
 			boardPage.getUtil().put("searchStyle", searchStyle);
 			boardPage.getUtil().put("keyword", keyword);
@@ -87,13 +88,12 @@ public class BoardServiceImpl implements BoardService{
 			boardPage.getUtil().put("bno", bno);
 			
 			boardList = boardDAO.getBoardList(boardPage);
-			for (int i = 0; i < boardList.size(); i++) {
-				boardList.get(i).setBdateTime(new Date(boardList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
-			}
+ 			
+ 			
 			postMap.put("boardList", boardList);
 		}
 		// 포트폴리오 게시판
-		else if(bno == 2) {
+		else if(bno.equals("portfolio")) {
 			boardPage = new PagingVO(boardDAO.count(vo), nowPage, page);
 
 			boardPage.getUtil().put("searchStyle", searchStyle);
@@ -102,10 +102,9 @@ public class BoardServiceImpl implements BoardService{
 			boardPage.getUtil().put("bno", bno);
 			
 			portfolioList = boardDAO.portfolioList(boardPage);
-
-			for (int i = 0; i < portfolioList.size(); i++) {
-				portfolioList.get(i).setBdateTime(new Date(portfolioList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
-			}
+//			for (int i = 0; i < portfolioList.size(); i++) {
+//				portfolioList.get(i).setBdateTime(new Date(portfolioList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+//			}
 			postMap.put("portfolioList", portfolioList);
 		}
 		

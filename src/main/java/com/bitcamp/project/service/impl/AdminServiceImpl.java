@@ -11,17 +11,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.project.dao.AdminDAO;
+import com.bitcamp.project.dao.VisitCountDAO;
 import com.bitcamp.project.service.AdminService;
 import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
 import com.bitcamp.project.vo.UserVO;
+import com.bitcamp.project.vo.VisitVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminDAO adminDAO;
+	@Autowired
+	VisitCountDAO visitCountDAO;
 	@Autowired
 	HttpSession session;
 	
@@ -54,27 +58,17 @@ public class AdminServiceImpl implements AdminService {
 		
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
-		
-//		boardPage.getUtil().put("",vo.get)
-//		boardPage.setId(vo.getId());
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		PagingVO qnaPage = new PagingVO(adminDAO.pageCount(vo), nowPage, page);
-		System.out.println("@@@@ "+qnaPage);
 		
-		System.out.println("data2 "+adminDAO.pageCount(vo));
 		qnaPage.getUtil().put("searchStyle", searchStyle);
 		qnaPage.getUtil().put("keyword", keyword);
 		qnaPage.getUtil().put("nickname", vo.getNickname());
 		qnaPage.getUtil().put("orderby", orderby);
 		
-		if(loginUser.getPoint() < 0) {
-			qnaPage.getUtil().put("point", loginUser.getPoint());
-		}
-			
-			List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
-			System.out.println("KKK "+qnaList);
-			System.out.println("pagegege " + qnaPage);
-			System.out.println("pageqnaListgege " + qnaList);
+		qnaPage.getUtil().put("point", loginUser.getPoint());
+		
+		List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
 //			for (int i = 0; i < qnaList.size(); i++) {
 //				qnaList.get(i).setBdateTime(new Date(qnaList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
 //			}
@@ -105,10 +99,26 @@ public class AdminServiceImpl implements AdminService {
 		return postMap;
 	}
 	
+	@Override
+	public Map<String, Object> reportSelectList(AdminVO vo, String rno) {
+		AdminVO reportSelectList = adminDAO.reportSelectList(rno);
+			reportSelectList.setRdatetime(new Date(reportSelectList.getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("reportSelectList", reportSelectList);
+		return postMap;
+	}
+	
+	@Override
+	public int updateRcheck(int pno) {
+		return adminDAO.updateRcheck(pno);
+	}
+	
+	@Override
 	public AdminVO qnaDetail(AdminVO vo) {
 		return adminDAO.qnaDetail(vo);
 	}
 	
+	@Override
 	public int questionDelete(AdminVO vo) {
 		return adminDAO.questionDelete(vo);
 	}
@@ -117,15 +127,37 @@ public class AdminServiceImpl implements AdminService {
 	public int qnaUpdate(AdminVO vo) {
 		return adminDAO.qnaUpdate(vo);
 	}
+	
 	@Override
 	public int answerDelete(AdminVO vo) {
 		return adminDAO.answerDelete(vo);
 	}
+	
 	@Override
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return adminDAO.boardChart(vo);
 	}
 	
+	@Override
+	public List<UserVO> userSignUpChart(UserVO vo) {
+		return adminDAO.userSignUpChart(vo);
+	}
 	
+	@Override
+	public List<VisitVO> userVisitChart(VisitVO vo) {
+		return visitCountDAO.userVisitChart(vo);
+	}
+	@Override
+	public Map<String, Object> showReport(AdminVO vo, String pno) {
+		AdminVO showReport = adminDAO.showReport(vo);
+		System.out.println("@@@@@@@@@@@" + showReport);
+		if(showReport == (null)) {
+			return null;
+		}
+		showReport.setRdatetime(new Date(showReport.getRdatetime().getTime()- (1000 * 60 * 60 * 9)));
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("reportSelectList", showReport);
+		return postMap;	
+	}
 	
 }

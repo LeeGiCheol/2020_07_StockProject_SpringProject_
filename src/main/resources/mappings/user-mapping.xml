@@ -58,8 +58,8 @@
 	</delete>
 
 	<insert id="signUp">
-		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge)
-		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 0, #{showEsetSetting}, #{address}, 1);
+		INSERT INTO user(id, pw, nickname, tel, point, showEsetSetting, address, charge, udateTime)
+		VALUES(#{id}, #{pw}, #{nickname}, #{tel}, 0, #{showEsetSetting}, #{address}, 1, now());
 		
 		
 		<!-- sql 두개 쓰려면 ; 붙여줘야한다 -->
@@ -155,7 +155,11 @@
 	<update id="updateUser" parameterType="user">
 		update user
 		set NICKNAME=#{nickname}, ADDRESS=#{address}, showEsetSetting=#{showEsetSetting}
-		where ID=#{id}
+		where ID=#{id};
+
+		update usernickname
+		set NICKNAME=#{nickname}
+		where ID=#{id};
 	</update>
 	
 	<select id="getChargingCount" parameterType="String" resultType="int">

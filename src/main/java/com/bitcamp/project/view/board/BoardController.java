@@ -1,6 +1,8 @@
 package com.bitcamp.project.view.board;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +51,7 @@ public class BoardController {
 	public String boardList(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 			@ModelAttribute("orderby") String orderby /* new = 최신순 best = 인기순 */ ) {
-		int bno = 1;
+		String bno = "free";
 
 		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
@@ -64,6 +66,8 @@ public class BoardController {
 		}
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
 				orderby, bno, 30);
+					// 한페이지에 게시물 30개
+		
 		model.addAttribute("boardList", (List<BoardVO>) boardList.get("boardList"));
 		model.addAttribute("boardPage", (PagingVO) boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
@@ -72,12 +76,12 @@ public class BoardController {
 		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
 		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
 
-		return "free-board";
+		return "board/free-board";
 	}
 
 	@GetMapping("/board/free/write")
 	public String boardWriteView(BoardVO vo, Model model) {
-		return "writeForm";
+		return "board/free-board-writeForm";
 	}
 
 	@PostMapping("/board/free/write")
@@ -85,7 +89,7 @@ public class BoardController {
 
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		vo.setId(loginUser.getId());
-		vo.setBno(1); // 자유게시판
+		vo.setBno("free"); // 자유게시판
 
 		List<String> uploadThumbnail = new ArrayList<String>();
 
@@ -100,11 +104,6 @@ public class BoardController {
 			boardService.writeFreeBoard(vo);
 			
 		}
-//			
-//		
-//
-//		} else {
-//		}
 		return "redirect:/board/free";
 	}
 
@@ -123,13 +122,13 @@ public class BoardController {
 		mav.addObject("commentList", (List<CommentVO>) commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO) commentList.get("commentPage"));
 
-		mav.setViewName("free-board-detail");
+		mav.setViewName("board/free-board-detail");
 
 		return mav;
 	}
 
 	@GetMapping("/board/free/detail/ajax")
-	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo,
+	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, Model model,
 			@ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
 		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
@@ -142,11 +141,34 @@ public class BoardController {
 		// 댓글리스트
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
+		List<CommentVO> comment = (List<CommentVO>) commentList.get("commentList");
+		
+		// 아이폰에서 시간이 제대로 표시 안되는 관계로 String으로 형변환
+		// mysql Timezone이 UTC로 설정되어있어 시간 재설정
+		// 게시물
+		boardDetail.setBdateTime(new Date(boardDetail.getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		Date from = boardDetail.getBdateTime();
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String boardDate = transFormat.format(from);
+		// 댓글
+		String commentDateString = null;
+		List<String> commentDate = new ArrayList<String>();
+		for (int i = 0; i < comment.size(); i++) {
+			Date commentDate_ = comment.get(i).getCdateTime();
+			commentDateString = transFormat.format(commentDate_);
+			commentDate.add(commentDateString);
+		}
+		
+
+		
 		map.put("boardDetail", boardDetail);
-		map.put("commentList", (List<CommentVO>) commentList.get("commentList"));
+		map.put("commentList", comment);
 		map.put("commentPage", (PagingVO) commentList.get("commentPage"));
 		map.put("boardPrevNext", boardPrevNext);
-
+		model.addAttribute("loginUser", session.getAttribute("loginUser")); // 비로그인 유저는 신고 못하게를 위한
+		map.put("loginUser", model.getAttribute("loginUser"));
+		map.put("boardDate", boardDate);
+		map.put("commentDate", commentDate);
 		return map;
 	}
 
@@ -169,7 +191,7 @@ public class BoardController {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
 //		System.out.println("mmmmm"+boardUpdate);
-		return "updateForm";
+		return "board/free-board-updateForm";
 	}
 
 	@PostMapping("/board/free/update")
@@ -193,9 +215,9 @@ public class BoardController {
 	@GetMapping("/board/free/delete")
 	public String deleteBoard(BoardVO vo) {
 		BoardVO bVo = boardService.getBoard(vo);
-		List<String> uploadThumbnail = new ArrayList<String>();
-		FileUpload fileUpload = new FileUpload();
-		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
+//		List<String> uploadThumbnail = new ArrayList<String>();
+//		FileUpload fileUpload = new FileUpload();
+//		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
 
 		boardService.deleteBoard(vo);
 		return "redirect:/board/free";
@@ -203,31 +225,37 @@ public class BoardController {
 
 	@PostMapping("/reportBoard")
 	public ModelAndView reportBoard(BoardVO vo, @RequestParam("title") String title,
-			@RequestParam("rtype") String rtype, @RequestParam("rcontent") String rcontent, HttpSession session,
+			@RequestParam("rtype") String rtype, @RequestParam("rcontent") String rcontent, @ModelAttribute("bno") String bno, HttpSession session,
 			Model model) {
-		System.out.println("title " + title);
-		System.out.println("rtype " + rtype);
 		vo.setTitle(title);
 		vo.setRtype(rtype);
+		System.out.println(bno);
+		vo.setBno(bno);
 		vo.setRcontent(rcontent);
 		UserVO user = (UserVO) session.getAttribute("loginUser");
 		vo.setNickname(user.getNickname());
+		
+		
 
 		int report = boardService.reportBoard(vo);
 
 		ModelAndView mav = new ModelAndView();
 
+		
+	
+		
 		if (report == 1) {
 			mav.addObject("msg", "해당 게시물이 신고 완료되었습니다.");
-			mav.addObject("location", "/board/free/detail?pno=" + vo.getPno());
+			
+			mav.addObject("location", "");
 			mav.addObject("icon", "success");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		} else {
 			mav.addObject("msg", "신고는 1회만 가능합니다.");
-			mav.addObject("location", "/board/free/detail?pno=" + vo.getPno());
+			mav.addObject("location", "");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		}
 
@@ -240,5 +268,7 @@ public class BoardController {
 		uploadedFileName.add(vo.getThumbnailName());
 		System.out.println(uploadedFileName);
 	}
+	
+	
 
 }

@@ -1,6 +1,7 @@
 package com.bitcamp.project.dao.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,13 +22,24 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	
 	@Override
-	public List totalSearch(String title) {
+	public List totalSearch(String title, int check) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("title", title);
+		map.put("check", check);
+		System.out.println("service "+title);
+		System.out.println("service "+check);
 		List list = new ArrayList<>();
-		list.add(mybatis.selectList("board.totalSearch_Stock", title));
-		list.add(mybatis.selectList("board.totalSearch_Free", title));
-		list.add(mybatis.selectList("board.totalSearch_Port", title));
-		list.add(mybatis.selectList("board.totalSearch_Nick", title));
-		System.out.println(list);
+		list.add(mybatis.selectList("board.totalSearch_Stock", map));
+		list.add(mybatis.selectList("board.totalSearch_Free", map));
+		list.add(mybatis.selectList("board.totalSearch_Port", map));
+		list.add(mybatis.selectList("board.totalSearch_Nick", map));
+
+		int stockCount = mybatis.selectOne("board.totalSearch_Stock_Count", title);
+		int freeCount = mybatis.selectOne("board.totalSearch_Free_Count", title);
+		int portCount = mybatis.selectOne("board.totalSearch_Port_Count", title);
+		int nickCount = mybatis.selectOne("board.totalSearch_Nick_Count", title);
+		list.add(stockCount); list.add(freeCount); list.add(portCount); list.add(nickCount);
+		System.out.println("stockCount " + stockCount);
 		return list;
 	}
 

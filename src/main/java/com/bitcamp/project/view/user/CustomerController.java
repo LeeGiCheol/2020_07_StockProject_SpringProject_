@@ -2,6 +2,7 @@ package com.bitcamp.project.view.user;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -53,17 +54,17 @@ public class CustomerController {
 	
 	@GetMapping(value="/customer")
 	public String customerLanding(Model model, BoardVO vo) {
-		vo.setBno(3);
+		vo.setBno("customerNotice");
 		List<BoardVO> ServiceCenternotice = new ArrayList<BoardVO>();
 		model.addAttribute("ServiceCenternotice",boardService.ServiceCenternotice(vo));
 		
-		return "customerLanding";
+		return "customer/customerLanding";
 	}
 	
 	@GetMapping(value="/customerNotice")
 	public String customerNotice(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword) {
-		int bno = 3;
+		String bno = "customerNotice";
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
@@ -75,7 +76,8 @@ public class CustomerController {
 		model.addAttribute("boardPage", (PagingVO)boardList.get("boardPage"));
 		model.addAttribute("searchStyle", searchStyle);
 		model.addAttribute("keyword", keyword);
-		return "customerNotice";
+		System.out.println((List<BoardVO>)boardList.get("boardList"));
+		return "customer/customerNotice"; 
 	}	
 	@GetMapping("/customerNotice/detail")
 	public ModelAndView getView(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage) {
@@ -92,13 +94,13 @@ public class CustomerController {
 		mav.addObject("commentPage", (PagingVO)commentList.get("commentPage"));
 		
 		
-		mav.setViewName("customerNoticeDetail");
+		mav.setViewName("customer/customerNoticeDetail");
 		
 		return mav;
 	}
 	
 	@GetMapping("/customerNotice/detail/ajax")
-	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno) {
+	public @ResponseBody Map<String, Object> getBoard(BoardVO vo, CommentVO cVo, PagingVO pVo, @ModelAttribute("bnowPage") String nowPage, @ModelAttribute("pno") int pno, Model model) {
 		if(nowPage == null || nowPage.equals("")){
 			nowPage = "1";
 		}
@@ -108,31 +110,57 @@ public class CustomerController {
 		// 댓글리스트
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		List<CommentVO> comment = (List<CommentVO>) commentList.get("commentList");
+		
+		// 아이폰에서 시간이 제대로 표시 안되는 관계로 String으로 형변환
+		// mysql Timezone이 UTC로 설정되어있어 시간 재설정
+		// 게시물
+		boardDetail.setBdateTime(new Date(boardDetail.getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		Date from = boardDetail.getBdateTime();
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String boardDate = transFormat.format(from);
+		// 댓글
+		String commentDateString = null;
+		List<String> commentDate = new ArrayList<String>();
+		for (int i = 0; i < comment.size(); i++) {
+			Date commentDate_ = comment.get(i).getCdateTime();
+			commentDateString = transFormat.format(commentDate_);
+			commentDate.add(commentDateString);
+		}
+		
+		
+		
 		map.put("boardDetail", boardDetail);
-		map.put("commentList", (List<CommentVO>)commentList.get("commentList"));
+		map.put("commentList", comment);
 		map.put("commentPage", (PagingVO)commentList.get("commentPage"));
 		map.put("boardPrevNext", boardPrevNext);
+		model.addAttribute("loginUser", session.getAttribute("loginUser")); // 비로그인 유저는 신고 못하게를 위한
+		map.put("loginUser", model.getAttribute("loginUser"));
+		map.put("boardDate", boardDate);
+		map.put("commentDate", commentDate);
 		
 		return map;
 	}
 	
-	@GetMapping(value="/customerqna")
+	@GetMapping(value="/customerQna")
 	public String customerqnaView() {
-		return "customerqna";
+		return "customer/customerqna";
 	}	
 
 	
-	@GetMapping(value="/customNoticeWrite")
+	@GetMapping(value="/customerNoticeWrite")
 	public String customNoticeWrite() {
-		return "customNoticeWrite";
+		return "customer/customerNoticeWrite";
 	}	
 	
-	@PostMapping("/customNoticeWrite")
+	@PostMapping("/customerNoticeWrite")
 	public String boardWrite(BoardVO vo) {
 		
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		vo.setId(loginUser.getId());
-		vo.setBno(3); // 공지사항
+		vo.setBno("customerNotice"); // 공지사항
 		List<String> uploadThumbnail = new ArrayList<String>();
 		
 		FileUpload file = new FileUpload();
@@ -151,7 +179,7 @@ public class CustomerController {
 	public String updateBoardView(BoardVO vo, Model model) {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
-		return "customNoticeUpdate";
+		return "customer/customNoticeUpdate";
 	}
 
 	@PostMapping("/customerNotice/update")
@@ -171,7 +199,7 @@ public class CustomerController {
 		return "redirect:/customerNotice";
 	}
 	
-	@GetMapping("/customNotice/delete")
+	@GetMapping("/customerNotice/delete")
 	public String deleteBoard(BoardVO vo) {
 		BoardVO bVo = boardService.getBoard(vo);
 		List<String> uploadThumbnail = new ArrayList<String>();
@@ -183,20 +211,20 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value="/customerClaim/write")
-	public String customClaimWriteView(Model model) {
+	public String customerClaimWriteView(Model model) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
 			model.addAttribute("location", "/signInPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}else {
-			return "customerClaimWrite";
+			return "customer/customerClaimWrite";
 		}
 	}
 	@PostMapping(value="/customerClaim/write")
-	public ModelAndView customClaimWrite(AdminVO vo) {
+	public ModelAndView customerClaimWrite(AdminVO vo) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		ModelAndView mav = new ModelAndView();
 		
@@ -204,7 +232,7 @@ public class CustomerController {
 			mav.addObject("msg", "로그인이 필요한 페이지입니다.");
 			mav.addObject("location", "/signInPage");
 			mav.addObject("icon", "error");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			return mav;
 		}else {
 		
@@ -225,7 +253,7 @@ public class CustomerController {
 			mav.addObject("msg", "문의가 등록되었습니다");
 			mav.addObject("location", "/customerClaim/list");
 			mav.addObject("icon", "success");
-			mav.setViewName("msg");
+			mav.setViewName("msg/msg");
 			
 			return mav;
 		}
@@ -247,7 +275,7 @@ public class CustomerController {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
 			model.addAttribute("location", "/signInPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}
 		else {
 			vo.setNickname(loginUser.getNickname());
@@ -261,7 +289,7 @@ public class CustomerController {
 			
 			
 		
-			return "customerClaimList";
+			return "customer/customerClaimList";
 		}
 	}
 	
@@ -275,7 +303,7 @@ public class CustomerController {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
 			model.addAttribute("location", "/signInPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}
 		else {
 		
@@ -299,7 +327,7 @@ public class CustomerController {
 			
 			model.addAttribute("qna", qna);
 			model.addAttribute("qno", vo.getQno());
-			return "customerClaimDetail";
+			return "customer/customerClaimDetail";
 		}
 				
 	}
@@ -361,7 +389,7 @@ public class CustomerController {
 			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
 			model.addAttribute("location", "/signInPage");
 			model.addAttribute("icon", "error");
-			return "msg";
+			return "msg/msg";
 		}
 		else {
 			vo.setNickname(loginUser.getNickname());
@@ -389,18 +417,12 @@ public class CustomerController {
 				catch(Exception e) {
 				}
 
-				model.addAttribute("msg", "문의를 삭제하였습니다.");
-				model.addAttribute("location", "/customerClaim/list");
-				model.addAttribute("icon", "success");
 				
-				return "msg";
+				return "redirect:/customerClaim/list";
 			}
 			else {
-				model.addAttribute("msg", "문의를 삭제하지 못했습니다.");
-				model.addAttribute("location", "/customerClaim/list");
-				model.addAttribute("icon", "error");
 				
-				return "msg";
+				return "redirect:/customerClaim/list";
 				
 			}
 		}

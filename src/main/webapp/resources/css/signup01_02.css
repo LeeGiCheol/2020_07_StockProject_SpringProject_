@@ -233,6 +233,14 @@ input[type="checkbox"]:not(old) + label {
     background-size: 14px 14px;
     cursor: pointer;
 } */
+
+input[type="checkbox"].big:not(old) + label {
+    height: 20px;
+    line-height: 20px;
+    padding: 0 0 0 25px;
+ 
+
+}
 .member .all-check {
     margin-bottom: 12px;
     height: 63px;
@@ -747,12 +755,12 @@ body.member .containerNew {
 .member .all-check input[type="checkbox"]:not(old) + label {
     height: auto;
 }
-input[type="checkbox"].big:not(old):checked + label {
+/* input[type="checkbox"].big:not(old):checked + label {
     background-image: url/resources/img/bg_check_on2_m.png);
 }
 input[type="checkbox"].big:not(old) + label {
     background-image: url(/resources/img/bg_check2_m.png);
-}
+} */
 .member .all-check {
     letter-spacing: 0;
 }
@@ -764,15 +772,15 @@ input[type="checkbox"].big:not(old) + label {
 .member .clause {
     margin-bottom: 0;
 }
-input[type="checkbox"]:not(old):checked + label {
+/* input[type="checkbox"]:not(old):checked + label {
     background-image: url(/resources/img/bg_check_on_m.png);
-}
+} */
 .member .clause label {
     line-height: 150%;
 }
-input[type="checkbox"]:not(old) + label {
+/* input[type="checkbox"]:not(old) + label {
     background-image: url(/resources/img/bg_check_m.png);
-}
+} */
 .clause span .cla-view {
     display: block;
     padding-right: 22px;
@@ -782,10 +790,10 @@ input[type="checkbox"]:not(old) + label {
     background: url(/resources/img/ico_view.png) no-repeat 100% 4px;
     background-size: 20px 125px;
 }
-.men-step .clause .clause-in {
+/* .men-step .clause .clause-in {
     top: -124px;
-}
-.clause .clause-in {
+} */
+/* .clause .clause-in {
     position: absolute;
     left: 0;
     top: -12px;
@@ -794,7 +802,7 @@ input[type="checkbox"]:not(old) + label {
     background: #fff;
     display: none;
     padding-bottom: 80px;
-}
+} */
 .clause .pop-tit {
     display: block;
 }
@@ -840,12 +848,12 @@ input[type="checkbox"]:not(old) + label {
 .member .clause .scroll {
     border: 0;
 }
-.clause .scroll {
+/* .clause .scroll {
     height: 100%;
     background: #fff;
-    /* overflow: visible; */
+    overflow: visible;
     padding-top: 20px;
-}
+} */
 .member .bt-area {
     padding: 20px 0;
 }
@@ -932,4 +940,251 @@ input[type="text"], input[type="password"], input[type="tel"] {
 
 input[type=checkbox]{
 	    margin-right: 8px;
+	    margin-top: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 회원가입 완료 page */
+
+
+em, i {
+    font-style: normal;
+}
+.mem-withdrawal {
+    padding: 30px 0;
+}
+.mem-withdrawal [class*="mem-message"] {
+    padding-bottom: 50px;
+    text-align: center;
+    position: relative;
+    padding-top: 110px;
+}
+.mem-withdrawal [class*="mem-message-02"]:after {
+    background-position: -1464px 0;
+}
+.mem-withdrawal [class*="mem-message"]:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background: url(/resources/img/icon_message.png) no-repeat -1330px 0;
+}
+.mem-withdrawal [class*="mem-message"] .big-text {
+    font-size: 32px;
+    color: #000;
+    margin-bottom: 10px;
+    line-height: 140%;
+}
+.mem-withdrawal [class*="mem-message"] p {
+    font-size: 18px;
+    color: #666;
+}
+.big-text {
+    font-size: 16px;
+    line-height: 170%;
+    color: #222;
+}
+.mem-withdrawal [class*="mem-message-02"] .big-text:after {
+    background: url(/resources/img/icon_message.png) no-repeat -390px 0;
+}
+.mem-withdrawal [class*="mem-message"] .big-text:after {
+    background: url(/resources/img/icon_message.png) no-repeat -1340px 0;
+}
+.color-red {
+    color: #ff545b !important;
+}
+.mem-withdrawal [class*="mem-message-02"]:after {
+    background-position: -1464px 0;
+}
+.mem-withdrawal [class*="mem-message"]:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background: url(/resources/img/icon_message.png) no-repeat -1330px 0;
+}
+.mem-withdrawal .mem {
+    border: #eaeaea 1px solid;
+    padding: 30px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    margin-top: -10px;
+}
+.mem-withdrawal .mem .id {
+    width: 50%;
+    float: left;
+    border-right: #eaeaea 1px solid;
+}
+.mem-withdrawal .mem p {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 16px;
+    color: #000;
+}
+.mem-withdrawal .mem p::before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    background: url(/resources/img/ico_member.png) no-repeat -6px 0;
+    background-size: 36px 750px;
+    padding-right: 5px;
+}
+
+.mem-withdrawal .mem .id span {
+    color: #ff545b;
+}
+.mem-withdrawal .mem p span {
+    padding-left: 15px;
+}
+.mem-withdrawal .mem .name {
+    width: 50%;
+    float: right;
+}
+.mem-withdrawal .mem-down {
+    padding: 20px;
+    overflow: hidden;
+    border: #eaeaea 1px solid;
+    border-top-color: #f9f9f9;
+    margin-top: -41px;
+    background: #f9f9f9;
+}
+.mem-withdrawal .mem-down p {
+    float: left;
+    color: #888;
+    line-height: 150%;
+}
+.mem-withdrawal .mem-down span {
+    float: right;
+}
+.mem-withdrawal .mem-down span .btn-t {
+    border-color: #ccc;
+}
+[class*="btn-t"] {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+}
+/* [class*="btn-"] {
+    position: relative;
+    background: #fff;
+    border: 1px solid #444;
+    line-height: 100%;
+    display: inline-block;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+} */
+.member .bt-area {
+    overflow: hidden;
+    padding: 20px 0;
+    text-align: center;
+}
+.member .bt-area .btn-b {
+    min-width: 142px;
+}
+[class*="btn-b"] {
+    padding: 13px 25px;
+    min-width: 90px;
+    font-size: 16px;
+}
+[class*="btn-"].red {
+    background: #ff545b;
+    border: 1px solid #ff545b;
+    color: #fff;
+}
+.mem-withdrawal [class*="mem-message-02"]:after {
+    background-position: -1464px 0;
+}
+
+
+
+
+
+@media only screen and (max-width: 979px){
+.mem-withdrawal [class*="mem-message"] {
+    padding-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.mem-withdrawal [class*="mem-message"] .big-text {
+    font-size: 16px;
+    color: #000;
+}
+.mem-withdrawal [class*="mem-message"] p {
+    font-size: 13px;
+    color: #666;
+}
+.mem-withdrawal .mem.case02 {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+.mem-withdrawal .mem {
+    border: none;
+    border-top: #eaeaea 1px solid;
+    border-bottom: #eff3f6 10px solid;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+.mem-withdrawal .mem .id {
+    width: 100%;
+    float: none;
+    border: none;
+    margin-bottom: 5px;
+}
+.mem-withdrawal .mem p i {
+    display: inline-block;
+    width: 50px;
+    text-align: left;
+}
+.mem-withdrawal .mem .name {
+    width: 100%;
+    float: none;
+}
+.mem-withdrawal .mem-down {
+    text-align: center;
+    margin-top: 0;
+}
+.mem-withdrawal .mem-down p {
+    float: none;
+    padding-bottom: 10px;
+}
+.mem-withdrawal .mem-down span {
+    float: none;
+}
+[class*="btn-t"] {
+    padding: 10px 10px;
+    min-width: 70px;
+    font-size: 14px;
+    height: 36px;
+}
+.member .bt-area {
+    padding: 20px 0;
+}
+.bt-area {
+    clear: both;
+    overflow: hidden;
+    padding: 0 15px 40px;
+}
 }

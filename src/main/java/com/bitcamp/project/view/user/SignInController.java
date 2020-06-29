@@ -37,7 +37,7 @@ public class SignInController {
 	
 	@GetMapping(value="/signInPage" )
 	public String signInView(UserVO vo) {
-		return "login";
+		return "signInUp/login";
 	}
 	
 	@PostMapping(value="/signIn")
@@ -60,7 +60,7 @@ public class SignInController {
                 session.setAttribute("loginUser", vo);
                 mav.addObject("msg","login");
                 mav.addObject("location","/mainPage");
-				mav.setViewName("msg");
+				mav.setViewName("msg/msg");
 				
 
 				String saveId = request.getParameter("saveId");
@@ -80,14 +80,14 @@ public class SignInController {
             }else {
             	mav.addObject("msg", "입력한 정보가 일치하지 않습니다!");
 				mav.addObject("location", "/signInPage");
-				mav.setViewName("notice");
+				mav.setViewName("msg/notice");
 				return mav;
             }
 		}
 		catch(Exception e) {
 			mav.addObject("msg", "입력한 정보가 일치하지 않습니다!");
 			mav.addObject("location", "/signInPage");
-			mav.setViewName("notice");
+			mav.setViewName("msg/notice");
 			return mav;
 		}
             
@@ -123,12 +123,12 @@ public class SignInController {
 	@GetMapping(value="/forgetId")
 	public String findIdView() {
 		System.out.println("로그");
-		return "forgetidpage";
+		return "forgetidpw/forgetidpage";
 	}
 	
 	@GetMapping(value="/forgetIdTry") //문자 전송이 완료했으면.
 	public String tryIdView(@ModelAttribute("answer") String answer) {
-			return "forgetidpage-try-success"; // 인증화면
+			return "forgetidpw/forgetidpage-try-success"; // 인증화면
 	}
 	
 	@SuppressWarnings("unused")
@@ -140,35 +140,35 @@ public class SignInController {
 			vo = signInService.findId(vo);
 			session.setAttribute("findUser", vo);
 			if(vo == null || tel.equals("")) { // 없는 전화번호
-				return "/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
+				return "forgetidpw/forgetidpagefail"; // 데이터베이스에 없는 값 입력시 페이지
 			}else if(vo.getId().contains("_naver_"))  {
 				model.addAttribute("msg", "회원님은 네이버회원이십니다. 네이버로 이동합니다");
 				model.addAttribute("icon", "success");
 				model.addAttribute("location", "https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry");
-				return "/msg";	
+				return "msg/msg";	
 			}else if(vo.getId().contains("_kakao_")){
 				model.addAttribute("msg", "회원님은 카카오톡회원이십니다. 카카오톡으로 이동합니다");
 				model.addAttribute("icon", "success");
 				model.addAttribute("location", "https://accounts.kakao.com/weblogin/find_account?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount#pageFindAccountSelect");
-				return "/msg";
+				return "msg/msg";
 			}else {
 				ExampleSend es = new ExampleSend(); // 문자보내는 클래스 
 				ExampleSend.main(args, tel);  // 문자보내는 메서드
 				model.addAttribute("msg", "번호를 확인중입니다.");
 				model.addAttribute("icon", "success");
 				model.addAttribute("location", "/forgetIdTry");
-				return "/msg";
+				return "msg/msg";
 			}
 		}
 		
 		else if(request.getServletPath().equals("/forgetIdTry")) {
 			if(answer.equals(numStr)) { // 대답과 인증번호가 같다면
-				return "/forgetidpagesuccess";
+				return "forgetidpw/forgetidpagesuccess";
 			}else {
 				model.addAttribute("msg", "인증번호가 일치하지않습니다.");
 				model.addAttribute("icon", "error");
 				model.addAttribute("location", "/forgetIdTry");
-				return "/msg";
+				return "msg/msg";
 			} 
 		}
 		return null;
@@ -176,12 +176,12 @@ public class SignInController {
 	
 	@GetMapping(value="/forgetPassword")
 	public String findPwView() {
-		return "forgetpasswordpage";
+		return "forgetidpw/forgetpasswordpage";
 	}
 	
 	@GetMapping(value="/forgetPasswordTry")
 	public String findPw() {
-		return "forgetpasswordpage-try-success";
+		return "forgetidpw/forgetpasswordpage-try-success";
 	}
 
 	@PostMapping(value= {"/forgetPassword", "forgetPasswordTry"})
@@ -192,7 +192,7 @@ public class SignInController {
 			vo = signInService.findPw(vo);
 			session.setAttribute("findUser", vo);
 			if(vo==null || vo.getId().equals("") ) {
-				return "/forgetpasswordpagefail";
+				return "forgetidpw/forgetpasswordpagefail";
 			}else {
 				return "redirect:/user/mail";
 				
@@ -200,12 +200,12 @@ public class SignInController {
 		}
 		if(request.getServletPath().equals("/forgetPasswordTry")) {
 			if(email_answer.equals(EmailNumStr)) { // 대답과 인증번호가 같다면
-				return "/forgetpasswordpagereset"; 
+				return "forgetidpw/forgetpasswordpagereset"; 
 			}else {
 				model.addAttribute("msg", "인증번호가 일치하지않습니다.");
 				model.addAttribute("icon", "error");
 				model.addAttribute("location", "/forgetPasswordTry");
-				return "/msg"; // 대답과 인증번호가 다르면
+				return "msg/msg"; // 대답과 인증번호가 다르면
 			} 
 		}
 		return null;
@@ -213,7 +213,7 @@ public class SignInController {
 	
 	@GetMapping(value="/updatePassword")
 	public String updatePasswordView() {
-		return "forgetpasswordpagereset";
+		return "forgetidpw/forgetpasswordpagereset";
 	}
 	
 	@PostMapping(value="/updatePassword")	
@@ -226,10 +226,10 @@ public class SignInController {
 			UserVO finduserVO = (UserVO) session.getAttribute("findUser");
 			finduserVO.setPw(encPassword);
 			vo = signInService.updatePw(finduserVO);
-			return "/forgetpasswordpagesuccess";
+			return "forgetidpw/forgetpasswordpagesuccess";
 		}else{ // 비밀번호랑 비밀번호 확인이 같지않으면 어처피 클릭이 되지 않아 else는 구현 안함
 			
 		}
-	return "forgetpasswordpagereset";
+	return "forgetidpw/forgetpasswordpagereset";
 	}
 }

@@ -1,7 +1,8 @@
 package com.bitcamp.project.view.user;
 
-import static com.bitcamp.project.view.user.SignUpSend.signUpNumStr;
 import static com.bitcamp.project.view.user.SignUpMailController.signUpEmailNumStr;
+import static com.bitcamp.project.view.user.SignUpSend.signUpNumStr;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +34,7 @@ public class SignUpController {
 	// 회원가입화면
 		@GetMapping(value="/signUpPage/1")
 		public String signUpVieww() {
-				return "signup01";
+				return "signInUp/signup01";
 		}
 ////		// 회원가입화면
 //		@PostMapping(value="/signUp2")
@@ -48,12 +50,12 @@ public class SignUpController {
 	@GetMapping(value="/signUpPage/2")
 	public String signUpView(UserVO vo) {
 		System.out.println("vo suv : " + vo.toString());
-		return "signup02";
+		return "signInUp/signup02";
 	}
 
 	// 회원가입완료화면
 	@PostMapping(value="/signUp")
-	public String signUp(UserVO vo, @RequestParam("friend") String friend) {
+	public String signUp(UserVO vo, @RequestParam("friend") String friend, Model model) {
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
@@ -67,20 +69,30 @@ public class SignUpController {
 		System.out.println("vo su : " + vo.toString());
 		
 		signUpService.signUp(vo);
+		model.addAttribute("login", vo);
 		
 		
-		return "signup03";
+		return "signInUp/signup03";
 	}
 	
+	
 	@PostMapping(value="/signUp/kakao")
-	public String signUpKakao(UserVO vo, @RequestParam("friend") String friend) {
+	public String signUpKakao(HttpSession session,UserVO vo, @RequestParam("friend") String friend, @RequestParam("id") String id,@RequestParam("nickname") String nickname) {
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
 		System.out.println("vo su : " + vo.toString());
 		signUpService.signUp(vo);
 		
-		return "signup03";
+		if(vo.getId().contains("_naver_")) {
+			vo.setId(vo.getId().replace("_naver_", ""));
+		}
+		else if(vo.getId().contains("_kakao_")) {
+			vo.setId(vo.getId().replace("_kakao_", ""));
+		}
+		
+		session.setAttribute("login", vo);
+		return "signInUp/signup03";
 	}
 	
 

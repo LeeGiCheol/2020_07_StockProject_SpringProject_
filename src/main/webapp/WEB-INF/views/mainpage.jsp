@@ -32,14 +32,14 @@
 			<!-- 현재 코스피 주가지수 -->
 			<div class="graph-area">
 					<div class="g-box">
-						<div class="graph-left graph_off" style="display:block;">
+						<div class="graph-title-left graph_off" style="display:block;">
 							<div class="graph-title">
 								<span><a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">코스피</a></span>
 
 									<c:if test="${kospi eq '+'}">
 										<p id="KRI001000000_updownColor_n" class="color-red">
 		
-											<a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">
+											<a href="">
 												<span id="KRI001000000_close_n">${current_kospi/100 }</span>
 												<mark id="KRI001000000_updownState_n" class="color-red"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">▲${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n">(<fmt:formatNumber value="${(kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100}" pattern="0.00"/>%)</span></mark>
 											</a>
@@ -48,7 +48,7 @@
 									<c:if test="${kospi eq '-'}">
 										<p id="KRI001000000_updownColor_n" class="color-blue">
 		
-											<a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">
+											<a href="">
 												<span id="KRI001000000_close_n">${current_kospi/100 }</span>
 												<mark id="KRI001000000_updownState_n" class="color-blue"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">▼${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/100,1,6)}</em> <span id="KRI001000000_diffRate_n">(<fmt:formatNumber value="${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,1,6)}" pattern="0.00"/>%)</span></mark>
 											</a>
@@ -56,7 +56,7 @@
 									</c:if>
 									<c:if test="${kospi eq '0'}">
 										<p id="KRI001000000_updownColor_n" class="color-black" >
-											<a href="http://www.paxnet.co.kr/stock/sise/KOSPI?wlog_rpax=KOSPI">
+											<a href="">
 												<span id="KRI001000000_close_n">${current_kospi/100 }</span>
 												<mark id="KRI001000000_updownState_n" class="color-black"><i class="hidden"></i><em id="KRI001000000_diffPrice_n">${(kospi_lastprice[0]-kospi_lastprice[1])/100}</em> <span id="KRI001000000_diffRate_n">(<fmt:formatNumber value="${(kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100}" pattern="0.00"/>%)</span></mark>
 											</a>
@@ -64,13 +64,14 @@
 									</c:if>
 							</div>
 						</div>
-						<div class="graph-right graph_off" style="display:block;">
+						
+						<div class="graph-title-right graph_off" style="display:block;">
 							<div class="graph-title">
-								<span><a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">코스닥</a></span>
+								<span><a href="">코스닥</a></span>
 									
 									<c:if test="${kosdaq eq '+'}">
 										<p id="KRI501000000_updownColor_n" class="color-red">
-											<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
+											<a href="">
 												<span id="KRI501000000_close_n">${current_kosdaq/100 } </span>
 												<mark id="KRI501000000_updownState_n" class="color-red"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">▲${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> (<fmt:formatNumber value="${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100}" pattern="0.00"/>%)</span></mark>
 											</a>
@@ -78,7 +79,7 @@
 									</c:if>
 									<c:if test="${kosdaq eq '-'}">
 										<p id="KRI501000000_updownColor_n" class="color-blue">
-											<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
+											<a href="">
 												<span id="KRI501000000_close_n">${current_kosdaq/100 } </span>
 												<mark id="KRI501000000_updownState_n" class="color-blue"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">▼${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/100,1,6)}</em> <span id="KRI501000000_diffRate_n"> (<fmt:formatNumber value="${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,1,6)}" pattern="0.00"/>%)</span></mark>
 											</a>
@@ -86,7 +87,7 @@
 									</c:if>
 									<c:if test="${kosdaq eq '0'}">
 										<p id="KRI501000000_updownColor_n" class="color-black">
-											<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
+											<a href="">
 												<span id="KRI501000000_close_n">${current_kosdaq/100 } </span>
 												<mark id="KRI501000000_updownState_n" class="color-black"><i class="hidden"></i><em id="KRI501000000_diffPrice_n">${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100}</em> <span id="KRI501000000_diffRate_n"> (<fmt:formatNumber value="${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100}" pattern="0.00"/>%)</span></mark>
 											</a>
@@ -95,174 +96,26 @@
 							</div>
 						</div>
 						
-						<div class="graph-left graph_on has-chart">
+						<div class="graph-body-left graph_on has-chart">
 							
 								<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">
 									<div id="chartcontainer"></div>
 								</a>
 							
 						</div>
-						<div class="graph-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;
+						<div class="boder"></div>
+						<div class="graph-body-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;>
 ">
-							<a href="http://www.paxnet.co.kr/stock/sise/KOSDAQ?wlog_rpax=KOSDAQ">
+							<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSDAQ">
 								<div id="chartcontainer2"></div>
 							</a>
 						</div>
 					</div>
 				</div>
 				
-				
-				
-<%-- 					<div class="chartdata-1">
-						<div class="chartdata-body">
-						<div class="chartdate-nav">
-							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current_kospi/100 } ${(kospi_lastprice[0]-kospi_lastprice[1])/100} ${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></h3>
-							
-						</div>
-						<div id="chartcontainer"></div>
-						</div>
-					</div>
-					<div class="chartdata-2">
-						<div class="chartdata-body">
-						<div class="chartdate-nav">
-							
-							<h3 class="btnOverInfo" id="h3_stockName">KOSDAQ<span id="nowStock">${current_kosdaq/100 } ${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100} ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></h3>
-							
-						</div>
-						<div id="chartcontainer2"></div>
-						</div>
-					</div> --%>
-
-				<div class="stock-ranking">
-					<nav>
-						<div class="nav nav-tabs" role="tablist">
-							<a class="nav-item">TOP 종목</a> <a class="nav-item">인기 검색 종목</a>
-						</div>
-					</nav>
-					<div class="tab-content">
-
-						<div class=".tab-pane" id="tab1">
-							<table class="tbl_home_left">
-								<colgroup>
-									<col width="30%">
-									<col width="20%">
-									<col width="25%">
-									<col width="25%">
-								</colgroup>
-								<tbody class="rank-table" id="topRank">
-
-								</tbody>
-
-
-							</table>
-
-						</div>
-
-						<div class=".tab-pane" id="tab2">
-							<table class="tbl_home_right">
-								<colgroup>
-									<col width="30%">
-									<col width="20%">
-									<col width="25%">
-									<col width="25%">
-								</colgroup>
-								<tbody class="rank-table" id="searchRank">
-
-								</tbody>
-
-
-							</table>
-
-						</div>
-
-
-
-
-					</div>
-				</div>
-
-				<div class="community">
-						<nav>
-							<div class="nav nav-tabs" role="tablist">
-								<a class="nav-item">커뮤니티 베스트</a>
-								<button type="button" class="plus" onclick="location.href='/board/free?orderby=best'">더보기</button>
-							</div>
-							<div class="nav nav-tabs" role="tablist">
-								<a class="nav-item">신규 글</a>
-								<button type="button" class="plus" onclick="location.href='/board/free'">더보기</button>
-							</div>
-						</nav>
-					<div class="community-best">
-						<div class="tab-content">
-							<div class=".tab-pane" id="tab1">
-								<ul class="step1">
-									<c:forEach var="bestBoardList" items="${bestBoardList}">
-										<li id="test_1"><a href="/board/free/detail?pno=${bestBoardList.pno}">${bestBoardList.title}</a>
-											<p class="nickname">${bestBoardList.nickname}</p></li>
-									</c:forEach>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="community-new">
-
-						<div class="tab-content">
-							<div class=".tab-pane" id="tab1">
-								<ul class="step1">
-									<c:forEach var="newBoardList" items="${newBoardList}">
-										<li id="test_1"><a href="/board/free/detail?pno=${newBoardList.pno}">${newBoardList.title}</a>
-											<p class="nickname">${newBoardList.nickname}</p></li>
-									</c:forEach>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="news-ranking">
-					<span class="news-tab">
-						<a class="selected" id="news-real-time" style="cursor:pointer;">실시간 속보</a>
-						<a id="new-market-conditions" style="cursor:pointer;">시황 전망</a>
-						<a id="new-event" style="cursor:pointer;">기업 종목분석</a>
-					</span>
-					<button type="button" class="news-plus" onclick="location.href='/news'">더보기</button>
-
-					<div class="tab-content" id="pills-tabContent">
-						<div class="news-body" id="realTimeHtml">
-							<div class="headline" id="mainNews1head">
-								
-							</div>
-							<ul id="mainNews1">
-							
-							</ul>
-						</div>
-						<div class="news-body" id="marketConditionsHtml" style="display:none;">
-							<div class="headline" id="mainNews2head">
-								
-							</div>
-							<ul id="mainNews2">
-								
-							</ul>
-						</div>
-						<div class="news-body" id="eventHtml" style="display:none;">
-							<div class="headline" id="mainNews3head">
-
-							</div>
-							<ul id="mainNews3">
-							</ul>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="col-md-3">
-
 				<c:choose>
 					<c:when test="${loginUser eq null}">
-						<div class="login-box">
+						<div class="login-box login-box-m">
 							<div class="div-login-box">
 								<form method='post' action="/signIn">
 									<fieldset>
@@ -294,7 +147,7 @@
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=411ad5d7607a5206006f889840ab2b27&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									</span>
 								</p>
 							</div>
@@ -302,7 +155,7 @@
 					</c:when>
 
 					<c:when test="${loginUser.point >= 0}">
-						<div class="login-box">
+						<div class="login-box login-box-m">
 							<div class="div-login-box-after" style class="login-out">
 								<p class="proimg_div-after">
 									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
@@ -341,7 +194,268 @@
 					</c:when>
 					
 					<c:otherwise>
-						<div class="login-box">
+						<div class="login-box login-box-m">
+							<div class="div-login-box-after" style class="login-out">
+								<p class="proimg_div-after">
+									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
+										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+										class="current_badge_s"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+								</p>
+								<dl>
+									<dt>
+										<strong>관리자</strong>　님
+										<button type="button" class="logout"
+											onclick="location.href='/logOut';">로그아웃</button>
+									</dt>
+									<dd>
+									</dd>
+								</dl>
+							</div>
+								<div class="admin-login-after-btn">
+									<a id="admin-leftLogin" href="/admin/main">관리자 페이지</a>
+								</div>
+						</div>
+					
+					</c:otherwise>
+				</c:choose>				
+				
+				
+<%-- 					<div class="chartdata-1">
+						<div class="chartdata-body">
+						<div class="chartdate-nav">
+							<h3 class="btnOverInfo" id="h3_stockName">KOSPI<span id="nowStock">${current_kospi/100 } ${(kospi_lastprice[0]-kospi_lastprice[1])/100} ${fn:substring((kospi_lastprice[0]-kospi_lastprice[1])/kospi_lastprice[1]*100,0,5) }%</span></h3>
+							
+						</div>
+						<div id="chartcontainer"></div>
+						</div>
+					</div>
+					<div class="chartdata-2">
+						<div class="chartdata-body">
+						<div class="chartdate-nav">
+							
+							<h3 class="btnOverInfo" id="h3_stockName">KOSDAQ<span id="nowStock">${current_kosdaq/100 } ${(kosdaq_lastprice[0]-kosdaq_lastprice[1])/100} ${fn:substring((kosdaq_lastprice[0]-kosdaq_lastprice[1])/kosdaq_lastprice[1]*100,0,5) }%</span></h3>
+							
+						</div>
+						<div id="chartcontainer2"></div>
+						</div>
+					</div> --%>
+
+				<div class="stock-ranking">
+					<nav>
+						<div class="nav nav-tabs" role="tablist">
+							<a class="nav-item">TOP 종목</a> <a class="nav-item">인기 검색 종목</a>
+						</div>
+					</nav>
+					<div class="tab-content">
+
+						<div class=".tab-pane" id="tab1">
+							<table class="tbl_home_left">
+								<colgroup>
+									<col width="34%">
+									<col width="25%">
+									<col width="22%">
+									<col width="19%">
+								</colgroup>
+								<tbody class="rank-table" id="topRank">
+
+								</tbody>
+
+
+							</table>
+
+						</div>
+
+						<div class=".tab-pane" id="tab2">
+							<table class="tbl_home_right">
+								<colgroup>
+									<col width="34%">
+									<col width="25%">
+									<col width="22%">
+									<col width="19%">
+								</colgroup>
+								<tbody class="rank-table" id="searchRank">
+
+								</tbody>
+
+
+							</table>
+
+						</div>
+
+
+
+
+					</div>
+				</div>
+
+				<div class="community">
+						<nav>
+							<div class="nav nav-tabs" role="tablist">
+								<a class="nav-item">커뮤니티 베스트</a>
+								<!-- <button type="button" class="plus" onclick="location.href='/board/free?orderby=best'">더보기</button> -->
+								<a href="/board/free?orderby=best" class="link-btn">더보기 <i class="fas fa-angle-right"></i></a>
+							</div>
+							<div class="nav nav-tabs" role="tablist">
+								<a class="nav-item">신규 글</a>
+								<!-- <button type="button" class="plus" onclick="location.href='/board/free'">더보기</button> -->
+								<a href="/board/free" class="link-btn">더보기 <i class="fas fa-angle-right"></i></a>
+							</div>
+						</nav>
+					<div class="community-best">
+						<div class="tab-content">
+							<div class=".tab-pane" id="tab1">
+								<ul class="step1">
+									<c:forEach var="bestBoardList" items="${bestBoardList}">
+										<li id="test_1"><a href="/board/free/detail?pno=${bestBoardList.pno}">${bestBoardList.title}</a>
+											<p class="nickname">${bestBoardList.nickname}</p></li>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</div>
+								
+
+
+					<div class="community-new">
+
+						<div class="tab-content">
+							<div class=".tab-pane" id="tab1">
+								<ul class="step1">
+									<c:forEach var="newBoardList" items="${newBoardList}">
+										<li id="test_1"><a href="/board/free/detail?pno=${newBoardList.pno}">${newBoardList.title}</a>
+											<p class="nickname">${newBoardList.nickname}</p></li>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</div>
+								
+				</div>
+
+				<div class="news-ranking">
+					<span class="news-tab">
+						<a class="selected" id="news-real-time" style="cursor:pointer;">실시간 속보</a>
+						<a id="new-market-conditions" style="cursor:pointer;">시황 전망</a>
+						<a id="new-event" style="cursor:pointer;">기업 종목분석</a>
+					<a href="/news" class="link-btn">더보기 <i class="fas fa-angle-right"></i></a>
+					</span>
+					<!-- <button type="button" class="news-plus" onclick="location.href='/news'">더보기</button> -->
+
+					<div class="tab-content" id="pills-tabContent">
+						<div class="news-body" id="realTimeHtml">
+							<div class="headline" id="mainNews1head">
+								
+							</div>
+							<ul id="mainNews1">
+							
+							</ul>
+							
+						</div>
+						<div class="news-body" id="marketConditionsHtml" style="display:none;">
+							<div class="headline" id="mainNews2head">
+								
+							</div>
+							<ul id="mainNews2">
+								
+							</ul>
+						</div>
+						<div class="news-body" id="eventHtml" style="display:none;">
+							<div class="headline" id="mainNews3head">
+
+							</div>
+							<ul id="mainNews3">
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-3">
+
+				<c:choose>
+					<c:when test="${loginUser eq null}">
+						<div class="login-box login-box-web">
+							<div class="div-login-box">
+								<form method='post' action="/signIn">
+									<fieldset>
+										<div class="chk">
+										<%
+										    Cookie[] c = request.getCookies();
+										    String cookieVal="";
+										    if(c!=null){
+										        for(Cookie i:c){
+										            if(i.getName().equals("saveId")){
+										                cookieVal=i.getValue();
+										            }
+										        }
+										    }
+										%>
+											<input type="checkbox" id="idSaveCheck" class="big" name="saveId" <%=cookieVal!=""?"checked" : ""%>/>
+											<label for="idSaveCheck">아이디 저장</label>
+										</div>
+										<p>
+											<input type="text" name="id" value="<%=cookieVal !="" ? cookieVal : "" %>" id="user_id" title="아이디 입력" placeholder="아이디">
+											<input type="password" name="pw" value="" id="user_pw" title="비밀번호 입력" placeholder="비밀번호"> 
+											<input type="submit" value="로그인" onclick="">	
+										</p>
+									</fieldset>
+								</form>
+								<p>
+									<a href="/signUpPage/1">회원가입</a>
+									<span><a href="/forgetId" class="idforgot">아이디 찾기</a>
+									<a href="/forgetPassword">비밀번호 찾기</a></span>
+								    <span class="social-login"> 
+								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									</span>
+								</p>
+							</div>
+						</div>
+					</c:when>
+
+					<c:when test="${loginUser.point >= 0}">
+						<div class="login-box login-box-web">
+							<div class="div-login-box-after" style class="login-out">
+								<p class="proimg_div-after">
+									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
+										src="/resources/img/pi_08.png"></a> <span id="_gnbBadge"><img
+										class="current_badge_s"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>
+								</p>
+								<dl>
+									<dt>
+										<strong>${loginUser.nickname}</strong>　님
+										<button type="button" class="logout"
+											onclick="location.href='/logOut';">로그아웃</button>
+									</dt>
+									<dd>
+										<c:set var="socialId" value="${loginUser.id}"/>
+										<c:choose>
+											<c:when test="${fn:contains(socialId,'_')}">
+												<a class="socialLogin" href="/myPagePwCheck01">내정보</a>
+											</c:when>
+											<c:otherwise>
+												<a id="leftLogin" href="/myPagePwCheck01">내정보</a>
+												<a href="mypageUpdatePassword">비밀번호 변경</a>
+											</c:otherwise>
+										</c:choose>
+									</dd>
+								</dl>
+								<ul class="dot-list02 color-rightgray">
+									<li id="_liBall">자산 <a href="/myPagePwCheck01">${money}원</a></li>
+									<li id="_liCyber">포인트 <a href="/myPagePwCheck02">${loginUser.point}점</a></li>
+								</ul>
+							</div>
+								<div class="login-after-btn">
+									<a id="leftLogin" href="/myPagePwCheck01">마이페이지</a> <a href="/myPage04">알림<span id="noticeMain"></span></a>
+								</div>
+						</div>
+					</c:when>
+					
+					<c:otherwise>
+						<div class="login-box login-box-web">
 							<div class="div-login-box-after" style class="login-out">
 								<p class="proimg_div-after">
 									<a href="/myPage01"><img class="" cust_id="" id="_myhomeId"
@@ -396,7 +510,7 @@
 						<ul>
 						
 							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
-								<li class="first"><a href="/selectUserMoney?nickname=${list.nickname}"><i> ${vs.count}</i> <span>${list.nickname}</span>
+								<li class="first"><a href="/selectUserBoard?nickname=${list.nickname}"><i> ${vs.count}</i> <span>${list.nickname}</span>
 										<p class="color-red">
 											${list.revenue}%
 										</p></a></li>
@@ -424,7 +538,7 @@
 
 
 
-					<a href="/customerqna" id="cBoxa" class="cBox">
+					<a href="/customerQna" id="cBoxa" class="cBox">
 						<p class="cBoxTitle">도움말</p>
 						<svg class="bi bi-chat-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg">
@@ -938,7 +1052,8 @@
  				var HTMLForAccumRanking = "<ul>";
  				for(var i = 0; i < data.accumRankingNicknameList.length; ++i) {
  					HTMLForAccumRanking +=
- 					'<li class="first"><a><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
+
+ 					'<li class="first"><a href="/selectUserBoard?nickname='+data.accumRankingNicknameList[i]+'"><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
  					'<p class="color-red">'+
  					((data.accumRankingAssetList[i]-10000000)/100000)+'%'+
  					'</p></a></li>';

@@ -18,6 +18,17 @@
 	</filter-mapping>
 	
 	
+	 <listener>
+	        <listener-class>com.bitcamp.project.util.VisitCounter</listener-class>
+	 </listener>
+	 <listener>
+	        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	 </listener>
+
+
+	
+	
+	
 	<context-param>
 		<param-name>
 			contextConfigLocation
@@ -81,7 +92,7 @@
 	</error-page>
 
 
-
+	
 
 </web-app>
 

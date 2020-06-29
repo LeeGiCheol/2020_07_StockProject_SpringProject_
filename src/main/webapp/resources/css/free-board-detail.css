@@ -448,13 +448,7 @@ fieldset, img, abbr, acronym {
 .comment-cont.anonymity .cmt-list li.list > div {
     padding-left: 0;
 }
-.comment-cont .cmt-list .list div.text .writer {
-    font-size: 13px;
-    color: #888;
-    vertical-align: top;
-    padding-bottom: 3px;
-    padding-right: 70px;
-}
+
 .comment-cont .cmt-list .list div.text .writer span:first-child {
     background: url(/resources/img/bg_line.png) no-repeat right 50%;
     padding-right: 10px;
@@ -465,7 +459,7 @@ fieldset, img, abbr, acronym {
     color: #888;
     vertical-align: top;
     padding-bottom: 3px;
-    padding-right: 70px;
+    padding-right: 50px;
 }
 .comment-cont .cmt-list .list div.text .cont {
     padding-bottom: 10px;
@@ -577,12 +571,14 @@ fieldset, img, abbr, acronym {
     font-size: 9px;
     padding-right: 7px;
 }
+
 .comment-cont .cmt-list li.list .share-more a.modify span {
     background: url(/resources/img/ico_sub.png) no-repeat 0 -260px;
 }
 .comment-cont .cmt-list li.list .share-more a.del span {
     background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
 }
+
 .paging {
     clear: both;
     text-align: center;
@@ -686,8 +682,103 @@ li.list > .img {
     right: 0;
     top: -25px;
 }
+.comment-cont .cmt-list li.list > div {
+    padding-left: 45px !important;
+}
+/* 검색 div */
+input[type="text"], input[type="password"], input[type="tel"], input[type="search"] {
+    padding: 9px 35px 10px 10px;
+    height: 36px;
+        width: 150px;
+}
+[class*="input-style"] .search {
+    background-position: 7px -326px;
+    background-size: 20px 450px;
+        top: auto;	
+}
+[class*="input-style"] button {
+    height: 36px;
+    margin-top: -17px;
+}
+.dropdown-toggle-board{
+    height: 36px;
+    width: 100px;
+}
+.paging p.right {
+    position: static;
+    text-align: right;
+    padding-bottom: 10px;
+    padding-right: 15px;
+}
+/* 검색 div */
 }
 
+
+
+
+/* 검색 div */
+
+.board-no span {
+    display: inline-block;
+    width: 35px;
+    height: 20px;
+    line-height: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0 8px;
+    vertical-align: middle;
+    background: url(/resources/img/ico_board_type.png) no-repeat 0 0;
+    text-indent: -9999em;
+    background-size: 35px 200px;
+}
+.board-no{
+	vertical-align: middle;
+}
+
+.board-notice{
+	    background-color: #f9f9f9;
+}	
+[class*="input-style"] {
+    display: inline-block;
+    position: relative;
+}	
+input[type="text"], input[type="password"], input[type="tel"], input[type="search"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: 1;
+    width: 100%;
+    padding: 5px 35px 6px 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+[class*="input-style"] .search {
+    background-position: 7px -529px;
+}
+[class*="input-style"] button {
+    position: absolute;
+    right: 1px;
+	top:50%;
+    margin-top: -13px;
+    width: 30px;
+    height: 27px;
+    text-indent: -9999px;
+    background-image: url(/resources/img/bg_form.png);
+    background-repeat: no-repeat;
+}
+input[type="button"], button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    background: none;
+}
+
+/* 검색 div */
 
 
 /* 20200618 */

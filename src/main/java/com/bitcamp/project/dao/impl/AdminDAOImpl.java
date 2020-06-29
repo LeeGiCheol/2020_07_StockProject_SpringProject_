@@ -1,18 +1,17 @@
 package com.bitcamp.project.dao.impl;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.jsp.el.ELParseException;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bitcamp.project.dao.AdminDAO;
+import com.bitcamp.project.vo.AdminVO;
 import com.bitcamp.project.vo.BoardVO;
 import com.bitcamp.project.vo.PagingVO;
-import com.bitcamp.project.vo.AdminVO;
+import com.bitcamp.project.vo.UserVO;
+import com.bitcamp.project.vo.VisitVO;
 
 @Repository("AdminDAO")
 public class AdminDAOImpl implements AdminDAO {
@@ -34,12 +33,6 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		return cnt;
 	}
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public int updateAnswer(AdminVO vo) {
@@ -62,6 +55,18 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<AdminVO> reportList(PagingVO reportPage) {
 		return mybatis.selectList("admin.reportList", reportPage);
 	}
+	
+	@Override
+	public AdminVO reportSelectList(String rno) {
+		return mybatis.selectOne("admin.reportSelectList",rno);
+	}
+	//게시판에 뿌려주기용
+	@Override
+	public AdminVO showReport(AdminVO vo) {
+		return mybatis.selectOne("admin.showReport", vo);
+	}
+	
+	
 	@Override
 	public int reportCount(AdminVO vo) {
 		return mybatis.selectOne("admin.reportCount", vo)	;
@@ -76,8 +81,6 @@ public class AdminDAOImpl implements AdminDAO {
 		return mybatis.delete("admin.questionDelete", vo);
 	}
 	
-	
-
 	@Override
 	public int answerDelete(AdminVO vo) {
 		return mybatis.delete("admin.answerDelete", vo);
@@ -91,6 +94,18 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<BoardVO> boardChart(BoardVO vo) {
 		return mybatis.selectList("admin.boardChart", vo);
 	}
+	@Override
+	public int updateRcheck(int pno) {
+		return mybatis.update("admin.updateRcheck", pno);
+	}
+	
+	@Override
+	public List<UserVO> userSignUpChart(UserVO vo) {
+		return mybatis.selectList("admin.userSignUpChart", vo);
+	}
+	
+	
+	
 	
 	
 }

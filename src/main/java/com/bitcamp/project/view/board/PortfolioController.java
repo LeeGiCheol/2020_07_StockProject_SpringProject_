@@ -3,6 +3,7 @@ package com.bitcamp.project.view.board;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class PortfolioController {
 	public String portfolioBoard(BoardVO vo, Model model, @ModelAttribute("bnowPage") String nowPage,
 			@ModelAttribute("searchStyle") String searchStyle, @ModelAttribute("keyword") String keyword,
 			@ModelAttribute("orderby") String orderby /* new = 최신순 best = 인기순 */ ) {
-		int bno = 2;
+		String bno = "portfolio";
 
 		if (nowPage == null || nowPage.equals("")) {
 			nowPage = "1";
@@ -75,12 +76,12 @@ public class PortfolioController {
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("path", FilePath);
 
-		return "portfolio-board";
+		return "board/portfolio-board";
 	}
 
 	@GetMapping("/board/portfolio/write")
 	public String portfolioWriteForm() {
-		return "portfolio-writeForm";
+		return "board/portfolio-writeForm";
 	}
 
 	@PostMapping("/board/portfolio/write")
@@ -88,14 +89,14 @@ public class PortfolioController {
 
 		List<String> uploadThumbnail = new ArrayList<String>();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		SimpleDateFormat folderNameFormatter = new SimpleDateFormat("yyyyMMdd");
 		vo.setId(loginUser.getId());
-		vo.setBno(2); // 포트폴리오 게시판
+		vo.setBno("portfolio"); // 포트폴리오 게시판
 
 		if (vo.getBcontent().contains("<img src=")) {
 
 			String[] img = vo.getBcontent().split("<img src=\"/resources/se2/upload/");
 
+			
 			for (int i = 1; i < img.length; i++) {
 
 				int start = img[i].indexOf("/Photo");
@@ -115,24 +116,8 @@ public class PortfolioController {
 								a++;
 							}
 						}
-						// 파일이 존재하지 않을 경우 삭제 - 삭제하니까 업데이트가 불가(새로 추가하는 파일은 상관없으나 기존에 있던 파일을 지울경우 안)
-		//				if(a != 1) {
-		//					String origin = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+uploadedFileName.get(i);
-		//					File originDelete = new File(origin);
-		//					thumbnail = request.getSession().getServletContext().getRealPath("/")+"resources/se2/upload/"+ uploadedFileName.get(i).substring(0,8) + "/THUMB_" + uploadedFileName.get(i).substring(9);
-		//					File thumbnailDelete = new File(thumbnail);
-		//					
-		//					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-		//					if(originDelete.exists()) {
-		//					    // 파일을 삭제합니다.
-		//						originDelete.delete();
-		//						thumbnailDelete.delete();
-		//					}
-		//					    
-		//				}
 					}
 					
-		//			List<String> upload = multiplePhotoUpload(request, response);
 					
 					
 					for (int i = 1; i < uploadThumbnail.size(); i++) {
@@ -156,8 +141,9 @@ public class PortfolioController {
 			}
 			// vo에 저장 후 리셋
 		}
-			
-			
+		else {
+			boardService.writeFreeBoard(vo);
+		}
 			return "redirect:/board/portfolio";
 
 	}
@@ -175,7 +161,7 @@ public class PortfolioController {
 		mav.addObject("commentList", (List<CommentVO>) commentList.get("commentList"));
 		mav.addObject("commentPage", (PagingVO) commentList.get("commentPage"));
 
-		mav.setViewName("portfolio-board-detail");
+		mav.setViewName("board/portfolio-board-detail");
 
 		return mav;
 	}
@@ -194,11 +180,34 @@ public class PortfolioController {
 		// 댓글리스트
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		
+		List<CommentVO> comment = (List<CommentVO>) commentList.get("commentList");
+		
+		// 아이폰에서 시간이 제대로 표시 안되는 관계로 String으로 형변환
+		// mysql Timezone이 UTC로 설정되어있어 시간 재설정
+		// 게시물
+		boardDetail.setBdateTime(new Date(boardDetail.getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		Date from = boardDetail.getBdateTime();
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String boardDate = transFormat.format(from);
+		// 댓글
+		String commentDateString = null;
+		List<String> commentDate = new ArrayList<String>();
+		for (int i = 0; i < comment.size(); i++) {
+			Date commentDate_ = comment.get(i).getCdateTime();
+			commentDateString = transFormat.format(commentDate_);
+			commentDate.add(commentDateString);
+		}
+		
+		
 		map.put("boardDetail", boardDetail);
-		map.put("commentList", (List<CommentVO>) commentList.get("commentList"));
+		map.put("commentList", comment);
 		map.put("commentPage", (PagingVO) commentList.get("commentPage"));
 		map.put("boardPrevNext", boardPrevNext);
-
+		map.put("boardDate", boardDate);
+		map.put("commentDate", commentDate);
 		return map;
 	}
 
@@ -207,12 +216,12 @@ public class PortfolioController {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
 //		System.out.println("mmmmm"+boardUpdate);
-		return "portfolioUpdateForm";
+		return "board/portfolio-updateForm";
 	}
 
 	@PostMapping("/board/portfolio/update")
 	public String updateBoard(BoardVO vo, Model model) {
-		vo.setBno(2);
+		vo.setBno("portfolio");
 		List<String> uploadThumbnail = new ArrayList<String>();
 
 		FileUpload fileUpload = new FileUpload();

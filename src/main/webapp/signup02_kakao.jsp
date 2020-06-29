@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link href="/resources/css/signup01_02.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader.css">
+<link rel="stylesheet" href="/resources/css/mainfooter3.css">
+<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <script src="//image.paxnet.co.kr/rpan/common/js/validation/validation.custom.js"></script>
 <script src="//image.paxnet.co.kr/rpan/common/js/validation/validation.methods.js"></script>
 <script src="//image.paxnet.co.kr/rpan/common/js/validation/validation.messages.js"></script>
@@ -20,6 +20,7 @@
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
 </script>
+<style>.removeButton{display: none;}</style>
 </head>
 <body>
 	<div class="wrap">
@@ -53,6 +54,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<div id="nickNameResult"></div>
 										<span class="byte"><b id="maxText">0</b>/12byte</span>
 										<button type="button" class="btn-s gray" id="nickCheck">중복확인</button>
+										<button type="button" class="btn-s fantasy removeButton" id="nickCheckAgain">다시입력</button>
 									</li> 
 									<li>
 										<span class="input-style-nick">
@@ -62,6 +64,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<div id="friendResult"></div>
 										<span class="byte"><b id="maxText1">0</b>/12byte</span>
 										<button type="button" class="btn-s gray" id="friendCheck">추천하기</button>
+										<button type="button" class="btn-s fantasy removeButton" id="friendCheckAgain">다시입력</button>
 									</li> 
 								</ul>
 								<ul>
@@ -105,7 +108,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								</ul>
 							</fieldset>
 							<div class="bt-area"> 
-								<button type="submit" class="btn-b red" data-text-content="true" id="submit">가입하기</button> 
+								<button type="submit" class="btn-b fantasy" data-text-content="true" id="submit">가입하기</button> 
 								<button type="button" class="btn-b" onclick="location.href='/mainPage'">취소</button>
 							</div>
 						</form>
@@ -123,7 +126,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				</div>
 			</div>
 		</div>
-			<%@include file="mainfooter.jsp" %>
+			<%@include file="mainfooter2.jsp" %>
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -189,6 +192,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				data: { "tel" : $('#inputPhone').val() }, 
 				success: function(data){ 
 					if(data == 0 && $.trim($('#inputPhone').val()) != ''){
+						$("#telCheck").attr("disabled", "disabled");$("#telCheck").attr("style", "opacity:20%");
 						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputPhone').attr("readonly", true);
@@ -264,12 +268,15 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 						// 중복체크 실패 시 회원가입 버튼 비활성화
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}else if(data == 0 && $.trim($('#inputNickname').val()) != ""){
+						$("#nickCheck").toggleClass("removeButton");/* 추가 */
+						$("#nickCheckAgain").toggleClass("removeButton");/* 추가 */
 						idx= true;
 						$('#inputNickname').attr("readonly", true);
  						var html="<p id='err_cust_id' class='ok-text'>사용 가능합니다.</p>"; 
 						$('#nickNameResult').empty();
 						$('#nickNameResult').append(html);
 						$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+					}else if(data == 2 && $.trim($('#inputNickname').val()) != ""){
 					}else{
 						var html="<p id='cust_id-error' class='error-text'>중복된 닉네임입니다.</p>";
 						$('#nickNameResult').empty();
@@ -285,6 +292,14 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				
 			});  
 		});  
+		$("#nickCheckAgain").on("click", function(){
+			document.getElementById("inputNickname").value="";
+			$('#inputNickname').attr("readonly", false);
+			$("#nickCheck").toggleClass("removeButton");
+			$("#nickCheckAgain").toggleClass("removeButton");
+			$('#nickNameResult').empty();
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+		})
 		
 		
 	
@@ -308,6 +323,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					}else{
 						idx= true;
 						$('#inputFriend').attr("readonly", true);
+						$("#friendCheck").toggleClass("removeButton");/* 추가  */
+						$("#friendCheckAgain").toggleClass("removeButton");/* 추가  */
 						var html="<p id='err_cust_id' class='ok-text'>사용 가능합니다.</p>"; 
 						$('#friendResult').empty();
 						$('#friendResult').append(html);
@@ -318,7 +335,16 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 					alert("서버에러");
 				}
 			});  
-		});  
+		});
+		
+		$("#friendCheckAgain").on("click", function(){
+			document.getElementById("inputFriend").value="";
+			$('#inputFriend').attr("readonly", false);
+			$("#friendCheck").toggleClass("removeButton");
+			$("#friendCheckAgain").toggleClass("removeButton");
+			$('#friendResult').empty();
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+		})
 	});
 	
 	$(document).on('click', 'button.delete', function (e) {
