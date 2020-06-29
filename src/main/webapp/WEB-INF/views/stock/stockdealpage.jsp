@@ -23,6 +23,7 @@
 
 <!-- 모달css -->
 <link rel="stylesheet" href="/resources/css/modal.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
@@ -104,7 +105,7 @@ tr td button {
 								거래 기록</button>
 							   <button id="historyBttn" type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
-								onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
+								onclick="historyCall()">
 								거래 기록</button> 
 
 							<button id="ownBttn" type="button"
@@ -113,7 +114,7 @@ tr td button {
 								보유 종목</button>
 							<button id="recordBttn" type="button"
 								class="btn btn-secondary companydata-btn stock-btn"
-								onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
+								onclick="holdingStockCall()">
 								보유 종목</button> 
 						</div>
 						
@@ -857,6 +858,30 @@ tr td button {
 	<script src="/resources/js/stockAutoComplete.js" type="text/javascript"></script>
 
 	<script>
+	
+	function historyCall() {
+		if(${loginUser eq null}){
+			swal({text:'로그인 후 이용 가능합니다.', icon:'error'}).then(function(){
+				window.location.href="/signInPage";
+			})
+		}else{
+			
+			window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');				
+		}
+	}
+	function holdingStockCall() {
+		if(${loginUser eq null}){
+			swal({text:'로그인 후 이용 가능합니다.', icon:'error'}).then(function(){
+				window.location.href="/signInPage";
+			})
+		}else{
+			
+			window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');				
+		}
+	}
+	
+	
+	
 	var trriger = 0;
 	var stockName = "${stockName}";
 	if(stockName === ''){
@@ -1637,6 +1662,9 @@ tr td button {
 					     daychart.render();}
 				}	
 				}); 
+			
+			
+			
 	})
     
     

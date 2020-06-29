@@ -1,4 +1,4 @@
-	//변수 선언 및 초기화
+//변수 선언 및 초기화
 	var nImageInfoCnt = 0;
 	var htImageInfo = [];		//image file정보 저장
 	var aResult = [];
@@ -34,7 +34,7 @@
 	var welDropAreaUL = $Element(elDropAreaUL); 
 	var fnUploadImage = null;
 	
-/*	//File API 지원 여부로 결정
+	//File API 지원 여부로 결정
 	function checkDragAndDropAPI(){
 		try{
 			if( !oNavigator.ie ){
@@ -49,33 +49,7 @@
 		}catch(e){
 			bSupportDragAndDropAPI = false;
 		}
-	}*/
-	
-	 function checkDragAndDropAPI(){
-		  try{
-		   if( !oNavigator.ie ){
-		    if(!!oNavigator.safari && oNavigator.version <= 5){
-		     bSupportDragAndDropAPI = false;
-		    }else{
-		     //bSupportDragAndDropAPI = true;
-
-		     //모바일인경우 드래그앤드랍 지원안하도록 수정 2013.12.10. 추가시작라인
-		     if ( oNavigator.mobile || oNavigator.msafari || oNavigator.mopera || oNavigator.mie)
-		     {
-		      bSupportDragAndDropAPI = false;
-		     } else {
-		      bSupportDragAndDropAPI = true;
-		     }
-		     //추가 끝라인.
-		    }
-		   } else {
-		    bSupportDragAndDropAPI = false;
-				
-		   }
-		  }catch(e){
-		   bSupportDragAndDropAPI = false;
-		  }
-		 }
+	}
 	
 	//--------------- html5 미지원 브라우저에서 (IE9 이하) ---------------
 	/** 
@@ -255,9 +229,8 @@
 		ev.preventDefault();
 		
 		if (nImageFileCount >= 10){
-			swal({text:"최대 10장까지만 등록할 수 있습니다.", icon:"warning"})
-				
-				return;
+			alert("최대 10장까지만 등록할 수 있습니다.");
+			return;
 		}
 		
 		if(typeof ev.dataTransfer.files == 'undefined'){
@@ -293,7 +266,7 @@
 						j = j+1;
 						nImageInfoCnt = nImageInfoCnt+1;
 					} else {
-						swal({text:"최대 10장까지만 등록할 수 있습니다.", icon:"warning"})
+						alert("최대 10장까지만 등록할 수 있습니다.");
 						break;			
 					}
 				}
@@ -380,7 +353,7 @@
     function callAjaxForHTML5 (tempFile, sUploadURL){
     	var oAjax = jindo.$Ajax(sUploadURL, {
 			type: 'xhr',
-			method : "get",
+			method : "post",
 			onload : function(res){ // 요청이 완료되면 실행될 콜백 함수
 				var sResString = res._response.responseText;
 				if (res.readyState() == 4) {
@@ -504,13 +477,9 @@
  	 * jindo에 파일 업로드 사용.(iframe에 Form을 Submit하여 리프레시없이 파일을 업로드하는 컴포넌트)
  	 */
  	function callFileUploader (){
-		
-	
-	
-	
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
- 			sUrl  : location.href.replace('/fileUpload'),	//샘플 URL입니다.
- 	        sCallback : location.href.replace('/callback.html'),	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
+ 			sUrl  : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php',	//샘플 URL입니다.
+ 	        sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
  	    	sFiletype : "*.jpg;*.png;*.bmp;*.gif",						//허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
  	    	sMsgNotAllowedExt : 'JPG, GIF, PNG, BMP 확장자만 가능합니다',	//허용할 파일의 형식이 아닌경우에 띄워주는 경고창의 문구
  	    	bAutoUpload : false,									 	//파일이 선택됨과 동시에 자동으로 업로드를 수행할지 여부 (upload 메소드 수행)
