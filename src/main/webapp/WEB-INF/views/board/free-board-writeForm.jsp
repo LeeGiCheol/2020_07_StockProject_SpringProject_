@@ -44,7 +44,7 @@
 		}
 		checkBlankOnly = checkBlankOnly.trim();
 		if(title.trim() == ""){
-			swal({text:"제목을 입력해주세요.", icon:"error"});			
+			swal({text:"제목을 입력해주세요.", icon:"error"});		
 			$("#title").focus();
 		}
 		else{

@@ -178,7 +178,7 @@ $(document).ready(function(){
 											<label for="ranking">누적 순위</label>
 										</th>
 										<td>
-											<span class="input-style-case02">${ranking}등</span>
+											<span class="input-style-case02">${ranking + 1}등</span>
 										</td>
 									</tr>
 									<tr>
