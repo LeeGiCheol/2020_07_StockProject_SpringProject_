@@ -18,36 +18,41 @@
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
 <link rel="stylesheet" href="/resources/css/sidebar.css">
 <script>
-	function btnSave(){
-		// bcontent에 내용 삽입
-		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
-		// 글제목
-		var title = $("#title").val();
-		// 글내용 있는지 확인용 
-		var content = document.getElementsByTagName('p');
-		
-	    var bcontent = $("#bcontent").val();
+function btnSave(){
+	// bcontent에 내용 삽입
+	oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
+	// 글제목
+	var title = $("#title").val();
+	// 글내용 있는지 확인용 
+	var content = document.getElementsByTagName('p');
 	
-	    if(title.trim() == ""){
-			swal({text:"제목을 입력해주세요.", icon:"error"}).then(function(){
-				$("#title").focus();
-			})
-			return;
+			
+
+	var contentValue = $('#bcontent').val();
+	var checkBlankOnly = contentValue;
+	while(checkBlankOnly.indexOf("&nbsp;") != -1){
+		checkBlankOnly = checkBlankOnly.replace("&nbsp;", "");
+	}
+	while(checkBlankOnly.indexOf("<p>") != -1){
+		checkBlankOnly = checkBlankOnly.replace("<p>", "");
+	}
+	while(checkBlankOnly.indexOf("</p>") != -1){
+		checkBlankOnly = checkBlankOnly.replace("</p>", "");
+	}
+	checkBlankOnly = checkBlankOnly.trim();
+	if(title.trim() == ""){
+		swal({text:"제목을 입력해주세요.", icon:"error"});			
+		$("#title").focus();
+	}
+	else{
+		if(checkBlankOnly.length == 0){
+			swal({text:"내용을 입력해주세요.", icon:"error"});
 		}
-	    else if(bcontent == ""  || bcontent == null || bcontent == '&nbsp;' || bcontent == '<br>' || bcontent == '<br />' || bcontent == '<p>&nbsp;</p>')  {
-	    	 swal({text:"내용을 입력해주세요.", icon:"error"}).then(function(){
-	             oEditors.getById["bcontent"].exec("FOCUS"); 
-	    	 })
-	         return;
-	    }
-	    
-	
-	    try {
-	    	$("#form").submit();
-	    } catch(e) {}
-	};
-
-
+		else{
+			$("#form").submit();
+		}					
+	}
+};
 
 </script> 
 </head>

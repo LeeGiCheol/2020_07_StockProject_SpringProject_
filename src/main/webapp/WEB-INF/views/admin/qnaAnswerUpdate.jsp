@@ -40,21 +40,27 @@ function btnSave(){
 	// 글내용 있는지 확인용 
 	var content = document.getElementsByTagName('p');
 	
-    var bcontent = $("#bcontent").val();
+			
 
-    if(bcontent == ""  || bcontent == null || bcontent == '&nbsp;' || bcontent == '<br>' || bcontent == '<br />' || bcontent == '<p>&nbsp;</p>')  {
-    	 swal({text:"내용을 입력해주세요.", icon:"error"}).then(function(){
-             oEditors.getById["bcontent"].exec("FOCUS"); 
-    	 })
-         return;
-    }
-    
-
-    try {
-    	$("#form").submit();
-    } catch(e) {}
+	var contentValue = $('#bcontent').val();
+	var checkBlankOnly = contentValue;
+	while(checkBlankOnly.indexOf("&nbsp;") != -1){
+		checkBlankOnly = checkBlankOnly.replace("&nbsp;", "");
+	}
+	while(checkBlankOnly.indexOf("<p>") != -1){
+		checkBlankOnly = checkBlankOnly.replace("<p>", "");
+	}
+	while(checkBlankOnly.indexOf("</p>") != -1){
+		checkBlankOnly = checkBlankOnly.replace("</p>", "");
+	}
+	checkBlankOnly = checkBlankOnly.trim();
+	if(checkBlankOnly.length == 0){
+		swal({text:"내용을 입력해주세요.", icon:"error"});
+	}
+	else{
+		$("#form").submit();
+	}					
 };
-
 </script> 
 </head>
 
