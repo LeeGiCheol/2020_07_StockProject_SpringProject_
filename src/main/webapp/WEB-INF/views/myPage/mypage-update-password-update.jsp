@@ -8,8 +8,6 @@
 <title>비밀번호 재설정</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<link href="resources/css/mainheader2.css" rel="stylesheet">
-<link href="resources/css/mainfooter.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
 <link rel="stylesheet" href="/resources/css/mypageforgetpage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">

@@ -16,8 +16,6 @@
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
 <link rel="stylesheet" href="/resources/css/popup.css">
 </head>
@@ -372,9 +370,9 @@
 						$("#reportSelectList").html(reportSelectList);
 						var pageLocation=""
 							if((data.reportSelectList.rcheck)===("처리대기중")){
-								pageLocation += '<button type="button" class="btn-m" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
+								pageLocation += '<span><button type="button" class="btn-m fantasy" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
 							}
-								pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>'
+								pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button></span>'
 								$("#pageLocation").html(pageLocation);
 						}
 						

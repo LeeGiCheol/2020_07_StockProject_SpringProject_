@@ -166,7 +166,7 @@ body > div.header > div.main-nav > nav > button > i{
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0!important;
     margin-right: 0 !important;
-    width: 200px;
+    width: 200px !important;
     background: white !important;
     border: 0;
 }

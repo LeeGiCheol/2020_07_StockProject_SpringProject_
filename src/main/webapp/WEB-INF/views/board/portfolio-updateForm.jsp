@@ -15,15 +15,8 @@
 <link href="/resources/css/writeForm.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
-
-
-
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
-
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 <script>
 	function btnSave(){
 		// bcontent에 내용 삽입

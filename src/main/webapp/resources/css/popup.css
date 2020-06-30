@@ -382,7 +382,12 @@ legend, caption {
 	display: block;
     float: left;
 }
-
+.pop-btn .btn-m{
+float: left;
+}
+.e-reportPopupClose{
+margin-left: 10px;
+}
 
 
 

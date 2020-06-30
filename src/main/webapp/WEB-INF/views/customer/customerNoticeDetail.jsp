@@ -16,8 +16,6 @@
 <script src="/resources/jpaginate/jQuery.paginate.js"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="/resources/css/mainfooter2.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">	
 </head>
 <body>
