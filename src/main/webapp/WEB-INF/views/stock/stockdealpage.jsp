@@ -478,6 +478,11 @@ tr td button {
 												</span>
 											</div>
 											<script>
+											function unsettle_click(){
+												var uno = $('#unsettle_uno').text();
+												$('#trade_uno').val(uno);
+											}
+											
 											$(document).ready(function(){
 												$(".trade_buy").submit(function() {
 												      if ($("#buying_price").val() == ""||$("#buying_qu").val()== '0'||$("#buying_qu").val()== '') {
@@ -741,7 +746,7 @@ tr td button {
 																		<tbody>
 																			<c:forEach items="${unsettled}" var="list">
 																				<tr>
-																					<td class="first" title="주문번호"><c:out
+																					<td id="unsettle_uno" title="주문번호" onclick='unsettle_click();'><c:out
 																							value="${list.uno}" /></td>
 																					<td title="종목명"><c:out
 																							value="${list.stockName}" /></td>
