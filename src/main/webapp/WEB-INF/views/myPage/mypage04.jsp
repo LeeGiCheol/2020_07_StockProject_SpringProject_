@@ -131,14 +131,13 @@
 									</tbody>
 								</table>
 							<div class="message-wrap" id="message">
-							<%-- <c:if test="${modifiedNotice eq null}">
+							<c:if test="${modifiedNotice eq null}">
 								<div class="message-st-01">
 									<p class="big-text">아직 발생한 알림이 없습니다.</p>
 									<p>거래 체결과 커뮤니티에서 다양한 이야기를 나누면 알림이 발생합니다!</p>
 								</div>
-							</c:if>  --%>
+							</c:if>
 							</div>
-<script>function notLocal(){swal({text:"접속하신 해당 홈페이지에서 변경가능합니다.", icon:"warning"})}</script>
 <script type="text/javascript">
     $(document)
         .ready(
