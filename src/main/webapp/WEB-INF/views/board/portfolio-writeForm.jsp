@@ -25,8 +25,7 @@
 		var title = $("#title").val();
 		// 글내용 있는지 확인용 
 		var content = document.getElementsByTagName('p');
-		
-	    var bcontent = $("#bcontent").val();
+
 	
 	    if(title.trim() == ""){
 			swal({text:"제목을 입력해주세요.", icon:"error"}).then(function(){

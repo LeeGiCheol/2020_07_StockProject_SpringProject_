@@ -105,6 +105,7 @@ public class CustomerController {
 			nowPage = "1";
 		}
 		vo.setPno(pno);
+		vo.setBno("customerNotice");
 		BoardVO boardDetail = boardService.getBoard(vo);
 		List<BoardVO> boardPrevNext = boardService.boardPrevNext(vo);
 		// 댓글리스트

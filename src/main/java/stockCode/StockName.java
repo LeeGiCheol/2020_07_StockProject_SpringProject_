@@ -1,3 +1,5 @@
+// 종목명 따는 클래스
+
 package stockCode;
 
 import java.io.FileOutputStream;
