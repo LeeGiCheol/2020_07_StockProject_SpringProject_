@@ -36,7 +36,6 @@ public class MyPostServiceImpl implements MyPostService {
 		for (int i = 0; i < myBoard.size(); i++) {
 			myBoard.get(i).setBdateTime(new Date(myBoard.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
 		}
-		
 		List<CommentVO> myComment = myPostDAO.myCommentList(commentPage);
 		for (int i = 0; i < myComment.size(); i++) {
 			myComment.get(i).setCdateTime(new Date(myComment.get(i).getCdateTime().getTime()- (1000 * 60 * 60 * 9)));

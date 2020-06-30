@@ -135,7 +135,7 @@
 													<!-- 글쓴이 -->
 													<td class="board-views">${qna.qcheck}</td>
 													<fmt:formatDate value="${qna.qdateTime}" var="time"
-														pattern="yyyy/MM/dd HH:mm" />
+														pattern="yyyy-MM-dd HH:mm" />
 													<td class="board-date">${time}</td>
 													<!-- 날짜 -->
 												</tr>

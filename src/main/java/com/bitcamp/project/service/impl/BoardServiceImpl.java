@@ -88,7 +88,9 @@ public class BoardServiceImpl implements BoardService{
 			boardPage.getUtil().put("bno", bno);
 			
 			boardList = boardDAO.getBoardList(boardPage);
- 			
+			for (int i = 0; i < boardList.size(); i++) {
+				boardList.get(i).setBdateTime(new Date(boardList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+			}
  			
 			postMap.put("boardList", boardList);
 		}
@@ -102,9 +104,9 @@ public class BoardServiceImpl implements BoardService{
 			boardPage.getUtil().put("bno", bno);
 			
 			portfolioList = boardDAO.portfolioList(boardPage);
-//			for (int i = 0; i < portfolioList.size(); i++) {
-//				portfolioList.get(i).setBdateTime(new Date(portfolioList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
-//			}
+			for (int i = 0; i < portfolioList.size(); i++) {
+				portfolioList.get(i).setBdateTime(new Date(portfolioList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
+			}
 			postMap.put("portfolioList", portfolioList);
 		}
 		

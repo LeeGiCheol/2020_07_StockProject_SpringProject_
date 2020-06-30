@@ -285,14 +285,14 @@
 	
 	<select id="prev_next" resultType="board">
 		<![CDATA[
-		SELECT pno, title 
+		SELECT pno, bno, title 
 		FROM(
-				(SELECT pno, title
+				(SELECT pno, bno, title
 				FROM board
 				WHERE pno < #{pno}
 				AND bno = #{bno}
 				ORDER BY pno DESC LIMIT 1) UNION ALL
-				(SELECT pno, title
+				(SELECT pno, bno, title
 				FROM board
 				WHERE pno > #{pno}
 				AND bno = #{bno}

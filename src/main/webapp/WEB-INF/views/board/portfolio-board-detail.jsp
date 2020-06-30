@@ -545,7 +545,7 @@ function submitReportComt(){
 			/* console.log(page) */
 			$.ajax({
 				type : 'GET',
-				url : '${pageContext.request.contextPath}/board/free/detail/ajax?pno='+pno + page,
+				url : '${pageContext.request.contextPath}/board/portfolio/detail/ajax?pno='+pno + page,
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
@@ -745,7 +745,7 @@ function submitReportComt(){
 					
 					
 					
-	 				
+	 				console.log(data)
 	 				var prev_next = "";
 					
 					if(data.boardDetail.bno != 'customerNotice'){

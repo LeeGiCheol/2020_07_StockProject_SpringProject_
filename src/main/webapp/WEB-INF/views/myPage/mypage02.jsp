@@ -273,36 +273,6 @@ $(document).ready(function(){
 									<ul class="pagination">
 
 
-										<c:if test="${pv1.nowPage != 1}">
-											<!-- << 버튼 -->
-											<li>
-												<a class="page-link"
-													href="/myPage02?nowPage1=1&accountSearch=${accountSearch}&type=account"
-													tabindex="-1" aria-disabled="true">
-													<i class="fas fa-angle-double-left"></i>
-												</a>
-											</li>
-											<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-											<c:if test="${pv1.nowPage == 1}">
-												<li>
-													<a class="page-link"
-														href="/myPage02?nowPage1=${pv1.nowPage}&accountSearch=${accountSearch}&type=account"
-														tabindex="-1" aria-disabled="true">
-														<i class="fas fa-angle-left"></i>
-													</a>
-												</li>
-											</c:if>
-										</c:if>
-										<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-										<c:if test="${pv1.nowPage != 1}">
-											<li>
-												<a class="page-link"
-													href="/myPage02?nowPage1=${pv1.nowPage-1}&accountSearch=${accountSearch}&type=account"
-													tabindex="-1" aria-disabled="true">
-													<i class="fas fa-angle-left"></i>
-												</a>
-											</li>
-										</c:if>
 										
 										<!-- 한번에 5개 페이지 보여줌 -->
 										<c:forEach begin="${pv1.startPage }" end="${pv1.endPage }" var="p">
@@ -322,40 +292,6 @@ $(document).ready(function(){
 											</c:choose>
 										</c:forEach> 
 										
-										<c:if test="${holdingStockList.size() > 0}">
-											<c:if test="${pv1.nowPage != pv1.lastPage}">    
-											<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-												<c:if test="${pv1.nowPage == pv1.lastPage}">
-													<li>
-														<a class="page-link"
-															href="myPage02?nowPage1=${pv1.nowPage}&accountSearch=${accountSearch}&type=account"
-															tabindex="+1" aria-disabled="true">
-															<i class="fas fa-angle-right"></i>
-														</a>
-													</li>
-												</c:if>
-												
-												<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
-												<c:if test="${pv1.nowPage != pv1.lastPage}">
-													<li>
-														<a class="page-link"
-															href="/myPage02?nowPage1=${pv1.nowPage+1}&accountSearch=${accountSearch}&type=account"
-															tabindex="+1" aria-disabled="true" data-ajax="false">
-															<i class="fas fa-angle-right"></i>
-														</a>
-													</li>
-												</c:if> 
-												
-												<!-- >> 버튼 -->
-												<li>
-													<a class="page-link"
-														href="/myPage02?nowPage1=${pv1.lastPage}&accountSearch=${accountSearch}&type=account"
-														tabindex="-1" aria-disabled="true">
-														<i class="fas fa-angle-double-right"></i>
-													</a>
-												</li>
-											</c:if>
-										</c:if>
 									</ul>
 								</nav>
 							</div>
@@ -435,36 +371,6 @@ $(document).ready(function(){
 									<ul class="pagination">
 
 
-										<c:if test="${pv1.nowPage != 1}">
-											<!-- << 버튼 -->
-											<li>
-												<a class="page-link"
-													href="/myPage02?nowPage2=1&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
-													tabindex="-1" aria-disabled="true">
-													<i class="fas fa-angle-double-left"></i>
-												</a>
-											</li>
-											<!-- 1페이지에서 < 버튼 눌렀을 때 -->
-											<c:if test="${pv2.nowPage == 1}">
-												<li>
-													<a class="page-link"
-														href="/myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
-														tabindex="-1" aria-disabled="true">
-														<i class="fas fa-angle-left"></i>
-													</a>
-												</li>
-											</c:if>
-										</c:if>
-										<!-- 1페이지가 아닌 페이지에서 < 버튼 눌렀을 때 -->
-										<c:if test="${pv2.nowPage != 1}">
-											<li>
-												<a class="page-link"
-													href="/myPage02?nowPage2=${pv2.nowPage-1}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
-													tabindex="-1" aria-disabled="true">
-													<i class="fas fa-angle-left"></i>
-												</a>
-											</li>
-										</c:if>
 										
 										<!-- 한번에 5개 페이지 보여줌 -->
 										<c:forEach begin="${pv2.startPage }" end="${pv2.endPage }" var="p">
@@ -484,41 +390,6 @@ $(document).ready(function(){
 											</c:choose>
 										</c:forEach>
 										
-										<c:if test="${stockHistoryList.size() > 0}">
-											<c:if test="${pv2.nowPage != pv2.lastPage}">    
-												<!-- 현재 페이지가 마지막 페이지일 경우 > 버튼을 눌렀을 때 -->
-												<c:if test="${pv2.nowPage == pv2.lastPage}">
-													<li>
-														<a class="page-link"
-															href="/myPage02?nowPage2=${pv2.nowPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
-															tabindex="+1" aria-disabled="true">
-															<i class="fas fa-angle-right"></i>
-														</a>
-													</li>
-												</c:if>
-											
-												<!-- 현재 페이지가 마지막 페이지가 아닐 경우에 > 버튼을 눌렀을 때 -->					
-												<c:if test="${pv2.nowPage != pv2.lastPage}">
-													<li>
-														<a class="page-link"
-															href="/myPage02?nowPage2=${pv2.nowPage+1}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
-															tabindex="+1" aria-disabled="true" data-ajax="false">
-															<i class="fas fa-angle-right"></i>
-														</a>
-													</li>
-												</c:if> 
-												
-												<!-- >> 버튼 -->
-												<li>
-													<a class="page-link"
-														href="/myPage02?nowPage2=${pv2.lastPage}&tradeSearch=${tradeSearch}&type=trade&startDate=${startDate}&endDate=${endDate}"
-														tabindex="-1" aria-disabled="true">
-														<i class="fas fa-angle-double-right"></i>
-													</a>
-												</li>
-											
-											</c:if>
-										</c:if>
 									</ul>
 								</nav>
 							</div>
