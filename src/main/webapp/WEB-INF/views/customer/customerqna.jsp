@@ -45,8 +45,9 @@
 	</script>
 
 <style>
-
-
+.newsboard-area{
+	height: 600px !important;
+}
 .newsboard-nav-tab li{
 	border-bottom: 1px solid #eaeaea;
 	
