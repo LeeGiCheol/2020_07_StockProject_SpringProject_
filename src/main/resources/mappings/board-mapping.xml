@@ -290,12 +290,10 @@
 				(SELECT pno, title
 				FROM board
 				WHERE pno < #{pno}
-				AND bno = #{bno}
 				ORDER BY pno DESC LIMIT 1) UNION ALL
 				(SELECT pno, title
 				FROM board
 				WHERE pno > #{pno}
-				AND bno = #{bno}
 				LIMIT 1) 
 			)AS title;
 		]]>

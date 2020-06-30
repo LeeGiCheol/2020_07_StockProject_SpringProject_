@@ -144,9 +144,10 @@ public class BoardController {
 			nowPage = "1";
 		}
 		vo.setPno(pno);
-		vo.setBno("free");
 		BoardVO boardDetail = boardService.getBoard(vo);
+		System.out.println(vo);
 		List<BoardVO> boardPrevNext = boardService.boardPrevNext(vo);
+		System.out.println(vo);
 		// 댓글리스트
 		Map<String, Object> commentList = commentService.commentList(cVo, Integer.parseInt(nowPage));
 		Map<String, Object> map = new HashMap<String, Object>();
