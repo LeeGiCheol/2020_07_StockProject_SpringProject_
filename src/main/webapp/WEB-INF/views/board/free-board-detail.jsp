@@ -218,9 +218,11 @@
 			</c:if>
 		</span>
     	</p>
-    	<div class="prev-next" id="prev-next">
-	      
-	    </div>
+    	<c:if test="${boardDetail.bno ne 'customerNotice'}">
+	    	<div class="prev-next" id="prev-next">
+		      
+		    </div>
+	    </c:if>
 		</div>
 		</div>
 		</div>
