@@ -74,16 +74,16 @@ window.onkeydown = function() {
 										<span class="input-style-address">
 											<input type="text" name="address" id="inputAddress" class="_onlyNumber" placeholder="우편번호"  required="true" readonly>
 										</span>
-										<button type="button" class="btn-s" onclick="goPopup();">우편번호 찾기</button>
+										<button type="button" class="btn-s" onclick="goPopup();">검색</button>
 									</li>
 									<li>
 										<span class="input-style-phone">
 											<label for="inputPhone"></label>
 											<input placeholder="휴대폰번호('-'없이)" type="text" name="tel" id="inputPhone" class="_onlyNumber" maxlength="11" onKeyPress="return numkeyCheck(event)">
-											<!-- <button type="button" class="delete">삭제</button> -->
 										</span>
 										<div id=telResult></div>
 										<button type="button" class="btn-s" id="telCheck">인증받기</button>
+							<!-- 추가 -->	<button type="button" class="btn-s fantasy removeButton" id="telCheckAgain">다시입력</button>
 									</li>
 									<li id="_liPhoneNum" style="display: none;">
 										<span class="input-style-certif">
@@ -197,7 +197,8 @@ window.onkeydown = function() {
 				data: { "tel" : $('#inputPhone').val() }, 
 				success: function(data){ 
 					if(data == 0 && $.trim($('#inputPhone').val()) != ''){
-						$("#telCheck").attr("disabled", "disabled");$("#telCheck").attr("style", "opacity:20%");
+						$("#telCheck").toggleClass("removeButton");/* 추가 */
+						$("#telCheckAgain").toggleClass("removeButton");/* 추가 */
 						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputPhone').attr("readonly", true);
@@ -207,6 +208,7 @@ window.onkeydown = function() {
 						$('#telResult').append(html);
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}else if(data == 2 || $.trim($('#inputPhone').val()) == ""){
+						
 						var html="<p id='cust_id-error' class='error-text'>11자리를 입력해주세요.[ ex)01012345678 ]</td></tr>";
 						$('#telResult').empty();
 						$('#telResult').append(html);
@@ -227,6 +229,18 @@ window.onkeydown = function() {
 				
 			});  
 		});  
+		//휴대폰 실수로 다른거 입력시 수정버튼 활성화
+		$("#telCheckAgain").on("click", function(){
+			document.getElementById("inputPhone").value="";
+			$('#inputPhone').attr("readonly", false);
+			$("#telCheck").toggleClass("removeButton");
+			$("#telCheckAgain").toggleClass("removeButton");
+			$('#telResult').empty();
+			$('#cTelResult').empty();
+			document.getElementById("inputCtel").value="";
+			$("#inputCtel").removeAttr("disabled");$("#inputCtel").removeAttr("style");$("#inputCtel").removeAttr("readonly");
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+		})
 		
 		// 휴대폰 인증번호확인
 		$('#cTelCheck').on('click', function(){ 

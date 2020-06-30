@@ -370,9 +370,9 @@
 						$("#reportSelectList").html(reportSelectList);
 						var pageLocation=""
 							if((data.reportSelectList.rcheck)===("처리대기중")){
-								pageLocation += '<button type="button" class="btn-m" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
+								pageLocation += '<span><button type="button" class="btn-m fantasy" onclick="location.href=\'/admin/report/delete?pno='+data.reportSelectList.pno+'\'">게시물 삭제</button>'
 							}
-								pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button>'
+								pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button></span>'
 								$("#pageLocation").html(pageLocation);
 						}
 						

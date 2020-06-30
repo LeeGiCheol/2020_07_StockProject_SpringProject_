@@ -82,10 +82,10 @@ window.onkeydown = function() {
 										<span class="input-style-phone">
 											<label for="inputPhone"></label>
 											<input placeholder="휴대폰번호('-'없이)" type="text" name="tel" id="inputPhone" class="_onlyNumber" maxlength="11" onKeyPress="return numkeyCheck(event)">
-											<!-- <button type="button" class="delete">삭제</button> -->
 										</span>
 										<div id=telResult></div>
 										<button type="button" class="btn-s" id="telCheck">인증받기</button>
+										<button type="button" class="btn-s fantasy removeButton" id="telCheckAgain">다시입력</button>
 									</li>
 									<li id="_liPhoneNum" style="display: none;">
 										<span class="input-style-certif">
@@ -202,7 +202,8 @@ window.onkeydown = function() {
 						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputPhone').attr("readonly", true);
-						
+						$("#telCheck").toggleClass("removeButton");/* 추가 */
+						$("#telCheckAgain").toggleClass("removeButton");/* 추가 */
  						var html="<p id='err_cust_id' class='ok-text'>문자메세지를 확인해주세요.</p>"; 
 						$('#telResult').empty();
 						$('#telResult').append(html);
@@ -228,6 +229,16 @@ window.onkeydown = function() {
 				
 			});  
 		});  
+		
+		$("#telCheckAgain").on("click", function(){
+			document.getElementById("inputPhone").value="";
+			$('#inputPhone').attr("readonly", false);
+			$("#telCheck").toggleClass("removeButton");
+			$("#telCheckAgain").toggleClass("removeButton");
+			$('#telResult').empty();
+			$('#telResult').empty();
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+		})
 		
 		// 휴대폰 인증번호확인
 		$('#cTelCheck').on('click', function(){ 
