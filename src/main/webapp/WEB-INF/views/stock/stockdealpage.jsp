@@ -23,7 +23,6 @@
 
 <!-- 모달css -->
 <link rel="stylesheet" href="/resources/css/modal.css">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://www.jsviews.com/download/jsrender.js"></script>
@@ -100,21 +99,22 @@ tr td button {
 								
 								
 							<!-- 	ajax호출버튼 -->
-							<button id="historyBttn" type="button"
+<!-- 							<button id="historyBttn" type="button"
 								class="board-write-btn fantasy"  data-toggle="modal" data-target="#historyModal">
-								거래 기록</button>
+								거래 기록</button> -->
 							   <button id="historyBttn" type="button"
-								class="btn btn-secondary companydata-btn stock-btn"
-								onclick="historyCall()">
+								class="board-write-btn fantasy"
+								onclick="window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');">
 								거래 기록</button> 
 
-							<button id="ownBttn" type="button"
+<!-- 							<button id="ownBttn" type="button"
 								class="board-write-btn fantasy" data-toggle="modal" data-target="#ownModal">
 						
-								보유 종목</button>
+								보유 종목</button> -->
 							<button id="recordBttn" type="button"
-								class="btn btn-secondary companydata-btn stock-btn"
-								onclick="holdingStockCall()">
+								class="board-write-btn fantasy"
+								onclick="window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');">
+						
 								보유 종목</button> 
 						</div>
 						
@@ -136,7 +136,33 @@ tr td button {
 												});
 												</script> -->
 												
-												
+						<script type="text/javascript">
+						function openPopup1() {
+							 
+						    var _width = '500';
+						    var _height = '600';
+						 
+						    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+						    var _left = Math.ceil(( window.screen.width - _width )/2);
+						    var _top = Math.ceil(( window.screen.width - _height )/2); 
+						 
+						    window.open('/trade_history?page=1', '거래기록', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+						 
+						}
+						function openPopup2() {
+							 
+						    var _width = '500';
+						    var _height = '600';
+						 
+						    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+						    var _left = Math.ceil(( window.screen.width - _width )/2);
+						    var _top = Math.ceil(( window.screen.width - _height )/2); 
+						 
+						    window.open('/myStock?page=1', '보유 주식', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+						 
+						}							
+						
+						</script>												
 																							
 									<!-- 거래기록 Modal -->
 						<div class="modal fade" id="historyModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
@@ -374,7 +400,8 @@ tr td button {
 																$(this).siblings().removeClass("selected"); //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
 															});
 														});
-													});
+													});												
+												
 												</script>
 												
 												
@@ -517,6 +544,7 @@ tr td button {
 												var result = parseInt($("#buying_price").val().replace(/,/g,"")) * $("#buying_qu").val()
 												$("#buying_result").text(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 											}
+																					
 											</script>
 										</div>
 										<div class="sumArea">
@@ -668,7 +696,7 @@ tr td button {
 										</div>
 									</div>
 									<button class="btn-modify" type="submit">정정주문</button>
-									<button style="width: 100%; height: auto; display: none;"
+									<button style="width: 100%; display: none;"
 										class="btn-cancel" type="submit">취소주문</button>
 								</form>
 							</div>													
@@ -858,30 +886,6 @@ tr td button {
 	<script src="/resources/js/stockAutoComplete.js" type="text/javascript"></script>
 
 	<script>
-	
-	function historyCall() {
-		if(${loginUser eq null}){
-			swal({text:'로그인 후 이용 가능합니다.', icon:'error'}).then(function(){
-				window.location.href="/signInPage";
-			})
-		}else{
-			
-			window.open('/trade_history?page=1','거래기록','width=500,height=600,location=no,status=no,scrollbars=yes');				
-		}
-	}
-	function holdingStockCall() {
-		if(${loginUser eq null}){
-			swal({text:'로그인 후 이용 가능합니다.', icon:'error'}).then(function(){
-				window.location.href="/signInPage";
-			})
-		}else{
-			
-			window.open('/myStock?page=1','보유 주식','width=500,height=600,location=no,status=no,scrollbars=yes');				
-		}
-	}
-	
-	
-	
 	var trriger = 0;
 	var stockName = "${stockName}";
 	if(stockName === ''){
@@ -1662,9 +1666,6 @@ tr td button {
 					     daychart.render();}
 				}	
 				}); 
-			
-			
-			
 	})
     
     

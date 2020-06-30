@@ -11,6 +11,8 @@
 <!-- 모달css -->
 <link rel="stylesheet" href="/resources/css/modal.css">
 <body>
+
+<div id="own" class="stockModal">
 	<table>
 	<thead>
 		<tr>
@@ -31,6 +33,7 @@
 	<c:forEach var="i" begin="0" end="${(total-1)/15}">
 		<a class="page" href="/trade_history?page=${i+1}">${i+1}</a>
 	</c:forEach>
+</div>
 
 </body>
 </html>
