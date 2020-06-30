@@ -810,7 +810,7 @@ function submitReportComt(){
 						
 							$("#prev-next").html(prev_next)
 						
-					}	
+					}	 
 					
 	 			},
 				error : function(error, data){
