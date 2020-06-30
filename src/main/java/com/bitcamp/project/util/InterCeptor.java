@@ -1,3 +1,5 @@
+// 관리자페이지 일반 유저가 주소로 접근했을 때 메인페이지로 넘기기 
+
 package com.bitcamp.project.util;
 
 import javax.servlet.http.HttpServletRequest;

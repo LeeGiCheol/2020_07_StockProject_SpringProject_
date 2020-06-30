@@ -559,6 +559,7 @@ function submitReportComt(){
 					var boardNickname = data.boardDetail.nickname
 					var boardDatetime = data.boardDetail.bdateTime
 					var boardContent = data.boardDetail.bcontent
+					
 
 					
 					board +=	'<div class="board-view-tit">'

@@ -34,7 +34,7 @@
 					<div class="g-box">
 						<div class="graph-title-left graph_off" style="display:block;">
 							<div class="graph-title">
-								<span><a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">코스피</a></span>
+								<span><a href="https://finance.com/sise/sise_index.nhn?code=KOSPI" target="_blank">코스피</a></span>
 
 									<c:if test="${kospi eq '+'}">
 										<p id="KRI001000000_updownColor_n" class="color-red">
@@ -98,7 +98,7 @@
 						
 						<div class="graph-body-left graph_on has-chart">
 							
-								<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">
+								<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI" target="_blank">
 									<div id="chartcontainer"></div>
 								</a>
 							
@@ -106,7 +106,7 @@
 						<div class="boder"></div>
 						<div class="graph-body-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;>
 ">
-							<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSDAQ">
+							<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSDAQ" target="_blank">
 								<div id="chartcontainer2"></div>
 							</a>
 						</div>
