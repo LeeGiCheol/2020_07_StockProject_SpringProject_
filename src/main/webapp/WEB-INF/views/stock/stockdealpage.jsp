@@ -18,8 +18,6 @@
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.0/themes/humanity/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/stockdealpage.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
 
 <!-- 모달css -->
 <link rel="stylesheet" href="/resources/css/modal.css">

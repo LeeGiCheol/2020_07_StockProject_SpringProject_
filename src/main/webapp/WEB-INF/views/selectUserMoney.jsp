@@ -14,8 +14,6 @@
 	ont-awesome/5.8.2/css/all.min.css">
 <!-- CSS파일 -->
 <link href="/resources/css/mypage02.css" rel="stylesheet">
-<link href="/resources/css/mainheader2.css" rel="stylesheet">
-<link href="/resources/css/mainfooter.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
