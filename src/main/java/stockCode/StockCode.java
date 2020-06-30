@@ -1,6 +1,7 @@
+// 종목 코드 따는 클래스
+
 package stockCode;
 
-import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 

@@ -85,10 +85,18 @@ public class PortfolioController {
 	}
 
 	@PostMapping("/board/portfolio/write")
-	public String portfolioWrite(BoardVO vo) {
+	public String portfolioWrite(BoardVO vo, Model model) {
 
 		List<String> uploadThumbnail = new ArrayList<String>();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg/msg";
+		}
+		
 		vo.setId(loginUser.getId());
 		vo.setBno("portfolio"); // 포트폴리오 게시판
 
@@ -173,6 +181,7 @@ public class PortfolioController {
 			nowPage = "1";
 		}
 		vo.setPno(pno);
+		vo.setBno("portfolio");
 		BoardVO boardDetail = boardService.getBoard(vo);
 		System.out.println(vo);
 		List<BoardVO> boardPrevNext = boardService.boardPrevNext(vo);
@@ -196,6 +205,7 @@ public class PortfolioController {
 		String commentDateString = null;
 		List<String> commentDate = new ArrayList<String>();
 		for (int i = 0; i < comment.size(); i++) {
+			comment.get(i).setCdateTime(new Date(comment.get(i).getCdateTime().getTime()- (1000 * 60 * 60 * 9)));
 			Date commentDate_ = comment.get(i).getCdateTime();
 			commentDateString = transFormat.format(commentDate_);
 			commentDate.add(commentDateString);
@@ -215,12 +225,21 @@ public class PortfolioController {
 	public String updateBoardView(BoardVO vo, Model model) {
 		BoardVO boardUpdate = boardService.getBoard(vo);
 		model.addAttribute("boardUpdate", boardUpdate);
-//		System.out.println("mmmmm"+boardUpdate);
 		return "board/portfolio-updateForm";
 	}
 
 	@PostMapping("/board/portfolio/update")
 	public String updateBoard(BoardVO vo, Model model) {
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg/msg"; 
+		}
+		
+		
 		vo.setBno("portfolio");
 		List<String> uploadThumbnail = new ArrayList<String>();
 
@@ -231,7 +250,16 @@ public class PortfolioController {
 	}
 
 	@GetMapping("/board/portfolio/delete")
-	public String deleteBoard(BoardVO vo) {
+	public String deleteBoard(BoardVO vo, Model model) {
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			model.addAttribute("msg", "로그인이 필요한 페이지입니다.");
+			model.addAttribute("location", "/signInPage");
+			model.addAttribute("icon", "error");
+			return "msg/msg";
+		}
+		
 		BoardVO bVo = boardService.getBoard(vo);
 		List<String> uploadThumbnail = new ArrayList<String>();
 

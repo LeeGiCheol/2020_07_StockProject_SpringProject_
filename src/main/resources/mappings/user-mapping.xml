@@ -70,7 +70,7 @@
 		INSERT INTO usermoney(id, money)
 		VALUES(#{id}, 10000000);
 		
-		insert into userranking(id, accumasset, resetpoint) VALUES(#{id}, 10000000 ,10000000);
+		INSERT INTO userranking(id, accumasset, resetpoint) VALUES(#{id}, 10000000 ,10000000);
 	</insert>
 	
 	<select id="idCheck" resultType="int" parameterType="map">

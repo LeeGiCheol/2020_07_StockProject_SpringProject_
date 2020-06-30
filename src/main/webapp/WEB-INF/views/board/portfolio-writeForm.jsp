@@ -16,10 +16,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
-
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
+<link rel="stylesheet" href="/resources/css/sidebar.css">
 <script>
 	function btnSave(){
 		// bcontent에 내용 삽입
@@ -28,8 +25,7 @@
 		var title = $("#title").val();
 		// 글내용 있는지 확인용 
 		var content = document.getElementsByTagName('p');
-		
-	    var bcontent = $("#bcontent").val();
+
 	
 	    if(title.trim() == ""){
 			swal({text:"제목을 입력해주세요.", icon:"error"}).then(function(){

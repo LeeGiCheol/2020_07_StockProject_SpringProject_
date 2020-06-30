@@ -10,8 +10,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/login.css">
-<link rel="stylesheet" href="/resources/css/mainfooter3.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
 </head>
 <body>
 <div class="wrap">
@@ -66,7 +64,7 @@
 			<!-- 소셜 로그인 타입 추가 -->
 			<div class="social-login">
 				<button type="button" class="naverlogin btn-b naver" onclick="location.href='/naverLogin'">네이버 아이디로 로그인</button>
-				<button type="button" class="kakaologin btn-b kakaotalk" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code'">카카오톡 아이디로 로그인</button>
+				<button type="button" class="kakaologin btn-b kakaotalk" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code'">카카오톡 아이디로 로그인</button>
 			</div>
 		</div>
 	</div><!-- //cont-area -->	 
