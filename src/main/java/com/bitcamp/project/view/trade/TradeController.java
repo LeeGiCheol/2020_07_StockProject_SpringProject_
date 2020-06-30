@@ -152,7 +152,7 @@ public class TradeController {
 				return mav;
 			}
 
-			vo.setNewPrice(Integer.parseInt(price));
+			vo.setNewPrice(Integer.parseInt(price.replaceAll(",", "")));
 			vo.setNewQuantity(Integer.parseInt(qu));
 			vo.setQuantity((Integer) unsettledDetail.get("quantity"));
 			int myStockQu = tradeService.getStockQuantity(vo);
@@ -167,7 +167,7 @@ public class TradeController {
 
 			long money = tradeService.getMoney(id);
 			if (((String) unsettledDetail.get("category")).equals("buy")
-					&& (money < (Long.parseLong(qu) * Long.parseLong(price)
+					&& (money < (Long.parseLong(qu) * Long.parseLong(price.replaceAll(",", ""))
 							- Long.valueOf((int) unsettledDetail.get("rPrice"))
 									* Long.valueOf((int) unsettledDetail.get("quantity"))))) {
 				mav.addObject("msg", "잔액이 부족합니다");

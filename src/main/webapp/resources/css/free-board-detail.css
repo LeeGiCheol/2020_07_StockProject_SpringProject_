@@ -1049,9 +1049,25 @@ td, th {
     overflow: hidden;
     padding: 0 15px 40px;
 }
-
-
-
+.bt-area-answer-icon a {
+    display: inline-block;
+    color: #a7753a;
+    font-size: 13px;
+    padding: 0 3px 0 4px;
+}
+.bt-area-answer-icon .modify span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -260px;
+}
+.bt-area-answer-icon .del span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
+}
+.bt-area-answer-icon a span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-indent: -9999em;
+}
 
 
 

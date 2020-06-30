@@ -32,7 +32,27 @@
         
 <!-- 통합관리자 -->
  <link rel="stylesheet" href="/resources/css/admin.css">
-
+<style type="text/css">
+.bt-area-answer-icon a {
+    display: inline-block;
+    color: #a7753a;
+    font-size: 13px;
+    padding: 0 3px 0 4px;
+}
+.bt-area-answer-icon .modify span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -260px;
+}
+.bt-area-answer-icon .del span {
+    background: url(/resources/img/ico_sub.png) no-repeat 0 -290px;
+}
+.bt-area-answer-icon a span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-indent: -9999em;
+}
+</style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -159,10 +179,10 @@
 						
 					</div>
 						 <div class="bt-area-answer">
-						<span>
+						<span class="bt-area-answer-icon">
 							<c:if test="${qna.qcheck eq '답변완료'}">
 								<a href="/admin/qna/answer/update?qno=${qna.qno}" class="modify"><span>수정</span></a>
-								<a href="javascript:void(0)" onclick="delAnswer('${qna.ano}')" class="btn-s fantasy del">삭제</a>
+								<a href="javascript:void(0)" onclick="delAnswer('${qna.ano}')" class="del"><span>삭제</span></a>
 							</c:if>
 						</span> 
 						</div>	
