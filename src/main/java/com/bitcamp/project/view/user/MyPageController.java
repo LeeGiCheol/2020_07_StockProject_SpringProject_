@@ -67,8 +67,10 @@ public class MyPageController {
 	
 	@GetMapping(value = "/withdrawal/check")
 	public String withdrawal_check(@ModelAttribute("id") String id) {
-		if (id.substring(id.length() - 1).equals("_"))//사이에
+		if (id.substring(id.length() - 1).equals("_")) {
 			return "redirect:/withdrawal";
+		}
+		System.out.println("@@@@: " + id + "여기로 들어옴");
 		return "myPage/withdrawal_PW";
 	}
 	
@@ -168,7 +170,7 @@ public class MyPageController {
 			return "myPage/myPageCheckPw";
 		}
 	}
-
+	//각 페이지마다 비밀번호 체크
 	@ResponseBody
 	@PostMapping(value = {"/myPagePwCheck01", "/myPagePwCheck02", "/myPagePwCheck03"})
 	public String myPageCheckPost(@ModelAttribute("password") String password, HttpSession session) {
@@ -181,7 +183,18 @@ public class MyPageController {
 			return Integer.toString(0);
 		}
 	}
-
+	//자체회원탈퇴시 비밀번호 체크 부분
+	@ResponseBody
+	@PostMapping(value = "/myPagePwCheck")
+	public String myPageCheck(@ModelAttribute("password") String password, HttpSession session) {
+		System.out.println("/myPagePwCheck");
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		if (bPasswordEncoder.matches(password, loginUser.getPw())) {
+			return Integer.toString(1);
+		} else {
+			return Integer.toString(0);
+		}
+	}
 	@GetMapping(value = "/myPage01")
 	public String myPage01(@ModelAttribute("nowPage1") String nowPage1/* 계좌용 */,
 			@ModelAttribute("nowPage2") String nowPage2/* 날짜별 */, @ModelAttribute("nowPage3") String nowPage3/* 종류별 */,

@@ -14,8 +14,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainpage.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
 	
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js" ></script>
@@ -34,7 +32,7 @@
 					<div class="g-box">
 						<div class="graph-title-left graph_off" style="display:block;">
 							<div class="graph-title">
-								<span><a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">코스피</a></span>
+								<span><a href="https://finance.com/sise/sise_index.nhn?code=KOSPI" target="_blank">코스피</a></span>
 
 									<c:if test="${kospi eq '+'}">
 										<p id="KRI001000000_updownColor_n" class="color-red">
@@ -98,7 +96,7 @@
 						
 						<div class="graph-body-left graph_on has-chart">
 							
-								<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI">
+								<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSPI" target="_blank">
 									<div id="chartcontainer"></div>
 								</a>
 							
@@ -106,7 +104,7 @@
 						<div class="boder"></div>
 						<div class="graph-body-right graph_on has-chart" style=" border-left: 1px solid #dee2e6;>
 ">
-							<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSDAQ">
+							<a href="https://finance.naver.com/sise/sise_index.nhn?code=KOSDAQ" target="_blank">
 								<div id="chartcontainer2"></div>
 							</a>
 						</div>
@@ -147,7 +145,7 @@
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									</span>
 								</p>
 							</div>
@@ -408,7 +406,7 @@
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://localhost:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									</span>
 								</p>
 							</div>

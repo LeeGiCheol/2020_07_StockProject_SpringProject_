@@ -105,6 +105,7 @@ public class CustomerController {
 			nowPage = "1";
 		}
 		vo.setPno(pno);
+		vo.setBno("customerNotice");
 		BoardVO boardDetail = boardService.getBoard(vo);
 		List<BoardVO> boardPrevNext = boardService.boardPrevNext(vo);
 		// 댓글리스트
@@ -125,6 +126,7 @@ public class CustomerController {
 		String commentDateString = null;
 		List<String> commentDate = new ArrayList<String>();
 		for (int i = 0; i < comment.size(); i++) {
+			comment.get(i).setCdateTime(new Date(comment.get(i).getCdateTime().getTime()- (1000 * 60 * 60 * 9)));
 			Date commentDate_ = comment.get(i).getCdateTime();
 			commentDateString = transFormat.format(commentDate_);
 			commentDate.add(commentDateString);
