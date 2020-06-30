@@ -69,6 +69,13 @@ public class AdminServiceImpl implements AdminService {
 		qnaPage.getUtil().put("point", loginUser.getPoint());
 		
 		List<AdminVO> qnaList = adminDAO.qnaList(qnaPage);
+		
+		for (int i = 0; i < qnaList.size(); i++) {
+			qnaList.get(i).setQdateTime(new Date(qnaList.get(i).getQdateTime().getTime()- (1000 * 60 * 60 * 9)));
+		}
+
+		
+		
 //			for (int i = 0; i < qnaList.size(); i++) {
 //				qnaList.get(i).setBdateTime(new Date(qnaList.get(i).getBdateTime().getTime()- (1000 * 60 * 60 * 9)));
 //			}

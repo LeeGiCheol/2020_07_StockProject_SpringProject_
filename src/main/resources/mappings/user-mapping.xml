@@ -220,7 +220,7 @@
 	<select id="getRanking" parameterType="String" resultType="int">
 		select count(*)
 		from userranking 
-		where accumasset >= (select accumasset 
+		where accumasset > (select accumasset 
 							from userranking 
                     		where id=#{id});
 	</select>

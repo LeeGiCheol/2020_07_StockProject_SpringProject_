@@ -15,9 +15,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 달력JS/CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-
-<link href="resources/css/mainheader2.css" rel="stylesheet">
-<link href="resources/css/mainfooter.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -178,7 +175,7 @@ $(document).ready(function(){
 											<label for="ranking">누적 순위</label>
 										</th>
 										<td>
-											<span class="input-style-case02">${ranking}등</span>
+											<span class="input-style-case02">${ranking + 1}등</span>
 										</td>
 									</tr>
 									<tr>

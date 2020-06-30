@@ -14,8 +14,6 @@
 .gray{width: 172px; height:44px; margin-left: 214px; margin-top: 30px;}
 </style>
 <link rel="stylesheet" href="/resources/css/checkpw.css">
-<link rel="stylesheet" href="/resources/css/mainfooter.css">
-<link rel="stylesheet" href="/resources/css/mainheader2.css">
 <script>
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
 </script>
