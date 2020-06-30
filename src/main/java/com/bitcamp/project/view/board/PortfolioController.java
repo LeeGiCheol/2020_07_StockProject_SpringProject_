@@ -181,6 +181,7 @@ public class PortfolioController {
 			nowPage = "1";
 		}
 		vo.setPno(pno);
+		vo.setBno("portfolio");
 		BoardVO boardDetail = boardService.getBoard(vo);
 		System.out.println(vo);
 		List<BoardVO> boardPrevNext = boardService.boardPrevNext(vo);
