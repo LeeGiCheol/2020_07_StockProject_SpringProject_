@@ -150,7 +150,7 @@ public class TradingCheck {
 					mybatis.update("stock.updateMoney", sv);
 				}
 			} else
-				System.out.print(" --> 거래 실패");
+				System.out.print(" --> 거래 실패\n");
 		}
 
 		Date now = new Date();

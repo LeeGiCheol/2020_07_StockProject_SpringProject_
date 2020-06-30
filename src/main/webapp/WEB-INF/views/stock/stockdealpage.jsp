@@ -470,7 +470,7 @@ tr td button {
 												    });
 												
 												$(".trade_mod").submit(function() {
-												      if ($("#trade_uno").val() == ""||$("#mod_qu").val()== '0'||$("#mod_qu").val()== ''||$("#mySelect").val() == "") {
+												      if ($("#trade_uno").val() == ""||$("#mod_qu").val()== '0'||$("#mod_qu").val()== ''||($("#mySelect").val() == "" && $('#input-modify').is(':checked'))) {
 												    	  swal({text:"입력값을 확인해주세요.", icon:"error"})
 												        return false;
 												      }else{
