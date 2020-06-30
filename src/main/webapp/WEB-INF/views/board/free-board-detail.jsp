@@ -743,33 +743,19 @@ function submitReportComt(){
 					
 	 				var prev_next = "";
 					
-					try{
-						
-						// 중간 글일때 (이전, 다음글 모두 있을 때)
-						if(data.boardPrevNext[0].pno < data.boardDetail.pno && data.boardPrevNext[1].pno > data.boardDetail.pno){
-		 					prev_next += '<div class="prev">'
-							prev_next +=     '<dl>'
-							prev_next +=          '<dt>이전글</dt>'
-							prev_next +=           '<dd>'
-							prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[1].pno+'">'+data.boardPrevNext[1].title+'</a>'
-							prev_next +=                    '</dd>'
-							prev_next +=         '</dl>'
-							prev_next +=    '</div>'
-							prev_next +=     '<div class="next">'
-							prev_next +=         '<dl>'
-							prev_next +=           '<dt>다음글</dt>'
-							prev_next +=          '<dd>'
-							prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
-							prev_next +=                     '</dd>'
-							prev_next +=          '</dl>'
-							prev_next +=         '</div>'
-				
-						}
-					}
-					catch(e){
+					if(data.boardDetail.bno != 'customerNotice'){
 						try{
-							// 첫글일때
-							if(data.boardPrevNext[0].pno < data.boardDetail.pno){
+								
+							// 중간 글일때 (이전, 다음글 모두 있을 때)
+							if(data.boardPrevNext[0].pno < data.boardDetail.pno && data.boardPrevNext[1].pno > data.boardDetail.pno){
+			 					prev_next += '<div class="prev">'
+								prev_next +=     '<dl>'
+								prev_next +=          '<dt>이전글</dt>'
+								prev_next +=           '<dd>'
+								prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[1].pno+'">'+data.boardPrevNext[1].title+'</a>'
+								prev_next +=                    '</dd>'
+								prev_next +=         '</dl>'
+								prev_next +=    '</div>'
 								prev_next +=     '<div class="next">'
 								prev_next +=         '<dl>'
 								prev_next +=           '<dt>다음글</dt>'
@@ -777,38 +763,53 @@ function submitReportComt(){
 								prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
 								prev_next +=                     '</dd>'
 								prev_next +=          '</dl>'
-								prev_next +=     '</div>'
-								
+								prev_next +=         '</div>'
+					
 							}
-						
+						}
+						catch(e){
+							try{
+								// 첫글일때
+								if(data.boardPrevNext[0].pno < data.boardDetail.pno){
+									prev_next +=     '<div class="next">'
+									prev_next +=         '<dl>'
+									prev_next +=           '<dt>다음글</dt>'
+									prev_next +=          '<dd>'
+									prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+									prev_next +=                     '</dd>'
+									prev_next +=          '</dl>'
+									prev_next +=     '</div>'
+									
+								}
+							
+							}
+							
+							// 글이 하나밖에 없을 때	
+							catch(e){
+								prev_next += 	'<div class="prev">'
+								prev_next +=    	 '<dl>이전글이 존재하지 않습니다'
+								prev_next +=         '</dl>'
+								prev_next +=    '</div>'
+							}
 						}
 						
-						// 글이 하나밖에 없을 때	
-						catch(e){
-							prev_next += 	'<div class="prev">'
-							prev_next +=    	 '<dl>이전글이 존재하지 않습니다'
+						// 마지막 글일 때
+						if(data.boardPrevNext[0].pno > data.boardDetail.pno){
+							/* console.log(1) */
+		 					prev_next += 	'<div class="prev">'
+							prev_next +=    	 '<dl>'
+							prev_next +=          '<dt>이전글</dt>'
+							prev_next +=           '<dd>'
+							prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
+							prev_next +=                    '</dd>'
 							prev_next +=         '</dl>'
 							prev_next +=    '</div>'
 						}
+						
+							$("#prev-next").html(prev_next)
+						
+						
 					}
-					
-					// 마지막 글일 때
-					if(data.boardPrevNext[0].pno > data.boardDetail.pno){
-						/* console.log(1) */
-	 					prev_next += 	'<div class="prev">'
-						prev_next +=    	 '<dl>'
-						prev_next +=          '<dt>이전글</dt>'
-						prev_next +=           '<dd>'
-						prev_next +=               '<a href="/board/free/detail?pno='+data.boardPrevNext[0].pno+'">'+data.boardPrevNext[0].title+'</a>'
-						prev_next +=                    '</dd>'
-						prev_next +=         '</dl>'
-						prev_next +=    '</div>'
-					}
-					
-						$("#prev-next").html(prev_next)
-					
-					
-					
 	 			},
 				error : function(error, data){
 					/* console.log(data)
