@@ -19,6 +19,10 @@
 <script>
 function numkeyCheck(e) { var keyValue = event.keyCode; if( ((keyValue >= 48) && (keyValue <= 57)) ) return true; else return false; }
 function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (keyValue < 33) ) return false; else return true; }
+window.onkeydown = function() { 
+	var kcode = event.keyCode; 
+	if(kcode == 116 || event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82) ) event.returnValue = false;
+}
 </script>
 <style>.removeButton{display: none;}</style>
 </head>

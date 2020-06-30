@@ -108,10 +108,10 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 										<span class="input-style-phone">
 											<label for="inputPhone"></label>
 											<input placeholder="휴대폰번호('-'없이)" type="text" name="tel" id="inputPhone" class="_onlyNumber" maxlength="11" onKeyPress="return numkeyCheck(event)">
-											<!-- <button type="button" class="delete">삭제</button> -->
 										</span>
 										<div id=telResult></div>
 										<button type="button" class="btn-s" id="telCheck">인증받기</button>
+							<!-- 추가 -->	<button type="button" class="btn-s fantasy removeButton" id="telCheckAgain">다시입력</button>
 									</li>
 									<li id="_liPhoneNum" style="display: none;">
 										<span class="input-style-certif">
@@ -331,7 +331,8 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				data: { "tel" : $('#inputPhone').val() }, 
 				success: function(data){ 
 					if(data == 0 && $.trim($('#inputPhone').val()) != ''){
-						$("#telCheck").attr("disabled", "disabled");$("#telCheck").attr("style", "opacity:20%");
+						$("#telCheck").toggleClass("removeButton");/* 추가 */
+						$("#telCheckAgain").toggleClass("removeButton");/* 추가 */
 						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputPhone').attr("readonly", true);
@@ -360,7 +361,20 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				}
 				
 			});
-	});  
+		});
+	
+		//휴대폰 실수로 다른거 입력시 수정버튼 활성화
+		$("#telCheckAgain").on("click", function(){
+			document.getElementById("inputPhone").value="";
+			$('#inputPhone').attr("readonly", false);
+			$("#telCheck").toggleClass("removeButton");
+			$("#telCheckAgain").toggleClass("removeButton");
+			$('#telResult').empty();
+			$('#cTelResult').empty();
+			document.getElementById("inputCtel").value="";
+			$("#inputCtel").removeAttr("disabled");$("#inputCtel").removeAttr("style");$("#inputCtel").removeAttr("readonly");
+			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
+		})
 		
 		// 휴대폰 인증번호확인
 		$('#cTelCheck').on('click', function(){ 
