@@ -1028,9 +1028,10 @@ em, i {
     margin-top: -10px;
 }
 .mem-withdrawal .mem .id {
-    width: 50%;
+/*     width: 50%;
     float: left;
-    border-right: #eaeaea 1px solid;
+    border-right: #eaeaea 1px solid; */
+    margin-left: 100px;    
 }
 .mem-withdrawal .mem p {
     height: 30px;
@@ -1057,8 +1058,10 @@ em, i {
     padding-left: 15px;
 }
 .mem-withdrawal .mem .name {
-    width: 50%;
-    float: right;
+/*     width: 50%;
+    float: right; */
+    margin-left: 100px;
+    margin-top: 10px;
 }
 .mem-withdrawal .mem-down {
     padding: 20px;

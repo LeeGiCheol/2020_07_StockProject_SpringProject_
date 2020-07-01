@@ -545,7 +545,7 @@ function submitReportComt(){
 			/* console.log(page) */
 			$.ajax({
 				type : 'GET',
-				url : '${pageContext.request.contextPath}/board/free/detail/ajax?pno='+pno + page,
+				url : '${pageContext.request.contextPath}/board/portfolio/detail/ajax?pno='+pno + page,
 				dataType : 'json',
 				contentType : "application/x-www-form-urlencoded;chartset=UTF-8",
 				success : function(data){ 
@@ -745,7 +745,7 @@ function submitReportComt(){
 					
 					
 					
-	 				
+	 				console.log(data)
 	 				var prev_next = "";
 					
 					if(data.boardDetail.bno != 'customerNotice'){
@@ -827,24 +827,33 @@ function submitReportComt(){
 		
 		// 등록할건지 alert
 		function commentInsertConfirm(pno){
-			swal({
-				  text: "정말 등록하시겠습니까?",
-				  icon: "warning",
-				  buttons: true,
-				  dangerMode: true,
-				})
-				.then((willInsert) => {
-				  if (willInsert) {
-				    swal("성공적으로 등록되었습니다.", {
-				      icon: "success",
-				    }).then(function(){
-				    	writeComment(pno);
-				    });
-				  } else {
-				    swal("등록이 취소되었습니다.");
-				  }		        		
-	    	})
+			
+		 	var $commentContent = $("#commentContent").val()
+        	if($commentContent.trim() === null || $commentContent.trim() === ""){
+        		swal({text:'내용을 입력해주세요.', icon:'error'});
+        	}
+        	else{
+        		
+				swal({
+					  text: "정말 등록하시겠습니까?",
+					  icon: "warning",
+					  buttons: true,
+					  dangerMode: true,
+					})
+					.then((willInsert) => {
+					  if (willInsert) {
+					    swal("성공적으로 등록되었습니다.", {
+					      icon: "success",
+					    }).then(function(){
+					    	writeComment(pno);
+					    });
+					  } else {
+					    swal("등록이 취소되었습니다.");
+					  }		        		
+		    	})
+        	}
 		}
+	    
 	    
 	    
 

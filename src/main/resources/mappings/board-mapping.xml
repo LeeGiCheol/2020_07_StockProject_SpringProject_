@@ -9,6 +9,9 @@
 		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
 		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, #{bno}, 0);
 		
+		UPDATE user SET point = point + 100
+		WHERE id = #{id};
+		
 		<if test='bno eq "portfolio"'>
 			INSERT INTO filelist
 			( pno, thumbnailName )
@@ -285,14 +288,14 @@
 	
 	<select id="prev_next" resultType="board">
 		<![CDATA[
-		SELECT pno, title 
+		SELECT pno, bno, title 
 		FROM(
-				(SELECT pno, title
+				(SELECT pno, bno, title
 				FROM board
 				WHERE pno < #{pno}
 				AND bno = #{bno}
 				ORDER BY pno DESC LIMIT 1) UNION ALL
-				(SELECT pno, title
+				(SELECT pno, bno, title
 				FROM board
 				WHERE pno > #{pno}
 				AND bno = #{bno}

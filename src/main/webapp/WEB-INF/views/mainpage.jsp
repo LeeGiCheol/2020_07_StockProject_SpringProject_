@@ -507,12 +507,14 @@
 					<div class="ranking-body" id="searchHtml" style="cursor:pointer;">
 						<ul>
 						
-							<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
-								<li class="first"><a href="/selectUserBoard?nickname=${list.nickname}"><i> ${vs.count}</i> <span>${list.nickname}</span>
-										<p class="color-red">
-											${list.revenue}%
-										</p></a></li>
-							</c:forEach>
+						<c:forEach items="${currentRevenue}" var="list" varStatus="vs">
+	                        <c:if test="${list.nickname ne 'stock관리자'}">
+	                           <li class="first"><a href="/selectUserBoard?nickname=${list.nickname}"><i> ${vs.count}</i> <span>${list.nickname}</span>
+	                                 <p class="color-red">
+	                                    ${list.revenue}%
+	                                 </p></a></li>
+	                        </c:if>
+                   		</c:forEach>
 						</ul>
 					</div>
 					<div class="ranking-body" id="discHtml" style="display:none;">
@@ -1049,12 +1051,14 @@
  			success : function(data){
  				var HTMLForAccumRanking = "<ul>";
  				for(var i = 0; i < data.accumRankingNicknameList.length; ++i) {
- 					HTMLForAccumRanking +=
-
- 					'<li class="first"><a href="/selectUserBoard?nickname='+data.accumRankingNicknameList[i]+'"><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
- 					'<p class="color-red">'+
- 					((data.accumRankingAssetList[i]-10000000)/100000)+'%'+
- 					'</p></a></li>';
+ 					if(data.accumRankingNicknameList[i] !== 'stock관리자'){
+	 					HTMLForAccumRanking +=
+	
+	 					'<li class="first"><a href="/selectUserBoard?nickname='+data.accumRankingNicknameList[i]+'"><i> '+(i+1)+'</i> <span>'+data.accumRankingNicknameList[i]+'</span>'+
+	 					'<p class="color-red">'+
+	 					((data.accumRankingAssetList[i]-10000000)/100000)+'%'+
+	 					'</p></a></li>';
+ 					}
  				}
  				HTMLForAccumRanking += "</ul>";
  				$("#discHtml").html(HTMLForAccumRanking);

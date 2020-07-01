@@ -26,29 +26,41 @@
 
 
 <script>
-	function btnSave(){
-		// bcontent에 내용 삽입
-		oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
-		// 글제목
-		var title = $("#title").val();
-		// 글내용 있는지 확인용 
-		var contentValue = $('#bcontent').html();
-		
-		if(title.trim() == ""){
-			swal({text:"제목을 입력해주세요.", icon:"error"});			
-			$("#title").focus();
+function btnSave(){
+	// bcontent에 내용 삽입
+	oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
+	// 글제목
+	var title = $("#title").val();
+	// 글내용 있는지 확인용 
+	var content = document.getElementsByTagName('p');
+	
+			
+
+	var contentValue = $('#bcontent').val();
+	var checkBlankOnly = contentValue;
+	while(checkBlankOnly.indexOf("&nbsp;") != -1){
+		checkBlankOnly = checkBlankOnly.replace("&nbsp;", "");
+	}
+	while(checkBlankOnly.indexOf("<p>") != -1){
+		checkBlankOnly = checkBlankOnly.replace("<p>", "");
+	}
+	while(checkBlankOnly.indexOf("</p>") != -1){
+		checkBlankOnly = checkBlankOnly.replace("</p>", "");
+	}
+	checkBlankOnly = checkBlankOnly.trim();
+	if(title.trim() == ""){
+		swal({text:"제목을 입력해주세요.", icon:"error"});			
+		$("#title").focus();
+	}
+	else{
+		if(checkBlankOnly.length == 0){
+			swal({text:"내용을 입력해주세요.", icon:"error"});
 		}
 		else{
-			if(contentValue.trim() == ""){
-				console.log("쳌포2");
-				swal({text:"내용을 입력해주세요.", icon:"error"});
-			}
-			else{
-				console.log("쳌포3");
-				$("#form").submit();
-			}					
-		}
-	};
+			$("#form").submit();
+		}					
+	}
+};
 </script> 
 </head>
 <style>

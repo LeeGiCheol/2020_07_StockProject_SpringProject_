@@ -127,8 +127,6 @@
 
 </head>
 <style>
-
-
 .newsboard-nav-tab li{
 	border-bottom: 1px solid #eaeaea;
 	
