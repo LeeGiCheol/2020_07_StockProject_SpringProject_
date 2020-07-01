@@ -15,7 +15,7 @@ public class SignUpSend {
 	public static String signUpNumStr = ""; // 난수가 저장될 변수
 
 	public void sendSMS(String tel) {
-		String ran = Integer.toString((int) (Math.random() * 900000) + 1000);
+		String ran = Integer.toString((int) (Math.random() * 999999) + 1);
 		signUpNumStr = ran;
 		System.out.println("생성된 난수 : " + signUpNumStr);
 		String api_key = "NCSWBLOT0NJDJV6L";

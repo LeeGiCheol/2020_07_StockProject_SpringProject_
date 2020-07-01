@@ -22,7 +22,7 @@ public class SignUpMailController {
     @RequestMapping(value="/user/signUp/mail")
     public String signUpSendMail(@ModelAttribute("id") String id){
         MimeMessage message = mailSender.createMimeMessage();
-	        String ran = Integer.toString((int)(Math.random()*900000)+1000);
+	        String ran = Integer.toString((int)(Math.random()*999999)+1);
 	        signUpEmailNumStr = ran;
 	        System.out.println("생성된 난수 : " + signUpEmailNumStr);
         try {

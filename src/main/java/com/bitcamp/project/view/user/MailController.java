@@ -21,7 +21,7 @@ public class MailController {
     @RequestMapping(value="/user/mail")
     public String sendMail(UserVO vo, Model model){
         MimeMessage message = mailSender.createMimeMessage();
-        String ran = Integer.toString((int)(Math.random()*900000)+1000);
+        String ran = Integer.toString((int)(Math.random()*999999)+1);
         EmailNumStr = ran;
         System.out.println("생성된 난수 : " + EmailNumStr);
         try {

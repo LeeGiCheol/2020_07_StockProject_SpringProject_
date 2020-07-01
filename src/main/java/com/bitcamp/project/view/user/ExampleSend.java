@@ -16,7 +16,7 @@ public class ExampleSend {
 	public static String numStr = ""; // 난수가 저장될 변수
 
 	public static void main(String[] args, String tel) {
-		String ran = Integer.toString((int) (Math.random() * 900000) + 1000);
+		String ran = Integer.toString((int) (Math.random() * 999999) + 1);
 		numStr = ran;
 		System.out.println("생성된 난수 : " + numStr);
 		String api_key = "NCSWBLOT0NJDJV6L";
