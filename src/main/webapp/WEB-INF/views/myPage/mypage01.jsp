@@ -194,6 +194,17 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+	//정보공개만으로도 수정되게
+	if (${loginUser.showEsetSetting} === 0){
+		if ($("#ask-radio-1").click(function(){
+			$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+		}));
+		}else if (${loginUser.showEsetSetting} === 1){
+		if ($("#ask-radio-2").click(function(){
+			$("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
+		}));
+	}
+
     $(document).ready(function () {
     	$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
     	textLenCheck("userNickname","닉네임",{max:12,currentLenId:"maxText"});
@@ -400,6 +411,9 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
         document.getElementById("addr_post_no").value = roadFullAddr;
         $("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
     }
+    
+   
+    
     
     if (${ loginUser.showEsetSetting } === 0)
     $("#ask-radio-2").prop("checked", true);
