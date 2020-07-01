@@ -49,7 +49,7 @@
 						<p class="big-text">
 							<span class="color-fantasy">FantasyStock</span>에 오신 것을 환영합니다!
 						</p>
-						<p><mark></mark> FantasyStock 회원가입을 축하합니다.</p>
+						<!-- <p><mark></mark> FantasyStock 회원가입을 축하합니다.</p> -->
 						 
 					</div>
 					<!-- //message-st-01 --> 
