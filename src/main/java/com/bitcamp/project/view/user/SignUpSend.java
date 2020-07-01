@@ -15,7 +15,7 @@ public class SignUpSend {
 	public static String signUpNumStr = ""; // 난수가 저장될 변수
 
 	public void sendSMS(String tel) {
-		String ran = Integer.toString((int) (Math.random() * 9000) + 1000);
+		String ran = Integer.toString((int) (Math.random() * 900000) + 1000);
 		signUpNumStr = ran;
 		System.out.println("생성된 난수 : " + signUpNumStr);
 		String api_key = "NCSWBLOT0NJDJV6L";
@@ -26,7 +26,7 @@ public class SignUpSend {
 		params.put("to", tel);
 		params.put("from", "01064902806"); // 무조건 자기번호 (인증)
 		params.put("type", "SMS");
-		params.put("text", "FanstayStock 회원가입 인증번호 입니다. \n인증번호는 [ " + signUpNumStr + " ]입니다.");
+		params.put("text", "FantasyStock 회원가입 인증번호 입니다. \n인증번호는 [ " + signUpNumStr + " ]입니다.");
 		params.put("app_version", "test app 1.2"); // application name and version
 
 		try {
