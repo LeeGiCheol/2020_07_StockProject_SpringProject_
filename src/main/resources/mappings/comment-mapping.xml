@@ -9,6 +9,10 @@
 	<insert id="writeComment">
 		INSERT INTO commentList (pno, id, nickname, ccontent, cdateTime)
 		VALUES(#{pno}, #{id}, #{nickname}, #{ccontent}, sysdate());
+		
+		UPDATE user SET point = point + 50
+		WHERE id = #{id};
+		
 	</insert>
 	
 

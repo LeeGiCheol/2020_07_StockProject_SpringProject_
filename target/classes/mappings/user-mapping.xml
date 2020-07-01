@@ -92,7 +92,7 @@
 	
 	<update id="pointUp" parameterType="user">
 		UPDATE user 
-		SET point = point+1000
+		SET point = point + 300
 		WHERE id IN (#{friend}, #{id})
 	</update>
 	
