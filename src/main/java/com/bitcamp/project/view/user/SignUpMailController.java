@@ -22,16 +22,16 @@ public class SignUpMailController {
     @RequestMapping(value="/user/signUp/mail")
     public String signUpSendMail(@ModelAttribute("id") String id){
         MimeMessage message = mailSender.createMimeMessage();
-	        
-	        Random rand = new Random();
-	        String ranNum = Integer.toString(rand.nextInt(8) + 1);
-	        for (int i = 0; i < 6; i++) {
-	           ranNum += Integer.toString(rand.nextInt(9));
-	        }
-	        
-	        String ran = ranNum;
+			
+        	Random rand = new Random();
+			String ranNum = Integer.toString(rand.nextInt(8) + 1);
+			for (int i = 0; i < 6; i++) {
+				ranNum += Integer.toString(rand.nextInt(9));
+			}
+			
+			String ran = ranNum;
         
-        	//String ran = Integer.toString((int)(Math.random()*999999)+1);
+//	        String ran = Integer.toString((int)(Math.random()*1000000)+1);
 	        signUpEmailNumStr = ran;
 	        System.out.println("생성된 난수 : " + signUpEmailNumStr);
         try {
