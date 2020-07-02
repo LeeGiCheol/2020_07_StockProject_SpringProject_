@@ -205,11 +205,11 @@ public class CustomerController {
 	@GetMapping("/customerNotice/delete")
 	public String deleteBoard(BoardVO vo) {
 		BoardVO bVo = boardService.getBoard(vo);
-		List<String> uploadThumbnail = new ArrayList<String>();
-		FileUpload fileUpload = new FileUpload();
-		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
-		
-		boardService.deleteBoard(vo);
+	//		List<String> uploadThumbnail = new ArrayList<String>();
+	//		FileUpload fileUpload = new FileUpload();
+	//		fileUpload.fileDel(bVo, null, uploadedFileName, uploadThumbnail, request);
+	//		
+		boardService.deleteBoard(bVo);
 		return "redirect:/customerNotice";
 	}
 	
@@ -309,7 +309,6 @@ public class CustomerController {
 			return "msg/msg";
 		}
 		else {
-		
 			vo.setNickname(loginUser.getNickname());
 			
 			int check = adminService.qnaCount(vo);

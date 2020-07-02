@@ -133,8 +133,9 @@
 														<c:when test="${sc.commentCount ne 0}">
 															<td class="board-title">
 															<b><a href="/board/free/detail?pno=${sc.pno}">${sc.title}</a></b>
-															<b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${sc.commentCount}</b></td>
+															<b class="comment-num comment-num-web"><i class="far fa-comment-dots"></i>&nbsp;${sc.commentCount}</b></td>
 															<!-- 글 제목 -->
+															<td class="comment-num-web"><b class="comment-num "><i class="far fa-comment-dots"></i>&nbsp;${sc.commentCount}</b></td>
 														</c:when>
 														<c:otherwise>
 															<td class="board-title"><a
@@ -165,9 +166,10 @@
 													<c:choose>
 														<c:when test="${board.commentCount ne 0}">
 															<td class="board-title"><a
-																href="/board/free/detail?pno=${board.pno}">${board.title}</a><b
-																class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
+																href="/board/free/detail?pno=${board.pno}">${board.title}</a>
+															<b class="comment-num comment-num-web"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
 															<!-- 글 제목 -->
+															<td class="comment-num-m"><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
 														</c:when>
 														<c:otherwise>
 															<td class="board-title"><a
@@ -175,7 +177,8 @@
 														</c:otherwise>
 													</c:choose>
 
-													<td class="board-writer"><a href="/selectUserBoard?nickname=${board.nickname}">${board.nickname}</a></td>
+													<td class="board-writer">
+													<a href="/selectUserBoard?nickname=${board.nickname}">${board.nickname}</a></td>
 													<!-- 글쓴이 -->
 													<td class="board-views"><span>조회 </span>${board.views}</td>
 													<!-- 조회수 -->
