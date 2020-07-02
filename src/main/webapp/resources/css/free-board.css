@@ -360,10 +360,7 @@ input[type="button"], button {
     background: none;
 }
 
-
 /* 검색 div */
-
-
 
 .tab-content{
 	position: relative;
@@ -371,7 +368,7 @@ input[type="button"], button {
     margin-bottom: 10px;
     overflow: hidden;
 }
-.comment-num-web{
+.comment-num{
 	display: inline-block;
     margin: -1px 0 0 10px;
     font-size: 13px;
@@ -385,7 +382,6 @@ input[type="button"], button {
   border: 1px solid #dddddd;
   padding: 10px
 }
-
 .comment-num-m{
 	display: none;
 }
@@ -431,7 +427,7 @@ display: none;
 .board-title {
     width: 100%;
 }
-.board-writer, .board-views, .board-likes, .board-date {
+.board-writer, .board-views, .board-likes, .board-date, .comment-num-m  {
     width: auto;
     display: inline-block;
     padding: 0;
@@ -522,14 +518,12 @@ input[type="text"], input[type="password"], input[type="tel"], input[type="searc
 }
 /* 검색 div */
 
+.comment-num-m{
+	display: block;
+	
+}
 .comment-num-web{
 	display: none;
-}
-.comment-num-m{
-	float : left;
-	display: block;
-	margin-left: 0 !important;
-	color: rgba(46,87,255,1);
 }
 }
 
@@ -561,3 +555,4 @@ input[type="text"], input[type="password"], input[type="tel"], input[type="searc
     border: 1px solid rgba(46,87,255,1);
     color: #fff !important;
 }
+	
