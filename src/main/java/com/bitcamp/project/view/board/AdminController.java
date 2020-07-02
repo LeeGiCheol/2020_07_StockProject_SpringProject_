@@ -270,9 +270,9 @@ public class AdminController {
 	public String adminAnswerDelete(AdminVO vo) {
 	
 		AdminVO aVo = adminService.qnaDetail(vo);
-		List<String> uploadThumbnail = new ArrayList<String>();
-		FileUpload fileUpload = new FileUpload();
-		fileUpload.fileDel(null, aVo, uploadedFileName, uploadThumbnail, request);
+//		List<String> uploadThumbnail = new ArrayList<String>();
+//		FileUpload fileUpload = new FileUpload();
+//		fileUpload.fileDel(null, aVo, uploadedFileName, uploadThumbnail, request);
 			adminService.answerDelete(aVo);
 		return "redirect:/admin/qna/detail?qno=" + aVo.getQno();
 	}

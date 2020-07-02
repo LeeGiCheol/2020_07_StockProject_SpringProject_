@@ -1051,7 +1051,7 @@ function submitReportComt(){
 				    swal("성공적으로 삭제되었습니다.", {
 				      icon: "success",
 				    }).then(function(){
-					  location.href = '/board/free/delete?pno=${boardDetail.pno}';
+					  location.href = '/board/portfolio/delete?pno=${boardDetail.pno}';
 				    });
 				  } else {
 				    swal("삭제가 취소되었습니다.");

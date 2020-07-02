@@ -24,7 +24,7 @@
 
 			<div class="t-search-box">
 
-				<form id="frmData" method="get" action="/search/home">
+				<form id="frmData" method="get" action="/total-search">
 					<input type="hidden" name="currentPageNo" id="currentPageNo"
 						value="1"> <input type="hidden" name="searchType"
 						id="searchType" value=""> <input type="hidden"
