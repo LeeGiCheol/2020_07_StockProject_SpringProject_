@@ -135,7 +135,7 @@
 															<b><a href="/board/free/detail?pno=${sc.pno}">${sc.title}</a></b>
 															<b class="comment-num comment-num-web"><i class="far fa-comment-dots"></i>&nbsp;${sc.commentCount}</b></td>
 															<!-- 글 제목 -->
-															<td class="comment-num-web"><b class="comment-num "><i class="far fa-comment-dots"></i>&nbsp;${sc.commentCount}</b></td>
+															<td class="comment-num-m"><b class="comment-num "><i class="far fa-comment-dots"></i>&nbsp;${sc.commentCount}</b></td>
 														</c:when>
 														<c:otherwise>
 															<td class="board-title"><a

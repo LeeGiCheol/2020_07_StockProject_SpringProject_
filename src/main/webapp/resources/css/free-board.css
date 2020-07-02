@@ -362,7 +362,29 @@ input[type="button"], button {
 
 /* 검색 div */
 
-
+.tab-content{
+	position: relative;
+    background: #fff;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.comment-num{
+	display: inline-block;
+    margin: -1px 0 0 10px;
+    font-size: 13px;
+    font-weight: normal;
+    color: rgba(46,87,255,1);
+    vertical-align: middle;
+}
+.sidebar {
+  float: left;
+  width: auto;
+  border: 1px solid #dddddd;
+  padding: 10px
+}
+.comment-num-m{
+	display: none;
+}
 
 @media only screen and (max-width: 979px){
 .containerNew{
@@ -405,14 +427,14 @@ display: none;
 .board-title {
     width: 100%;
 }
-.board-writer, .board-views, .board-likes, .board-date {
+.board-writer, .board-views, .board-likes, .board-date, .comment-num-m  {
     width: auto;
     display: inline-block;
     padding: 0;
     line-height: 22px;
     float: left;
 }
-.board-writer, .board-views, .board-likes {
+.board-writer, .board-views, .board-likes, .comment-num-m {
     background: url(/resources/img/bg_line.png) no-repeat right 50%;
     padding-right: 10px !important;
     margin-right: 8px;
@@ -495,6 +517,14 @@ input[type="text"], input[type="password"], input[type="tel"], input[type="searc
     padding-right: 10px;
 }
 /* 검색 div */
+
+.comment-num-m{
+	display: block;
+	
+}
+.comment-num-web{
+	display: none;
+}
 }
 
 
@@ -502,26 +532,7 @@ input[type="text"], input[type="password"], input[type="tel"], input[type="searc
 
 
 
-.tab-content{
-	position: relative;
-    background: #fff;
-    margin-bottom: 10px;
-    overflow: hidden;
-}
-.comment-num{
-	display: inline-block;
-    margin: -1px 0 0 10px;
-    font-size: 13px;
-    font-weight: normal;
-    color: rgba(46,87,255,1);
-    vertical-align: middle;
-}
-.sidebar {
-  float: left;
-  width: auto;
-  border: 1px solid #dddddd;
-  padding: 10px
-}
+
 @media only screen and (max-width: 1599px){
 .board-page {
     margin: 0 auto 100px;
