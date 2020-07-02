@@ -23,11 +23,10 @@ public class MailController {
     @RequestMapping(value="/user/mail")
     public String sendMail(UserVO vo, Model model){
         MimeMessage message = mailSender.createMimeMessage();
-//        String ran = Integer.toString((int)(Math.random()*1000000)+1);
         
 		Random rand = new Random();
 		String ranNum = Integer.toString(rand.nextInt(8) + 1);
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			ranNum += Integer.toString(rand.nextInt(9));
 		}
 		
