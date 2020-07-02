@@ -202,7 +202,7 @@ public class TradeController {
 			modify = "정정";
 		mav.addObject("msg", "주문 " + modify + " 성공");
 		mav.addObject("location", "/trade?stockName=" + unsettledDetail.get("stockName"));
-		mav.addObject("icon", "suceess");
+		mav.addObject("icon", "success");
 		mav.setViewName("msg/msg");
 		return mav;
 	}
