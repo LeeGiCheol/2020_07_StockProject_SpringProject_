@@ -1031,12 +1031,12 @@ em, i {
 /*     width: 50%;
     float: left;
     border-right: #eaeaea 1px solid; */
-    margin-left: 100px;    
+    margin-left: 12%;    
 }
 .mem-withdrawal .mem p {
     height: 30px;
     line-height: 30px;
-    text-align: center;
+    text-align: left;
     font-size: 16px;
     color: #000;
 }
@@ -1060,7 +1060,7 @@ em, i {
 .mem-withdrawal .mem .name {
 /*     width: 50%;
     float: right; */
-    margin-left: 100px;
+    margin-left: 12%;
     margin-top: 10px;
 }
 .mem-withdrawal .mem-down {
@@ -1151,7 +1151,7 @@ em, i {
     margin-top: 0;
 }
 .mem-withdrawal .mem .id {
-    width: 100%;
+   /*  width: 100%; */
     float: none;
     border: none;
     margin-bottom: 5px;
