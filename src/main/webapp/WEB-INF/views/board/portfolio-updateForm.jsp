@@ -18,6 +18,8 @@
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8" ></script>
 <link rel="stylesheet" href="/resources/css/sidebar.css">
 <script>
+
+function btnSave(){
 // bcontent에 내용 삽입
 oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
 // 글제목
