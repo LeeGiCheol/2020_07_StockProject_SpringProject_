@@ -108,19 +108,19 @@ $(document).ready(function(){
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-								<a href="/news">내 정보 관리</a>
+								<a href="/myPage01">내 정보 관리</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">비밀번호 재설정</a>
+								<a href="/mypageUpdatePassword">비밀번호 재설정</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">계좌정보</a>
+								<a href="/myPage02">계좌정보</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">작성 글 | 댓글</a>
+								<a href="/myPage03">작성 글 | 댓글</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="#">알림</a>
+								<a href="/myPage04">알림</a>
 							</h1>
 						</div>
 						<div class="newsboard-nav">

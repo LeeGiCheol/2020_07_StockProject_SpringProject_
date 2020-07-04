@@ -1,5 +1,7 @@
 package com.bitcamp.project.view.user;
 
+import java.util.Random;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -21,7 +23,15 @@ public class MailController {
     @RequestMapping(value="/user/mail")
     public String sendMail(UserVO vo, Model model){
         MimeMessage message = mailSender.createMimeMessage();
-        String ran = Integer.toString((int)(Math.random()*999999)+1);
+        
+		Random rand = new Random();
+		String ranNum = Integer.toString(rand.nextInt(8) + 1);
+		for (int i = 0; i < 5; i++) {
+			ranNum += Integer.toString(rand.nextInt(9));
+		}
+		
+		String ran = ranNum;
+        
         EmailNumStr = ran;
         System.out.println("생성된 난수 : " + EmailNumStr);
         try {

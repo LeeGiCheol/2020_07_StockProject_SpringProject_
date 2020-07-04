@@ -104,9 +104,10 @@
 
 													<c:choose>
 														<c:when test="${board.commentCount ne 0}">
-															<td class="board-title"><a href="/customerNotice/detail?pno=${board.pno}">${board.title}</a><b
-																	class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b>
+															<td class="board-title"><a href="/customerNotice/detail?pno=${board.pno}">${board.title}</a>
+															<b class="comment-num comment-num-web"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b>
 															</td>
+															<td class="comment-num-m"><b class="comment-num"><i class="far fa-comment-dots"></i>&nbsp;${board.commentCount}</b></td>
 															<!-- 글 제목 -->
 														</c:when>
 														<c:otherwise>

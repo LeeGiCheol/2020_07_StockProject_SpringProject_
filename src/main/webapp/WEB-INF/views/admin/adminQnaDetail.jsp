@@ -202,7 +202,7 @@
 				<a href="/admin/qna" class="btn-s">목록</a>
 				
 				<c:if test="${qna.acontent eq null}">
-					<a href="javascript:void(0)" onclick="delAnswer('${qna.qno}')" class="btn-s fantasy">삭제</a>
+					<a href="javascript:void(0)" onclick="delQuestion('${qna.qno}')" class="btn-s fantasy">삭제</a>
 				</c:if>
 				<c:if test="${qna.acontent ne null}">
 					<a href="javascript:void(0)" onclick="delQna('${qna.qno}', '${qna.ano}')" class="btn-s fantasy">삭제</a>
@@ -268,6 +268,28 @@ function delQna(qno, ano) {
 		      icon: "success",
 		    }).then(function(){
 			  location.href = '/admin/qna/delete?qno=${qna.qno}&ano=${qna.ano}';
+		    });
+		  } else {
+		    swal("삭제가 취소되었습니다.");
+		  }
+	});
+}
+
+
+function delQuestion(qno) {
+	/* sweetAlert */
+	swal({
+		  text: "정말삭제하시겠습니까?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+		    swal("성공적으로 삭제되었습니다.", {
+		      icon: "success",
+		    }).then(function(){
+			  location.href = '/admin/qna/delete?qno=${qna.qno}';
 		    });
 		  } else {
 		    swal("삭제가 취소되었습니다.");

@@ -1,6 +1,8 @@
 package com.bitcamp.project.view.user;
 
 import java.util.HashMap;
+import java.util.Random;
+
 import org.json.simple.JSONObject;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -15,7 +17,13 @@ public class SignUpSend {
 	public static String signUpNumStr = ""; // 난수가 저장될 변수
 
 	public void sendSMS(String tel) {
-		String ran = Integer.toString((int) (Math.random() * 999999) + 1);
+		Random rand = new Random();
+		String ranNum = Integer.toString(rand.nextInt(8) + 1);
+		for (int i = 0; i < 5; i++) {
+			ranNum += Integer.toString(rand.nextInt(9));
+		}
+		
+		String ran = ranNum;
 		signUpNumStr = ran;
 		System.out.println("생성된 난수 : " + signUpNumStr);
 		String api_key = "NCSWBLOT0NJDJV6L";

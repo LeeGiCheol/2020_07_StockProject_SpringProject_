@@ -482,7 +482,7 @@ function submitReportComt(){
 					board +=			'<span class="viewer"><i>조회</i>'+data.boardDetail.views+'</span>'
 					board +=			'</p>'
 					board +=		'</div>'
-					board +=		'<c:if test="${loginUser.nickname eq boardDetail.nickname}">'
+					board +=		'<c:if test="${loginUser.id eq boardDetail.id}">'
 					board +=			'<div id="" class="share-more">'
 					board +=				'<a href="/customerNotice/update?pno=${boardDetail.pno}" id="editBtn" class="modify"><span>수정</span></a>'
 					board +=				'<a href="javascript:void(0)" onclick="delBoard()" id="btnDelete" class="del"><span>삭제</span></a>'
