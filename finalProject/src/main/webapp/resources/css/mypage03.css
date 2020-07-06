@@ -1,0 +1,782 @@
+@charset "UTF-8";
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button, a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+   pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small,
+   var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption,
+   tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption,
+   figure, footer, header, hgroup, menu, nav, section, summary, time,
+   audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   font-size: 14px;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+   word-break: break-all;
+}
+
+span, em, mark, strong, b, label {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: baseline;
+   background: transparent;
+   list-style: none;
+   box-sizing: border-box;
+}
+
+em, i {
+   font-style: normal;
+}
+
+a, a:link, a:visited, a:active, a:hover {
+   text-decoration: none;
+}
+
+p {
+    line-height: 160%;
+}
+body {
+    background: #eff3f6 !important;
+}
+.table td, .table th {
+    padding: 6px;
+}
+tr td button{
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+} 
+.table{
+	margin-bottom: 0;
+}
+.containerNew{
+position: relative;
+    max-width: 1260px;
+    height: 100%;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+.row {
+   margin: 0;
+}
+.col-md-10, .col-md-2{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.free-board {
+    padding: /*20px 30px 60px 30px*/20px 30px 0 30px;
+    margin-bottom: /*70px*/40px;
+    background: #fff;
+    position: relative;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 10px 11px -13px rgba(0,0,0,0.19);
+}
+.last{
+	border-bottom: 1px solid #eaeaea;
+}
+.tit-h1, .m-drop-tit-title {
+    margin: 0 -30px 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 0 30px 20px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    line-height: 100%;
+}
+.m-drop-tit-body a{
+	color: #848889;
+}
+.m-drop-tit-body:hover > a {
+  color: #000000;
+  font-weight: 600;
+}
+.m-drop-tit-body{
+    margin: 0 -30px 30px;
+    padding: 0 30px 20px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #888888;
+    font-weight: bold;
+    line-height: 100%;
+}
+
+[class*="board-write-btn"] {
+	position: relative;
+    background: #c8c8c8;
+    border: 1px solid #b3b3b3;
+    line-height: 100%;
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+.board-write-btn a:hover{
+	color: gray !important;
+}
+[class*="board-write-btn"] {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+}
+.board-free-btn{
+	float: left;
+}
+.board-free-nav{
+	height: 30px;
+	margin-bottom: 20px;
+	position: relative;
+}
+.board-free-table{
+	border-top: #000 1px solid;
+	margin-bottom: 15px;
+	width: 100%;
+}
+.writer{
+	text-align: left;
+}
+.board-writer,.board-title{
+	text-align: left;
+}
+.board-title a{
+    overflow: hidden;
+	max-width: 67%/*80%;; */;
+	color: #000;
+	display: -webkit-inline-box;
+   /*  display: -webkit-box; */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+thead tr{
+	border-bottom: 1px solid #dddddd;
+	color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px !important;
+    
+}
+thead tr th{
+	padding: 10px 0 10px 0;	
+}
+
+tbody tr{
+	border-bottom: 1px solid #dddddd;
+    text-align: center;
+    font-size: 13px !important;
+    color: #888;
+  
+}
+tbody tr td{
+	padding: 10px 0 10px 0;	
+}
+.paging,.search-area {
+    clear: both;
+    padding: 0 0 30px 0;
+    text-align: center;
+    position: relative;
+}
+.paging p.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+.paging-body {
+    display: inline-block;
+    padding-left: 0;
+}
+.search-area-body{
+    display: inline-block;
+    padding-left: 0;
+}
+.dropdown-toggle-board{
+    border: 1px solid #ced4da;
+    color:  #888;
+	margin-right: .5rem!important;
+    padding: .375rem .75rem;
+}
+.dropdown-board {
+border-radius: 0 !important;
+color:  #888 !important;
+margin-top: 1px;
+}
+.board-search, .board-search-btn{
+border-radius: 0 !important;
+ border: 1px solid #ced4da;
+ color:  #888;
+}
+.page-link{
+    color: #888888 !important;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: white;
+    border: 1.5px solid #888888 !important;
+}
+.board-free-nav p.right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -15px;
+}
+.board-item{
+ color:  #888;
+}
+/* input[type='radio'] {
+  -webkit-appearance:none;
+  width:16px;
+  height:16px;
+  border:1px solid darkgray;
+  border-radius:50%;
+  outline:none;
+  background:#e6e6e6;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+input[type='radio']:before {
+  content:'';
+  display:block;
+  width:60%;
+  height:60%;
+  margin: 20% auto;  
+  border-radius:50%;  
+  
+}
+input[type='radio']:checked:before {
+  background:gray;
+} */
+
+
+
+.new-board{
+	margin-right: 10px;
+}
+.new-board, .hot-board{
+	vertical-align: middle;
+}
+.paging + .board-search {
+    padding-bottom: 30px;
+}
+.board-views span, .board-likes span {
+    display: none;
+}
+.m-drop-nav, .m-drop-down{
+	display: none;
+}
+@media only screen and (max-width: 979px){
+.containerNew{
+	padding: 0;
+}
+.free-board {
+	border: none;
+    min-height: auto;
+    margin: 0;
+    padding: 20px 0 120px;
+    max-width: none !important;
+    width: 100% !important;
+}
+.board-free-nav{
+	margin: 10px;
+}
+.tit-h1,.m-drop-tit-title,.m-drop-tit-body{
+	font-size: 20px;
+	margin: 0 !important;
+	padding: 0 10px 20px;
+}
+.first{
+	padding-top: 20px;
+}
+.m-drop-nav{
+	display: block;
+}
+.board-free-table thead, .board-no{
+display: none;
+}
+.board-free-table tbody tr{
+    display: block;
+    position: relative;
+    padding: 10px;
+    height: 64px;
+}
+.board-title {
+    width: 100%;
+}
+.board-writer, .board-views, .board-likes, .board-date {
+    width: auto;
+    display: inline-block;
+    padding: 0;
+    line-height: 22px;
+    float: left;
+}
+.board-writer, .board-views, .board-likes {
+    background: url(/resources/img/bg_line.png) no-repeat right 50%;
+    padding-right: 10px !important;
+    margin-right: 8px;
+}
+.board-free-table tbody tr td{
+	padding: 0;
+}
+.board-title a{
+	/* max-width: 100%; */
+	width: 400px;
+	line-height: 22px;
+}
+.board-views span, .board-likes span {
+    display: inline;
+}
+.col-md-2, .drop-nav{
+	display: none !important;
+}
+.col-md-10 {
+	max-width: 100% !important;
+	flex: none !important;
+	padding: 0 !important;
+}
+}
+.tab-content{
+	position: relative;
+    background: #fff;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.comment-num{
+	display: inline-block;
+    margin: -1px 0 0 10px;
+    font-size: 13px;
+    font-weight: normal;
+   /*  color: #ff545b; */
+}
+.sidebar {
+  float: left;
+  width: auto;
+  border: 1px solid #dddddd;
+  padding: 10px
+}
+@media only screen and (max-width: 1599px)
+.board-page {
+    margin: 0 auto 100px;
+}
+/* .sidebar a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  display: block;
+  background-color: #dddddd;
+}
+
+.sidebar a:hover {
+  color: #212529;
+} */
+
+/* start 마이페이지 3 */
+p.check {
+    vertical-align: middle;
+    text-align: center;
+}
+/* input[type="checkbox"]:not(old){
+    opacity: 0;
+    outline: 0;
+    margin-left: 0;
+    position: absolute;
+    z-index: -1;
+} */
+p.check label {
+    width: 0;
+    text-indent: -9999em;
+    display: none;
+}
+/* input[type="checkbox"]:not(old) + label {
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 0 2px 20px;
+    background-image: url(/resources/img/bg_check.png);
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    cursor: pointer;
+}
+input[type="checkbox"]:not(old) + label {
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 0 2px 20px;
+    background-image: url(/resources/img/bg_check.png);
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    cursor: pointer;
+} */
+input[type="checkbox"]:not(old):checked + label {
+    min-width: 18px;
+    background-image: url(/resources/img/bg_check_on_m.png);
+}
+/* end 마이페이지 3 */
+
+/* start 마이페이지 4 */
+
+span, em, mark, strong, b, label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: transparent;
+    list-style: none;
+    box-sizing: border-box;
+}
+.my-list-scrap {
+    position: relative;
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+.alarm-area {
+    border-top: #444 1px solid;
+}
+/* input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
+    opacity: 0;
+    outline: 0;
+    margin-left: 0;
+    position: absolute;
+    z-index: -1;
+} */
+input[type="checkbox"]:not(old):checked + label {
+    min-width: 18px;
+    background-image: url(/resources/img/bg_check_on_m.png);
+}
+/* input[type="checkbox"]:not(old) + label {
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 0 2px 20px;
+    background-image: url(/resources/img/bg_check.png);
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    cursor: pointer;
+} */
+.my-list-scrap label i {
+    color: #ff545b;
+}
+.my-list-scrap p {
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 10px;
+}
+.my-list-scrap p .adhere {
+    float: left;
+    margin-right: -1px;
+}
+
+[class*="btn-"] {
+    position: relative;
+    background: #fff;
+    border: 1px solid #444;
+    line-height: 100%;
+    display: inline-block;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+[class*="btn-s"] {
+    padding: 6px 10px;
+    min-width: 60px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    color: #888;
+}
+input[type="button"], button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    background: none;
+}
+.my-list-scrap p .del::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    vertical-align: top;
+    background: url(/resources/img/ico_sub2.png) no-repeat 0 -136px;
+    background-size: 40px 400px;
+    padding-right: 5px;
+}
+.alarm-area li {
+    border-bottom: #eaeaea 1px solid;
+    width: 100%;
+    display: table;
+    padding: 10px 0;
+    table-layout: fixed;
+}
+.alarm-area li p.check {
+    display: table-cell;
+    width: 40px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.alarm-area li p.check label {
+    width: 0;
+    text-indent: -9999em;
+}	
+.alarm-area li p.img {
+    display: table-cell;
+    width: 65px;
+    vertical-align: middle;
+    text-align: left;
+}
+.pro-badge {
+    display: inline-block;
+    position: relative;
+    width: 46px;
+    height: 46px;
+}
+.pro-badge > img {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 50% !important;
+    /* background-color: #dc4e55; */
+    background-color: #eaeaea;
+    font-size: 13px;
+    display: inline-block;
+    color: #000;
+    text-align: center;
+}
+.alarm-area li dl {
+    display: table-cell;
+    width: 90%;
+    vertical-align: middle;
+    line-height: 1.6;
+}
+.alarm-area li dl dt a {
+    font-size: 14px;
+    color: #000;
+}
+.alarm-area li dl dd span {
+    font-size: 13px;
+    color: #888;
+    background: url(/resources/img/bg_line.png) no-repeat right 50%;
+    padding-right: 10px;
+    margin-right: 5px;
+}
+.alarm-area li dl dd span a {
+    color: #888;
+}
+.alarm-area li dl dd span:last-child {
+    background: none;
+    margin-right: 0;
+}
+input[type="checkbox"]:not(old):checked + label {
+    min-width: 18px;
+    background-image: url(/resources/img/bg_check_on_m.png);
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 979px){	
+.my-list-scrap {
+    padding: 0 15px;
+}
+input[type="checkbox"]:not(old):checked + label {
+    background-image: url(/resources/img/bg_check_on_m.png);
+}
+input[type="checkbox"]:not(old) + label {
+    background-image: url(/resources/img/bg_check_m.png);
+}
+.my-list-scrap p {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+.alarm-area li {
+    padding-right: 10px;
+}
+.mobile-only-check.fixed {
+    position: fixed;
+    bottom: 0;
+}
+.mobile-only-check {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 11px 0;
+    background-color: #444444;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.mobile-only-check span {
+    display: block;
+    width: 33.33%;
+    float: left;
+    color: #fff;
+    vertical-align: top;
+    background: url(/resources/img/bg_line2.png) no-repeat right 50%;
+}
+.mobile-only-check span button.del {
+    background: url(/resources/img/ico_sub2.png) no-repeat 0 -317px;
+    background-size: 40px 400px;
+    padding-left: 20px;
+}
+.mobile-only-check span button {
+    color: #fff;
+    height: 14px;
+    line-height: 1;
+}
+.mobile-only-check span button.cancel {
+    background: url(/resources/img/ico_sub2.png) no-repeat 0 -335px;
+    background-size: 40px 400px;
+    padding-left: 20px;
+}
+}
+
+.comm-list {
+    border-top: #000 1px solid;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* end	 마이페이지 4 */
+
+/* 라디오버튼 추가 css */
+.board-list-top p.pc-only input[type="radio"]:not(old) + label {
+    line-height: 18px;
+    margin-left: 18px;
+}
+/* input[type="radio"]:not(old):checked + label {
+    background-image: url(/resources/img/bg_radio_on.png);
+}
+input[type="radio"]:not(old) + label {
+    display: inline-block;
+    height: 18px;
+    padding: 0 0 0 18px;
+    background-image: url(/resources/img/bg_radio.png);
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+    cursor: pointer;
+    line-height: 18px;
+} */
+
+
+
+.ordeby{
+	top: 7px;
+    position: absolute;
+}
+
+.board-list-top label {
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+
+.color-fantasy {
+	color: rgba(46,87,255,1) !important;
+}
+.fantasy {
+    background: rgba(46,87,255,1);
+    border: 1px solid rgba(46,87,255,1);
+    color: #fff !important;
+}
+
+.message-wrap {
+    position: relative;
+    height: 550px;
+    display: table;
+    width: 100%;
+}
+.message-wrap [class*="message-st"] {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+}
+[class*="message-st"] {
+    max-width: 460px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 150%;
+}
+[class*="message-st"] .big-text {
+    position: relative;
+    font-size: 20px;
+    line-height: 150%;
+    padding-top: 100px;
+}
+.big-text {
+    font-size: 16px;
+    line-height: 170%;
+    color: #222;
+}
+[class*="message-st"] .big-text + p {
+    margin-top: 4px;
+}
+[class*="message-st"] .bt-area-02 {
+    padding-left: 0;
+    padding-right: 0;
+}
+[class*="message-st"] .bt-area {
+    padding-top: 23px;
+}
+.bt-area {
+    overflow: hidden;
+    padding: 20px 0 40px;
+}
+[class*="message-st"] .bt-area a {
+    margin: 5px 0 0 0;
+}
+[class*="btn-m"] {
+    padding: /*10px 14px*/7px 14px;
+    min-width: 70px;
+    font-size: 14px;
+}
+[class*="btn-"] {
+    position: relative;
+    background: #fff;
+    border: 1px solid #444;
+    line-height: 100%;
+    display: inline-block;
+    color: #000;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+}
+[class*="message-st"] .big-text:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 130px;
+    background: url(/resources/img/icon_message.png) no-repeat 0 0;
+}
+@media only screen and (max-width: 979px){
+[class*="message-st"] .big-text {
+    font-size: 16px;
+}
+.bt-area {
+    clear: both;
+    overflow: hidden;
+    padding: 0 15px 40px;
+}
+}
