@@ -113,7 +113,7 @@ public class TradeController {
 			@RequestParam(value = "modifyPrice") String price, @RequestParam(value = "uno") String uno,
 			@RequestParam(value = "cancleModify") String modify) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		String id = null;
 
 		try {
@@ -124,7 +124,7 @@ public class TradeController {
 			mav.setViewName("msg/notice");
 			return mav;
 		}
-		
+
 		StockVO vo = new StockVO();
 
 		vo.setId(id);
@@ -302,7 +302,7 @@ public class TradeController {
 
 		try {
 			String id = ((UserVO) session.getAttribute("loginUser")).getId();
-			System.out.println("id "+id);
+			System.out.println("id " + id);
 			StockVO sv = new StockVO();
 			sv.setId(id);
 			sv.setStockName(stockName);
@@ -334,27 +334,29 @@ public class TradeController {
 
 		Integer[][] minChartData = new Integer[6][60];
 		Integer[][] dayChartData = new Integer[6][60];
-//
-		try {
-			for (int i = 0; i < 60; i++) {
-				minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
-				minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
-				minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
-				minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
-				minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
-				minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
 
-				dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
-				dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
-				dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
-				dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
-				dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
-			}
-		} catch (Exception e) {
+		if (dayChart.size() == 0) {
 			mav.addObject("msg", "정확한 종목명을 입력해주세요");
 			mav.addObject("location", "/trade");
 			mav.setViewName("msg/notice");
 			return mav;
+		}
+//
+		System.out.println(dayChart.size());
+		for (int i = 0; i < minChart.size(); i++) {
+			minChartData[0][i] = (Integer) ((HashMap) minChart.get(i)).get("d");
+			minChartData[1][i] = (Integer) ((HashMap) minChart.get(i)).get("hr");
+			minChartData[2][i] = (Integer) ((HashMap) minChart.get(i)).get("startprice");
+			minChartData[3][i] = (Integer) ((HashMap) minChart.get(i)).get("highprice");
+			minChartData[4][i] = (Integer) ((HashMap) minChart.get(i)).get("lowprice");
+			minChartData[5][i] = (Integer) ((HashMap) minChart.get(i)).get("lastprice");
+		}
+		for (int i = 0; i < dayChart.size(); i++) {
+			dayChartData[0][i] = (Integer) ((HashMap) dayChart.get(i)).get("d");
+			dayChartData[2][i] = (Integer) ((HashMap) dayChart.get(i)).get("startprice");
+			dayChartData[3][i] = (Integer) ((HashMap) dayChart.get(i)).get("highprice");
+			dayChartData[4][i] = (Integer) ((HashMap) dayChart.get(i)).get("lowprice");
+			dayChartData[5][i] = (Integer) ((HashMap) dayChart.get(i)).get("lastprice");
 		}
 
 		mav.addObject("min_d", minChartData[0]);

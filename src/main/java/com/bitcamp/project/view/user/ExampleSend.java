@@ -16,11 +16,10 @@ public class ExampleSend {
 	public static String numStr = ""; // 난수가 저장될 변수
 
 	public static void main(String[] args, String tel) {
-//		String ran = Integer.toString((int) (Math.random() * 1000000) + 1);
 		
 		Random rand = new Random();
 		String ranNum = Integer.toString(rand.nextInt(8) + 1);
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			ranNum += Integer.toString(rand.nextInt(9));
 		}
 		

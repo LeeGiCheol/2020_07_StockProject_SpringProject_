@@ -37,8 +37,8 @@
 											<li class="mid"><a href="mypageUpdatePassword"><span>비밀번호 재설정</span></a></li>
 										</c:otherwise>
 									</c:choose>
-							<li class="mid"><a href="/myPagePwCheck02"><span>계좌정보</span></a></li>
-							<li class="mid"><a href="/myPagePwCheck03"><span>작성 글 | 댓글</span></a></li>
+							<li class="mid"><a href="/myPage02"><span>계좌정보</span></a></li>
+							<li class="mid"><a href="/myPage03"><span>작성 글 | 댓글</span></a></li>
 							<li class="selected"><a href="/myPage04"><span>알림</span></a></li>
 						</ul>
 					</div>
@@ -55,19 +55,19 @@
 						</div>
 						<div class="m-drop-down">
 							<h1 class="m-drop-tit-body first line" style="cursor: pointer;">
-								<a href="/news">내 정보 관리</a>
+								<a href="/myPagePwCheck01">내 정보 관리</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">비밀번호 변경</a>
+								<a href="mypageUpdatePassword">비밀번호 변경</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">나의 계좌정보</a>
+								<a href="/myPage02">나의 계좌정보</a>
 							</h1>
 							<h1 class="m-drop-tit-body line" style="cursor: pointer;">
-								<a href="/board/free">작성 글 | 댓글</a>
+								<a href="/myPage03">작성 글 | 댓글</a>
 							</h1>
 							<h1 class="m-drop-tit-body last line" style="cursor: pointer;">
-								<a href="#">알림</a>
+								<a href="/myPage04">알림</a>
 							</h1>
 						</div>
 						<div class="board-type">
