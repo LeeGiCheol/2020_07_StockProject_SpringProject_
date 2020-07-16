@@ -47,15 +47,17 @@ public class SignUpController {
 	// 회원가입완료화면
 	@PostMapping(value="/signUp")
 	public String signUp(UserVO vo, @RequestParam("friend") String friend, Model model) {
+		// 추천인 입력을 했을 경우
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
+		
+		// 비밀번호 암호화 후 vo에 저장
 		String encPassword = passwordEncoder.encode(vo.getPw());
-
 		vo.setPw(encPassword);
+		
 		signUpService.signUp(vo);
 		model.addAttribute("login", vo);
-		
 		
 		return "signInUp/signup03";
 	}
