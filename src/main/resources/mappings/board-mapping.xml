@@ -168,10 +168,7 @@
 			<otherwise>
 				ORDER BY pno DESC
 			</otherwise>
-		
 		</choose>	
-		
-		
 	</select>
 	
 	<select id="portfolioList" parameterType="page" resultType="board">
