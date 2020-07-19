@@ -376,11 +376,11 @@ public class FileUpload {
 
 		try {
 			for (int i = 0; i < uploadedFileName.size(); i++) {
-				int a = 0;
+				int cnt = 0;
 				for (int j = 1; j < img.length; j++) {
 					if (uploadedFileName.get(i).equals(img[j])) {
 						uploadThumbnail.add(uploadedFileName.get(i));
-						a++;
+						cnt++;
 					}
 				}
 
