@@ -43,8 +43,8 @@
 		
 
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
-	<beans:bean id="naverLoginBO" class="com.test.tst.NaverLoginBO" />
-	<beans:bean id="loginController" class="com.test.tst.LoginController" />
+	<beans:bean id="naverLoginBO" class="com.bitcamp.project.naver.NaverLoginBO" />
+	<beans:bean id="loginController" class="com.bitcamp.project.naver.LoginController" />
 	<beans:bean id="visitCountDAO" class="com.bitcamp.project.dao.impl.VisitCountDAOImpl"/>
 	
 	

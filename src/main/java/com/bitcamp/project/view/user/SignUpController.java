@@ -146,26 +146,25 @@ public class SignUpController {
 			map.put("tel", tel);
 			int result=signUpService.duplicateCheck(map);
 			if((Integer)tel.length() == 11) {
-				if(result == 0) {
+				if(result == 0) { // 중복확인 후 해당 전화번호 사용자가 없으면
 					SignUpSend send = new SignUpSend();
 					send.sendSMS(tel);
 				}
-			}else {
-				result = 2;
+			}else { // 11자리가 아닐시
+				result = 2; 
 				return Integer.toString(result);
 			}
 			
-			return Integer.toString(result);
+			return Integer.toString(result); // 이미 사용된 전화번호라면
 		}
 		// 휴대폰 인증번호 확인
 		else if(request.getServletPath().equals("/cTelCheck")) {
 			int result = 0;
-			System.out.println("cTel : " + cTel + "/////" + signUpNumStr);
 			if(signUpNumStr.equals(cTel)) {
-				result = 0;
+				result = 0; // 사용자 입력값과 생성된 난수가 같으면
 				return Integer.toString(result);
 			}else {
-				result = 1;
+				result = 1; // 사용자 입력값과 생성된 난수가 같지 않으면
 				return Integer.toString(result);
 			}
 		}

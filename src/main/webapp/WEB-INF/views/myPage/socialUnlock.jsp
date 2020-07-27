@@ -33,7 +33,6 @@
 								location.href="/signInPage"
 									self.close()
 						    });
-					
 				}else{
 					swal({
 						text:'회원탈퇴가 취소되었습니다.', 
