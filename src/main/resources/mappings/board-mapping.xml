@@ -168,10 +168,7 @@
 			<otherwise>
 				ORDER BY pno DESC
 			</otherwise>
-		
 		</choose>	
-		
-		
 	</select>
 	
 	<select id="portfolioList" parameterType="page" resultType="board">
@@ -223,11 +220,7 @@
 			<when test='util.orderby.equals("mainBest")'>
 				ORDER BY f.pno DESC
 			</when>
-			
-		
 		</choose>	
-		
-		
 	</select>
 	
 	<!-- 공지사항 다른 게시판에 뿌리기 -->
