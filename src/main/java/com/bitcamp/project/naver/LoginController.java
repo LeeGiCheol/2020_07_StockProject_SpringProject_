@@ -42,7 +42,12 @@ public class LoginController {
 			@RequestParam(value="state", required=false) String state, HttpSession session)
 			throws IOException, ParseException {
 			OAuth2AccessToken oauthToken;
+			try {
 			oauthToken = naverLoginBO.getAccessToken(session, code, state);
+			}
+			catch(Exception e) {
+				return "redirect:/";
+			}
 			apiResult = naverLoginBO.getUserProfile(oauthToken);
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(apiResult);
@@ -62,7 +67,7 @@ public class LoginController {
 			} else {
 				session.setAttribute("loginUser", vo);
 				model.addAttribute("result", apiResult);
-				return "redirect:/mainPage";
+				return "redirect:/";
 			}
 	}
 }

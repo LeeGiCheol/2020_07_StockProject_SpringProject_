@@ -220,7 +220,7 @@ public class MyPageController {
 			@ModelAttribute("commentKeyword") String commentKeyword, @ModelAttribute("type") String type) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		if (loginUser == null)
-			return "redirect:/mainPage";
+			return "redirect:/";
 		if (bnowPage == null || bnowPage.equals("")) {
 			bnowPage = "1";
 		}

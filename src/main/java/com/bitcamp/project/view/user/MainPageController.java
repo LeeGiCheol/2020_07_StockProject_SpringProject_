@@ -54,7 +54,7 @@ public class MainPageController {
 	@Autowired
 	MyAccountService myAccountService;
 
-	@GetMapping(value = "/mainPage")
+	@GetMapping(value = "/")
 	public ModelAndView mainPage(BoardVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -227,7 +227,7 @@ public class MainPageController {
 		mav.addObject("commentKeyword", commentKeyword);
 		mav.addObject("type", type);
 		
-		mav.setViewName("selectUserBoard");
+		mav.setViewName("/myPage/selectUserBoard");
 		
 		
 		return mav;
@@ -297,7 +297,7 @@ public class MainPageController {
 			mav.addObject("type", type);
 			mav.addObject("accumAsset", hm4.get("accumAsset"));
 			mav.addObject("ranking", hm4.get("ranking"));
-			mav.setViewName("selectUserMoney");
+			mav.setViewName("/myPage/selectUserMoney");
 			
 			System.out.println("1 "+(PagingVO) hm1.get("pv1"));
 			System.out.println("2 "+(PagingVO) hm2.get("pv2"));

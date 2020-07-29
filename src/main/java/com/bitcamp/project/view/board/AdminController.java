@@ -57,7 +57,7 @@ public class AdminController {
 		UserVO allUser = new UserVO();
 		if(loginUser == null || loginUser.getPoint() >= 0) {
 			mav.addObject("msg", "관리자만 접근할 수 있습니다");
-			mav.addObject("location", "/mainPage");
+			mav.addObject("location", "/");
 			mav.addObject("icon", "error");
 			mav.setViewName("msg/msg");
 		}
@@ -107,7 +107,7 @@ public class AdminController {
 		
 		if(loginUser == null || loginUser.getPoint() >= 0) {
 			model.addAttribute("msg", "관리자만 접근할 수 있습니다");
-			model.addAttribute("location", "/mainPage");
+			model.addAttribute("location", "/");
 			model.addAttribute("icon", "error");
 			return "msg/msg";
 		}
@@ -137,7 +137,7 @@ public class AdminController {
 
 		if(loginUser == null || loginUser.getPoint() >= 0) {
 			mav.addObject("msg", "관리자만 접근할 수 있습니다");
-			mav.addObject("location", "/mainPage");
+			mav.addObject("location", "/");
 			mav.addObject("icon", "error");
 			mav.setViewName("msg/msg");
 			
