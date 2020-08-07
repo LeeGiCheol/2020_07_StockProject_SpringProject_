@@ -42,11 +42,6 @@ public class AdminController {
 	
 	List<String> uploadedFileName = BoardController.uploadedFileName;
 
-	@GetMapping("/test")
-	public String test() {
-		return "test";
-	}
-	
 	
 
 	@GetMapping("/admin/main")

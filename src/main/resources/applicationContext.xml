@@ -61,6 +61,7 @@
 	<aop:config>
 		<aop:pointcut id="txPointcut"
 				expression="execution(* com.bitcamp.project..*(..))"/>
+		
 		<aop:advisor pointcut-ref="txPointcut"
 					advice-ref="txAdvice" />
 	</aop:config>
