@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 
 public class RequestChart {
-	String onOff = "ON";
+	String onOff = "OFF";
 	public void connection(String stockName) {
 		if(onOff.equals("OFF"))
 			return;
